@@ -1,0 +1,61 @@
+[Bb]in
+[Oo]bj
+[Cc]sx
+[Tt]est[Rr]esults
+*.suo
+*.user
+*.[Cc]ache
+*[Rr]esharper*
+packages
+*.nupkg
+*.dot[Cc]over
+*.vsp
+*.vspx
+*.psess
+*.orig
+*.log
+*.docstates
+.DS_Store
+[Tt]humbs.db
+*~
+*.scssc
+*.sass-cache
+node_modules/
+bower_components/
+.idea/
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+
+# Windows Azure Build Output
+csx/
+*.build.csdef
+
+### Code ###
+# Visual Studio Code - https://code.visualstudio.com/
+.settings/
+
+
+### Other Editors ###
+*.esproj
+*.espressostorage
+
+.idea/workspace.xml

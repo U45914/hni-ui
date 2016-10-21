@@ -1,0 +1,37 @@
+@import '_variables';
+
+@mixin rounded($radius: 8px) {
+  border-radius: $radius;
+}
+
+@mixin roundedTop($radius: 8px) {
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+}
+
+@mixin roundedBottom($radius: 8px) {
+  border-bottom-left-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+@mixin clearFix {
+  clear: both;
+}
+
+//Mixins for pointer states
+@mixin hoverState($color) {
+  &:hover {
+    color: $color;
+  }
+}
+
+@mixin activeState($color) {
+  &:active {
+    color: $color;
+  }
+}
+
+@mixin pointerStates($color-hover, $color-active) {
+  @include hoverState($color-hover);
+  @include activeState($color-active);
+}
