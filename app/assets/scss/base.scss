@@ -1,0 +1,10 @@
+@import './includes';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+html {
+  & body {
+    color: $color-gray-darker;
+    background-color: $color-background;
+    font-size: rem(14px);
+  }
+}

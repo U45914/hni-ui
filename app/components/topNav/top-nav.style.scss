@@ -1,0 +1,14 @@
+@import '../../assets/scss/includes';
+
+#top-nav {
+  background-color: $color-white;
+
+  & md-icon.material-icons {
+    color: $color-gray-dark;
+  }
+}
+
+#user-name {
+  color: $color-gray-dark;
+  font-size: rem(14px);
+}
