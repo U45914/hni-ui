@@ -15,7 +15,7 @@ require('./app.module');
 /*App component files*/
 requireAll(require.context('./', false, /\.js$/), ['./app.module.js', './index.js']);
 requireAll(require.context('./components', true, /\.js$/));
-requireAll(require.context('./directives', true, /\.js$/));
+//requireAll(require.context('./directives', true, /\.js$/));
 requireAll(require.context('./services', true, /\.js$/));
 
 //Iterates through every file at the context passed in, except for the values passed in (to allow loading modules first).

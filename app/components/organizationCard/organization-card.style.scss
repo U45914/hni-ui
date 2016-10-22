@@ -1,0 +1,13 @@
+@import '../../assets/scss/includes';
+
+md-card.organization-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: rem(330px);
+  color: $color-white;
+  background-color: $color-action-card;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+}
