@@ -1,13 +1,38 @@
 @import '../../assets/scss/includes';
 
 md-card.organization-card {
+  position: relative;
+  height: rem(330px);
+  padding-bottom: rem(36px);
+  color: $color-text;
+  background-color: $color-white;
+
+  & .org-view-button {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.org-image-header {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: rem(330px);
-  color: $color-white;
-  background-color: $color-action-card;
-  text-transform: uppercase;
-  cursor: pointer;
-  user-select: none;
+  padding: rem(20px) rem(60px) rem(20px) rem(60px);
+  border-bottom: 2px solid $color-org-border;
+
+  & img {
+    height: rem(40px);
+    width: rem(115px);
+  }
+}
+
+.org-info-section {
+  padding: rem(12px) rem(24px) rem(12px) rem(24px);
+}
+
+.org-card-info {
+  font-size: rem(12px);
+
+  & .material-icons {
+    font-size: rem(14px);
+  }
 }

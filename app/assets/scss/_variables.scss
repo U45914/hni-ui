@@ -3,11 +3,14 @@ $color-white: #FFFFFF;
 $color-gray-base: #EEEEEE;
 $color-gray-dark: #595959;
 $color-gray-darker: #4A4A4A;
+$color-gray-light: #D8D8D8;
 $color-red-base: #D65439;
 
 //Element Colors
+$color-text: $color-gray-darker;
 $color-background: $color-gray-base;
 $color-action-card: $color-red-base;
+$color-org-border: $color-gray-light;
 
 //Interactive Element Colors
 

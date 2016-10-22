@@ -1,8 +1,28 @@
 <md-card class="organization-card">
-    <md-card-title>
-        <md-card-title-text>
-            <span class="md-headline">Card with image</span>
-            <span class="md-subhead">Extra Large</span>
-        </md-card-title-text>
-    </md-card-title>
+    <div class="org-image-header"><img ng-src="{{vm.logo}}"/></div>
+    <div class="org-info-section">
+        <div class="org-card-name">{{vm.orgName}}</div>
+        <div class="org-card-info" layout="row">
+            <div flex="33">
+                <span class="material-icons">&#xE0C8;</span>
+                <span>Address:</span>
+            </div>
+            <div>{{vm.orgAddress}}</div>
+        </div>
+        <div class="org-card-info" layout="row">
+            <div flex="33">
+                <span class="material-icons">&#xE0CD;</span>
+                <span>Phone:</span>
+            </div>
+            <div>{{vm.orgPhone}}</div>
+        </div>
+        <div class="org-card-info" layout="row">
+            <div flex="33">
+                <span class="material-icons">&#xE192;</span>
+                <span>Hours:</span>
+            </div>
+            <div>{{vm.orgHours}}</div>
+        </div>
+    </div>
+    <md-button class="org-view-button">View Workspace</md-button>
 </md-card>
