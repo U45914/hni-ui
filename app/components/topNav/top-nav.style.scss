@@ -9,6 +9,14 @@
   }
 }
 
+#not-impossible-logo {
+  cursor: pointer;
+
+  & img {
+    height: rem(32px);
+  }
+}
+
 #user-name {
   color: $color-gray-dark;
   font-size: rem(14px);
@@ -23,7 +31,8 @@
 
   & span {
     position: relative;
-    border-radius: 100%;
+    border-radius: 50%;
+    user-select: none;
 
     &:last-child {
       font-size: rem(16px);

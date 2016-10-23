@@ -6,17 +6,17 @@
     routing.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function routing($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/dashboard');
 
         $stateProvider
             .state('base', {
                 url: '',
                 templateUrl: 'app/views/base.html'
             })
-            .state('getting-started', {
+            .state('dashboard', {
                 //parent: 'base',
-                url: '/home',
-                templateUrl: 'app/views/home.html'
+                url: '/dashboard',
+                templateUrl: 'app/views/dashboard.html'
             })
     }
 })();

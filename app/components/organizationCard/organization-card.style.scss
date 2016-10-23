@@ -2,7 +2,7 @@
 
 md-card.organization-card {
   position: relative;
-  height: rem(330px);
+  height: rem(280px);
   padding-bottom: rem(36px);
   color: $color-text;
   background-color: $color-white;
@@ -18,14 +18,14 @@ md-card.organization-card {
 }
 
 .org-image-header {
-  display: flex;
-  justify-content: center;
-  padding: rem(20px) rem(60px) rem(20px) rem(60px);
+  width: 100%;
+  padding: rem(12px) rem(40px) rem(12px) rem(40px);
+  box-sizing: border-box;
   border-bottom: 2px solid $color-org-border;
+  text-align: center;
 
   & img {
     height: rem(40px);
-    width: rem(115px);
   }
 }
 
@@ -86,8 +86,8 @@ md-card.organization-card {
   }
 
   label {
-    height: 16px;
-    width: 16px;
+    height: rem(16px);
+    width: rem(16px);
     cursor: pointer;
     position: absolute;
     top: 50%;
