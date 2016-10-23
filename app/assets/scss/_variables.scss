@@ -10,10 +10,12 @@ $color-red-base: #D65439;
 $color-text: $color-gray-darker;
 $color-background: $color-gray-base;
 $color-action-card: $color-red-base;
+$color-org-card: $color-red-base;
 $color-org-border: $color-gray-light;
 
 //Interactive Element Colors
 
 //Non Color Variables
 $time-default: 0.3s; // Default timing for interactions
+$timing-bounce: cubic-bezier(0, 1.450, 0.830, 0.920);
 $radius: 4px;
