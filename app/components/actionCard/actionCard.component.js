@@ -12,15 +12,16 @@
             controllerAs: 'vm'
         });
 
+    ActionCardController.$inject = ['$element'];
+
     function ActionCardController($element) {
         var vm = this;
 
-        var imageDiv = $element[0].querySelector('.action-card-bg');
+        //var imageDiv = $element[0].querySelector('.action-card-bg');
+        //imageDiv.style.backgroundImage = "url(" + vm.bgImage + ")";
 
         vm.$onInit = function() {
 
         };
-
-        imageDiv.style.backgroundImage = "url(" + vm.bgImage + ")";
     }
 })();
