@@ -1,0 +1,5 @@
+<div class="action-cards-section" layout="row" layout-wrap>
+    <action-card flex-gt-sm="25" flex="100" icon="&#xE8EF;" icon-text="View All"></action-card>
+    <organization-card flex-gt-sm="25" flex="100" ng-repeat="item in vm.orgs"
+                       logo="item.logo" name="item.name" address="item.address" phone="item.phone" hours="item.hours"></organization-card>
+</div>

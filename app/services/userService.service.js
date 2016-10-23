@@ -12,13 +12,15 @@
             mobilePhone: '',
             email: ''
         };
+        var organizations = [];
         var baseUrl = serviceConstants.baseUrl;
 
         setUser();
 
         return {
             getUser: getUser,
-            setUser: setUser
+            setUser: setUser,
+            getOrganizations: getOrganizations
         };
 
         function getUser() {
@@ -42,6 +44,14 @@
 
         function setUserFailed(error) {
 
+        }
+
+        function getOrganizations() {
+            for(var i = 0; i < 9; i++) {
+                organizations.push({name: "Care Community Center", address: "2510 N 17th St #203Rogers, AR 72756", phone: "(479) 246-0104", hours: "Open today · 9AM–4PM", logo: "app/assets/images/scc_logo.jpg"});
+            }
+
+            return organizations;
         }
     }
 })();
