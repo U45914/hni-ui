@@ -1,0 +1,29 @@
+@import '../../../assets/scss/includes';
+
+md-card.action-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: rem(280px);
+  color: $color-white;
+  background-color: $color-action-card;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+}
+
+.action-card-icon {
+  font-size: rem(35px);
+  padding: rem(12px);
+}
+
+.action-card-bg {
+  height:100%;
+  width:100%;
+  position: absolute;
+  opacity: 0.2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

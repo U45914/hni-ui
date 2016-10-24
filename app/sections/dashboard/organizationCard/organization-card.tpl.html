@@ -1,0 +1,28 @@
+<md-card class="organization-card">
+    <div class="org-image-header"><img ng-src="{{vm.logo}}"/></div>
+    <div class="org-info-section">
+        <div class="org-card-name">{{vm.name}}</div>
+        <div class="org-card-info" layout="row">
+            <div flex="30">
+                <span class="material-icons">&#xE0C8;</span>
+                <span>Address:</span>
+            </div>
+            <div flex="70">{{vm.address}}</div>
+        </div>
+        <div class="org-card-info" layout="row">
+            <div flex="30">
+                <span class="material-icons">&#xE0CD;</span>
+                <span>Phone:</span>
+            </div>
+            <div flex="70">{{vm.phone}}</div>
+        </div>
+        <div class="org-card-info" layout="row">
+            <div flex="30">
+                <span class="material-icons">&#xE192;</span>
+                <span>Hours:</span>
+            </div>
+            <div flex="70">{{vm.hours}}</div>
+        </div>
+    </div>
+    <md-button class="org-view-button" md-ink-ripple="#D65439">View Workspace</md-button>
+</md-card>

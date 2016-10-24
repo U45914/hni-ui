@@ -5,7 +5,7 @@ if (module.hot) {
 
 /*App css files*/
 requireAll(require.context('./scss', true, /\.scss$/));
-requireAll(require.context('../components', true, /\.scss$/));
+requireAll(require.context('../sections', true, /\.scss$/));
 
 
 //Iterates through every file at the context passed in, except for the values passed in.

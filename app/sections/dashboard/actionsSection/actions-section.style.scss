@@ -1,0 +1,23 @@
+@import '../../../assets/scss/includes';
+
+#welcome-section {
+  display: flex;
+  align-items: center;
+
+  & span.material-icons {
+    margin-right: rem(12px);
+    color: $color-red-base;
+    font-size: rem(40px);
+  }
+
+  & h1 {
+    font-size: rem(48px);
+    font-weight: normal;
+    margin: 0;
+  }
+}
+
+.welcome-paragraph {
+  font-size: rem(36px);
+  max-width: rem(800px);
+}

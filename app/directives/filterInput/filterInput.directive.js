@@ -14,12 +14,17 @@
             link: link
         };
 
-        function link(scope, element) {
+        function link(scope, element, attrs) {
             var copy = angular.copy(scope.filterInput);
 
             element.on('input', () => {
                 scope.$apply(() => {
-                    scope.filterInput = ($filter('orgFilter')(copy, element[0].value));
+                    if(attrs.filterName) {
+                        scope.filterInput = ($filter(attrs.filterName)(copy, element[0].value));
+                    }
+                    else {
+                        scope.filterInput = ($filter('filter')(copy, element[0].value));
+                    }
                 })
             })
         }

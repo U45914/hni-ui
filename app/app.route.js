@@ -9,13 +9,9 @@
         $urlRouterProvider.otherwise('/dashboard');
 
         $stateProvider
-            .state('base', {
-                url: '',
-                templateUrl: 'app/views/base.html'
-            })
             .state('dashboard', {
                 url: '/dashboard',
-                templateUrl: 'app/views/dashboard.html'
+                template: '<dashboard></dashboard>'
             })
     }
 })();
