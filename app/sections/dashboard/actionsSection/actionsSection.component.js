@@ -3,7 +3,7 @@
         .module('app')
         .component('actionsSection', {
             bindings: {},
-            templateUrl: 'app/sections/dashboard/actionsSection/actions-section.tpl.html',
+            templateUrl: 'actions-section.tpl.html',
             controller: ActionSectionController,
             controllerAs: 'vm'
         });

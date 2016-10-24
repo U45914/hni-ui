@@ -5,7 +5,7 @@
             bindings: {
                 logo: '@'
             },
-            templateUrl: 'app/sections/dashboard/organizationSection/organization-section.tpl.html',
+            templateUrl: 'organization-section.tpl.html',
             controller: OrganizationCardController,
             controllerAs: 'vm'
         });

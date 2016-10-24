@@ -9,7 +9,7 @@
                 phone: '<',
                 hours: '<'
             },
-            templateUrl: 'app/sections/dashboard/organizationCard/organization-card.tpl.html',
+            templateUrl: 'organization-card.tpl.html',
             controller: OrganizationCardController,
             controllerAs: 'vm'
         });

@@ -7,7 +7,7 @@
                 iconText: '@',
                 bgImage: '@'
             },
-            templateUrl: 'app/sections/dashboard/actionCard/action-card.tpl.html',
+            templateUrl: 'action-card.tpl.html',
             controller: ActionCardController,
             controllerAs: 'vm'
         });

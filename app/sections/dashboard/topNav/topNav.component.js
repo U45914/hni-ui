@@ -3,7 +3,7 @@
         .module('app')
         .component('topNav', {
         bindings: {},
-        templateUrl: 'app/sections/dashboard/topNav/top-nav.tpl.html',
+        templateUrl: 'top-nav.tpl.html',
         controller: TopNavController,
         controllerAs: 'vm'
     });
