@@ -14,7 +14,6 @@
                 templateUrl: 'app/views/base.html'
             })
             .state('dashboard', {
-                //parent: 'base',
                 url: '/dashboard',
                 templateUrl: 'app/views/dashboard.html'
             })

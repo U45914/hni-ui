@@ -26,6 +26,7 @@
     "style-loader": "^0.12.3",
     "postcss": "*",
     "postcss-loader": "*",
+    "autoprefixer": "*",
     "extract-text-webpack-plugin": "*",
     "webpack": "^1.13.1",
     "html-webpack-plugin": "^2.22.0",
