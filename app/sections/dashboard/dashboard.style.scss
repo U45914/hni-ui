@@ -4,3 +4,9 @@
   padding: rem(60px) rem(80px) rem(60px) rem(80px);
   background-color: $color-background;
 }
+
+@media screen and (max-width: 768px) {
+  #dashboard-section {
+    padding: rem(20px);
+  }
+}

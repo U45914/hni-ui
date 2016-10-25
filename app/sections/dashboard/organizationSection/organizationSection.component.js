@@ -17,6 +17,7 @@
 
         vm.$onInit = function() {
             vm.orgs = userService.getOrganizations();
+            vm.userRole = 1;
         };
     }
 })();
