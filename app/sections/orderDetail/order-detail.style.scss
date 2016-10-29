@@ -1,0 +1,133 @@
+@import '../../assets/scss/includes';
+
+#order-detail-container {
+  max-width: rem(800px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: rem(60px) rem(160px) rem(60px) rem(160px);
+
+  & #order-details {
+    padding-top: rem(48px);
+    padding-bottom: rem(48px);
+    padding-right: rem(48px);
+    border-right: 1px solid $color-order-detail-border;
+
+    & .order-details-header {
+      font-weight: 600;
+      font-size: rem(16px);
+      letter-spacing: rem(0.5px);
+      color: $color-order-detail-header;
+    }
+
+    & .order-details-number {
+      letter-spacing: rem(0.5px);
+    }
+
+    & .order-details-name {
+      font-size: rem(24px);
+      font-weight: 800;
+      color: $color-order-detail-text;
+    }
+
+    & .food-details {
+      margin-top: rem(24px);
+    }
+
+    & .food-details-header {
+      padding-bottom: rem(6px);
+      padding-left: rem(16px);
+      padding-right: rem(16px);
+      border-bottom: 2px solid $color-order-detail-border;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: rem(0.5px);
+    }
+
+    & .food-details-item {
+      margin-top: rem(12px);
+      padding-bottom: rem(12px);
+      padding-left: rem(16px);
+      padding-right: rem(16px);
+      border-bottom: 1px solid $color-order-detail-border;
+    }
+  }
+
+  & #restaurant-info {
+    padding-top: rem(48px);
+    padding-bottom: rem(48px);
+    padding-left: rem(48px);
+
+    & > div {
+      display: flex;
+      align-items: center;
+
+      &:not(:first-child) {
+        margin-top: rem(12px);
+      }
+    }
+
+    & .order-time {
+      font-size: rem(24px);
+      font-weight: bold;
+      letter-spacing: rem(0.5px);
+      color: $color-order-detail-header;
+    }
+
+    & i.material-icons {
+      padding-right: rem(6px);
+      color: $color-order-detail-text;
+    }
+
+    & .restaurant-info-site {
+      color: $color-order-detail-text;
+      font-weight: bold;
+      text-decoration: underline;
+      letter-spacing: rem(0.5px);
+      cursor: pointer;
+    }
+
+    & .restaurant-name {
+      font-weight: 500;
+    }
+
+    & button.button-primary {
+      margin-top: rem(24px);
+    }
+  }
+}
+
+md-card.order-detail-card {
+  position: relative;
+  min-height: rem(400px);
+  padding: rem(80px);
+  color: $color-text;
+  background-color: $color-white;
+}
+
+@media screen and (max-width: 960px) {
+  #order-detail-container {
+    padding: rem(80px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #order-detail-container {
+    padding: rem(40px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #order-detail-container {
+    padding: rem(20px);
+
+    & #order-details {
+      border-right: 0;
+      border-bottom: 1px solid $color-order-detail-border;
+    }
+  }
+}
+
+.md-button.md-raised:not([disabled]).button-primary {
+  color: $color-white;
+  background-color: $color-red-base;
+}

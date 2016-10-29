@@ -13,5 +13,9 @@
                 url: '/dashboard',
                 template: '<dashboard></dashboard>'
             })
+            .state('order-detail', {
+                url: '/order-detail',
+                template: '<order-detail></order-detail>'
+            })
     }
 })();

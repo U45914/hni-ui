@@ -17,9 +17,6 @@
     function ActionCardController($element) {
         var vm = this;
 
-        //var imageDiv = $element[0].querySelector('.action-card-bg');
-        //imageDiv.style.backgroundImage = "url(" + vm.bgImage + ")";
-
         vm.$onInit = function() {
 
         };
