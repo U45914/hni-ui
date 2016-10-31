@@ -1,4 +1,4 @@
-@import './includes';
+@import '_includes';
 
 .md-button.md-raised:not([disabled]).button-primary {
   color: $color-white;
@@ -31,7 +31,9 @@
     justify-content: flex-end;
     margin-bottom: rem(12px);
   }
-}.timeout-popup {
+}
+
+.timeout-popup {
    top: rem(-150px);
    width: rem(350px);
 

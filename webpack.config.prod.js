@@ -72,6 +72,9 @@ module.exports = {
             }
         }]
     },
+    sassLoader: {
+        includePaths: [path.resolve(__dirname, './app/assets/scss')]
+    },
     postcss: function () {
         return [autoprefixer];
     }
