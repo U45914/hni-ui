@@ -6,7 +6,7 @@
     userService.$inject = ['$http', 'serviceConstants'];
 
     function userService($http, serviceConstants) {
-        var user = {
+        let user = {
             firstName: '',
             lastName: '',
             mobilePhone: '',
@@ -28,7 +28,7 @@
         }
 
         function setUser() {
-            $http.get(baseUrl + '/user/1')
+            $http.get(baseUrl + '/users/1')
                 .then(setUserComplete)
                 .catch(setUserFailed);
         }

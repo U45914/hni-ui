@@ -3,7 +3,8 @@ $color-white: #FFFFFF;
 $color-gray-base: #EEEEEE;
 $color-gray-dark: #595959;
 $color-gray-darker: #4A4A4A;
-$color-gray-light: #D8D8D8;
+$color-gray-light: #938c8c;
+$color-gray-lighter: #D8D8D8;
 $color-red-base: #D65439;
 
 //Element Colors
@@ -11,7 +12,10 @@ $color-text: $color-gray-darker;
 $color-background: $color-gray-base;
 $color-action-card: $color-red-base;
 $color-org-card: $color-red-base;
-$color-org-border: $color-gray-light;
+$color-org-border: $color-gray-lighter;
+$color-order-detail-header: $color-gray-light;
+$color-order-detail-text: $color-red-base;
+$color-order-detail-border: $color-gray-lighter;
 
 //Interactive Element Colors
 
