@@ -3,11 +3,13 @@
         .module('app')
         .run(runblock);
 
-    runblock.$inject = ['$templateCache'];
+    runblock.$inject = ['$templateCache', 'userService'];
 
-    function runblock($templateCache) {
+    function runblock($templateCache, userService) {
         requireAllViews(require.context('./views', true, /\.html/), ['./index.html']);
         requireAllSections(require.context('./sections', true, /\.html/));
+
+        userService.setUser();
 
         //Iterates through every file at the context passed in, except for the exclude values passed in, and pushes it onto template cache..
         function requireAllViews(items, excludes) {

@@ -1,0 +1,60 @@
+@import './includes';
+
+.md-button.md-raised:not([disabled]).button-primary {
+  color: $color-white;
+  background-color: $color-red-base;
+}
+
+.timeout-popup {
+  top: rem(-150px);
+  width: rem(350px);
+
+  & md-dialog-content {
+    padding: rem(40px) rem(40px) 0 rem(40px);
+  }
+
+  & i.material-icons {
+    text-align: center;
+    font-size: rem(72px);
+    color: $color-red-base;
+  }
+
+  & .timeout-popup-text {
+    padding-top: rem(20px);
+    padding-bottom: rem(20px);
+    font-size: rem(24px);
+    color: $color-text;
+  }
+
+  & .timeout-popup-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: rem(12px);
+  }
+}.timeout-popup {
+   top: rem(-150px);
+   width: rem(350px);
+
+   & md-dialog-content {
+     padding: rem(40px) rem(40px) 0 rem(40px);
+   }
+
+   & i.material-icons {
+     text-align: center;
+     font-size: rem(72px);
+     color: $color-red-base;
+   }
+
+   & .timeout-popup-text {
+     padding-top: rem(20px);
+     padding-bottom: rem(20px);
+     font-size: rem(24px);
+     color: $color-text;
+   }
+
+   & .timeout-popup-footer {
+     display: flex;
+     justify-content: flex-end;
+     margin-bottom: rem(12px);
+   }
+ }

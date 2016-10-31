@@ -14,7 +14,6 @@
         var vm = this;
 
         vm.$onInit = function() {
-            var user = userService.getUser();
             vm.userRole = 1;
         };
     }

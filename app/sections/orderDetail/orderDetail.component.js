@@ -10,8 +10,12 @@
             controllerAs: 'vm'
         });
 
-    function OrderDetailController() {
-        var vm = this;
+    OrderDetailController.$inject = ['timeoutService'];
+
+    function OrderDetailController(timeoutService) {
+        let vm = this;
+
+        vm.showPopup = timeoutService.showPopup;
 
         vm.$onInit = function() {
             vm.user = {

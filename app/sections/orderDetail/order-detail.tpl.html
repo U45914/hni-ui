@@ -1,5 +1,5 @@
 <top-nav></top-nav>
-
+<timeout-popup></timeout-popup>
 <div id="order-detail-container">
     <md-card class="order-detail-card" layout="row" layout-wrap>
         <div id="order-details" flex="100" flex-gt-xs="50">
@@ -32,7 +32,7 @@
                 <i class="material-icons">&#xE80B;</i>
                 <a class="restaurant-info-site" ng-href="#/dashboard">{{::vm.orderInfo.website}}</a>
             </div>
-            <md-button class="md-raised button-primary">Mark As Complete</md-button>
+            <md-button class="md-raised button-primary" ng-click="vm.showPopup()">Mark As Complete</md-button>
         </div>
     </md-card>
 </div>

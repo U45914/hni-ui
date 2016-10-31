@@ -14,8 +14,7 @@
         var vm = this;
 
         vm.$onInit = function() {
-            var user = userService.getUser();
-            vm.username = "veronica.bagwell@walmart.com";
+            vm.user = userService.getUser();
         };
     }
 })();

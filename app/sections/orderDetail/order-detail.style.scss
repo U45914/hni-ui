@@ -38,7 +38,7 @@
       padding-left: rem(16px);
       padding-right: rem(16px);
       border-bottom: 2px solid $color-order-detail-border;
-      font-size: 18px;
+      font-size: rem(18px);
       font-weight: 800;
       letter-spacing: rem(0.5px);
     }
@@ -117,17 +117,21 @@ md-card.order-detail-card {
 }
 
 @media screen and (max-width: 600px) {
+  md-card.order-detail-card {
+    padding: rem(40px);
+  }
+
   #order-detail-container {
     padding: rem(20px);
 
     & #order-details {
+      padding-right: 0;
       border-right: 0;
       border-bottom: 1px solid $color-order-detail-border;
     }
-  }
-}
 
-.md-button.md-raised:not([disabled]).button-primary {
-  color: $color-white;
-  background-color: $color-red-base;
+    & #restaurant-info {
+      padding-left: 0;
+    }
+  }
 }
