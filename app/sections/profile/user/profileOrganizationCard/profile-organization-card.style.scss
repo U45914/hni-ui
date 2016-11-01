@@ -1,0 +1,31 @@
+@import '_includes';
+
+md-card.profile-organization-card {
+  position: relative;
+  color: $color-text;
+  background-color: $color-white;
+  border-radius: rem(10px);
+
+  & .profile-org-button {
+    // position: absolute;
+    // bottom: 0;
+    // margin: 0;
+    // width: 100%;
+    font-size: rem(10px);
+    color: $color-org-card;
+    margin-left: 0;
+    margin-right: 5px;
+  }
+}
+
+.org-image-header {
+  width: 100%;
+  padding: rem(18px) rem(40px) rem(12px) rem(40px);
+  box-sizing: border-box;
+  border-bottom: 1px solid $color-org-border;
+  text-align: center;
+
+  & img {
+    height: rem(40px);
+  }
+}

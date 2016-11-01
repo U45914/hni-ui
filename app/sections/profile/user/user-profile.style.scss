@@ -1,0 +1,17 @@
+@import '_includes';
+
+#user-profile-section {
+  // padding: rem(60px) rem(80px) rem(60px) rem(80px);
+  background-color: $color-background;
+
+  .md-fab {
+    position: absolute;;
+    right: rem(80px);
+    top: rem(313px);
+    background-color: $color-red-base;
+  }
+
+  i {
+    line-height: rem(56px);
+  }
+}
