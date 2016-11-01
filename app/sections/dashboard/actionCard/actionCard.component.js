@@ -12,9 +12,7 @@
             controllerAs: 'vm'
         });
 
-    ActionCardController.$inject = ['$element'];
-
-    function ActionCardController($element) {
+    function ActionCardController() {
         var vm = this;
 
         vm.$onInit = function() {

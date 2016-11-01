@@ -7,7 +7,7 @@
                 name: '<',
                 address: '<',
                 phone: '<',
-                hours: '<'
+                website: '<'
             },
             templateUrl: 'organization-card.tpl.html',
             controller: OrganizationCardController,
