@@ -13,6 +13,10 @@
                 url: '/dashboard',
                 template: '<dashboard></dashboard>'
             })
+            .state('login', {
+                url: '/login',
+                template: '<login></login>'
+            })
             .state('order-detail', {
                 url: '/order-detail',
                 template: '<order-detail></order-detail>'
