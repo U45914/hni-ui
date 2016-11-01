@@ -1,7 +1,13 @@
 <div id="list-table-container">
 	<table>
-		<tr ng-repeat="item in vm.items">
-			<td ng-repeat="field in vm.headerfields"><span>{{ item[field] }}</span></td>
-		</tr>
+		<thead>
+			<th ng-repeat="field in vm.headerfields">{{ field.displayName }}</th>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="item in vm.items">
+				<td ng-repeat="field in vm.headerfields">{{ item[field.key] }}</td>
+			</tr>
+		</tbody>
 	</table>
 </div>
