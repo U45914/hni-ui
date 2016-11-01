@@ -1,12 +1,16 @@
-<div id="list-table-container">
-	<table>
-		<thead>
-			<th ng-repeat="field in vm.headerfields">{{ field.displayName }}</th>
+<div id="list-table-container" class="md-whiteframe-2dp">
+	<table class="md-table">
+		<thead class="md-thead">
+			<tr>
+				<th ng-repeat="field in vm.headerfields">{{ field.displayName }}</th>
+				<th>blank</th>
+			</tr>
 		</thead>
 
 		<tbody>
-			<tr ng-repeat="item in vm.items">
+			<tr ng-repeat="item in vm.items" class="md-row">
 				<td ng-repeat="field in vm.headerfields">{{ item[field.key] }}</td>
+				<td></td>
 			</tr>
 		</tbody>
 	</table>
