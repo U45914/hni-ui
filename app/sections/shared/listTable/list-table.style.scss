@@ -1,0 +1,17 @@
+@import '_includes';
+.md-table {
+	width: 100%;
+	border-spacing: 0;
+	overflow: hidden;
+	background-color: white;
+	padding: rem(25px);
+	.md-thead {
+		text-align: left;
+		th {
+			vertical-align: middle;
+		}
+	}
+	.md-row {
+		height: 56px;
+	}
+}
