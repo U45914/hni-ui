@@ -17,5 +17,9 @@
                 url: '/order-detail',
                 template: '<order-detail></order-detail>'
             })
+            .state('clients', {
+                url: '/clients',
+                template: '<clients></clients>'
+            })
     }
 })();
