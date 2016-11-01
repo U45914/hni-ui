@@ -44,8 +44,19 @@ md-card.organization-card {
   font-size: rem(14px);
 
   & .material-icons {
+    margin-right: rem(4px);
     color: $color-org-card;
     font-size: rem(14px);
+  }
+
+  & a {
+    color: $color-org-card;
+  }
+
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
   }
 }
 

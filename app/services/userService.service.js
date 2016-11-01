@@ -48,8 +48,8 @@
 
         function getOrganizations() {
             for(var i = 0; i < 5; i++) {
-                organizations.push({name: "Samaritan Community Center", address: "2510 N 17th St #203Rogers, AR 72756", phone: "(479) 246-0104", hours: "Open today · 9AM–4PM", logo: "app/assets/images/scc_logo.jpg"});
-                organizations.push({name: "Care Community Center", address: "2510 N 17th St #203Rogers, AR 72756", phone: "(479) 246-0104", hours: "Open today · 9AM–4PM", logo: "app/assets/images/scc_logo.jpg"});
+                organizations.push({name: "Samaritan Community Center", address: "2510 N 17th St #203Rogers, AR 72756", phone: "(479) 246-0104", website: "http://www.samcc.org", logo: "app/assets/images/scc_logo.jpg"});
+                organizations.push({name: "Care Community Center", address: "2510 N 17th St #203Rogers, AR 72756", phone: "(479) 246-0104", website: "http://www.samcc.org", logo: "app/assets/images/scc_logo.jpg"});
             }
 
             return organizations;

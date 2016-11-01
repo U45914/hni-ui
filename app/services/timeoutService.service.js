@@ -16,7 +16,6 @@
                 controller: DialogController,
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                fullscreen: true,
                 template: `
                         <md-dialog class="timeout-popup">
                             <md-dialog-content>

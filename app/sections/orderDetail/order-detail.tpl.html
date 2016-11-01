@@ -1,11 +1,15 @@
 <top-nav></top-nav>
-<timeout-popup></timeout-popup>
+
 <div id="order-detail-container">
     <md-card class="order-detail-card" layout="row" layout-wrap>
         <div id="order-details" flex="100" flex-gt-xs="50">
-            <div class="order-details-header">Order For</div>
-            <div class="order-details-name">{{::vm.user.name}}</div>
-            <div class="order-details-number">{{::vm.user.phone}}</div>
+            <div class="order-details-header-container">
+                <i class="material-icons">&#xE56C;</i>
+                <div>
+                    <div class="order-details-header">Order For</div>
+                    <div class="order-details-name">{{::vm.user.name}}</div>
+                </div>
+            </div>
             <div class="food-details">
                 <div class="food-details-header">
                     {{::vm.orderInfo.name}}
@@ -14,25 +18,48 @@
                     {{item}}
                 </div>
             </div>
-        </div>
-        <div id="restaurant-info" flex="100" flex-gt-xs="50">
-            <div class="order-time">
-                <i class="material-icons">&#xE192;</i>
-                <div>{{vm.orderInfo.time}}</div>
-            </div>
-            <div class="restaurant-info-address">
-                <i class="material-icons">&#xE0C8;</i>
-                <div>
-                    <div class="restaurant-name">{{::vm.orderInfo.name}}</div>
-                    <div>{{::vm.orderInfo.address}}</div>
-                    <div>{{::vm.orderInfo.phone}}</div>
-                </div>
-            </div>
-            <div>
-                <i class="material-icons">&#xE80B;</i>
-                <a class="restaurant-info-site" ng-href="#/dashboard">{{::vm.orderInfo.website}}</a>
-            </div>
             <md-button class="md-raised button-primary" ng-click="vm.showPopup()">Mark As Complete</md-button>
         </div>
+        <div class="right-side-container" flex="100" flex-gt-xs="50">
+            <div id="restaurant-info">
+                <div class="order-time">
+                    <i class="material-icons">&#xE192;</i>
+                    <div>{{vm.orderInfo.time}}</div>
+                </div>
+                <div class="restaurant-info-address">
+                    <i class="material-icons">&#xE0C8;</i>
+                    <div>
+                        <div class="restaurant-name">{{::vm.orderInfo.name}}</div>
+                        <div>{{::vm.orderInfo.address}}</div>
+                        <div>{{::vm.orderInfo.phone}}</div>
+                    </div>
+                </div>
+                <div>
+                    <i class="material-icons">&#xE80B;</i>
+                    <a class="restaurant-info-site" ng-href="#/dashboard">{{::vm.orderInfo.website}}</a>
+                </div>
+            </div>
+            <div class="order-customer-info">
+                <div>
+                    <i class="material-icons">&#xE87C;</i>
+                    <div class="order-customer-info-header">{{::vm.user.name}}</div>
+                </div>
+                <div>
+                    <div></div>
+                    <div class="order-details-number">{{::vm.user.phone}}</div>
+                </div>
+                <div>
+                    <div></div>
+                    <div class="order-details-number">{{::vm.user.email}}</div>
+                </div>
+                <div>
+                    <div></div>
+                    <div class="order-details-number">{{::vm.user.organization}}</div>
+                </div>
+            </div>
+        </div>
+        <md-button class="md-fab button-primary" hide-gt-xs>
+            <md-icon class="material-icons" ng-click="vm.showPopup()">&#xE5CA;</md-icon>
+        </md-button>
     </md-card>
 </div>
