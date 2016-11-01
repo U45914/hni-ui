@@ -16,8 +16,25 @@
         let vm = this;
 
         vm.$onInit = function () {
-            vm.headerFields = ['name', 'phone', 'email', 'ngo'];
-            
+            vm.headerFields = [
+                {
+                    key: 'name',
+                    displayName: 'Name'
+                },
+                {
+                    key: 'phone',
+                    displayName: 'Phone'
+                },
+                {
+                    key: 'email',
+                    displayName: 'Email'
+                },
+                {
+                    key: 'ngo',
+                    displayName: 'NGO'
+                }
+            ];
+
             vm.items = [
                 {
                     name: 'Veronica Bagwell',
