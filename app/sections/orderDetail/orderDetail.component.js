@@ -20,7 +20,9 @@
         vm.$onInit = function() {
             vm.user = {
                 name: "Veronica Bagwell",
-                phone: "(479) 313-5606"
+                phone: "(479) 313-5606",
+                email: "veronica.bagwell@walmart.com",
+                organization: "7 Hills Homeless Center"
             };
 
             vm.orderInfo = {

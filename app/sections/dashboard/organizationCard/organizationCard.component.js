@@ -14,11 +14,17 @@
             controllerAs: 'vm'
         });
 
-    function OrganizationCardController() {
+    OrganizationCardController.$inject = ['$state'];
+
+    function OrganizationCardController($state) {
         var vm = this;
 
         vm.$onInit = function() {
 
         };
+
+        vm.enterOrg = function() {
+            $state.go('order-detail');
+        }
     }
 })();
