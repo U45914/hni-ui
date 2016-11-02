@@ -2,15 +2,25 @@
 	<table class="md-table">
 		<thead class="md-thead">
 			<tr>
-				<th ng-repeat="field in vm.headerfields">{{ field.displayName }}</th>
-				<th>blank</th>
+				<th ng-repeat="field in vm.headerfields" ng-click="vm.sortDataByField(field)">{{ field.displayName }}</th>
+				<th></th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr ng-repeat="item in vm.items" class="md-row">
 				<td ng-repeat="field in vm.headerfields">{{ item[field.key] }}</td>
-				<td></td>
+				<td class="icons">
+					<md-button>
+			            <i class="material-icons">&#xE872;</i>
+			        </md-button>
+			        <md-button>
+			            <i class="material-icons">&#xE417;</i>
+			        </md-button>
+			        <md-button>
+			            <i class="material-icons">&#xE150;</i>
+			        </md-button> 
+        		</td>
 			</tr>
 		</tbody>
 	</table>

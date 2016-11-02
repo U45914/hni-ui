@@ -2,35 +2,78 @@
 
 #list-table-container {
 	border-radius: 4px;
+	margin: 60px;
 	.md-table {
 		width: 100%;
 		border-spacing: 0;
 		overflow: hidden;
 		background-color: white;
-		border: 1px solid $color-gray-lighter;
+		border: 1px solid #e1e1e1;
 		border-radius: 4px;
 		.md-thead {
 			text-align: left;
 			th {
 				height: 56px;
 				vertical-align: middle;
-				border-bottom: 3px solid $color-gray-lighter;
-				padding: rem(0px) rem(25px);
+				border-bottom: 3px solid #e1e1e1;
+				padding-left: rem(25px);
 				color: $color-gray-light;
 			}
 		}
 		.md-row {
 			height: 56px;
 			td {
-				padding: rem(0px) rem(25px);
+				padding-left: rem(25px);
 				color: $color-gray-light;
-				border-bottom: 2px solid $color-gray-lighter;
+				border-bottom: 2px solid #e1e1e1;
+
+				button {
+					width: rem(40px);
+					height: rem(40px);
+					margin: 0px 1px;
+					min-width: 0;
+					border-radius: 50%;
+					&:hover {
+						background-color: #d8d8d8;
+						min-width: 0;
+						border-radius: 50%;
+						line-height: rem(40px);
+						width: rem(40px);
+						height: rem(40px);
+					}
+					&.active {
+						
+						background-color: #d8d8d8;
+						min-width: 0;
+						border-radius: 50%;
+						line-height: rem(40px);
+						width: rem(40px);
+						height: rem(40px);
+						margin: 0px 1px;
+						i {
+							color: #d65439;
+						}
+					}
+					i {
+						padding-top: 8px;
+						color: #828282;
+					}
+				}
+
+				&.icons {
+					text-align: right;
+					white-space: nowrap;
+					padding-right: 25px;
+				}
 			}
-			&:hover {
-				background-color: #f5f5f5;
-				font-weight: bold;
+			&.active {
 				color: $color-gray-base;
-			}		
+				background-color: #f5f5f5;
+			}	
+			&:hover {
+				color: $color-gray-base;
+				background-color: #f5f5f5;
+			}
 		}
 	}
 }
