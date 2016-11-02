@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular
         .module('app')
         .component('orderDetail', {
@@ -13,11 +13,11 @@
     OrderDetailController.$inject = ['$mdDialog'];
 
     function OrderDetailController($mdDialog) {
-            DialogController.$inject = ['$mdDialog'];
+        DialogController.$inject = ['$mdDialog'];
 
         let vm = this;
 
-        vm.$onInit = function() {
+        vm.$onInit = function () {
             vm.user = {
                 name: "Veronica Bagwell",
                 phone: "(479) 313-5606",
@@ -35,7 +35,7 @@
             }
         };
 
-        vm.completeOrder = function() {
+        vm.completeOrder = function () {
             $mdDialog.show({
                 controller: DialogController,
                 controllerAs: 'vm',
