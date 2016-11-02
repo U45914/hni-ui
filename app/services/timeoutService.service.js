@@ -1,10 +1,12 @@
 (function() {
     angular
         .module('app')
-        .factory('timeoutService', ['$mdDialog', timeoutService]);
+        .factory('timeoutService', timeoutService);
+
+    timeoutService.$inject = ['$mdDialog'];
 
     function timeoutService($mdDialog) {
-        DialogController.$inject = ['$mdDialog'];
+        DialogController.$inject = ['$mdDialog', '$state'];
 
         return {
             showPopup: showPopup
@@ -24,15 +26,20 @@
                                 </div>
                             </md-dialog-content>
                             <md-dialog-actions>
-                                <md-button md-ink-ripple="#D65439">No, Exit Orders</md-button>
+                                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.exitOrders()">No, Exit Orders</md-button>
                                 <md-button class="md-raised button-primary" ng-click="vm.hide()">Yes</md-button>
                             </md-dialog-actions>
                         </md-dialog>`
             });
         }
 
-        function DialogController($mdDialog) {
+        function DialogController($mdDialog, $state) {
             let vm = this;
+
+            vm.exitOrders = function() {
+                $mdDialog.hide();
+                $state.go('dashboard');
+            };
 
             vm.hide = function () {
                 $mdDialog.hide();
