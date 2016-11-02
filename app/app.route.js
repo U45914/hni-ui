@@ -17,8 +17,12 @@
                 url: '/login',
                 template: '<login></login>'
             })
-
+            .state('workspace-base', {
+                abstract: true,
+                templateUrl: 'workspace-base.tpl.html'
+            })
             .state('order-detail', {
+                parent: 'workspace-base',
                 url: '/order-detail',
                 template: '<order-detail></order-detail>'
             })
@@ -27,6 +31,7 @@
                 template: '<user-profile></user-profile>'
             })
             .state('clients', {
+                parent: 'workspace-base',
                 url: '/clients',
                 template: '<clients></clients>'
             })
@@ -35,6 +40,7 @@
                 template: '<organizations></organizations>'
             })
             .state('volunteers', {
+                parent: 'workspace-base',
                 url: '/volunteers',
                 template: '<volunteers></volunteers>'
             });

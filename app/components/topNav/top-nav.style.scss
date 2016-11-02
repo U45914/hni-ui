@@ -1,0 +1,71 @@
+@import '_includes';
+
+#top-nav {
+  background-color: $color-white;
+
+  & .md-toolbar-tools {
+    padding-left: rem(80px);
+    padding-right: rem(80px);
+  }
+
+  @media screen and(max-width: 900px) {
+    & .md-toolbar-tools {
+      padding-left: rem(40px);
+      padding-right: rem(40px);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    & .md-toolbar-tools {
+      padding-left: rem(2px);
+      padding-right: rem(16px);
+    }
+  }
+}
+
+#not-impossible-logo {
+  cursor: pointer;
+
+  & img {
+    height: rem(32px);
+  }
+}
+
+#user-name {
+  color: $color-gray-dark;
+  font-size: rem(14px);
+}
+
+.account-icon {
+  display: flex;
+  align-items: center;
+  margin-left: rem(6px);
+  color: $color-gray-dark;
+  cursor: pointer;
+
+  & span {
+    position: relative;
+    border-radius: 50%;
+    user-select: none;
+
+    &:last-child {
+      font-size: rem(16px);
+    }
+  }
+}
+
+#toolbar-content {
+  height: 100%;
+
+  & .md-nav-bar,  nav, & ._md-nav-bar-list, & .md-nav-item, & ._md-nav-button {
+    height: 100%
+  }
+
+  & .md-nav-bar {
+    border-bottom: 0;
+  }
+
+  & ._md-nav-button {
+    display: flex;
+  }
+}
