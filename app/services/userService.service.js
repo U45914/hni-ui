@@ -7,10 +7,10 @@
 
     function userService($http, serviceConstants) {
         let user = {
-            firstName: '',
-            lastName: '',
-            mobilePhone: '',
-            email: ''
+            firstName: 'Veronica',
+            lastName: 'Bagwell',
+            mobilePhone: '(479) 313 - 5602',
+            email: 'veronica.bagwell@walmart.com'
         };
         var organizations = [];
         var baseUrl = serviceConstants.baseUrl;

@@ -25,5 +25,9 @@
                 url: '/clients',
                 template: '<clients></clients>'
             })
+            .state('viewedit', {
+                url: '/viewedit',
+                template: '<client-view-edit></client-view-edit>'
+            })
     }
 })();
