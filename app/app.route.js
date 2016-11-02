@@ -33,9 +33,5 @@
                 url: '/volunteers',
                 template: '<volunteers></volunteers>'
             });
-            .state('viewedit', {
-                url: '/viewedit',
-                template: '<client-view-edit></client-view-edit>'
-            })
     }
 })();

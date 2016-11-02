@@ -11,12 +11,13 @@
             controllerAs: 'vm'
         });
 
-    ListTableController.$inject = [];
+    ListTableController.$inject = ['viewEditModalService'];
 
-    function ListTableController() {
+    function ListTableController(viewEditModalService) {
         let vm = this;
         vm.originalItemList = vm.items.slice();
         vm.lastSortField = null;
+        vm.showEdit = showEdit;
 
         vm.$onInit = function () {
             console.log(vm);
@@ -67,5 +68,9 @@
                 }
             }
         };
+
+        function showEdit() {
+            viewEditModalService.showPopup();
+        }
     }
 })();
