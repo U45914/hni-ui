@@ -1,0 +1,56 @@
+@import '_includes';
+
+.profile-header {
+  color: white;
+  height: rem(282px);
+  background: url('/app/assets/images/profile-bg.jpg');
+  background-size: cover;
+
+  .profile-content {
+    height: 100%;
+    padding: rem(0px) rem(80px) rem(0px) rem(80px);
+
+    .profile-top-row {
+      h1 {
+        font-weight: $font-weight-light;
+        font-size: rem(45px);
+      }
+      h3 {
+        font-weight: $font-weight-light;
+        font-size: rem(14px);
+        text-align: right;
+        margin-top: rem(46px);
+      }
+    }
+  }
+
+  img {
+    height: rem(154px);
+    width: rem(154px);
+  }
+
+  .user-information {
+    margin-left: rem(17px);
+
+    p {
+      font-weight: $font-weight-light;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 12px;
+
+      &.username {
+        font-size: rem(34px);
+      }
+
+      &.email, &.phone {
+        font-size: rem(14px);
+      }
+    }
+    
+    a {
+      color: $color-red-base;
+      text-decoration: none;
+      font-size: rem(12px);
+    }
+  }
+}

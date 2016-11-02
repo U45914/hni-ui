@@ -1,0 +1,9 @@
+<div class="profile-organizations">
+  <div class="org-header line-to-right" layout="row">
+      ORGANIZATIONS
+  </div>
+  <div class="action-cards-section" layout="row" layout-wrap>
+      <profile-organization-card flex-sm="50" flex-gt-sm="25" flex-gt-md="20" flex="100" ng-repeat="item in vm.orgs"
+                         logo="item.logo" name="item.name" address="item.address" phone="item.phone" hours="item.hours"></organization-card>
+  </div>
+</div>
