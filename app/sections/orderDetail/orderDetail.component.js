@@ -10,17 +10,17 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['timeoutService'];
+    OrderDetailController.$inject = ['$mdDialog'];
 
-    function OrderDetailController(timeoutService) {
+    function OrderDetailController($mdDialog) {
         let vm = this;
-
-        vm.showPopup = timeoutService.showPopup;
 
         vm.$onInit = function() {
             vm.user = {
                 name: "Veronica Bagwell",
-                phone: "(479) 313-5606"
+                phone: "(479) 313-5606",
+                email: "veronica.bagwell@walmart.com",
+                organization: "7 Hills Homeless Center"
             };
 
             vm.orderInfo = {
@@ -32,5 +32,22 @@
                 website: "http://www.subway.com/en-us"
             }
         };
+
+        vm.completeOrder = function() {
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'vm',
+                parent: angular.element(document.body),
+                templateUrl: 'order-complete.tpl.html'
+            });
+        };
+
+        function DialogController($mdDialog) {
+            let vm = this;
+
+            vm.hide = function () {
+                $mdDialog.hide();
+            };
+        }
     }
 })();

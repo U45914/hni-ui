@@ -1,16 +1,35 @@
 @import '_includes';
 
-.md-button.md-raised:not([disabled]).button-primary {
-  color: $color-white;
-  background-color: $color-red-base;
+.md-button {
+  &.button-primary {
+    color: $color-red-base;
+  }
+
+  &.md-raised, &.md-fab {
+    &:not([disabled]).button-primary {
+      color: $color-white;
+      background-color: $color-red-base;
+    }
+  }
 }
 
-.timeout-popup {
+md-dialog.small-prompt {
   top: rem(-150px);
   width: rem(350px);
+  color: $color-text;
 
   & md-dialog-content {
-    padding: rem(40px) rem(40px) 0 rem(40px);
+    padding: rem(40px) rem(40px) rem(40px) rem(40px);
+    border-bottom: 1px solid $color-order-detail-border;
+  }
+
+  & md-dialog-actions {
+    padding: rem(12px);
+
+    & button {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 
   & i.material-icons {
@@ -19,44 +38,34 @@
     color: $color-red-base;
   }
 
-  & .timeout-popup-text {
-    padding-top: rem(20px);
-    padding-bottom: rem(20px);
-    font-size: rem(24px);
+  & .small-prompt-header {
+    margin-top: rem(12px);
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
     color: $color-text;
   }
 
-  & .timeout-popup-footer {
+  & .small-prompt-text {
+    padding-top: rem(12px);
+    font-size: rem(24px);
+    color: $color-text;
+    text-align: center;
+  }
+
+  & .small-prompt-subtext {
+    padding-top: rem(12px);
+    color: $color-text;
+    text-align: center;
+  }
+
+  & .small-prompt-footer {
     display: flex;
     justify-content: flex-end;
     margin-bottom: rem(12px);
   }
+
+  @media screen and (max-width: 600px) {
+    top: initial;
+  }
 }
-
-.timeout-popup {
-   top: rem(-150px);
-   width: rem(350px);
-
-   & md-dialog-content {
-     padding: rem(40px) rem(40px) 0 rem(40px);
-   }
-
-   & i.material-icons {
-     text-align: center;
-     font-size: rem(72px);
-     color: $color-red-base;
-   }
-
-   & .timeout-popup-text {
-     padding-top: rem(20px);
-     padding-bottom: rem(20px);
-     font-size: rem(24px);
-     color: $color-text;
-   }
-
-   & .timeout-popup-footer {
-     display: flex;
-     justify-content: flex-end;
-     margin-bottom: rem(12px);
-   }
- }

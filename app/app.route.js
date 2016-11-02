@@ -17,9 +17,14 @@
                 url: '/login',
                 template: '<login></login>'
             })
+
             .state('order-detail', {
                 url: '/order-detail',
                 template: '<order-detail></order-detail>'
+            })
+            .state('user-profile', {
+                url: '/user-profile',
+                template: '<user-profile></user-profile>'
             })
             .state('clients', {
                 url: '/clients',
