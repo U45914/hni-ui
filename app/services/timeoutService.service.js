@@ -17,11 +17,11 @@
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
                 template: `
-                        <md-dialog class="timeout-popup">
+                        <md-dialog class="small-prompt">
                             <md-dialog-content>
                                 <div layout="row" layout-wrap>
                                     <i class="material-icons" flex="100">&#xE425;</i>
-                                    <div class="timeout-popup-text" flex="100">Need more time to complete an order?</div>
+                                    <div class="small-prompt-text" flex="100">Need more time to complete an order?</div>
                                 </div>
                             </md-dialog-content>
                             <md-dialog-actions>
