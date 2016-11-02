@@ -1,11 +1,10 @@
 (function() {
     angular
         .module('app')
-        .factory('timeoutService', timeoutService);
-
-    timeoutService.$inject = ['$mdDialog'];
+        .factory('timeoutService', ['$mdDialog', timeoutService]);
 
     function timeoutService($mdDialog) {
+        DialogController.$inject = ['$mdDialog'];
 
         return {
             showPopup: showPopup

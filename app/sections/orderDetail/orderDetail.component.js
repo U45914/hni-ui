@@ -13,6 +13,8 @@
     OrderDetailController.$inject = ['$mdDialog'];
 
     function OrderDetailController($mdDialog) {
+            DialogController.$inject = ['$mdDialog'];
+
         let vm = this;
 
         vm.$onInit = function() {

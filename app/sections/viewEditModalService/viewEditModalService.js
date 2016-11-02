@@ -1,11 +1,10 @@
 (function () {
     angular
         .module('app')
-        .factory('viewEditModalService', viewEditModalService);
-
-    viewEditModalService.$inject = ['$mdDialog', 'userService'];
+        .factory('viewEditModalService', ['$mdDialog', 'userService', viewEditModalService]);
 
     function viewEditModalService($mdDialog, userService) {
+            ClientViewEditController.$inject = ['$mdDialog', 'userService'];
 
         return {
             showPopup: showPopup
