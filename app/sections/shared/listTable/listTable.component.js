@@ -20,8 +20,10 @@
             console.log(vm);
         };
 
-        vm.getValue = function(item, field) {
-            return item[field];
-        }
+        vm.sortDataByField = function(field) {
+            if (field.sortable) {
+                
+            }
+        };
     }
 })();

@@ -19,19 +19,23 @@
             vm.headerFields = [
                 {
                     key: 'name',
-                    displayName: 'Name'
+                    displayName: 'Name',
+                    sortable: true
                 },
                 {
                     key: 'phone',
-                    displayName: 'Phone'
+                    displayName: 'Phone',
+                    sortable: false
                 },
                 {
                     key: 'email',
-                    displayName: 'Email'
+                    displayName: 'Email',
+                    sortable: true
                 },
                 {
                     key: 'ngo',
-                    displayName: 'NGO'
+                    displayName: 'NGO',
+                    sortable: true
                 }
             ];
 
