@@ -2,7 +2,7 @@
 	<table class="md-table">
 		<thead class="md-thead">
 			<tr>
-				<th ng-repeat="field in vm.headerfields">{{ field.displayName }}</th>
+				<th ng-repeat="field in vm.headerfields" ng-click="vm.sortDataByField(field)">{{ field.displayName }}</th>
 				<th>blank</th>
 			</tr>
 		</thead>

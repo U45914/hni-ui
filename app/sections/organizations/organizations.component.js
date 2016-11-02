@@ -1,18 +1,18 @@
 (function () {
     angular
         .module('app')
-        .component('clients', {
+        .component('organizations', {
             bindings: {
 
             },
-            templateUrl: 'clients.tpl.html',
-            controller: ClientsController,
+            templateUrl: 'organizations.tpl.html',
+            controller: OrganizationsController,
             controllerAs: 'vm'
         });
 
-    ClientsController.$inject = [];
+    OrganizationsController.$inject = [];
 
-    function ClientsController() {
+    function OrganizationsController() {
         let vm = this;
 
         vm.$onInit = function () {

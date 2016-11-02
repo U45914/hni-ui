@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular
         .module('app')
         .config(routing);
@@ -25,5 +25,13 @@
                 url: '/clients',
                 template: '<clients></clients>'
             })
+            .state('organizations', {
+                url: '/organizations',
+                template: '<organizations></organizations>'
+            })
+            .state('volunteers', {
+                url: '/volunteers',
+                template: '<volunteers></volunteers>'
+            });
     }
 })();
