@@ -1,11 +1,27 @@
 @import '_includes';
 
 .sub-nav-bar {
+  position: relative;
   display: flex;
   text-align: center;
   height: rem(100px);
   background-color: $color-red-base;
   color: $color-white;
+
+  & .md-button.md-fab {
+    position: absolute;
+    right: rem(24px);
+    bottom: -28px;
+    background-color: $color-white;
+
+    & md-icon.material-icons {
+      color: $color-red-base;
+    }
+
+    &:hover, &:focus {
+      background-color: $color-white;
+    }
+  }
 }
 
 .sub-nav-bar-text {

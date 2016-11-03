@@ -4,7 +4,8 @@
         .component('subNavBar', {
             bindings: {
                 icon: '@',
-                text: '@'
+                text: '@',
+                showFab: '<'
             },
             templateUrl: 'sub-nav-bar.tpl.html',
             controller: controller,
