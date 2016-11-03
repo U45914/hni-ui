@@ -1,0 +1,19 @@
+@import '_includes';
+
+.sub-nav-bar {
+  display: flex;
+  text-align: center;
+  height: rem(100px);
+  background-color: $color-red-base;
+  color: $color-white;
+}
+
+.sub-nav-bar-text {
+  font-size: rem(20px);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sub-nav-bar-icon {
+  align-self: flex-end;
+}

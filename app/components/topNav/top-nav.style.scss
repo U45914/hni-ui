@@ -67,5 +67,14 @@
 
   & ._md-nav-button {
     display: flex;
+    color: $color-text;
+
+    &.md-active {
+      font-weight: bold;
+    }
+  }
+
+  & md-nav-ink-bar {
+    background-color: $color-red-base;
   }
 }
