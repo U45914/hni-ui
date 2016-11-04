@@ -5,25 +5,20 @@
             bindings: {
                 icon: '@',
                 iconText: '@',
-                bgImage: '@',
-                path: '@'
+                bgImage: '@'
             },
             templateUrl: 'action-card.tpl.html',
             controller: ActionCardController,
             controllerAs: 'vm'
         });
 
-    ActionCardController.$inject = ['$element', '$location'];
+    ActionCardController.$inject = [];
 
-    function ActionCardController($element, $location) {
+    function ActionCardController() {
         var vm = this;
 
         vm.$onInit = function() {
 
         };
-
-        vm.navigate = function() {
-            $location.path(vm.path);
-        }
     }
 })();
