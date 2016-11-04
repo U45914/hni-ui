@@ -13,6 +13,19 @@
   }
 }
 
+md-input-container.input-primary {
+  &:not(.md-input-invalid).md-input-focused {
+
+    & label {
+      color: $color-red-base;
+    }
+
+    & input {
+      border-color: $color-red-base;
+    }
+  }
+}
+
 md-checkbox.md-checked.checkbox-primary {
   & .md-icon {
     background-color: $color-red-base;
@@ -20,6 +33,85 @@ md-checkbox.md-checked.checkbox-primary {
 
   & .md-ink-ripple {
     color: $color-red-base;
+  }
+}
+
+.input-expandable {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: auto;
+  color: $color-org-card;
+  cursor: pointer;
+  z-index: 3;
+  transition: opacity $time-default, transform $time-default $timing-bounce;
+
+  input, input:hover {
+    padding: 0 rem(4px) rem(4px) rem(24px);
+    height: rem(20px);
+    width: 0;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    font-size: rem(14px);
+    color: $color-org-card;
+    cursor: pointer;
+    outline: 0;
+    transition: background-color $time-default, width $time-default $timing-bounce, padding $time-default $timing-bounce;
+
+    &:focus {
+      padding: 0 rem(4px) rem(4px) rem(24px);
+      border-bottom: 2px solid $color-org-card;
+      background-color: transparent;
+      width: rem(128px);
+
+      & + label:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  label {
+    height: rem(16px);
+    width: rem(16px);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-red-base;
+
+    &:after {
+      font-family: "Material Icons";
+      content: "search";
+      font-size: rem(20px);
+      opacity: 0.7;
+    }
+
+    &:hover:after {
+      opacity: 1;
+    }
+  }
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: rem(24px);
+  right: rem(24px);
+  font-size: rem(30px);
+  cursor: pointer;
+  outline: none;
+  color: $color-gray-light;
+}
+
+md-dialog.small-prompt, md-dialog.new-entity-popup, md-dialog.edit-entity-popup {
+  & md-dialog-actions {
+    padding: rem(12px);
+
+    & button {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -91,42 +183,8 @@ md-dialog.new-entity-popup {
     }
   }
 
-  & .new-entity-close {
-    position: absolute;
-    top: rem(24px);
-    right: rem(24px);
-    font-size: rem(30px);
-    cursor: pointer;
-    outline: none;
-    color: $color-gray-light;
-  }
-
   md-input-container:last-child {
     margin-bottom: 0;
-  }
-}
-
-md-dialog.small-prompt, md-dialog.new-entity-popup, md-dialog.edit-entity-popup {
-  & md-dialog-actions {
-    padding: rem(12px);
-
-    & button {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-}
-
-md-input-container.input-primary {
-  &:not(.md-input-invalid).md-input-focused {
-
-    & label {
-      color: $color-red-base;
-    }
-
-    & input {
-      border-color: $color-red-base;
-    }
   }
 }
 
@@ -138,7 +196,7 @@ md-dialog.edit-entity-popup {
     border-bottom: 1px solid $color-order-detail-border;
   }
 
-  & .new-entity-header {
+  & .edit-entity-header {
     display: flex;
     margin-bottom: rem(6px);
     color: $color-red-base;
@@ -171,6 +229,15 @@ md-dialog.edit-entity-popup {
 
   & .entity-associations-header {
     display: flex;
+    position: relative;
+
+    & .input-expandable {
+      top: -3px;
+
+      &  input:focus {
+        width: rem(80px);
+      }
+    }
 
     & i.material-icons {
       margin-right: rem(4px);
@@ -217,35 +284,25 @@ md-dialog.edit-entity-popup {
     }
   }
 
+  & .edit-entity-header-text {
+    display: flex;
+
+    & > div {
+      letter-spacing: rem(0.5px);
+      color: $color-gray-light;
+      font-size: rem(14px);
+
+      &:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+
   & md-checkbox:last-child {
     margin-bottom: 0;
   }
 
-  & .new-entity-close {
-    position: absolute;
-    top: rem(24px);
-    right: rem(24px);
-    font-size: rem(30px);
-    cursor: pointer;
-    outline: none;
-    color: $color-gray-light;
-  }
-
-  md-input-container:last-child {
+  & md-input-container:last-child {
     margin-bottom: 0;
-  }
-}
-
-.edit-entity-header-text {
-  display: flex;
-
-  & > div {
-    letter-spacing: rem(0.5px);
-    color: $color-gray-light;
-    font-size: rem(14px);
-
-    &:first-child {
-      font-weight: bold;
-    }
   }
 }
