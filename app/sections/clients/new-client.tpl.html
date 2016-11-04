@@ -1,0 +1,35 @@
+<md-dialog class="new-entity-popup">
+    <md-dialog-content>
+        <div class="new-entity-header">
+            <i class="material-icons">&#xE87C;</i>
+            <div>Add New Client</div>
+        </div>
+        <i class="new-entity-close material-icons" ng-click="vm.dismiss()">&#xE5CD;</i>
+        <div class="new-entity-input-section" layout="row" layout-wrap>
+            <md-input-container class="input-primary" flex="100">
+                <label>First Name</label>
+                <input ng-model="vm.user.firstName">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Last Name</label>
+                <input ng-model="vm.user.lastName">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Phone Number</label>
+                <input ng-model="vm.user.phoneNumber">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Email Address</label>
+                <input ng-model="vm.user.email">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Organization</label>
+                <input ng-model="vm.user.organization">
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.dismiss()">Exit</md-button>
+        <md-button class="md-raised button-primary" ng-click="vm.dismiss()">Save</md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    ClientsController.$inject = [];
+    ClientsController.$inject = ['$mdDialog'];
 
-    function ClientsController() {
+    function ClientsController($mdDialog) {
         let vm = this;
 
         vm.$onInit = function () {
@@ -77,6 +77,27 @@
                     ngo: 'The Manna Center'
                 }
             ];
+
+            vm.user = {};
         };
+
+        vm.newClient = function () {
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'vm',
+                parent: angular.element(document.body),
+                templateUrl: 'new-client.tpl.html'
+            });
+        };
+
+        DialogController.$inject = ['$mdDialog'];
+
+        function DialogController($mdDialog) {
+            let vm = this;
+
+            vm.dismiss = function () {
+                $mdDialog.hide();
+            };
+        }
     }
 })();

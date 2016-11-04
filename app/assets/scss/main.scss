@@ -65,11 +65,12 @@ md-dialog.new-entity-popup {
 
   & .new-entity-header {
     display: flex;
-    align-items: center;
     margin-bottom: rem(6px);
     color: $color-red-base;
 
     & > div {
+      height: rem(48px);
+      line-height: rem(60px);
       font-size: rem(24px);
       font-weight: bold;
     }

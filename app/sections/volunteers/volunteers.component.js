@@ -78,7 +78,7 @@
                 }
             ];
 
-            vm.user = {}
+            vm.user = {};
         };
 
         vm.newVolunteer = function () {
