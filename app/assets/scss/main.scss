@@ -305,4 +305,15 @@ md-dialog.edit-entity-popup {
   & md-input-container:last-child {
     margin-bottom: 0;
   }
+
+  @media screen and (max-width: 600px) {
+    & .edit-entity-person-info {
+      border-right: none;
+      border-bottom: 1px solid $color-edit-entity-border;
+    }
+
+    & md-dialog-content {
+      padding-bottom: 0;
+    }
+  }
 }

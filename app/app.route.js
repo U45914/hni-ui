@@ -36,6 +36,7 @@
                 template: '<clients></clients>'
             })
             .state('organizations', {
+                parent: 'workspace-base',
                 url: '/organizations',
                 template: '<organizations></organizations>'
             })

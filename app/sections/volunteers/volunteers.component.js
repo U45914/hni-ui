@@ -86,7 +86,8 @@
                 controller: NewVolunteerController,
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                templateUrl: 'new-volunteer.tpl.html'
+                templateUrl: 'new-volunteer.tpl.html',
+                fullscreen: true
             });
         };
 
@@ -95,7 +96,8 @@
                 controller: EditVolunteerController,
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                templateUrl: 'edit-volunteer.tpl.html'
+                templateUrl: 'edit-volunteer.tpl.html',
+                fullscreen: true
             });
         };
 

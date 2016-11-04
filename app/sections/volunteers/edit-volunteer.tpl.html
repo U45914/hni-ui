@@ -1,6 +1,7 @@
 <md-dialog class="edit-entity-popup">
-    <md-dialog-content layout="row">
-        <div class="edit-entity-person-info" flex="50">
+    <md-dialog-content layout="row" layout-wrap>
+        <i class="popup-close-btn material-icons" ng-click="vm.dismiss()">&#xE5CD;</i>
+        <div class="edit-entity-person-info" flex="50" flex-xs="100">
             <div class="edit-entity-header">
                 <i class="material-icons">&#xE7FB;</i>
                 <div>
@@ -11,7 +12,6 @@
                     <div>Name Here</div>
                 </div>
             </div>
-            <i class="popup-close-btn material-icons" ng-click="vm.dismiss()">&#xE5CD;</i>
             <div class="new-entity-input-section" layout="row" layout-wrap>
                 <md-input-container class="input-primary" flex="100">
                     <label>First Name</label>
@@ -31,7 +31,7 @@
                 </md-input-container>
             </div>
         </div>
-        <div class="edit-entity-associations" flex="50">
+        <div class="edit-entity-associations" flex="50" flex-xs="100">
             <div layout="column">
                 <div class="edit-entity-org-section">
                     <div class="entity-associations-header">
