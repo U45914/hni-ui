@@ -83,21 +83,84 @@
 
         vm.newVolunteer = function () {
             $mdDialog.show({
-                controller: DialogController,
+                controller: NewVolunteerController,
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
                 templateUrl: 'new-volunteer.tpl.html'
             });
         };
 
-        DialogController.$inject = ['$mdDialog'];
+        vm.editVolunteer = function () {
+            $mdDialog.show({
+                controller: EditVolunteerController,
+                controllerAs: 'vm',
+                parent: angular.element(document.body),
+                templateUrl: 'edit-volunteer.tpl.html'
+            });
+        };
 
-        function DialogController($mdDialog) {
+
+        NewVolunteerController.$inject = ['$mdDialog'];
+
+        function NewVolunteerController($mdDialog) {
             let vm = this;
 
             vm.dismiss = function () {
                 $mdDialog.hide();
             };
+        }
+
+        EditVolunteerController.$inject = ['$mdDialog', 'userService'];
+
+        function EditVolunteerController($mdDialog, userService) {
+            let vm = this;
+
+            vm.isSelected = isSelected;
+            vm.toggleSelection = toggleSelection;
+            vm.selectedOrgs = [];
+            vm.querySearch = querySearch;
+            vm.ngoAdminChecked = false;
+
+            vm.organizations = userService.getOrganizations();
+            vm.user = userService.getUser();
+            vm.editingUser = {
+                firstName: vm.user.firstName,
+                lastName: vm.user.lastName,
+                mobilePhone: vm.user.mobilePhone,
+                email: vm.user.email
+            };
+
+            vm.dismiss = function () {
+                $mdDialog.hide();
+            };
+
+            function querySearch (query) {
+                var results = query ? vm.organizations.filter( createFilterFor(query) ) : vm.organizations;
+
+                return results;
+            }
+
+            function createFilterFor(query) {
+                var lowercaseQuery = angular.lowercase(query);
+
+                return function filterFn(organization) {
+                    return (organization.name.toLowerCase().indexOf(lowercaseQuery) === 0);
+                };
+
+            }
+
+            function isSelected(ngo) {
+                return vm.selectedOrgs.indexOf(ngo) > -1;
+            }
+
+            function toggleSelection(ngo) {
+                if (isSelected(ngo)) {
+                    var index = vm.selectedOrgs.indexOf(ngo);
+                    vm.selectedOrgs.splice(index, 1);
+                } else {
+                    vm.selectedOrgs.push(ngo);
+                }
+            }
         }
     }
 })();

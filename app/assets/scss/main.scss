@@ -13,6 +13,16 @@
   }
 }
 
+md-checkbox.md-checked.checkbox-primary {
+  & .md-icon {
+    background-color: $color-red-base;
+  }
+
+  & .md-ink-ripple {
+    color: $color-red-base;
+  }
+}
+
 md-dialog.small-prompt {
   top: rem(-150px);
   width: rem(350px);
@@ -96,7 +106,7 @@ md-dialog.new-entity-popup {
   }
 }
 
-md-dialog.small-prompt, md-dialog.new-entity-popup {
+md-dialog.small-prompt, md-dialog.new-entity-popup, md-dialog.edit-entity-popup {
   & md-dialog-actions {
     padding: rem(12px);
 
@@ -116,6 +126,126 @@ md-input-container.input-primary {
 
     & input {
       border-color: $color-red-base;
+    }
+  }
+}
+
+md-dialog.edit-entity-popup {
+  max-width: rem(800px);
+
+  & md-dialog-content {
+    padding: rem(60px) 0 rem(60px) 0;
+    border-bottom: 1px solid $color-order-detail-border;
+  }
+
+  & .new-entity-header {
+    display: flex;
+    margin-bottom: rem(6px);
+    color: $color-red-base;
+
+    & > div {
+      font-size: rem(24px);
+      font-weight: bold;
+    }
+
+    & i.material-icons {
+      font-size: rem(48px);
+      margin-right: rem(6px);
+    }
+  }
+
+  & .edit-entity-person-info {
+    padding-left: rem(60px);
+    padding-right: rem(60px);
+    border-right: 1px solid $color-edit-entity-border;
+  }
+
+  & .edit-entity-associations {
+    padding-left: rem(60px);
+    padding-right: rem(60px);
+  }
+
+  & .edit-entity-org-section {
+    border-bottom: 1px solid $color-edit-entity-border;
+  }
+
+  & .entity-associations-header {
+    display: flex;
+
+    & i.material-icons {
+      margin-right: rem(4px);
+      color: $color-red-base;
+    }
+
+    & > div {
+      display: flex;
+      align-items: flex-end;
+      font-size: rem(16px);
+      font-weight: bold;
+      color: $color-text;
+    }
+  }
+
+  & .entity-associations-header {
+    margin-top: rem(20px);
+    padding-bottom: rem(20px);
+  }
+
+  & .entity-assocations-checkboxes {
+    padding-top: rem(20px);
+    padding-bottom: rem(20px);
+    padding-left: rem(20px);
+    margin-left: rem(-20px);
+    margin-top: rem(-20px);
+    max-height: rem(270px);
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  & .entity-roles-checkboxes {
+    & > div:first-child {
+      display: flex;
+      align-items: center;
+    }
+
+    & md-checkbox:last-child {
+      margin-bottom: 16px;
+    }
+
+    & md-input-container {
+      margin-top: 0;
+    }
+  }
+
+  & md-checkbox:last-child {
+    margin-bottom: 0;
+  }
+
+  & .new-entity-close {
+    position: absolute;
+    top: rem(24px);
+    right: rem(24px);
+    font-size: rem(30px);
+    cursor: pointer;
+    outline: none;
+    color: $color-gray-light;
+  }
+
+  md-input-container:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.edit-entity-header-text {
+  display: flex;
+
+  & > div {
+    letter-spacing: rem(0.5px);
+    color: $color-gray-light;
+    font-size: rem(14px);
+
+    &:first-child {
+      font-weight: bold;
     }
   }
 }

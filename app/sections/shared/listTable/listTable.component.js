@@ -4,23 +4,24 @@
         .component('listTable', {
             bindings: {
                 headerfields: '<',
-                items: '<'
+                items: '<',
+                editFn: '&'
             },
             templateUrl: 'list-table.tpl.html',
             controller: ListTableController,
             controllerAs: 'vm'
         });
 
-    ListTableController.$inject = ['viewEditModalService'];
+    ListTableController.$inject = [];
 
-    function ListTableController(viewEditModalService) {
+    function ListTableController() {
         let vm = this;
         vm.originalItemList = vm.items.slice();
         vm.lastSortField = null;
         vm.showEdit = showEdit;
 
         vm.$onInit = function () {
-            console.log(vm);
+
         };
 
         vm.sortDataByField = function (field) {
@@ -70,7 +71,7 @@
         };
 
         function showEdit() {
-            viewEditModalService.showPopup();
+            vm.editFn();
         }
     }
 })();
