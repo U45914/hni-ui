@@ -23,15 +23,6 @@ md-dialog.small-prompt {
     border-bottom: 1px solid $color-order-detail-border;
   }
 
-  & md-dialog-actions {
-    padding: rem(12px);
-
-    & button {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-
   & i.material-icons {
     text-align: center;
     font-size: rem(72px);
@@ -59,13 +50,71 @@ md-dialog.small-prompt {
     text-align: center;
   }
 
-  & .small-prompt-footer {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: rem(12px);
-  }
-
   @media screen and (max-width: 600px) {
     top: initial;
+  }
+}
+
+md-dialog.new-entity-popup {
+  max-width: rem(500px);
+
+  & md-dialog-content {
+    padding: rem(40px) rem(40px) rem(40px) rem(40px);
+    border-bottom: 1px solid $color-order-detail-border;
+  }
+
+  & .new-entity-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: rem(6px);
+    color: $color-red-base;
+
+    & > div {
+      font-size: rem(24px);
+      font-weight: bold;
+    }
+
+    & i.material-icons {
+      font-size: rem(48px);
+      margin-right: rem(6px);
+    }
+  }
+
+  & .new-entity-close {
+    position: absolute;
+    top: rem(24px);
+    right: rem(24px);
+    font-size: rem(30px);
+    cursor: pointer;
+    outline: none;
+    color: $color-gray-light;
+  }
+
+  md-input-container:last-child {
+    margin-bottom: 0;
+  }
+}
+
+md-dialog.small-prompt, md-dialog.new-entity-popup {
+  & md-dialog-actions {
+    padding: rem(12px);
+
+    & button {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+md-input-container.input-primary {
+  &:not(.md-input-invalid).md-input-focused {
+
+    & label {
+      color: $color-red-base;
+    }
+
+    & input {
+      border-color: $color-red-base;
+    }
   }
 }

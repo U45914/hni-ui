@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    VolunteersController.$inject = [];
+    VolunteersController.$inject = ['$mdDialog'];
 
-    function VolunteersController() {
+    function VolunteersController($mdDialog) {
         let vm = this;
 
         vm.$onInit = function () {
@@ -77,6 +77,27 @@
                     ngo: 'The Manna Center'
                 }
             ];
+
+            vm.user = {}
         };
+
+        vm.newVolunteer = function () {
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'vm',
+                parent: angular.element(document.body),
+                templateUrl: 'new-volunteer.tpl.html'
+            });
+        };
+
+        DialogController.$inject = ['$mdDialog'];
+
+        function DialogController($mdDialog) {
+            let vm = this;
+
+            vm.dismiss = function () {
+                $mdDialog.hide();
+            };
+        }
     }
 })();

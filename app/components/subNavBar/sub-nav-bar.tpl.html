@@ -1,7 +1,7 @@
 <div class="sub-nav-bar" layout="row" layout-wrap>
     <div class="sub-nav-bar-icon" flex="100"><i class="material-icons">{{vm.icon}}</i></div>
     <div class="sub-nav-bar-text" flex="100">{{::vm.text}}</div>
-    <md-button class="md-fab" md-ink-ripple="#D65439" ng-if="vm.showFab">
+    <md-button class="md-fab" md-ink-ripple="#D65439" ng-if="vm.showFab" ng-click="vm.fabFn()">
         <md-icon class="material-icons">&#xE145;</md-icon>
     </md-button>
 </div>
