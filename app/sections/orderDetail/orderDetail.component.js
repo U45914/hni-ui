@@ -10,12 +10,14 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$mdDialog'];
+    OrderDetailController.$inject = ['$mdDialog', '$state', '$window'];
 
-    function OrderDetailController($mdDialog) {
-        DialogController.$inject = ['$mdDialog'];
+    function OrderDetailController($mdDialog, $state, $window) {
+        DialogController.$inject = ['$mdDialog', '$state'];
 
         let vm = this;
+
+        vm.currentStep = 1;
 
         vm.$onInit = function () {
             vm.user = {
@@ -34,7 +36,31 @@
                 state: "AR",
                 phone: "(479) 636-6699",
                 website: "http://www.subway.com/en-us"
-            }
+            };
+
+            vm.paymentInfo = [
+                {
+                    code: "1234 4567 9874 5489",
+                    amount: "2.75"
+                },
+                {
+                    code: "1234 4567 9874 5489",
+                    amount: "2.75"
+                }
+            ]
+        };
+
+        vm.placeOrder = function() {
+            vm.currentStep++;
+            $window.open(vm.orderInfo.website, '_blank');
+        };
+
+        vm.continueOrder = function() {
+            vm.currentStep++;
+        };
+
+        vm.leaveOrders = function() {
+            $state.go('dashboard');
         };
 
         vm.completeOrder = function () {
@@ -46,12 +72,22 @@
             });
         };
 
-        function DialogController($mdDialog) {
+        function DialogController($mdDialog, $state) {
             let vm = this;
 
             vm.hide = function () {
                 $mdDialog.hide();
             };
+
+            vm.leaveOrders = function() {
+                $mdDialog.hide();
+                $state.go('dashboard');
+            };
+
+            vm.getNextOrder = function() {
+                $mdDialog.hide();
+                location.reload();
+            }
         }
     }
 })();

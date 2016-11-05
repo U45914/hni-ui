@@ -101,6 +101,20 @@ md-card.order-detail-card {
     font-weight: 800;
   }
 
+  & .order-detail-amount-container {
+    padding: rem(60px);
+  }
+
+  & .order-detail-payment-info {
+    & > div:first-child {
+      font-weight: bold;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: rem(12px);
+    }
+  }
+
   & .order-detail-footer {
     display: flex;
     justify-content: flex-end;

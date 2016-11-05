@@ -4,23 +4,58 @@
             <i class="material-icons">&#xE192;</i>
             <div>{{vm.orderInfo.time}}</div>
         </div>
-        <div class="order-detail-header" layout="row" layout-wrap>
-            <i class="material-icons" flex="100">&#xE56C;</i>
-            <div flex="100">Order For</div>
+        <div ng-if="vm.currentStep == 1">
+            <div class="order-detail-header" layout="row" layout-wrap>
+                <i class="material-icons" flex="100">&#xE56C;</i>
+                <div flex="100">Order For</div>
+            </div>
+            <div class="order-detail-header-triangle"></div>
+            <div class="order-detail-for-container" layout="row" layout-wrap>
+                <div class="order-detail-name" flex="100">{{::vm.user.name}}</div>
+                <i class="material-icons" flex="100">&#xE0C8;</i>
+                <div class="restaurant-name" flex="100">{{::vm.orderInfo.name}}</div>
+                <div flex="100">{{::vm.orderInfo.address}}</div>
+                <div flex="100">{{::vm.orderInfo.city + ', ' + vm.orderInfo.state}}</div>
+                <div class="order-detail-location-border"></div>
+                <div class="order-detail-food-name" flex="100">{{::vm.orderInfo.foodItem}}</div>
+            </div>
         </div>
-        <div class="order-detail-header-triangle"></div>
-        <div class="order-detail-for-container" layout="row" layout-wrap>
-            <div class="order-detail-name" flex="100">{{::vm.user.name}}</div>
-            <i class="material-icons" flex="100">&#xE0C8;</i>
-            <div class="restaurant-name" flex="100">{{::vm.orderInfo.name}}</div>
-            <div flex="100">{{::vm.orderInfo.address}}</div>
-            <div flex="100">{{::vm.orderInfo.city + ', ' + vm.orderInfo.state}}</div>
-            <div class="order-detail-location-border"></div>
-            <div class="order-detail-food-name" flex="100">{{::vm.orderInfo.foodItem}}</div>
+        <div ng-if="vm.currentStep != 1">
+            <div class="order-detail-header" layout="row" layout-wrap>
+                <i class="material-icons" flex="100">&#xE870;</i>
+                <div flex="100">Order Amount</div>
+            </div>
+            <div class="order-detail-header-triangle"></div>
+            <div class="order-detail-amount-container" layout="row" layout-wrap>
+                <md-input-container flex="100">
+                    <label>Total Amount of Meal</label>
+                    <input ng-disabled="vm.currentStep != 2" ng-model="vm.mealAmount" currency-input="currency">
+                </md-input-container>
+                <div ng-if="vm.currentStep == 3" flex="100">
+                    <div class="order-detail-payment-info" flex layout="row" ng-repeat="item in vm.paymentInfo">
+                        <div flex="50">
+                            {{item.code}}
+                        </div>
+                        <div flex="50">
+                            {{item.amount}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="order-detail-footer">
-            <md-button class="button-primary" md-ink-ripple="#D65439">Exit</md-button>
-            <md-button class="md-raised button-primary" ng-click="vm.hide()">Place Order</md-button>
+            <div ng-if="vm.currentStep == 1">
+                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
+                <md-button class="md-raised button-primary" ng-click="vm.placeOrder()">Place Order</md-button>
+            </div>
+            <div ng-if="vm.currentStep == 2">
+                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
+                <md-button class="md-raised button-primary" ng-click="vm.continueOrder()">Continue</md-button>
+            </div>
+            <div ng-if="vm.currentStep == 3">
+                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
+                <md-button class="md-raised button-primary" ng-click="vm.completeOrder()">Complete Order</md-button>
+            </div>
         </div>
     </md-card>
 </div>
