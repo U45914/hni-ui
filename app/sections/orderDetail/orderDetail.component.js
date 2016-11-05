@@ -27,9 +27,11 @@
 
             vm.orderInfo = {
                 name: "Subway",
-                foodItems: ["Turkey Sandwich", "Turkey Sandwich"],
+                foodItem: "Turkey Sandwich",
                 time: "12:30pm",
                 address: "2301 W Walnut St",
+                city: "Rogers",
+                state: "AR",
                 phone: "(479) 636-6699",
                 website: "http://www.subway.com/en-us"
             }
