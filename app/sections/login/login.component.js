@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['$location'];
+    LoginController.$inject = ['$state', 'authService'];
 
-    function LoginController($location) {
+    function LoginController($state, authService) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
@@ -25,7 +25,9 @@
         }
 
         function signIn() {
-            $location.path('/dashboard');
+            authService.login(vm.username, vm.password).then(function(authenticated) {
+                $state.go('dashboard', {}, {reload: true});
+            });
         }
     }
 })();

@@ -7,11 +7,11 @@
             <div class="login-prompt">Login to your account by filling the form below.</div>
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Email</label>
-                <input type="email" ng-model="username">
+                <input type="email" ng-model="vm.username">
             </md-input-container>
             <md-input-container class="md-block password-container" flex-gt-sm>
                 <label>Password</label>
-                <input type="{{vm.inputType}}" ng-model="password" class="visible">
+                <input type="{{vm.inputType}}" ng-model="vm.password" class="visible">
                 <i class="material-icons" ng-class="{'active': vm.isActive}" ng-click="vm.togglePassword()">&#xE417;</i>
             </md-input-container>
             <md-button class="md-raised button-primary" ng-click="vm.signIn()">Sign In</md-button>

@@ -3,9 +3,9 @@
         .module('app')
         .config(routing);
 
-    routing.$inject = ['$stateProvider', '$urlRouterProvider'];
+    routing.$inject = ['$stateProvider', '$urlRouterProvider', 'rolesConstant'];
 
-    function routing($stateProvider, $urlRouterProvider) {
+    function routing($stateProvider, $urlRouterProvider, rolesConstant) {
         $urlRouterProvider.otherwise('/dashboard');
 
         $stateProvider
@@ -33,17 +33,26 @@
             .state('clients', {
                 parent: 'workspace-base',
                 url: '/clients',
-                template: '<clients></clients>'
+                template: '<clients></clients>',
+                data: {
+                    authorizedRoles: [rolesConstant.superAdmin]
+                }
             })
             .state('organizations', {
                 parent: 'workspace-base',
                 url: '/organizations',
-                template: '<organizations></organizations>'
+                template: '<organizations></organizations>',
+                data: {
+                    authorizedRoles: [rolesConstant.superAdmin]
+                }
             })
             .state('volunteers', {
                 parent: 'workspace-base',
                 url: '/volunteers',
-                template: '<volunteers></volunteers>'
+                template: '<volunteers></volunteers>',
+                data: {
+                    authorizedRoles: [rolesConstant.superAdmin]
+                }
             });
     }
 })();
