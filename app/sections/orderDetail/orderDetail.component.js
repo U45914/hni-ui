@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$mdDialog', '$state', '$window', '$element'];
+    OrderDetailController.$inject = ['$mdDialog', '$state', '$window', 'topNavService'];
 
-    function OrderDetailController($mdDialog, $state, $window, $element) {
+    function OrderDetailController($mdDialog, $state, $window, topNavService) {
         DialogController.$inject = ['$mdDialog', '$state'];
 
         let vm = this;
@@ -21,6 +21,8 @@
         vm.mealAmount = null;
 
         vm.$onInit = function () {
+            topNavService.setSelectedItem("orders");
+
             vm.user = {
                 name: "Veronica Bagwell",
                 phone: "(479) 313-5606",

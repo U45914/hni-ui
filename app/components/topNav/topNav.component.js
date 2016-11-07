@@ -9,12 +9,14 @@
         controllerAs: 'vm'
     });
 
-    TopNavController.$inject = ['$scope', '$element', '$transclude', 'userService'];
+    TopNavController.$inject = ['$scope', '$element', '$transclude', 'userService', 'topNavService'];
 
-    function TopNavController($scope, $element, $transclude, userService) {
+    function TopNavController($scope, $element, $transclude, userService, topNavService) {
         var vm = this;
 
         let content = $element[0].querySelector('#toolbar-content');
+
+        vm.selectedNavItem = topNavService.getSelectedItem();
 
         $transclude($scope, (clone) => {
             angular.element(content).append(clone);
