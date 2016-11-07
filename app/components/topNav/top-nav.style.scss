@@ -58,6 +58,7 @@
   height: 100%;
 
   & .md-nav-bar,  nav, & ._md-nav-bar-list, & .md-nav-item, & ._md-nav-button {
+    border-radius: 0;
     height: 100%
   }
 
@@ -67,14 +68,22 @@
 
   & ._md-nav-button {
     display: flex;
+    justify-content: center;
+    margin: 0;
     color: $color-text;
 
     &.md-active {
+      background: rgba(0, 0, 0, 0.1);
       font-weight: bold;
     }
   }
 
+  & .md-ripple-container {
+    border-radius: 0;
+  }
+
   & md-nav-ink-bar {
-    background-color: $color-red-base;
+    //background-color: $color-red-base;
+    display: none;
   }
 }

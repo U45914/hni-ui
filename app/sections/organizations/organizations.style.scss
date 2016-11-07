@@ -1,0 +1,7 @@
+@import '_includes';
+
+.new-entity-popup {
+  & md-select {
+    margin-right: rem(24px);
+  }
+}

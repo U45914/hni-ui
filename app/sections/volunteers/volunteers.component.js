@@ -33,8 +33,8 @@
                     sortable: true
                 },
                 {
-                    key: 'ngo',
-                    displayName: 'NGO',
+                    key: 'org',
+                    displayName: 'ORG',
                     sortable: true
                 }
             ];
@@ -44,37 +44,37 @@
                     name: 'Veronica Bagwell',
                     phone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
-                    ngo: 'The Manna Center'
+                    org: 'The Manna Center'
                 },
                 {
                     name: 'Justin Palmer',
                     phone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
-                    ngo: 'Samaritan Community'
+                    org: 'Samaritan Community'
                 },
                 {
                     name: 'Kayleigh Cooper',
                     phone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
-                    ngo: 'The Manna Center'
+                    org: 'The Manna Center'
                 },
                 {
                     name: 'Veronica Bagwell',
                     phone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
-                    ngo: 'The Manna Center'
+                    org: 'The Manna Center'
                 },
                 {
                     name: 'Justin Palmer',
                     phone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
-                    ngo: 'Samaritan Community'
+                    org: 'Samaritan Community'
                 },
                 {
                     name: 'Kayleigh Cooper',
                     phone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
-                    ngo: 'The Manna Center'
+                    org: 'The Manna Center'
                 }
             ];
 
@@ -121,7 +121,7 @@
             vm.toggleSelection = toggleSelection;
             vm.selectedOrgs = [];
             vm.querySearch = querySearch;
-            vm.ngoAdminChecked = false;
+            vm.orgAdminChecked = false;
 
             vm.organizations = userService.getOrganizations();
             vm.user = userService.getUser();
@@ -151,16 +151,16 @@
 
             }
 
-            function isSelected(ngo) {
-                return vm.selectedOrgs.indexOf(ngo) > -1;
+            function isSelected(org) {
+                return vm.selectedOrgs.indexOf(org) > -1;
             }
 
-            function toggleSelection(ngo) {
-                if (isSelected(ngo)) {
-                    var index = vm.selectedOrgs.indexOf(ngo);
+            function toggleSelection(org) {
+                if (isSelected(org)) {
+                    var index = vm.selectedOrgs.indexOf(org);
                     vm.selectedOrgs.splice(index, 1);
                 } else {
-                    vm.selectedOrgs.push(ngo);
+                    vm.selectedOrgs.push(org);
                 }
             }
         }

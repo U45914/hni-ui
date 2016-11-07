@@ -30,7 +30,6 @@
             }
 
             if(angular.element(document).find('md-dialog').length > 0) {
-                event.preventDefault();
                 $mdDialog.cancel();
             }
         });

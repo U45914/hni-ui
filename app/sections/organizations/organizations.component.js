@@ -18,8 +18,8 @@
         vm.$onInit = function () {
             vm.headerFields = [
                 {
-                    key: 'name',
-                    displayName: 'Name',
+                    key: 'org',
+                    displayName: 'Org',
                     sortable: true
                 },
                 {
@@ -33,48 +33,48 @@
                     sortable: true
                 },
                 {
-                    key: 'ngo',
-                    displayName: 'NGO',
+                    key: 'website',
+                    displayName: 'Website',
                     sortable: true
                 }
             ];
 
             vm.items = [
                 {
-                    name: 'Veronica Bagwell',
+                    website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
-                    ngo: 'The Manna Center'
+                    org: 'The Manna Center'
                 },
                 {
-                    name: 'Justin Palmer',
+                    website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
-                    ngo: 'Samaritan Community'
+                    org: 'Samaritan Community'
                 },
                 {
-                    name: 'Kayleigh Cooper',
+                    website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
-                    ngo: 'The Manna Center'
+                    org: 'The Manna Center'
                 },
                 {
-                    name: 'Veronica Bagwell',
+                    website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
-                    ngo: 'The Manna Center'
+                    org: 'The Manna Center'
                 },
                 {
-                    name: 'Justin Palmer',
+                    website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
-                    ngo: 'Samaritan Community'
+                    org: 'Samaritan Community'
                 },
                 {
-                    name: 'Kayleigh Cooper',
+                    website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
-                    ngo: 'The Manna Center'
+                    org: 'The Manna Center'
                 }
             ];
 
@@ -94,6 +94,10 @@
 
         function DialogController($mdDialog) {
             let vm = this;
+
+            vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+            'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+            'WY').split(' ').map(function (state) { return { abbrev: state }; });
 
             vm.dismiss = function () {
                 $mdDialog.hide();

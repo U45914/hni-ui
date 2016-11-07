@@ -17,12 +17,16 @@ md-input-container.input-primary {
   &:not(.md-input-invalid).md-input-focused {
 
     & label {
-      color: $color-red-base;
+      color: $color-text;
     }
 
     & input {
-      border-color: $color-red-base;
+      border-color: $color-input-border;
     }
+  }
+
+  & md-select:not([disabled]):focus .md-select-value {
+    border-color: $color-input-border;
   }
 }
 

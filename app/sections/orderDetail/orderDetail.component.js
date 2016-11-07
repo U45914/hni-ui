@@ -10,14 +10,15 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$mdDialog', '$state', '$window'];
+    OrderDetailController.$inject = ['$mdDialog', '$state', '$window', '$element'];
 
-    function OrderDetailController($mdDialog, $state, $window) {
+    function OrderDetailController($mdDialog, $state, $window, $element) {
         DialogController.$inject = ['$mdDialog', '$state'];
 
         let vm = this;
 
         vm.currentStep = 1;
+        vm.mealAmount = null;
 
         vm.$onInit = function () {
             vm.user = {
@@ -56,7 +57,9 @@
         };
 
         vm.continueOrder = function() {
-            vm.currentStep++;
+            if(vm.mealAmount.replace('$', '') > 0) {
+                vm.currentStep++;
+            }
         };
 
         vm.leaveOrders = function() {

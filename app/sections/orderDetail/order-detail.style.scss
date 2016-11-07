@@ -145,3 +145,17 @@ md-card.order-detail-card {
     padding: rem(20px);
   }
 }
+
+.payment-info-animation {
+  transition: all 0.6s;
+  overflow: hidden;
+}
+
+.payment-info-animation.ng-enter {
+  transform: translate3d(rem(200px), 0, 0);
+  opacity: 0;
+}
+.payment-info-animation.ng-enter.payment-info-animation.ng-enter-active {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}

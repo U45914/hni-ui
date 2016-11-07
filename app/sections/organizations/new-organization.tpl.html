@@ -7,24 +7,36 @@
         <i class="popup-close-btn material-icons" ng-click="vm.dismiss()">&#xE5CD;</i>
         <div class="new-entity-input-section" layout="row" layout-wrap>
             <md-input-container class="input-primary" flex="100">
-                <label>First Name</label>
-                <input ng-model="vm.user.firstName">
-            </md-input-container>
-            <md-input-container class="input-primary" flex="100">
-                <label>Last Name</label>
-                <input ng-model="vm.user.lastName">
+                <label>Organization Name</label>
+                <input ng-model="vm.org.orgName">
             </md-input-container>
             <md-input-container class="input-primary" flex="100">
                 <label>Phone Number</label>
-                <input ng-model="vm.user.phoneNumber">
+                <input ng-model="vm.org.phoneNumber">
             </md-input-container>
             <md-input-container class="input-primary" flex="100">
                 <label>Email Address</label>
-                <input ng-model="vm.user.email">
+                <input ng-model="vm.org.email">
             </md-input-container>
             <md-input-container class="input-primary" flex="100">
-                <label>Organization</label>
-                <input ng-model="vm.user.organization">
+                <label>Contact Person</label>
+                <input ng-model="vm.org.contactPerson">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Address</label>
+                <input ng-model="vm.org.address">
+            </md-input-container>
+            <md-input-container class="input-primary">
+                <label>State</label>
+                <md-select ng-model="vm.org.state">
+                    <md-option ng-repeat="state in vm.states" ng-value="state.abbrev">
+                        {{state.abbrev}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="input-primary">
+                <label>Zip Code</label>
+                <input ng-model="vm.org.zipCode">
             </md-input-container>
         </div>
     </md-dialog-content>

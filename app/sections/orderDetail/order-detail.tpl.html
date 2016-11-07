@@ -27,11 +27,11 @@
             </div>
             <div class="order-detail-header-triangle"></div>
             <div class="order-detail-amount-container" layout="row" layout-wrap>
-                <md-input-container flex="100">
+                <md-input-container class="input-primary" flex="100">
                     <label>Total Amount of Meal</label>
                     <input ng-disabled="vm.currentStep != 2" ng-model="vm.mealAmount" currency-input="currency">
                 </md-input-container>
-                <div ng-if="vm.currentStep == 3" flex="100">
+                <div ng-if="vm.currentStep == 3" class="payment-info-animation" flex="100">
                     <div class="order-detail-payment-info" flex layout="row" ng-repeat="item in vm.paymentInfo">
                         <div flex="50">
                             {{item.code}}
