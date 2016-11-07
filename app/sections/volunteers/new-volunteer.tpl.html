@@ -24,7 +24,12 @@
             </md-input-container>
             <md-input-container class="input-primary" flex="100">
                 <label>Organization</label>
-                <input ng-model="vm.user.organization">
+                <md-select ng-model="vm.user.organization" multiple>
+                    <md-option ng-value="All">All</md-option>
+                    <md-option ng-repeat="org in vm.selectOrgs" ng-value="org.value">
+                        {{org.value}}
+                    </md-option>
+                </md-select>
             </md-input-container>
         </div>
     </md-dialog-content>
