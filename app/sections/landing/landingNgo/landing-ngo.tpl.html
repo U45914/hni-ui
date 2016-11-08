@@ -1,6 +1,6 @@
 <div class="landing-ngo-container">
-    <div class="ngo-logo-container" layout="row" layout-xs="column" layout-align="center center">
+    <div ng-if="vm.ngos" class="ngo-logo-container" layout="row" layout-xs="column" layout-align="center center">
         <div class="ngo-logo" ng-repeat="ngo in vm.ngos" flex>
-            <a href="{{ngo.url}}"><img src="{{ngo.imagePath}}" alt="{{ngo.name}}"></a>
+            <a href="{{ngo.url}}"><img ng-src="{{ngo.imagePath}}" alt="{{ngo.name}}"></a>
     </div>
 </div>
