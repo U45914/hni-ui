@@ -1,11 +1,17 @@
 <top-nav>
-    <md-nav-bar md-selected-nav-item="vm.selectedNavItem.item" nav-bar-aria-label="navigation links">
+    <md-nav-bar md-selected-nav-item="vm.selectedNavItem.item" nav-bar-aria-label="navigation links" hide-xs>
         <md-nav-item md-nav-sref="order-detail" name="orders">Orders</md-nav-item>
         <md-nav-item md-nav-sref="clients" name="clients">Clients</md-nav-item>
         <md-nav-item md-nav-sref="volunteers" name="volunteers">Volunteers</md-nav-item>
         <md-nav-item md-nav-sref="organizations" name="organizations">Orgs</md-nav-item>
-        <md-nav-item md-nav-sref="organizations" name="organizations">Providers</md-nav-item>
+        <!--<md-nav-item md-nav-sref="organizations" name="organizations">Providers</md-nav-item>-->
     </md-nav-bar>
+    <div class="collapsed-nav-menu" hide show-xs>
+        <div ui-sref="order-detail" md-ink-ripple="#D65439" ng-click="vm.toggleCollapsedNav()">Orders</div>
+        <div ui-sref="clients" md-ink-ripple="#D65439" ng-click="vm.toggleCollapsedNav()">Clients</div>
+        <div ui-sref="volunteers" md-ink-ripple="#D65439" ng-click="vm.toggleCollapsedNav()">Volunteers</div>
+        <div ui-sref="organizations" md-ink-ripple="#D65439" ng-click="vm.toggleCollapsedNav()">Orgs</div>
+    </div>
 </top-nav>
 
 <div ui-view></div>
