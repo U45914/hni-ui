@@ -87,3 +87,33 @@
     display: none;
   }
 }
+
+.collapsed-nav-menu {
+  position: absolute;
+  left: rem(-205px);
+  width: rem(205px);
+  z-index: 999;
+
+  & > div {
+    position: relative;
+    padding: rem(12px);
+    background-color: $color-white;
+    color: $color-text;
+    font-size: rem(14px);
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
+}
+
+.collapse-nav-button {
+  outline: none;
+}
+
+.collapsed-nav-menu {
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.collapsed-nav-menu-shown {
+  left: 0;
+}

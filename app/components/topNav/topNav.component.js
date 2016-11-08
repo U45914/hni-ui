@@ -9,19 +9,38 @@
         controllerAs: 'vm'
     });
 
-    TopNavController.$inject = ['$scope', '$element', '$transclude', 'userService'];
+    TopNavController.$inject = ['$scope', '$element', '$transclude', 'userService', 'topNavService', '$timeout'];
 
-    function TopNavController($scope, $element, $transclude, userService) {
+    function TopNavController($scope, $element, $transclude, userService, topNavService, $timeout) {
         var vm = this;
 
         let content = $element[0].querySelector('#toolbar-content');
+        let navHeight = 0;
+        let collapsedNav = null;
+
+        vm.selectedNavItem = topNavService.getSelectedItem();
 
         $transclude($scope, (clone) => {
             angular.element(content).append(clone);
+
+           $timeout(() => {
+               collapsedNav = $element[0].querySelector('.collapsed-nav-menu');
+               navHeight = $element[0].querySelector('#top-nav').clientHeight;
+
+               if(collapsedNav) {
+                   collapsedNav.style.top = navHeight + 'px';
+               }
+           }, 200)
         });
 
         vm.$onInit = function() {
             vm.user = userService.getUser();
         };
+
+        vm.toggleCollapsedNav = function() {
+            if(collapsedNav) {
+                angular.element(collapsedNav).toggleClass('collapsed-nav-menu-shown');
+            }
+        }
     }
 })();

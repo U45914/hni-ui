@@ -10,12 +10,14 @@
             controllerAs: 'vm'
         });
 
-    VolunteersController.$inject = ['$mdDialog'];
+    VolunteersController.$inject = ['$mdDialog', 'topNavService'];
 
-    function VolunteersController($mdDialog) {
+    function VolunteersController($mdDialog, topNavService) {
         let vm = this;
 
         vm.$onInit = function () {
+            topNavService.setSelectedItem("volunteers");
+
             vm.headerFields = [
                 {
                     key: 'name',
@@ -102,10 +104,13 @@
         };
 
 
-        NewVolunteerController.$inject = ['$mdDialog'];
+        NewVolunteerController.$inject = ['$mdDialog', 'userService'];
 
-        function NewVolunteerController($mdDialog) {
+        function NewVolunteerController($mdDialog, userService) {
             let vm = this;
+
+            vm.organizations = userService.getOrganizations();
+            vm.selectOrgs = vm.organizations.map(function (org) { return { value: org.name }; });
 
             vm.dismiss = function () {
                 $mdDialog.hide();
