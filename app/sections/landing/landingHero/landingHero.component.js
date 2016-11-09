@@ -8,7 +8,13 @@
             controllerAs: 'vm'
         });
 
-    function LandingHeroController() {
+    LandingHeroController.$inject = ['hashScroll'];
+
+    function LandingHeroController(hashScroll) {
         var vm = this;
+
+        vm.scrollTo = function(hash) {
+            hashScroll.scrollToHash(hash);
+        };
     }
 })();
