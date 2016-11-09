@@ -1,0 +1,64 @@
+@import '_includes';
+
+.landing-get-involved-container {
+    background: url('/app/assets/images/landing/get-involved-background.png'); 
+    padding: rem(50px) 10%;
+
+    .get-involved-header {
+        font-family: RobotoSlab-Bold;
+        font-size: rem(22px);
+        color: #FFFFFF;
+        letter-spacing: 0.56px;
+
+        @media screen and (max-width: 414px) {
+            font-size: rem(16px);
+        }
+
+
+    }
+
+    .get-involved-description {
+        text-align: center;
+        font-family: OpenSans, sans-serif;
+        font-size: rem(15px);
+        color: #FFFFFF;
+        letter-spacing: 0.37px;
+    }
+
+    .button-primary {
+        background: $color-red-base;
+        color: white;
+        font-family: OpenSans-Semibold;
+        font-size: rem(8px);
+        color: #FFFFFF;
+        letter-spacing: 0.2px;
+        line-height: 30px;
+    }
+
+    // Fancy
+    .fancy {
+        line-height: 0.2;
+        text-align: center;
+    }
+    .fancy span {
+        display: inline-block;
+        position: relative;  
+    }
+    .fancy span:before,
+    .fancy span:after {
+        content: "";
+        position: absolute;
+        height: 5px;
+        border-bottom: 2px solid white;
+        top: 0;
+        width: 75%;
+    }
+    .fancy span:before {
+        right: 100%;
+        margin-right: 15px;
+    }
+    .fancy span:after {
+        left: 100%;
+        margin-left: 15px;
+    }
+}
