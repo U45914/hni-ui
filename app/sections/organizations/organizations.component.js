@@ -3,7 +3,6 @@
         .module('app')
         .component('organizations', {
             bindings: {
-
             },
             templateUrl: 'organizations.tpl.html',
             controller: OrganizationsController,
@@ -43,36 +42,42 @@
 
             vm.items = [
                 {
+                    id: '4',
                     website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
                     org: 'The Manna Center'
                 },
                 {
+                    id: '5',
                     website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
                     org: 'Samaritan Community'
                 },
                 {
+                    id: '6',
                     website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
                     org: 'The Manna Center'
                 },
                 {
+                    id: '7',
                     website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
                     org: 'The Manna Center'
                 },
                 {
+                    id: '8',
                     website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
                     org: 'Samaritan Community'
                 },
                 {
+                    id: '9',
                     website: '7hillscenter.org',
                     phone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
@@ -86,54 +91,20 @@
 
         vm.newOrganization = function () {
             $mdDialog.show({
-                controller: DialogController,
+                controller: 'NewOrgController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
                 templateUrl: 'new-organization.tpl.html'
             });
         };
 
-        DialogController.$inject = ['$mdDialog', 'orgService'];
-
-        function DialogController($mdDialog, orgService) {
-            let vm = this;
-
-            vm.org = {};
-
-            vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-            'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-            'WY').split(' ').map(function (state) { return { abbrev: state }; });
-
-            vm.dismiss = function () {
-                $mdDialog.hide();
-            };
-
-            vm.saveNewOrganization = function() {
-                let postData = {
-                    name: vm.org.name,
-                    phone: vm.org.phone,
-                    email: vm.org.email,
-                    contact_person: vm.org.contactPerson,
-                    addresses: [
-                        {
-                            address1: vm.org.address,
-                            state: vm.org.state,
-                            zip: vm.org.zip
-                        }
-                    ]
-                };
-
-                orgService.postOrg(postData, newOrgSaved, newOrgError);
-
-                function newOrgSaved() {
-                    vm.org = {};
-                    $mdDialog.hide();
-                }
-
-                function newOrgError() {
-                    console.log("Error");
-                }
-            };
-        }
+        vm.deleteOrganization = function () {
+            $mdDialog.show({
+                controller: 'DeleteOrgController',
+                controllerAs: 'vm',
+                parent: angular.element(document.body),
+                templateUrl: 'delete-organization.tpl.html'
+            });
+        };
     }
 })();

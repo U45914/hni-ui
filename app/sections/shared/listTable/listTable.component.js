@@ -5,7 +5,8 @@
             bindings: {
                 headerfields: '<',
                 items: '<',
-                editFn: '&'
+                editFn: '&',
+                deleteFn: '&'
             },
             templateUrl: 'list-table.tpl.html',
             controller: ListTableController,
@@ -18,7 +19,6 @@
         let vm = this;
         vm.originalItemList = vm.items.slice();
         vm.lastSortField = null;
-        vm.showEdit = showEdit;
 
         vm.$onInit = function () {
 
@@ -69,9 +69,5 @@
                 }
             }
         };
-
-        function showEdit() {
-            vm.editFn();
-        }
     }
 })();

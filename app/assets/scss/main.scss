@@ -340,3 +340,22 @@ md-dialog.edit-entity-popup {
     }
   }
 }
+
+md-dialog.delete-entity-popup {
+  max-width: rem(420px);
+
+  & md-dialog-content {
+    padding: rem(24px);
+    border-bottom: 1px solid $color-order-detail-border;
+  }
+
+  & .delete-entity-header {
+    color: $color-text;
+
+    & > div:first-child {
+      margin-bottom: rem(12px);
+      font-size: rem(20px);
+      font-weight: bold;
+    }
+  }
+}

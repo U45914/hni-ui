@@ -11,10 +11,10 @@
 			<tr ng-repeat="item in vm.items" class="md-row">
 				<td ng-repeat="field in vm.headerfields">{{ item[field.key] }}</td>
 				<td class="icons">
-					<md-button>
+					<md-button ng-click="vm.deleteFn()">
 			            <i class="material-icons">&#xE872;</i>
 			        </md-button>
-			        <md-button ng-click="vm.showEdit()">
+			        <md-button ng-click="vm.editFn()">
 			            <i class="material-icons">&#xE150;</i>
 			        </md-button> 
         		</td>
