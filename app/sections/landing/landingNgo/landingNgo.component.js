@@ -40,6 +40,14 @@
                 name: "The Manna Center",
                 imagePath: "/app/assets/images/landing/manna_center_logo.png"
             },
+            {
+                name: "Covenant House",
+                imagePath: "/app/assets/images/landing/covenant_house.png"
+            },
+            {
+                name: "S.P.Y.",
+                imagePath: "/app/assets/images/landing/spy.png"
+            },
         ];
     }
 })();
