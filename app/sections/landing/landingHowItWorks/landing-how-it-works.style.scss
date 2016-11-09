@@ -1,7 +1,7 @@
 @import '_includes';
 
 .landing-how-it-works-container {
-	padding: rem(50px) rem(0px);
+	padding: rem(25px) rem(0px);
 	background: $color-red-base;
 	text-align: center;
 	.how-it-works-header {
@@ -16,7 +16,7 @@
 	        text-transform: uppercase;
 	        span {
 	        	font-family: 'Roboto Slab', sans-serif;
-		        font-size: rem(45px);
+		        font-size: rem(25px);
 		        color: #FFFFFF;
 		        letter-spacing: 0.56px;
 		        display: inline-block;
