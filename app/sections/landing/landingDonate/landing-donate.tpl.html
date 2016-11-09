@@ -1,0 +1,59 @@
+<div class="landing-donate-container">
+    <div layout="column">
+        <img class="hero" src="/app/assets/images/landing/donate_hero.png">
+        <div class="donate-header">
+            <h3>Donate a Meal.</h3>
+        </div>
+        <div class="donate-information" layout="row" layout-xs="column">
+            <div class="donate-text" layout="column" flex-gt-xs="30" flex-xs>
+                <p>Your Money in Action.</p>
+                <p>We believe that when you give you should know where 100% of your money goes. That’s why every time your money feeds someone, we’ll send you a text.</p>
+                <div class="callout" layout="row">
+                    <img src="/app/assets/images/landing/phone.png">
+                    <p>Or text "donate" to 70175.</p>
+                </div>
+            </div>
+            <div class="donate-form" flex-gt-xs="50" flex-offset-gt-xs="20" flex-xs>
+                <md-card>
+                    <md-card-content>
+                        <p>Make a donation of</p>
+                        <md-input-container class="md-block form-centered" md-no-float flex-offset-gt-sm="25" flex-gt-sm="50" layout="column">
+                            <input type="text" ng-model="vm.donationInfo.donationAmount" placeholder="1 meal ($5)">
+                        </md-input-container>
+                        <div class="cards" layout="row" layout-align="center center">
+                            <img src="/app/assets/images/landing/Visa.png" alt="Visa">
+                            <img src="/app/assets/images/landing/MasterCard.png" alt="MasterCard">
+                            <img src="/app/assets/images/landing/Maestro.png" alt="Maestro">
+                        </div>
+                        <md-input-container class="md-block" md-no-float flex-gt-sm>
+                            <label>Name on Card</label>
+                            <input type="text" ng-model="vm.donationInfo.nameOnCard">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Card Number</label>
+                            <input type="text" ng-model="vm.donationInfo.cardNumber">
+                                <img src="/app/assets/images/landing/Visa.png" alt="Visa">
+                            </input>
+                        </md-input-container>
+                        <md-input-container class="form-small" md-no-float flex-gt-sm>
+                            <label>Expiration Date</label>
+                            <input placeholder="mm" type="text" ng-model="vm.donationInfo.expirationDateMonth">
+                        </md-input-container>
+                        <md-input-container class="form-small" md-no-float flex-gt-sm>
+                            <input placeholder="yyyy" type="text" ng-model="vm.donationInfo.expirationDateYear">
+                        </md-input-container>
+                        <md-input-container class="form-small" flex-gt-sm>
+                            <label>CVV</label>
+                            <input placeholder="3 digits" type="text" ng-model="vm.donationInfo.CVV">
+                        </md-input-container> 
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button class="md-raised md-warn">Donate</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
