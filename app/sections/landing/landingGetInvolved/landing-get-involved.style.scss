@@ -5,7 +5,7 @@
     padding: rem(50px) 10%;
 
     .get-involved-header {
-        font-family: RobotoSlab-Bold;
+        font-family: 'Roboto Slab', sans-serif;
         font-size: rem(22px);
         color: #FFFFFF;
         letter-spacing: 0.56px;
@@ -26,13 +26,10 @@
     }
 
     .button-primary {
-        background: $color-red-base;
-        color: white;
-        font-family: OpenSans-Semibold;
-        font-size: rem(8px);
+        font-size: rem(10px);
+        margin: 0px;
+        font-weight: $font-weight-semibold;
         color: #FFFFFF;
-        letter-spacing: 0.2px;
-        line-height: 30px;
     }
 
     // Fancy
