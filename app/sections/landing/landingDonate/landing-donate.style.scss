@@ -1,0 +1,119 @@
+@import '_includes';
+
+.landing-donate-container {
+
+    .hero {
+        height: rem(320px);
+    }
+
+    .donate-header {
+        background: $color-red-base;
+
+        h3 {
+            margin-left: rem(80px);
+            font-family: 'Roboto Slab', sans-serif;
+            font-size: rem(22px);
+            color: #FFFFFF;
+
+            @media screen and (max-width: 600px) {
+                margin-left: rem(30px);
+            }
+        }
+    }
+
+    .donate-information {
+        padding: rem(40px) rem(80px);
+        padding-bottom: 0;
+
+        @media screen and (max-width: 600px) {
+            padding: rem(20px) rem(30px);
+        }
+        
+
+        .donate-text {
+            
+            p {
+                font-family: 'Roboto', sans-serif;
+                font-size: rem(15px);
+                color: #4D4D4D;
+                line-height: 20px;
+            }
+
+            .callout {
+                padding-top: rem(40px);
+
+                p {
+                    font-family: 'Roboto Slab', sans-serif;
+                    font-size: rem(22px);
+                    color: #D65439;
+                    letter-spacing: 1.08px;
+                    line-height: rem(33px);
+                }
+
+                img {
+                    max-height: 100px;
+                    padding-right: rem(20px);
+                }
+            }
+        }
+
+        .donate-form {
+            text-align: right;
+
+            md-card {
+                position: relative;
+                top: rem(-70px);
+                border-radius: 10px;
+                text-align: left;
+
+                @media screen and (max-width: 600px) {
+                    top: 0;
+                }
+
+                .form-centered {
+                    margin-bottom: rem(5px);
+
+                    .md-errors-spacer {
+                        display: none;
+                    }
+
+                    input {
+                        text-align: center;
+                    }
+                }
+
+                .cards {
+                    img {
+                        padding: 0 rem(3px);
+                    }
+                }
+
+                .form-small {
+                    width: 100px;
+                }
+
+                .md-block {
+                    img {
+                        position: absolute;
+                        right: 10px;
+                        top: -10px;
+                    }
+                }
+
+                md-card-content {
+                    padding: rem(25px);
+
+                    @media screen and (max-width: 600px) {
+                        padding: rem(10px);
+                    }
+                }
+
+                md-card-actions {
+                    padding-bottom: rem(15px);
+                    padding-right: rem(15px);
+                }
+            }
+        }
+    }
+
+}

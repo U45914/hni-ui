@@ -1,0 +1,32 @@
+@import '_includes';
+
+.landing-stats-container {
+    background: #D65439;
+    z-index: -1;
+    position: relative;
+
+    @media screen and (min-width: 1024px) {
+        max-height: 363px;
+    }
+
+    & h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 35px;
+        color: #FFFFFF;
+        letter-spacing: 0.41px;
+        line-height: 47.5px;
+        padding: rem(20px) rem(20px) rem(20px) rem(63px);
+
+        @media screen and (max-width: 800px) {
+            padding: rem(15px) rem(15px) rem(15px) rem(15px);
+        }
+    }
+
+    & img {
+        padding: rem(34px) rem(15px) rem(0px) rem(162px);
+
+        @media screen and (max-width: 800px) {
+            padding: rem(15px) rem(15px) rem(15px) rem(15px);
+        }
+    }
+}

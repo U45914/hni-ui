@@ -13,6 +13,10 @@
                 url: '/dashboard',
                 template: '<dashboard></dashboard>'
             })
+            .state('landing', {
+                url: '/landing',
+                template: '<landing></landing>'
+            })
             .state('login', {
                 url: '/login',
                 template: '<login></login>'

@@ -1,0 +1,62 @@
+@import '_includes';
+
+.landing-how-it-works-container {
+	padding: rem(25px) rem(0px);
+	background: $color-red-base;
+	text-align: center;
+	.how-it-works-header {
+		padding-bottom: rem(25px);
+        @media screen and (max-width: 414px) {
+            font-size: rem(16px);
+        }
+        // Fancy
+	    .fancy {
+	        line-height: 0.2;
+	        text-align: center;
+	        text-transform: uppercase;
+	        span {
+	        	font-family: 'Roboto Slab', sans-serif;
+		        font-size: rem(25px);
+		        color: #FFFFFF;
+		        letter-spacing: 0.56px;
+		        display: inline-block;
+		        position: relative;
+		        &:before, &:after {
+	        		content: "";
+			        position: absolute;
+			        height: 5px;
+			        border-bottom: 2px solid white;
+			        top: 0;
+			        width: 75%;
+		        }
+
+		        &:before {
+		        	right: 100%;
+	        		margin-right: 15px;
+		        }
+
+		        &:after {
+		        	left: 100%;
+	        		margin-left: 15px;
+		        }  
+		    }
+	    }
+    }
+
+    .work-item {
+    	margin: 0% 5%;
+		img {
+	    	max-width: 266px;
+	    	width: 100%;
+	    	height: auto;
+	    	margin-right: auto;
+	    	margin-left: auto;
+	    }
+
+	    p {
+	    	font-size: rem(15px);
+	    	font-weight: $font-weight-semibold;
+	    	color: white;
+	    }
+    }
+}
