@@ -1,0 +1,18 @@
+@import '_includes';
+
+.landing-ngo-container {
+    background: #FFFFFF;
+
+    .ngo-logo-container {
+        padding: rem(20px);
+    }
+
+    .ngo-logo {
+        margin: rem(15px);
+        text-align: center;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
