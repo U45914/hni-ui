@@ -3,6 +3,7 @@
 .landing-stats-container {
     background: #D65439;
     z-index: -1;
+    position: relative;
 
     @media screen and (min-width: 1024px) {
         max-height: 363px;
