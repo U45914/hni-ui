@@ -1,0 +1,49 @@
+@import '_includes';
+
+.entity-cards-container {
+  padding: rem(40px) rem(20px) rem(20px) rem(20px);
+}
+
+md-card.entity-card {
+  border-radius: 8px;
+  overflow: hidden;
+
+  & .entity-card-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid $color-gray-lighter;
+
+    & > div {
+      padding: rem(12px);
+      font-size: rem(18px);
+      font-weight: 800;
+      color: $color-text;
+    }
+  }
+
+  & .entity-card-content {
+    padding: rem(12px) rem(24px) rem(12px) rem(24px);
+
+    & > div {
+      display: flex;
+      align-items: center;
+      color: $color-text;
+
+      &:not(:last-child) {
+        margin-bottom: rem(12px);
+      }
+
+      & i.material-icons {
+        margin-right: rem(6px);
+        font-size: rem(16px);
+        color: $color-red-base;
+      }
+
+      & > div {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow:hidden;
+      }
+    }
+  }
+}
