@@ -3,4 +3,26 @@
 .landing-footer-container {
     background-color: $color-red-base;
     color: white;
+
+    .footer-info {
+        text-align: center;
+        padding-bottom: rem(20px);
+
+        a {
+            padding: 0 rem(10px);
+        }
+
+        .footer-title {
+            font-family: 'Roboto Slab', serif;
+            font-weight: bold;
+            font-size: rem(30px);
+        }
+
+        .footer-details {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            font-size: rem(18px);
+            padding: rem(5px) 0;
+        }
+    }
 }
