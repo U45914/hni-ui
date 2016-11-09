@@ -1,5 +1,45 @@
 @import '_includes';
 
 .landing-about-container {
+    z-index: 99;
+    background-color: #EEEEEE;
 
+    & h1 {
+        font-family: 'Roboto', sans-serif;
+        color: #D65439;
+        letter-spacing: 0.56px;
+        text-align: center;
+        padding: rem(30px) rem(15px) rem(0px) rem(15px);
+
+        @media only screen and (min-width: 376px) {
+            font-size: rem(28px);
+        }
+
+        @media only screen and (min-width: 415px) {
+            font-size: rem(45px);
+        }
+    }
+
+    & p {
+        font-family: 'Roboto', sans-serif;
+        color: #4A4A4A;
+        letter-spacing: 0.37px;
+        text-align: center;
+        padding: rem(0px) 20% rem(30px) 20%;
+
+
+        @media screen and (max-width: 800px) {
+            padding: rem(0px) rem(15px) rem(15px) rem(15px);
+        }
+
+        @media only screen and (min-width: 376px) {
+            line-height: 30px;
+            font-size: rem(22px);
+        }
+
+        @media only screen and (min-width: 415px) {
+            line-height: 40px;
+            font-size: rem(30px);
+        }
+    }
 }
