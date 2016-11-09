@@ -5,15 +5,15 @@
         </div>
         <div class="nav-section">
             <ul>
-                <li><a href="#About">About</a></li>
-                <li><a href="#How">How It Works</a></li>
-                <li><a href="#Involved">Get Involved</a></li>
+                <li><a href ng-click="vm.scrollTo('About')">About</a></li>
+                <li><a href ng-click="vm.scrollTo('How')">How It Works</a></li>
+                <li><a href ng-click="vm.scrollTo('Involved')">Get Involved</a></li>
             </ul>
-            <a href="#Donate" class="md-button md-raised button-primary md-raised md-ink-ripple">Donate</a>
+            <a href ng-click="vm.scrollTo('Donate')" class="md-button md-raised button-primary md-raised md-ink-ripple">Donate</a>
         </div>
     </div>    
     <div class="hero-text">
         Hunger: Not Impossible will feed millions who needlessly go hungry in America <span class="text-prompt">... with a text.</span>
-        <a href="#Stats" class="down-prompt"><i class="material-icons">keyboard_arrow_down</i></a>
+        <a href ng-click="vm.scrollTo('Stats')" class="down-prompt"><i class="material-icons">keyboard_arrow_down</i></a>
     </div>    
 </div>
