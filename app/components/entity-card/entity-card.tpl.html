@@ -1,0 +1,33 @@
+<md-card class="entity-card">
+    <div class="entity-card-header" layout="row">
+        <div>{{vm.header}}</div>
+        <span flex></span>
+        <md-menu>
+            <md-button class="md-icon-button" md-ink-ripple="#D65439" ng-click="$mdOpenMenu($event)">
+                <md-icon class="material-icons" style="color:#595959">&#xE5D4;</md-icon>
+            </md-button>
+            <md-menu-content width="2">
+                <md-menu-item>
+                    <md-button style="display: flex; color: #4A4A4A" ng-click="vm.editFn()"><i class="material-icons" style="margin-right: 6px">&#xE3C9;</i><span>Edit</span></md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button style="display: flex; color: #4A4A4A"><i class="material-icons" style="margin-right: 6px">&#xE872;</i><span>Remove</span></md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
+    <div class="entity-card-content" layout="row" layout-wrap>
+        <div flex="100">
+            <i class="material-icons">&#xE0CD;</i>
+            <div>{{vm.phone}}</div>
+        </div>
+        <div flex="100">
+            <i class="material-icons">&#xE0BE;</i>
+            <div>{{vm.email}}</div>
+        </div>
+        <div flex="100">
+            <i class="material-icons">&#xE0AF;</i>
+            <div>{{vm.org}}</div>
+        </div>
+    </div>
+</md-card>

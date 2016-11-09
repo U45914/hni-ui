@@ -1,4 +1,9 @@
 <sub-nav-bar text="Volunteers" icon="&#xE7FB;" show-fab="true" fab-fn="vm.newVolunteer()"></sub-nav-bar>
 <div id="volunteers-container">
-	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editVolunteer()"></list-table>
+	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editVolunteer()" hide-sm hide-xs></list-table>
+</div>
+
+<div class="entity-cards-container" layout="row" layout-wrap hide-gt-sm>
+	<entity-card flex="100" flex-sm="50" ng-repeat="item in vm.items" header="item.name" phone="item.phone"
+				 email="item.email" org="item.org" edit-fn="vm.editVolunteer()"></entity-card>
 </div>
