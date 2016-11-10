@@ -11,7 +11,7 @@
 			<tr ng-repeat="item in vm.items" class="md-row">
 				<td ng-repeat="field in vm.headerfields">{{ item[field.key] }}</td>
 				<td class="icons">
-					<md-button ng-click="vm.delete(item.id)">
+					<md-button ng-click="vm.delete(item)">
 			            <i class="material-icons">&#xE872;</i>
 			        </md-button>
 			        <md-button ng-click="vm.editFn()">

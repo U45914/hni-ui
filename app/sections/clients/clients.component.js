@@ -85,21 +85,11 @@
 
         vm.newClient = function () {
             $mdDialog.show({
-                controller: DialogController,
+                controller: 'NewClientController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
                 templateUrl: 'new-client.tpl.html'
             });
         };
-
-        DialogController.$inject = ['$mdDialog'];
-
-        function DialogController($mdDialog) {
-            let vm = this;
-
-            vm.dismiss = function () {
-                $mdDialog.hide();
-            };
-        }
     }
 })();

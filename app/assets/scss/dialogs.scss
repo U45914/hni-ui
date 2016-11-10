@@ -1,0 +1,261 @@
+@import '_includes';
+
+.popup-close-btn {
+  position: absolute;
+  top: rem(24px);
+  right: rem(24px);
+  font-size: rem(30px);
+  cursor: pointer;
+  outline: none;
+  color: $color-gray-light;
+}
+
+md-dialog.small-prompt, md-dialog.new-entity-popup, md-dialog.edit-entity-popup {
+  & md-dialog-actions {
+    padding: rem(12px);
+
+    & button {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+md-dialog.small-prompt {
+  top: rem(-150px);
+  width: rem(350px);
+  color: $color-text;
+
+  & md-dialog-content {
+    padding: rem(40px) rem(40px) rem(40px) rem(40px);
+    border-bottom: 1px solid $color-order-detail-border;
+  }
+
+  & i.material-icons {
+    text-align: center;
+    font-size: rem(72px);
+    color: $color-red-base;
+  }
+
+  & .small-prompt-header {
+    margin-top: rem(12px);
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+    color: $color-text;
+  }
+
+  & .small-prompt-text {
+    padding-top: rem(12px);
+    font-size: rem(24px);
+    color: $color-text;
+    text-align: center;
+  }
+
+  & .small-prompt-subtext {
+    padding-top: rem(12px);
+    color: $color-text;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 600px) {
+    top: initial;
+  }
+}
+
+md-dialog.new-entity-popup {
+  max-width: rem(500px);
+
+  & md-dialog-content {
+    padding: rem(40px) rem(40px) rem(40px) rem(40px);
+    border-bottom: 1px solid $color-order-detail-border;
+  }
+
+  & .new-entity-header {
+    display: flex;
+    margin-bottom: rem(6px);
+    color: $color-red-base;
+
+    & > div {
+      height: rem(48px);
+      line-height: rem(60px);
+      font-size: rem(24px);
+      font-weight: bold;
+    }
+
+    & i.material-icons {
+      font-size: rem(48px);
+      margin-right: rem(6px);
+    }
+  }
+
+  md-input-container:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    & md-dialog-content {
+      padding-bottom: 0;
+    }
+
+    & .new-entity-header {
+      & > div {
+        font-size: rem(20px);
+        line-height: rem(32px);
+      }
+
+      & i.material-icons {
+        font-size: rem(30px);
+      }
+    }
+  }
+}
+
+md-dialog.edit-entity-popup {
+  max-width: rem(800px);
+
+  & md-dialog-content {
+    padding: rem(60px) 0 rem(60px) 0;
+    border-bottom: 1px solid $color-order-detail-border;
+  }
+
+  & .edit-entity-header {
+    display: flex;
+    margin-bottom: rem(6px);
+    color: $color-red-base;
+
+    & > div {
+      font-size: rem(24px);
+      font-weight: bold;
+    }
+
+    & i.material-icons {
+      font-size: rem(48px);
+      margin-right: rem(6px);
+    }
+  }
+
+  & .edit-entity-person-info {
+    padding-left: rem(60px);
+    padding-right: rem(60px);
+    border-right: 1px solid $color-edit-entity-border;
+  }
+
+  & .edit-entity-associations {
+    padding-left: rem(60px);
+    padding-right: rem(60px);
+  }
+
+  & .edit-entity-org-section {
+    border-bottom: 1px solid $color-edit-entity-border;
+  }
+
+  & .entity-associations-header {
+    display: flex;
+    position: relative;
+
+    & .input-expandable {
+      top: -3px;
+
+      &  input:focus {
+        width: rem(80px);
+      }
+    }
+
+    & i.material-icons {
+      margin-right: rem(4px);
+      color: $color-red-base;
+    }
+
+    & > div {
+      display: flex;
+      align-items: flex-end;
+      font-size: rem(16px);
+      font-weight: bold;
+      color: $color-text;
+    }
+  }
+
+  & .entity-associations-header {
+    margin-top: rem(20px);
+    padding-bottom: rem(20px);
+  }
+
+  & .entity-assocations-checkboxes {
+    padding-top: rem(20px);
+    padding-bottom: rem(20px);
+    padding-left: rem(20px);
+    margin-left: rem(-20px);
+    margin-top: rem(-20px);
+    max-height: rem(270px);
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  & .entity-roles-checkboxes {
+    & > div:first-child {
+      display: flex;
+      align-items: center;
+    }
+
+    & md-checkbox:last-child {
+      margin-bottom: 16px;
+    }
+
+    & md-input-container {
+      margin-top: 0;
+    }
+  }
+
+  & .edit-entity-header-text {
+    display: flex;
+
+    & > div {
+      letter-spacing: rem(0.5px);
+      color: $color-gray-light;
+      font-size: rem(14px);
+
+      &:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+
+  & md-checkbox:last-child {
+    margin-bottom: 0;
+  }
+
+  & md-input-container:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    & .edit-entity-person-info {
+      border-right: none;
+      border-bottom: 1px solid $color-edit-entity-border;
+    }
+
+    & md-dialog-content {
+      padding-bottom: 0;
+    }
+  }
+}
+
+md-dialog.delete-entity-popup {
+  max-width: rem(420px);
+
+  & md-dialog-content {
+    padding: rem(24px);
+    border-bottom: 1px solid $color-order-detail-border;
+  }
+
+  & .delete-entity-header {
+    color: $color-text;
+
+    & > div:first-child {
+      margin-bottom: rem(12px);
+      font-size: rem(20px);
+      font-weight: bold;
+    }
+  }
+}

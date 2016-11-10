@@ -106,14 +106,14 @@
             });
         };
 
-        vm.deleteOrganization = function (id) {
+        vm.deleteOrganization = function (item) {
             $mdDialog.show({
                 controller: 'DeleteOrgController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
                 templateUrl: 'delete-organization.tpl.html',
                 locals : {
-                    id : id
+                    item : item
                 }
             });
         };
