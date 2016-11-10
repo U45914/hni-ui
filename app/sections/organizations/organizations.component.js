@@ -42,6 +42,13 @@
 
             vm.items = [
                 {
+                    id: '3',
+                    website: '7hillscenter.org',
+                    phone: '(479) 123-4567',
+                    email: 'justin.palmer@walmart.com',
+                    org: 'Samaritan Community'
+                },
+                {
                     id: '4',
                     website: '7hillscenter.org',
                     phone: '(479) 123-4567',
@@ -98,12 +105,15 @@
             });
         };
 
-        vm.deleteOrganization = function () {
+        vm.deleteOrganization = function (id) {
             $mdDialog.show({
                 controller: 'DeleteOrgController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                templateUrl: 'delete-organization.tpl.html'
+                templateUrl: 'delete-organization.tpl.html',
+                locals : {
+                    id : id
+                }
             });
         };
     }

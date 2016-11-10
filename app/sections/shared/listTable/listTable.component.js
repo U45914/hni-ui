@@ -24,6 +24,10 @@
 
         };
 
+        vm.delete = function(id) {
+            vm.deleteFn()(id);
+        };
+
         vm.sortDataByField = function (field) {
             if (field.sortable) {
                 if (vm.lastSortField === field) {

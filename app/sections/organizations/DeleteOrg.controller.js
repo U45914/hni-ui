@@ -3,9 +3,9 @@
         .module('app')
         .controller('DeleteOrgController', DeleteOrgController);
 
-    DeleteOrgController.$inject = ['$mdDialog', 'orgService'];
+    DeleteOrgController.$inject = ['$mdDialog', 'orgService', 'id'];
 
-    function DeleteOrgController($mdDialog, orgService) {
+    function DeleteOrgController($mdDialog, orgService, id) {
         let vm = this;
 
         vm.dismiss = function () {
@@ -13,13 +13,13 @@
         };
 
         vm.deleteOrg = function() {
-            orgService.removeOrg("1", newOrgSaved, newOrgError);
+            orgService.removeOrg(id, orgDeletedSuccess, orgDeletedError);
 
-            function newOrgSaved() {
+            function orgDeletedSuccess() {
                 $mdDialog.hide();
             }
 
-            function newOrgError() {
+            function orgDeletedError() {
                 console.log("Error");
             }
         };
