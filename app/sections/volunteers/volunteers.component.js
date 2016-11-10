@@ -43,36 +43,42 @@
 
             vm.items = [
                 {
+                    id: 3,
                     name: 'Veronica Bagwell',
                     phone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
                     org: 'The Manna Center'
                 },
                 {
+                    id: 4,
                     name: 'Justin Palmer',
                     phone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
                     org: 'Samaritan Community'
                 },
                 {
+                    id: 5,
                     name: 'Kayleigh Cooper',
                     phone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
                     org: 'The Manna Center'
                 },
                 {
+                    id: 6,
                     name: 'Veronica Bagwell',
                     phone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
                     org: 'The Manna Center'
                 },
                 {
+                    id: 7,
                     name: 'Justin Palmer',
                     phone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
                     org: 'Samaritan Community'
                 },
                 {
+                    id: 8,
                     name: 'Kayleigh Cooper',
                     phone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
@@ -100,6 +106,18 @@
                 parent: angular.element(document.body),
                 templateUrl: 'edit-volunteer.tpl.html',
                 fullscreen: true
+            });
+        };
+
+        vm.deleteVolunteer = function (volunteer) {
+            $mdDialog.show({
+                controller: 'DeleteVolunteerController',
+                controllerAs: 'vm',
+                parent: angular.element(document.body),
+                templateUrl: 'delete-volunteer.tpl.html',
+                locals : {
+                    volunteer : volunteer
+                }
             });
         };
     }

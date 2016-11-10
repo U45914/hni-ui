@@ -11,12 +11,12 @@
 			<tr ng-repeat="item in vm.items" class="md-row">
 				<td ng-repeat="field in vm.headerfields">{{ item[field.key] }}</td>
 				<td class="icons">
-					<md-button ng-click="vm.delete(item)">
-			            <i class="material-icons">&#xE872;</i>
+					<md-button class="md-icon-button" ng-click="vm.delete(item)" md-ink-ripple="#D65439">
+			            <md-icon class="material-icons">&#xE872;</md-icon>
 			        </md-button>
-			        <md-button ng-click="vm.editFn()">
-			            <i class="material-icons">&#xE150;</i>
-			        </md-button> 
+					<md-button class="md-icon-button" ng-click="vm.editFn()" md-ink-ripple="#D65439">
+						<md-icon class="material-icons">&#xE150;</md-icon>
+					</md-button>
         		</td>
 			</tr>
 		</tbody>

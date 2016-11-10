@@ -3,9 +3,9 @@
         .module('app')
         .controller('DeleteClientController', DeleteClientController);
 
-    DeleteClientController.$inject = ['$mdDialog', 'clientService', 'client'];
+    DeleteClientController.$inject = ['$mdDialog', 'personService', 'client'];
 
-    function DeleteClientController($mdDialog, clientService, client) {
+    function DeleteClientController($mdDialog, personService, client) {
         let vm = this;
 
         vm.client = client;
@@ -15,7 +15,7 @@
         };
 
         vm.deleteClient = function() {
-            clientService.removeClient(vm.client.id, clientDeletedSuccess, clientDeletedError);
+            personService.removeClient(vm.client.id, clientDeletedSuccess, clientDeletedError);
 
             function clientDeletedSuccess() {
                 $mdDialog.hide();

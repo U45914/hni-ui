@@ -1,18 +1,18 @@
 (function() {
     angular
         .module('app')
-        .factory('clientService', clientService);
+        .factory('personService', personService);
 
-    clientService.$inject = ['$http', 'serviceConstants'];
+    personService.$inject = ['$http', 'serviceConstants'];
 
-    function clientService($http, serviceConstants) {
+    function personService($http, serviceConstants) {
         let baseUrl = serviceConstants.baseUrl;
 
         return {
-            removeClient
+            removePerson
         };
 
-        function removeClient(id, success, failure) {
+        function removePerson(id, success, failure) {
             $http.delete(`${baseUrl}/users/${id}`)
                 .then(function successCallback() {
                     success();
