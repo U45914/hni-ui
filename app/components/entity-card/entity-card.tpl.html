@@ -8,26 +8,18 @@
             </md-button>
             <md-menu-content width="2">
                 <md-menu-item>
-                    <md-button style="display: flex; color: #4A4A4A" ng-click="vm.editFn()"><i class="material-icons" style="margin-right: 6px">&#xE3C9;</i><span>Edit</span></md-button>
+                    <md-button style="display: flex; color: #4A4A4A" ng-click="vm.edit()"><i class="material-icons" style="margin-right: 6px">&#xE3C9;</i><span>Edit</span></md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button style="display: flex; color: #4A4A4A"><i class="material-icons" style="margin-right: 6px">&#xE872;</i><span>Remove</span></md-button>
+                    <md-button style="display: flex; color: #4A4A4A" ng-click="vm.delete()"><i class="material-icons" style="margin-right: 6px">&#xE872;</i><span>Remove</span></md-button>
                 </md-menu-item>
             </md-menu-content>
         </md-menu>
     </div>
     <div class="entity-card-content" layout="row" layout-wrap>
-        <div flex="100">
-            <i class="material-icons">&#xE0CD;</i>
-            <div>{{vm.phone}}</div>
-        </div>
-        <div flex="100">
-            <i class="material-icons">&#xE0BE;</i>
-            <div>{{vm.email}}</div>
-        </div>
-        <div flex="100">
-            <i class="material-icons">&#xE0AF;</i>
-            <div>{{vm.org}}</div>
+        <div flex="100" ng-repeat="item in vm.content">
+            <i class="material-icons">{{item.icon}}</i>
+            <div>{{item.text}}</div>
         </div>
     </div>
 </md-card>

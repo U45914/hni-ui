@@ -7,9 +7,25 @@
                 phone: '=',
                 email: '=',
                 org: '=',
-                editFn: '&'
+                content: '=',
+                entityItem: '=',
+                editFn: '&',
+                deleteFn: '&'
             },
             templateUrl: 'entity-card.tpl.html',
+            controller: controller,
             controllerAs: 'vm'
         });
+
+    function controller() {
+        let vm = this;
+
+        vm.edit = function() {
+            vm.editFn();
+        };
+
+        vm.delete = function() {
+            vm.deleteFn()(vm.entityItem)
+        }
+    }
 })();
