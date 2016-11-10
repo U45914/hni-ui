@@ -209,6 +209,23 @@ md-dialog.new-entity-popup {
   md-input-container:last-child {
     margin-bottom: 0;
   }
+
+  @media screen and (max-width: 600px) {
+    & md-dialog-content {
+      padding-bottom: 0;
+    }
+
+    & .new-entity-header {
+      & > div {
+        font-size: rem(20px);
+        line-height: rem(32px);
+      }
+
+      & i.material-icons {
+        font-size: rem(30px);
+      }
+    }
+  }
 }
 
 md-dialog.edit-entity-popup {

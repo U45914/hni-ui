@@ -24,6 +24,7 @@
                 phone: vm.org.phone,
                 email: vm.org.email,
                 contact_person: vm.org.contactPerson,
+                website: vm.org.website,
                 addresses: [
                     {
                         address1: vm.org.address,

@@ -100,6 +100,7 @@
             $mdDialog.show({
                 controller: 'NewOrgController',
                 controllerAs: 'vm',
+                fullscreen: true,
                 parent: angular.element(document.body),
                 templateUrl: 'new-organization.tpl.html'
             });
