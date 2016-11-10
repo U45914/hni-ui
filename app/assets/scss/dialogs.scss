@@ -10,7 +10,7 @@
   color: $color-gray-light;
 }
 
-md-dialog.small-prompt, md-dialog.new-entity-popup, md-dialog.edit-entity-popup {
+md-dialog.small-prompt, md-dialog.entity-popup, md-dialog.edit-entity-popup {
   & md-dialog-actions {
     padding: rem(12px);
 
@@ -63,7 +63,7 @@ md-dialog.small-prompt {
   }
 }
 
-md-dialog.new-entity-popup {
+md-dialog.entity-popup {
   max-width: rem(500px);
 
   & md-dialog-content {
@@ -71,7 +71,7 @@ md-dialog.new-entity-popup {
     border-bottom: 1px solid $color-order-detail-border;
   }
 
-  & .new-entity-header {
+  & .entity-header {
     display: flex;
     margin-bottom: rem(6px);
     color: $color-red-base;
@@ -98,7 +98,9 @@ md-dialog.new-entity-popup {
       padding-bottom: 0;
     }
 
-    & .new-entity-header {
+    & .entity-header  {
+      display: flex;
+
       & > div {
         font-size: rem(20px);
         line-height: rem(32px);
@@ -117,22 +119,6 @@ md-dialog.edit-entity-popup {
   & md-dialog-content {
     padding: rem(60px) 0 rem(60px) 0;
     border-bottom: 1px solid $color-order-detail-border;
-  }
-
-  & .edit-entity-header {
-    display: flex;
-    margin-bottom: rem(6px);
-    color: $color-red-base;
-
-    & > div {
-      font-size: rem(24px);
-      font-weight: bold;
-    }
-
-    & i.material-icons {
-      font-size: rem(48px);
-      margin-right: rem(6px);
-    }
   }
 
   & .edit-entity-person-info {
@@ -207,20 +193,6 @@ md-dialog.edit-entity-popup {
     }
   }
 
-  & .edit-entity-header-text {
-    display: flex;
-
-    & > div {
-      letter-spacing: rem(0.5px);
-      color: $color-gray-light;
-      font-size: rem(14px);
-
-      &:first-child {
-        font-weight: bold;
-      }
-    }
-  }
-
   & md-checkbox:last-child {
     margin-bottom: 0;
   }
@@ -237,6 +209,36 @@ md-dialog.edit-entity-popup {
 
     & md-dialog-content {
       padding-bottom: 0;
+    }
+  }
+}
+
+.edit-entity-header {
+  display: flex;
+  margin-bottom: rem(6px);
+  color: $color-red-base;
+
+  & > div {
+    font-size: rem(24px);
+    font-weight: bold;
+  }
+
+  & i.material-icons {
+    font-size: rem(48px);
+    margin-right: rem(6px);
+  }
+}
+
+.edit-entity-header-text {
+  display: flex;
+
+  & > div {
+    letter-spacing: rem(0.5px);
+    color: $color-gray-light;
+    font-size: rem(14px);
+
+    &:first-child {
+      font-weight: bold;
     }
   }
 }

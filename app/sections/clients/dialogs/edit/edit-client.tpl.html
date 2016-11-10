@@ -1,0 +1,44 @@
+<md-dialog class="entity-popup">
+    <md-dialog-content>
+        <div class="edit-entity-header">
+            <i class="material-icons">&#xE87C;</i>
+            <div>
+                <div class="edit-entity-header-text">
+                    <div>Client</div>
+                </div>
+                <div>Veronica Bagwell</div>
+            </div>
+        </div>
+        <i class="popup-close-btn material-icons" ng-click="vm.dismiss()">&#xE5CD;</i>
+        <div class="entity-input-section" layout="row" layout-wrap>
+            <md-input-container class="input-primary" flex="100">
+                <label>First Name</label>
+                <input ng-model="vm.user.firstName">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Last Name</label>
+                <input ng-model="vm.user.lastName">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Phone Number</label>
+                <input ng-model="vm.user.phoneNumber">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Email Address</label>
+                <input ng-model="vm.user.email">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Organization</label>
+                <md-select ng-model="vm.user.organization">
+                    <md-option ng-repeat="org in vm.selectOrgs" ng-value="org.value">
+                        {{org.value}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.dismiss()">Exit</md-button>
+        <md-button class="md-raised button-primary" ng-click="vm.dismiss()">Save</md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -1,6 +1,6 @@
-<sub-nav-bar text="Clients" icon="&#xE87C;" show-fab="true" fab-fn="vm.newClient()"></sub-nav-bar>
+<sub-nav-bar text="Clients" icon="&#xE87C;" fab-fn="vm.newClient()"></sub-nav-bar>
 <div id="clients-container">
-	<list-table headerfields="vm.headerFields" items="vm.items" hide-sm hide-xs></list-table>
+	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editClient()" delete-fn="vm.deleteClient" hide-sm hide-xs></list-table>
 </div>
 
 <div class="entity-cards-container" layout="row" layout-wrap hide-gt-sm>

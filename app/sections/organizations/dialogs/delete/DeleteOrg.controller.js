@@ -9,7 +9,7 @@
         let vm = this;
 
         vm.item = item;
-        
+
         vm.dismiss = function () {
             $mdDialog.hide();
         };
