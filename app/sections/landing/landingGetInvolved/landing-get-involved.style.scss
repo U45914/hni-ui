@@ -46,7 +46,16 @@
         height: 5px;
         border-bottom: 2px solid white;
         top: 0;
-        width: 75%;
+        width: 10%;
+        @media only screen and (min-width: 376px) {
+          width: 20%;
+        }
+        @media only screen and (min-width: 415px) {
+          width: 28%;
+        }
+        @media only screen and (min-width: 960px) {
+          width: 60%;
+        }
     }
     .fancy span:before {
         right: 100%;
