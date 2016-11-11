@@ -6,7 +6,7 @@
     routing.$inject = ['$stateProvider', '$urlRouterProvider', 'rolesConstant'];
 
     function routing($stateProvider, $urlRouterProvider, rolesConstant) {
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/');
 
         $stateProvider
             .state('dashboard', {
@@ -14,7 +14,7 @@
                 template: '<dashboard></dashboard>'
             })
             .state('landing', {
-                url: '/landing',
+                url: '/',
                 template: '<landing></landing>'
             })
             .state('login', {

@@ -14,40 +14,40 @@
         vm.ngos = [
             {
                 name: "NWA Women's Shelter",
-                imagePath: "/app/assets/images/landing/nwa_womens_shelter.png"
+                imagePath: require("images/landing/nwa_womens_shelter.png")
             },
             {
                 name: "Samaritan Community Center",
-                imagePath: "/app/assets/images/landing/samaritan.png"
+                imagePath: require("images/landing/samaritan.png")
             },
             {
                 name: "Teen Action & Support Center",
-                imagePath: "/app/assets/images/landing/tasc_logo.png"
+                imagePath: require("images/landing/tasc_logo.png")
             },
             {
                 name: "7hills",
-                imagePath: "/app/assets/images/landing/7hills_logo.png"
+                imagePath: require("images/landing/7hills_logo.png")
             },
             {
                 name: "Care Community Center",
-                imagePath: "/app/assets/images/landing/care_logo.png"
+                imagePath: require("images/landing/care_logo.png")
             },
             {
                 name: "Genesis House",
-                imagePath: "/app/assets/images/landing/genesis_house_logo.png"
+                imagePath: require("images/landing/genesis_house_logo.png")
             },
             {
                 name: "The Manna Center",
-                imagePath: "/app/assets/images/landing/manna_center_logo.png"
+                imagePath: require("images/landing/manna_center_logo.png")
             },
             {
                 name: "Covenant House",
-                imagePath: "/app/assets/images/landing/covenant_house.png"
+                imagePath: require("images/landing/covenant_house.png")
             },
             {
                 name: "S.P.Y.",
-                imagePath: "/app/assets/images/landing/spy.png"
-            },
+                imagePath: require("images/landing/spy.png")
+            }
         ];
     }
 })();

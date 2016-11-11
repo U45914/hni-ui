@@ -34,7 +34,8 @@ module.exports = {
     resolve: {
         modulesDirectories: ['./node_modules'],
         alias: {
-            'npm': __dirname + '/node_modules'
+            'npm': __dirname + '/node_modules',
+            'images': __dirname + '/app/assets/images'
         }
     },
     module: {
@@ -46,14 +47,14 @@ module.exports = {
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract('style', ["css?sourceMap", "postcss", "sass?sourceMap&sourceMapContents"])
         },
-        {   test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
+        {   test: /.(png|woff(2)?|eot|ttf|svg|png|jpg)(\?[a-z0-9=\.]+)?$/,
             loader: 'url-loader?limit=100000'
         },
         {
             test: /\.html$/,
             loaders: [
                 "html?" + JSON.stringify({
-                    attrs: ["ng-include:src"]
+                    attrs: ["ng-include:src", "img:src", "img:ng-src"]
                 })
             ]
         },

@@ -1,6 +1,6 @@
 <div class="landing-donate-container">
     <div layout="column">
-        <div class="hero" style="background: url('/app/assets/images/landing/donate_hero.png')"></div>
+        <div class="hero"></div>
         <div id="Donate" class="donate-header">
             <h3>Donate a Meal.</h3>
         </div>
@@ -9,7 +9,7 @@
                 <p>Your Money in Action.</p>
                 <p>We believe that when you give you should know where 100% of your money goes. That’s why every time your money feeds someone, we’ll send you a text.</p>
                 <div class="callout" layout="row">
-                    <img src="/app/assets/images/landing/phone.png">
+                    <img ng-ng-src="~images/landing/phone.png">
                     <p>Or text "donate" to 70175.</p>
                 </div>
             </div>
@@ -22,9 +22,9 @@
                             <input type="text" ng-model="vm.donationInfo.donationAmount" placeholder="1 meal ($5)">
                         </md-input-container>
                         <div class="cards" layout="row" layout-align="center center">
-                            <img src="/app/assets/images/landing/Visa.png" alt="Visa">
-                            <img src="/app/assets/images/landing/MasterCard.png" alt="MasterCard">
-                            <img src="/app/assets/images/landing/Maestro.png" alt="Maestro">
+                            <img ng-src="~images/landing/Visa.png" alt="Visa">
+                            <img ng-src="~images/landing/MasterCard.png" alt="MasterCard">
+                            <img ng-src="~images/landing/Maestro.png" alt="Maestro">
                         </div>
                         <md-input-container class="md-block" md-no-float flex-gt-sm>
                             <label>Name on Card</label>
@@ -33,7 +33,7 @@
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Card Number</label>
                             <input type="text" ng-model="vm.donationInfo.cardNumber">
-                                <img src="/app/assets/images/landing/Visa.png" alt="Visa">
+                                <img ng-src="~images/landing/Visa.png" alt="Visa">
                             </input>
                         </md-input-container>
                         <md-input-container class="form-small" md-no-float flex-gt-sm>
