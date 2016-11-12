@@ -1,0 +1,56 @@
+<md-dialog class="entity-popup">
+    <md-dialog-content>
+        <div class="edit-entity-header">
+            <i class="material-icons">&#xE0AF;</i>
+            <div>
+                <div class="edit-entity-header-text">
+                    <div>Organization</div>
+                </div>
+                <div>7 Hills Homeless Center</div>
+            </div>
+        </div>
+        <i class="popup-close-btn material-icons" ng-click="vm.dismiss()">&#xE5CD;</i>
+        <div class="entity-input-section" layout="row" layout-wrap>
+            <md-input-container class="input-primary" flex="100">
+                <label>Organization Name</label>
+                <input ng-model="vm.org.name">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Phone Number</label>
+                <input ng-model="vm.org.phone">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Email Address</label>
+                <input ng-model="vm.org.email">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Contact Person</label>
+                <input ng-model="vm.org.contactPerson">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Website</label>
+                <input ng-model="vm.org.website">
+            </md-input-container>
+            <md-input-container class="input-primary" flex="100">
+                <label>Address</label>
+                <input ng-model="vm.org.address">
+            </md-input-container>
+            <md-input-container class="input-primary">
+                <label>State</label>
+                <md-select ng-model="vm.org.state">
+                    <md-option ng-repeat="state in vm.states" ng-value="state.abbrev">
+                        {{state.abbrev}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="input-primary">
+                <label>Zip Code</label>
+                <input ng-model="vm.org.zip">
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.dismiss()">Exit</md-button>
+        <md-button class="md-raised button-primary" ng-click="vm.dismiss()">Save</md-button>
+    </md-dialog-actions>
+</md-dialog>

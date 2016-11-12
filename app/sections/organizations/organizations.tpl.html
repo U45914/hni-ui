@@ -1,12 +1,12 @@
 <sub-nav-bar text="Organizations" icon="&#xE0AF;" show-fab="true" fab-fn="vm.newOrganization()"></sub-nav-bar>
 
 <div id="organizations-container" hide-sm hide-xs>
-	<list-table headerfields="vm.headerFields" items="vm.items" delete-fn="vm.deleteOrganization"></list-table>
+	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editClient()" delete-fn="vm.deleteOrganization"></list-table>
 </div>
 
 <div class="entity-cards-container" layout="row" layout-wrap hide-gt-sm>
 	<entity-card flex="100" flex-sm="50" ng-repeat="item in vm.items"
 				 header="item.org" content="[{icon: '&#xE0CD;', text: item.phone}, {icon: '&#xE0BE;', text: item.email}, {icon: '&#xE80B;', text: item.website}]"
-				 entity-item="item" delete-fn="vm.deleteOrganization">
+				 entity-item="item" edit-fn="vm.editClient()" delete-fn="vm.deleteOrganization">
 	</entity-card>
 </div>

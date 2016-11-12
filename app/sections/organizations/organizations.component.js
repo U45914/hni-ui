@@ -106,10 +106,21 @@
             });
         };
 
+        vm.editClient = function () {
+            $mdDialog.show({
+                controller: 'EditOrgController',
+                controllerAs: 'vm',
+                fullscreen: true,
+                parent: angular.element(document.body),
+                templateUrl: 'edit-organization.tpl.html'
+            });
+        };
+
         vm.deleteOrganization = function (item) {
             $mdDialog.show({
                 controller: 'DeleteOrgController',
                 controllerAs: 'vm',
+                fullscreen: true,
                 parent: angular.element(document.body),
                 templateUrl: 'delete-organization.tpl.html',
                 locals : {

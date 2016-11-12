@@ -104,7 +104,7 @@
                 controller: 'EditVolunteerController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                templateUrl: 'edit-volunteer.tpl.html',
+                templateUrl: getEditTemplate(),
                 fullscreen: true
             });
         };
@@ -120,5 +120,18 @@
                 }
             });
         };
+
+        function getEditTemplate() {
+            let templateUrl = '';
+
+            if(false) {
+                templateUrl = 'edit-volunteer-ngoadmin.tpl.html';
+            }
+            else {
+                templateUrl = 'edit-volunteer-superadmin.tpl.html';
+            }
+
+            return templateUrl;
+        }
     }
 })();
