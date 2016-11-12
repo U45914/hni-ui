@@ -128,6 +128,25 @@ md-card.order-detail-card {
   }
 }
 
+.out-of-orders-container {
+  padding: rem(60px);
+  text-align: center;
+
+  & md-progress-linear {
+    & .md-container {
+      height: 3px;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 150px;
+      background-color: #EFBFB8;
+    }
+
+    & .md-bar {
+      background-color: $color-red-base;
+    }
+  }
+}
+
 @media screen and (max-width: 960px) {
   #order-detail-container {
     padding: rem(80px);

@@ -1,5 +1,5 @@
 <div id="order-detail-container">
-    <md-card class="order-detail-card">
+    <md-card class="order-detail-card" ng-if="true">
         <div class="order-time">
             <i class="material-icons">&#xE192;</i>
             <div>{{vm.orderInfo.time}}</div>
@@ -56,6 +56,17 @@
                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
                 <md-button class="md-raised button-primary" ng-click="vm.completeOrder()">Complete Order</md-button>
             </div>
+        </div>
+    </md-card>
+
+    <md-card class="order-detail-card" ng-if="false">
+        <div class="out-of-orders-container" layout="row" layout-wrap>
+            <i class="material-icons" flex="100">&#xE815;</i>
+            <div class="out-of-orders-text" flex="100">Way to go!</div>
+            <div class="out-of-orders-header" flex="100">All orders have been placed.</div>
+            <div class="out-of-orders-subheader" flex="100">Stick around and we will send some new orders your way!</div>
+            <div class="out-of-orders-fetching" flex="100">Fetching new orders</div>
+            <md-progress-linear md-mode="indeterminate" flex="100"></md-progress-linear>
         </div>
     </md-card>
 </div>
