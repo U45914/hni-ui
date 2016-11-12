@@ -1,12 +1,13 @@
-<md-dialog class="delete-entity-popup">
+<md-dialog class="small-prompt">
     <md-dialog-content>
-        <div class="delete-entity-header">
-            <div>Would you like to delete the client {{::vm.client.name}}?</div>
-            <div>This action will permanently delete this client from the system.</div>
+        <div layout="row" layout-wrap>
+            <i class="material-icons" flex="100">&#xE872;</i>
+            <div class="small-prompt-text" flex="100">Would you like to delete the client {{::vm.client.name}}?</div>
+            <div class="small-prompt-subtext" flex="100">This action will permanently delete this client from the system.</div>
         </div>
     </md-dialog-content>
     <md-dialog-actions>
         <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.dismiss()">No</md-button>
-        <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.deleteClient()">Yes, Delete</md-button>
+        <md-button class="md-raised button-primary" ng-click="vm.deleteClient()">Yes, Delete</md-button>
     </md-dialog-actions>
 </md-dialog>

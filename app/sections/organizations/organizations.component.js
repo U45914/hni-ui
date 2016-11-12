@@ -120,7 +120,6 @@
             $mdDialog.show({
                 controller: 'DeleteOrgController',
                 controllerAs: 'vm',
-                fullscreen: true,
                 parent: angular.element(document.body),
                 templateUrl: 'delete-organization.tpl.html',
                 locals : {
