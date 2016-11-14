@@ -35,7 +35,7 @@
                     sortable: true
                 },
                 {
-                    key: 'org',
+                    key: 'organization',
                     displayName: 'ORG',
                     sortable: true
                 }
@@ -44,49 +44,58 @@
             vm.items = [
                 {
                     id: 3,
-                    name: 'Veronica Bagwell',
-                    phone: '(479) 123-4567',
+                    firstName: 'Veronica',
+                    lastName: 'Bagwell',
+                    mobilePhone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
-                    org: 'The Manna Center'
+                    organization: 'The Manna Center'
                 },
                 {
                     id: 4,
-                    name: 'Justin Palmer',
-                    phone: '(479) 123-4567',
+                    firstName: 'Justin',
+                    lastName: 'Palmer',
+                    mobilePhone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
-                    org: 'Samaritan Community'
+                    organization: 'Samaritan Community Center0'
                 },
                 {
                     id: 5,
-                    name: 'Kayleigh Cooper',
-                    phone: '(479) 123-4567',
+                    firstName: 'Kayleigh',
+                    lastName: 'Cooper',
+                    mobilePhone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
-                    org: 'The Manna Center'
+                    organization: 'The Manna Center'
                 },
                 {
                     id: 6,
-                    name: 'Veronica Bagwell',
-                    phone: '(479) 123-4567',
+                    firstName: 'Veronica',
+                    lastName: 'Bagwell',
+                    mobilePhone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
-                    org: 'The Manna Center'
+                    organization: 'The Manna Center'
                 },
                 {
                     id: 7,
-                    name: 'Justin Palmer',
-                    phone: '(479) 123-4567',
+                    firstName: 'Justin',
+                    lastName: 'Palmer',
+                    mobilePhone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
-                    org: 'Samaritan Community'
+                    organization: 'Samaritan Community'
                 },
                 {
                     id: 8,
-                    name: 'Kayleigh Cooper',
-                    phone: '(479) 123-4567',
+                    firstName: 'Kayleigh',
+                    lastName: 'Cooper',
+                    mobilePhone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
-                    org: 'The Manna Center'
+                    organization: 'The Manna Center'
                 }
             ];
 
-            vm.user = {};
+            angular.forEach(vm.items, (item) => {
+                item = angular.extend(item, {name: `${item.firstName} ${item.lastName}`});
+            });
+
         };
 
         vm.newVolunteer = function () {
@@ -99,13 +108,16 @@
             });
         };
 
-        vm.editVolunteer = function () {
+        vm.editVolunteer = function (volunteer) {
             $mdDialog.show({
                 controller: 'EditVolunteerController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
                 templateUrl: getEditTemplate(),
-                fullscreen: true
+                fullscreen: true,
+                locals : {
+                    volunteer : volunteer
+                }
             });
         };
 

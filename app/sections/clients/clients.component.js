@@ -102,7 +102,8 @@
                 controller: 'NewClientController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                templateUrl: 'new-client.tpl.html'
+                templateUrl: 'new-client.tpl.html',
+                fullscreen: true
             });
         };
 
@@ -112,6 +113,7 @@
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
                 templateUrl: 'edit-client.tpl.html',
+                fullscreen: true,
                 locals : {
                     client : client
                 }

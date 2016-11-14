@@ -3,11 +3,12 @@
         .module('app')
         .controller('EditVolunteerController', EditVolunteerController);
 
-    EditVolunteerController.$inject = ['$mdDialog', 'userService'];
+    EditVolunteerController.$inject = ['$mdDialog', 'userService', 'personService', 'volunteer'];
 
-    function EditVolunteerController($mdDialog, userService) {
+    function EditVolunteerController($mdDialog, userService, personService, volunteer) {
         let vm = this;
 
+        vm.person = angular.copy(volunteer);
         vm.isSelected = isSelected;
         vm.toggleSelection = toggleSelection;
         vm.selectedOrgs = [];
@@ -15,16 +16,26 @@
         vm.orgAdminChecked = false;
 
         vm.organizations = userService.getOrganizations();
-        vm.user = userService.getUser();
-        vm.editingUser = {
-            firstName: vm.user.firstName,
-            lastName: vm.user.lastName,
-            mobilePhone: vm.user.mobilePhone,
-            email: vm.user.email
-        };
+
+        delete vm.person['name'];
+        delete vm.person['organization'];
 
         vm.dismiss = function () {
             $mdDialog.hide();
+        };
+
+        vm.savePerson = function () {
+            personService.postPerson(vm.person, editPersonSaved, editPersonError);
+
+            function editPersonSaved() {
+                volunteer = angular.extend(vm.person, {name: `${vm.person.firstName} ${vm.person.lastName}`});
+                vm.person = {};
+                $mdDialog.hide();
+            }
+
+            function editPersonError() {
+                console.log("Error");
+            }
         };
 
         function querySearch (query) {

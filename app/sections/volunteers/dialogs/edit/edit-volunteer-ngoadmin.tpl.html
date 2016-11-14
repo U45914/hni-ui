@@ -13,24 +13,24 @@
         <div class="entity-input-section" layout="row" layout-wrap>
             <md-input-container class="input-primary" flex="100">
                 <label>First Name</label>
-                <input ng-model="vm.user.firstName">
+                <input ng-model="vm.person.firstName">
             </md-input-container>
             <md-input-container class="input-primary" flex="100">
                 <label>Last Name</label>
-                <input ng-model="vm.user.lastName">
+                <input ng-model="vm.person.lastName">
             </md-input-container>
             <md-input-container class="input-primary" flex="100">
                 <label>Phone Number</label>
-                <input ng-model="vm.user.phoneNumber">
+                <input ng-model="vm.person.mobilePhone">
             </md-input-container>
             <md-input-container class="input-primary" flex="100">
                 <label>Email Address</label>
-                <input ng-model="vm.user.email">
+                <input ng-model="vm.person.email">
             </md-input-container>
         </div>
     </md-dialog-content>
     <md-dialog-actions>
         <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.dismiss()">Exit</md-button>
-        <md-button class="md-raised button-primary" ng-click="vm.dismiss()">Save</md-button>
+        <md-button class="md-raised button-primary" ng-click="vm.savePerson()">Save</md-button>
     </md-dialog-actions>
 </md-dialog>
