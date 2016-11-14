@@ -1,20 +1,24 @@
 @import '_includes';
 
 #login-container {
-	max-width: rem(340px);
+	max-width: rem(400px);
 	margin-left: auto;
 	margin-right: auto;
 	padding: rem(60px) rem(160px) rem(60px) rem(160px);
 	& .login-box {
-		& md-content {
-			padding: rem(40px) rem(25px);
-			border-radius: 8px;
+        & md-content {
+            border-radius: 8px;
+
+		    & .login-box-internal {
+              padding: rem(40px) rem(25px) 0 rem(25px);
+            }
+
 			& .login-image-container {
 				text-align: center;
 				& .login-logo {
 					width: 75%;
 				}
-			}			
+			}
 			& .login-prompt {
 				color: $color-gray-darker;
 				text-align: center;
@@ -43,13 +47,34 @@
 			}
 
 			& .md-button {
-				float: right;
-				margin: 0px;
-				margin-top: 16px;
+              display: flex;
+              justify-content: center;
+              margin: rem(16px) auto rem(32px) auto;
 			}
+
+            .login-box-external {
+              padding: rem(30px);
+              text-align: center;
+              color: $color-text;
+              background-color: $color-gray-lighter;
+
+              & button.md-button {
+                margin-bottom: 0;
+                color: $color-text;
+                text-transform: none;
+              }
+            }
 		}
-		
 	}
+}
+
+.login-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: rem(300px);
+  width: 100%;
+  background-color: $color-red-base;
 }
 
 @media screen and (max-width: 960px) {
