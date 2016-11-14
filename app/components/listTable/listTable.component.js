@@ -28,6 +28,10 @@
             vm.deleteFn()(item);
         };
 
+        vm.edit = function(item) {
+            vm.editFn()(item);
+        };
+
         vm.sortDataByField = function (field) {
             if (field.sortable) {
                 if (vm.lastSortField === field) {

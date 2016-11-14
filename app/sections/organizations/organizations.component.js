@@ -9,17 +9,20 @@
             controllerAs: 'vm'
         });
 
-    OrganizationsController.$inject = ['$mdDialog', 'topNavService'];
+    OrganizationsController.$inject = ['$mdDialog', 'topNavService', 'userService', 'orgService'];
 
-    function OrganizationsController($mdDialog, topNavService) {
+    function OrganizationsController($mdDialog, topNavService, userService, orgService) {
         let vm = this;
 
         vm.$onInit = function () {
+            vm.items = '';
+
             topNavService.setSelectedItem("organizations");
+            orgService.getOrgs(userService.getUser().id, getOrgSuccess, getOrgFailure);
 
             vm.headerFields = [
                 {
-                    key: 'org',
+                    key: 'name',
                     displayName: 'Org',
                     sortable: true
                 },
@@ -39,60 +42,6 @@
                     sortable: true
                 }
             ];
-
-            vm.items = [
-                {
-                    id: '3',
-                    website: '7hillscenter.org',
-                    phone: '(479) 123-4567',
-                    email: 'justin.palmer@walmart.com',
-                    org: 'Samaritan Community'
-                },
-                {
-                    id: '4',
-                    website: '7hillscenter.org',
-                    phone: '(479) 123-4567',
-                    email: 'veronica.bagwell@walmart.com',
-                    org: 'The Manna Center'
-                },
-                {
-                    id: '5',
-                    website: '7hillscenter.org',
-                    phone: '(479) 123-4567',
-                    email: 'justin.palmer@walmart.com',
-                    org: 'Samaritan Community'
-                },
-                {
-                    id: '6',
-                    website: '7hillscenter.org',
-                    phone: '(479) 123-4567',
-                    email: 'kayleigh.cooper@walmart.com',
-                    org: 'The Manna Center'
-                },
-                {
-                    id: '7',
-                    website: '7hillscenter.org',
-                    phone: '(479) 123-4567',
-                    email: 'veronica.bagwell@walmart.com',
-                    org: 'The Manna Center'
-                },
-                {
-                    id: '8',
-                    website: '7hillscenter.org',
-                    phone: '(479) 123-4567',
-                    email: 'justin.palmer@walmart.com',
-                    org: 'Samaritan Community'
-                },
-                {
-                    id: '9',
-                    website: '7hillscenter.org',
-                    phone: '(479) 123-4567',
-                    email: 'kayleigh.cooper@walmart.com',
-                    org: 'The Manna Center'
-                }
-            ];
-
-            vm.user = {};
         };
 
 
@@ -106,13 +55,16 @@
             });
         };
 
-        vm.editClient = function () {
+        vm.editClient = function (item) {
             $mdDialog.show({
                 controller: 'EditOrgController',
                 controllerAs: 'vm',
                 fullscreen: true,
                 parent: angular.element(document.body),
-                templateUrl: 'edit-organization.tpl.html'
+                templateUrl: 'edit-organization.tpl.html',
+                locals : {
+                    item : item
+                }
             });
         };
 
@@ -127,5 +79,13 @@
                 }
             });
         };
+
+        function getOrgSuccess(response) {
+            vm.items = response.data;
+        }
+
+        function getOrgFailure(error) {
+            console.log(error);
+        }
     }
 })();

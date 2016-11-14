@@ -3,12 +3,12 @@
         .module('app')
         .controller('EditOrgController', EditOrgController);
 
-    EditOrgController.$inject = ['$mdDialog', 'userService'];
+    EditOrgController.$inject = ['$mdDialog', 'orgService', 'item'];
 
-    function EditOrgController($mdDialog, orgService) {
+    function EditOrgController($mdDialog, orgService, item) {
         let vm = this;
 
-        vm.org = {};
+        vm.org = angular.copy(item);
 
         vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
         'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
@@ -21,29 +21,15 @@
         };
 
         vm.saveOrganization = function () {
-            let postData = {
-                name: vm.org.name,
-                phone: vm.org.phone,
-                email: vm.org.email,
-                contact_person: vm.org.contactPerson,
-                website: vm.org.website,
-                addresses: [
-                    {
-                        address1: vm.org.address,
-                        state: vm.org.state,
-                        zip: vm.org.zip
-                    }
-                ]
-            };
+            orgService.postOrg(vm.org, editOrgSaved, editOrgError);
 
-            orgService.postOrg(postData, newOrgSaved, newOrgError);
-
-            function newOrgSaved() {
+            function editOrgSaved() {
+                item = vm.org;
                 vm.org = {};
                 $mdDialog.hide();
             }
 
-            function newOrgError() {
+            function editOrgError() {
                 console.log("Error");
             }
         };

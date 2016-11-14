@@ -6,12 +6,7 @@
     userService.$inject = ['$http', 'serviceConstants'];
 
     function userService($http, serviceConstants) {
-        let user = {
-            firstName: 'Veronica',
-            lastName: 'Bagwell',
-            mobilePhone: '(479) 313 - 5602',
-            email: 'veronica.bagwell@walmart.com'
-        };
+        let user = {};
         var organizations = [];
         var baseUrl = serviceConstants.baseUrl;
 
@@ -28,7 +23,7 @@
         }
 
         function setUser() {
-            $http.get(baseUrl + '/users/1')
+            $http.get(baseUrl + '/users/2')
                 .then(setUserComplete)
                 .catch(setUserFailed);
         }
@@ -40,6 +35,7 @@
             user.lastName = data.lastName;
             user.mobilePhone = data.mobilePhone;
             user.email = data.email;
+            user.id = data.id;
         }
 
         function setUserFailed(error) {

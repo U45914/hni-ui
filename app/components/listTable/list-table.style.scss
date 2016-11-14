@@ -18,6 +18,9 @@
 				border-bottom: 3px solid #e1e1e1;
 				padding-left: rem(25px);
 				color: $color-gray-light;
+				outline: 0;
+				cursor: pointer;
+				user-select: none;
 			}
 		}
 		.md-row {

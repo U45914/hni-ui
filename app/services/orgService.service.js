@@ -9,9 +9,19 @@
         let baseUrl = serviceConstants.baseUrl;
 
         return {
+            getOrgs,
             postOrg,
             removeOrg
         };
+
+        function getOrgs(id, success, failure) {
+            $http.get(`${baseUrl}/organizations/users/${id}`)
+                .then(function successCallback(response) {
+                    success(response);
+                }, function errorCallback(error) {
+                    failure(error);
+                });
+        }
 
         function postOrg(data, success, failure) {
             let postData = JSON.stringify(data);
