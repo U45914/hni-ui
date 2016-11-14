@@ -129,8 +129,34 @@ md-card.order-detail-card {
 }
 
 .out-of-orders-container {
-  padding: rem(60px);
+  padding: rem(60px) rem(60px) rem(120px) rem(60px);
   text-align: center;
+
+  & i.material-icons {
+    margin-bottom: rem(12px);
+    font-size: rem(48px);
+    color: $color-order-detail-text;
+  }
+
+  & .out-of-orders-text {
+    font-weight: bold;
+  }
+
+  & .out-of-orders-header {
+    margin-bottom: rem(12px);
+    font-size: rem(24px);
+  }
+
+  & .out-of-orders-subheader {
+    margin-bottom: rem(60px);
+    padding-left: rem(36px);
+    padding-right: rem(36px);
+    font-size: rem(16px);
+  }
+
+  & .out-of-orders-fetching {
+    margin-bottom: rem(16px);
+  }
 
   & md-progress-linear {
     & .md-container {
