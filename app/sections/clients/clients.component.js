@@ -25,7 +25,7 @@
                     sortable: true
                 },
                 {
-                    key: 'phone',
+                    key: 'mobilePhone',
                     displayName: 'Phone',
                     sortable: false
                 },
@@ -35,7 +35,7 @@
                     sortable: true
                 },
                 {
-                    key: 'ngo',
+                    key: 'organization',
                     displayName: 'NGO',
                     sortable: true
                 }
@@ -44,49 +44,57 @@
             vm.items = [
                 {
                     id: 3,
-                    name: 'Veronica Bagwell',
-                    phone: '(479) 123-4567',
+                    firstName: 'Veronica',
+                    lastName: 'Bagwell',
+                    mobilePhone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
-                    ngo: 'The Manna Center'
+                    organization: 'The Manna Center'
                 },
                 {
                     id: 4,
-                    name: 'Justin Palmer',
-                    phone: '(479) 123-4567',
+                    firstName: 'Justin',
+                    lastName: 'Palmer',
+                    mobilePhone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
-                    ngo: 'Samaritan Community'
+                    organization: 'Samaritan Community Center0'
                 },
                 {
                     id: 5,
-                    name: 'Kayleigh Cooper',
-                    phone: '(479) 123-4567',
+                    firstName: 'Kayleigh',
+                    lastName: 'Cooper',
+                    mobilePhone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
-                    ngo: 'The Manna Center'
+                    organization: 'The Manna Center'
                 },
                 {
                     id: 6,
-                    name: 'Veronica Bagwell',
-                    phone: '(479) 123-4567',
+                    firstName: 'Veronica',
+                    lastName: 'Bagwell',
+                    mobilePhone: '(479) 123-4567',
                     email: 'veronica.bagwell@walmart.com',
-                    ngo: 'The Manna Center'
+                    organization: 'The Manna Center'
                 },
                 {
                     id: 7,
-                    name: 'Justin Palmer',
-                    phone: '(479) 123-4567',
+                    firstName: 'Justin',
+                    lastName: 'Palmer',
+                    mobilePhone: '(479) 123-4567',
                     email: 'justin.palmer@walmart.com',
-                    ngo: 'Samaritan Community'
+                    organization: 'Samaritan Community'
                 },
                 {
                     id: 8,
-                    name: 'Kayleigh Cooper',
-                    phone: '(479) 123-4567',
+                    firstName: 'Kayleigh',
+                    lastName: 'Cooper',
+                    mobilePhone: '(479) 123-4567',
                     email: 'kayleigh.cooper@walmart.com',
-                    ngo: 'The Manna Center'
+                    organization: 'The Manna Center'
                 }
             ];
 
-            vm.user = {};
+            angular.forEach(vm.items, (item) => {
+                item = angular.extend(item, {name: `${item.firstName} ${item.lastName}`});
+            });
         };
 
         vm.newClient = function () {
@@ -98,12 +106,15 @@
             });
         };
 
-        vm.editClient = function () {
+        vm.editClient = function (client) {
             $mdDialog.show({
                 controller: 'EditClientController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                templateUrl: 'edit-client.tpl.html'
+                templateUrl: 'edit-client.tpl.html',
+                locals : {
+                    client : client
+                }
             });
         };
 

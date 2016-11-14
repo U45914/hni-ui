@@ -1,11 +1,11 @@
 <sub-nav-bar text="Clients" icon="&#xE87C;" fab-fn="vm.newClient()"></sub-nav-bar>
 <div id="clients-container" hide-sm hide-xs>
-	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editClient()" delete-fn="vm.deleteClient"></list-table>
+	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editClient" delete-fn="vm.deleteClient"></list-table>
 </div>
 
 <div class="entity-cards-container" layout="row" layout-wrap hide-gt-sm>
 	<entity-card flex="100" flex-sm="50" ng-repeat="item in vm.items"
 				 header="item.name" content="[{icon: '&#xE0CD;', text: item.name}, {icon: '&#xE0BE;', text: item.email}, {icon: '&#xE0AF;', text: item.ngo}]"
-				 entity-item="item" edit-fn="vm.editClient()" delete-fn="vm.deleteClient">
+				 entity-item="item" edit-fn="vm.editClient" delete-fn="vm.deleteClient">
 	</entity-card>
 </div>

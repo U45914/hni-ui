@@ -21,11 +21,11 @@
         let vm = this;
 
         vm.edit = function() {
-            vm.editFn();
+            vm.editFn()(vm.entityItem);
         };
 
         vm.delete = function() {
-            vm.deleteFn()(vm.entityItem)
+            vm.deleteFn()(vm.entityItem);
         }
     }
 })();
