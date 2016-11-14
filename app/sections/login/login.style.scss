@@ -63,6 +63,12 @@
                 color: $color-text;
                 text-transform: none;
               }
+
+              & img {
+                height: rem(20px);
+                width: rem(20px);
+                margin-right: rem(6px);
+              }
             }
 		}
 	}
