@@ -6,7 +6,8 @@
     "angular-animate": "*",
     "angular-ui-router": "*",
     "angular-aria": "*",
-    "angular-material": "*"
+    "angular-material": "*",
+    "satellizer": "0.15.5"
   },
   "devDependencies": {
     "babel-core": "*",
