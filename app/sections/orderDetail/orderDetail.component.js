@@ -72,18 +72,30 @@
             $state.go('dashboard');
         };
 
-        vm.amountUsedChanged = function() {
+        vm.amountUsedChanged = function(item) {
             vm.needMoreFunds = false;
             vm.canCompleteDisabled = false;
 
+            if(item.amountUsed != null && item.amount !== item.amountUsed.replace('$', '')) {
+                vm.needMoreFunds = true;
+                vm.canCompleteDisabled = true;
+            }
+
             angular.forEach(vm.paymentInfo, (info) => {
-                if(info.amountUsed != null && info.amount !== info.amountUsed.replace('$', '')) {
-                    vm.needMoreFunds = true;
-                    vm.canCompleteDisabled = true;
-                } else if(info.amountUsed == null) {
+                if(info.amountUsed == null) {
                     vm.canCompleteDisabled = true;
                 }
             });
+        };
+
+        vm.getMoreFunds = function() {
+            vm.paymentInfo.push(
+                {
+                    code: "1234 4567 9874 5489",
+                    amount: "2.75",
+                    amountUsed: null
+                }
+            )
         };
 
         vm.completeOrder = function () {
