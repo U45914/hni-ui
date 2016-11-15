@@ -23,7 +23,7 @@
         <div ng-if="vm.currentStep != 1">
             <div class="order-detail-header" layout="row" layout-wrap>
                 <i class="material-icons" flex="100">&#xE870;</i>
-                <div flex="100">Order Amount</div>
+                <div flex="100">Order Payment</div>
             </div>
             <div class="order-detail-header-triangle"></div>
             <div class="order-detail-amount-container" layout="row" layout-wrap>
@@ -32,14 +32,26 @@
                     <input ng-disabled="vm.currentStep != 2" ng-model="vm.mealAmount" currency-input="currency">
                 </md-input-container>
                 <div ng-if="vm.currentStep == 3" class="payment-info-animation" flex="100">
-                    <div class="order-detail-payment-info" flex layout="row" ng-repeat="item in vm.paymentInfo">
-                        <div flex="50">
+                    <div class="order-detail-payment-info" flex layout="row" layout-wrap ng-repeat="item in vm.paymentInfo">
+                        <div flex="50" flex-xs="100">
                             {{item.code}}
                         </div>
-                        <div flex="50">
-                            {{item.amount}}
+                        <div flex="25" flex-xs="40">
+                            ${{item.amount}}
+                        </div>
+                        <div flex="25" flex-xs="60">
+                            <form name="amountForm">
+                                <md-input-container class="input-primary">
+                                    <label>Amount Used</label>
+                                    <input name="amountUsed" ng-model="item.amountUsed" ng-model-options="{ updateOn: 'blur' }" ng-change="vm.amountUsedChanged()" currency-input="currency">
+                                    <i class="material-icons" ng-show="item.amount !== item.amountUsed.replace('$', '') && !amountForm.amountUsed.$pristine">&#xE002;</i>
+                                </md-input-container>
+                            </form>
                         </div>
                     </div>
+                </div>
+                <div class="order-detail-more-funds" ng-show="vm.needMoreFunds">
+                    <md-button class="button-primary">I Need More Funds</md-button>
                 </div>
             </div>
         </div>
@@ -54,7 +66,7 @@
             </div>
             <div ng-if="vm.currentStep == 3">
                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
-                <md-button class="md-raised button-primary" ng-click="vm.completeOrder()">Complete Order</md-button>
+                <md-button class="md-raised button-primary" ng-disabled="vm.canCompleteDisabled" ng-click="vm.completeOrder()">Complete Order</md-button>
             </div>
         </div>
     </md-card>

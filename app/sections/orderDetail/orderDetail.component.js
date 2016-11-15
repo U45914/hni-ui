@@ -19,6 +19,8 @@
 
         vm.currentStep = 1;
         vm.mealAmount = null;
+        vm.needMoreFunds = false;
+        vm.canCompleteDisabled = true;
 
         vm.$onInit = function () {
             topNavService.setSelectedItem("orders");
@@ -44,11 +46,13 @@
             vm.paymentInfo = [
                 {
                     code: "1234 4567 9874 5489",
-                    amount: "2.75"
+                    amount: "2.75",
+                    amountUsed: null
                 },
                 {
                     code: "1234 4567 9874 5489",
-                    amount: "2.75"
+                    amount: "2.75",
+                    amountUsed: null
                 }
             ]
         };
@@ -66,6 +70,20 @@
 
         vm.leaveOrders = function() {
             $state.go('dashboard');
+        };
+
+        vm.amountUsedChanged = function() {
+            vm.needMoreFunds = false;
+            vm.canCompleteDisabled = false;
+
+            angular.forEach(vm.paymentInfo, (info) => {
+                if(info.amountUsed != null && info.amount !== info.amountUsed.replace('$', '')) {
+                    vm.needMoreFunds = true;
+                    vm.canCompleteDisabled = true;
+                } else if(info.amountUsed == null) {
+                    vm.canCompleteDisabled = true;
+                }
+            });
         };
 
         vm.completeOrder = function () {
