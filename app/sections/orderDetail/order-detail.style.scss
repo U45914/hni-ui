@@ -102,6 +102,7 @@ md-card.order-detail-card {
   }
 
   & .order-detail-amount-container {
+    overflow-x: hidden;
     padding: rem(30px) rem(60px) rem(30px) rem(60px);
   }
 
@@ -225,6 +226,54 @@ md-card.order-detail-card {
   opacity: 0;
 }
 .payment-info-animation.ng-enter.payment-info-animation.ng-enter-active {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.payment-amount-error-icon {
+  transition: all 0.6s;
+}
+
+.payment-amount-error-icon.ng-hide-add {
+  opacity: 1;
+}
+
+.payment-amount-error-icon.ng-hide-remove {
+  opacity: 0;
+}
+
+.payment-amount-error-icon.ng-hide-add-active {
+  opacity: 0;
+}
+
+.payment-amount-error-icon.ng-hide-remove-active {
+  opacity: 1;
+}
+
+.order-detail-more-funds {
+  transition: all 0.6s;
+}
+
+.order-detail-more-funds.ng-hide-add {
+  height: rem(48px);
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.order-detail-more-funds.ng-hide-remove {
+  height: 0;
+  transform: translate3d(0, rem(200px), 0);
+  opacity: 0;
+}
+
+.order-detail-more-funds.ng-hide-add-active {
+  height: 0;
+  transform: translate3d(rem(200px), 0, 0);
+  opacity: 0;
+}
+
+.order-detail-more-funds.ng-hide-remove-active {
+  height: rem(48px);
   transform: translate3d(0, 0, 0);
   opacity: 1;
 }

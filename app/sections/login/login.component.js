@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['$http', '$auth', '$state', 'authService'];
+    LoginController.$inject = ['$auth', '$state', 'authService', 'userService'];
 
-    function LoginController($http, $auth, $state, authService) {
+    function LoginController($auth, $state, authService, userService) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
@@ -23,14 +23,17 @@
         function authenticate(provider) {
             $auth.authenticate(provider)
                 .then(function(response) {
-                    getEmail(response["access_token"]);
+                    authService.loginExternal(provider, response["access_token"], loginSuccess, loginFailed);
                 });
         }
 
-        function getEmail(token) {
-            $http.get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" + token).then(function(response) {
-                console.log(response);
-            })
+        function loginSuccess(response) {
+            userService.setUser(response.data.user);
+            $state.go('dashboard');
+        }
+
+        function loginFailed(error) {
+            console.log(error);
         }
 
         function togglePassword(){

@@ -19,7 +19,7 @@
             redirectUri: window.location.origin,
             requiredUrlParams: ['scope'],
             optionalUrlParams: ['display'],
-            scope: ['profile', 'email'],
+            scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'],
             scopePrefix: 'openid',
             scopeDelimiter: ' ',
             display: 'popup',
