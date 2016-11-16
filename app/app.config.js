@@ -27,14 +27,6 @@
             popupOptions: { width: 452, height: 633 }
         });
 
-        //$httpProvider.interceptors.push(function() {
-        //    return {
-        //        'request': function(configuration) {
-        //
-        //            configuration.headers['Token'] = "Some Token";
-        //            return configuration;
-        //        }
-        //    };
-        //});
+        $httpProvider.interceptors.push('interceptorService');
     }
 })();

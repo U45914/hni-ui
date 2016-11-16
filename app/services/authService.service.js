@@ -9,7 +9,6 @@
         let baseUrl = serviceConstants.baseUrl;
         let LOCAL_TOKEN_KEY = 'token';
         let LOCAL_ROLE = 'role';
-        let username = '';
         let isAuthenticated = false;
         let authRole = '';
         let authToken;
@@ -21,7 +20,8 @@
             loginExternal: loginExternal,
             logout: logout,
             isAuthorized: isAuthorized,
-            isAuthenticated: function() {return isAuthenticated;}
+            isAuthenticated: function() { return isAuthenticated; },
+            getToken: function() { return authToken; }
         };
 
         function loadUserCredentials() {
@@ -45,15 +45,6 @@
             authRole = role;
         }
 
-        function destroyUserCredentials() {
-            authToken = undefined;
-            authRole = undefined;
-            username = '';
-            isAuthenticated = false;
-            window.localStorage.removeItem(LOCAL_TOKEN_KEY);
-            window.localStorage.removeItem(LOCAL_ROLE);
-        }
-
         function login(name, pw) {
             return $q(function(resolve, reject) {
                 if ((name && pw)) {
@@ -66,7 +57,11 @@
         }
 
         function logout() {
-            destroyUserCredentials();
+            authToken = undefined;
+            authRole = undefined;
+            isAuthenticated = false;
+            window.localStorage.removeItem(LOCAL_TOKEN_KEY);
+            window.localStorage.removeItem(LOCAL_ROLE);
         }
 
         function isAuthorized(authorizedRoles) {
