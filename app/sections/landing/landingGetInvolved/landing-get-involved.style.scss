@@ -18,16 +18,18 @@
     .get-involved-description {
         text-align: center;
         font-family: OpenSans, sans-serif;
-        font-size: rem(15px);
+        font-size: rem(20px);
+        line-height: rem(25px);
         color: #FFFFFF;
         letter-spacing: 0.37px;
     }
 
     .button-primary {
-        font-size: rem(10px);
+        font-size: rem(16px);
         margin: 0px;
+        min-height: 30px;
+        min-width: 114px;
         font-weight: $font-weight-semibold;
-        color: #FFFFFF;
     }
 
     // Fancy
