@@ -9,6 +9,8 @@
     .hero {
         height: rem(320px);
         background: url('~images/landing/donate_hero.jpg');
+        background-size: cover;
+        background-postion: 50%;
     }
 
     .donate-header {
@@ -28,7 +30,6 @@
 
     .donate-information {
         padding: rem(40px) rem(80px);
-        padding-bottom: 0;
 
         @media screen and (max-width: 600px) {
             padding: rem(20px) rem(30px);
@@ -36,12 +37,24 @@
         
 
         .donate-text {
-            
+            padding: rem(0px) rem(10px);
             p {
                 font-family: 'Roboto', sans-serif;
-                font-size: rem(15px);
+                font-size: rem(20px);
                 color: #4D4D4D;
-                line-height: 20px;
+                line-height: rem(25px);
+            }
+
+            .paypal {
+                background: $color-red-base;
+                font-size: rem(16px);
+                margin: 0px;
+                min-height: 30px;
+                min-width: 114px;
+                font-weight: $font-weight-semibold;
+                &:hover {
+                    background: $color-red-base;
+                }
             }
 
             .callout {

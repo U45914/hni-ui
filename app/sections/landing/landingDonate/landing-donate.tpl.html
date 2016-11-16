@@ -5,61 +5,21 @@
             <h3>Donate a Meal.</h3>
         </div>
         <div class="donate-information" layout="row" layout-xs="column">
-            <div class="donate-text" layout="column" flex-gt-xs="30" flex-xs>
+            <div class="donate-text" layout="column" flex>
                 <p>Your Money in Action.</p>
-                <p>We believe that when you give you should know where 100% of your money goes. That’s why every time your money feeds someone, we’ll send you a text.</p>
+                <p>We believe that when you give you should know where 100% of your money goes. That's why Hunger Not Impossible is committed to putting every penny of every donation directly towards purchasing meals.</p>
             </div>
-            <div class="donate-text" flex-gt-xs="50" flex-offset-gt-xs="20" flex-xs>
+            <div class="donate-text" flex>
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="7AA2G2ME5QC62">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    <input type="submit" value="Donate" name="submit" title="PayPal - The safer, easier way to pay online!" class="paypal md-button md-raised md-primary">
                 </form>
                 <div class="callout" layout="row">
                     <img ng-src="~images/landing/phone.png">
                     <p>Or text "donate" to 70175.</p>
                 </div>
             </div>
-            <!--<div class="donate-form" flex-gt-xs="50" flex-offset-gt-xs="20" flex-xs>
-                <md-card>
-                    <md-card-content>
-                        <p>Make a donation of</p>
-                        <md-input-container class="md-block form-centered" md-no-float flex-offset-gt-sm="25" flex-gt-sm="50" layout="column">
-                            <input type="text" ng-model="vm.donationInfo.donationAmount" placeholder="1 meal ($5)">
-                        </md-input-container>
-                        <div class="cards" layout="row" layout-align="center center">
-                            <img ng-src="~images/landing/Visa.png" alt="Visa">
-                            <img ng-src="~images/landing/MasterCard.png" alt="MasterCard">
-                            <img ng-src="~images/landing/Maestro.png" alt="Maestro">
-                        </div>
-                        <md-input-container class="md-block" md-no-float flex-gt-sm>
-                            <label>Name on Card</label>
-                            <input type="text" ng-model="vm.donationInfo.nameOnCard">
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Card Number</label>
-                            <input type="text" ng-model="vm.donationInfo.cardNumber">
-                                <img ng-src="~images/landing/Visa.png" alt="Visa">
-                            </input>
-                        </md-input-container>
-                        <md-input-container class="form-small" md-no-float flex-gt-sm>
-                            <label>Expiration Date</label>
-                            <input placeholder="mm" type="text" ng-model="vm.donationInfo.expirationDateMonth">
-                        </md-input-container>
-                        <md-input-container class="form-small" md-no-float flex-gt-sm>
-                            <input placeholder="yyyy" type="text" ng-model="vm.donationInfo.expirationDateYear">
-                        </md-input-container>
-                        <md-input-container class="form-small" flex-gt-sm>
-                            <label>CVV</label>
-                            <input placeholder="3 digits" type="text" ng-model="vm.donationInfo.CVV">
-                        </md-input-container> 
-                    </md-card-content>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button class="md-raised md-warn">Donate</md-button>
-                    </md-card-actions>
-                </md-card>
-            </div>-->
         </div>
     </div>
 
