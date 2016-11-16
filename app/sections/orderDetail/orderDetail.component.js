@@ -21,6 +21,7 @@
         vm.mealAmount = null;
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
+        vm.canContinueDisabled = true;
 
         vm.$onInit = function () {
             topNavService.setSelectedItem("orders");
@@ -78,7 +79,10 @@
 
             if(item.amountUsed != null && item.amount !== item.amountUsed.replace('$', '')) {
                 vm.needMoreFunds = true;
-                vm.canCompleteDisabled = true;
+            }
+
+            if(item.amountUsed.replace('$', '') > item.amount) {
+                item.amountUsed = 0;
             }
 
             angular.forEach(vm.paymentInfo, (info) => {
@@ -89,6 +93,9 @@
         };
 
         vm.getMoreFunds = function() {
+            vm.canCompleteDisabled = true;
+            vm.needMoreFunds = false;
+
             vm.paymentInfo.push(
                 {
                     code: "1234 4567 9874 5489",
@@ -96,6 +103,14 @@
                     amountUsed: null
                 }
             )
+        };
+
+        vm.totalAmountChanged = function() {
+            if(vm.mealAmount.replace('$', '') > 0) {
+                vm.canContinueDisabled = false;
+            } else {
+                vm.canContinueDisabled = true;
+            }
         };
 
         vm.completeOrder = function () {

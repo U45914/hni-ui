@@ -29,7 +29,7 @@
             <div class="order-detail-amount-container" layout="row" layout-wrap>
                 <md-input-container class="input-primary" flex="100">
                     <label>Total Amount of Meal</label>
-                    <input ng-disabled="vm.currentStep != 2" ng-model="vm.mealAmount" currency-input="currency">
+                    <input ng-disabled="vm.currentStep != 2" ng-model="vm.mealAmount" ng-change="vm.totalAmountChanged()" currency-input="currency">
                 </md-input-container>
                 <div class="order-payment-info-container" flex="100">
                     <div class="order-detail-payment-info payment-info-animation" flex layout="row" layout-wrap ng-repeat="item in vm.paymentInfo" ng-if="vm.currentStep == 3">
@@ -62,7 +62,7 @@
             </div>
             <div ng-if="vm.currentStep == 2">
                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
-                <md-button class="md-raised button-primary" ng-click="vm.continueOrder()">Continue</md-button>
+                <md-button class="md-raised button-primary" ng-disabled="vm.canContinueDisabled" ng-click="vm.continueOrder()">Continue</md-button>
             </div>
             <div ng-if="vm.currentStep == 3">
                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
