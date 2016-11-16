@@ -10,15 +10,12 @@
         requireAllSections(require.context('./sections', true, /\.html/));
         requireAllComponents(require.context('./components', true, /\.html/));
 
-        userService.setUser();
-
         $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
 
             if ('data' in next && 'authorizedRoles' in next.data) {
                 var authorizedRoles = next.data.authorizedRoles;
                 if (!authService.isAuthorized(authorizedRoles)) {
                     event.preventDefault();
-                    $state.go($state.current, {}, {reload: true});
                 }
             }
 

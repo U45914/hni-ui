@@ -3,30 +3,31 @@
         .module('app')
         .service('authService', authService);
 
-    authService.$inject = ['$q', '$http', 'rolesConstant', 'userService'];
+    authService.$inject = ['$q', '$http', 'rolesConstant', 'serviceConstants'];
 
-    function authService($q, $http, rolesConstant, userService) {
-        var LOCAL_TOKEN_KEY = 'token';
-        var LOCAL_ROLE = 'role';
-        var username = '';
-        var isAuthenticated = false;
-        var authRole = '';
-        var authToken;
+    function authService($q, $http, rolesConstant, serviceConstants) {
+        let baseUrl = serviceConstants.baseUrl;
+        let LOCAL_TOKEN_KEY = 'token';
+        let LOCAL_ROLE = 'role';
+        let username = '';
+        let isAuthenticated = false;
+        let authRole = '';
+        let authToken;
 
         loadUserCredentials();
 
         return {
             login: login,
+            loginExternal: loginExternal,
             logout: logout,
             isAuthorized: isAuthorized,
             isAuthenticated: function() {return isAuthenticated;}
         };
 
         function loadUserCredentials() {
-            var token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
-            var role = window.localStorage.getItem(LOCAL_ROLE);
-            token = 'someToken';
-            role = rolesConstant.superAdmin;
+            let token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
+            let role = window.localStorage.getItem(LOCAL_ROLE);
+
             if (token && role) {
                 useCredentials(token, role);
             }
@@ -74,6 +75,18 @@
             }
 
             return (isAuthenticated && authorizedRoles.indexOf(authRole) !== -1);
+        }
+
+        function loginExternal(provider, token, success, failure) {
+            $http.get(`${baseUrl}/security/${provider}/authentication?access_token=${token}`)
+                .then(function successCallback(response) {
+                    storeUserCredentials(response.data.token, rolesConstant.superAdmin);
+                    success(response);
+                    window.localStorage.removeItem('google_state');
+                    window.localStorage.removeItem('satellizer_token');
+                }, function errorCallback(error) {
+                    failure(error);
+                });
         }
     }
 })();

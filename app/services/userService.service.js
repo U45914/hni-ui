@@ -3,14 +3,18 @@
         .module('app')
         .factory('userService', userService);
 
-    userService.$inject = ['$http', 'serviceConstants'];
+    userService.$inject = [];
 
-    function userService($http, serviceConstants) {
+    function userService() {
         let user = {};
         var organizations = [];
-        var baseUrl = serviceConstants.baseUrl;
+        let USER_ID = 'id';
+        let USER_EMAIL = 'email';
+        let FIRST_NAME = 'firstName';
+        let LAST_NAME = 'lastName';
+        let PHONE = 'mobilePhone';
 
-        setUser();
+        loadUserDetails();
 
         return {
             getUser: getUser,
@@ -22,24 +26,25 @@
             return user;
         }
 
-        function setUser() {
-            $http.get(baseUrl + '/users/2')
-                .then(setUserComplete)
-                .catch(setUserFailed);
+        function setUser(data) {
+            user = data;
+            storeUserDetails(user.id, user.email, user.firstName, user.lastName, user.mobilePhone);
         }
 
-        function setUserComplete(response) {
-            var data = response.data;
-
-            user.firstName = data.firstName;
-            user.lastName = data.lastName;
-            user.mobilePhone = data.mobilePhone;
-            user.email = data.email;
-            user.id = data.id;
+        function loadUserDetails() {
+            user.id = window.localStorage.getItem(USER_ID);
+            user.email = window.localStorage.getItem(USER_EMAIL);
+            user.fistName = window.localStorage.getItem(FIRST_NAME);
+            user.lastName = window.localStorage.getItem(LAST_NAME);
+            user.mobilePhone = window.localStorage.getItem(PHONE);
         }
 
-        function setUserFailed(error) {
-
+        function storeUserDetails(id, email, firstName, lastName, mobilePhone) {
+            window.localStorage.setItem(USER_ID, id);
+            window.localStorage.setItem(USER_EMAIL, email);
+            window.localStorage.setItem(FIRST_NAME, firstName);
+            window.localStorage.setItem(LAST_NAME, lastName);
+            window.localStorage.setItem(PHONE, mobilePhone);
         }
 
         function getOrganizations() {

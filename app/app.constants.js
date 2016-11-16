@@ -2,7 +2,7 @@
     angular
         .module('app')
         .constant('serviceConstants', {
-            baseUrl: "http://hni-service-dev.azurewebsites.net/hni-admin/api/v1"
+            baseUrl: "http://hni-api-dev.centralus.cloudapp.azure.com:8080/api/v1"
         })
         .constant('rolesConstant', {
             superAdmin: 'super_admin_role',
