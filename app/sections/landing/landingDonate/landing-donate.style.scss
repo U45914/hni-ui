@@ -8,9 +8,25 @@
 
     .hero {
         height: rem(320px);
-        background: url('~images/landing/donate_hero.jpg');
-        background-size: cover;
-        background-postion: 50%;
+        overflow: hidden;
+        img {
+            height: rem(320px);
+            position: relative;
+            overflow: hidden;
+            top: 0;
+            left: -150%;
+            @media only screen and (min-width: 374px) {
+                left: -110%;
+            }
+            @media only screen and (min-width: 400px) {
+                left: 0%;
+            }
+            @media only screen and (min-width: 961px) {
+                width: 100%;
+                height: auto;
+                min-height: 320px;
+            }         
+        }
     }
 
     .donate-header {
