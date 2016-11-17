@@ -3,9 +3,9 @@
         .module('app')
         .run(runblock);
 
-    runblock.$inject = ['$templateCache', '$rootScope', '$state', '$mdDialog', 'userService', 'authService'];
+    runblock.$inject = ['$templateCache', '$rootScope', '$state', '$mdDialog', 'authService'];
 
-    function runblock($templateCache, $rootScope, $state, $mdDialog, userService, authService) {
+    function runblock($templateCache, $rootScope, $state, $mdDialog, authService) {
         requireAllViews(require.context('./views', true, /\.html/), ['./index.html']);
         requireAllSections(require.context('./sections', true, /\.html/));
         requireAllComponents(require.context('./components', true, /\.html/));

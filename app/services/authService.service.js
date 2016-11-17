@@ -7,8 +7,8 @@
 
     function authService($q, $http, rolesConstant, serviceConstants) {
         let baseUrl = serviceConstants.baseUrl;
-        let LOCAL_TOKEN_KEY = 'token';
-        let LOCAL_ROLE = 'role';
+        let LOCAL_TOKEN_KEY = 'hni_token';
+        let LOCAL_ROLE = 'hni_role';
         let isAuthenticated = false;
         let authRole = '';
         let authToken;

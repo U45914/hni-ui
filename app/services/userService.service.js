@@ -7,18 +7,20 @@
 
     function userService() {
         let user = {};
-        var organizations = [];
-        let USER_ID = 'id';
-        let USER_EMAIL = 'email';
-        let FIRST_NAME = 'firstName';
-        let LAST_NAME = 'lastName';
-        let PHONE = 'mobilePhone';
+        let organizations = [];
+        const USER_ID = 'hni_id';
+        const USER_EMAIL = 'hni_email';
+        const FIRST_NAME = 'hni_firstName';
+        const LAST_NAME = 'hni_lastName';
+        const PHONE = 'hni_mobilePhone';
 
         loadUserDetails();
 
         return {
             getUser: getUser,
             setUser: setUser,
+            removeUserDetails,
+            loadUserDetails,
             getOrganizations: getOrganizations
         };
 
@@ -45,6 +47,14 @@
             window.localStorage.setItem(FIRST_NAME, firstName);
             window.localStorage.setItem(LAST_NAME, lastName);
             window.localStorage.setItem(PHONE, mobilePhone);
+        }
+
+        function removeUserDetails() {
+            user.id = window.localStorage.removeItem(USER_ID);
+            user.email = window.localStorage.removeItem(USER_EMAIL);
+            user.fistName = window.localStorage.removeItem(FIRST_NAME);
+            user.lastName = window.localStorage.removeItem(LAST_NAME);
+            user.mobilePhone = window.localStorage.removeItem(PHONE);
         }
 
         function getOrganizations() {
