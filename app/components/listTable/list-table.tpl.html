@@ -3,7 +3,12 @@
 		<thead class="md-thead">
 			<tr>
 				<th ng-repeat="field in vm.headerfields" ng-click="vm.sortDataByField(field)">{{ field.displayName }}</th>
-				<th></th>
+				<th>
+					<div class="input-expandable">
+						<input type="text" id="org-search" filter-input="vm.items" filter-name="filter">
+						<label for="org-search"></label>
+					</div>
+				</th>
 			</tr>
 		</thead>
 

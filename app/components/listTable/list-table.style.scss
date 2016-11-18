@@ -21,6 +21,15 @@
 				outline: 0;
 				cursor: pointer;
 				user-select: none;
+
+				&:last-child {
+					position: relative;
+
+					& .input-expandable {
+						top: 50%;
+						transform: translateY(-50%);
+					}
+				}
 			}
 		}
 		.md-row {
