@@ -10,13 +10,15 @@
             controllerAs: 'vm'
         });
 
-    VolunteersController.$inject = ['$mdDialog', 'topNavService'];
+    VolunteersController.$inject = ['$mdDialog', 'topNavService', 'personService'];
 
-    function VolunteersController($mdDialog, topNavService) {
+    function VolunteersController($mdDialog, topNavService, personService) {
         let vm = this;
 
         vm.$onInit = function () {
             topNavService.setSelectedItem("volunteers");
+
+            personService.getPerson(3, 3, getPersonSuccess, getPersonFailure);
 
             vm.headerFields = [
                 {
@@ -144,6 +146,14 @@
             }
 
             return templateUrl;
+        }
+
+        function getPersonSuccess(response) {
+            console.log(response);
+        }
+
+        function getPersonFailure(error) {
+            console.log(error);
         }
     }
 })();

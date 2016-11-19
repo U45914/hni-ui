@@ -7,6 +7,7 @@
         .constant('rolesConstant', {
             superAdmin: 'super_admin_role',
             ngoAdmin: 'ngo_admin_role',
-            volunteer: 'volunteer_role'
+            volunteer: 'volunteer_role',
+            client: 'client_role'
         });
 })();
