@@ -1,0 +1,15 @@
+@import '_includes';
+
+.loading-entity-container {
+  margin: rem(60px);
+
+  & md-progress-circular {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+
+    & path {
+      stroke: $color-red-base;
+    }
+  }
+}

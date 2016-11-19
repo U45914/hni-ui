@@ -1,5 +1,9 @@
 <sub-nav-bar text="Organizations" icon="&#xE0AF;" show-fab="true" fab-fn="vm.newOrganization()"></sub-nav-bar>
 
+<div class="loading-entity-container">
+	<loading-entity items="vm.items"></loading-entity>
+</div>
+
 <div id="organizations-container" ng-if="vm.items.length > 0" hide-sm hide-xs>
 	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editClient" delete-fn="vm.deleteOrganization"></list-table>
 </div>
