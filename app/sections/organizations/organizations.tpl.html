@@ -4,11 +4,11 @@
 	<loading-entity items="vm.items"></loading-entity>
 </div>
 
-<div id="organizations-container" ng-if="vm.items.length > 0" hide-sm hide-xs>
+<div class="entity-table-container" ng-if="vm.items.length > 0" hide-sm hide-xs>
 	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editClient" delete-fn="vm.deleteOrganization"></list-table>
 </div>
 
-<div class="entity-cards-container" layout="row" layout-wrap hide-gt-sm>
+<div class="entity-cards-container" layout="row" ng-if="vm.items.length > 0" layout-wrap hide-gt-sm>
 	<entity-card flex="100" flex-sm="50" ng-repeat="item in vm.items"
 				 header="item.name" content="[{icon: '&#xE0CD;', text: item.phone}, {icon: '&#xE0BE;', text: item.email}, {icon: '&#xE80B;', text: item.website}]"
 				 entity-item="item" edit-fn="vm.editClient" delete-fn="vm.deleteOrganization">
