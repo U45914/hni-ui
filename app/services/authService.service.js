@@ -20,8 +20,9 @@
             loginExternal: loginExternal,
             logout: logout,
             isAuthorized: isAuthorized,
-            isAuthenticated: function() { return isAuthenticated; },
-            getToken: function() { return authToken; }
+            isAuthenticated: () => isAuthenticated,
+            getToken: () => authToken,
+            getRole: () => authRole
         };
 
         function loadUserCredentials() {

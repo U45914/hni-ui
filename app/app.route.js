@@ -39,7 +39,7 @@
                 url: '/clients',
                 template: '<clients></clients>',
                 data: {
-                    authorizedRoles: [rolesConstant.superAdmin]
+                    authorizedRoles: [rolesConstant.superAdmin, rolesConstant.ngoAdmin]
                 }
             })
             .state('organizations', {

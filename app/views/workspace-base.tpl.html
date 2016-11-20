@@ -1,9 +1,10 @@
 <top-nav>
-    <md-nav-bar md-selected-nav-item="vm.selectedNavItem.item" nav-bar-aria-label="navigation links" hide-xs>
+    <md-nav-bar md-selected-nav-item="vm.selectedNavItem.item" nav-bar-aria-label="navigation links"
+                ng-if="vm.role === vm.rolesConstant.superAdmin || vm.role === vm.rolesConstant.ngoAdmin" hide-xs>
         <md-nav-item md-nav-sref="order-detail" name="orders">Orders</md-nav-item>
         <md-nav-item md-nav-sref="clients" name="clients">Clients</md-nav-item>
-        <md-nav-item md-nav-sref="volunteers" name="volunteers">Volunteers</md-nav-item>
-        <md-nav-item md-nav-sref="organizations" name="organizations">Orgs</md-nav-item>
+        <md-nav-item md-nav-sref="volunteers" name="volunteers" ng-if="vm.role === vm.rolesConstant.superAdmin">Volunteers</md-nav-item>
+        <md-nav-item md-nav-sref="organizations" name="organizations" ng-if="vm.role === vm.rolesConstant.superAdmin">Orgs</md-nav-item>
         <!--<md-nav-item md-nav-sref="organizations" name="organizations">Providers</md-nav-item>-->
     </md-nav-bar>
     <div class="collapsed-nav-menu" hide show-xs>
