@@ -65,7 +65,7 @@
                 locals : {
                     item : item
                 }
-            });
+            }).then((editedItem) => { replaceItem(editedItem) })
         };
 
         vm.deleteOrganization = function (item) {
@@ -86,6 +86,11 @@
 
         function getOrgFailure(error) {
             console.log(error);
+        }
+
+        function replaceItem(editedItem) {
+            let index = vm.items.map((item) => item.id).indexOf(editedItem.id);
+            vm.items[index] = editedItem;
         }
     }
 })();

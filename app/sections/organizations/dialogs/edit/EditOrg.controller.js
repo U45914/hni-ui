@@ -17,16 +17,14 @@
         });
 
         vm.dismiss = function () {
-            $mdDialog.hide();
+            $mdDialog.cancel();
         };
 
         vm.saveOrganization = function () {
             orgService.postOrg(vm.org, editOrgSaved, editOrgError);
 
             function editOrgSaved() {
-                item = vm.org;
-                vm.org = {};
-                $mdDialog.hide();
+                $mdDialog.hide(vm.org);
             }
 
             function editOrgError() {

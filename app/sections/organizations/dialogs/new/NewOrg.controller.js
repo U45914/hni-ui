@@ -15,7 +15,7 @@
         'WY').split(' ').map(function (state) { return { abbrev: state }; });
 
         vm.dismiss = function () {
-            $mdDialog.hide();
+            $mdDialog.cancel();
         };
 
         vm.saveNewOrganization = function() {
@@ -37,7 +37,6 @@
             orgService.postOrg(postData, newOrgSaved, newOrgError);
 
             function newOrgSaved() {
-                vm.org = {};
                 $mdDialog.hide();
             }
 
