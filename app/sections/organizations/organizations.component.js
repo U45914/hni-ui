@@ -52,7 +52,7 @@
                 fullscreen: true,
                 parent: angular.element(document.body),
                 templateUrl: 'new-organization.tpl.html'
-            });
+            }).then(() => { orgService.getOrgs(userService.getUser().id, getOrgSuccess, getOrgFailure); });
         };
 
         vm.editClient = function (item) {
@@ -65,7 +65,7 @@
                 locals : {
                     item : item
                 }
-            }).then((editedItem) => { replaceItem(editedItem) })
+            }).then((editedItem) => { replaceItem(editedItem) });
         };
 
         vm.deleteOrganization = function (item) {
@@ -77,7 +77,7 @@
                 locals : {
                     item : item
                 }
-            });
+            }).then((removedItem) => { deleteItem(removedItem) });
         };
 
         function getOrgSuccess(response) {
@@ -91,6 +91,11 @@
         function replaceItem(editedItem) {
             let index = vm.items.map((item) => item.id).indexOf(editedItem.id);
             vm.items[index] = editedItem;
+        }
+
+        function deleteItem(removedItem) {
+            let index = vm.items.map((item) => item.id).indexOf(removedItem.id);
+            vm.items.splice(index, 1);
         }
     }
 })();

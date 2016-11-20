@@ -11,14 +11,14 @@
         vm.item = item;
 
         vm.dismiss = function () {
-            $mdDialog.hide();
+            $mdDialog.cancel();
         };
 
         vm.deleteOrg = function() {
             orgService.removeOrg(vm.item.id, orgDeletedSuccess, orgDeletedError);
 
             function orgDeletedSuccess() {
-                $mdDialog.hide();
+                $mdDialog.hide(vm.item);
             }
 
             function orgDeletedError() {

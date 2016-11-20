@@ -28,11 +28,14 @@
             }, 1500)
         }, 100);
 
-        $scope.$watch('vm.items', (newVal, oldVal) => {
-            if(newVal !== oldVal && vm.items.length > 0) {
-                if(!vm.contentHidden) {
+        $scope.$watchCollection('vm.items', (newVal, oldVal) => {
+            if(newVal !== oldVal) {
+                if(vm.items.length > 0 && !vm.contentHidden) {
                     $timeout.cancel(startLoading);
                     vm.loading = false;
+                }
+                else {
+                    vm.loading = true;
                 }
             }
         })

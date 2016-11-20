@@ -117,16 +117,14 @@ md-checkbox.md-checked.checkbox-primary {
   }
 }
 
-.entity-table-container, .entity-cards-container {
-  transition: all 0.6s;
-}
-
 .entity-table-container.ng-enter, .entity-cards-container.ng-enter {
+  transition: all 0.6s;
   transform: translate3d(-50vw, 0, 0);
   opacity: 0;
 }
 
 .entity-table-container.ng-enter-active, .entity-cards-container.ng-enter-active {
+  transition: all 0.6s;
   transform: translate3d(0, 0, 0);
   opacity: 1;
 }
