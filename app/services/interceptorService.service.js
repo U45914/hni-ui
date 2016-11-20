@@ -16,6 +16,18 @@
                 }
 
                 return configuration;
+            },
+
+            responseError: function(rejection) {
+                if (rejection.status === -1) {
+                    let authService = $injector.get('authService');
+                    let userService = $injector.get('userService');
+                    let state = $injector.get('$state');
+
+                    authService.logout();
+                    userService.removeUserDetails();
+                    state.go('login');
+                }
             }
         };
     }

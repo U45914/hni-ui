@@ -12,10 +12,9 @@
         vm.isSelected = isSelected;
         vm.toggleSelection = toggleSelection;
         vm.selectedOrgs = [];
-        vm.querySearch = querySearch;
-        vm.orgAdminChecked = false;
-
         vm.organizations = userService.getOrganizations();
+        vm.allOrgs = vm.organizations.map(function (org) { return { value: org.name }; });
+        vm.orgAdminChecked = false;
 
         delete vm.person['name'];
         delete vm.person['organization'];
@@ -37,21 +36,6 @@
                 console.log("Error");
             }
         };
-
-        function querySearch (query) {
-            var results = query ? vm.organizations.filter( createFilterFor(query) ) : vm.organizations;
-
-            return results;
-        }
-
-        function createFilterFor(query) {
-            var lowercaseQuery = angular.lowercase(query);
-
-            return function filterFn(organization) {
-                return (organization.name.toLowerCase().indexOf(lowercaseQuery) === 0);
-            };
-
-        }
 
         function isSelected(org) {
             return vm.selectedOrgs.indexOf(org) > -1;

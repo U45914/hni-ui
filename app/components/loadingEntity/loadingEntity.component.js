@@ -3,7 +3,8 @@
         .module('app')
         .component('loadingEntity', {
             bindings: {
-                items: '='
+                items: '=',
+                contentHidden: '=?'
             },
             template: `<md-progress-circular md-mode="indeterminate" ng-if="vm.loading"></md-progress-circular>`,
             controller: controller,
@@ -19,12 +20,20 @@
 
         let startLoading = $timeout(() => {
             vm.loading = true;
+            vm.contentHidden = true;
+
+            $timeout(() => {
+                vm.loading = false;
+                vm.contentHidden = false;
+            }, 1500)
         }, 100);
 
         $scope.$watch('vm.items', (newVal, oldVal) => {
             if(newVal !== oldVal && vm.items.length > 0) {
-                $timeout.cancel(startLoading);
-                vm.loading = false;
+                if(!vm.contentHidden) {
+                    $timeout.cancel(startLoading);
+                    vm.loading = false;
+                }
             }
         })
     }

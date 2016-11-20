@@ -29,7 +29,7 @@
 
         function loginSuccess(response) {
             userService.setUser(response.data.user);
-            $state.go('dashboard');
+            $state.go('order-detail');
         }
 
         function loginFailed(error) {
