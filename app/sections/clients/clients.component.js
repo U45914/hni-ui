@@ -10,13 +10,13 @@
             controllerAs: 'vm'
         });
 
-    ClientsController.$inject = ['$mdDialog', 'topNavService'];
+    ClientsController.$inject = ['$mdDialog', 'selectedNavItemService'];
 
-    function ClientsController($mdDialog, topNavService) {
+    function ClientsController($mdDialog, selectedNavItemService) {
         let vm = this;
 
         vm.$onInit = function () {
-            topNavService.setSelectedItem("clients");
+            selectedNavItemService.setSelectedItem("clients");
 
             vm.headerFields = [
                 {

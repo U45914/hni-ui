@@ -23,7 +23,7 @@
             })
             .state('workspace-base', {
                 abstract: true,
-                templateUrl: 'workspace-base.tpl.html'
+                template: '<workspace-base></workspace-base>'
             })
             .state('order-detail', {
                 parent: 'workspace-base',

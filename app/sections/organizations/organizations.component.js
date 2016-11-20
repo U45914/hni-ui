@@ -9,15 +9,15 @@
             controllerAs: 'vm'
         });
 
-    OrganizationsController.$inject = ['$mdDialog', 'topNavService', 'userService', 'orgService'];
+    OrganizationsController.$inject = ['$mdDialog', 'selectedNavItemService', 'userService', 'orgService'];
 
-    function OrganizationsController($mdDialog, topNavService, userService, orgService) {
+    function OrganizationsController($mdDialog, selectedNavItemService, userService, orgService) {
         let vm = this;
 
         vm.$onInit = function () {
             vm.items = '';
 
-            topNavService.setSelectedItem("organizations");
+            selectedNavItemService.setSelectedItem("organizations");
             orgService.getOrgs(userService.getUser().id, getOrgSuccess, getOrgFailure);
 
             vm.headerFields = [

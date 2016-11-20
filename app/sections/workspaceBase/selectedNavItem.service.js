@@ -1,9 +1,9 @@
 (function() {
     angular
         .module('app')
-        .factory('topNavService', topNavService);
+        .factory('selectedNavItemService', selectedNavItemService);
 
-    function topNavService() {
+    function selectedNavItemService() {
         let selectedItem = {
             item: ""
         };

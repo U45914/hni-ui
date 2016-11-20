@@ -10,13 +10,13 @@
             controllerAs: 'vm'
         });
 
-    VolunteersController.$inject = ['$mdDialog', 'topNavService', 'personService'];
+    VolunteersController.$inject = ['$mdDialog', 'selectedNavItemService', 'personService'];
 
-    function VolunteersController($mdDialog, topNavService, personService) {
+    function VolunteersController($mdDialog, selectedNavItemService, personService) {
         let vm = this;
 
         vm.$onInit = function () {
-            topNavService.setSelectedItem("volunteers");
+            selectedNavItemService.setSelectedItem("volunteers");
 
             personService.getPerson(3, 3, getPersonSuccess, getPersonFailure);
 
