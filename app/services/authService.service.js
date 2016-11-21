@@ -3,9 +3,9 @@
         .module('app')
         .service('authService', authService);
 
-    authService.$inject = ['$q', '$http', 'rolesConstant', 'serviceConstants'];
+    authService.$inject = ['$http', '$state', 'userService', 'rolesConstant', 'serviceConstants'];
 
-    function authService($q, $http, rolesConstant, serviceConstants) {
+    function authService($http, $state, userService, rolesConstant, serviceConstants) {
         let baseUrl = serviceConstants.baseUrl;
         let LOCAL_TOKEN_KEY = 'hni_token';
         let LOCAL_ROLE = 'hni_role';
@@ -16,10 +16,10 @@
         loadUserCredentials();
 
         return {
-            login: login,
-            loginExternal: loginExternal,
-            logout: logout,
-            isAuthorized: isAuthorized,
+            login,
+            loginExternal,
+            logout,
+            isAuthorized,
             isAuthenticated: () => isAuthenticated,
             getToken: () => authToken,
             getRole: () => authRole
@@ -30,31 +30,33 @@
             let role = window.localStorage.getItem(LOCAL_ROLE);
 
             if (token && role) {
-                useCredentials(token, role);
+                isAuthenticated = true;
+                authToken = token;
+                authRole = role;
             }
         }
 
-        function storeUserCredentials(token, role) {
+        function setToken(token) {
             window.localStorage.setItem(LOCAL_TOKEN_KEY, token);
-            window.localStorage.setItem(LOCAL_ROLE, role);
-            useCredentials(token, role);
-        }
-
-        function useCredentials(token, role) {
             isAuthenticated = true;
             authToken = token;
-            authRole = role;
         }
 
         function login(name, pw) {
-            return $q(function(resolve, reject) {
-                if ((name && pw)) {
-                    storeUserCredentials(name, rolesConstant.superAdmin);
-                    resolve('Login success.');
-                } else {
-                    reject('Login Failed.');
-                }
-            });
+
+        }
+
+        function loginExternal(provider, token) {
+            $http.get(`${baseUrl}/security/${provider}/authentication?access_token=${token}`)
+                .then(function successCallback(response) {
+                    setToken(response.data.token);
+                    userService.setUser(response.data.user);
+                    setPermissions();
+                    window.localStorage.removeItem('google_state');
+                    window.localStorage.removeItem('satellizer_token');
+                }, function errorCallback(error) {
+                    console.log(error);
+                });
         }
 
         function logout() {
@@ -73,16 +75,40 @@
             return (isAuthenticated && authorizedRoles.indexOf(authRole) !== -1);
         }
 
-        function loginExternal(provider, token, success, failure) {
-            $http.get(`${baseUrl}/security/${provider}/authentication?access_token=${token}`)
-                .then(function successCallback(response) {
-                    storeUserCredentials(response.data.token, rolesConstant.superAdmin);
-                    success(response);
-                    window.localStorage.removeItem('google_state');
-                    window.localStorage.removeItem('satellizer_token');
-                }, function errorCallback(error) {
-                    failure(error);
+        function setPermissions() {
+            $http.post(`${baseUrl}/security/authorization`)
+                .then((response) => {
+                    setRole(response.data);
+                    $state.go('order-detail');
+                }, (error) => {
+                    console.log(error);
                 });
+        }
+
+        function setRole(permissions) {
+            let roles = permissions.map((permission) => permission.roleId);
+            let role = '';
+
+            if(roles.indexOf(rolesConstant.superAdmin) !== -1) {
+                role = rolesConstant.superAdmin;
+            }
+            else if(roles.indexOf(rolesConstant.ngoAdmin) !== -1) {
+                role = rolesConstant.ngoAdmin;
+            }
+            else if(roles.indexOf(rolesConstant.volunteer) !== -1) {
+                role = rolesConstant.volunteer;
+            }
+            else if(roles.indexOf(rolesConstant.client) !== -1) {
+                role = rolesConstant.client;
+            }
+            else if(roles.indexOf(rolesConstant.user) !== -1) {
+                role = rolesConstant.user;
+            }
+
+            window.localStorage.setItem(LOCAL_ROLE, role);
+            authRole = role;
+
+            authRole = rolesConstant.superAdmin;
         }
     }
 })();

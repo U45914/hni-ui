@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['$auth', '$state', 'authService', 'userService'];
+    LoginController.$inject = ['$auth', '$state', 'authService'];
 
-    function LoginController($auth, $state, authService, userService) {
+    function LoginController($auth, $state, authService) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
@@ -23,17 +23,8 @@
         function authenticate(provider) {
             $auth.authenticate(provider)
                 .then(function(response) {
-                    authService.loginExternal(provider, response["access_token"], loginSuccess, loginFailed);
+                    authService.loginExternal(provider, response["access_token"]);
                 });
-        }
-
-        function loginSuccess(response) {
-            userService.setUser(response.data.user);
-            $state.go('order-detail');
-        }
-
-        function loginFailed(error) {
-            console.log(error);
         }
 
         function togglePassword(){
@@ -42,9 +33,9 @@
         }
 
         function signIn() {
-            authService.login(vm.username, vm.password).then(function() {
-                $state.go('dashboard', {}, {reload: true});
-            });
+            //authService.login(vm.username, vm.password).then(function() {
+            //    $state.go('dashboard', {}, {reload: true});
+            //});
         }
     }
 })();
