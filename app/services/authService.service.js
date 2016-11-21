@@ -110,8 +110,8 @@
             window.localStorage.setItem(LOCAL_ROLE, role);
             authRole = role;
 
-            window.localStorage.setItem(LOCAL_ROLE, rolesConstant.superAdmin);
-            authRole = rolesConstant.superAdmin;
+            //window.localStorage.setItem(LOCAL_ROLE, rolesConstant.superAdmin);
+            //authRole = rolesConstant.superAdmin;
         }
     }
 })();
