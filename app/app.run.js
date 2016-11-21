@@ -20,7 +20,7 @@
             }
 
             if (!authService.isAuthenticated()) {
-                if (next.name !== 'login') {
+                if (next.name !== 'login' && next.name !== 'landing') {
                     event.preventDefault();
                     $state.go('login');
                 }
