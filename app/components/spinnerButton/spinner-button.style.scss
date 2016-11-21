@@ -1,0 +1,17 @@
+@import '_includes';
+
+.spinner-button {
+  &.md-button[disabled] {
+    background-color: $color-red-base;
+  }
+
+  & md-progress-circular {
+    margin-left: auto;
+    margin-right: auto;
+
+    & path {
+      stroke: $color-white;
+    }
+  }
+}
+
