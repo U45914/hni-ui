@@ -88,7 +88,7 @@
         }
 
         function setRole(permissions) {
-            let roles = permissions.map((permission) => permission.roleId);
+            let roles = permissions.map((permission) => permission.roleId.toString());
             let role = '';
 
             if(roles.indexOf(rolesConstant.superAdmin) !== -1) {

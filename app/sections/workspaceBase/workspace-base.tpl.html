@@ -7,11 +7,11 @@
         <md-nav-item md-nav-sref="organizations" name="organizations" ng-if="role === rolesConstant.superAdmin">Orgs</md-nav-item>
         <!--<md-nav-item md-nav-sref="organizations" name="organizations">Providers</md-nav-item>-->
     </md-nav-bar>
-    <div class="collapsed-nav-menu" hide show-xs>
+    <div class="collapsed-nav-menu" ng-if="role === rolesConstant.superAdmin || role === rolesConstant.ngoAdmin" hide show-xs>
         <div ui-sref="order-detail" md-ink-ripple="#D65439" ng-click="toggleCollapsedNav()">Orders</div>
         <div ui-sref="clients" md-ink-ripple="#D65439" ng-click="toggleCollapsedNav()">Clients</div>
-        <div ui-sref="volunteers" md-ink-ripple="#D65439" ng-click="toggleCollapsedNav()">Volunteers</div>
-        <div ui-sref="organizations" md-ink-ripple="#D65439" ng-click="toggleCollapsedNav()">Orgs</div>
+        <div ui-sref="volunteers" md-ink-ripple="#D65439" ng-click="toggleCollapsedNav()" ng-if="role === rolesConstant.superAdmin">Volunteers</div>
+        <div ui-sref="organizations" md-ink-ripple="#D65439" ng-click="toggleCollapsedNav()" ng-if="role === rolesConstant.superAdmin">Orgs</div>
     </div>
 </top-nav>
 
