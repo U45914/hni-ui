@@ -25,7 +25,6 @@
                     let state = $injector.get('$state');
 
                     authService.logout();
-                    userService.removeUserDetails();
                     state.go('login');
                 }
             }

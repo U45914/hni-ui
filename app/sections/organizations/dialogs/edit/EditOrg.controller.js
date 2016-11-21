@@ -3,9 +3,9 @@
         .module('app')
         .controller('EditOrgController', EditOrgController);
 
-    EditOrgController.$inject = ['$mdDialog', 'orgService', 'item'];
+    EditOrgController.$inject = ['$mdDialog', 'orgService', 'item', '$timeout'];
 
-    function EditOrgController($mdDialog, orgService, item) {
+    function EditOrgController($mdDialog, orgService, item, $timeout) {
         let vm = this;
 
         vm.org = angular.copy(item);
@@ -21,15 +21,19 @@
         };
 
         vm.saveOrganization = function () {
-            orgService.postOrg(vm.org, editOrgSaved, editOrgError);
-
-            function editOrgSaved() {
-                $mdDialog.hide(vm.org);
-            }
-
-            function editOrgError() {
-                console.log("Error");
-            }
+            return orgService.postOrg(vm.org, editOrgSaved, editOrgError);
         };
+
+        vm.editOrgSaved = function() {
+            $mdDialog.hide(vm.org);
+        };
+
+        function editOrgSaved() {
+            //$mdDialog.hide(vm.org);
+        }
+
+        function editOrgError(error) {
+            console.log(error);
+        }
     }
 })();

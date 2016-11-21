@@ -65,6 +65,8 @@
             isAuthenticated = false;
             window.localStorage.removeItem(LOCAL_TOKEN_KEY);
             window.localStorage.removeItem(LOCAL_ROLE);
+
+            userService.removeUserDetails();
         }
 
         function isAuthorized(authorizedRoles) {
@@ -108,6 +110,7 @@
             window.localStorage.setItem(LOCAL_ROLE, role);
             authRole = role;
 
+            window.localStorage.setItem(LOCAL_ROLE, rolesConstant.superAdmin);
             authRole = rolesConstant.superAdmin;
         }
     }

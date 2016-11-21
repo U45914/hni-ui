@@ -26,11 +26,11 @@
         function postOrg(data, success, failure) {
             let postData = JSON.stringify(data);
 
-            $http.post(`${baseUrl}/organizations`, postData)
-                .then(function successCallback() {
+            return $http.post(`${baseUrl}/organizations`, postData)
+                .then(() => {
                     success();
-                }, function errorCallback() {
-                    failure();
+                }, (error) => {
+                    failure(error);
                 });
         }
 
