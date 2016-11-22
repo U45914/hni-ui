@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'ordersService'];
+    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'ordersService', 'timeoutService'];
 
-    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, ordersService) {
+    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, ordersService, timeoutService) {
         let vm = this;
 
         let lockGetInitialOrder = false;
@@ -31,12 +31,21 @@
             selectedNavItemService.setSelectedItem("orders");
             ordersService.getInitialOrder(getInitialSuccess);
 
+            $scope.$on('$destroy', () => {
+                $interval.cancel(initialOrderInterval);
+                timeoutService.cancelTimeout();
+            });
+
             $scope.$on('$stateChangeStart', () => {
-                ordersService.unlockOrder(vm.orderInfo.id);
+                if(vm.orderInfo.id) {
+                    ordersService.unlockOrder(vm.orderInfo.id);
+                }
             });
 
             $window.onbeforeunload = function() {
-                ordersService.unlockOrder(vm.orderInfo.id);
+                if(vm.orderInfo.id) {
+                    ordersService.unlockOrder(vm.orderInfo.id);
+                }
 
                 return null;
             };
@@ -150,6 +159,7 @@
                 vm.loadingOrderShown = false;
 
                 $interval.cancel(initialOrderInterval);
+                timeoutService.startTimeout();
             }
             else if(!lockGetInitialOrder) {
                 lockGetInitialOrder = true;

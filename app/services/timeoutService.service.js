@@ -3,14 +3,35 @@
         .module('app')
         .factory('timeoutService', timeoutService);
 
-    timeoutService.$inject = ['$mdDialog'];
+    timeoutService.$inject = ['$interval', '$mdDialog'];
 
-    function timeoutService($mdDialog) {
-        DialogController.$inject = ['$mdDialog', '$state'];
+    function timeoutService($interval, $mdDialog) {
+        DialogController.$inject = ['$timeout', '$mdDialog', '$state', 'moreTime'];
+
+        let timeout = null;
 
         return {
-            showPopup: showPopup
+            startTimeout,
+            cancelTimeout
         };
+
+        function startTimeout() {
+            if(timeout === null) {
+                timeout = $interval(() => {
+                    showPopup();
+                }, 900000);
+            }
+        }
+
+        function cancelTimeout() {
+            $interval.cancel(timeout);
+            timeout = null;
+        }
+
+        function moreTime() {
+            cancelTimeout();
+            startTimeout();
+        }
 
         function showPopup() {
             $mdDialog.show({
@@ -27,23 +48,36 @@
                             </md-dialog-content>
                             <md-dialog-actions>
                                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.exitOrders()">No, Exit Orders</md-button>
-                                <md-button class="md-raised button-primary" ng-click="vm.hide()">Yes</md-button>
+                                <md-button class="md-raised button-primary" ng-click="vm.moreTime()">Yes</md-button>
                             </md-dialog-actions>
-                        </md-dialog>`
+                        </md-dialog>`,
+                locals : {
+                    moreTime: moreTime
+                }
             });
         }
 
-        function DialogController($mdDialog, $state) {
+        function DialogController($timeout, $mdDialog, $state, moreTime) {
             let vm = this;
 
+            let exitTimeout = $timeout(() => {
+                exit();
+            }, 60000);
+
             vm.exitOrders = function() {
-                $mdDialog.hide();
-                $state.go('dashboard');
+                $timeout.cancel(exitTimeout);
+                exit();
             };
 
-            vm.hide = function () {
+            vm.moreTime = function() {
+                moreTime();
                 $mdDialog.hide();
             };
+
+            function exit() {
+                $mdDialog.hide();
+                $state.go('login');
+            }
         }
     }
 })();
