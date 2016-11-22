@@ -13,11 +13,12 @@
             getNextOrder,
             getPaymentDetails,
             getOrderCount,
-            completeOrder
+            completeOrder,
+            unlockOrder
         };
 
         function getInitialOrder(success) {
-            $http.get(`${baseUrl}/orders/1`)
+            $http.get(`${baseUrl}/orders/next`)
                 .then((response) => {
                     success(response.data)
                 }, (error) => {
@@ -44,6 +45,10 @@
 
         function completeOrder(id) {
             return $http.put(`${baseUrl}/orders/completed/${id}`);
+        }
+
+        function unlockOrder(id) {
+            $http.delete(`${baseUrl}/orders/lock/${id}`);
         }
     }
 })();

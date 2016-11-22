@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$mdDialog', '$state', '$window', '$q', 'selectedNavItemService', 'ordersService'];
+    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$window', '$q', 'selectedNavItemService', 'ordersService'];
 
-    function OrderDetailController($mdDialog, $state, $window, $q, selectedNavItemService, ordersService) {
+    function OrderDetailController($scope, $mdDialog, $state, $window, $q, selectedNavItemService, ordersService) {
         let vm = this;
 
         vm.currentStep = 1;
@@ -120,10 +120,15 @@
             });
         };
 
+        $scope.$on('$stateChangeStart', () => {
+            ordersService.unlockOrder(vm.orderInfo.id);
+        });
+
         function getInitialSuccess(data) {
             console.log(data);
             vm.orderInfo.id = data.id;
             vm.orderInfo.totalCost = data.total;
+            vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;
             vm.orderInfo.providerId = data.providerLocation.provider.id;
             vm.orderInfo.providerName = data.providerLocation.provider.name;
             vm.orderInfo.providerAddress = data.providerLocation.address.address1;
