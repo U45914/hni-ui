@@ -20,12 +20,13 @@
 
             responseError: function(rejection) {
                 if (rejection.status === -1 || rejection.status === 401) {
-                    let authService = $injector.get('authService');
-                    let userService = $injector.get('userService');
-                    let state = $injector.get('$state');
-
-                    authService.logout();
-                    state.go('login');
+                    //console.log('hey');
+                    //let authService = $injector.get('authService');
+                    //let userService = $injector.get('userService');
+                    //let state = $injector.get('$state');
+                    //
+                    //authService.logout();
+                    //state.go('login');
                 }
             }
         };

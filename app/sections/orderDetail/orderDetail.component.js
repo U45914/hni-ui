@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'ordersService', 'timeoutService'];
+    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'authService', 'ordersService', 'timeoutService'];
 
-    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, ordersService, timeoutService) {
+    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, authService, ordersService, timeoutService) {
         let vm = this;
 
         let lockGetInitialOrder = false;
@@ -40,11 +40,17 @@
                 if(vm.orderInfo.id) {
                     ordersService.unlockOrder(vm.orderInfo.id);
                 }
+
+                $window.onbeforeunload = undefined;
             });
 
             $window.onbeforeunload = function() {
                 if(vm.orderInfo.id) {
-                    ordersService.unlockOrder(vm.orderInfo.id);
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("DELETE", `http://hni-api-dev.centralus.cloudapp.azure.com:8080/api/v1/orders/lock/${vm.orderInfo.id}`, false);
+                    xmlhttp.setRequestHeader("Content-type", "application/json");
+                    xmlhttp.setRequestHeader("X-hni-token", authService.getToken());
+                    xmlhttp.send();
                 }
 
                 return null;
