@@ -77,7 +77,7 @@
         </div>
     </md-card>
 
-    <md-card class="order-detail-card" ng-if="vm.loadingOrderShown;">
+    <md-card class="order-detail-card" ng-if="vm.loadingOrderShown && !vm.contentHidden">
         <div class="out-of-orders-container" layout="row" layout-wrap>
             <i class="material-icons" flex="100">&#xE815;</i>
             <div class="out-of-orders-text" flex="100">Way to go!</div>

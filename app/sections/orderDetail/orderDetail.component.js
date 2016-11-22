@@ -10,10 +10,13 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$window', '$q', 'selectedNavItemService', 'ordersService'];
+    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'ordersService'];
 
-    function OrderDetailController($scope, $mdDialog, $state, $window, $q, selectedNavItemService, ordersService) {
+    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, ordersService) {
         let vm = this;
+
+        let lockGetInitialOrder = false;
+        let initialOrderInterval = null;
 
         vm.currentStep = 1;
         vm.mealAmount = null;
@@ -28,11 +31,14 @@
             selectedNavItemService.setSelectedItem("orders");
             ordersService.getInitialOrder(getInitialSuccess);
 
-            vm.user = {
-                name: "Veronica Bagwell",
-                phone: "(479) 313-5606",
-                email: "veronica.bagwell@walmart.com",
-                organization: "7 Hills Homeless Center"
+            $scope.$on('$stateChangeStart', () => {
+                ordersService.unlockOrder(vm.orderInfo.id);
+            });
+
+            $window.onbeforeunload = function() {
+                ordersService.unlockOrder(vm.orderInfo.id);
+
+                return null;
             };
 
             vm.paymentInfo = [
@@ -51,7 +57,8 @@
 
         vm.placeOrder = function() {
             vm.currentStep++;
-            $window.open(vm.orderInfo.website, '_blank');
+            console.log(vm.orderInfo.providerWebsite);
+            $window.open(vm.orderInfo.providerWebsite, '_blank');
         };
 
         vm.continueOrder = function() {
@@ -120,27 +127,39 @@
             });
         };
 
-        $scope.$on('$stateChangeStart', () => {
-            ordersService.unlockOrder(vm.orderInfo.id);
-        });
+        function getInitialSuccess(response) {
+            let data = response.data;
 
-        function getInitialSuccess(data) {
-            console.log(data);
-            vm.orderInfo.id = data.id;
-            vm.orderInfo.totalCost = data.total;
-            vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;
-            vm.orderInfo.providerId = data.providerLocation.provider.id;
-            vm.orderInfo.providerName = data.providerLocation.provider.name;
-            vm.orderInfo.providerAddress = data.providerLocation.address.address1;
-            vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
-            vm.orderInfo.providerState = data.providerLocation.address.state.toUpperCase();
-            //vm.orderInfo.orderItem = data.orderItems[0].menuItem.name;
-            vm.orderInfo.orderTime = formatTime(data.orderDate);
+            if(data != '') {
+                vm.orderInfo.id = data.id;
+                vm.orderInfo.totalCost = data.total;
+                vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;
+                vm.orderInfo.providerId = data.providerLocation.provider.id;
+                vm.orderInfo.providerName = data.providerLocation.provider.name;
+                vm.orderInfo.providerAddress = data.providerLocation.address.address1;
+                vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
+                vm.orderInfo.providerWebsite = data.providerLocation.provider.websiteUrl;
+                vm.orderInfo.providerState = data.providerLocation.address.state.toUpperCase();
+                //vm.orderInfo.orderItem = data.orderItems[0].menuItem.name;
+                vm.orderInfo.orderTime = formatTime(data.orderDate);
 
-            vm.orderInfo.foodItem = "Turkey Sandwich";
-            vm.orderInfo.website = "http://www.subway.com";
+                vm.orderInfo.foodItem = "Turkey Sandwich";
 
-            vm.orderShown = true;
+                lockGetInitialOrder = false;
+                vm.orderShown = true;
+                vm.loadingOrderShown = false;
+
+                $interval.cancel(initialOrderInterval);
+            }
+            else if(!lockGetInitialOrder) {
+                lockGetInitialOrder = true;
+                vm.orderShown = false;
+                vm.loadingOrderShown = true;
+
+                initialOrderInterval = $interval(() => {
+                    ordersService.getInitialOrder(getInitialSuccess);
+                }, 15000)
+            }
         }
 
         function formatTime(value) {

@@ -20,7 +20,7 @@
         function getInitialOrder(success) {
             $http.get(`${baseUrl}/orders/next`)
                 .then((response) => {
-                    success(response.data)
+                    success(response)
                 }, (error) => {
                     console.log(error);
                 });
