@@ -20,16 +20,18 @@
     function controller($element, $attrs, $window, $timeout) {
         let vm = this;
 
+        let button = angular.element($element[0].querySelector('button.button-primary'));
+
         vm.spinnerShown = false;
         vm.buttonDisabled = false;
 
         vm.clickFunction = function() {
             let t0 = $window.performance.now();
-            let width = $element.prop('offsetWidth');
+            let width = button.prop('offsetWidth');
             let otherCss = $element.css('cssText');
 
             vm.buttonDisabled = true;
-            $attrs.$set('style', `width: ${width}px; ${otherCss}`);
+            button.attr('style', `width: ${width}px; ${otherCss}`);
 
             vm.clickFn().then((response) => {
                 let time = $window.performance.now() - t0;
