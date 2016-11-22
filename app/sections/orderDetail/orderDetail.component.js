@@ -13,8 +13,6 @@
     OrderDetailController.$inject = ['$mdDialog', '$state', '$window', '$q', 'selectedNavItemService', 'ordersService'];
 
     function OrderDetailController($mdDialog, $state, $window, $q, selectedNavItemService, ordersService) {
-        DialogController.$inject = ['$mdDialog', '$state', 'orderCount'];
-
         let vm = this;
 
         vm.currentStep = 3;
@@ -107,17 +105,17 @@
         };
 
         vm.completeOrder = function () {
-            return ordersService.getOrderCount();
+            return $q.all([ordersService.getOrderCount()]);
         };
 
         vm.showComplete = function(response) {
             $mdDialog.show({
-                controller: DialogController,
+                controller: 'CompleteOrderController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
                 templateUrl: 'order-complete.tpl.html',
                 locals : {
-                    orderCount: response.data['order-count']
+                    orderCount: response[0].data['order-count']
                 }
             });
         };
@@ -154,26 +152,6 @@
 
         function capitalizeFirstLetter(value) {
             return value.charAt(0).toUpperCase() + value.slice(1);
-        }
-
-        function DialogController($mdDialog, $state, orderCount) {
-            let vm = this;
-
-            vm.orderCount = orderCount;
-
-            vm.hide = function () {
-                $mdDialog.hide();
-            };
-
-            vm.leaveOrders = function() {
-                $mdDialog.hide();
-                $state.go('dashboard');
-            };
-
-            vm.getNextOrder = function() {
-                $mdDialog.hide();
-                location.reload();
-            }
         }
     }
 })();
