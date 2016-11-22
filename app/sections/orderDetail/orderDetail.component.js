@@ -15,7 +15,7 @@
     function OrderDetailController($mdDialog, $state, $window, $q, selectedNavItemService, ordersService) {
         let vm = this;
 
-        vm.currentStep = 2;
+        vm.currentStep = 1;
         vm.mealAmount = null;
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
@@ -55,7 +55,7 @@
         };
 
         vm.continueOrder = function() {
-            return ordersService.getPaymentDetails(vm.orderInfo.providerId, vm.mealAmount.replace('$', ''));
+            return ordersService.getPaymentDetails(vm.orderInfo.providerId, vm.mealAmount);
         };
 
         vm.continueComplete = function() {
@@ -70,11 +70,11 @@
             vm.needMoreFunds = false;
             vm.canCompleteDisabled = false;
 
-            if(item.amountUsed != null && item.amount !== item.amountUsed.replace('$', '')) {
+            if(item.amountUsed != null && item.amount !== removeDollar(item.amountUsed)) {
                 vm.needMoreFunds = true;
             }
 
-            if(item.amountUsed.replace('$', '') > item.amount) {
+            if(removeDollar(item.amountUsed) > item.amount) {
                 item.amountUsed = 0;
             }
 
@@ -99,11 +99,9 @@
         };
 
         vm.totalAmountChanged = function() {
-            if(vm.mealAmount.replace('$', '') > 0) {
-                vm.canContinueDisabled = false;
-            } else {
-                vm.canContinueDisabled = true;
-            }
+            vm.mealAmount = removeDollar(vm.mealAmount);
+
+            vm.canContinueDisabled = !(vm.mealAmount > 0);
         };
 
         vm.completeOrder = function () {
@@ -131,9 +129,11 @@
             vm.orderInfo.providerAddress = data.providerLocation.address.address1;
             vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
             vm.orderInfo.providerState = data.providerLocation.address.state.toUpperCase();
-            vm.orderInfo.foodItem = "Turkey Sandwich";
             //vm.orderInfo.orderItem = data.orderItems[0].menuItem.name;
             vm.orderInfo.orderTime = formatTime(data.orderDate);
+
+            vm.orderInfo.foodItem = "Turkey Sandwich";
+            vm.orderInfo.website = "http://www.subway.com";
 
             vm.orderShown = true;
         }
@@ -155,6 +155,10 @@
 
         function capitalizeFirstLetter(value) {
             return value.charAt(0).toUpperCase() + value.slice(1);
+        }
+
+        function removeDollar(value) {
+            return value.replace('$', '');
         }
     }
 })();
