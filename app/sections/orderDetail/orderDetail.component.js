@@ -22,6 +22,9 @@
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
         vm.canContinueDisabled = true;
+        vm.orderInfo = {};
+        vm.orderShown = false;
+        vm.loadingOrderShown = false;
 
         vm.$onInit = function () {
             selectedNavItemService.setSelectedItem("orders");
@@ -32,16 +35,6 @@
                 phone: "(479) 313-5606",
                 email: "veronica.bagwell@walmart.com",
                 organization: "7 Hills Homeless Center"
-            };
-
-            vm.orderInfo = {
-                name: "Subway",
-                foodItem: "Turkey Sandwich",
-                address: "2301 W Walnut St",
-                city: "Rogers",
-                state: "AR",
-                phone: "(479) 636-6699",
-                website: "http://www.subway.com/en-us"
             };
 
             vm.paymentInfo = [
@@ -125,13 +118,16 @@
         function getInitialSuccess(data) {
             console.log(data);
             vm.orderInfo.id = data.id;
+            vm.orderInfo.totalCost = data.total;
             vm.orderInfo.providerName = data.providerLocation.provider.name;
             vm.orderInfo.providerAddress = data.providerLocation.address.address1;
             vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
             vm.orderInfo.providerState = data.providerLocation.address.state.toUpperCase();
-            vm.orderInfo.totalCost = data.total;
+            vm.orderInfo.foodItem = "Turkey Sandwich";
             //vm.orderInfo.orderItem = data.orderItems[0].menuItem.name;
-            vm.orderInfo.orderTime = formatTime(data.orderDate)
+            vm.orderInfo.orderTime = formatTime(data.orderDate);
+
+            vm.orderShown = true;
         }
 
         function formatTime(value) {

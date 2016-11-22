@@ -277,3 +277,15 @@ md-card.order-detail-card {
   transform: translate3d(0, 0, 0);
   opacity: 1;
 }
+
+.order-detail-card.ng-enter {
+  transition: all 0.6s;
+  transform: translate3d(0, 50vw, 0);
+  opacity: 0;
+}
+
+.order-detail-card.ng-enter-active {
+  transition: all 0.6s;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
