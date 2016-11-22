@@ -30,12 +30,23 @@
 
         $scope.$watchCollection('vm.items', (newVal, oldVal) => {
             if(newVal !== oldVal) {
-                if(vm.items.length > 0 && !vm.contentHidden) {
-                    $timeout.cancel(startLoading);
-                    vm.loading = false;
+                if(angular.isArray(vm.items)) {
+                    if(vm.items.length > 0 && !vm.contentHidden) {
+                        $timeout.cancel(startLoading);
+                        vm.loading = false;
+                    }
+                    else {
+                        vm.loading = true;
+                    }
                 }
                 else {
-                    vm.loading = true;
+                    if(Object.keys(vm.items).length > 0 && !vm.contentHidden) {
+                        $timeout.cancel(startLoading);
+                        vm.loading = false;
+                    }
+                    else {
+                        vm.loading = true;
+                    }
                 }
             }
         })
