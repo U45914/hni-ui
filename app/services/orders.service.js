@@ -11,7 +11,9 @@
         return {
             getInitialOrder,
             getNextOrder,
-            getOrderCount
+            getPaymentDetails,
+            getOrderCount,
+            completeOrder
         };
 
         function getInitialOrder(success) {
@@ -32,8 +34,16 @@
                 });
         }
 
+        function getPaymentDetails(id, amount) {
+            return $http.get(`${baseUrl}/payments/payment-instruments?providerId=${id}&amount=${amount}`)
+        }
+
         function getOrderCount() {
             return $http.get(`${baseUrl}/orders/count`);
+        }
+
+        function completeOrder(id) {
+            return $http.put(`${baseUrl}/orders/completed/${id}`);
         }
     }
 })();

@@ -15,7 +15,7 @@
     function OrderDetailController($mdDialog, $state, $window, $q, selectedNavItemService, ordersService) {
         let vm = this;
 
-        vm.currentStep = 3;
+        vm.currentStep = 2;
         vm.mealAmount = null;
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
@@ -55,9 +55,11 @@
         };
 
         vm.continueOrder = function() {
-            if(vm.mealAmount.replace('$', '') > 0) {
-                vm.currentStep++;
-            }
+            return ordersService.getPaymentDetails(vm.orderInfo.providerId, vm.mealAmount.replace('$', ''));
+        };
+
+        vm.continueComplete = function() {
+            vm.currentStep++;
         };
 
         vm.leaveOrders = function() {
@@ -124,6 +126,7 @@
             console.log(data);
             vm.orderInfo.id = data.id;
             vm.orderInfo.totalCost = data.total;
+            vm.orderInfo.providerId = data.providerLocation.provider.id;
             vm.orderInfo.providerName = data.providerLocation.provider.name;
             vm.orderInfo.providerAddress = data.providerLocation.address.address1;
             vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
