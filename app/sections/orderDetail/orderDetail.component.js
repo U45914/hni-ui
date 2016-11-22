@@ -10,14 +10,14 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$mdDialog', '$state', '$window', 'selectedNavItemService', 'ordersService'];
+    OrderDetailController.$inject = ['$mdDialog', '$state', '$window', '$q', 'selectedNavItemService', 'ordersService'];
 
-    function OrderDetailController($mdDialog, $state, $window, selectedNavItemService, ordersService) {
-        DialogController.$inject = ['$mdDialog', '$state'];
+    function OrderDetailController($mdDialog, $state, $window, $q, selectedNavItemService, ordersService) {
+        DialogController.$inject = ['$mdDialog', '$state', 'orderCount'];
 
         let vm = this;
 
-        vm.currentStep = 1;
+        vm.currentStep = 3;
         vm.mealAmount = null;
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
@@ -107,11 +107,18 @@
         };
 
         vm.completeOrder = function () {
+            return ordersService.getOrderCount();
+        };
+
+        vm.showComplete = function(response) {
             $mdDialog.show({
                 controller: DialogController,
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                templateUrl: 'order-complete.tpl.html'
+                templateUrl: 'order-complete.tpl.html',
+                locals : {
+                    orderCount: response.data['order-count']
+                }
             });
         };
 
@@ -149,8 +156,10 @@
             return value.charAt(0).toUpperCase() + value.slice(1);
         }
 
-        function DialogController($mdDialog, $state) {
+        function DialogController($mdDialog, $state, orderCount) {
             let vm = this;
+
+            vm.orderCount = orderCount;
 
             vm.hide = function () {
                 $mdDialog.hide();

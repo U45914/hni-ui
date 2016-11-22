@@ -2,6 +2,7 @@
 
 .spinner-button {
   &.md-button[disabled] {
+    color: $color-white;
     background-color: $color-red-base;
   }
 

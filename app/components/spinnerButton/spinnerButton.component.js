@@ -31,17 +31,27 @@
             vm.buttonDisabled = true;
             $attrs.$set('style', `width: ${width}px; ${otherCss}`);
 
-            vm.clickFn().then(() => {
+            vm.clickFn().then((response) => {
                 let time = $window.performance.now() - t0;
 
                 if(time > 100) {
                     vm.spinnerShown = true;
 
                     $timeout(() => {
-                        vm.stopFn();
+                        finishAction(response);
                     }, 1000);
                 }
+                else {
+                    finishAction(response);
+                }
             });
+        };
+
+        function finishAction(response) {
+            $element.removeAttr('style');
+            vm.spinnerShown = false;
+            vm.buttonDisabled = false;
+            vm.stopFn()(response);
         }
     }
 })();

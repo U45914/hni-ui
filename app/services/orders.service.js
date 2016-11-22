@@ -10,7 +10,8 @@
 
         return {
             getInitialOrder,
-            getNextOrder
+            getNextOrder,
+            getOrderCount
         };
 
         function getInitialOrder(success) {
@@ -29,6 +30,10 @@
                 }, (error) => {
                     console.log(error);
                 });
+        }
+
+        function getOrderCount() {
+            return $http.get(`${baseUrl}/orders/count`);
         }
     }
 })();
