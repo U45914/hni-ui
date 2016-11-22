@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$mdDialog', '$state', '$window', 'selectedNavItemService'];
+    OrderDetailController.$inject = ['$mdDialog', '$state', '$window', 'selectedNavItemService', 'ordersService'];
 
-    function OrderDetailController($mdDialog, $state, $window, selectedNavItemService) {
+    function OrderDetailController($mdDialog, $state, $window, selectedNavItemService, ordersService) {
         DialogController.$inject = ['$mdDialog', '$state'];
 
         let vm = this;
@@ -25,6 +25,7 @@
 
         vm.$onInit = function () {
             selectedNavItemService.setSelectedItem("orders");
+            ordersService.getInitialOrder(getInitialSuccess);
 
             vm.user = {
                 name: "Veronica Bagwell",
@@ -36,7 +37,6 @@
             vm.orderInfo = {
                 name: "Subway",
                 foodItem: "Turkey Sandwich",
-                time: "12:30pm",
                 address: "2301 W Walnut St",
                 city: "Rogers",
                 state: "AR",
@@ -121,6 +121,37 @@
                 templateUrl: 'order-complete.tpl.html'
             });
         };
+
+        function getInitialSuccess(data) {
+            console.log(data);
+            vm.orderInfo.id = data.id;
+            vm.orderInfo.providerName = data.providerLocation.provider.name;
+            vm.orderInfo.providerAddress = data.providerLocation.address.address1;
+            vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
+            vm.orderInfo.providerState = data.providerLocation.address.state.toUpperCase();
+            vm.orderInfo.totalCost = data.total;
+            //vm.orderInfo.orderItem = data.orderItems[0].menuItem.name;
+            vm.orderInfo.orderTime = formatTime(data.orderDate)
+        }
+
+        function formatTime(value) {
+            let date = new Date(value);
+            let time = (`${date.getHours()}:${date.getMinutes()}`).split(':');
+
+            let hours = Number(time[0]);
+            let minutes = Number(time[1]);
+
+            let timeValue = "" + ((hours >12) ? hours - 12 : hours);
+            timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;
+
+            timeValue += (hours >= 12) ? 'pm' : "am";
+
+            return timeValue;
+        }
+
+        function capitalizeFirstLetter(value) {
+            return value.charAt(0).toUpperCase() + value.slice(1);
+        }
 
         function DialogController($mdDialog, $state) {
             let vm = this;
