@@ -26,13 +26,8 @@
                 });
         }
 
-        function getNextOrder(id, success) {
-            $http.get(`${baseUrl}/orders/next?providerId=${id}`)
-                .then((response) => {
-                    success(response)
-                }, (error) => {
-                    console.log(error);
-                });
+        function getNextOrder(id) {
+            return $http.get(`${baseUrl}/orders/next?providerId=${id}`);
         }
 
         function getPaymentDetails(orderId, providerId, amount) {

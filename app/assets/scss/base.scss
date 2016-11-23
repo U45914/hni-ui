@@ -7,9 +7,9 @@ html {
     color: $color-text;
     background-color: $color-background;
     font-size: rem(14px);
+  }
 
-    & > div {
-      background-color: $color-background;
-    }
+  & .ui-view-container {
+    background-color: $color-background;
   }
 }

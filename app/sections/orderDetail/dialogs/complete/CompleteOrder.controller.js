@@ -3,25 +3,24 @@
         .module('app')
         .controller('CompleteOrderController', CompleteOrderController);
 
-    CompleteOrderController.$inject = ['$mdDialog', '$state', 'orderCount'];
+    CompleteOrderController.$inject = ['$mdDialog', '$state', 'ordersService', 'orderCount', 'providerId'];
 
-    function CompleteOrderController($mdDialog, $state, orderCount) {
+    function CompleteOrderController($mdDialog, $state, ordersService, orderCount, providerId) {
         let vm = this;
 
         vm.orderCount = orderCount;
 
-        vm.hide = function () {
-            $mdDialog.hide();
-        };
-
         vm.leaveOrders = function() {
-            $mdDialog.hide();
+            $mdDialog.cancel();
             $state.go('dashboard');
         };
 
         vm.getNextOrder = function() {
-            $mdDialog.hide();
-            location.reload();
-        }
+            return ordersService.getNextOrder(providerId);
+        };
+
+        vm.nextOrderComplete = function(response) {
+            $mdDialog.hide(response);
+        };
     }
 })();

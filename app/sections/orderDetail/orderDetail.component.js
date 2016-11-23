@@ -150,16 +150,17 @@
                 parent: angular.element(document.body),
                 templateUrl: 'order-complete.tpl.html',
                 locals : {
+                    providerId: vm.orderInfo.providerId,
                     orderCount: response[0].data['order-count']
                 }
-            });
+            }).then((response) => { resetLocalData(); getInitialSuccess(response);});
         };
 
         //Sets data from first get orders call. If no data, sets interval to call the function until data exists.
         function getInitialSuccess(response) {
-            let data = response.data;
+            if(response.status !== 204) {
+                let data = response.data;
 
-            if(data != '') {
                 vm.orderInfo.orderId = data.id;
                 vm.orderInfo.totalCost = data.total;
                 vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;
@@ -169,10 +170,8 @@
                 vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
                 vm.orderInfo.providerWebsite = data.providerLocation.provider.websiteUrl;
                 vm.orderInfo.providerState = data.providerLocation.address.state.toUpperCase();
-                //vm.orderInfo.orderItem = data.orderItems[0].menuItem.name;
+                vm.orderInfo.orderItem = data.orderItems[0].menuItem.name;
                 vm.orderInfo.orderTime = formatTime(data.orderDate);
-
-                vm.orderInfo.foodItem = "Turkey Sandwich";
 
                 lockGetInitialOrder = false;
                 vm.orderShown = true;
@@ -230,6 +229,21 @@
                     }
                 )
             });
+        }
+
+        function resetLocalData() {
+            lockGetInitialOrder = false;
+            initialOrderInterval = null;
+
+            vm.currentStep = 1;
+            vm.mealAmount = null;
+            vm.needMoreFunds = false;
+            vm.canCompleteDisabled = true;
+            vm.canContinueDisabled = true;
+            vm.orderShown = false;
+            vm.loadingOrderShown = false;
+            vm.orderInfo = {};
+            vm.paymentInfo = [];
         }
     }
 })();
