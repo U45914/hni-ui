@@ -23,19 +23,22 @@
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
         vm.canContinueDisabled = true;
-        vm.orderInfo = {};
         vm.orderShown = false;
         vm.loadingOrderShown = false;
+        vm.orderInfo = {};
+        vm.paymentInfo = [];
 
         vm.$onInit = function () {
             selectedNavItemService.setSelectedItem("orders");
             ordersService.getInitialOrder(getInitialSuccess);
 
+            //Unlocks order on leaving scope.
             $scope.$on('$destroy', () => {
                 $interval.cancel(initialOrderInterval);
                 timeoutService.cancelTimeout();
             });
 
+            //Unlocks order on state change.
             $scope.$on('$stateChangeStart', () => {
                 if(vm.orderInfo.orderId) {
                     ordersService.unlockOrder(vm.orderInfo.orderId);
@@ -44,6 +47,7 @@
                 $window.onbeforeunload = undefined;
             });
 
+            //Unlocks order on refresh/browser close/tab close
             $window.onbeforeunload = function() {
                 if(vm.orderInfo.orderId) {
                     var xmlhttp = new XMLHttpRequest();
@@ -55,19 +59,6 @@
 
                 return null;
             };
-
-            vm.paymentInfo = [
-                {
-                    code: "1234 4567 9874 5489",
-                    amount: "2.75",
-                    amountUsed: null
-                },
-                {
-                    code: "1234 4567 9874 5489",
-                    amount: "2.75",
-                    amountUsed: null
-                }
-            ]
         };
 
         vm.placeOrder = function() {
@@ -79,7 +70,20 @@
             return ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, vm.mealAmount);
         };
 
-        vm.continueComplete = function() {
+        vm.continueComplete = function(response) {
+            angular.forEach(response.data, (data) => {
+                vm.paymentInfo.push(
+                    {
+                        orderId: vm.orderInfo.orderId,
+                        amount: data.amount,
+                        paymentInstrumentId: data.id.paymentInstrument.id,
+                        cardNumber: data.id.paymentInstrument.cardNumber,
+                        pinNumber: data.id.paymentInstrument.pinNumber,
+                        amountUsed: null
+                    }
+                )
+            });
+
             vm.currentStep++;
         };
 
@@ -126,7 +130,16 @@
         };
 
         vm.completeOrder = function () {
-            return $q.all([ordersService.getOrderCount()]);
+            let data = angular.copy(vm.paymentInfo);
+
+            angular.forEach(data, (item) => {
+                delete item['amount'];
+                delete item['cardNumber'];
+                delete item['pinNumber'];
+                item.amountUsed = Number(removeDollar(item.amountUsed));
+            });
+
+            return $q.all([ordersService.getOrderCount(), ordersService.completeOrder(data)]);
         };
 
         vm.showComplete = function(response) {
@@ -141,6 +154,7 @@
             });
         };
 
+        //Sets data from first get orders call. If no data, sets interval to call the function until data exists.
         function getInitialSuccess(response) {
             let data = response.data;
 
@@ -177,6 +191,7 @@
             }
         }
 
+        //formats epoch time to hours + minutes
         function formatTime(value) {
             let date = new Date(value);
             let time = (`${date.getHours()}:${date.getMinutes()}`).split(':');

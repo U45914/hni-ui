@@ -43,8 +43,10 @@
             return $http.get(`${baseUrl}/orders/count`);
         }
 
-        function completeOrder(id) {
-            return $http.put(`${baseUrl}/orders/completed/${id}`);
+        function completeOrder(data) {
+            let postData = angular.toJson(data);
+
+            return $http.post(`${baseUrl}/payments/order-payments`, postData);
         }
 
         function unlockOrder(id) {

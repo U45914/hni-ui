@@ -38,7 +38,7 @@
                 <div class="order-payment-info-container" flex="100">
                     <div class="order-detail-payment-info payment-info-animation" flex layout="row" layout-wrap ng-repeat="item in vm.paymentInfo" ng-if="vm.currentStep == 3">
                         <div flex="50" flex-xs="100">
-                            {{item.code}}
+                            {{item.cardNumber}}
                         </div>
                         <div flex="25" flex-xs="40">
                             ${{item.amount}}
