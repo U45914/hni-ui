@@ -37,18 +37,21 @@
                 </md-input-container>
                 <div class="order-payment-info-container" flex="100">
                     <div class="order-detail-payment-info payment-info-animation" flex layout="row" layout-wrap ng-repeat="item in vm.paymentInfo" ng-if="vm.currentStep == 3">
-                        <div flex="50" flex-xs="100">
+                        <div flex="40" flex-xs="60">
                             {{item.cardNumber}}
                         </div>
-                        <div flex="25" flex-xs="40">
+                        <div flex="15" flex-xs="40">
+                            {{item.pinNumber}}
+                        </div>
+                        <div flex="15" flex-xs="60">
                             ${{item.amount}}
                         </div>
-                        <div flex="25" flex-xs="60">
+                        <div flex="30" flex-xs="40">
                             <form name="amountForm">
                                 <md-input-container class="input-primary">
                                     <label>Amount Used</label>
                                     <input name="amountUsed" ng-model="item.amountUsed" ng-model-options="{ updateOn: 'blur' }" ng-change="vm.amountUsedChanged(item)" currency-input="currency">
-                                    <i class="material-icons payment-amount-error-icon" ng-show="item.amount !== item.amountUsed.replace('$', '') && !amountForm.amountUsed.$pristine">&#xE002;</i>
+                                    <i class="material-icons payment-amount-error-icon" ng-show="item.error">&#xE002;</i>
                                 </md-input-container>
                             </form>
                         </div>

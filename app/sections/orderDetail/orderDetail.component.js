@@ -47,7 +47,7 @@
                 $window.onbeforeunload = undefined;
             });
 
-            //Unlocks order on refresh/browser close/tab close
+            //Unlocks order on refresh/browser close/tab close. Needs xmlhttp call to force the call to be synchronous.
             $window.onbeforeunload = function() {
                 if(vm.orderInfo.orderId) {
                     var xmlhttp = new XMLHttpRequest();
@@ -71,18 +71,7 @@
         };
 
         vm.continueComplete = function(response) {
-            angular.forEach(response.data, (data) => {
-                vm.paymentInfo.push(
-                    {
-                        orderId: vm.orderInfo.orderId,
-                        amount: data.amount,
-                        paymentInstrumentId: data.id.paymentInstrument.id,
-                        cardNumber: data.id.paymentInstrument.cardNumber,
-                        pinNumber: data.id.paymentInstrument.pinNumber,
-                        amountUsed: null
-                    }
-                )
-            });
+            setPaymentInfo(response.data);
 
             vm.currentStep++;
         };
@@ -94,12 +83,17 @@
         vm.amountUsedChanged = function(item) {
             vm.needMoreFunds = false;
             vm.canCompleteDisabled = false;
+            item.amountUsed = Number(removeDollar(item.amountUsed));
 
-            if(item.amountUsed != null && item.amount !== removeDollar(item.amountUsed)) {
+            if(item.amountUsed !== null && item.amount !== item.amountUsed) {
+                item.error = true;
                 vm.needMoreFunds = true;
             }
+            else {
+                item.error = false;
+            }
 
-            if(removeDollar(item.amountUsed) > item.amount) {
+            if(item.amountUsed > item.amount) {
                 item.amountUsed = 0;
             }
 
@@ -111,16 +105,23 @@
         };
 
         vm.getMoreFunds = function() {
+            let amountNeeded = 0;
+
             vm.canCompleteDisabled = true;
             vm.needMoreFunds = false;
 
-            vm.paymentInfo.push(
-                {
-                    code: "1234 4567 9874 5489",
-                    amount: "2.75",
-                    amountUsed: null
+            angular.forEach(vm.paymentInfo, (item) => {
+                if(item.error) {
+                    amountNeeded = (Math.round((item.amount - item.amountUsed) * 100 ) / 100);
                 }
-            )
+
+                item.error = false;
+            });
+
+            ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, amountNeeded)
+                .then((response) => {
+                    setPaymentInfo(response.data);
+            })
         };
 
         vm.totalAmountChanged = function() {
@@ -136,7 +137,7 @@
                 delete item['amount'];
                 delete item['cardNumber'];
                 delete item['pinNumber'];
-                item.amountUsed = Number(removeDollar(item.amountUsed));
+                delete item['error'];
             });
 
             return $q.all([ordersService.getOrderCount(), ordersService.completeOrder(data)]);
@@ -213,6 +214,22 @@
 
         function removeDollar(value) {
             return value.replace('$', '');
+        }
+
+        function setPaymentInfo(data) {
+            angular.forEach(data, (item) => {
+                vm.paymentInfo.push(
+                    {
+                        orderId: vm.orderInfo.orderId,
+                        amount: item.amount,
+                        paymentInstrumentId: item.id.paymentInstrument.id,
+                        cardNumber: item.id.paymentInstrument.cardNumber,
+                        pinNumber: item.id.paymentInstrument.pinNumber,
+                        amountUsed: null,
+                        error: false
+                    }
+                )
+            });
         }
     }
 })();

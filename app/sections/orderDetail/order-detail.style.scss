@@ -1,7 +1,7 @@
 @import '_includes';
 
 #order-detail-container {
-  max-width: rem(480px);
+  max-width: rem(500px);
   margin-left: auto;
   margin-right: auto;
   padding: rem(60px) rem(160px) rem(60px) rem(160px);
@@ -123,6 +123,10 @@ md-card.order-detail-card {
       font-weight: bold;
     }
 
+    & > div:not(:last-child) {
+      padding-right: rem(6px);
+    }
+
     & i.material-icons {
       position: absolute;
       top: 10px;
@@ -210,10 +214,28 @@ md-card.order-detail-card {
 @media screen and (max-width: 600px) {
   #order-detail-container {
     padding: rem(20px);
-  }
 
-  .order-detail-payment-info > div:not(:first-child) {
-    margin-top: rem(24px);
+    & .order-detail-amount-container {
+      padding-left: rem(36px);
+      padding-right: rem(36px);
+    }
+
+    & .order-detail-payment-info {
+      & > div:not(:first-child):not(:nth-child(2)) {
+        margin-top: rem(24px);
+      }
+
+      & i.material-icons {
+        right: rem(-30px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #order-detail-container {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
