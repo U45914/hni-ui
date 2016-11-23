@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'authService', 'ordersService', 'timeoutService'];
+    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'authService', 'ordersService', 'timeoutService', 'serviceConstants'];
 
-    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, authService, ordersService, timeoutService) {
+    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, authService, ordersService, timeoutService, serviceConstants) {
         let vm = this;
 
         let lockGetInitialOrder = false;
@@ -37,17 +37,17 @@
             });
 
             $scope.$on('$stateChangeStart', () => {
-                if(vm.orderInfo.id) {
-                    ordersService.unlockOrder(vm.orderInfo.id);
+                if(vm.orderInfo.orderId) {
+                    ordersService.unlockOrder(vm.orderInfo.orderId);
                 }
 
                 $window.onbeforeunload = undefined;
             });
 
             $window.onbeforeunload = function() {
-                if(vm.orderInfo.id) {
+                if(vm.orderInfo.orderId) {
                     var xmlhttp = new XMLHttpRequest();
-                    xmlhttp.open("DELETE", `http://hni-api-dev.centralus.cloudapp.azure.com:8080/api/v1/orders/lock/${vm.orderInfo.id}`, false);
+                    xmlhttp.open("DELETE", `${serviceConstants.baseUrl}/orders/lock/${vm.orderInfo.orderId}`, false);
                     xmlhttp.setRequestHeader("Content-type", "application/json");
                     xmlhttp.setRequestHeader("X-hni-token", authService.getToken());
                     xmlhttp.send();
@@ -72,12 +72,11 @@
 
         vm.placeOrder = function() {
             vm.currentStep++;
-            console.log(vm.orderInfo.providerWebsite);
             $window.open(vm.orderInfo.providerWebsite, '_blank');
         };
 
         vm.continueOrder = function() {
-            return ordersService.getPaymentDetails(vm.orderInfo.providerId, vm.mealAmount);
+            return ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, vm.mealAmount);
         };
 
         vm.continueComplete = function() {
@@ -146,7 +145,7 @@
             let data = response.data;
 
             if(data != '') {
-                vm.orderInfo.id = data.id;
+                vm.orderInfo.orderId = data.id;
                 vm.orderInfo.totalCost = data.total;
                 vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;
                 vm.orderInfo.providerId = data.providerLocation.provider.id;

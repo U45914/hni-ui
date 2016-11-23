@@ -35,8 +35,8 @@
                 });
         }
 
-        function getPaymentDetails(id, amount) {
-            return $http.get(`${baseUrl}/payments/payment-instruments?providerId=${id}&amount=${amount}`)
+        function getPaymentDetails(orderId, providerId, amount) {
+            return $http.get(`${baseUrl}/payments/payment-instruments?orderId=${orderId}&providerId=${providerId}&amount=${amount}`)
         }
 
         function getOrderCount() {
