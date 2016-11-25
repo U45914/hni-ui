@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['$auth', '$state', 'authService'];
+    LoginController.$inject = ['authService', 'externalAuthService'];
 
-    function LoginController($auth, $state, authService) {
+    function LoginController(authService, externalAuthService) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
@@ -21,8 +21,8 @@
         vm.authenticate = authenticate;
 
         function authenticate(provider) {
-            $auth.authenticate(provider)
-                .then(function(response) {
+            externalAuthService.googleAuthenticate()
+                .then((response) => {
                     authService.loginExternal(provider, response["access_token"]);
                 });
         }

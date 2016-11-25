@@ -1,4 +1,4 @@
 (function() {
     angular
-        .module('app', ['ui.router', 'ngMaterial', 'satellizer']);
+        .module('app', ['ui.router', 'ngMaterial']);
 })();
