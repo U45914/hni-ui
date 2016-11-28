@@ -7,10 +7,11 @@
 
     function externalAuthService($window, $interval, $q) {
         let origin = $window.location.origin;
+        let open = false;
 
         let google = {
             authUrl: 'https://accounts.google.com/o/oauth2/v2/auth?',
-            scope: 'email%20profile',
+            scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email',
             responseType: 'token',
             clientId: '567741740801-nq7pm00785quslevgntd4et58usf3ufh.apps.googleusercontent.com',
             windowWidth: 452,
@@ -22,30 +23,36 @@
         };
 
         function googleAuthenticate() {
-            let windowUrl = `${google.authUrl}scope=${google.scope}&redirect_uri=${origin}&response_type=${google.responseType}&client_id=${google.clientId}`;
-            let top = $window.screenY + (($window.outerHeight - google.windowHeight) / 2.5);
-            let left = $window.screenX + (($window.outerWidth - google.windowWidth) / 2);
-            let windowProperties = `width=${google.windowWidth},height=${google.windowHeight}`;
-            let newWindow = $window.open(windowUrl, "", windowProperties);
+            if(!open) {
+                let windowUrl = `${google.authUrl}scope=${google.scope}&redirect_uri=${origin}&response_type=${google.responseType}&client_id=${google.clientId}`;
+                let top = $window.screenY + (($window.outerHeight - google.windowHeight) / 2.5);
+                let left = $window.screenX + (($window.outerWidth - google.windowWidth) / 2);
+                let windowProperties = `width=${google.windowWidth},height=${google.windowHeight}`;
+                let newWindow = $window.open(windowUrl, "", windowProperties);
 
-            newWindow.moveTo(left, top);
+                newWindow.moveTo(left, top);
 
-            return $q((resolve, reject) => {
-                let authInterval = $interval(() => {
-                    try {
-                        if(newWindow.closed) {
-                            $interval.cancel(authInterval);
-                        }
-                        else if (newWindow.document.URL.indexOf(origin) != -1 && newWindow.document.URL.indexOf('access_token') != -1) {
-                            let queryString = newWindow.document.URL.replace('#', '').replace(origin, '').replace('/', '');
+                return $q((resolve, reject) => {
+                    let authInterval = $interval(() => {
+                        open = true;
 
-                            $interval.cancel(authInterval);
-                            newWindow.close();
-                            resolve(parseUrl(queryString));
-                        }
-                    } catch(error) {}
-                }, 200);
-            });
+                        try {
+                            if(newWindow.closed) {
+                                $interval.cancel(authInterval);
+                                open = false;
+                            }
+                            else if (newWindow.document.URL.indexOf(origin) != -1 && newWindow.document.URL.indexOf('access_token') != -1) {
+                                let queryString = newWindow.document.URL.replace('#', '').replace(origin, '').replace('/', '');
+
+                                $interval.cancel(authInterval);
+                                newWindow.close();
+                                resolve(parseUrl(queryString));
+                                open = false;
+                            }
+                        } catch(error) {}
+                    }, 50);
+                });
+            }
         }
 
         function parseUrl(queryString) {
