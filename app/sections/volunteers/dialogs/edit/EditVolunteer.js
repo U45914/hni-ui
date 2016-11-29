@@ -3,51 +3,56 @@
         .module('app')
         .controller('EditVolunteerController', EditVolunteerController);
 
-    EditVolunteerController.$inject = ['$mdDialog', 'userService', 'personService', 'orgService', 'rolesConstant', 'volunteer'];
+    EditVolunteerController.$inject = ['$q', '$mdDialog', 'userService', 'personService', 'orgService', 'rolesConstant', 'volunteer'];
 
-    function EditVolunteerController($mdDialog, userService, personService, orgService, rolesConstant, volunteer) {
+    function EditVolunteerController($q, $mdDialog, userService, personService, orgService, rolesConstant, volunteer) {
         let vm = this;
 
         let previousOrg = {id: volunteer.organizationId, value: volunteer.organization};
+        let previousInfo = angular.copy(volunteer);
 
         vm.person = angular.copy(volunteer);
-        vm.entityRole = volunteer.role;
+        vm.entityRole = vm.person.role;
         vm.rolesConstant = rolesConstant;
-        vm.isSelected = isSelected;
-        vm.toggleSelection = toggleSelection;
         vm.selectedOrgs = [];
         vm.orgAdminChecked = false;
+        vm.toggleSelection = toggleSelection;
 
         orgService.getOrgs(userService.getUser().id, getOrgSuccess);
 
         delete vm.person['name'];
         delete vm.person['organization'];
+        delete vm.person['role'];
 
         vm.dismiss = function () {
-            $mdDialog.hide();
+            $mdDialog.cancel();
         };
 
         vm.savePerson = function () {
-            personService.postPerson(vm.person, editPersonSaved, editPersonError);
+            let promises = [personService.postPerson(vm.person)];
 
-            function editPersonSaved() {
-                volunteer = angular.extend(vm.person, {name: `${vm.person.firstName} ${vm.person.lastName}`});
-                vm.person = {};
-                $mdDialog.hide();
+            if(previousInfo.organizationId !== vm.selectedOrg.id || previousInfo.role !== vm.entityRole) {
+                promises.push(personService.removePerson(vm.person.id, previousInfo.organizationId));
+                promises.push(personService.addToOrg(vm.person.id, vm.selectedOrg.id, vm.entityRole));
             }
 
-            function editPersonError() {
-                console.log("Error");
-            }
+            return $q.all(promises);
+        };
+
+        vm.personSaved = function() {
+            volunteer = angular.extend(vm.person,
+                {name: `${vm.person.firstName} ${vm.person.lastName}`},
+                {role: vm.entityRole},
+                {organization: vm.selectedOrg.value},
+                {organizationId: vm.selectedOrg.id}
+            );
+
+            $mdDialog.hide(volunteer);
         };
 
         vm.changeRole = function(role) {
             vm.entityRole = role;
         };
-
-        function isSelected(org) {
-            return vm.selectedOrgs.indexOf(org) > -1;
-        }
 
         function toggleSelection(org) {
             vm.selectedOrg = org;

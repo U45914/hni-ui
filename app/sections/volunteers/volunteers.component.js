@@ -143,7 +143,7 @@
                 locals : {
                     volunteer : volunteer
                 }
-            });
+            }).then((volunteer) => { replaceVolunteer(volunteer) });
         };
 
         vm.deleteVolunteer = function (volunteer) {
@@ -175,6 +175,11 @@
                 angular.extend(item, {role: role});
                 tempItems.push(item);
             });
+        }
+
+        function replaceVolunteer(volunteer) {
+            let index = vm.items.map((item) => item.id).indexOf(volunteer.id);
+            vm.items[index] = volunteer;
         }
     }
 })();

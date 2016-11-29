@@ -59,13 +59,8 @@
                 });
         }
 
-        function removePerson(id, orgId, success, failure) {
-            $http.delete(`${baseUrl}/users/${id}/organizations/${orgId}`)
-                .then(function successCallback() {
-                    success();
-                }, function errorCallback() {
-                    failure();
-                });
+        function removePerson(id, orgId) {
+            return $http.delete(`${baseUrl}/users/${id}/organizations/${orgId}`);
         }
     }
 })();
