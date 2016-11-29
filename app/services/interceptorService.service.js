@@ -3,9 +3,9 @@
         .module('app')
         .factory('interceptorService', interceptorService);
 
-    interceptorService.$inject = ['$injector'];
+    interceptorService.$inject = ['$injector', '$timeout'];
 
-    function interceptorService($injector) {
+    function interceptorService($injector, $timeout) {
         return {
             'request': function(configuration) {
                 let authService = $injector.get('authService');
@@ -19,13 +19,16 @@
             },
 
             responseError: function(rejection) {
-                if (rejection.status === -1 || rejection.status === 401) {
+                if (rejection.status === -1 || rejection.status === 401 || rejection.status === 403) {
                     let authService = $injector.get('authService');
                     let userService = $injector.get('userService');
                     let state = $injector.get('$state');
 
-                    //authService.logout();
                     state.go('login');
+
+                    $timeout(() => {
+                        authService.logout();
+                    }, 100);
                 }
             }
         };
