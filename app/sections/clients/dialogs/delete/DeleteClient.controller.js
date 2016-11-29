@@ -15,15 +15,11 @@
         };
 
         vm.deleteClient = function() {
-            personService.removePerson(vm.client.id, vm.client.organizationId, clientDeletedSuccess, clientDeletedError);
-
-            function clientDeletedSuccess() {
-                $mdDialog.hide(vm.client);
-            }
-
-            function clientDeletedError() {
-                console.log("Error");
-            }
+            return personService.removePerson(vm.client.id, vm.client.organizationId);
         };
+
+        vm.clientDeletedSuccess = function() {
+            $mdDialog.hide(vm.client);
+        }
     }
 })();

@@ -8,6 +8,6 @@
     </md-dialog-content>
     <md-dialog-actions>
         <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.dismiss()">No</md-button>
-        <md-button class="md-raised button-primary" ng-click="vm.deleteVolunteer()">Yes, Delete</md-button>
+        <spinner-button text="Yes, Delete" click-fn="vm.deleteVolunteer()" stop-fn="vm.volunteeerDeletedSuccess"></spinner-button>
     </md-dialog-actions>
 </md-dialog>

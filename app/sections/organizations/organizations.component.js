@@ -65,7 +65,7 @@
                 locals : {
                     item : item
                 }
-            }).then((editedItem) => { replaceItem(editedItem) });
+            }).then((editedItem) => { replaceOrganization(editedItem) });
         };
 
         vm.deleteOrganization = function (item) {
@@ -77,7 +77,7 @@
                 locals : {
                     item : item
                 }
-            }).then((removedItem) => { deleteItem(removedItem) });
+            }).then((org) => { removeOrganization(org) });
         };
 
         function getOrgSuccess(response) {
@@ -88,13 +88,13 @@
             console.log(error);
         }
 
-        function replaceItem(editedItem) {
+        function replaceOrganization(editedItem) {
             let index = vm.items.map((item) => item.id).indexOf(editedItem.id);
             vm.items[index] = editedItem;
         }
 
-        function deleteItem(removedItem) {
-            let index = vm.items.map((item) => item.id).indexOf(removedItem.id);
+        function removeOrganization(org) {
+            let index = vm.items.map((item) => item.id).indexOf(org.id);
             vm.items.splice(index, 1);
         }
     }

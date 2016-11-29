@@ -15,15 +15,11 @@
         };
 
         vm.deleteVolunteer = function() {
-            personService.removeOrg(vm.volunteer.id, volunteeerDeletedSuccess, volunteerDeletedError);
-
-            function volunteeerDeletedSuccess() {
-                $mdDialog.hide();
-            }
-
-            function volunteerDeletedError() {
-                console.log("Error");
-            }
+            return personService.removePerson(vm.volunteer.id, vm.volunteer.organizationId);
         };
+
+        vm.volunteeerDeletedSuccess = function() {
+            $mdDialog.hide(vm.volunteer);
+        }
     }
 })();

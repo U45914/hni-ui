@@ -78,7 +78,7 @@
                 locals : {
                     client : client
                 }
-            }).then((removedClient) => { deleteClient(removedClient) });
+            }).then((client) => { removeClient(client) });
         };
 
         function setItemsSuccess(response) {
@@ -99,8 +99,8 @@
             vm.items[index] = client;
         }
 
-        function deleteClient(removedClient) {
-            let index = vm.items.map((item) => item.id).indexOf(removedClient.id);
+        function removeClient(client) {
+            let index = vm.items.map((item) => item.id).indexOf(client.id);
             vm.items.splice(index, 1);
         }
     }

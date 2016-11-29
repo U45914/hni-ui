@@ -155,7 +155,7 @@
                 locals : {
                     volunteer : volunteer
                 }
-            });
+            }).then((volunteer) => { removeVolunteer(volunteer) });
         };
 
         function getVolunteersSuccess(response) {
@@ -180,6 +180,11 @@
         function replaceVolunteer(volunteer) {
             let index = vm.items.map((item) => item.id).indexOf(volunteer.id);
             vm.items[index] = volunteer;
+        }
+
+        function removeVolunteer(volunteer) {
+            let index = vm.items.map((item) => item.id).indexOf(volunteer.id);
+            vm.items.splice(index, 1);
         }
     }
 })();
