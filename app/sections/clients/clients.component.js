@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    ClientsController.$inject = ['$mdDialog', 'selectedNavItemService', 'authService', 'personService', 'rolesConstant'];
+    ClientsController.$inject = ['$mdDialog', 'selectedNavItemService', 'authService', 'personService', 'orgService', 'rolesConstant'];
 
-    function ClientsController($mdDialog, selectedNavItemService, authService, personService, rolesConstant) {
+    function ClientsController($mdDialog, selectedNavItemService, authService, personService, orgService, rolesConstant) {
         let vm = this;
 
         vm.$onInit = function () {
@@ -66,7 +66,7 @@
                 locals : {
                     client : client
                 }
-            });
+            }).then((client) => { replaceClient(client) });
         };
 
         vm.deleteClient = function (client) {
@@ -86,7 +86,17 @@
 
             angular.forEach(vm.items, (item) => {
                 item = angular.extend(item, {name: `${item.firstName} ${item.lastName}`});
+                orgService.getOrgUser(item.id)
+                    .then((response) => {
+                        item.organization = response.data[0].name;
+                        item.organizationId = response.data[0].id;
+                    });
             });
+        }
+
+        function replaceClient(client) {
+            let index = vm.items.map((item) => item.id).indexOf(client.id);
+            vm.items[index] = client;
         }
     }
 })();

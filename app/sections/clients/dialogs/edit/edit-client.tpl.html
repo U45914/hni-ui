@@ -27,10 +27,10 @@
                 <label>Email Address</label>
                 <input ng-model="vm.person.email">
             </md-input-container>
-            <md-input-container class="input-primary" flex="100">
+            <md-input-container class="input-primary" flex="100" ng-if="vm.role === vm.rolesConstant.superAdmin">
                 <label>Organization</label>
-                <md-select ng-model="vm.selectedOrg" ng-model-options="{trackBy: '$value.id'}">
-                    <md-option ng-repeat="org in vm.organizations" ng-value="org" selected="vm.selectedOrg.id === org.id">
+                <md-select ng-model="vm.selectedOrg">
+                    <md-option ng-repeat="org in vm.organizations" ng-value="org" ng-selected="{{org.id === vm.selectedOrg.id ? 'true' : 'false'}}">
                         {{org.value}}
                     </md-option>
                 </md-select>

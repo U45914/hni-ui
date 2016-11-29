@@ -24,13 +24,8 @@
                 });
         }
 
-        function getOrgUser(id, success) {
-            $http.get(`${baseUrl}/organizations/users/${id}`)
-                .then((response) => {
-                    success(response);
-                }, (error) => {
-                    console.log(error);
-                });
+        function getOrgUser(id) {
+            return $http.get(`${baseUrl}/organizations/users/${id}`);
         }
 
         function postOrg(data, success, failure) {

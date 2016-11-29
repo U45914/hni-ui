@@ -3,24 +3,25 @@
         .module('app')
         .controller('EditClientController', EditClientController);
 
-    EditClientController.$inject = ['$mdDialog', 'userService', 'personService', 'orgService','client'];
+    EditClientController.$inject = ['$mdDialog', 'authService', 'userService', 'personService', 'orgService', 'rolesConstant', 'client'];
 
-    function EditClientController($mdDialog, userService, personService, orgService, client) {
+    function EditClientController($mdDialog, authService, userService, personService, orgService, rolesConstant, client) {
         let vm = this;
 
-        let previousOrg = null;
+        let previousOrg = {id: client.organizationId, value: client.organization};
 
         vm.person = angular.copy(client);
-        vm.selectedOrg = null;
+        vm.role = authService.getRole();
+        vm.rolesConstant = rolesConstant;
 
         orgService.getOrgs(userService.getUser().id, getOrgSuccess);
-        orgService.getOrgUser(vm.person.id, getOrgUserSuccess);
 
         delete vm.person['name'];
         delete vm.person['organization'];
+        delete vm.person['organizationId'];
 
         vm.dismiss = function () {
-            $mdDialog.hide();
+            $mdDialog.cancel();
         };
 
         vm.savePerson = function () {
@@ -34,17 +35,16 @@
 
         function getOrgSuccess(response) {
             vm.organizations = response.data.map(function (org) { return { value: org.name, id: org.id}; });
-            console.log(response.data[0]);
-        }
-
-        function getOrgUserSuccess(response) {
-            vm.selectedOrg = previousOrg = { value: response.data[0].name, id: response.data[0].id};
+            vm.selectedOrg = previousOrg;
         }
 
         function editPersonSaved() {
-            client = angular.extend(vm.person, {name: `${vm.person.firstName} ${vm.person.lastName}`});
-            vm.person = {};
-            $mdDialog.hide();
+            client = angular.extend(vm.person,
+                {name: `${vm.person.firstName} ${vm.person.lastName}`},
+                {organization: vm.selectedOrg.value},
+                {organizationId: vm.selectedOrg.id}
+            );
+            $mdDialog.hide(client);
         }
 
         function editPersonError() {
