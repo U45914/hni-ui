@@ -35,15 +35,10 @@
                 });
         }
 
-        function postPerson(data, success, failure) {
+        function postPerson(data) {
             let postData = JSON.stringify(data);
 
-            $http.post(`${baseUrl}/users`, postData)
-                .then(function successCallback() {
-                    success();
-                }, function errorCallback() {
-                    failure();
-                });
+            return $http.post(`${baseUrl}/users`, postData);
         }
 
         function addToOrg(id, orgId, roleId) {
@@ -64,8 +59,8 @@
                 });
         }
 
-        function removePerson(id, success, failure) {
-            $http.delete(`${baseUrl}/users/${id}`)
+        function removePerson(id, orgId, success, failure) {
+            $http.delete(`${baseUrl}/users/${id}/organizations/${orgId}`)
                 .then(function successCallback() {
                     success();
                 }, function errorCallback() {

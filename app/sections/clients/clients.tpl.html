@@ -1,6 +1,6 @@
 <sub-nav-bar text="Clients" icon="&#xE87C;" fab-fn="vm.newClient()"></sub-nav-bar>
 
-<div class="loading-entity-container">
+<div class="loading-entity-container" ng-hide="!vm.contentHidden">
 	<loading-entity items="vm.items" content-hidden="vm.contentHidden"></loading-entity>
 </div>
 
@@ -10,7 +10,7 @@
 
 <div class="entity-cards-container" ng-if="vm.items.length > 0 && !vm.contentHidden" layout="row"  layout-wrap hide-gt-sm>
 	<entity-card flex="100" flex-sm="50" ng-repeat="item in vm.items"
-				 header="item.name" content="[{icon: '&#xE0CD;', text: item.name}, {icon: '&#xE0BE;', text: item.email}, {icon: '&#xE0AF;', text: item.ngo}]"
+				 header="item.name" content="[{icon: '&#xE0CD;', text: item.name}, {icon: '&#xE0BE;', text: item.email}, {icon: '&#xE0AF;', text: item.organization}]"
 				 entity-item="item" edit-fn="vm.editClient" delete-fn="vm.deleteClient">
 	</entity-card>
 </div>

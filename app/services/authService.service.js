@@ -88,27 +88,27 @@
         }
 
         function setRole(permissions) {
-            //let roles = permissions.map((permission) => permission.roleId.toString());
-            //let role = '';
-            //
-            //if(roles.indexOf(rolesConstant.superAdmin) !== -1) {
-            //    role = rolesConstant.superAdmin;
-            //}
-            //else if(roles.indexOf(rolesConstant.ngoAdmin) !== -1) {
-            //    role = rolesConstant.ngoAdmin;
-            //}
-            //else if(roles.indexOf(rolesConstant.volunteer) !== -1) {
-            //    role = rolesConstant.volunteer;
-            //}
-            //else if(roles.indexOf(rolesConstant.client) !== -1) {
-            //    role = rolesConstant.client;
-            //}
-            //else if(roles.indexOf(rolesConstant.user) !== -1) {
-            //    role = rolesConstant.user;
-            //}
-            //
-            //window.localStorage.setItem(LOCAL_ROLE, role);
-            //authRole = role;
+            let roles = permissions.roles;
+            let role = '';
+
+            if(roles.indexOf(rolesConstant.superAdmin) !== -1) {
+                role = rolesConstant.superAdmin;
+            }
+            else if(roles.indexOf(rolesConstant.ngoAdmin) !== -1) {
+                role = rolesConstant.ngoAdmin;
+            }
+            else if(roles.indexOf(rolesConstant.volunteer) !== -1) {
+                role = rolesConstant.volunteer;
+            }
+            else if(roles.indexOf(rolesConstant.client) !== -1) {
+                role = rolesConstant.client;
+            }
+            else if(roles.indexOf(rolesConstant.user) !== -1) {
+                role = rolesConstant.user;
+            }
+
+            window.localStorage.setItem(LOCAL_ROLE, role);
+            authRole = role;
 
             window.localStorage.setItem(LOCAL_ROLE, rolesConstant.superAdmin);
             authRole = rolesConstant.superAdmin;

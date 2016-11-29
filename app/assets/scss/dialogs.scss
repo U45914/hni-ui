@@ -89,7 +89,7 @@ md-dialog.entity-popup {
     }
   }
 
-  md-input-container:last-child {
+  md-input-container:last-child:not(.md-select-primary) {
     margin-bottom: 0;
   }
 

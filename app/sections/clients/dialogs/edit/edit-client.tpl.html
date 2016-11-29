@@ -27,7 +27,7 @@
                 <label>Email Address</label>
                 <input ng-model="vm.person.email">
             </md-input-container>
-            <md-input-container class="input-primary" flex="100" ng-if="vm.role === vm.rolesConstant.superAdmin">
+            <md-input-container class="input-primary md-select-primary" flex="100" ng-if="vm.role === vm.rolesConstant.superAdmin">
                 <label>Organization</label>
                 <md-select ng-model="vm.selectedOrg">
                     <md-option ng-repeat="org in vm.organizations" ng-value="org" ng-selected="{{org.id === vm.selectedOrg.id ? 'true' : 'false'}}">
@@ -39,6 +39,6 @@
     </md-dialog-content>
     <md-dialog-actions>
         <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.dismiss()">Exit</md-button>
-        <md-button class="md-raised button-primary" ng-click="vm.savePerson()">Save</md-button>
+        <spinner-button text="Save" click-fn="vm.savePerson()" stop-fn="vm.personSaved"></spinner-button>
     </md-dialog-actions>
 </md-dialog>

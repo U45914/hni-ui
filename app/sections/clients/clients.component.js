@@ -78,7 +78,7 @@
                 locals : {
                     client : client
                 }
-            });
+            }).then((removedClient) => { deleteClient(removedClient) });
         };
 
         function setItemsSuccess(response) {
@@ -97,6 +97,11 @@
         function replaceClient(client) {
             let index = vm.items.map((item) => item.id).indexOf(client.id);
             vm.items[index] = client;
+        }
+
+        function deleteClient(removedClient) {
+            let index = vm.items.map((item) => item.id).indexOf(removedClient.id);
+            vm.items.splice(index, 1);
         }
     }
 })();

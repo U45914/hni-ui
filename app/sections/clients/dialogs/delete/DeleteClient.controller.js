@@ -11,14 +11,14 @@
         vm.client = client;
 
         vm.dismiss = function () {
-            $mdDialog.hide();
+            $mdDialog.cancel();
         };
 
         vm.deleteClient = function() {
-            personService.removeClient(vm.client.id, clientDeletedSuccess, clientDeletedError);
+            personService.removePerson(vm.client.id, vm.client.organizationId, clientDeletedSuccess, clientDeletedError);
 
             function clientDeletedSuccess() {
-                $mdDialog.hide();
+                $mdDialog.hide(vm.client);
             }
 
             function clientDeletedError() {
