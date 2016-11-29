@@ -10,6 +10,6 @@
 
 <div class="entity-cards-container" ng-if="vm.items.length > 0 && !vm.contentHidden" layout="row" layout-wrap hide-gt-sm>
 	<entity-card flex="100" flex-sm="50" ng-repeat="item in vm.items"
-				 header="item.name" content="[{icon: '&#xE0CD;', text: item.name}, {icon: '&#xE0BE;', text: item.email}, {icon: '&#xE0AF;', text: item.org}]"
+				 header="item.name" content="[{icon: '&#xE0CD;', text: item.mobilePhone}, {icon: '&#xE0BE;', text: item.email}, {icon: '&#xE0AF;', text: item.organization}]"
 				 entity-item="item" edit-fn="vm.editVolunteer" delete-fn="vm.deleteVolunteer"></entity-card>
 </div>

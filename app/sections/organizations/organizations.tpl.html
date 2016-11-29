@@ -1,6 +1,6 @@
 <sub-nav-bar text="Organizations" icon="&#xE0AF;" show-fab="true" fab-fn="vm.newOrganization()"></sub-nav-bar>
 
-<div class="loading-entity-container">
+<div class="loading-entity-container" ng-hide="!vm.contentHidden">
 	<loading-entity items="vm.items" content-hidden="vm.contentHidden"></loading-entity>
 </div>
 

@@ -54,7 +54,7 @@
                     sortable: true
                 },
                 {
-                    key: 'phone',
+                    key: 'mobilePhone',
                     displayName: 'Phone',
                     sortable: false
                 },
