@@ -10,6 +10,7 @@
 
         return {
             getOrgs,
+            getOrgUser,
             postOrg,
             removeOrg
         };
@@ -20,6 +21,15 @@
                     success(response);
                 }, function errorCallback(error) {
                     failure(error);
+                });
+        }
+
+        function getOrgUser(id, success) {
+            $http.get(`${baseUrl}/organizations/users/${id}`)
+                .then((response) => {
+                    success(response);
+                }, (error) => {
+                    console.log(error);
                 });
         }
 

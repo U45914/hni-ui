@@ -4,7 +4,7 @@
         .component('listTable', {
             bindings: {
                 headerfields: '<',
-                items: '<',
+                items: '=',
                 editFn: '&',
                 deleteFn: '&'
             },

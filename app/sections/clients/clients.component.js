@@ -10,13 +10,17 @@
             controllerAs: 'vm'
         });
 
-    ClientsController.$inject = ['$mdDialog', 'selectedNavItemService'];
+    ClientsController.$inject = ['$mdDialog', 'selectedNavItemService', 'authService', 'personService', 'rolesConstant'];
 
-    function ClientsController($mdDialog, selectedNavItemService) {
+    function ClientsController($mdDialog, selectedNavItemService, authService, personService, rolesConstant) {
         let vm = this;
 
         vm.$onInit = function () {
             selectedNavItemService.setSelectedItem("clients");
+
+            if(authService.getRole().toString() === rolesConstant.superAdmin) {
+                vm.items = personService.getAllPersons(4, setItemsSuccess);
+            }
 
             vm.headerFields = [
                 {
@@ -40,61 +44,6 @@
                     sortable: true
                 }
             ];
-
-            vm.items = [
-                {
-                    id: 3,
-                    firstName: 'Veronica',
-                    lastName: 'Bagwell',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'veronica.bagwell@walmart.com',
-                    organization: 'The Manna Center'
-                },
-                {
-                    id: 4,
-                    firstName: 'Justin',
-                    lastName: 'Palmer',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'justin.palmer@walmart.com',
-                    organization: 'Samaritan Community Center0'
-                },
-                {
-                    id: 5,
-                    firstName: 'Kayleigh',
-                    lastName: 'Cooper',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'kayleigh.cooper@walmart.com',
-                    organization: 'The Manna Center'
-                },
-                {
-                    id: 6,
-                    firstName: 'Veronica',
-                    lastName: 'Bagwell',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'veronica.bagwell@walmart.com',
-                    organization: 'The Manna Center'
-                },
-                {
-                    id: 7,
-                    firstName: 'Justin',
-                    lastName: 'Palmer',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'justin.palmer@walmart.com',
-                    organization: 'Samaritan Community'
-                },
-                {
-                    id: 8,
-                    firstName: 'Kayleigh',
-                    lastName: 'Cooper',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'kayleigh.cooper@walmart.com',
-                    organization: 'The Manna Center'
-                }
-            ];
-
-            angular.forEach(vm.items, (item) => {
-                item = angular.extend(item, {name: `${item.firstName} ${item.lastName}`});
-            });
         };
 
         vm.newClient = function () {
@@ -131,5 +80,13 @@
                 }
             });
         };
+
+        function setItemsSuccess(response) {
+            vm.items = response.data;
+
+            angular.forEach(vm.items, (item) => {
+                item = angular.extend(item, {name: `${item.firstName} ${item.lastName}`});
+            });
+        }
     }
 })();

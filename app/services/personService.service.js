@@ -10,7 +10,10 @@
 
         return {
             getPerson,
+            getAllPersons,
             postPerson,
+            addToOrg,
+            removeFromOrg,
             removePerson
         };
 
@@ -23,6 +26,15 @@
                 });
         }
 
+        function getAllPersons(roleId, success) {
+            $http.get(`${baseUrl}/users/organizations?roleId=${roleId}`)
+                .then((response) => {
+                    success(response);
+                }, (error) => {
+                    console.log(error);
+                });
+        }
+
         function postPerson(data, success, failure) {
             let postData = JSON.stringify(data);
 
@@ -31,6 +43,24 @@
                     success();
                 }, function errorCallback() {
                     failure();
+                });
+        }
+
+        function addToOrg(id, orgId, roleId) {
+            $http.put(`${baseUrl}/users/${id}/organizations/${orgId}/roles/${roleId}`)
+                .then((response) => {
+
+                }, (error) => {
+                    console.log(error);
+                });
+        }
+
+        function removeFromOrg(id, orgId, roleId) {
+            $http.delete(`${baseUrl}/users/${id}/organizations/${orgId}/roles/${roleId}`)
+                .then((response) => {
+
+                }, (error) => {
+                    console.log(error);
                 });
         }
 
