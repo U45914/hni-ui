@@ -18,7 +18,7 @@
         };
 
         function getPerson(orgId, roleId, success, failure) {
-            $http.get(`${baseUrl}/users/organizations/${orgId}/roles/${roleId}`)
+            return $http.get(`${baseUrl}/users/organizations/${orgId}/roles/${roleId}`)
                 .then(function successCallback(response) {
                     success(response);
                 }, function errorCallback() {
@@ -27,7 +27,7 @@
         }
 
         function getAllPersons(roleId, success) {
-            $http.get(`${baseUrl}/users/organizations?roleId=${roleId}`)
+            return $http.get(`${baseUrl}/users/organizations?roleId=${roleId}`)
                 .then((response) => {
                     success(response);
                 }, (error) => {

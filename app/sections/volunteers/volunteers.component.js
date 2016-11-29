@@ -10,15 +10,42 @@
             controllerAs: 'vm'
         });
 
-    VolunteersController.$inject = ['$mdDialog', 'selectedNavItemService', 'personService'];
+    VolunteersController.$inject = ['$q', '$mdDialog', 'selectedNavItemService', 'personService', 'orgService', 'rolesConstant'];
 
-    function VolunteersController($mdDialog, selectedNavItemService, personService) {
+    function VolunteersController($q, $mdDialog, selectedNavItemService, personService, orgService, rolesConstant) {
         let vm = this;
 
+        let tempItems = [];
+
         vm.$onInit = function () {
+            let getAllOrgUsers = [];
+
             selectedNavItemService.setSelectedItem("volunteers");
 
-            personService.getPerson(3, 3, getPersonSuccess, getPersonFailure);
+            $q.all([
+                personService.getAllPersons(rolesConstant.volunteer, getVolunteersSuccess),
+                personService.getAllPersons(rolesConstant.superAdmin, getSuperAdminsSuccess),
+                personService.getAllPersons(rolesConstant.ngoAdmin, getNgoAdminsSuccess)
+            ]).then(() => {
+                angular.forEach(tempItems, (item) => {
+                    item = angular.extend(item, {name: `${item.firstName} ${item.lastName}`});
+
+                    getAllOrgUsers.push(
+                        orgService.getOrgUser(item.id)
+                            .then((response) => {
+                                if(response.data[0]) {
+                                    item.organization = response.data[0].name;
+                                    item.organizationId = response.data[0].id;
+                                }
+                            })
+                    )
+                });
+            }).then(() => {
+                $q.all(getAllOrgUsers)
+                    .then(() => {
+                        vm.items = tempItems;
+                    })
+            });
 
             vm.headerFields = [
                 {
@@ -43,60 +70,56 @@
                 }
             ];
 
-            vm.items = [
-                {
-                    id: 3,
-                    firstName: 'Veronica',
-                    lastName: 'Bagwell',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'veronica.bagwell@walmart.com',
-                    organization: 'The Manna Center'
-                },
-                {
-                    id: 4,
-                    firstName: 'Justin',
-                    lastName: 'Palmer',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'justin.palmer@walmart.com',
-                    organization: 'Samaritan Community Center0'
-                },
-                {
-                    id: 5,
-                    firstName: 'Kayleigh',
-                    lastName: 'Cooper',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'kayleigh.cooper@walmart.com',
-                    organization: 'The Manna Center'
-                },
-                {
-                    id: 6,
-                    firstName: 'Veronica',
-                    lastName: 'Bagwell',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'veronica.bagwell@walmart.com',
-                    organization: 'The Manna Center'
-                },
-                {
-                    id: 7,
-                    firstName: 'Justin',
-                    lastName: 'Palmer',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'justin.palmer@walmart.com',
-                    organization: 'Samaritan Community'
-                },
-                {
-                    id: 8,
-                    firstName: 'Kayleigh',
-                    lastName: 'Cooper',
-                    mobilePhone: '(479) 123-4567',
-                    email: 'kayleigh.cooper@walmart.com',
-                    organization: 'The Manna Center'
-                }
-            ];
-
-            angular.forEach(vm.items, (item) => {
-                item = angular.extend(item, {name: `${item.firstName} ${item.lastName}`});
-            });
+            //vm.items = [
+            //    {
+            //        id: 3,
+            //        firstName: 'Veronica',
+            //        lastName: 'Bagwell',
+            //        mobilePhone: '(479) 123-4567',
+            //        email: 'veronica.bagwell@walmart.com',
+            //        organization: 'The Manna Center'
+            //    },
+            //    {
+            //        id: 4,
+            //        firstName: 'Justin',
+            //        lastName: 'Palmer',
+            //        mobilePhone: '(479) 123-4567',
+            //        email: 'justin.palmer@walmart.com',
+            //        organization: 'Samaritan Community Center0'
+            //    },
+            //    {
+            //        id: 5,
+            //        firstName: 'Kayleigh',
+            //        lastName: 'Cooper',
+            //        mobilePhone: '(479) 123-4567',
+            //        email: 'kayleigh.cooper@walmart.com',
+            //        organization: 'The Manna Center'
+            //    },
+            //    {
+            //        id: 6,
+            //        firstName: 'Veronica',
+            //        lastName: 'Bagwell',
+            //        mobilePhone: '(479) 123-4567',
+            //        email: 'veronica.bagwell@walmart.com',
+            //        organization: 'The Manna Center'
+            //    },
+            //    {
+            //        id: 7,
+            //        firstName: 'Justin',
+            //        lastName: 'Palmer',
+            //        mobilePhone: '(479) 123-4567',
+            //        email: 'justin.palmer@walmart.com',
+            //        organization: 'Samaritan Community'
+            //    },
+            //    {
+            //        id: 8,
+            //        firstName: 'Kayleigh',
+            //        lastName: 'Cooper',
+            //        mobilePhone: '(479) 123-4567',
+            //        email: 'kayleigh.cooper@walmart.com',
+            //        organization: 'The Manna Center'
+            //    }
+            //];
 
         };
 
@@ -115,7 +138,7 @@
                 controller: 'EditVolunteerController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),
-                templateUrl: getEditTemplate(),
+                templateUrl: 'edit-volunteer-superadmin.tpl.html',
                 fullscreen: true,
                 locals : {
                     volunteer : volunteer
@@ -135,25 +158,23 @@
             });
         };
 
-        function getEditTemplate() {
-            let templateUrl = '';
-
-            if(false) {
-                templateUrl = 'edit-volunteer-ngoadmin.tpl.html';
-            }
-            else {
-                templateUrl = 'edit-volunteer-superadmin.tpl.html';
-            }
-
-            return templateUrl;
+        function getVolunteersSuccess(response) {
+            getPersonSuccess(response.data, rolesConstant.volunteer);
         }
 
-        function getPersonSuccess(response) {
-            console.log(response);
+        function getSuperAdminsSuccess(response) {
+            getPersonSuccess(response.data, rolesConstant.superAdmin);
         }
 
-        function getPersonFailure(error) {
-            console.log(error);
+        function getNgoAdminsSuccess(response) {
+            getPersonSuccess(response.data, rolesConstant.ngoAdmin);
+        }
+
+        function getPersonSuccess(data, role) {
+            angular.forEach(data, (item) => {
+                angular.extend(item, {role: role});
+                tempItems.push(item);
+            });
         }
     }
 })();

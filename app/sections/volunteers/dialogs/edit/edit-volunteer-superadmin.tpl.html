@@ -42,8 +42,8 @@
                         <div>Organization</div>
                     </div>
                     <div class="entity-assocations-checkboxes">
-                        <md-checkbox class="checkbox-primary" ng-checked="vm.isSelected(ngo)" ng-click="vm.toggleSelection(ngo)" ng-repeat="ngo in vm.organizations" flex-gt-sm>
-                            {{ ngo.name }}
+                        <md-checkbox class="checkbox-primary" ng-repeat="org in vm.organizations" ng-checked="org.id === vm.selectedOrg.id" ng-click="vm.toggleSelection(org)" flex-gt-sm>
+                            {{ org.value }}
                         </md-checkbox>
                     </div>
                 </div>
@@ -54,20 +54,23 @@
                     </div>
                     <div class="entity-roles-checkboxes">
                         <div layout="row">
-                            <md-checkbox class="checkbox-primary">Super Admin</md-checkbox>
-                            <md-checkbox class="checkbox-primary">Volunteer</md-checkbox>
+                            <md-checkbox class="checkbox-primary" ng-click="vm.changeRole(vm.rolesConstant.superAdmin)"
+                                         ng-checked="vm.entityRole === vm.rolesConstant.superAdmin">Super Admin</md-checkbox>
+                            <md-checkbox class="checkbox-primary" ng-click="vm.changeRole(vm.rolesConstant.volunteer)"
+                                         ng-checked="vm.entityRole === vm.rolesConstant.volunteer">Volunteer</md-checkbox>
                         </div>
                         <div>
-                            <md-checkbox class="checkbox-primary" ng-model="vm.ngoAdminChecked">NGO Admin</md-checkbox>
-                            <br>
-                            <md-input-container class="input-primary" flex="100" ng-style="{visibility: vm.ngoAdminChecked == true ? 'initial':'hidden'}">
-                                <label>Organization</label>
-                                <md-select ng-model="vm.person.organization">
-                                    <md-option ng-repeat="org in vm.allOrgs" ng-value="org.value">
-                                        {{org.value}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
+                            <md-checkbox class="checkbox-primary" ng-click="vm.changeRole(vm.rolesConstant.ngoAdmin)"
+                                         ng-checked="vm.entityRole === vm.rolesConstant.ngoAdmin">NGO Admin</md-checkbox>
+                            <!--<br>-->
+                            <!--<md-input-container class="input-primary" flex="100" ng-style="{visibility: vm.ngoAdminChecked == true ? 'initial':'hidden'}">-->
+                                <!--<label>Organization</label>-->
+                                <!--<md-select ng-model="vm.person.organization">-->
+                                    <!--<md-option ng-repeat="org in vm.organizations" ng-value="org.value">-->
+                                        <!--{{org.value}}-->
+                                    <!--</md-option>-->
+                                <!--</md-select>-->
+                            <!--</md-input-container>-->
                         </div>
                     </div>
                 </div>

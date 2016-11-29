@@ -1,11 +1,10 @@
 <sub-nav-bar text="Volunteers" icon="&#xE7FB;" fab-fn="vm.newVolunteer()"></sub-nav-bar>
 
-
-<div class="entity-table-container" hide-sm hide-xs>
+<div class="entity-table-container" ng-if="vm.items.length > 0 && !vm.contentHidden" hide-sm hide-xs>
 	<list-table headerfields="vm.headerFields" items="vm.items" edit-fn="vm.editVolunteer" delete-fn="vm.deleteVolunteer"></list-table>
 </div>
 
-<div class="entity-cards-container" layout="row" layout-wrap hide-gt-sm>
+<div class="entity-cards-container" ng-if="vm.items.length > 0 && !vm.contentHidden" layout="row" layout-wrap hide-gt-sm>
 	<entity-card flex="100" flex-sm="50" ng-repeat="item in vm.items"
 				 header="item.name" content="[{icon: '&#xE0CD;', text: item.name}, {icon: '&#xE0BE;', text: item.email}, {icon: '&#xE0AF;', text: item.org}]"
 				 entity-item="item" edit-fn="vm.editVolunteer" delete-fn="vm.deleteVolunteer"></entity-card>

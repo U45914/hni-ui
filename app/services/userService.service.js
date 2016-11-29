@@ -7,7 +7,6 @@
 
     function userService() {
         let user = {};
-        let organizations = [];
         const USER_ID = 'hni_id';
         const USER_EMAIL = 'hni_email';
         const FIRST_NAME = 'hni_firstName';
@@ -20,8 +19,7 @@
             getUser: getUser,
             setUser: setUser,
             removeUserDetails,
-            loadUserDetails,
-            getOrganizations: getOrganizations
+            loadUserDetails
         };
 
         function getUser() {
@@ -55,15 +53,6 @@
             user.fistName = window.localStorage.removeItem(FIRST_NAME);
             user.lastName = window.localStorage.removeItem(LAST_NAME);
             user.mobilePhone = window.localStorage.removeItem(PHONE);
-        }
-
-        function getOrganizations() {
-            for(var i = 0; i < 5; i++) {
-                organizations.push({name: "Samaritan Community Center" + i, address: "2510 N 17th St #203Rogers, AR 72756", phone: "(479) 246-0104", website: "http://www.samcc.org", logo: "app/assets/images/scc_logo.jpg"});
-                organizations.push({name: "Care Community Center" + i, address: "2510 N 17th St #203Rogers, AR 72756", phone: "(479) 246-0104", website: "http://www.samcc.org", logo: "app/assets/images/scc_logo.jpg"});
-            }
-
-            return organizations;
         }
     }
 })();

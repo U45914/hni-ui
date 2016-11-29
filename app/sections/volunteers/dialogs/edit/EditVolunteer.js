@@ -3,18 +3,22 @@
         .module('app')
         .controller('EditVolunteerController', EditVolunteerController);
 
-    EditVolunteerController.$inject = ['$mdDialog', 'userService', 'personService', 'volunteer'];
+    EditVolunteerController.$inject = ['$mdDialog', 'userService', 'personService', 'orgService', 'rolesConstant', 'volunteer'];
 
-    function EditVolunteerController($mdDialog, userService, personService, volunteer) {
+    function EditVolunteerController($mdDialog, userService, personService, orgService, rolesConstant, volunteer) {
         let vm = this;
 
+        let previousOrg = {id: volunteer.organizationId, value: volunteer.organization};
+
         vm.person = angular.copy(volunteer);
+        vm.entityRole = volunteer.role;
+        vm.rolesConstant = rolesConstant;
         vm.isSelected = isSelected;
         vm.toggleSelection = toggleSelection;
         vm.selectedOrgs = [];
-        vm.organizations = userService.getOrganizations();
-        vm.allOrgs = vm.organizations.map(function (org) { return { value: org.name }; });
         vm.orgAdminChecked = false;
+
+        orgService.getOrgs(userService.getUser().id, getOrgSuccess);
 
         delete vm.person['name'];
         delete vm.person['organization'];
@@ -37,17 +41,21 @@
             }
         };
 
+        vm.changeRole = function(role) {
+            vm.entityRole = role;
+        };
+
         function isSelected(org) {
             return vm.selectedOrgs.indexOf(org) > -1;
         }
 
         function toggleSelection(org) {
-            if (isSelected(org)) {
-                var index = vm.selectedOrgs.indexOf(org);
-                vm.selectedOrgs.splice(index, 1);
-            } else {
-                vm.selectedOrgs.push(org);
-            }
+            vm.selectedOrg = org;
+        }
+
+        function getOrgSuccess(response) {
+            vm.organizations = response.data.map(function (org) { return { value: org.name, id: org.id}; });
+            vm.selectedOrg = previousOrg;
         }
     }
 })();
