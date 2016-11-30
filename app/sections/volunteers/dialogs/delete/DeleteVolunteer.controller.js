@@ -11,7 +11,7 @@
         vm.volunteer = volunteer;
 
         vm.dismiss = function () {
-            $mdDialog.hide();
+            $mdDialog.cancel();
         };
 
         vm.deleteVolunteer = function() {

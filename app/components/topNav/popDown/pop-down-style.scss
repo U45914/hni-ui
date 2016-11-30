@@ -8,16 +8,25 @@ pop-down {
 .pop-down-container {
   position: absolute;
   right: 0;
-  font-size: rem(16px);
+  font-size: rem(12px);
+  color: $color-text;
 }
 
 .pop-down-content {
-  width: rem(150px);
+  display: flex;
+  align-items: center;
+  width: rem(250px);
+  padding: rem(12px);
   color: $color-text;
   background-color: $color-white;
   border: 1px solid #ccc;
-  border-radius: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
   box-shadow: 0 2px 10px rgba(0,0,0,.2);
+
+  & .material-icons {
+    font-size: rem(48px);
+  }
 }
 
 .pop-down-triangle {
@@ -51,20 +60,32 @@ pop-down {
   }
 }
 
-.pop-down-item {
+.pop-down-items {
+  margin-left: auto;
+
+  & .pop-down-item {
+    &:not(:last-child) {
+      margin-bottom: rem(6px);
+    }
+  }
+}
+
+.pop-down-footer {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   padding: rem(12px);
-  outline: none;
-  user-select: none;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  background-color: $color-white;
 
-  &:hover {
-    background-color: rgba(158,158,158,0.2);
-    cursor: pointer;
-  }
-
-  & > span:nth-child(2) {
-    margin-left: auto;
-    margin-right: auto;
+  & button {
+    min-height: 0;
+    min-width: 60px;
+    line-height: rem(28px);
+    font-size: rem(12px);
   }
 }

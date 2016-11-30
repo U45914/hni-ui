@@ -10,16 +10,22 @@
             restrict: 'E',
             transclude: true,
             scope: {
-                popupShown: '='
+                popupShown: '=',
+                name: '@',
+                email: '@'
             },
             template: `<div>
                             <div class="pop-down-container" ng-show="popupShown">
                                 <div class="pop-down-triangle"></div>
                                 <div class="pop-down-content">
-                                    <div class="pop-down-item" md-ink-ripple ng-click="logout()">
-                                        <span class="material-icons">&#xE879;</span>
-                                        <span>Log Out</span>
+                                    <div class="material-icons">&#xE853;</div>
+                                    <div class="pop-down-items">
+                                        <div class="pop-down-item">{{::name}}</div>
+                                        <div class="pop-down-item">{{::email}}</div>
                                     </div>
+                                </div>
+                                <div class="pop-down-footer">
+                                    <md-button class="md-raised button-primary" ng-click="logout()">Log Out</md-button>
                                 </div>
                             </div>
                             <span ng-transclude></span>

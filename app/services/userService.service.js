@@ -34,7 +34,7 @@
         function loadUserDetails() {
             user.id = window.localStorage.getItem(USER_ID);
             user.email = window.localStorage.getItem(USER_EMAIL);
-            user.fistName = window.localStorage.getItem(FIRST_NAME);
+            user.firstName = window.localStorage.getItem(FIRST_NAME);
             user.lastName = window.localStorage.getItem(LAST_NAME);
             user.mobilePhone = window.localStorage.getItem(PHONE);
         }
@@ -50,7 +50,7 @@
         function removeUserDetails() {
             user.id = window.localStorage.removeItem(USER_ID);
             user.email = window.localStorage.removeItem(USER_EMAIL);
-            user.fistName = window.localStorage.removeItem(FIRST_NAME);
+            user.firstName = window.localStorage.removeItem(FIRST_NAME);
             user.lastName = window.localStorage.removeItem(LAST_NAME);
             user.mobilePhone = window.localStorage.removeItem(PHONE);
         }

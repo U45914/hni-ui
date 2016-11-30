@@ -9,7 +9,7 @@
         <div id="toolbar-content"></div>
         <span flex></span>
         <div id="user-name" hide show-gt-sm>{{vm.user.email}}</div>
-        <pop-down popup-shown="vm.showPopup">
+        <pop-down popup-shown="vm.showPopup" name="{{::vm.user.firstName + ' ' + vm.user.lastName}}" email="{{::vm.user.email}}">
             <div class="account-icon material-icons" ng-click="vm.togglePopup()">
                 <span>&#xE853;</span><span>&#xE5CF;</span>
             </div>
