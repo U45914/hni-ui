@@ -3,15 +3,25 @@
         .module('app')
         .factory('resizeService', resizeService);
 
-    resizeService.$inject = ['$window'];
+    resizeService.$inject = ['$window', '$timeout'];
 
-    function resizeService($window) {
+    function resizeService($window, $timeout) {
         let callbackList = [];
 
+        let timeoutPending = false;
+
         angular.element($window).on('resize', ()=> {
-            angular.forEach(callbackList, (callback) => {
-                callback();
-            })
+            if(!timeoutPending) {
+                timeoutPending = true;
+
+                $timeout(() => {
+                    angular.forEach(callbackList, (callback) => {
+                        callback();
+                    });
+
+                    timeoutPending = false;
+                }, 500);
+            }
         });
 
         return {
