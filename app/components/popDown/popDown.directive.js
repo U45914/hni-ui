@@ -3,13 +3,15 @@
         .module('app')
         .directive('popDown', popDown);
 
-    popDown.$inject = ['$timeout', '$state', 'authService'];
+    popDown.$inject = ['$timeout', '$document', '$state', 'authService'];
 
-    function popDown($timeout, $state, authService) {
+    function popDown($timeout, $document, $state, authService) {
         return {
-            restrict: 'A',
+            restrict: 'E',
             transclude: true,
-            scope: true,
+            scope: {
+                popupShown: '='
+            },
             template: `<div>
                             <div class="pop-down-container" ng-show="popupShown">
                                 <div class="pop-down-triangle"></div>
@@ -29,8 +31,8 @@
             let triangleHeight = 24;
             let elementHeight = element[0].offsetHeight;
             let top = triangleHeight/2 + elementHeight;
+            let body = angular.element($document[0].body);
 
-            scope.popupShown = scope.$eval(attrs.popDown);
 
             element[0].querySelector('.pop-down-container').style.top = `${top}px`;
 
@@ -46,11 +48,27 @@
                 }, 300);
             };
 
-            scope.$watch(attrs.popDown, (newVal, oldVal) => {
+            scope.$watch('popupShown', (newVal, oldVal) => {
                 if(newVal !== oldVal) {
-                    scope.popupShown = scope.$eval(attrs.popDown);
+
+                    if(scope.popupShown) {
+                        setTimeout(() => {
+                            body.on('click', closePopup);
+                        }, 10);
+                    }
+                    else {
+                        setTimeout(() => {
+                            body.off('click', closePopup);
+                        }, 10);
+                    }
                 }
             });
+
+            function closePopup() {
+                scope.$evalAsync(() => {
+                    scope.popupShown = false;
+                })
+            }
         }
     }
 })();

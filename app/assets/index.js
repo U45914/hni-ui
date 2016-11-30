@@ -7,7 +7,6 @@ if (module.hot) {
 requireAll(require.context('./scss', true, /\.scss$/));
 requireAll(require.context('../sections', true, /\.scss$/));
 requireAll(require.context('../components', true, /\.scss$/));
-requireAll(require.context('../directives', true, /\.scss$/));
 
 
 //Iterates through every file at the context passed in, except for the values passed in.
