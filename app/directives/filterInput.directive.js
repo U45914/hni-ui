@@ -15,7 +15,7 @@
         };
 
         function link(scope, element, attrs) {
-            var copy = angular.copy(scope.filterInput);
+            let copy = angular.copy(scope.filterInput);
 
             element.on('input', () => {
                 scope.$apply(() => {
@@ -26,6 +26,12 @@
                         scope.filterInput = ($filter('filter')(copy, element[0].value));
                     }
                 })
+            });
+
+            scope.$watch('filterInput', (newVal, oldVal) => {
+                if(newVal !== oldVal && copy === undefined) {
+                    copy = angular.copy(scope.filterInput);
+                }
             })
         }
     }

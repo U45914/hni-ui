@@ -1,0 +1,16 @@
+@import '_includes';
+
+.entity-associations-checkboxes {
+  padding-top: rem(20px);
+  padding-bottom: rem(20px);
+  padding-left: rem(20px);
+  margin-left: rem(-20px);
+  margin-top: rem(-20px);
+  height: rem(270px);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.volunteers-checkbox {
+  width: 100%;
+}

@@ -35,14 +35,14 @@
                 <div class="edit-entity-org-section">
                     <div class="entity-associations-header">
                         <div class="input-expandable">
-                            <input type="text" id="volunteer-search" filter-input="vm.organizations" filter-name="orgFilter">
+                            <input type="text" id="volunteer-search" filter-input="vm.organizations">
                             <label for="volunteer-search"></label>
                         </div>
                         <i class="material-icons">&#xE0AF;</i>
                         <div>Organization</div>
                     </div>
-                    <div class="entity-assocations-checkboxes">
-                        <md-checkbox class="checkbox-primary" ng-repeat="org in vm.organizations" ng-checked="org.id === vm.selectedOrg.id" ng-click="vm.toggleSelection(org)" flex-gt-sm>
+                    <div class="entity-associations-checkboxes">
+                        <md-checkbox class="checkbox-primary volunteers-checkbox" ng-repeat="org in vm.organizations" ng-checked="org.id === vm.selectedOrg.id" ng-click="vm.toggleSelection(org)">
                             {{ org.value }}
                         </md-checkbox>
                     </div>
