@@ -19,6 +19,8 @@
 
         let content = $element[0].querySelector('#toolbar-content');
 
+        vm.showPopup = false;
+
         $transclude($scope, (clone) => {
             angular.element(content).append(clone);
         });
@@ -32,5 +34,9 @@
                 });
             }
         };
+
+        vm.togglePopup = function() {
+            vm.showPopup = !vm.showPopup;
+        }
     }
 })();

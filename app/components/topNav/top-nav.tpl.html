@@ -9,6 +9,10 @@
         <div id="toolbar-content"></div>
         <span flex></span>
         <div id="user-name" hide show-gt-sm>{{vm.user.email}}</div>
-        <div class="account-icon material-icons"><span>&#xE853;</span><span>&#xE5CF;</span></div>
+        <div pop-down="vm.showPopup">
+            <div class="account-icon material-icons" ng-click="vm.togglePopup()">
+                <span>&#xE853;</span><span>&#xE5CF;</span>
+            </div>
+        </div>
     </div>
 </md-toolbar>

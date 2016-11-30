@@ -28,7 +28,7 @@
 
                     $timeout(() => {
                         authService.logout();
-                    }, 100);
+                    }, 300);
                 }
             }
         };
