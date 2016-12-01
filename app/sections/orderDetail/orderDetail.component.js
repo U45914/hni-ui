@@ -81,7 +81,7 @@
         };
 
         vm.leaveOrders = function() {
-            $state.go('dashboard');
+            authService.logout();
         };
 
         vm.amountUsedChanged = function(item) {
