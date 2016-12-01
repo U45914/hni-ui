@@ -116,7 +116,7 @@
 
             angular.forEach(vm.paymentInfo, (item) => {
                 if(item.error) {
-                    amountNeeded = (Math.round((item.amount - item.amountUsed) * 100 ) / 100);
+                    amountNeeded += (Math.round((item.amount - item.amountUsed) * 100 ) / 100);
                 }
 
                 item.error = false;
@@ -129,8 +129,6 @@
         };
 
         vm.totalAmountChanged = function() {
-            vm.mealAmount = vm.mealAmount;
-
             vm.canContinueDisabled = !(vm.mealAmount > 0);
         };
 
@@ -229,6 +227,10 @@
                     }
                 )
             });
+
+            if(vm.paymentInfo.length < 1) {
+                vm.canCompleteDisabled = false;
+            }
         }
 
         function resetLocalData() {
