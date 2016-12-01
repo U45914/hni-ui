@@ -32,7 +32,7 @@
             let promises = [personService.postPerson(vm.person)];
 
             if(previousInfo.organizationId !== vm.selectedOrg.id || previousInfo.role !== vm.entityRole) {
-                promises.push(personService.removePerson(vm.person.id, previousInfo.organizationId));
+                promises.push(personService.removeFromOrg(vm.person.id, previousInfo.organizationId, previousInfo.role));
                 promises.push(personService.addToOrg(vm.person.id, vm.selectedOrg.id, vm.entityRole));
             }
 

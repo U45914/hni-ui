@@ -25,7 +25,7 @@
         };
 
         vm.savePerson = function () {
-            let serviceCalls = [personService.postPerson(vm.person), personService.addToOrg(vm.person.id, vm.selectedOrg.id, 4)];
+            let serviceCalls = [personService.postPerson(vm.person), personService.addToOrg(vm.person.id, vm.selectedOrg.id, rolesConstant.client)];
 
             if(previousOrg && previousOrg.id !== vm.selectedOrg.id) {
                 serviceCalls.push(personService.removeFromOrg(vm.person.id, previousOrg.id, 4));

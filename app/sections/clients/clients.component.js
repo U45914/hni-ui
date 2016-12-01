@@ -19,10 +19,10 @@
             selectedNavItemService.setSelectedItem("clients");
 
             if(authService.getRole().toString() === rolesConstant.superAdmin) {
-                personService.getAllPersons(4, setItemsSuccess);
+                personService.getAllPersons(rolesConstant.client, setItemsSuccess);
             }
             else if(authService.getRole().toString() === rolesConstant.ngoAdmin) {
-                //personService.getPerson(4, setItemsSuccess);
+                //personService.getPerson(rolesConstant.client, setItemsSuccess);
                 authService.getNgoAdminOrg();
             }
 
