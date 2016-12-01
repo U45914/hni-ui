@@ -111,7 +111,7 @@ md-card.order-detail-card {
       margin: 0; 
     }
 
-    .input-symbol {
+    .input-symbol-meal-amount {
       position: absolute;
       bottom: 33px;
       left: -8px;
@@ -129,9 +129,9 @@ md-card.order-detail-card {
         margin: 0; 
       }
 
-      .input-symbol {
+      .input-symbol-used {
         position: absolute;
-        bottom: 33px;
+        bottom: 9px;
         left: -8px;
         color: rgba(0,0,0,0.38);
       }

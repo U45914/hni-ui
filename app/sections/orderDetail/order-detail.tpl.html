@@ -32,7 +32,7 @@
             <div class="order-detail-header-triangle"></div>
             <div class="order-detail-amount-container" layout="row" layout-wrap>
                 <md-input-container class="input-primary" flex="100">
-                    <span class="input-symbol">$</span>
+                    <span class="input-symbol-meal-amount">$</span>
                     <label>Total Amount of Meal</label>
                     <input ng-disabled="vm.currentStep !== 3" ng-model="vm.mealAmount" ng-change="vm.totalAmountChanged()" type="number">
                 </md-input-container>
@@ -50,7 +50,7 @@
                         <div flex="30" flex-xs="40">
                             <form name="amountForm">
                                 <md-input-container class="input-primary">
-                                    <span class="input-symbol">$</span>
+                                    <span class="input-symbol-used">$</span>
                                     <label>Amount Used</label>
                                     <input name="amountUsed" ng-model="item.amountUsed" ng-model-options="{ updateOn: 'blur' }" ng-change="vm.amountUsedChanged(item)" type="number">
                                     <i class="material-icons payment-amount-error-icon" ng-show="item.error">&#xE002;</i>
