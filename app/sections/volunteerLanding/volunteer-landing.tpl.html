@@ -9,31 +9,31 @@
         Thank you for volunteering.
     </div>
     <div flex="100">
-        <md-button>Get Started!</md-button>
+        <md-button ng-click="vm.placeOrders();">Place Orders</md-button>
     </div>
 </div>
 
-<div class="volunteer-landing-learn" layout="row">
-    <div flex="50">
-        <img ng-src="~images/volunteer_landing_video.png">
+<div class="volunteer-landing-learn" layout="row" layout-wrap>
+    <div flex="50" flex-xs="100">
+        <img ng-src="~images/volunteer_landing_video.png" ng-click="vm.openVideo()">
     </div>
-    <div flex="50">
+    <div flex="50" flex-xs="100">
         <div>
             <div class="volunteer-section-header">
                 <div>Learn</div>
                 <div>How to Place an Order</div>
             </div>
             <div class="volunteer-landing-paragraph">Watch this video to see how to go through the order placement process.</div>
-            <md-button class="md-raised button-primary">Watch Video</md-button>
+            <md-button class="md-raised button-primary" ng-click="vm.openVideo()">Watch Video</md-button>
         </div>
     </div>
 </div>
 
-<div class="volunteer-landing-signup" layout="row">
-    <div flex="50">
-        <img ng-src="~images/volunteer_landing_volunteer.jpg">
+<div class="volunteer-landing-signup" layout="row" layout-wrap>
+    <div flex="50" flex-xs="100">
+        <img ng-src="~images/volunteer_landing_volunteer.jpg" ng-click="vm.signUp()">
     </div>
-    <div flex="50">
+    <div flex="50" flex-xs="100">
         <div>
             <div class="volunteer-section-header">
                 <div>Sign Up To</div>
@@ -41,13 +41,13 @@
             </div>
             <div class="volunteer-landing-paragraph">Sign up for a 15-minute volunteer time slot between the hours of 10am-7pm.</div>
             <div class="volunteer-landing-paragraph"><strong>Note:</strong> You can sign up for as many time slots as desired.</div>
-            <md-button class="md-raised button-primary">Sign Up</md-button>
+            <md-button class="md-raised button-primary" ng-click="vm.signUp()">Sign Up</md-button>
         </div>
     </div>
 </div>
 
-<div class="volunteer-landing-contact" layout="row">
-    <div flex="50">
+<div class="volunteer-landing-contact" layout="row" layout-wrap>
+    <div flex="50" flex-xs="100">
         <div>
             <div class="volunteer-section-header">
                 <div>Have</div>
@@ -56,7 +56,7 @@
             <div class="volunteer-landing-paragraph">Should you have any questions, please ask using the <strong>#hnivolunteer</strong> slack channel, or contact us by phone or email.</div>
         </div>
     </div>
-    <div flex="50">
+    <div flex="50" flex-xs="100">
         <div>
             <div class="volunteer-landing-contact-section">
                 <div>Name Here</div>

@@ -7,7 +7,7 @@ $color-volunteer-bottom: $color-gray-light;
 .volunteer-landing-header {
   display: flex;
   align-items: center;
-  height: rem(300px);
+  min-height: rem(300px);
   padding: rem(40px);
   text-align: center;
   color: $color-white;
@@ -41,18 +41,22 @@ $color-volunteer-bottom: $color-gray-light;
 }
 
 .volunteer-landing-learn, .volunteer-landing-signup, .volunteer-landing-contact {
-  height: rem(360px);
+  min-height: rem(360px);
 
   & > div {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-left: rem(30px);
-    padding-right: rem(30px);
+    padding: rem(30px);
   }
 
   & > div:nth-child(2) {
     justify-content: flex-start;
+  }
+
+  & img {
+    outline: 0;
+    cursor: pointer;
   }
 
   & button.button-primary {
@@ -69,21 +73,21 @@ $color-volunteer-bottom: $color-gray-light;
 }
 
 .volunteer-landing-signup {
-  height: rem(400px);
+  min-height: rem(400px);
   background-color: $color-white;
 
   & img {
-    height: rem(276px);
+    height: rem(230px);
     width: rem(350px)
   }
 }
 
 .volunteer-landing-contact {
-  height: rem(360px);
+  min-height: rem(360px);
 }
 
 .volunteer-landing-bottom {
-  height: rem(80px);
+  min-height: rem(80px);
   background-color: #828282;
 }
 
@@ -118,5 +122,71 @@ $color-volunteer-bottom: $color-gray-light;
   & > div:first-child {
     font-weight: bold;
     margin-bottom: rem(18px);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .volunteer-landing-learn, .volunteer-landing-signup, .volunteer-landing-contact {
+    height: rem(360px);
+
+    & > div {
+      padding-left: rem(60px);
+      padding-right: rem(60px);
+    }
+  }
+
+  .volunteer-landing-learn {
+    & img {
+      height: rem(285px);
+      width: rem(500px)
+    }
+  }
+
+  .volunteer-landing-signup {
+    & img {
+      height: rem(285px);
+      width: rem(500px)
+    }
+  }
+
+  .volunteer-section-header {
+    margin-bottom: rem(18px);
+
+    & div:first-child {
+      font-size: rem(16px);
+    }
+
+    & div:nth-child(2) {
+      font-size: rem(30px);
+    }
+  }
+
+  .volunteer-landing-paragraph {
+    font-size: rem(20px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .volunteer-landing-learn, .volunteer-landing-signup, .volunteer-landing-contact {
+
+    & > div {
+      justify-content: center !important;
+    }
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .volunteer-landing-learn {
+    & img {
+      height: rem(160px);
+      width: rem(280px)
+    }
+  }
+
+  .volunteer-landing-signup {
+    & img {
+      height: rem(180px);
+      width: rem(280px)
+    }
   }
 }
