@@ -3,9 +3,9 @@
         .module('app')
         .service('authService', authService);
 
-    authService.$inject = ['$http', '$state', 'userService', 'rolesConstant', 'serviceConstants'];
+    authService.$inject = ['$http', '$timeout', '$state', 'userService', 'rolesConstant', 'serviceConstants'];
 
-    function authService($http, $state, userService, rolesConstant, serviceConstants) {
+    function authService($http, $timeout, $state, userService, rolesConstant, serviceConstants) {
         let baseUrl = serviceConstants.baseUrl;
         let LOCAL_TOKEN_KEY = 'hni_token';
         let LOCAL_ROLE = 'hni_role';
@@ -60,13 +60,17 @@
         }
 
         function logout() {
-            authToken = undefined;
-            authRole = undefined;
-            isAuthenticated = false;
-            window.localStorage.removeItem(LOCAL_TOKEN_KEY);
-            window.localStorage.removeItem(LOCAL_ROLE);
+            $state.go('login');
 
-            userService.removeUserDetails();
+            $timeout(() => {
+                authToken = undefined;
+                authRole = undefined;
+                isAuthenticated = false;
+                window.localStorage.removeItem(LOCAL_TOKEN_KEY);
+                window.localStorage.removeItem(LOCAL_ROLE);
+
+                userService.removeUserDetails();
+            }, 300)
         }
 
         function isAuthorized(authorizedRoles) {

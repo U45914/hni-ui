@@ -22,13 +22,8 @@
                 if (rejection.status === -1 || rejection.status === 401 || rejection.status === 403) {
                     let authService = $injector.get('authService');
                     let userService = $injector.get('userService');
-                    let state = $injector.get('$state');
 
-                    state.go('login');
-
-                    $timeout(() => {
-                        authService.logout();
-                    }, 300);
+                    authService.logout();
                 }
             }
         };

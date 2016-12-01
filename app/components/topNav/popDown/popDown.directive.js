@@ -47,11 +47,7 @@
             };
 
             scope.logout = function() {
-                $state.go('login');
-
-                $timeout(() => {
-                    authService.logout();
-                }, 300);
+                authService.logout();
             };
 
             scope.$watch('popupShown', (newVal, oldVal) => {
