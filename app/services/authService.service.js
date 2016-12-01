@@ -9,9 +9,11 @@
         let baseUrl = serviceConstants.baseUrl;
         let LOCAL_TOKEN_KEY = 'hni_token';
         let LOCAL_ROLE = 'hni_role';
+        let LOCAL_PERMISSIONS = 'hni_permissions';
         let isAuthenticated = false;
         let authRole = '';
-        let authToken;
+        let authToken = '';
+        let authPermissions = '';
 
         loadUserCredentials();
 
@@ -20,19 +22,23 @@
             loginExternal,
             logout,
             isAuthorized,
+            getNgoAdminOrg,
             isAuthenticated: () => isAuthenticated,
             getToken: () => authToken,
-            getRole: () => authRole
+            getRole: () => authRole,
+            getPermissions: () => authPermissions
         };
 
         function loadUserCredentials() {
             let token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
             let role = window.localStorage.getItem(LOCAL_ROLE);
+            let permissions = window.localStorage.getItem(LOCAL_PERMISSIONS);
 
-            if (token && role) {
+            if (token && role && permissions) {
                 isAuthenticated = true;
                 authToken = token;
                 authRole = role;
+                authPermissions = permissions;
             }
         }
 
@@ -91,8 +97,8 @@
                 });
         }
 
-        function setRole(permissions) {
-            let roles = permissions.roles;
+        function setRole(data) {
+            let roles = data.roles;
             let role = '';
 
             if(roles.indexOf(rolesConstant.superAdmin) !== -1) {
@@ -111,8 +117,18 @@
                 role = rolesConstant.user;
             }
 
+            window.localStorage.setItem(LOCAL_PERMISSIONS, data.permissions);
             window.localStorage.setItem(LOCAL_ROLE, role);
+            authPermissions = data.permissions.join();
             authRole = role;
+        }
+
+        function getNgoAdminOrg() {
+            let permissions = authPermissions.split(',');
+
+            for(let i = 0; i < permissions.length; i++) {
+                permissions[i] = permissions[i].split(':');
+            }
         }
     }
 })();

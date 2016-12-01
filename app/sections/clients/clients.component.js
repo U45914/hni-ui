@@ -19,7 +19,11 @@
             selectedNavItemService.setSelectedItem("clients");
 
             if(authService.getRole().toString() === rolesConstant.superAdmin) {
-                vm.items = personService.getAllPersons(4, setItemsSuccess);
+                personService.getAllPersons(4, setItemsSuccess);
+            }
+            else if(authService.getRole().toString() === rolesConstant.ngoAdmin) {
+                //personService.getPerson(4, setItemsSuccess);
+                authService.getNgoAdminOrg();
             }
 
             vm.headerFields = [
