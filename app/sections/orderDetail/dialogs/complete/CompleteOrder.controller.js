@@ -3,16 +3,16 @@
         .module('app')
         .controller('CompleteOrderController', CompleteOrderController);
 
-    CompleteOrderController.$inject = ['$mdDialog', 'authService', 'ordersService', 'orderCount', 'providerId'];
+    CompleteOrderController.$inject = ['$mdDialog', '$state', 'ordersService', 'orderCount', 'providerId'];
 
-    function CompleteOrderController($mdDialog, authService, ordersService, orderCount, providerId) {
+    function CompleteOrderController($mdDialog, $state, ordersService, orderCount, providerId) {
         let vm = this;
 
         vm.orderCount = orderCount;
 
         vm.leaveOrders = function() {
             $mdDialog.cancel();
-            authService.logout();
+            $state.go('volunteer-landing');
         };
 
         vm.getNextOrder = function() {

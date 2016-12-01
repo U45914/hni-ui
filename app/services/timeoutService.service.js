@@ -76,7 +76,7 @@
 
             function exit() {
                 $mdDialog.hide();
-                $state.go('login');
+                $state.go('volunteer-landing');
             }
         }
     }

@@ -57,6 +57,7 @@ $color-volunteer-bottom: $color-gray-light;
   & img {
     outline: 0;
     cursor: pointer;
+    user-select: none;
   }
 
   & button.button-primary {
@@ -116,7 +117,7 @@ $color-volunteer-bottom: $color-gray-light;
 }
 
 .volunteer-landing-contact-section {
-  margin-right: rem(30px);
+  font-size: rem(16px);
   color: $color-volunteer-text;
 
   & > div:first-child {
@@ -159,6 +160,10 @@ $color-volunteer-bottom: $color-gray-light;
     & div:nth-child(2) {
       font-size: rem(30px);
     }
+  }
+
+  .volunteer-landing-contact-section {
+    font-size: rem(20px);
   }
 
   .volunteer-landing-paragraph {

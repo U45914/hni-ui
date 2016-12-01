@@ -91,7 +91,7 @@
             $http.post(`${baseUrl}/security/authorization`)
                 .then((response) => {
                     setRole(response.data);
-                    $state.go('order-detail');
+                    $state.go('volunteer-landing');
                 }, (error) => {
                     console.log(error);
                 });
