@@ -87,7 +87,7 @@
         vm.amountUsedChanged = function(item) {
             vm.needMoreFunds = false;
             vm.canCompleteDisabled = false;
-            item.amountUsed = Number(removeDollar(item.amountUsed));
+            item.amountUsed = Number(item.amountUsed);
 
             if(item.amountUsed !== null && item.amount !== item.amountUsed) {
                 item.error = true;
@@ -129,7 +129,7 @@
         };
 
         vm.totalAmountChanged = function() {
-            vm.mealAmount = removeDollar(vm.mealAmount);
+            vm.mealAmount = vm.mealAmount;
 
             vm.canContinueDisabled = !(vm.mealAmount > 0);
         };
@@ -213,10 +213,6 @@
 
         function capitalizeFirstLetter(value) {
             return value.charAt(0).toUpperCase() + value.slice(1);
-        }
-
-        function removeDollar(value) {
-            return value.replace('$', '');
         }
 
         function setPaymentInfo(data) {

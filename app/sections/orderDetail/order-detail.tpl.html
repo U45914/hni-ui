@@ -3,10 +3,10 @@
 </div>
 
 <div id="order-detail-container">
-    <md-card class="order-detail-card" ng-if="vm.orderShown && !vm.contentHidden">
+     <md-card class="order-detail-card" ng-if="vm.orderShown && !vm.contentHidden">
         <div class="order-time">
             <i class="material-icons">&#xE192;</i>
-            <div>{{vm.orderInfo.orderTime}}</div>
+            <div>Order placed: {{vm.orderInfo.orderTime}}</div>
         </div>
         <div ng-if="vm.currentStep === 1 || vm.currentStep === 2">
             <div class="order-detail-header" layout="row" layout-wrap>
@@ -32,8 +32,9 @@
             <div class="order-detail-header-triangle"></div>
             <div class="order-detail-amount-container" layout="row" layout-wrap>
                 <md-input-container class="input-primary" flex="100">
+                    <span class="input-symbol-meal-amount">$</span>
                     <label>Total Amount of Meal</label>
-                    <input ng-disabled="vm.currentStep !== 3" ng-model="vm.mealAmount" ng-change="vm.totalAmountChanged()" currency-input="currency">
+                    <input ng-disabled="vm.currentStep !== 3" ng-model="vm.mealAmount" ng-change="vm.totalAmountChanged()" type="number">
                 </md-input-container>
                 <div class="order-payment-info-container" flex="100">
                     <div class="order-detail-payment-info payment-info-animation" flex layout="row" layout-wrap ng-repeat="item in vm.paymentInfo" ng-if="vm.currentStep == 4">
@@ -49,8 +50,9 @@
                         <div flex="30" flex-xs="40">
                             <form name="amountForm">
                                 <md-input-container class="input-primary">
+                                    <span class="input-symbol-used">$</span>
                                     <label>Amount Used</label>
-                                    <input name="amountUsed" ng-model="item.amountUsed" ng-model-options="{ updateOn: 'blur' }" ng-change="vm.amountUsedChanged(item)" currency-input="currency">
+                                    <input name="amountUsed" ng-model="item.amountUsed" ng-model-options="{ updateOn: 'blur' }" ng-change="vm.amountUsedChanged(item)" type="number">
                                     <i class="material-icons payment-amount-error-icon" ng-show="item.error">&#xE002;</i>
                                 </md-input-container>
                             </form>
