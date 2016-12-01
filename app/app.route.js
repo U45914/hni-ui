@@ -25,6 +25,10 @@
                 abstract: true,
                 template: '<workspace-base></workspace-base>'
             })
+            .state('volunteer-landing', {
+                url: '/volunteer-landing',
+                template: '<volunteer-landing></volunteer-landing>'
+            })
             .state('order-detail', {
                 parent: 'workspace-base',
                 url: '/order-detail',

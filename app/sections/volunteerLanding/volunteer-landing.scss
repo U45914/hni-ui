@@ -1,0 +1,122 @@
+@import '_includes';
+
+$color-large-text: $color-red-base;
+$color-volunteer-text: $color-gray-light;
+$color-volunteer-bottom: $color-gray-light;
+
+.volunteer-landing-header {
+  display: flex;
+  align-items: center;
+  height: rem(300px);
+  padding: rem(40px);
+  text-align: center;
+  color: $color-white;
+  background-color: $color-red-base;
+
+  & .md-button {
+    border: 1px solid $color-white;
+  }
+}
+
+.volunteer-welcome-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .material-icons {
+    margin-right: rem(6px);
+    font-size: rem(48px);
+  }
+
+  & > div {
+    font-size: rem(48px);
+    font-weight: 800;
+  }
+}
+
+.volunteer-landing-subheader {
+  align-self: flex-start;
+  font-size: rem(36px);
+  font-weight: 300;
+}
+
+.volunteer-landing-learn, .volunteer-landing-signup, .volunteer-landing-contact {
+  height: rem(360px);
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: rem(30px);
+    padding-right: rem(30px);
+  }
+
+  & > div:nth-child(2) {
+    justify-content: flex-start;
+  }
+
+  & button.button-primary {
+    margin-top: rem(12px);
+    margin-left: 0;
+  }
+}
+
+.volunteer-landing-learn {
+  & img {
+    height: rem(210px);
+    width: rem(350px)
+  }
+}
+
+.volunteer-landing-signup {
+  height: rem(400px);
+  background-color: $color-white;
+
+  & img {
+    height: rem(276px);
+    width: rem(350px)
+  }
+}
+
+.volunteer-landing-contact {
+  height: rem(360px);
+}
+
+.volunteer-landing-bottom {
+  height: rem(80px);
+  background-color: #828282;
+}
+
+.volunteer-section-header {
+  margin-bottom: rem(18px);
+
+  & div:first-child {
+    text-transform: uppercase;
+    letter-spacing: rem(0.5px);
+    font-weight: 600;
+    color: $color-volunteer-text;
+  }
+
+  & div:nth-child(2) {
+    font-size: rem(24px);
+    font-weight: 800;
+    color: $color-large-text;
+  }
+}
+
+.volunteer-landing-paragraph {
+  margin-bottom: rem(18px);
+  max-width: rem(360px);
+  font-size: rem(16px);
+  color: $color-volunteer-text;
+}
+
+.volunteer-landing-contact-section {
+  margin-right: rem(30px);
+  color: $color-volunteer-text;
+
+  & > div:first-child {
+    font-weight: bold;
+    margin-bottom: rem(18px);
+  }
+}
