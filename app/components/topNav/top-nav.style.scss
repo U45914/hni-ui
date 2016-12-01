@@ -2,6 +2,7 @@
 
 #top-nav {
   background-color: $color-white;
+  z-index: 30;
 
   & .md-toolbar-tools {
     padding-left: rem(80px);

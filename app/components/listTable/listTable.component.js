@@ -13,15 +13,19 @@
             controllerAs: 'vm'
         });
 
-    ListTableController.$inject = [];
+    ListTableController.$inject = ['$element', '$timeout'];
 
-    function ListTableController() {
+    function ListTableController($element, $timeout) {
         let vm = this;
         vm.originalItemList = vm.items.slice();
         vm.lastSortField = null;
 
         vm.$onInit = function () {
-
+            $timeout(() => {
+                let tableScrollable = angular.element($element[0].querySelector('.list-table-scrollable'));
+                let offset = $element[0].offsetTop;
+                tableScrollable.css('max-height', `calc(100vh - ${offset}px - 120px)`);
+            }, 30);
         };
 
         vm.delete = function(item) {

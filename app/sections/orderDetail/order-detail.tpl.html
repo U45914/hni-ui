@@ -8,7 +8,7 @@
             <i class="material-icons">&#xE192;</i>
             <div>{{vm.orderInfo.orderTime}}</div>
         </div>
-        <div ng-if="vm.currentStep == 1">
+        <div ng-if="vm.currentStep === 1 || vm.currentStep === 2">
             <div class="order-detail-header" layout="row" layout-wrap>
                 <i class="material-icons" flex="100">&#xE56C;</i>
                 <div flex="100">Order For</div>
@@ -24,7 +24,7 @@
                 <div class="order-detail-food-name" flex="100">{{::vm.orderInfo.orderItem}}</div>
             </div>
         </div>
-        <div ng-if="vm.currentStep != 1">
+        <div ng-if="vm.currentStep !== 1 && vm.currentStep !== 2">
             <div class="order-detail-header" layout="row" layout-wrap>
                 <i class="material-icons" flex="100">&#xE870;</i>
                 <div flex="100">Order Payment</div>
@@ -33,10 +33,10 @@
             <div class="order-detail-amount-container" layout="row" layout-wrap>
                 <md-input-container class="input-primary" flex="100">
                     <label>Total Amount of Meal</label>
-                    <input ng-disabled="vm.currentStep != 2" ng-model="vm.mealAmount" ng-change="vm.totalAmountChanged()" currency-input="currency">
+                    <input ng-disabled="vm.currentStep !== 3" ng-model="vm.mealAmount" ng-change="vm.totalAmountChanged()" currency-input="currency">
                 </md-input-container>
                 <div class="order-payment-info-container" flex="100">
-                    <div class="order-detail-payment-info payment-info-animation" flex layout="row" layout-wrap ng-repeat="item in vm.paymentInfo" ng-if="vm.currentStep == 3">
+                    <div class="order-detail-payment-info payment-info-animation" flex layout="row" layout-wrap ng-repeat="item in vm.paymentInfo" ng-if="vm.currentStep == 4">
                         <div flex="40" flex-xs="60">
                             {{item.cardNumber}}
                         </div>
@@ -63,16 +63,20 @@
             </div>
         </div>
         <div class="order-detail-footer">
-            <div ng-if="vm.currentStep == 1">
+            <div ng-if="vm.currentStep === 1">
                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
                 <md-button class="md-raised button-primary" ng-click="vm.placeOrder()">Place Order</md-button>
             </div>
-            <div ng-if="vm.currentStep == 2">
+            <div ng-if="vm.currentStep === 2">
+                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
+                <md-button class="md-raised button-primary" ng-click="vm.incrementStep()">Continue</md-button>
+            </div>
+            <div ng-if="vm.currentStep === 3">
                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
                 <md-button class="md-raised button-primary" ng-disabled="true" ng-show="vm.canContinueDisabled" ng-click="vm.continueOrder()">Continue</md-button>
                 <spinner-button text="Continue" click-fn="vm.continueOrder()" stop-fn="vm.continueComplete" ng-show="!vm.canContinueDisabled"></spinner-button>
             </div>
-            <div ng-if="vm.currentStep == 3">
+            <div ng-if="vm.currentStep === 4">
                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
                 <md-button class="md-raised button-primary" ng-disabled="true" ng-show="vm.canCompleteDisabled">Complete Order</md-button>
                 <spinner-button text="Complete Order" click-fn="vm.completeOrder()" stop-fn="vm.showComplete" ng-show="!vm.canCompleteDisabled"></spinner-button>

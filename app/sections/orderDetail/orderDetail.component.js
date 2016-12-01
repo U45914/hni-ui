@@ -66,6 +66,10 @@
             $window.open(vm.orderInfo.providerWebsite, '_blank');
         };
 
+        vm.incrementStep = function() {
+            vm.currentStep++;
+        };
+
         vm.continueOrder = function() {
             return ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, vm.mealAmount);
         };

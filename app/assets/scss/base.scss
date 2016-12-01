@@ -10,6 +10,7 @@ html {
   }
 
   & .ui-view-container {
+    overflow: hidden;
     background-color: $color-background;
   }
 }

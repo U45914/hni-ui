@@ -11,19 +11,22 @@
 				</th>
 			</tr>
 		</thead>
-
-		<tbody>
+	</table>
+	<div class="list-table-scrollable">
+		<table class="md-table">
+			<tbody>
 			<tr ng-repeat="item in vm.items" class="md-row">
 				<td ng-repeat="field in vm.headerfields">{{ item[field.key] }}</td>
 				<td class="icons">
 					<md-button class="md-icon-button" ng-click="vm.delete(item)" md-ink-ripple="#D65439">
-			            <md-icon class="material-icons">&#xE872;</md-icon>
-			        </md-button>
+						<md-icon class="material-icons">&#xE872;</md-icon>
+					</md-button>
 					<md-button class="md-icon-button" ng-click="vm.edit(item)" md-ink-ripple="#D65439">
 						<md-icon class="material-icons">&#xE150;</md-icon>
 					</md-button>
-        		</td>
+				</td>
 			</tr>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
 </div>
