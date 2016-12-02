@@ -237,7 +237,7 @@
                 vm.paymentInfo.push(
                     {
                         orderId: vm.orderInfo.orderId,
-                        amount: item.amount,
+                        amount: (Math.round((item.amount) * 100 ) / 100),
                         paymentInstrumentId: item.id.paymentInstrument.id,
                         cardNumber: item.id.paymentInstrument.cardNumber,
                         pinNumber: item.id.paymentInstrument.pinNumber,
