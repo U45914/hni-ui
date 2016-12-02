@@ -24,5 +24,9 @@
         vm.signUp = function() {
             $window.open('https://calendly.com/hunger/30-minute-volunteer-session-hunger-not-impossible/12-01-2016', '_blank');
         };
+
+        vm.openEmail = function() {
+            $window.location.href = "mailto:mail@example.org";
+        }
     }
 })();

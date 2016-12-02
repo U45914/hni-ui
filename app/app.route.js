@@ -26,6 +26,7 @@
                 template: '<workspace-base></workspace-base>'
             })
             .state('volunteer-landing', {
+                parent: 'workspace-base',
                 url: '/volunteer-landing',
                 template: '<volunteer-landing></volunteer-landing>'
             })

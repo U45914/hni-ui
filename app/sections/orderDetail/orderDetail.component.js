@@ -173,8 +173,26 @@
                 vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
                 vm.orderInfo.providerWebsite = data.providerLocation.provider.websiteUrl;
                 vm.orderInfo.providerState = data.providerLocation.address.state.toUpperCase();
-                vm.orderInfo.orderItems = data.orderItems.map((item) => item.menuItem.name);
+                vm.orderInfo.orderItems = [];
                 vm.orderInfo.orderTime = formatTime(data.orderDate);
+
+                angular.forEach(data.orderItems, (item) => {
+                    let index = vm.orderInfo.orderItems.map((orderItem) => {
+                        if(item.menuItem) {
+                            return item.menuItem.name;
+                        }
+                        else {
+                            return null;
+                        }
+                    }).indexOf(item.menuItem.name);
+
+                    if(index === -1) {
+                        vm.orderInfo.orderItems.push({name: item.menuItem.name, description: item.menuItem.description,quantity: 1});
+                    }
+                    else {
+                        vm.orderInfo.orderItems[index].quantity += 1;
+                    }
+                });
 
                 lockGetInitialOrder = false;
                 vm.orderShown = true;

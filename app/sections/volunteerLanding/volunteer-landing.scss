@@ -85,6 +85,11 @@ $color-volunteer-bottom: $color-gray-light;
 
 .volunteer-landing-contact {
   min-height: rem(360px);
+
+  & img {
+    height: rem(230px);
+    width: rem(350px)
+  }
 }
 
 .volunteer-landing-bottom {
@@ -109,11 +114,17 @@ $color-volunteer-bottom: $color-gray-light;
   }
 }
 
-.volunteer-landing-paragraph {
+.volunteer-landing-paragraph, .volunteer-landing-email {
   margin-bottom: rem(18px);
   max-width: rem(360px);
   font-size: rem(16px);
   color: $color-volunteer-text;
+}
+
+.volunteer-landing-email {
+  outline: none;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .volunteer-landing-contact-section {
@@ -139,14 +150,21 @@ $color-volunteer-bottom: $color-gray-light;
   .volunteer-landing-learn {
     & img {
       height: rem(285px);
-      width: rem(500px)
+      width: rem(500px);
     }
   }
 
   .volunteer-landing-signup {
     & img {
       height: rem(285px);
-      width: rem(500px)
+      width: rem(500px);
+    }
+  }
+
+  .volunteer-landing-contact {
+    & img {
+      height: rem(285px);
+      width: rem(500px);
     }
   }
 
@@ -184,14 +202,21 @@ $color-volunteer-bottom: $color-gray-light;
   .volunteer-landing-learn {
     & img {
       height: rem(160px);
-      width: rem(280px)
+      width: rem(280px);
     }
   }
 
   .volunteer-landing-signup {
     & img {
       height: rem(180px);
-      width: rem(280px)
+      width: rem(280px);
+    }
+  }
+
+  .volunteer-landing-contact {
+    & img {
+      height: rem(180px);
+      width: rem(280px);
     }
   }
 }
