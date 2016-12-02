@@ -69,58 +69,6 @@
                     sortable: true
                 }
             ];
-
-            //vm.items = [
-            //    {
-            //        id: 3,
-            //        firstName: 'Veronica',
-            //        lastName: 'Bagwell',
-            //        mobilePhone: '(479) 123-4567',
-            //        email: 'veronica.bagwell@walmart.com',
-            //        organization: 'The Manna Center'
-            //    },
-            //    {
-            //        id: 4,
-            //        firstName: 'Justin',
-            //        lastName: 'Palmer',
-            //        mobilePhone: '(479) 123-4567',
-            //        email: 'justin.palmer@walmart.com',
-            //        organization: 'Samaritan Community Center0'
-            //    },
-            //    {
-            //        id: 5,
-            //        firstName: 'Kayleigh',
-            //        lastName: 'Cooper',
-            //        mobilePhone: '(479) 123-4567',
-            //        email: 'kayleigh.cooper@walmart.com',
-            //        organization: 'The Manna Center'
-            //    },
-            //    {
-            //        id: 6,
-            //        firstName: 'Veronica',
-            //        lastName: 'Bagwell',
-            //        mobilePhone: '(479) 123-4567',
-            //        email: 'veronica.bagwell@walmart.com',
-            //        organization: 'The Manna Center'
-            //    },
-            //    {
-            //        id: 7,
-            //        firstName: 'Justin',
-            //        lastName: 'Palmer',
-            //        mobilePhone: '(479) 123-4567',
-            //        email: 'justin.palmer@walmart.com',
-            //        organization: 'Samaritan Community'
-            //    },
-            //    {
-            //        id: 8,
-            //        firstName: 'Kayleigh',
-            //        lastName: 'Cooper',
-            //        mobilePhone: '(479) 123-4567',
-            //        email: 'kayleigh.cooper@walmart.com',
-            //        organization: 'The Manna Center'
-            //    }
-            //];
-
         };
 
         vm.newVolunteer = function () {
@@ -172,8 +120,10 @@
 
         function getPersonSuccess(data, role) {
             angular.forEach(data, (item) => {
-                angular.extend(item, {role: role});
-                tempItems.push(item);
+                if(item !== null) {
+                    angular.extend(item, {role: role});
+                    tempItems.push(item);
+                }
             });
         }
 
