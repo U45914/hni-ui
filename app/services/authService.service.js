@@ -22,7 +22,6 @@
             loginExternal,
             logout,
             isAuthorized,
-            getNgoAdminOrg,
             isAuthenticated: () => isAuthenticated,
             getToken: () => authToken,
             getRole: () => authRole,
@@ -121,14 +120,6 @@
             window.localStorage.setItem(LOCAL_ROLE, role);
             authPermissions = data.permissions.join();
             authRole = role;
-        }
-
-        function getNgoAdminOrg() {
-            let permissions = authPermissions.split(',');
-
-            for(let i = 0; i < permissions.length; i++) {
-                permissions[i] = permissions[i].split(':');
-            }
         }
     }
 })();

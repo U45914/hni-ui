@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    ClientsController.$inject = ['$mdDialog', 'selectedNavItemService', 'authService', 'personService', 'orgService', 'rolesConstant'];
+    ClientsController.$inject = ['$mdDialog', 'selectedNavItemService', 'authService', 'userService', 'personService', 'orgService', 'rolesConstant'];
 
-    function ClientsController($mdDialog, selectedNavItemService, authService, personService, orgService, rolesConstant) {
+    function ClientsController($mdDialog, selectedNavItemService, authService, userService, personService, orgService, rolesConstant) {
         let vm = this;
 
         vm.$onInit = function () {
@@ -22,8 +22,10 @@
                 personService.getAllPersons(rolesConstant.client, setItemsSuccess);
             }
             else if(authService.getRole().toString() === rolesConstant.ngoAdmin) {
-                //personService.getPerson(rolesConstant.client, setItemsSuccess);
-                authService.getNgoAdminOrg();
+                orgService.getOrgUser(userService.getUser().id)
+                    .then((response) => {
+                        personService.getPerson(response.data[0].id, rolesConstant.client, setItemsSuccess);
+                    });
             }
 
             vm.headerFields = [
