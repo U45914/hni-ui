@@ -80,8 +80,8 @@
             </div>
             <div ng-if="vm.currentStep === 4">
                 <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
-                <md-button class="md-raised button-primary" ng-disabled="true" ng-show="vm.canCompleteDisabled">Complete Order</md-button>
-                <spinner-button text="Complete Order" click-fn="vm.completeOrder()" stop-fn="vm.showComplete" ng-show="!vm.canCompleteDisabled"></spinner-button>
+                <md-button class="md-raised button-primary" ng-disabled="true" ng-show="vm.canCompleteDisabled || !vm.moreFundsClicked">Complete Order</md-button>
+                <spinner-button text="Complete Order" click-fn="vm.completeOrder()" stop-fn="vm.showComplete" ng-show="!vm.canCompleteDisabled || vm.moreFundsClicked"></spinner-button>
             </div>
         </div>
     </md-card>

@@ -22,6 +22,7 @@
         vm.mealAmount = null;
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
+        vm.moreFundsClicked = false;
         vm.canContinueDisabled = true;
         vm.orderShown = false;
         vm.loadingOrderShown = false;
@@ -111,7 +112,7 @@
         vm.getMoreFunds = function() {
             let amountNeeded = 0;
 
-            vm.canCompleteDisabled = true;
+            vm.moreFundsClicked = true;
             vm.needMoreFunds = false;
 
             angular.forEach(vm.paymentInfo, (item) => {
