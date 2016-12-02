@@ -6,20 +6,22 @@
     timeoutService.$inject = ['$interval', '$mdDialog'];
 
     function timeoutService($interval, $mdDialog) {
-        DialogController.$inject = ['$timeout', '$mdDialog', '$state', 'moreTime'];
+        DialogController.$inject = ['$timeout', '$mdDialog', '$state', 'moreTime', 'moreTimeClicked'];
 
         let timeout = null;
+        let moreTimeClicked = false;
 
         return {
             startTimeout,
             cancelTimeout
         };
 
-        function startTimeout() {
+        function startTimeout(time) {
+            console.log(time);
             if(timeout === null) {
                 timeout = $interval(() => {
                     showPopup();
-                }, 900000);
+                }, time);
             }
         }
 
@@ -28,9 +30,9 @@
             timeout = null;
         }
 
-        function moreTime() {
+        function moreTime(time) {
             cancelTimeout();
-            startTimeout();
+            startTimeout(time);
         }
 
         function showPopup() {
@@ -43,26 +45,35 @@
                             <md-dialog-content>
                                 <div layout="row" layout-wrap>
                                     <i class="material-icons" flex="100">&#xE425;</i>
-                                    <div class="small-prompt-text" flex="100">Need more time to complete an order?</div>
+                                    <div class="small-prompt-text" ng-hide="vm.moreTimeClicked" flex="100">Need more time to complete an order?</div>
+                                    <div class="small-prompt-text" ng-hide="!vm.moreTimeClicked" flex="100">Order timed out. Click the exit button to navigate to the landing page.</div>
                                 </div>
                             </md-dialog-content>
                             <md-dialog-actions>
-                                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.exitOrders()">No, Exit Orders</md-button>
-                                <md-button class="md-raised button-primary" ng-click="vm.moreTime()">Yes</md-button>
+                                <div ng-hide="vm.moreTimeClicked">
+                                    <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.exitOrders()">No, Exit Orders</md-button>
+                                    <md-button class="md-raised button-primary" ng-click="vm.moreTime()">Yes</md-button>
+                                </div>
+                                <div ng-hide="!vm.moreTimeClicked">
+                                    <md-button class="md-raised button-primary" ng-click="vm.exitOrders()">Exit</md-button>
+                                </div>
                             </md-dialog-actions>
                         </md-dialog>`,
                 locals : {
-                    moreTime: moreTime
+                    moreTime: moreTime,
+                    moreTimeClicked: moreTimeClicked
                 }
-            });
+            }).then((timeClicked) => { moreTimeClicked = timeClicked });
         }
 
-        function DialogController($timeout, $mdDialog, $state, moreTime) {
+        function DialogController($timeout, $mdDialog, $state, moreTime, moreTimeClicked) {
             let vm = this;
 
             let exitTimeout = $timeout(() => {
                 exit();
             }, 60000);
+
+            vm.moreTimeClicked = moreTimeClicked;
 
             vm.exitOrders = function() {
                 $timeout.cancel(exitTimeout);
@@ -70,12 +81,13 @@
             };
 
             vm.moreTime = function() {
-                moreTime();
-                $mdDialog.hide();
+                $timeout.cancel(exitTimeout);
+                moreTime(300000);
+                $mdDialog.hide(true);
             };
 
             function exit() {
-                $mdDialog.hide();
+                $mdDialog.cancel();
                 $state.go('volunteer-landing');
             }
         }

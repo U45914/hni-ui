@@ -55,11 +55,11 @@
         function loginExternal(provider, token) {
             $http.get(`${baseUrl}/security/${provider}/authentication?access_token=${token}`)
                 .then(function successCallback(response) {
-                    setToken(response.data.token);
-                    userService.setUser(response.data.user);
-                    setPermissions();
-                    window.localStorage.removeItem('google_state');
-                    window.localStorage.removeItem('satellizer_token');
+                    if(response.data.token !== null) {
+                        setToken(response.data.token);
+                        userService.setUser(response.data.user);
+                        setPermissions();
+                    }
                 }, function errorCallback(error) {
                     console.log(error);
                 });

@@ -180,7 +180,7 @@
                 vm.loadingOrderShown = false;
 
                 $interval.cancel(initialOrderInterval);
-                timeoutService.startTimeout();
+                timeoutService.startTimeout(900000);
             }
             else if(!lockGetInitialOrder) {
                 lockGetInitialOrder = true;
