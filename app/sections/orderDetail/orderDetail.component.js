@@ -173,7 +173,7 @@
                 vm.orderInfo.providerCity = capitalizeFirstLetter(data.providerLocation.address.city);
                 vm.orderInfo.providerWebsite = data.providerLocation.provider.websiteUrl;
                 vm.orderInfo.providerState = data.providerLocation.address.state.toUpperCase();
-                vm.orderInfo.orderItem = data.orderItems[0].menuItem.name;
+                vm.orderInfo.orderItems = data.orderItems.map((item) => item.menuItem.name);
                 vm.orderInfo.orderTime = formatTime(data.orderDate);
 
                 lockGetInitialOrder = false;

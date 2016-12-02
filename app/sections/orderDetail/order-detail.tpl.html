@@ -21,7 +21,9 @@
                 <div flex="100">{{vm.orderInfo.providerAddress}}</div>
                 <div flex="100">{{vm.orderInfo.providerCity + ', ' + vm.orderInfo.providerState}}</div>
                 <div class="order-detail-location-border"></div>
-                <div class="order-detail-food-name" flex="100">{{::vm.orderInfo.orderItem}}</div>
+                <div class="order-detail-food-name" flex="100" ng-repeat="orderItem in vm.orderInfo.orderItems track by $index">
+                    <div>{{orderItem}}</div>
+                </div>
             </div>
         </div>
         <div ng-if="vm.currentStep !== 1 && vm.currentStep !== 2">
