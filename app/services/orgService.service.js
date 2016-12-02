@@ -28,14 +28,14 @@
             return $http.get(`${baseUrl}/organizations/users/${id}`);
         }
 
-        function postOrg(data, success, failure) {
+        function postOrg(data) {
             let postData = JSON.stringify(data);
 
             return $http.post(`${baseUrl}/organizations`, postData)
                 .then(() => {
-                    success();
+
                 }, (error) => {
-                    failure(error);
+
                 });
         }
 

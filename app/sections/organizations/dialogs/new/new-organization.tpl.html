@@ -46,6 +46,6 @@
     </md-dialog-content>
     <md-dialog-actions>
         <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.dismiss()">Exit</md-button>
-        <md-button class="md-raised button-primary" ng-click="vm.saveNewOrganization()">Save</md-button>
+        <spinner-button text="Save" click-fn="vm.saveNewOrganization()" stop-fn="vm.newOrgSaved"></spinner-button>
     </md-dialog-actions>
 </md-dialog>

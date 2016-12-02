@@ -30,15 +30,11 @@
                 logo: null
             };
 
-            orgService.postOrg(postData, newOrgSaved, newOrgError);
+            return orgService.postOrg(postData);
+        };
 
-            function newOrgSaved() {
-                $mdDialog.hide();
-            }
-
-            function newOrgError() {
-                console.log("Error");
-            }
+        vm.newOrgSaved = function() {
+            $mdDialog.hide(vm.org);
         };
     }
 })();
