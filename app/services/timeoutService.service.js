@@ -17,7 +17,6 @@
         };
 
         function startTimeout(time) {
-            console.log(time);
             if(timeout === null) {
                 timeout = $interval(() => {
                     showPopup();

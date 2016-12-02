@@ -3,9 +3,9 @@
         .module('app')
         .controller('EditOrgController', EditOrgController);
 
-    EditOrgController.$inject = ['$mdDialog', 'orgService', 'item', '$timeout'];
+    EditOrgController.$inject = ['$mdDialog', 'orgService', 'item'];
 
-    function EditOrgController($mdDialog, orgService, item, $timeout) {
+    function EditOrgController($mdDialog, orgService, item) {
         let vm = this;
 
         vm.org = angular.copy(item);

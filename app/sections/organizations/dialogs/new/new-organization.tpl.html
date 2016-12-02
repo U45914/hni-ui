@@ -28,11 +28,11 @@
             </md-input-container>
             <md-input-container class="input-primary" flex="100">
                 <label>Address</label>
-                <input ng-model="vm.org.address">
+                <input ng-model="vm.org.addresses[0].address1">
             </md-input-container>
             <md-input-container class="input-primary">
                 <label>State</label>
-                <md-select ng-model="vm.org.state">
+                <md-select ng-model="vm.org.addresses[0].state">
                     <md-option ng-repeat="state in vm.states" ng-value="state.abbrev">
                         {{state.abbrev}}
                     </md-option>
@@ -40,7 +40,7 @@
             </md-input-container>
             <md-input-container class="input-primary">
                 <label>Zip Code</label>
-                <input ng-model="vm.org.zip">
+                <input ng-model="vm.org.addresses[0].zip">
             </md-input-container>
         </div>
     </md-dialog-content>

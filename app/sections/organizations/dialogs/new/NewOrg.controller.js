@@ -3,9 +3,9 @@
         .module('app')
         .controller('NewOrgController', NewOrgController);
 
-    NewOrgController.$inject = ['$mdDialog', 'orgService'];
+    NewOrgController.$inject = ['$mdDialog', 'userService', 'orgService'];
 
-    function NewOrgController($mdDialog, orgService) {
+    function NewOrgController($mdDialog, userService, orgService) {
         let vm = this;
 
         vm.org = {};
@@ -23,15 +23,11 @@
                 name: vm.org.name,
                 phone: vm.org.phone,
                 email: vm.org.email,
-                contact_person: vm.org.contactPerson,
                 website: vm.org.website,
-                addresses: [
-                    {
-                        address1: vm.org.address,
-                        state: vm.org.state,
-                        zip: vm.org.zip
-                    }
-                ]
+                addresses: vm.org.addresses || [],
+                created:  (new Date).getTime(),
+                createdById : userService.getUser().id,
+                logo: null
             };
 
             orgService.postOrg(postData, newOrgSaved, newOrgError);
