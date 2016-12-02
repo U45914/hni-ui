@@ -18,7 +18,7 @@
             vm.items = '';
 
             selectedNavItemService.setSelectedItem("organizations");
-            orgService.getOrgs(userService.getUser().id, getOrgSuccess, getOrgFailure);
+            orgService.getOrgs(getOrgSuccess, getOrgFailure);
 
             vm.headerFields = [
                 {
@@ -52,7 +52,7 @@
                 fullscreen: true,
                 parent: angular.element(document.body),
                 templateUrl: 'new-organization.tpl.html'
-            }).then(() => { orgService.getOrgs(userService.getUser().id, getOrgSuccess, getOrgFailure); });
+            }).then(() => { orgService.getOrgs(getOrgSuccess, getOrgFailure); });
         };
 
         vm.editClient = function (item) {

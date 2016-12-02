@@ -14,7 +14,7 @@
         vm.role = authService.getRole();
         vm.rolesConstant = rolesConstant;
 
-        orgService.getOrgs(userService.getUser().id, getOrgSuccess);
+        orgService.getOrgs(getOrgSuccess);
 
         delete vm.person['name'];
         delete vm.person['organization'];

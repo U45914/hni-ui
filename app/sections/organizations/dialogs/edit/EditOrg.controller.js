@@ -21,19 +21,11 @@
         };
 
         vm.saveOrganization = function () {
-            return orgService.postOrg(vm.org, editOrgSaved, editOrgError);
+            return orgService.postOrg(vm.org);
         };
 
         vm.editOrgSaved = function() {
             $mdDialog.hide(vm.org);
         };
-
-        function editOrgSaved() {
-            //$mdDialog.hide(vm.org);
-        }
-
-        function editOrgError(error) {
-            console.log(error);
-        }
     }
 })();

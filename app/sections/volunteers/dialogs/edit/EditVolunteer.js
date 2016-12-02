@@ -18,7 +18,7 @@
         vm.orgAdminChecked = false;
         vm.toggleSelection = toggleSelection;
 
-        orgService.getOrgs(userService.getUser().id, getOrgSuccess);
+        orgService.getOrgs(getOrgSuccess);
 
         delete vm.person['name'];
         delete vm.person['organization'];

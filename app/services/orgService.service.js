@@ -15,8 +15,8 @@
             removeOrg
         };
 
-        function getOrgs(id, success, failure) {
-            $http.get(`${baseUrl}/organizations/users/${id}`)
+        function getOrgs(success, failure) {
+            $http.get(`${baseUrl}/organizations/all`)
                 .then(function successCallback(response) {
                     success(response);
                 }, function errorCallback(error) {
