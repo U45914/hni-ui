@@ -40,15 +40,25 @@
 
             //Unlocks order on state change.
             $scope.$on('$stateChangeStart', () => {
-                if(vm.orderInfo.orderId && authService.getRole() === serviceConstants.superAdmin) {
-                    try {
-                        ordersService.unlockOrder(vm.orderInfo.orderId);
-                    }
-                    catch(e) {
-
-                    }
+                if(vm.orderInfo.orderId) {
+                    ordersService.unlockOrder(vm.orderInfo.orderId);
                 }
+
+                $window.onbeforeunload = undefined;
             });
+
+            //Unlocks order on refresh/browser close/tab close. Needs xmlhttp call to force the call to be synchronous.
+            $window.onbeforeunload = function() {
+                if(vm.orderInfo.orderId) {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("DELETE", `${serviceConstants.baseUrl}/orders/lock/${vm.orderInfo.orderId}`, false);
+                    xmlhttp.setRequestHeader("Content-type", "application/json");
+                    xmlhttp.setRequestHeader("X-hni-token", authService.getToken());
+                    xmlhttp.send();
+                }
+
+                return null;
+            };
         };
 
         vm.placeOrder = function() {
