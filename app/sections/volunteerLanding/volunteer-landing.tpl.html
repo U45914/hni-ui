@@ -28,10 +28,7 @@
 </div>
 
 <div class="volunteer-landing-signup" layout="row" layout-wrap>
-    <div flex="50" flex-xs="100">
-        <img ng-src="~images/volunteer_landing_volunteer.jpg" ng-click="vm.signUp()">
-    </div>
-    <div flex="50" flex-xs="100">
+    <div flex="50" flex-xs="100" flex-order-xs="1">
         <div>
             <div class="volunteer-section-header">
                 <div>Schedule your next</div>
@@ -41,6 +38,9 @@
             <div class="volunteer-landing-paragraph"><strong>Note:</strong> You can sign up for as many time slots as desired.</div>
             <md-button class="md-raised button-primary" ng-click="vm.signUp()">Sign Up</md-button>
         </div>
+    </div>
+    <div flex="50" flex-xs="100" flex-order-xs="-1">
+        <img ng-src="~images/volunteer_landing_volunteer.jpg" ng-click="vm.signUp()">
     </div>
 </div>
 

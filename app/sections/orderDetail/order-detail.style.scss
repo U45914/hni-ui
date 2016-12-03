@@ -10,6 +10,7 @@
 
 md-card.order-detail-card {
   position: relative;
+  overflow: hidden;
   border-radius: 8px;
   color: $color-text;
   background-color: $color-white;
@@ -263,6 +264,22 @@ md-card.order-detail-card {
   }
 }
 
+.order-detail-animation-container {
+  display: flex;
+  overflow: hidden;
+
+  & > div {
+    min-width: 100%;
+  }
+
+  & .order-detail-animation {
+    &.order-detail-animation-right {
+      right: 100%;
+      position: relative
+    }
+  }
+}
+
 @media screen and (max-width: 960px) {
   #order-detail-container {
     padding: rem(80px);
@@ -374,4 +391,22 @@ md-card.order-detail-card {
   transition: all 0.6s;
   transform: translate3d(0, 0, 0);
   opacity: 1;
+}
+
+.order-detail-enter-animation {
+  animation: 0.6s order-detail-enter cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+@keyframes order-detail-enter {
+  from { transform: translate3d(100%, 0, 0) }
+  to { transform: translate3d(0, 0, 0) }
+}
+
+.order-detail-leave-animation {
+  animation: 0.6s order-detail-leave cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+@keyframes order-detail-leave {
+  from { transform: translate3d(0, 0, 0) }
+  to { transform: translate3d(-100%, 0, 0) }
 }

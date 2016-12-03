@@ -8,10 +8,14 @@
             controllerAs: 'vm'
         });
 
-    controller.$inject = ['$window', '$state'];
+    controller.$inject = ['$window', '$state', 'selectedNavItemService'];
 
-    function controller($window, $state) {
+    function controller($window, $state, selectedNavItemService) {
         let vm = this;
+
+        vm.$onInit = function() {
+            selectedNavItemService.setSelectedItem("none");
+        };
 
         vm.placeOrders = function() {
             $state.go('order-detail');

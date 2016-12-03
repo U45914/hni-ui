@@ -18,7 +18,7 @@
         let lockGetInitialOrder = false;
         let initialOrderInterval = null;
 
-        vm.currentStep = 1;
+        vm.currentStep = 2;
         vm.mealAmount = null;
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
