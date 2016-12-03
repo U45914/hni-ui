@@ -19,6 +19,7 @@
 				vertical-align: middle;
 				border-bottom: 3px solid #e1e1e1;
 				padding-left: rem(25px);
+				box-sizing: border-box;
 				color: $color-gray-light;
 				outline: 0;
 				cursor: pointer;
@@ -99,6 +100,10 @@
 		& table {
 			border-top-left-radius: 0;
 			border-top-right-radius: 0;
+		}
+
+		& td {
+			min-width: 80px;
 		}
 	}
 }

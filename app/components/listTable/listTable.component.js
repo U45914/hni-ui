@@ -13,20 +13,31 @@
             controllerAs: 'vm'
         });
 
-    ListTableController.$inject = ['$element', '$timeout'];
+    ListTableController.$inject = ['$element', '$window', '$timeout'];
 
-    function ListTableController($element, $timeout) {
+    function ListTableController($element, $window, $timeout) {
         let vm = this;
         vm.originalItemList = vm.items.slice();
         vm.lastSortField = null;
 
-        vm.$onInit = function () {
+        vm.$onInit = function () {};
+
+        vm.$postLink = function() {
             $timeout(() => {
                 let tableScrollable = angular.element($element[0].querySelector('.list-table-scrollable'));
                 let offset = $element[0].offsetTop;
                 tableScrollable.css('max-height', `calc(100vh - ${offset}px - 120px)`);
-            }, 30);
+
+                vm.thList = $element[0].querySelectorAll('.md-thead th');
+                vm.trList = $element[0].querySelectorAll('.list-table-scrollable tr')[0].querySelectorAll('td');
+
+                resizeWidths();
+            });
         };
+
+        angular.element($window).on('resize', ()=> {
+            resizeWidths();
+        });
 
         vm.delete = function(item) {
             vm.deleteFn()(item);
@@ -81,5 +92,12 @@
                 }
             }
         };
+
+        function resizeWidths() {
+            angular.forEach(vm.trList, (item, index) => {
+                vm.thList[index].style['min-width'] = `${item.offsetWidth}px`;
+                vm.thList[index].style['max-width'] = `${item.offsetWidth}px`;
+            });
+        }
     }
 })();
