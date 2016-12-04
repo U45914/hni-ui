@@ -92,14 +92,17 @@
             if(item.amountUsed !== null && item.amount !== item.amountUsed) {
                 item.error = true;
                 vm.needMoreFunds = true;
-                vm.canCompleteDisabled = true;
+
+                if(item.amount > item.amountUsed) {
+                    vm.canCompleteDisabled = true;
+                }
             }
             else {
                 item.error = false;
             }
 
             angular.forEach(vm.paymentInfo, (info) => {
-                if(info.amountUsed == null || info.error) {
+                if(info.amountUsed == null) {
                     vm.canCompleteDisabled = true;
                 }
             });
@@ -113,10 +116,6 @@
             angular.forEach(vm.paymentInfo, (item) => {
                 if(item.error) {
                     amountNeeded += Math.abs(Math.round((item.amount - item.amountUsed) * 100 ) / 100);
-                }
-
-                if(item.amount < item.amountUsed) {
-                    item.amountUsed = item.amount;
                 }
 
                 item.error = false;
