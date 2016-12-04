@@ -10,19 +10,18 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'authService', 'ordersService', 'timeoutService', 'serviceConstants'];
+    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'ordersService', 'timeoutService'];
 
-    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, authService, ordersService, timeoutService, serviceConstants) {
+    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, ordersService, timeoutService) {
         let vm = this;
 
         let lockGetInitialOrder = false;
         let initialOrderInterval = null;
 
-        vm.currentStep = 2;
+        vm.currentStep = 1;
         vm.mealAmount = null;
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
-        vm.moreFundsClicked = false;
         vm.canContinueDisabled = true;
         vm.orderShown = false;
         vm.loadingOrderShown = false;
@@ -86,24 +85,21 @@
         };
 
         vm.amountUsedChanged = function(item) {
-            vm.needMoreFunds = false;
             vm.canCompleteDisabled = false;
+            vm.needMoreFunds = false;
             item.amountUsed = Number(item.amountUsed);
 
             if(item.amountUsed !== null && item.amount !== item.amountUsed) {
                 item.error = true;
                 vm.needMoreFunds = true;
+                vm.canCompleteDisabled = true;
             }
             else {
                 item.error = false;
             }
 
-            if(item.amountUsed > item.amount) {
-                item.amountUsed = 0;
-            }
-
             angular.forEach(vm.paymentInfo, (info) => {
-                if(info.amountUsed == null) {
+                if(info.amountUsed == null || info.error) {
                     vm.canCompleteDisabled = true;
                 }
             });
@@ -112,12 +108,15 @@
         vm.getMoreFunds = function() {
             let amountNeeded = 0;
 
-            vm.moreFundsClicked = true;
             vm.needMoreFunds = false;
 
             angular.forEach(vm.paymentInfo, (item) => {
                 if(item.error) {
-                    amountNeeded += (Math.round((item.amount - item.amountUsed) * 100 ) / 100);
+                    amountNeeded += Math.abs(Math.round((item.amount - item.amountUsed) * 100 ) / 100);
+                }
+
+                if(item.amount < item.amountUsed) {
+                    item.amountUsed = item.amount;
                 }
 
                 item.error = false;
