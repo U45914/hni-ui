@@ -10,15 +10,16 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'selectedNavItemService', 'ordersService', 'timeoutService'];
+    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'authService', 'selectedNavItemService', 'ordersService', 'timeoutService'];
 
-    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, selectedNavItemService, ordersService, timeoutService) {
+    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, authService, selectedNavItemService, ordersService, timeoutService) {
         let vm = this;
 
         let lockGetInitialOrder = false;
         let initialOrderInterval = null;
 
         vm.currentStep = 1;
+        vm.moreFundsCalled = 0;
         vm.mealAmount = null;
         vm.needMoreFunds = false;
         vm.canCompleteDisabled = true;
@@ -71,7 +72,12 @@
         };
 
         vm.continueOrder = function() {
-            return ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, vm.mealAmount);
+            if(vm.mealAmount > (vm.orderInfo.totalCost + (vm.orderInfo.totalCost * 0.25))) {
+                authService.logout();
+            }
+            else {
+                return ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, vm.mealAmount);
+            }
         };
 
         vm.continueComplete = function(response) {
@@ -112,6 +118,8 @@
             let amountNeeded = 0;
 
             vm.needMoreFunds = false;
+            vm.canCompleteDisabled = true;
+            vm.moreFundsCalled += 1;
 
             angular.forEach(vm.paymentInfo, (item) => {
                 if(item.error) {
@@ -121,10 +129,15 @@
                 item.error = false;
             });
 
-            ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, amountNeeded)
-                .then((response) => {
-                    setPaymentInfo(response.data);
-            })
+            if(vm.moreFundsCalled < 3) {
+                ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, amountNeeded)
+                    .then((response) => {
+                        setPaymentInfo(response.data);
+                    })
+            }
+            else {
+                vm.canCompleteDisabled = false;
+            }
         };
 
         vm.totalAmountChanged = function() {
@@ -163,7 +176,7 @@
                 let data = response.data;
 
                 vm.orderInfo.orderId = data.id;
-                vm.orderInfo.totalCost = data.total;
+                vm.orderInfo.totalCost = data.subTotal;
                 vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;
                 vm.orderInfo.providerId = data.providerLocation.provider.id;
                 vm.orderInfo.providerName = data.providerLocation.provider.name;
@@ -255,6 +268,7 @@
             initialOrderInterval = null;
 
             vm.currentStep = 1;
+            vm.moreFundsCalled = 0;
             vm.mealAmount = null;
             vm.needMoreFunds = false;
             vm.canCompleteDisabled = true;

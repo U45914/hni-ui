@@ -33,20 +33,24 @@
             vm.buttonDisabled = true;
             button.attr('style', `width: ${width}px; ${otherCss}`);
 
-            vm.clickFn().then((response) => {
-                let time = $window.performance.now() - t0;
+            try {
+                vm.clickFn().then((response) => {
+                    let time = $window.performance.now() - t0;
 
-                if(time > 100) {
-                    vm.spinnerShown = true;
+                    if(time > 100) {
+                        vm.spinnerShown = true;
 
-                    $timeout(() => {
+                        $timeout(() => {
+                            finishAction(response);
+                        }, 1000);
+                    }
+                    else {
                         finishAction(response);
-                    }, 1000);
-                }
-                else {
-                    finishAction(response);
-                }
-            });
+                    }
+                });
+            } catch(error) {
+
+            }
         };
 
         function finishAction(response) {
