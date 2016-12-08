@@ -78,6 +78,11 @@ $color-order-detail-border: $color-gray-lighter;
   border-right: 1px solid $color-order-detail-border;
 }
 
+.order-section-container, .order-detail-location-section {
+  padding-top: rem(30px);
+  padding-bottom: rem(30px);
+}
+
 .order-detail-for-container {
   display: flex;
   justify-content: center;
