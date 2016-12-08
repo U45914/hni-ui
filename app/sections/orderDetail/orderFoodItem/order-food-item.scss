@@ -1,0 +1,38 @@
+@import '_includes';
+
+order-food-item {
+  display: block;
+
+  &:not(:last-child) {
+    margin-bottom: rem(12px);
+  }
+}
+
+.order-detail-food-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .order-detail-food-text {
+    padding-left: rem(6px);
+    text-align: left;
+    border-left: 1px solid $color-order-detail-border;
+  }
+
+  & .order-detail-food-quantity {
+    padding-right: rem(6px);
+    font-size: 24px;
+    font-weight: 800;
+    color: $color-red-base;
+  }
+
+  & .order-detail-food-name {
+    font-size: rem(16px);
+    font-weight: 800;
+  }
+
+  & .order-detail-food-description {
+    font-size: rem(12px);
+    color: $color-gray-light;
+  }
+}

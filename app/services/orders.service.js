@@ -31,7 +31,7 @@
         }
 
         function getPaymentDetails(orderId, providerId, amount) {
-            return $http.get(`${baseUrl}/payments/payment-instruments?orderId=${orderId}&providerId=${providerId}&amount=${amount}`)
+            return $http.get(`${baseUrl}/payments/payment-instruments?orderId=${orderId}`)
         }
 
         function getOrderCount() {

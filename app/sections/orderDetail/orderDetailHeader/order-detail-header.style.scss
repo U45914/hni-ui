@@ -1,0 +1,21 @@
+@import '_includes';
+
+$color-icon: $color-red-base;
+$color-order-text: $color-gray-light;
+
+.order-detail-header {
+  margin-bottom: rem(30px);
+  text-align: center;
+
+  & div.material-icons {
+    margin-bottom: rem(12px);
+    font-size: rem(48px);
+    color: $color-icon;
+  }
+
+  & div:last-child {
+    font-size: rem(18px);
+    color: $color-gray-light;
+    text-transform: uppercase;
+  }
+}

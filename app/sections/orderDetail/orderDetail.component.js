@@ -2,38 +2,34 @@
     angular
         .module('app')
         .component('orderDetail', {
-            bindings: {
-
-            },
+            bindings: {},
             templateUrl: 'order-detail.tpl.html',
             controller: OrderDetailController,
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$scope', '$mdDialog', '$state', '$interval', '$window', '$q', 'authService', 'selectedNavItemService', 'ordersService', 'timeoutService'];
+    OrderDetailController.$inject = ['$element', '$document', '$window','$scope', '$interval', 'ordersService', 'timeoutService', 'selectedNavItemService'];
 
-    function OrderDetailController($scope, $mdDialog, $state, $interval, $window, $q, authService, selectedNavItemService, ordersService, timeoutService) {
+    function OrderDetailController($element, $document, $window, $scope, $interval, ordersService, timeoutService, selectedNavItemService) {
         let vm = this;
 
         let lockGetInitialOrder = false;
         let initialOrderInterval = null;
 
-        vm.currentStep = 1;
-        vm.moreFundsCalled = 0;
-        vm.mealAmount = null;
-        vm.needMoreFunds = false;
-        vm.canCompleteDisabled = true;
-        vm.canContinueDisabled = true;
-        vm.orderShown = false;
-        vm.loadingOrderShown = false;
         vm.orderInfo = {};
-        vm.paymentInfo = [];
+        vm.paymentInfo = {};
+        vm.showPaymentInfo = true;
+        vm.orderShown = false;
 
-        vm.$onInit = function () {
+        vm.placeOrder = placeOrder;
+        vm.getMoreFunds = getMoreFunds;
+
+        vm.$onInit = function() {
+            setContainerHeight();
             selectedNavItemService.setSelectedItem("orders");
             ordersService.getInitialOrder(getInitialSuccess);
 
-            //Unlocks order on leaving scope.
+            //Cancels timeouts and intervals on leaving scope.
             $scope.$on('$destroy', () => {
                 $interval.cancel(initialOrderInterval);
                 timeoutService.cancelTimeout();
@@ -60,114 +56,6 @@
 
                 return null;
             };
-        };
-
-        vm.placeOrder = function() {
-            vm.currentStep++;
-            $window.open(vm.orderInfo.providerWebsite, '_blank');
-        };
-
-        vm.incrementStep = function() {
-            vm.currentStep++;
-        };
-
-        vm.continueOrder = function() {
-            if(vm.mealAmount > (vm.orderInfo.totalCost + (vm.orderInfo.totalCost * 0.25))) {
-                authService.logout();
-            }
-            else {
-                return ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, vm.mealAmount);
-            }
-        };
-
-        vm.continueComplete = function(response) {
-            setPaymentInfo(response.data);
-
-            vm.currentStep++;
-        };
-
-        vm.leaveOrders = function() {
-            $state.go('volunteer-landing');
-        };
-
-        vm.amountUsedChanged = function(item) {
-            vm.canCompleteDisabled = false;
-            vm.needMoreFunds = false;
-            item.amountUsed = Number(item.amountUsed);
-
-            if(item.amountUsed !== null && item.amount !== item.amountUsed) {
-                item.error = true;
-                vm.needMoreFunds = true;
-
-                if(item.amount > item.amountUsed) {
-                    vm.canCompleteDisabled = true;
-                }
-            }
-            else {
-                item.error = false;
-            }
-
-            angular.forEach(vm.paymentInfo, (info) => {
-                if(info.amountUsed == null) {
-                    vm.canCompleteDisabled = true;
-                }
-            });
-        };
-
-        vm.getMoreFunds = function() {
-            let amountNeeded = 0;
-
-            vm.needMoreFunds = false;
-            vm.canCompleteDisabled = true;
-            vm.moreFundsCalled += 1;
-
-            angular.forEach(vm.paymentInfo, (item) => {
-                if(item.error) {
-                    amountNeeded += Math.abs(Math.round((item.amount - item.amountUsed) * 100 ) / 100);
-                }
-
-                item.error = false;
-            });
-
-            if(vm.moreFundsCalled < 3) {
-                ordersService.getPaymentDetails(vm.orderInfo.orderId, vm.orderInfo.providerId, amountNeeded)
-                    .then((response) => {
-                        setPaymentInfo(response.data);
-                    })
-            }
-            else {
-                vm.canCompleteDisabled = false;
-            }
-        };
-
-        vm.totalAmountChanged = function() {
-            vm.canContinueDisabled = !(vm.mealAmount > 0);
-        };
-
-        vm.completeOrder = function () {
-            let data = angular.copy(vm.paymentInfo);
-
-            angular.forEach(data, (item) => {
-                delete item['amount'];
-                delete item['cardNumber'];
-                delete item['pinNumber'];
-                delete item['error'];
-            });
-
-            return $q.all([ordersService.getOrderCount(), ordersService.completeOrder(data)]);
-        };
-
-        vm.showComplete = function(response) {
-            $mdDialog.show({
-                controller: 'CompleteOrderController',
-                controllerAs: 'vm',
-                parent: angular.element(document.body),
-                templateUrl: 'order-complete.tpl.html',
-                locals : {
-                    providerId: vm.orderInfo.providerId,
-                    orderCount: response[0].data['order-count']
-                }
-            }).then((response) => { resetLocalData(); getInitialSuccess(response);});
         };
 
         //Sets data from first get orders call. If no data, sets interval to call the function until data exists.
@@ -205,6 +93,11 @@
                     }
                 });
 
+                ordersService.getPaymentDetails(vm.orderInfo.orderId)
+                    .then((response) => {
+                        setPaymentInfo(response.data);
+                    });
+
                 lockGetInitialOrder = false;
                 vm.orderShown = true;
                 vm.loadingOrderShown = false;
@@ -221,6 +114,28 @@
                     ordersService.getInitialOrder(getInitialSuccess);
                 }, 15000)
             }
+        }
+
+        function placeOrder() {
+            $window.open(vm.orderInfo.providerWebsite, '_blank');
+        }
+
+        function setPaymentInfo(data) {
+            vm.paymentInfo.orderId = vm.orderInfo.orderId;
+            vm.paymentInfo.amount = (Math.round((data.amount) * 100 ) / 100);
+            vm.paymentInfo.paymentInstrumentId = data.id.paymentInstrument.id;
+            vm.paymentInfo.cardNumber = data.id.paymentInstrument.cardNumber;
+            vm.paymentInfo.pinNumber = data.id.paymentInstrument.pinNumber;
+        }
+
+        function getMoreFunds() {
+            vm.showPaymentInfo = false;
+
+            ordersService.getPaymentDetails(vm.orderInfo.orderId)
+                .then((response) => {
+                    setPaymentInfo(response.data);
+                    vm.showPaymentInfo = true;
+                });
         }
 
         //formats epoch time to hours + minutes
@@ -243,40 +158,17 @@
             return value.charAt(0).toUpperCase() + value.slice(1);
         }
 
-        function setPaymentInfo(data) {
-            angular.forEach(data, (item) => {
-                vm.paymentInfo.push(
-                    {
-                        orderId: vm.orderInfo.orderId,
-                        amount: (Math.round((item.amount) * 100 ) / 100),
-                        paymentInstrumentId: item.id.paymentInstrument.id,
-                        cardNumber: item.id.paymentInstrument.cardNumber,
-                        pinNumber: item.id.paymentInstrument.pinNumber,
-                        amountUsed: null,
-                        error: false
-                    }
-                )
-            });
+        function setContainerHeight() {
+            if(vm.orderShown) {
+                $document.ready(function() {
+                    let orderDetailContainer = $element[0].querySelector('.order-detail-info-container');
+                    let footerHeight = $element[0].querySelector('.order-detail-footer').offsetHeight;
+                    let headerBarHeight = $element[0].querySelector('.order-header-bar').offsetHeight;
+                    let topNavHeight = $document[0].querySelector('#top-nav').offsetHeight;
 
-            if(vm.paymentInfo.length < 1) {
-                vm.canCompleteDisabled = false;
+                    orderDetailContainer.style.height = `calc(100vh - ${footerHeight}px - ${headerBarHeight}px - ${topNavHeight}px)`;
+                });
             }
-        }
-
-        function resetLocalData() {
-            lockGetInitialOrder = false;
-            initialOrderInterval = null;
-
-            vm.currentStep = 1;
-            vm.moreFundsCalled = 0;
-            vm.mealAmount = null;
-            vm.needMoreFunds = false;
-            vm.canCompleteDisabled = true;
-            vm.canContinueDisabled = true;
-            vm.orderShown = false;
-            vm.loadingOrderShown = false;
-            vm.orderInfo = {};
-            vm.paymentInfo = [];
         }
     }
 })();

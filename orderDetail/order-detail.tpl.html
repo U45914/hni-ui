@@ -1,0 +1,111 @@
+<div class="loading-entity-container" ng-show="vm.contentHidden">
+    <loading-entity items="vm.orderInfo" content-hidden="vm.contentHidden"></loading-entity>
+</div>
+
+<div id="order-detail-container">
+     <md-card class="order-detail-card" ng-if="vm.orderShown && !vm.contentHidden">
+         <div class="order-time">
+             <i class="material-icons">&#xE192;</i>
+             <div>{{vm.orderInfo.orderTime}}</div>
+         </div>
+         <div class="order-detail-animation-container">
+             <div>
+                 <div class="order-detail-animation" ng-if="vm.currentStep === 1 || vm.currentStep === 2">
+                     <div class="order-detail-header" layout="row" layout-wrap>
+                         <i class="material-icons" flex="100">&#xE56C;</i>
+                         <div flex="100">Order For</div>
+                     </div>
+                     <div class="order-detail-header-triangle"></div>
+                     <div class="order-detail-for-container" layout="row" layout-wrap>
+                         <div class="order-detail-name" flex="100">{{vm.orderInfo.userName}}</div>
+                         <i class="material-icons" flex="100">&#xE0C8;</i>
+                         <div class="restaurant-name" flex="100">{{vm.orderInfo.providerName}}</div>
+                         <div flex="100">{{vm.orderInfo.providerAddress}}</div>
+                         <div flex="100">{{vm.orderInfo.providerCity + ', ' + vm.orderInfo.providerState}}</div>
+                         <div class="order-detail-location-border"></div>
+                         <div class="order-detail-food-info" flex="100" ng-repeat="orderItem in vm.orderInfo.orderItems track by $index">
+                             <div class="order-detail-food-quantity">{{::orderItem.quantity}}</div>
+                             <div class="order-detail-food-text">
+                                 <div class="order-detail-food-name">{{::orderItem.name}}</div>
+                                 <div class="order-detail-food-description">{{::orderItem.description}}</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div>
+                 <div class="order-detail-animation order-detail-animation-right" ng-if="vm.currentStep !== 1 && vm.currentStep !== 2">
+                     <div class="order-detail-header" layout="row" layout-wrap>
+                         <i class="material-icons" flex="100">&#xE870;</i>
+                         <div flex="100">Order Payment</div>
+                     </div>
+                     <div class="order-detail-header-triangle"></div>
+                     <div class="order-detail-amount-container" layout="row" layout-wrap>
+                         <md-input-container class="input-primary" flex="100">
+                             <span class="input-symbol-meal-amount">$</span>
+                             <label>Total Amount of Meal</label>
+                             <input ng-disabled="vm.currentStep !== 3" ng-model="vm.mealAmount" ng-change="vm.totalAmountChanged()" type="number">
+                         </md-input-container>
+                         <div class="order-payment-info-container" flex="100">
+                             <div class="order-detail-payment-info payment-info-animation" flex layout="row" layout-wrap ng-repeat="item in vm.paymentInfo" ng-if="vm.currentStep == 4">
+                                 <div flex="40" flex-xs="60">
+                                     {{item.cardNumber}}
+                                 </div>
+                                 <div flex="15" flex-xs="40">
+                                     {{item.pinNumber}}
+                                 </div>
+                                 <div flex="15" flex-xs="60">
+                                     ${{item.amount}}
+                                 </div>
+                                 <div flex="30" flex-xs="40">
+                                     <form name="amountForm">
+                                         <md-input-container class="input-primary">
+                                             <span class="input-symbol-used">$</span>
+                                             <label>Amount Used</label>
+                                             <input name="amountUsed" ng-model="item.amountUsed" ng-model-options="{ updateOn: 'blur' }" ng-change="vm.amountUsedChanged(item)" type="number">
+                                             <i class="material-icons payment-amount-error-icon" ng-show="item.error">&#xE002;</i>
+                                         </md-input-container>
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="order-detail-more-funds" ng-show="vm.needMoreFunds">
+                             <md-button class="button-primary" ng-click="vm.getMoreFunds()">I Need More Funds</md-button>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        <div class="order-detail-footer">
+            <div ng-if="vm.currentStep === 1">
+                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
+                <md-button class="md-raised button-primary" ng-click="vm.placeOrder()">Place Order</md-button>
+            </div>
+            <div ng-if="vm.currentStep === 2">
+                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
+                <md-button class="md-raised button-primary" ng-click="vm.incrementStep()">Continue</md-button>
+            </div>
+            <div ng-if="vm.currentStep === 3">
+                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
+                <md-button class="md-raised button-primary" ng-disabled="true" ng-show="vm.canContinueDisabled" ng-click="vm.continueOrder()">Continue</md-button>
+                <spinner-button text="Continue" click-fn="vm.continueOrder()" stop-fn="vm.continueComplete" ng-show="!vm.canContinueDisabled"></spinner-button>
+            </div>
+            <div ng-if="vm.currentStep === 4">
+                <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Exit</md-button>
+                <md-button class="md-raised button-primary" ng-disabled="true" ng-show="vm.canCompleteDisabled">Complete Order</md-button>
+                <spinner-button text="Complete Order" click-fn="vm.completeOrder()" stop-fn="vm.showComplete" ng-show="!vm.canCompleteDisabled"></spinner-button>
+            </div>
+        </div>
+    </md-card>
+
+    <md-card class="order-detail-card" ng-if="vm.loadingOrderShown && !vm.contentHidden">
+        <div class="out-of-orders-container" layout="row" layout-wrap>
+            <i class="material-icons" flex="100">&#xE815;</i>
+            <div class="out-of-orders-text" flex="100">Way to go!</div>
+            <div class="out-of-orders-header" flex="100">All orders have been placed.</div>
+            <div class="out-of-orders-subheader" flex="100">Stick around and we will send some new orders your way!</div>
+            <div class="out-of-orders-fetching" flex="100">Fetching new orders</div>
+            <md-progress-linear md-mode="indeterminate" flex="100"></md-progress-linear>
+        </div>
+    </md-card>
+</div>

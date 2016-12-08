@@ -1,0 +1,99 @@
+@import '_includes';
+
+#out-of-orders-container {
+  max-width: rem(520px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: rem(60px) rem(160px) rem(60px) rem(160px);
+  background-color: $color-background;
+}
+
+md-card.order-detail-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  color: $color-text;
+  background-color: $color-white;
+}
+
+.out-of-orders-container {
+  padding: rem(60px) rem(60px) rem(120px) rem(60px);
+  text-align: center;
+
+  & i.material-icons {
+    margin-bottom: rem(12px);
+    font-size: rem(48px);
+    color: $color-order-detail-text;
+  }
+
+  & .out-of-orders-text {
+    font-weight: bold;
+  }
+
+  & .out-of-orders-header {
+    margin-bottom: rem(12px);
+    font-size: rem(24px);
+  }
+
+  & .out-of-orders-subheader {
+    margin-bottom: rem(60px);
+    padding-left: rem(36px);
+    padding-right: rem(36px);
+    font-size: rem(16px);
+  }
+
+  & .out-of-orders-fetching {
+    margin-bottom: rem(16px);
+  }
+
+  & md-progress-linear {
+    & .md-container {
+      height: 3px;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 150px;
+      background-color: #EFBFB8;
+    }
+
+    & .md-bar {
+      background-color: $color-red-base;
+    }
+  }
+}
+
+#out-of-orders-container.ng-enter {
+  transition: all 0.6s;
+  transform: translate3d(0, 50vw, 0);
+  opacity: 0;
+}
+
+#out-of-orders-container.ng-enter-active {
+  transition: all 0.6s;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+@media screen and (max-width: 960px) {
+  #order-detail-container {
+    padding: rem(80px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #order-detail-container {
+    padding: rem(40px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #order-detail-container {
+    padding: rem(20px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #order-detail-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
