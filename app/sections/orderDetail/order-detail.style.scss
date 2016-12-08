@@ -148,7 +148,7 @@ $color-order-detail-border: $color-gray-lighter;
 }
 
 .payment-info-animation.ng-enter {
-  transform: translate3d(33vw, 0, 0);
+  transform: translate3d(55vw, 0, 0);
   opacity: 0;
 }
 .payment-info-animation.ng-enter.payment-info-animation.ng-enter-active {
@@ -161,7 +161,7 @@ $color-order-detail-border: $color-gray-lighter;
   opacity: 0;
 }
 .payment-info-animation.ng-leave.payment-info-animation.ng-leave-active {
-  transform: translate3d(-33vw, 0, 0);
+  transform: translate3d(-55vw, 0, 0);
   opacity: 1;
 }
 
