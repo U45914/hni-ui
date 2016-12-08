@@ -9,10 +9,10 @@
         });
 
     OrderDetailController.$inject = ['$element', '$document', '$window','$scope', '$q', '$interval',
-        'ordersService', 'timeoutService', 'selectedNavItemService', 'resizeService', '$mdDialog'];
+        '$timeout', 'ordersService', 'timeoutService', 'selectedNavItemService', 'resizeService', '$mdDialog'];
 
     function OrderDetailController($element, $document, $window, $scope, $q, $interval,
-                                   ordersService, timeoutService, selectedNavItemService, resizeService, $mdDialog) {
+                                   $timeout, ordersService, timeoutService, selectedNavItemService, resizeService, $mdDialog) {
         let vm = this;
 
         let lockGetInitialOrder = false;
@@ -108,7 +108,6 @@
                 vm.orderShown = true;
                 vm.loadingOrderShown = false;
 
-                setContainerHeight();
                 $interval.cancel(initialOrderInterval);
                 timeoutService.startTimeout(900000);
             }
@@ -195,14 +194,18 @@
 
         function setContainerHeight() {
             if(vm.orderShown) {
-                $document.ready(function() {
+                try {
                     let orderDetailContainer = $element[0].querySelector('.order-detail-info-container');
                     let footerHeight = $element[0].querySelector('.order-detail-footer').offsetHeight;
                     let headerBarHeight = $element[0].querySelector('.order-header-bar').offsetHeight;
                     let topNavHeight = $document[0].querySelector('#top-nav').offsetHeight;
 
                     orderDetailContainer.style.height = `calc(100vh - ${footerHeight}px - ${headerBarHeight}px - ${topNavHeight}px)`;
-                });
+                } catch(error) {
+                    $timeout(() => {
+                        setContainerHeight();
+                    }, 100);
+                }
             }
         }
     }
