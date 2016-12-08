@@ -8,9 +8,11 @@
             controllerAs: 'vm'
         });
 
-    OrderDetailController.$inject = ['$element', '$document', '$window','$scope', '$interval', 'ordersService', 'timeoutService', 'selectedNavItemService'];
+    OrderDetailController.$inject = ['$element', '$document', '$window','$scope', '$q', '$interval',
+        'ordersService', 'timeoutService', 'selectedNavItemService', 'resizeService', '$mdDialog'];
 
-    function OrderDetailController($element, $document, $window, $scope, $interval, ordersService, timeoutService, selectedNavItemService) {
+    function OrderDetailController($element, $document, $window, $scope, $q, $interval,
+                                   ordersService, timeoutService, selectedNavItemService, resizeService, $mdDialog) {
         let vm = this;
 
         let lockGetInitialOrder = false;
@@ -20,14 +22,18 @@
         vm.paymentInfo = {};
         vm.showPaymentInfo = true;
         vm.orderShown = false;
+        vm.loadingOrderShown = false;
 
         vm.placeOrder = placeOrder;
         vm.getMoreFunds = getMoreFunds;
+        vm.completeOrder = completeOrder;
+        vm.showComplete = showComplete;
 
         vm.$onInit = function() {
-            setContainerHeight();
             selectedNavItemService.setSelectedItem("orders");
             ordersService.getInitialOrder(getInitialSuccess);
+
+            resizeService.registerCallback(setContainerHeight);
 
             //Cancels timeouts and intervals on leaving scope.
             $scope.$on('$destroy', () => {
@@ -102,6 +108,7 @@
                 vm.orderShown = true;
                 vm.loadingOrderShown = false;
 
+                setContainerHeight();
                 $interval.cancel(initialOrderInterval);
                 timeoutService.startTimeout(900000);
             }
@@ -121,11 +128,12 @@
         }
 
         function setPaymentInfo(data) {
-            vm.paymentInfo.orderId = vm.orderInfo.orderId;
-            vm.paymentInfo.amount = (Math.round((data.amount) * 100 ) / 100);
-            vm.paymentInfo.paymentInstrumentId = data.id.paymentInstrument.id;
-            vm.paymentInfo.cardNumber = data.id.paymentInstrument.cardNumber;
-            vm.paymentInfo.pinNumber = data.id.paymentInstrument.pinNumber;
+            if(Object.keys(data).length !== 0) {
+                vm.paymentInfo.orderId = vm.orderInfo.orderId;
+                vm.paymentInfo.paymentInstrumentId = data.id.paymentInstrument.id;
+                vm.paymentInfo.cardNumber = data.id.paymentInstrument.cardNumber;
+                vm.paymentInfo.pinNumber = data.id.paymentInstrument.pinNumber;
+            }
         }
 
         function getMoreFunds() {
@@ -136,6 +144,33 @@
                     setPaymentInfo(response.data);
                     vm.showPaymentInfo = true;
                 });
+        }
+
+        function completeOrder() {
+            return $q.all([ordersService.getOrderCount(), ordersService.completeOrder(vm.orderInfo.orderId)]);
+        }
+
+        function showComplete(response) {
+            $mdDialog.show({
+                controller: 'CompleteOrderController',
+                controllerAs: 'vm',
+                parent: angular.element(document.body),
+                templateUrl: 'order-complete.tpl.html',
+                locals : {
+                    providerId: vm.orderInfo.providerId,
+                    orderCount: response[0].data['order-count']
+                }
+            }).then((response) => { resetLocalData(); getInitialSuccess(response);});
+        }
+
+        function resetLocalData() {
+            lockGetInitialOrder = false;
+            initialOrderInterval = null;
+
+            vm.orderShown = false;
+            vm.loadingOrderShown = false;
+            vm.orderInfo = {};
+            vm.paymentInfo = [];
         }
 
         //formats epoch time to hours + minutes

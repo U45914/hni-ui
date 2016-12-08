@@ -49,7 +49,7 @@
                     }
                 });
             } catch(error) {
-
+                vm.buttonDisabled = false;
             }
         };
 

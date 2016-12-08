@@ -74,25 +74,25 @@ md-card.order-detail-card {
 }
 
 @media screen and (max-width: 960px) {
-  #order-detail-container {
+  #out-of-orders-container {
     padding: rem(80px);
   }
 }
 
 @media screen and (max-width: 768px) {
-  #order-detail-container {
+  #out-of-orders-container {
     padding: rem(40px);
   }
 }
 
 @media screen and (max-width: 600px) {
-  #order-detail-container {
+  #out-of-orders-container {
     padding: rem(20px);
   }
 }
 
 @media screen and (max-width: 500px) {
-  #order-detail-container {
+  #out-of-orders-container {
     padding-left: 0;
     padding-right: 0;
   }

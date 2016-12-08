@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="order-detail-footer">
-        <md-button class="button-primary">Cancel</md-button>
-        <md-button class="md-raised button-primary">Complete Order</md-button>
+        <md-button class="button-primary" ui-sref="volunteer-landing">Cancel</md-button>
+        <spinner-button text="Complete Order" click-fn="vm.completeOrder()" stop-fn="vm.showComplete"></spinner-button>
     </div>
 </div>
