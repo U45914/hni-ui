@@ -57,9 +57,9 @@ $color-order-detail-border: $color-gray-lighter;
   left: rem(70px);
   width: 0;
   height: 0;
-  border-left: rem(30px) solid transparent;
-  border-right: rem(30px) solid transparent;
-  border-top: rem(30px) solid $color-red-base;
+  border-left: rem(36px) solid transparent;
+  border-right: rem(36px) solid transparent;
+  border-top: rem(36px) solid $color-red-base;
 }
 
 .order-detail-info-container {
@@ -97,11 +97,10 @@ $color-order-detail-border: $color-gray-lighter;
     font-weight: 800;
   }
 
-  & button.button-primary {
+  & button.button-primary-outline {
     margin-top: rem(30px);
     padding-left: rem(16px);
     padding-right: rem(16px);
-    border: 1px solid $color-red-base;
   }
 }
 
@@ -171,6 +170,10 @@ $color-order-detail-border: $color-gray-lighter;
     padding-right: rem(60px);
   }
 
+  & .order-detail-triangle {
+    left: rem(50px);
+  }
+
   & .order-detail-location-section {
     margin-top: rem(30px);
     margin-bottom: rem(30px);
@@ -210,5 +213,9 @@ $color-order-detail-border: $color-gray-lighter;
   & .order-header-bar {
     padding-left: rem(40px);
     padding-right: rem(40px);
+  }
+
+  & .order-detail-triangle {
+    left: rem(30px);
   }
 }

@@ -11,6 +11,21 @@
       background-color: $color-red-base;
     }
   }
+
+  &.button-primary-outline {
+    color: $color-red-base;
+    border: 1px solid $color-red-base;
+    transition: all 0.3s;
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-red-base;
+    }
+  }
 }
 
 md-input-container.input-primary {
