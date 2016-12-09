@@ -1,91 +1,164 @@
 @import '_includes';
 
 #order-detail-container {
-  max-width: rem(520px);
   margin-left: auto;
   margin-right: auto;
-  padding: rem(60px) rem(160px) rem(60px) rem(160px);
   background-color: $color-background;
 }
 
 md-card.order-detail-card {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
   color: $color-text;
   background-color: $color-white;
+  margin: 0px;
 
-  & .order-time {
-    display: flex;
-    align-items: center;
-    padding: rem(20px) rem(40px) rem(20px) rem(40px);
-    font-size: rem(20px);
-    font-weight: bold;
-    letter-spacing: rem(0.5px);
-    color: $color-order-detail-header;
-
-    & i.material-icons {
+  .order-detail-section {
+    i.material-icons {
+      font-size: rem(48px);
       color: $color-order-detail-text;
-      margin-right: rem(2px);
-      font-size: rem(24px);
+    }
+
+    .section-header {
+      text-transform: uppercase;
+      margin-bottom: rem(30px);
+      font-size: rem(16px);
+    }
+
+    .restaurant-info-container {
+      margin-bottom: rem(30px);
+      .restaurant-name {
+        font-size: rem(16px);
+        font-weight: 800;
+        margin-bottom: rem(15px);
+      }
+    }
+
+    .md-button.md-raised.order {
+      color: $color-red-base;
+      background-color: white;
+      border: 2px solid $color-red-base;
+      font-weight: bold;
+      box-shadow: none;
+      &:hover {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        color: white;
+        background-color: $color-red-base;
+      }
     }
   }
 
-  & .order-detail-header {
+  .order-detail-section.center-section {
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+
+    @media screen and (max-width: 598px) {
+      border: none;
+      margin: 50px 0px;
+    }
+  }
+
+  .order-detail-section.gift-card-section {
+    .card-header {
+      font-size: rem(16px);
+      font-weight: 800;
+      margin-bottom: rem(15px);
+    }
+
+    .order-detail-more-funds {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .order-detail-more-funds {
+      transition: all 0.6s;
+      button {
+        font-weight: 800;
+      }
+    }
+
+    .order-detail-more-funds.ng-hide-add {
+      height: rem(48px);
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+
+    .order-detail-more-funds.ng-hide-remove {
+      height: 0;
+      transform: translate3d(0, rem(200px), 0);
+      opacity: 0;
+    }
+
+    .order-detail-more-funds.ng-hide-add-active {
+      height: 0;
+      transform: translate3d(rem(200px), 0, 0);
+      opacity: 0;
+    }
+
+    .order-detail-more-funds.ng-hide-remove-active {
+      height: rem(48px);
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+
+  .order-detail-header {
+    letter-spacing: rem(0.5px);
     display: flex;
-    text-align: center;
-    height: rem(100px);
-    width: 100%;
+    height: rem(100px); 
+    width: 100%; 
     background-color: $color-red-base;
     color: $color-white;
-
-    & > div {
-      letter-spacing: rem(0.5px);
-      font-size: rem(16px);
-      text-transform: uppercase;
+    align-items: center;
+    .order-for-container {
+      margin-left: 5%;
+      .order-header {
+        text-transform: uppercase;
+      }
+      .order-name {
+        font-weight: 800;
+        font-size: rem(24px);
+      }
     }
-
-    & i.material-icons {
-      align-self: flex-end;
-      margin-bottom: rem(12px);
-      font-size: rem(30px);
+    .order-time {
+      display: flex;
+      font-size: rem(20px);
+      font-weight: bold;
+      margin-left: auto;
+      padding-right: 5%;
     }
   }
 
-  & .order-detail-header-triangle {
+  .order-detail-header-triangle {
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5%;
     width: 0;
     height: 0;
-    border-left: rem(20px) solid transparent;
-    border-right: rem(20px) solid transparent;
-
-    border-top: rem(20px) solid $color-red-base;
+    border-left: rem(40px) solid transparent;
+    border-right: rem(40px) solid transparent;
+    border-top: rem(40px) solid $color-red-base;
   }
 
-  & .order-detail-for-container {
+  .order-detail-for-container {
     display: flex;
     justify-content: center;
     margin-bottom: rem(40px);
+    margin-top: rem(100px);
 
-    & > div, & > i.material-icons {
+    > div, > i.material-icons {
       text-align: center;
     }
 
-    & .order-detail-location-border {
+    .order-detail-location-border {
       margin-top: rem(12px);
       margin-bottom: rem(20px);
       width: rem(120px);
       border-bottom: 2px solid $color-order-detail-border;
     }
-
-    & > i.material-icons {
-      color: $color-order-detail-text;
-    }
   }
 
-  & .order-detail-name {
+  .order-detail-name {
     margin-top: rem(20px);
     margin-bottom: rem(20px);
     font-size: rem(24px);
@@ -93,11 +166,7 @@ md-card.order-detail-card {
     color: $color-order-detail-text;
   }
 
-  & .restaurant-name {
-    font-weight: 500;
-  }
-
-  & .order-detail-food-info {
+  .order-detail-food-info {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,31 +175,31 @@ md-card.order-detail-card {
       margin-bottom: rem(12px);
     }
 
-    & .order-detail-food-text {
+    .order-detail-food-text {
       padding-left: rem(6px);
       text-align: left;
       border-left: 1px solid $color-order-detail-border;
     }
 
-    & .order-detail-food-quantity {
+    .order-detail-food-quantity {
       padding-right: rem(6px);
       font-size: 24px;
       font-weight: 800;
       color: $color-red-base;
     }
 
-    & .order-detail-food-name {
+    .order-detail-food-name {
       font-size: rem(16px);
       font-weight: 800;
     }
 
-    & .order-detail-food-description {
+    .order-detail-food-description {
       font-size: rem(12px);
       color: $color-gray-light;
     }
   }
 
-  & .order-detail-amount-container {
+  .order-detail-amount-container {
     overflow-x: hidden;
     padding: rem(30px) rem(60px) rem(30px) rem(60px);
 
@@ -170,87 +239,51 @@ md-card.order-detail-card {
       }
     }
   }
+}
 
-  & .order-detail-payment-info {
-    position: relative;
-
-    & md-input-container {
-      top: rem(-28px);
-      margin-bottom: 0;
-
-      & .md-errors-spacer {
-        height: 0;
-        min-height: 0;
-      }
-    }
-
-    & > div:first-child {
-      font-weight: bold;
-    }
-
-    & > div:not(:last-child) {
-      padding-right: rem(6px);
-    }
-
-    & i.material-icons {
-      position: absolute;
-      top: 10px;
-      right: rem(-36px);
-      color: $color-red-dark;
-    }
-  }
-
-  & .order-detail-more-funds {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  & .order-detail-footer {
+.order-detail-footer {
     display: flex;
     justify-content: flex-end;
     padding: rem(12px);
-    border-top: 2px solid $color-order-detail-border;
 
-    & button {
+    button {
       margin-top: 0;
       margin-bottom: 0;
     }
   }
-}
 
 .out-of-orders-container {
   padding: rem(60px) rem(60px) rem(120px) rem(60px);
   text-align: center;
 
-  & i.material-icons {
+  i.material-icons {
     margin-bottom: rem(12px);
     font-size: rem(48px);
     color: $color-order-detail-text;
   }
 
-  & .out-of-orders-text {
+  .out-of-orders-text {
     font-weight: bold;
   }
 
-  & .out-of-orders-header {
+  .out-of-orders-header {
     margin-bottom: rem(12px);
     font-size: rem(24px);
   }
 
-  & .out-of-orders-subheader {
+  .out-of-orders-subheader {
     margin-bottom: rem(60px);
     padding-left: rem(36px);
     padding-right: rem(36px);
     font-size: rem(16px);
   }
 
-  & .out-of-orders-fetching {
+  .out-of-orders-fetching {
     margin-bottom: rem(16px);
   }
 
-  & md-progress-linear {
-    & .md-container {
+  md-progress-linear {
+    .md-container {
       height: 3px;
       margin-left: auto;
       margin-right: auto;
@@ -258,7 +291,7 @@ md-card.order-detail-card {
       background-color: #EFBFB8;
     }
 
-    & .md-bar {
+    .md-bar {
       background-color: $color-red-base;
     }
   }
@@ -268,11 +301,11 @@ md-card.order-detail-card {
   display: flex;
   overflow: hidden;
 
-  & > div {
+  > div {
     min-width: 100%;
   }
 
-  & .order-detail-animation {
+  .order-detail-animation {
     &.order-detail-animation-right {
       right: 100%;
       position: relative
@@ -280,45 +313,6 @@ md-card.order-detail-card {
   }
 }
 
-@media screen and (max-width: 960px) {
-  #order-detail-container {
-    padding: rem(80px);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #order-detail-container {
-    padding: rem(40px);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  #order-detail-container {
-    padding: rem(20px);
-
-    & .order-detail-amount-container {
-      padding-left: rem(36px);
-      padding-right: rem(36px);
-    }
-
-    & .order-detail-payment-info {
-      & > div:not(:first-child):not(:nth-child(2)) {
-        margin-top: rem(24px);
-      }
-
-      & i.material-icons {
-        right: rem(-30px);
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 500px) {
-  #order-detail-container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
 
 .payment-info-animation {
   transition: all 0.6s;
@@ -350,34 +344,6 @@ md-card.order-detail-card {
 }
 
 .payment-amount-error-icon.ng-hide-remove-active {
-  opacity: 1;
-}
-
-.order-detail-more-funds {
-  transition: all 0.6s;
-}
-
-.order-detail-more-funds.ng-hide-add {
-  height: rem(48px);
-  transform: translate3d(0, 0, 0);
-  opacity: 1;
-}
-
-.order-detail-more-funds.ng-hide-remove {
-  height: 0;
-  transform: translate3d(0, rem(200px), 0);
-  opacity: 0;
-}
-
-.order-detail-more-funds.ng-hide-add-active {
-  height: 0;
-  transform: translate3d(rem(200px), 0, 0);
-  opacity: 0;
-}
-
-.order-detail-more-funds.ng-hide-remove-active {
-  height: rem(48px);
-  transform: translate3d(0, 0, 0);
   opacity: 1;
 }
 

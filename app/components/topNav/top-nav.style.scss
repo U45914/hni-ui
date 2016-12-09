@@ -3,7 +3,8 @@
 #top-nav {
   background-color: $color-white;
   z-index: 30;
-
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  
   & .md-toolbar-tools {
     padding-left: rem(80px);
     padding-right: rem(80px);
