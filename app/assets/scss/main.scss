@@ -14,7 +14,8 @@
 
   &.button-primary-outline {
     color: $color-red-base;
-    border: 1px solid $color-red-base;
+    border: 2px solid $color-red-base;
+    font-weight: bold;
     transition: all 0.3s;
 
     &:focus {
