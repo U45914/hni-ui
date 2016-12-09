@@ -195,7 +195,6 @@
         function setContainerHeight() {
             if(vm.orderShown) {
                 try {
-                    let orderDetailContainer = $element[0].querySelector('.order-detail-info-container');
                     let footerHeight = $element[0].querySelector('.order-detail-footer').offsetHeight;
                     let headerBarHeight = $element[0].querySelector('.order-header-bar').offsetHeight;
                     let topNavHeight = $document[0].querySelector('#top-nav').offsetHeight;
