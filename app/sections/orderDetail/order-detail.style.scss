@@ -63,9 +63,9 @@ $color-order-detail-border: $color-gray-lighter;
 }
 
 .order-detail-info-container {
+  overflow: auto;
   height: calc(((100vh - 98px) - 100px) - 64px);
   padding: rem(100px) rem(80px) rem(80px) rem(80px);
-  overflow: scroll;
   background-color: $color-white;
 
   & > div {
