@@ -17,6 +17,7 @@
 
         let lockGetInitialOrder = false;
         let initialOrderInterval = null;
+        let previousProviderId = null;
 
         vm.orderInfo = {};
         vm.paymentInfo = {};
@@ -99,10 +100,12 @@
                     }
                 });
 
-                ordersService.getPaymentDetails(vm.orderInfo.orderId)
-                    .then((response) => {
-                        setPaymentInfo(response.data);
-                    });
+                if(previousProviderId !== vm.orderInfo.providerId) {
+                    ordersService.getPaymentDetails(vm.orderInfo.orderId)
+                        .then((response) => {
+                            setPaymentInfo(response.data);
+                        });
+                }
 
                 lockGetInitialOrder = false;
                 vm.orderShown = true;
@@ -165,11 +168,11 @@
         function resetLocalData() {
             lockGetInitialOrder = false;
             initialOrderInterval = null;
+            previousProviderId = vm.orderInfo.providerId;
 
             vm.orderShown = false;
             vm.loadingOrderShown = false;
             vm.orderInfo = {};
-            vm.paymentInfo = [];
         }
 
         //formats epoch time to hours + minutes
