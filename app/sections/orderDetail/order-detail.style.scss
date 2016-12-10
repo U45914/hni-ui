@@ -66,6 +66,7 @@ $color-order-detail-border: $color-gray-lighter;
   overflow: auto;
   height: calc(((100vh - 98px) - 100px) - 64px);
   padding: rem(100px) rem(80px) rem(0px) rem(80px);
+  box-sizing: border-box;
   background-color: $color-white;
 
   @media(min-width: 960px) and (min-width: 0) and (orientation: portrait) {
@@ -213,11 +214,41 @@ $color-order-detail-border: $color-gray-lighter;
 
 @media screen and (max-width: 600px) {
   & .order-header-bar {
+    height: rem(60px);
     padding-left: rem(40px);
     padding-right: rem(40px);
+
+    & .order-detail-person {
+      & div {
+        &:first-child {
+          font-size: rem(10px);
+        }
+
+        &:last-child {
+          font-size: rem(18px);
+        }
+      }
+    }
+
+    & .order-detail-time .order-time {
+      font-size: rem(18px);
+
+      & i.material-icons {
+        font-size: rem(18px);
+      }
+    }
+  }
+
+  & .order-detail-info-container {
+    padding: rem(20px) rem(40px) rem(20px) rem(40px);
   }
 
   & .order-detail-triangle {
     left: rem(30px);
+    border-width: 24px;
+  }
+
+  & .order-detail-footer {
+    padding: rem(6px);
   }
 }

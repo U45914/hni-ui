@@ -19,37 +19,39 @@
         </div>
     </div>
     <div class="order-detail-triangle"></div>
-    <div class="order-detail-info-container" layout="row" layout-wrap>
-        <div flex flex-sm="100" flex-xs="100">
-            <div class="order-section-container">
-                <order-detail-header icon="&#xE56C;" text="Meal Order"></order-detail-header>
-                <order-food-item ng-repeat="orderItem in vm.orderInfo.orderItems track by $index"
-                                 number="{{orderItem.quantity}}" text="{{orderItem.name}}" description={{orderItem.description}}></order-food-item>
-            </div>
-        </div>
-        <div flex flex-sm="100" flex-xs="100">
-            <div class="order-detail-location-section">
-                <order-detail-header icon="&#xE0C8;" text="Location"></order-detail-header>
-                <div class="order-detail-for-container" layout="row" layout-wrap>
-                    <div class="order-restaurant-name" flex="100">{{vm.orderInfo.providerName}}</div>
-                    <div flex="100">{{vm.orderInfo.providerAddress}}</div>
-                    <div flex="100">{{vm.orderInfo.providerCity + ', ' + vm.orderInfo.providerState}}</div>
-                    <div flex="100"><md-button class="button-primary-outline" ng-click="vm.placeOrder()">Place Order</md-button></div>
+    <div class="order-detail-info-container">
+        <div layout="row" layout-wrap>
+            <div flex flex-sm="100" flex-xs="100">
+                <div class="order-section-container">
+                    <order-detail-header icon="&#xE56C;" text="Meal Order"></order-detail-header>
+                    <order-food-item ng-repeat="orderItem in vm.orderInfo.orderItems track by $index"
+                                     number="{{orderItem.quantity}}" text="{{orderItem.name}}" description={{orderItem.description}}></order-food-item>
                 </div>
             </div>
-        </div>
-        <div flex flex-sm="100" flex-xs="100">
-            <div class="order-section-container">
-                <order-detail-header icon="&#xE870;" text="Order Payment"></order-detail-header>
-                <div class="order-detail-payment-section" layout="row" layout-wrap>
-                    <div class="order-gift-card-label" flex="100">Gift Cards</div>
-                    <div class="order-gift-card-number" flex="100">
-                        <div class="payment-info-animation" ng-if="vm.showPaymentInfo" style="display: inline-block">
-                            <span>{{vm.paymentInfo.cardNumber}}</span>
-                            <span>{{vm.paymentInfo.pinNumber}}</span>
-                        </div>
+            <div flex flex-sm="100" flex-xs="100">
+                <div class="order-detail-location-section">
+                    <order-detail-header icon="&#xE0C8;" text="Location"></order-detail-header>
+                    <div class="order-detail-for-container" layout="row" layout-wrap>
+                        <div class="order-restaurant-name" flex="100">{{vm.orderInfo.providerName}}</div>
+                        <div flex="100">{{vm.orderInfo.providerAddress}}</div>
+                        <div flex="100">{{vm.orderInfo.providerCity + ', ' + vm.orderInfo.providerState}}</div>
+                        <div flex="100"><md-button class="button-primary-outline" ng-click="vm.placeOrder()">Place Order</md-button></div>
                     </div>
-                    <div flex="100"><md-button class="button-primary" ng-click="vm.getMoreFunds();">I Need More Funds</md-button></div>
+                </div>
+            </div>
+            <div flex flex-sm="100" flex-xs="100">
+                <div class="order-section-container">
+                    <order-detail-header icon="&#xE870;" text="Order Payment"></order-detail-header>
+                    <div class="order-detail-payment-section" layout="row" layout-wrap>
+                        <div class="order-gift-card-label" flex="100">Gift Cards</div>
+                        <div class="order-gift-card-number" flex="100">
+                            <div class="payment-info-animation" ng-if="vm.showPaymentInfo" style="display: inline-block">
+                                <span>{{vm.paymentInfo.cardNumber}}</span>
+                                <span>{{vm.paymentInfo.pinNumber}}</span>
+                            </div>
+                        </div>
+                        <div flex="100"><md-button class="button-primary" ng-click="vm.getMoreFunds();">I Need More Funds</md-button></div>
+                    </div>
                 </div>
             </div>
         </div>
