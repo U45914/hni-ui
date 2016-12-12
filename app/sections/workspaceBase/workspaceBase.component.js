@@ -8,12 +8,12 @@
             controllerAs: 'vm'
         });
 
-    controller.$inject = ['$element', '$timeout', 'selectedNavItemService', 'authService', 'resizeService', 'rolesConstant'];
+    controller.$inject = ['$element', '$window', '$document', 'selectedNavItemService', 'authService', 'rolesConstant'];
 
-    function controller($element, $timeout, selectedNavItemService, authService, resizeService, rolesConstant) {
+    function controller($element, $window, $document, selectedNavItemService, authService, rolesConstant) {
         let vm = this;
 
-        let navHeight = 0;
+        let topNav = null;
         let collapsedNav = null;
 
         vm.role = authService.getRole();
@@ -28,11 +28,15 @@
             toggleCollapsedNav: vm.toggleCollapsedNav
         };
 
-        resizeService.registerCallback(updateOffset);
-
-        $timeout(() => {
+        $document.ready(() => {
+            topNav = $document[0].getElementById('top-nav');
+            collapsedNav = $element[0].getElementsByClassName('collapsed-nav-menu')[0];
             updateOffset();
-        }, 200);
+        });
+
+        angular.element($window).on('resize', ()=> {
+            updateOffset();
+        });
 
         function toggleCollapsedNav() {
             if(collapsedNav) {
@@ -41,8 +45,7 @@
         }
 
         function updateOffset() {
-            collapsedNav = $element[0].querySelector('.collapsed-nav-menu');
-            navHeight = $element[0].querySelector('#top-nav').clientHeight;
+            let navHeight = topNav.clientHeight;
 
             if(collapsedNav) {
                 collapsedNav.style.top = navHeight + 'px';
