@@ -3,7 +3,10 @@
 $color-order-detail-border: $color-gray-lighter;
 
 #order-detail-container {
-  background-color: $color-background;
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  background-color: $color-white;
 }
 
 .order-header-bar {
@@ -63,15 +66,9 @@ $color-order-detail-border: $color-gray-lighter;
 }
 
 .order-detail-info-container {
-  overflow: auto;
-  height: calc(((100vh - 98px) - 100px) - 64px);
   padding: rem(100px) rem(80px) rem(0px) rem(80px);
   box-sizing: border-box;
   background-color: $color-white;
-
-  @media(min-width: 960px) and (min-width: 0) and (orientation: portrait) {
-    min-height: 375px;
-  }
 
   & > div {
     overflow: hidden;
@@ -189,7 +186,6 @@ $color-order-detail-border: $color-gray-lighter;
   }
 
   & .order-detail-info-container {
-    height: calc(((100vh - 98px) - 100px) - 56px);
     padding: rem(60px);
   }
 
@@ -250,5 +246,6 @@ $color-order-detail-border: $color-gray-lighter;
 
   & .order-detail-footer {
     padding: rem(6px);
+    background-color: $color-background;
   }
 }

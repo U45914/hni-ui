@@ -9,15 +9,18 @@
         });
 
     OrderDetailController.$inject = ['$element', '$document', '$window','$scope', '$q', '$interval',
-        '$timeout', 'ordersService', 'timeoutService', 'selectedNavItemService', 'resizeService', '$mdDialog'];
+        '$timeout', 'ordersService', 'timeoutService', 'selectedNavItemService', '$mdDialog'];
 
     function OrderDetailController($element, $document, $window, $scope, $q, $interval,
-                                   $timeout, ordersService, timeoutService, selectedNavItemService, resizeService, $mdDialog) {
+                                   $timeout, ordersService, timeoutService, selectedNavItemService, $mdDialog) {
         let vm = this;
 
         let lockGetInitialOrder = false;
         let initialOrderInterval = null;
         let previousProviderId = null;
+        let orderDetailContainer = $element[0].querySelector('#order-detail-container');
+        let footer = $element[0].getElementsByClassName('order-detail-footer')[0];
+        let topNav = $document[0].getElementById('top-nav');
 
         vm.orderInfo = {};
         vm.paymentInfo = {};
@@ -34,7 +37,9 @@
             selectedNavItemService.setSelectedItem("orders");
             ordersService.getInitialOrder(getInitialSuccess);
 
-            resizeService.registerCallback(setContainerHeight);
+            $document.ready(() => {
+                setContainerHeight();
+            });
 
             //Cancels timeouts and intervals on leaving scope.
             $scope.$on('$destroy', () => {
@@ -63,6 +68,10 @@
 
                 return null;
             };
+
+            angular.element($window).on('resize', ()=> {
+                setContainerHeight();
+            });
         };
 
         //Sets data from first get orders call. If no data, sets interval to call the function until data exists.
@@ -196,19 +205,16 @@
         }
 
         function setContainerHeight() {
-            if(vm.orderShown) {
-                try {
-                    let orderDetailContainer = $element[0].querySelector('.order-detail-info-container');
-                    let footerHeight = $element[0].querySelector('.order-detail-footer').offsetHeight;
-                    let headerBarHeight = $element[0].querySelector('.order-header-bar').offsetHeight;
-                    let topNavHeight = $document[0].querySelector('#top-nav').offsetHeight;
+            console.log('hey');
+            try {
+                let footerHeight = footer.offsetHeight;
+                let topNavHeight = topNav.offsetHeight;
 
-                    orderDetailContainer.style.height = `calc(100vh - ${footerHeight}px - ${headerBarHeight}px - ${topNavHeight}px)`;
-                } catch(error) {
-                    $timeout(() => {
-                        setContainerHeight();
-                    }, 100);
-                }
+                orderDetailContainer.style.height = `calc(100vh - ${footerHeight}px - ${topNavHeight}px)`;
+            } catch(error) {
+                $timeout(() => {
+                    setContainerHeight();
+                });
             }
         }
     }
