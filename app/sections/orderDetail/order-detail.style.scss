@@ -7,6 +7,7 @@ $color-order-detail-border: $color-gray-lighter;
   overflow: auto;
   box-sizing: border-box;
   background-color: $color-white;
+  transition: all 0.3s;
 }
 
 .order-header-bar {
@@ -163,6 +164,26 @@ $color-order-detail-border: $color-gray-lighter;
 }
 .payment-info-animation.ng-leave.payment-info-animation.ng-leave-active {
   transform: translate3d(-55vw, 0, 0);
+  opacity: 1;
+}
+
+#order-detail-container.ng-hide-add {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+#order-detail-container.ng-hide-remove {
+  transform: translate3d(0, 100vh, 0);
+  opacity: 0;
+}
+
+#order-detail-container.ng-hide-add-active {
+  transform: translate3d(0, -100vh, 0);
+  opacity: 0;
+}
+
+#order-detail-container.ng-hide-remove-active {
+  transform: translate3d(0, 0, 0);
   opacity: 1;
 }
 

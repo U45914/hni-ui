@@ -205,7 +205,6 @@
         }
 
         function setContainerHeight() {
-            console.log('hey');
             try {
                 let footerHeight = footer.offsetHeight;
                 let topNavHeight = topNav.offsetHeight;
