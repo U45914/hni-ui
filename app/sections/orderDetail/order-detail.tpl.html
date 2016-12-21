@@ -24,7 +24,7 @@
             <div flex flex-sm="100" flex-xs="100">
                 <div class="order-section-container">
                     <order-detail-header icon="&#xE56C;" text="Meal Order"></order-detail-header>
-                    <order-food-item ng-repeat="orderItem in vm.orderInfo.orderItems track by $index"
+                    <order-food-item ng-repeat="orderItem in vm.orderInfo.orderItems"
                                      number="{{orderItem.quantity}}" text="{{orderItem.name}}" description={{orderItem.description}}></order-food-item>
                 </div>
             </div>
