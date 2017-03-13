@@ -2,10 +2,10 @@
   "name": "hni-ui",
   "private": true,
   "dependencies": {
-    "angular": "*",
-    "angular-animate": "*",
+    "angular": "~1.5.0",
+    "angular-animate": "~1.5.0",
     "angular-ui-router": "*",
-    "angular-aria": "*",
+    "angular-aria": "~1.5.0",
     "angular-material": "*"
   },
   "devDependencies": {
@@ -21,13 +21,13 @@
     "url-loader": "^0.5.7",
     "file-loader": "^0.9.0",
     "html-loader": "0.4.3",
-    "sass-loader": "*",
+    "sass-loader": "^4.0.0",
     "node-libs-browser": "^1.0.0",
     "style-loader": "^0.12.3",
     "postcss": "*",
     "postcss-loader": "*",
     "autoprefixer": "*",
-    "extract-text-webpack-plugin": "*",
+    "extract-text-webpack-plugin": "^1.0.0",
     "webpack": "^1.13.1",
     "html-webpack-plugin": "^2.22.0",
     "webpack-dev-server": "^1.14.1"
