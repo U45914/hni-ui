@@ -33,9 +33,9 @@
         }
 
         function signIn() {
-            //authService.login(vm.username, vm.password).then(function() {
-            //    $state.go('dashboard', {}, {reload: true});
-            //});
+            authService.login(vm.username, vm.password).then(function() {
+                $state.go('dashboard', {}, {reload: true});
+            });
         }
     }
 })();

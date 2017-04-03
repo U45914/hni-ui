@@ -6,7 +6,7 @@
             template: `<top-nav></top-nav>
                         <div id="dashboard-section">
                             <actions-section></actions-section>
-                            <organization-section></organization-section>
+                           
                         </div>`
         });
 })();

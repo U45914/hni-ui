@@ -47,8 +47,24 @@
             authToken = token;
         }
 
-        function login(name, pw) {
-
+        function login(username, password) {
+        	debugger;
+        	alert("entered");
+        	alert(username);
+        	alert(password);
+        	var vm={
+        			username : username,
+        			password : password
+        	}
+        	$http.post(`http://localhost:8080/hni-admin-service/api/v1/organizations/test`,vm)
+            .then((response) => {
+                alert("success");
+                console.log(response);
+               /* $state.go('volunteer-landing');*/ //for testing
+                $state.go('adminDashboard');
+            }, (error) => {
+                console.log(error);
+            });
         }
 
         function loginExternal(provider, token) {

@@ -14,7 +14,29 @@
         var vm = this;
 
         vm.$onInit = function() {
-            vm.userRole = 1;
+           // vm.userRole = 1;
+            vm.user=[
+                {
+                    "serviceName": "NGO Onboarding",
+                    "servicePath": "adminDashboard",
+                    "enabled": "true"
+                },
+                {
+                    "serviceName": "Customer Onboarding",
+                    "servicePath": "custOnboard",
+                    "enabled": "true"
+                },
+                {
+                    "serviceName": "Clients",
+                    "servicePath": "clients",
+                    "enabled": "true"
+                },
+                {
+                    "serviceName": "User Profile",
+                    "servicePath": "user-profile",
+                    "enabled": "true"
+                }
+            ]
         };
     }
 })();
