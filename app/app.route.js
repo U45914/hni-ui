@@ -62,6 +62,10 @@
                 data: {
                     authorizedRoles: [rolesConstant.superAdmin]
                 }
+            })
+            .state('ngoInvitation', {
+                url: '/ngoInvitation',
+                template: '<ngo-invitation></ngo-invitation>'
             });
     }
 })();
