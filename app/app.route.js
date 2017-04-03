@@ -22,7 +22,7 @@
                 template: '<login></login>'
             })
             .state('workspace-base', {
-                abstract: true,
+                abstract: false,
                 template: '<workspace-base></workspace-base>'
             })
             .state('volunteer-landing', {
@@ -66,6 +66,11 @@
             .state('ngoInvitation', {
                 url: '/ngoInvitation',
                 template: '<ngo-invitation></ngo-invitation>'
-            });
+            })
+            .state('adminDashboard', {
+                url: '/adminDashboard',
+                template: '<admin-dashboard></admin-dashboard>',
+               })
+            ;
     }
 })();
