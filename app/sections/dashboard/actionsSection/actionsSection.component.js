@@ -14,7 +14,6 @@
         var vm = this;
 
         vm.$onInit = function() {
-        	debugger;
            // vm.userRole = 1;
         	$http.get('http://localhost:8080/hni-admin-service/api/v1/users/services')
             .then(function success(response) {
