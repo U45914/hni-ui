@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 (function() {
     angular
         .module('app')
@@ -9,53 +8,31 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$http','userService'];
+    ActionSectionController.$inject = ['userService'];
 
-    function ActionSectionController($http,userService) {
+    function ActionSectionController(userService) {
         var vm = this;
 
         vm.$onInit = function() {
            // vm.userRole = 1;
-        	$http.get('http://localhost:8080/hni-admin-service/api/v1/users/services')
-            .then(function success(response) {
-                if(response.data !== null) {
-                   console.log("response : "+response.data);
-                   vm.user = response.data ;
+            vm.user=[
+                {
+                    "serviceName": "NGO Onboarding",
+                    "servicePath": "ngoInvitation",
+                    "enabled": "true"
+                },
+                {
+                    "serviceName": "Customer Onboarding",
+                    "servicePath": "custOnboard",
+                    "enabled": "true"
+                },
+                {
+                    "serviceName": "Clients",
+                    "servicePath": "clients",
+                    "enabled": "true"
                 }
-            }, function error(error) {
-                console.log(error);
-            });
+                
+            ]
         };
     }
-=======
-(function() {
-    angular
-        .module('app')
-        .component('actionsSection', {
-            bindings: {},
-            templateUrl: 'actions-section.tpl.html',
-            controller: ActionSectionController,
-            controllerAs: 'vm'
-        });
-
-    ActionSectionController.$inject = ['$http','userService'];
-
-    function ActionSectionController($http,userService) {
-        var vm = this;
-
-        vm.$onInit = function() {
-        	debugger;
-           // vm.userRole = 1;
-        	$http.get('http://localhost:8080/hni-admin-service/api/v1/users/services')
-            .then(function success(response) {
-                if(response.data !== null) {
-                   console.log("response : "+response.data);
-                   vm.user = response.data ;
-                }
-            }, function error(error) {
-                console.log(error);
-            });
-        };
-    }
->>>>>>> Stashed changes
 })();
