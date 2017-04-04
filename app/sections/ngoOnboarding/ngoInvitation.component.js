@@ -13,12 +13,18 @@
             controller: NgoInvitationController,
             controllerAs: 'vm'
         });
-    NgoInvitationController.$inject = ['$scope'];
+    NgoInvitationController.$inject = ['$q','ngoOnboardingService','$scope'];
     
-    function NgoInvitationController($scope){
+    function NgoInvitationController($q,ngoOnboardingService,$scope){
     	var vm = this;
-    	alert("dfd");
-    	console.log("inside ngo invitation controller");
+    	vm.submit = function(){   		
+    			   			 var data = [vm.name,vm.phoneNumber,vm.email,vm.webSiteUrl];
+    			   			 if(vm.name!=null && vm.phoneNumber!=null && vm.email!=null && vm.webSiteUrl !=null){
+    			   				 var serviceCalls = ngoOnboardingService.postNgo(data);
+    			   				 return $q.all(serviceCalls);
+    			   			   }
+    						}   		 	
     	
-    }
+    		}
+    	
     })();

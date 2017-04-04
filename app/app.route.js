@@ -67,10 +67,7 @@
                 url: '/ngoInvitation',
                 template: '<ngo-invitation></ngo-invitation>'
             })
-            .state('adminDashboard', {
-                url: '/adminDashboard',
-                template: '<admin-dashboard></admin-dashboard>',
-               })
+          
             ;
     }
 })();

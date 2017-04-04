@@ -1,6 +1,4 @@
-
-
-$red: #B30630;
+@import '_includes';
 
 *, 
 *:before, 
@@ -33,7 +31,7 @@ form {
      width: 100%;
      margin-top: 1em;
      font-family: 'Merriweather', sans-serif;
-    border-radius: 25px;
+    border-radius: 15px;
      resize: none;
     
     &:focus {
@@ -43,11 +41,11 @@ form {
   
   #input-submit {
      color: white; 
-     background: $red;
+     background:  $color-red-base;
      cursor: pointer;
      width: 53%;
      margin-left: 27%;
-    border-radius: 25px;
+    border-radius: 15px;
    
   }
   

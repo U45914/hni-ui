@@ -18,7 +18,7 @@
             vm.user=[
                 {
                     "serviceName": "NGO Onboarding",
-                    "servicePath": "adminDashboard",
+                    "servicePath": "ngoInvitation",
                     "enabled": "true"
                 },
                 {
@@ -30,12 +30,8 @@
                     "serviceName": "Clients",
                     "servicePath": "clients",
                     "enabled": "true"
-                },
-                {
-                    "serviceName": "User Profile",
-                    "servicePath": "user-profile",
-                    "enabled": "true"
                 }
+                
             ]
         };
     }
