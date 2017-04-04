@@ -14,10 +14,8 @@
         };
         
         function postNgo(data) {
-        	alert(data);
             let postData = JSON.stringify(data);
-            alert(postData);
-           return $http.post(`${baseUrl}/`, postData);
+            return $http.post(`${baseUrl}/`, postData);
         }
      }
 })();
