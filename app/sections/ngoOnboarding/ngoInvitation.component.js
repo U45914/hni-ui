@@ -18,12 +18,13 @@
     function NgoInvitationController($q,ngoOnboardingService,$scope){
     	var vm = this;
     	vm.submit = function(){   		
-    			   			 var data = [vm.name,vm.phoneNumber,vm.email,vm.webSiteUrl];
-    			   			 if(vm.name!=null && vm.phoneNumber!=null && vm.email!=null && vm.webSiteUrl !=null){
-    			   				 var serviceCalls = ngoOnboardingService.postNgo(data);
-    			   				 return $q.all(serviceCalls);
-    			   			   }
-    						}   		 	
+    		 var data = [vm.name,vm.phoneNumber,vm.email,vm.webSiteUrl];
+    		 console.log("data : "+data);
+   	   			 if(vm.name!=null && vm.phoneNumber!=null && vm.email!=null && vm.webSiteUrl !=null){
+   	   				 var serviceCalls = ngoOnboardingService.postNgo(data);
+   	   				 return $q.all(serviceCalls);
+    			   	}
+    			}   		 	
     	
     		}
     	
