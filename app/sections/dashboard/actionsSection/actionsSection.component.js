@@ -8,9 +8,10 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$http','userService'];
+    ActionSectionController.$inject = ['$http','userService', 'serviceConstants'];
 
-    function ActionSectionController($http,userService) {
+    function ActionSectionController($http,userService, serviceConstants) {
+    	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
 
         vm.$onInit = function() {
