@@ -67,6 +67,10 @@
                 url: '/ngoInvitation',
                 template: '<ngo-invitation></ngo-invitation>'
             })
+              .state('ngoEnrollment', {
+                url: '/ngoEnrollment',
+                template: '<ngo-enrollment></ngo-enrollment>'
+            })
           
             ;
     }
