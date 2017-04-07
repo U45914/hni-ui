@@ -1,0 +1,51 @@
+<fieldset>
+How many individuals are served?
+<table>
+			<th>Daily</th>
+			<th>Monthly</th>
+			<th>Annually</th>
+			<tr>
+				<td>
+					<md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Quantity</label>
+              			<input type="number"  ng-model="vm.daily" >
+              		</md-input-container>				
+				</td>
+				<td>
+					<md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Quantity</label>
+              			<input type="number"  ng-model="vm.monthly" >
+              		</md-input-container>
+				</td>
+				<td>
+					<md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Quantity</label>
+              			<input type="number"  ng-model="vm.annually" >
+              		</md-input-container>
+				</td>
+			</tr>
+</table>
+		 <div flex-gt-sm>
+            <label> Do you collect individual client info?</label>
+			<input type="radio"  ng-value="true" ng-model ="vm.select">Yes
+			<input type="radio"  ng-value="false" ng-model ="vm.select">No
+		</div> 
+		<div ng-show= "vm.select">
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>If yes, How do you store Information?</label>
+				<input type="text" ng-model="vm.informationStore"/>
+			</md-input-container>
+		</div>
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Percentage of clients unsheltered</label>
+              			<input type="number"  ng-model="vm.unsheltered" >
+         </md-input-container>	
+         <md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Percentage of clients employed/ internship</label>
+              			<input type="number"  ng-model="vm.employeed" >
+         </md-input-container>
+         
+      <md-button class="md-raised button-primary" ng-click="vm.save()">Save</md-button>
+         
+  </fieldset>       
+         

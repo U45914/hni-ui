@@ -1,0 +1,17 @@
+<fieldset>
+	<span> 
+		<input type="text" required ng-model="name" placeholder="Name"></input> 
+		<input type="text" required ng-model="company" placeholder="Company"></input>
+		<button  ng-click="addNewChoice()">+</button>
+	</span>
+		<table>
+			<th>Name</th>
+			<th>Company</th>
+			<th>Delete</th>
+			<tr ng-repeat="member in memberList track by $index">
+				<td>{{member.name}}</td>
+				<td>{{member.company}}</td>
+				<td><button class="remove" ng-click="deleteRow($index)">-</button></td> 
+            <tr>
+		</table>
+</fieldset>

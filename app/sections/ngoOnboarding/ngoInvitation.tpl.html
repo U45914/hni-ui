@@ -5,7 +5,7 @@
     <input type="text" id="input-name" placeholder="Organization Name"  required ng-model="vm.name" >
     <input type="number" id="input-phone" placeholder="Phone number"  required ng-model="vm.phoneNumber" >
     <input type="email" id="input-email" placeholder="Email address" required ng-model="vm.email" >
-    <input type="url" pattern="https?://.+" id="input-websiteUrl" placeholder="Web site url"  required ng-model="vm.webSiteUrl" >
+    <input type="text"  id="input-websiteUrl" placeholder="Web site url" onblur="vm.checkURL(this)" required ng-model="vm.webSiteUrl" >
   </div>
    
   <input type="submit" value="Submit" id="input-submit" ng-click="vm.submit()">
