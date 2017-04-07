@@ -1,0 +1,55 @@
+	<table style="width: 100%" name="overview">
+		<tr>
+			<td><h5>Name</h5> <input type="text" id="name" required
+				class="register-input" ng-model="vm.name"></input></td>
+			<td><label><h5>Phone</h5></label> <input type="number" 
+				name="phone"  class="register-input" required ng-model="vm.phone"></input>
+				<!-- <div style="color:red" ng-show="overview.phone.$error.pattern">Only numbers are allowed!</div> -->
+				</td>
+			<td><label><h5>Website Link</h5></label> <input type="url" pattern="https?://.+"
+				name="websiteLink"  class="register-input" required ng-model="vm.website"></input></td>
+		</tr>
+		<tr>
+			<td><label><br>
+				<h5>Contact Person</h5></label> <input type="text" class="register-input" required ng-model="vm.contact"></td>
+			<td><label><br>
+				<h5>Full time Employees</h5></label> <input type="number"  
+				class="register-input" required ng-model="vm.employees"></td>
+		</tr>
+	</table>
+
+	<br>
+	<table style="width: 100%">
+		<tr>
+			<td><label><br>
+				<h5>Overview</h5></label> <input type="text" name="overview" 
+				class="register-input" style="width: 95%" required ng-model="vm.overview"></td>
+			<td><label><br>
+				<h5>Mission Statement</h5></label> <input type="text" name="mission"  
+				class="register-input" style="width: 95%" required ng-model="vm.mission"></td>
+		</tr>
+		<tr>
+			<td><label><br>
+				<h5>Celebrity endorsements / notable promoters</h5></label></td></tr>
+				<tr>
+				<td style="width:30%"> 
+				<input type="text" style="width: 95%" name="promoters" id="promoters" ng-model="vm.promoter" class="register-input">
+				</td>
+				<td><input type="button" id="button" ng-click="vm.addRow(vm.promoter)" value="Add Members"></input><br>				
+			</td>	
+		</tr>
+		<tr ng-repeat="member in vm.list track by $index">
+			
+			 	<td style="width:30%"><input type="text" class="register-input" ng-model="member"></input></td>
+			 	<td style="width:30%"><input type="button" id="button" ng-click="vm.delRow($index)" value="-" ng-show="vm.flag"></input></td>	
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br>
+	<br>
+	<hr class "register-input" style="width: 100%">
+	<div style="float: right">
+	<br>
+	<button type="button" class="btn btn-default" ng-click="vm.overviewNext();">Next</button>&nbsp;&nbsp;<button type="button" class="btn btn-default" ng-click="vm.save();" >Save</button>
+	</div>

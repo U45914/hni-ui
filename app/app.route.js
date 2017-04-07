@@ -71,7 +71,10 @@
                 url: '/ngoEnrollment',
                 template: '<ngo-enrollment></ngo-enrollment>'
             })
-          
+            .state('ngoEnrollmentTab', {
+                url: '/ngoEnrollmentTab',
+                template: '<ngo-enrollment-tab></ngo-enrollment-tab>'
+            })
             ;
     }
 })();
