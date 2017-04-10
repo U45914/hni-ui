@@ -19,7 +19,9 @@
         vm.isActive = false;
         vm.signIn = signIn;
         vm.authenticate = authenticate;
-
+        vm.isDisabled = false;
+        vm.signInButton = "Sign In"
+      
         function authenticate(provider) {
             externalAuthService.googleAuthenticate()
                 .then((response) => {
@@ -33,6 +35,8 @@
         }
 
         function signIn() {
+        	 vm.signInButton = "Signing In ...";
+        	 vm.isDisabled = true;
             authService.login(vm.username, vm.password).then(function() {
                 $state.go('dashboard', {}, {reload: true});
             });

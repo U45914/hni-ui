@@ -79,7 +79,10 @@
              .state('fundingTab', {
                 url: '/fundingTab',
                 template: '<funding-tab></funding-tab>'
-                
+                })
+            .state('ngoEnrollmentTab', {
+                url: '/ngoEnrollmentTab',
+                template: '<ngo-enrollment-tab></ngo-enrollment-tab>'
             })
             
              .state('clientsTab', {

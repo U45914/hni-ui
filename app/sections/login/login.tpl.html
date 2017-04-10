@@ -13,10 +13,13 @@
                 </md-input-container>
                 <md-input-container class="md-block password-container input-primary" flex-gt-sm>
                     <label>Password</label>
-                    <input type="{{vm.inputType}}" ng-model="vm.password" class="visible">
+                    <input type="{{vm.inputType}}"  ng-model="vm.password"  class="visible" >
                     <i class="material-icons" ng-class="{'active': vm.isActive}" ng-click="vm.togglePassword()">&#xE417;</i>
                 </md-input-container>
-                <md-button class="md-raised button-primary" ng-click="vm.signIn()">Sign In</md-button>
+                <md-button class="md-raised button-primary"  ng-click="vm.signIn()" ng-disabled="vm.isDisabled" ng-model="vm.isDisabled">
+                <span ng-show="vm.signInButton == 'Signing In ...'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+           		 {{ vm.signInButton }}
+                </md-button>
             </div>
             <div class="login-box-external">
                 <div>Or use your social network account</div>
