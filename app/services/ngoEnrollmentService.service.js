@@ -11,7 +11,9 @@
         return {
               postStakeholdersList,
               overviewList,
-              serviceList
+              serviceList,
+			  postFundingList,
+        	  postNgoClientInfo
         };
         
         function postStakeholdersList(data) {
@@ -31,6 +33,19 @@
         	alert("Entered Service");
            let enrollData = JSON.stringify(data);
             return $http.post(`${baseUrl}/`, enrollData);
+        }
+        
+        function postFundingList(data) {
+            let postData = JSON.stringify(data);
+            console.log(postData)
+            return $http.post(`${baseUrl}/`, postData);
+        }
+        
+        
+        function postNgoClientInfo(data) {
+            let postData = JSON.stringify(data);
+            console.log(postData)
+            return $http.post(`${baseUrl}/`, postData);
         }
     }
 })();

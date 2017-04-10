@@ -1,0 +1,20 @@
+<fieldset>
+	<span> 
+		<input type="text" required ng-model="source" placeholder="Source"></input> 
+		<input type="number" required ng-model="mealQty" placeholder="Meal Quantity"></input>
+		<input type="text" required ng-model="frequency" placeholder="Frequency"></input> 
+		<button  ng-click="addNewChoice()">+</button>
+	</span>
+		<table>
+			<th>Source</th>
+			<th>Meal Quantity</th>
+			<th>Frequency</th>
+			<th>Delete</th>
+			<tr ng-repeat="element in mealDonaltionList track by $index">
+				<td>{{element.source}}</td>
+				<td>{{element.mealQty}}</td>
+				<td>{{element.frequency}}</td>
+				<td><button class="remove" ng-click="deleteMeal($index)">-</button></td> 
+            <tr>
+		</table>
+</fieldset>
