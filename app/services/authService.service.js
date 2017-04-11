@@ -55,9 +55,11 @@
         	$http.post(`${baseUrl}/security/authentication`, vm).then(function success(response) {
                 console.log(response);
                 setToken(response.data.token);
+				debugger;
                 //$state.go('volunteer-landing');
                 $state.go('dashboard');
             }, function error(error) {
+				debugger;
                 console.log(error);
             });
         }

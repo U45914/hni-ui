@@ -36,7 +36,7 @@
 
         function signIn() {
         	 vm.signInButton = "Signing In ...";
-        	 vm.isDisabled = true;
+        	 //vm.isDisabled = true;
             authService.login(vm.username, vm.password).then(function() {
                 $state.go('dashboard', {}, {reload: true});
             });
