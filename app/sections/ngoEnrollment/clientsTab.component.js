@@ -1,15 +1,22 @@
 (function() {
 	angular
 		.module('app')
-		.component('clientsTab',{
-		bindings: {
-
-        },
-        templateUrl: 'clientsTab.tpl.html',
-        controller: clientTabController,
-        controllerAs: 'vm'
-
-});
+		
+		 .directive('clientsTab', clientsDirective)
+	
+	
+	function clientsDirective() {
+		return {
+			scope : {
+				
+			},
+			restrict : "E",
+			templateUrl : "clientsTab.tpl.html",
+			controller : clientTabController,
+			 controllerAs: 'vm'
+		}
+	}
+	
 	clientTabController.inject = ['$q','ngoEnrollmentService','$scope'];
 	
 	function clientTabController($q,ngoEnrollmentService,$scope){

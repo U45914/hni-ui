@@ -1,16 +1,21 @@
 (function() {
 	angular
 	 .module('app')
-     .component('stakeholdersTab', {
-     	bindings: {
-
-         },
-         templateUrl: 'stakeholdersTab.tpl.html',
-         controller: StakeHolderTabController,
-         controllerAs: 'shtc'
-     });
+	  .directive('stakeholdersTab', stakeholderDirective)
 	
 	
+	function stakeholderDirective() {
+		return {
+			scope : {
+				
+			},
+			restrict : "E",
+			templateUrl : "stakeholdersTab.tpl.html",
+			controller : StakeHolderTabController,
+			 controllerAs: 'shtc'
+		}
+	}
+		
 	StakeHolderTabController.$inject = ['$q','ngoEnrollmentService','$scope'];
 	
 	function StakeHolderTabController($q,ngoEnrollmentService ,$scope){

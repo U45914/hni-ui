@@ -8,12 +8,12 @@
 	function overviewDirective() {
 		return {
 			scope : {
-				//memberList : "=list"
+				
 			},
 			restrict : "E",
 			templateUrl : "overviewTab.tpl.html",
 			controller : overviewController,
-			 controllerAs: 'vm'
+			controllerAs: 'vm'
 		}
 
 	} 
