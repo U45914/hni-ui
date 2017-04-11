@@ -18,9 +18,9 @@
 
 	}
   
-  serviceController.$inject = ['$q','ngoEnrollmentService']; 
+  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope','toaster']; 
   
-  function serviceController ($q,ngoEnrollmentService) {
+  function serviceController ($q,ngoEnrollmentService,$rootScope,toaster) {
 	  var vm =this;
 	  vm.list= [];
 	  
@@ -66,12 +66,7 @@
 				  if(vm.daysArray[x].length == 0){
 					  delete vm.obj[day];
 				  }
-				  
-			 
-			  }
-			  console.log(vm.obj);
-			  
-			  
+			  } 
 		  }
 		  vm.save =  function(){
 			  var data = {
@@ -92,13 +87,13 @@
 			  };
 			  
 			  	if(vm.qty1!=null || vm.qty2!=null || vm.qty3!=null || vm.qty4 !=null || vm.card !=null ||vm.other !=null && vm.monthlyCost !=null && vm.foodStamp !=null && vm.select !=null ){
-			  		 console.log(data); 
-			  		var serviceCalls = ngoEnrollmentService.serviceList(data);
-					 return $q.all(serviceCalls);
+			  		 //var serviceCalls = ngoEnrollmentService.postServiceList(data);
+					 //return $q.all(serviceCalls);
+					 $rootScope.$broadcast("scroll-tab", [1,2]);
 				   }
 				 else{
-					 window.alert("Please fill Fields");
-					// document.getElementById('name').style.borderColor = "red";
+					 toaster.warning("Please fill Fields");
+				
 				        return false;
 					 
 				 }

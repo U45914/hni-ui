@@ -18,8 +18,7 @@
 	}
 	
 	function fundingSourceController($scope) {
-		console.log("funding source controller")
-		
+				
 		var fundingSourceObj ={};
 		$scope.fundingSourceList =[];
 		$scope.addNewChoice = function(){
@@ -38,7 +37,6 @@
 		
 		$scope.deleteRow = function(idx) {
 			$scope.fundingSourceList.splice(idx,1);
-			console.log( $scope.fundingSourceList);
 		}
 	}
 	

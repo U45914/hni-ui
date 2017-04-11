@@ -10,11 +10,15 @@
           controllerAs: 'vm'
   }) ;
   
-  ngoEnrollmentTabController.$inject = [];
+  ngoEnrollmentTabController.$inject = ['$rootScope', '$scope'];
 
-  function ngoEnrollmentTabController() {
+  function ngoEnrollmentTabController($rootScope, $scope) {
       var vm = this;
       vm.tabIndex = 0;
+      
+     $rootScope.$on("scroll-tab", function(event, data){
+    	 vm.scroll()
+     });
       vm.scroll = function(){
     	  if(vm.tabIndex ==  4){
     		  vm.tabIndex = 0;

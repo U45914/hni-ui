@@ -33,6 +33,7 @@
       		 };
       		var serviceCalls = ngoEnrollmentService.postNgoClientInfo(data);
       		return $q.all(serviceCalls);
+      		
     	}
 	}
 })();

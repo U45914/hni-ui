@@ -16,15 +16,13 @@
 		}
 	}
 			
-	FundingTabController.$inject = ['$q','ngoEnrollmentService','$scope'];
+	FundingTabController.$inject = ['$q','ngoEnrollmentService', '$rootScope','$scope',];
 	
-	function FundingTabController($q,ngoEnrollmentService,$scope){
+	function FundingTabController($q,ngoEnrollmentService,$rootScope, $scope){
 		var ft = this;
 		ft.fundingSourceList = [];
 		ft.mealDonaltionList = [];
 		ft.mealFundingList = [];
-		
-		
 		
 		ft.save = function(){
 			var data = { 
@@ -32,10 +30,13 @@
 					"mealDonation " : ft.mealDonaltionList,
 					"mealFunding ": ft.mealFundingList
 			};
-   		 	console.log(data);
+			//vm.tabIndex = 0;
    		 	if(ft.mealDonaltionList.length!=0){
-   		 		var serviceCalls = ngoEnrollmentService.postFundingList(data);
-   		 		return $q.all(serviceCalls);
+   		 		//var serviceCalls = ngoEnrollmentService.postFundingList(data);
+   		 		//return $q.all(serviceCalls);
+   		 		$rootScope.$broadcast("scroll-tab", [1,2]);
+   		 		return;
+   		 		
    		 	}
    		 	else{
    		 		alert("Meal Donation fields are mandatory to save");
