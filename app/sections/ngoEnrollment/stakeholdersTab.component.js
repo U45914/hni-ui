@@ -16,9 +16,9 @@
 		}
 	}
 		
-	StakeHolderTabController.$inject = ['$q','ngoEnrollmentService','$scope'];
+	StakeHolderTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope'];
 	
-	function StakeHolderTabController($q,ngoEnrollmentService ,$scope){
+	function StakeHolderTabController($q,ngoEnrollmentService ,$scope,$rootScope){
 		var shtc = this;
 		shtc.boardMainList = [];
 		shtc.brandPartnersList = [];
@@ -31,9 +31,10 @@
 					"brandPartners " : shtc.brandPartnersList,
 					"localPartners ": shtc.localPartnersList
 			};
-   		 	console.log(data);
-  	   		var serviceCalls = ngoEnrollmentService.postStakeholdersList(data);
-  	   		return $q.all(serviceCalls);
+   		 	
+  	   		//var serviceCalls = ngoEnrollmentService.postStakeholdersList(data);
+  	   		//return $q.all(serviceCalls);
+  	   		$rootScope.$broadcast("scroll-tab", [1,2]);
 		}
 	}
 

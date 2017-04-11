@@ -18,9 +18,7 @@
 	}
 	
 	function fundingMealController($scope) {
-		
-		console.log("funding meal controller")
-		
+				
 		var fundingMealObj ={};
 		$scope.mealDonaltionList =[];
 		$scope.addNewChoice = function(){
@@ -41,7 +39,6 @@
 		
 		$scope.deleteMeal = function(idx) {
 			$scope.mealDonaltionList.splice(idx,1);
-			console.log( $scope.mealDonaltionList);
 		}
 	}
 	

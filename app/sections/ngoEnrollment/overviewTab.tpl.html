@@ -6,7 +6,7 @@
 				name="phone"  class="register-input" required ng-model="vm.phone"></input>
 				<!-- <div style="color:red" ng-show="overview.phone.$error.pattern">Only numbers are allowed!</div> -->
 				</td>
-			<td><label><h5>Website Link</h5></label> <input type="url" pattern="https?://.+"
+			<td><label><h5>Website Link</h5></label> <input type="text"
 				name="websiteLink"  class="register-input" required ng-model="vm.website"></input></td>
 		</tr>
 		<tr>
@@ -51,5 +51,6 @@
 	<hr class "register-input" style="width: 100%">
 	<div style="float: right">
 	<br>
-	<!-- <button type="button" class="btn btn-default" ng-click="vm.overviewNext();">Next</button>&nbsp;&nbsp;<button type="button" class="btn btn-default" ng-click="vm.save();" >Save</button> -->
+	<md-button class="md-raised button-primary"  ng-click="vm.save();" >Save & Next</md-button>
+	
 	</div>
