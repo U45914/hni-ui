@@ -1,15 +1,21 @@
 (function(){
 	angular
 		.module('app')
-		.component('fundingTab', {
-     	bindings: {
-
-         },
-         templateUrl: 'fundingTab.tpl.html',
-         controller: FundingTabController,
-         controllerAs: 'ft'
-     });
+		.directive('fundingTab', fundingrDirective)
 	
+	
+	function fundingrDirective() {
+		return {
+			scope : {
+				
+			},
+			restrict : "E",
+			templateUrl : "fundingTab.tpl.html",
+			controller : FundingTabController,
+			 controllerAs: 'ft'
+		}
+	}
+			
 	FundingTabController.$inject = ['$q','ngoEnrollmentService','$scope'];
 	
 	function FundingTabController($q,ngoEnrollmentService,$scope){
@@ -17,6 +23,8 @@
 		ft.fundingSourceList = [];
 		ft.mealDonaltionList = [];
 		ft.mealFundingList = [];
+		
+		
 		
 		ft.save = function(){
 			var data = { 

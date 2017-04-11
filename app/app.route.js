@@ -71,25 +71,11 @@
                 url: '/ngoEnrollment',
                 template: '<ngo-enrollment></ngo-enrollment>'
             })
-             .state('stakeholdersTab', {
-                url: '/stakeholdersTab',
-                template: '<stakeholders-tab></stakeholders-tab>'
-                
-            })
-             .state('fundingTab', {
-                url: '/fundingTab',
-                template: '<funding-tab></funding-tab>'
-                })
+           
             .state('ngoEnrollmentTab', {
                 url: '/ngoEnrollmentTab',
                 template: '<ngo-enrollment-tab></ngo-enrollment-tab>'
-            })
-            
-             .state('clientsTab', {
-                url: '/clientsTab',
-                template: '<clients-tab></clients-tab>'
-                
-            })
-            ;
+            });
+             
     }
 })();
