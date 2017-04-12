@@ -24,6 +24,10 @@
 		ft.mealDonaltionList = [];
 		ft.mealFundingList = [];
 		
+		ft.fundingSourceList = ngoEnrollmentService.fundingData["fundingSource"]; 
+		ft.mealDonaltionList = ngoEnrollmentService.fundingData["mealDonation"];
+		ft.mealFundingList = ngoEnrollmentService.fundingData["mealFunding"];
+		
 		ft.save = function(){
 			var data = { 
 					"fundingSource" :  ft.fundingSourceList,

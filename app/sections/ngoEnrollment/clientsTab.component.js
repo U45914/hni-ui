@@ -21,15 +21,17 @@
 	
 	function clientTabController($q,ngoEnrollmentService,$scope){
     	var vm = this;
+    	vm.client = ngoEnrollmentService.clientData;
+    	    	
     	vm.save = function(){   		
       		 var data = {
-      				 "individualsServedDaily" : vm.daily,
-      				 "individualsServedMonthly" : vm.monthly,
-      				 "individualsServedAnnually" : vm.annually,
-      				 "individualClientInfoCollected" : vm.select,
-      				 "infoStored" : vm.informationStore,
-      				 "unshelteredClientPercentage": vm.unsheltered,
-      				 "employeedClientPercentage" : vm.employeed
+      				 "individualsServedDaily" : vm.client.individualsServedDaily,
+      				 "individualsServedMonthly" : vm.client.individualsServedMonthly,
+      				 "individualsServedAnnually" : vm.client.individualsServedAnnually,
+      				 "individualClientInfoCollected" : vm.client.individualClientInfoCollected,
+      				 "infoStored" : vm.client.infoStored,
+      				 "unshelteredClientPercentage": vm.client.unshelteredClientPercentage,
+      				 "employeedClientPercentage" : vm.client.employeedClientPercentage
       		 };
       		 ngoEnrollmentService.clientData = data;
       		var serviceCalls = ngoEnrollmentService.postNgoClientInfo(data);

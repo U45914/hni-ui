@@ -17,7 +17,7 @@
 	function partnershipController($scope) {
 		
 		var brandObject = {};
-		$scope.brandList = [];
+		//$scope.brandList = [];
 
 		$scope.addNewRow = function() {
 			brandObject = {};

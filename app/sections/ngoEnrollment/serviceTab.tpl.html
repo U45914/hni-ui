@@ -1,35 +1,35 @@
 <h3>Food Service Offered</h3>
  <table>
 	<tr><td width="320px">
-	<input type="checkbox" ng-model="vm.check1"><label>Breakfast</label></td>
-	<td width="320px" ng-show="vm.check1">
-	Quantity : <input type="number" ng-model="vm.qty1"></td>
+	<input type="checkbox" ng-model="vm.service.brkfstChk"><label>Breakfast</label></td>
+	<td width="320px" ng-show="vm.service.brkfstChk">
+	Quantity : <input type="number" ng-model="vm.service.brkfstQty"></td>
 	</tr>
 	
 	<tr><td width="320px">
-	<input type="checkbox" ng-model="vm.check2"><label>Lunch</label></td>
-	<td width="320px" ng-show="vm.check2">
-	Quantity : <input type="number" ng-model="vm.qty2"></td>
+	<input type="checkbox" ng-model="vm.service.lunchChk"><label>Lunch</label></td>
+	<td width="320px" ng-show="vm.service.lunchChk">
+	Quantity : <input type="number" ng-model="vm.service.lunchQty"></td>
 	</tr>
 	
 	<tr><td width="320px">
-	<input type="checkbox" ng-model="vm.check3"><label>Dinner</label></td>
-	<td width="320px" ng-show="vm.check3">
-	Quantity : <input type="number"  ng-model="vm.qty3"></td>
+	<input type="checkbox" ng-model="vm.service.dinnerChk"><label>Dinner</label></td>
+	<td width="320px" ng-show="vm.service.dinnerChk">
+	Quantity : <input type="number"  ng-model="vm.service.dinnerQty"></td>
 	</tr>
 	
 	<tr><td width="320px">
-	<input type="checkbox" ng-model="vm.check4"><label>Bagged Lunches</label></td>
-	<td width="320px" ng-show="vm.check4">
-	Quantity : <input type="number" ng-model="vm.qty4"></td>
+	<input type="checkbox" ng-model="vm.service.baggedChk"><label>Bagged Lunches</label></td>
+	<td width="320px" ng-show="vm.service.baggedChk">
+	Quantity : <input type="number" ng-model="vm.service.baggedQty"></td>
 	</tr>
 	
 	<tr><td width="320px">
-	<label>Gift Card</label></td><td><input type="number" ng-model="vm.card"></td>
+	<label>Gift Card</label></td><td><input type="number" ng-model="vm.service.giftCard"></td>
 	</tr>
 	
 	<tr><td width="320px">
-	<label>Others</label></td><td><input type="text" ng-model="vm.other"></td>
+	<label>Others</label></td><td><input type="text" ng-model="vm.service.other"></td>
 	</tr>
 </table>
 <hr />
@@ -48,7 +48,7 @@
 
 <hr />
 <label>Monthly Budget for fud</label>
-<select ng-model="vm.monthlyCost">
+<select ng-model="vm.service.monthlyBudget">
 	<option>0-$500</option>
 	<option>$500-2500</option>
 	<option>2500-5k</option>
@@ -57,7 +57,7 @@
 </select><br>
 <hr />
 <label>Operating costs associated with meal services</label>
-<select ng-model="vm.operatingCost">
+<select ng-model="vm.service.operatingCost">
 	<option>0-$500</option>
 	<option>$500-2500</option>
 	<option>2500-5k</option>
@@ -67,7 +67,7 @@
 <hr />
 
 <label>Personnel costs</label>
-<select ng-model="vm.personnelCost">
+<select ng-model="vm.service.personnelCost">
 	<option>0-$500</option>
 	<option>$500-2500</option>
 	<option>2500-5k</option>
@@ -78,19 +78,19 @@
 
 <hr />
 <label>volunteers required</label><br>
-	<input type="number" ng-model="vm.volReq">
+	<input type="number" ng-model="vm.service.volunteerNbr">
 <hr />
 <label>Assistance with food stamps?</label><br>
-<input type="radio" name="foodStamp" ng-model="vm.foodStamp" ng-value="true"> Yes <input type="radio" name="foodStamp" ng-model="vm.foodStamp" ng-value="false"> No
+<input type="radio" name="foodStamp" ng-model="vm.service.foodStamp" ng-value="true"> Yes <input type="radio" name="foodStamp" ng-model="vm.foodStamp" ng-value="false"> No
 <hr />
 <label>Connections to foodbanks</label><br>
-<input type="radio" name="foodBank" ng-model="vm.bank" ng-value="true"> Yes <input type="radio" name="foodBank" ng-model="vm.bank" ng-value="false"> No<br>
-<div ng-show="vm.bank">
-<input type="text" ng-model="vm.fdBank">
-<input type="button" ng-click="vm.foodBbank(vm.fdBank)" value="+">
+<input type="radio" name="foodBank" ng-model="vm.service.foodBankSelect" ng-value="true"> Yes <input type="radio" name="foodBank" ng-model="vm.service.foodBankSelect" ng-value="false"> No<br>
+<div ng-show="vm.service.foodBankSelect">
+<input type="text" ng-model="vm.service.foodBankValue">
+<input type="button" ng-click="vm.foodBbank(vm.service.foodBankValue)" value="+">
 <div>
 	<table>
-			<tr ng-repeat="fdbnk in vm.list">
+			<tr ng-repeat="fdbnk in vm.list track by $index"">
 			 	<td style="width:30%">{{fdbnk}}</td>
 			 	<td style="width:30%"><input type="button" id="button" ng-click="vm.delRow($index)" value="-" ng-show="vm.flag"></input></td>	
 		</tr>
@@ -99,7 +99,7 @@
 </div>
 <hr />
 <label>What resources do you offer to your clients</label>
- <!-- <div class="row">
+ <div class="row">
                   
         <div class="col-lg-2">
             <form>
@@ -118,9 +118,9 @@
                 </div>
             </form>
              </div>
-            </div> -->
+            </div> 
        
- <div>    
+ <!-- <div>    
   <div class="multiselect">
     <div class="selectBox" ng-click="vm.showCheckboxes()">
       <select>
@@ -133,7 +133,7 @@
         <input type="checkbox" id="one" ng-click="vm.select($index,$event)"/>{{p}}</label>
     </div>
   </div>   	 
-</div> 
+</div>  -->
 
 <br>
 <hr class "register-input" style="width: 100%">

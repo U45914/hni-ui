@@ -20,7 +20,7 @@
         vm.signIn = signIn;
         vm.authenticate = authenticate;
         vm.isDisabled = false;
-        vm.signInButton = "Sign In"
+        vm.signInButton = "Sign In";
       
         function authenticate(provider) {
             externalAuthService.googleAuthenticate()
@@ -37,9 +37,14 @@
         function signIn() {
         	 vm.signInButton = "Signing In ...";
         	 //vm.isDisabled = true;
-            authService.login(vm.username, vm.password).then(function() {
+           var msg =  authService.login(vm.username, vm.password);
+            	 console.log("response : "+ msg);
+            	 if(msg == "error"){
+            		 vm.signInButton = "Sign In";
+            		 vm.isDisabled = false;
+            	 }else{
                 $state.go('dashboard', {}, {reload: true});
-            });
+            	 }
         }
     }
 })();

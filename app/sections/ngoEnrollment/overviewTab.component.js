@@ -29,26 +29,28 @@
 	  if(promoters != null){
 	  vm.list.push(promoters);
 	  vm.flag=true;
-	  vm.promoter=" ";
+	  vm.view.promoters=" ";
 	  }
 	} 	 	
   vm.delRow = function(index){  
 	 vm.list.splice(index, 1);
 	} 	 	
   
- 
+  vm.view = ngoEnrollmentService.overviewData;
+   
   vm.save =  function(){
 	  var data = {
-	  "ngoName": vm.name,
-	  "ngoPhone": vm.phone, 
-	  "ngoWebsite": vm.website,
-	  "ngoContact":vm.contact,
-	  "ngoOverview":vm.overview,
-	  "ngoMission":vm.mission,
-	  "ngoPromoters":vm.list
+	  "name": vm.view.name,
+	  "phone": vm.view.phone, 
+	  "website": vm.view.website,
+	  "contact":vm.view.contact,
+	  "employees":vm.view.employees,
+	  "overview":vm.view.overview,
+	  "mission":vm.view.mission,
+	  "promoters":vm.list
 	  };
 		
-	  	if(vm.name!=null && vm.phone!=null && vm.website!=null && vm.contact !=null && vm.overview !=null && vm.mission !=null){
+	  	if(vm.view.name!=null && vm.view.phone!=null && vm.view.website!=null && vm.view.contact !=null && vm.view.employees !=null && vm.view.overview !=null && vm.view.mission !=null){
 	  		ngoEnrollmentService.overviewData = data; 
 	  		//var serviceCalls = ngoEnrollmentService.postOverviewList(data);
 	  		//$q.all(serviceCalls)//.then(onSuccess,onError);

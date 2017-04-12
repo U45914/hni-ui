@@ -11,7 +11,7 @@
 			<tr ng-repeat="element in fundingSourceList track by $index">
 				<td>{{element.source}}</td>
 				<td>{{element.amount}}</td>
-				<td><button class="remove" ng-click="deleteRow($index)">-</button></td> 
+				<td><button class="remove" ng-click="vm.deleteRow($index)">-</button></td> 
             <tr>
 		</table>
 </fieldset>

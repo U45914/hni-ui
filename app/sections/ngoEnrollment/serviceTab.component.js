@@ -48,11 +48,11 @@
 	  vm.resources = [ "X","Y", "Z"];
 	  vm.resourceList= [];
 	  
-	  vm.foodBbank = function(fdBank){
-		  	if(vm.bank && vm.fdBank != null ){
-			  vm.list.push(fdBank);
+	  vm.foodBbank = function(foodBankValue){
+		  	if( foodBankValue != null ){
+			  vm.list.push(foodBankValue);
 			  vm.flag=true;
-			  vm.fdBank=" ";
+			  vm.service.foodBankValue=" ";
 		  	} 
 	  } 	
 		  vm.delRow = function(index){  
@@ -77,30 +77,36 @@
 				  }
 			  } 
 		  }
+		  vm.service = ngoEnrollmentService.serviceData;
 		  
 		  vm.save =  function(){
 			  var data = {
-			  "brkfstQty" : vm.qty1,
-			  "lunchQty":vm.qty2,
-			  "dinnerQty":vm.qty3,
-			  "baggedQty":vm.qty4,
-			  "giftCard":vm.card,
-			  "other":vm.other,			  
-			  "monthlyBudget":vm.monthlyCost,
-			  "operatingCost":vm.operatingCost,
-			  "personnelCost":vm.personnelCost,
-			  "volunteerNbr":vm.volReq,
-			  "foodStamp":vm.foodStamp,
-			 // "foodBankSelect": vm.select,
+			  "brkfstChk": vm.service.brkfstChk, 
+			  "brkfstQty" : vm.service.brkfstQty,
+			  "lunchChk": vm.service.lunchChk,
+			  "lunchQty":vm.service.lunchQty,
+			  "dinnerChk":vm.service.dinnerChk,
+			  "dinnerQty":vm.service.dinnerQty,
+			  "baggedChk":vm.service.baggedChk,
+			  "baggedQty":vm.service.baggedQty,
+			  "giftCard":vm.service.giftCard,
+			  "other":vm.service.other,	
+			  "serviceCalender":vm.obj,
+			  "monthlyBudget":vm.service.monthlyBudget,
+			  "operatingCost":vm.service.operatingCost,
+			  "personnelCost":vm.service.personnelCost,
+			  "volunteerNbr":vm.service.volunteerNbr,
+			  "foodStamp":vm.service.foodStamp,
+			  "foodBankSelect": vm.service.foodBankSelect,
 			  "foodBankValue":vm.list,
 			  "resource":vm.resourceList
 			  };
 			  
-			  	if(vm.qty1!=null || vm.qty2!=null || vm.qty3!=null || vm.qty4 !=null || vm.card !=null ||vm.other !=null && vm.monthlyCost !=null && vm.foodStamp !=null && vm.select !=null ){
+			  	if(vm.service.brkfstQty!=null || vm.service.lunchQty!=null || vm.service.dinnerQty!=null || vm.service.baggedQty !=null || vm.service.giftCard !=null ||vm.service.other !=null && vm.service.monthlyBudget !=null && vm.service.foodStamp !=null && vm.service.foodBankSelect !=null ){
 			  		ngoEnrollmentService.serviceData = data; 
 			  		$rootScope.$broadcast("scroll-tab", [1,2]);
-			  		var serviceCalls = ngoEnrollmentService.postServiceList(data);
-					return $q.all(serviceCalls);
+			  		//var serviceCalls = ngoEnrollmentService.postServiceList(data);
+					//return $q.all(serviceCalls);
 					 
 				   }
 				 else{
@@ -113,7 +119,6 @@
 		  
 		  vm.showCheckboxes=function() {
 				vm.flag="true";
-				debugger;
 			  var checkboxes = document.getElementById("checkboxes");
 			  if (!vm.expanded) {
 			    checkboxes.style.display = "block";

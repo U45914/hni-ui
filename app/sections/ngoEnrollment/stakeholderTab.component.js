@@ -24,6 +24,9 @@
 		shtc.brandPartnersList = [];
 		shtc.localPartnersList= [];
 		
+		shtc.boardMainList = ngoEnrollmentService.stakeHolderData["boardMembers"]; 
+		shtc.brandPartnersList = ngoEnrollmentService.stakeHolderData["brandPartners"];
+		shtc.localPartnersList = ngoEnrollmentService.stakeHolderData["localPartners"];
 		
 		shtc.save = function(){
 			var data = { 
@@ -33,8 +36,8 @@
 			};
 			 ngoEnrollmentService.stakeHolderData = data;
 				$rootScope.$broadcast("scroll-tab", [1,2]);
-  	   		var serviceCalls = ngoEnrollmentService.postStakeholdersList(data);
-  	   		return $q.all(serviceCalls);
+  	   		//var serviceCalls = ngoEnrollmentService.postStakeholdersList(data);
+  	   		//return $q.all(serviceCalls);
   	   
 		}
 	}

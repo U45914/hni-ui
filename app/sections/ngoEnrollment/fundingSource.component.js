@@ -20,7 +20,7 @@
 	function fundingSourceController($scope) {
 				
 		var fundingSourceObj ={};
-		$scope.fundingSourceList =[];
+		//$scope.fundingSourceList =[];
 		$scope.addNewChoice = function(){
 			fundingSourceObj = {};
 			if($scope.source!= null && $scope.amount!= null) {

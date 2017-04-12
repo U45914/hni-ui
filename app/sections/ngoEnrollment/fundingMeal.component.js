@@ -20,7 +20,7 @@
 	function fundingMealController($scope) {
 				
 		var fundingMealObj ={};
-		$scope.mealDonaltionList =[];
+		//$scope.mealDonaltionList =[];
 		$scope.addNewChoice = function(){
 			fundingMealObj = {};
 			if($scope.source!=null && $scope.mealQty!=null && $scope.frequency!= null){

@@ -1,20 +1,20 @@
 	<table style="width: 100%" name="overview">
 		<tr>
 			<td><h5>Name</h5> <input type="text" id="name" required
-				class="register-input" ng-model="vm.name"></input></td>
+				class="register-input" ng-model="vm.view.name"></input></td>
 			<td><label><h5>Phone</h5></label> <input type="number" 
-				name="phone"  class="register-input" required ng-model="vm.phone"></input>
+				name="phone"  class="register-input" required ng-model="vm.view.phone"></input>
 				<!-- <div style="color:red" ng-show="overview.phone.$error.pattern">Only numbers are allowed!</div> -->
 				</td>
 			<td><label><h5>Website Link</h5></label> <input type="text"
-				name="websiteLink"  class="register-input" required ng-model="vm.website"></input></td>
+				name="websiteLink"  class="register-input" required ng-model="vm.view.website"></input></td>
 		</tr>
 		<tr>
 			<td><label><br>
-				<h5>Contact Person</h5></label> <input type="text" class="register-input" required ng-model="vm.contact"></td>
+				<h5>Contact Person</h5></label> <input type="text" class="register-input" required ng-model="vm.view.contact"></td>
 			<td><label><br>
 				<h5>Full time Employees</h5></label> <input type="number"  
-				class="register-input" required ng-model="vm.employees"></td>
+				class="register-input" required ng-model="vm.view.employees"></td>
 		</tr>
 	</table>
 
@@ -23,19 +23,19 @@
 		<tr>
 			<td><label><br>
 				<h5>Overview</h5></label> <input type="text" name="overview" 
-				class="register-input" style="width: 95%" required ng-model="vm.overview"></td>
+				class="register-input" style="width: 95%" required ng-model="vm.view.overview"></td>
 			<td><label><br>
 				<h5>Mission Statement</h5></label> <input type="text" name="mission"  
-				class="register-input" style="width: 95%" required ng-model="vm.mission"></td>
+				class="register-input" style="width: 95%" required ng-model="vm.view.mission"></td>
 		</tr>
 		<tr>
 			<td><label><br>
 				<h5>Celebrity endorsements / notable promoters</h5></label></td></tr>
 				<tr>
 				<td style="width:30%"> 
-				<input type="text" style="width: 95%" name="promoters" id="promoters" ng-model="vm.promoter" class="register-input">
+				<input type="text" style="width: 95%" name="promoters" id="promoters" ng-model="vm.view.promoters" class="register-input">
 				</td>
-				<td><input type="button" id="button" ng-click="vm.addRow(vm.promoter)" value="Add Members"></input><br>				
+				<td><input type="button" id="button" ng-click="vm.addRow(vm.view.promoters)" value="Add Members"></input><br>				
 			</td>	
 		</tr>
 		<tr ng-repeat="member in vm.list track by $index">
