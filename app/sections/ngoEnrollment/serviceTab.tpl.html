@@ -84,8 +84,8 @@
 <input type="radio" name="foodStamp" ng-model="vm.foodStamp" ng-value="true"> Yes <input type="radio" name="foodStamp" ng-model="vm.foodStamp" ng-value="false"> No
 <hr />
 <label>Connections to foodbanks</label><br>
-<input type="radio" name="foodBank" ng-model="vm.select" ng-value="true"> Yes <input type="radio" name="foodBank" ng-model="vm.select" ng-value="false"> No<br>
-<div ng-show="vm.select">
+<input type="radio" name="foodBank" ng-model="vm.bank" ng-value="true"> Yes <input type="radio" name="foodBank" ng-model="vm.bank" ng-value="false"> No<br>
+<div ng-show="vm.bank">
 <input type="text" ng-model="vm.fdBank">
 <input type="button" ng-click="vm.foodBbank(vm.fdBank)" value="+">
 <div>
@@ -99,9 +99,43 @@
 </div>
 <hr />
 <label>What resources do you offer to your clients</label>
-<select ng-model="vm.resource">
-	
-</select><br>
+ <!-- <div class="row">
+                  
+        <div class="col-lg-2">
+            <form>
+                <div class="form-group">
+                    <multiselect class="input-xlarge multiselect" ng-model="vm.option1" options="p.key as p.value for p in vm.options1" select-limit="5"
+                                 header="Select Stuff1" selected-header="options selected" multiple="true" required
+                                 enable-filter="true" filter-placeholder="Filter stuff..">
+                    </multiselect>
+                </div>
+        
+              <div>
+                    <div>
+                        Option1
+                        <pre ng-bind="vm.option1"></pre>
+                    </div>
+                </div>
+            </form>
+             </div>
+            </div> -->
+       
+ <div>    
+  <div class="multiselect">
+    <div class="selectBox" ng-click="vm.showCheckboxes()">
+      <select>
+        <option>Select an option</option>
+      </select>    
+	<div class="overSelect"></div>	  
+    </div>
+	 <div id="checkboxes" ng-show="vm.flag">
+	    <label for="one" ng-repeat="p in vm.resources">
+        <input type="checkbox" id="one" ng-click="vm.select($index,$event)"/>{{p}}</label>
+    </div>
+  </div>   	 
+</div> 
+
+<br>
 <hr class "register-input" style="width: 100%">
 	<div style="float: right">
 	<br>

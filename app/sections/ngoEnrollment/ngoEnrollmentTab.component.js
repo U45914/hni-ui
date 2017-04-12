@@ -9,10 +9,37 @@
           controller: ngoEnrollmentTabController,
           controllerAs: 'vm'
   }) ;
+//  ngoEnrollmentTabController.$inject=['$q','ngoEnrollmentService']; 
   
-  ngoEnrollmentTabController.$inject = ['$rootScope', '$scope'];
+  /*function ngoEnrollmentTabController($q,ngoEnrollmentService) {
+	  var vm = this;
+	  
+	  vm.enrollementData = function(){  
+		  alert("entered");
+		  var overViewData = ngoEnrollmentService.overviewData;
+		  var stakeHolderData = ngoEnrollmentService.postData;
+		  var serviceData = ngoEnrollmentService.serviceData;
+		  var fundingData = ngoEnrollmentService.fundingData;
+		  var clientData = ngoEnrollmentService.clientData;
+		  
+		  var data = {
+				 "overview" 	: overViewData,
+		  		 "stakeHolder" 	: stakeHolderData,
+		  		 "service"		: serviceData,
+		  		 "funding"		: fundingData,
+		  		 "client"		: clientData	  
+		  };
+		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData(data);
+		  return $q.all(serviceCalls);
+		  //console.log("In Controller");
+		  //console.log(serviceCalls);
+		  
+	  }
+  }
+  */
+  ngoEnrollmentTabController.$inject = ['$q','$rootScope', '$scope','ngoEnrollmentService'];
 
-  function ngoEnrollmentTabController($rootScope, $scope) {
+  function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService) {
       var vm = this;
       vm.tabIndex = 0;
       
@@ -27,7 +54,28 @@
     	  ++vm.tabIndex 
     	  }
       }
-     
+      
+      vm.enrollementData = function(){  
+		  alert("entered");
+		  var overViewData = ngoEnrollmentService.overviewData;
+		  var stakeHolderData = ngoEnrollmentService.postData;
+		  var serviceData = ngoEnrollmentService.serviceData;
+		  var fundingData = ngoEnrollmentService.fundingData;
+		  var clientData = ngoEnrollmentService.clientData;
+		  
+		  var data = {
+				 "overview" 	: overViewData,
+		  		 "stakeHolder" 	: stakeHolderData,
+		  		 "service"		: serviceData,
+		  		 "funding"		: fundingData,
+		  		 "client"		: clientData	  
+		  };
+		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData(data);
+		  return $q.all(serviceCalls);
+		  //console.log("In Controller");
+		  //console.log(serviceCalls);
+		  
+	  }
   }
   
 })();
