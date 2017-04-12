@@ -15,7 +15,7 @@
         var vm = this;
 
         vm.$onInit = function() {
-			let baseUrl = serviceConstants.baseUrl;
+        	let baseUrl = serviceConstants.baseUrl;
         	$http.get(`${baseUrl}/users/services`)
             .then(function success(response) {
                 if(response.data !== null) {

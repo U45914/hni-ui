@@ -30,30 +30,30 @@
         //Function to save overview details to temp db
         function postOverviewList(data) {
         	let overviewData = JSON.stringify(data);
-        	return $http.post(`${baseUrl}/`, overviewData);
+        	//return $http.post(`${baseUrl}/`, overviewData);
         }
         
         //Function to save stakeholders details to temp db
         function postStakeholdersList(data) {
             let stakeHolderData = JSON.stringify(data);
-            return $http.post(`${baseUrl}/`, postData);
+           // return $http.post(`${baseUrl}/`, stakeHolderData);
         }
         
       //Function to call the post service after submitting service details
         function postServiceList(data) {
            let serviceData = JSON.stringify(data);
-           return $http.post(`${baseUrl}/`, enrollData);
+          // return $http.post(`${baseUrl}/`, enrollData);
         }
         
         function postFundingList(data) {
             let fundingData = JSON.stringify(data);
-            return $http.post(`${baseUrl}/`, postData);
+          //  return $http.post(`${baseUrl}/`, postData);
         }
         
         
         function postNgoClientInfo(data) {
             let clientData = JSON.stringify(data);
-            return $http.post(`${baseUrl}/`, postData);
+           // return $http.post(`${baseUrl}/`, postData);
         }
         function postNgoEnrollData(data){
         	let enrollData = JSON.stringify(data);

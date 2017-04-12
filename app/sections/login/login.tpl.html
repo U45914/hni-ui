@@ -17,7 +17,7 @@
                     <i class="material-icons" ng-class="{'active': vm.isActive}" ng-click="vm.togglePassword()">&#xE417;</i>
                 </md-input-container>
                 <md-button class="md-raised button-primary"  ng-click="vm.signIn()" ng-disabled="vm.isDisabled" ng-model="vm.isDisabled">
-                <span ng-show="vm.signInButton == 'Signing In ...'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+                <span ng-show="vm.signInButton == 'Signing In ...'"></span>
            		 {{ vm.signInButton }}
                 </md-button>
             </div>

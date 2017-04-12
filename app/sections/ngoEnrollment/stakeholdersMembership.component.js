@@ -19,7 +19,7 @@
 	function membershipController($scope) {
 		
 		var memberObject = {};
-		$scope.memberList = [];
+		//$scope.memberList = [];
 
 		$scope.addNewChoice = function() {
 			memberObject = {};
