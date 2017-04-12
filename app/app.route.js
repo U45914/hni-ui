@@ -21,6 +21,10 @@
                 url: '/login',
                 template: '<login></login>'
             })
+            .state('join-user', {
+                url: '/join-user/{type}/{activationCode}',
+                template: '<join-user></join-user>'
+            })
             .state('workspace-base', {
                 abstract: false,
                 template: '<workspace-base></workspace-base>'

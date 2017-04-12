@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['authService', 'externalAuthService'];
+    LoginController.$inject = ['authService', 'externalAuthService', '$state'];
 
-    function LoginController(authService, externalAuthService) {
+    function LoginController(authService, externalAuthService, $state) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
@@ -43,7 +43,7 @@
             		 vm.signInButton = "Sign In";
             		 vm.isDisabled = false;
             	 }else{
-                $state.go('dashboard', {}, {reload: true});
+                //$state.go('dashboard', {}, {reload: true});
             	 }
         }
     }

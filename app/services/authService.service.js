@@ -52,26 +52,16 @@
         			username : username,
         			password : password
         	}
-        	var msg;
-        	$http.post(`${baseUrl}/security/authentication`, vm).then(function (response) {
-                
-                if(response == null){
-                	msg = "error";
-                }else{
-               // setToken(response.data.token);
-				debugger;
-                //$state.go('volunteer-landing');
+        	$http.post(`${baseUrl}/security/authentication`, vm).then(function success(response) {
+                console.log(response);
+                setToken(response.data.token);
                 $state.go('dashboard');
-                msg="success";
-                }
-              //  return msg;
-              
-            }/*, function error(error) {
+                }, function error(error) {
             	alert("error : "+error);
 				debugger;
                 console.log(error);
-            }*/);
-        	return msg;
+            });
+        	return;
         }
         
         /*function login(username, password){
