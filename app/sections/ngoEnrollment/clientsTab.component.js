@@ -31,6 +31,7 @@
       				 "unshelteredClientPercentage": vm.unsheltered,
       				 "employeedClientPercentage" : vm.employeed
       		 };
+      		 ngoEnrollmentService.clientData = data;
       		var serviceCalls = ngoEnrollmentService.postNgoClientInfo(data);
       		return $q.all(serviceCalls);
       		

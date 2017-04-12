@@ -39,9 +39,9 @@
 			</td>	
 		</tr>
 		<tr ng-repeat="member in vm.list track by $index">
-			
-			 	<td style="width:30%"><input type="text" class="register-input" ng-model="member"></input></td>
-			 	<td style="width:30%"><input type="button" id="button" ng-click="vm.delRow($index)" value="-" ng-show="vm.flag"></input></td>	
+				<td>{{member}}</td>
+			 	<!-- <td style="width:30%"><input type="text" class="register-input" ng-model="member"></input></td> -->
+			 	<td><input type="button" id="button" ng-click="vm.delRow($index)" value="-" ng-show="vm.flag"></input></td>	
 		</tr>
 	</table>
 	<br>

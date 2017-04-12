@@ -18,17 +18,19 @@
 
 	} 
   
-  overviewController.$inject = ['$q','ngoEnrollmentService','$rootScope', 'toaster']; 
+  overviewController.$inject = ['$q','ngoEnrollmentService','$rootScope']; 
   
-  function overviewController ($q,ngoEnrollmentService,$rootScope, toaster) {
+  function overviewController ($q,ngoEnrollmentService,$rootScope) {
 	  var vm = this;
 	  vm.list= [];
 	  
- 
-  vm.addRow = function(promoters){  
-	 var newPromoter = document.getElementById('promoters');
+	 
+  vm.addRow = function(promoters){ 
+	  if(promoters != null){
 	  vm.list.push(promoters);
 	  vm.flag=true;
+	  vm.promoter=" ";
+	  }
 	} 	 	
   vm.delRow = function(index){  
 	 vm.list.splice(index, 1);
@@ -43,16 +45,18 @@
 	  "ngoContact":vm.contact,
 	  "ngoOverview":vm.overview,
 	  "ngoMission":vm.mission,
-	  "ngoPromoters":vm.list,
+	  "ngoPromoters":vm.list
 	  };
 		
 	  	if(vm.name!=null && vm.phone!=null && vm.website!=null && vm.contact !=null && vm.overview !=null && vm.mission !=null){
-			 //var serviceCalls = ngoEnrollmentService.postOverviewList(data);
-			 //$q.all(serviceCalls)//.then(onSuccess,onError);
+	  		ngoEnrollmentService.overviewData = data; 
+	  		//var serviceCalls = ngoEnrollmentService.postOverviewList(data);
+	  		//$q.all(serviceCalls)//.then(onSuccess,onError);
 			 $rootScope.$broadcast("scroll-tab", [1,2]);
 		   }
 		 else{
-			 toaster.success('Hello world!', 'Toastr fun!');
+			 //toaster.success('Hello world!', 'Toastr fun!');
+			 window.alert("Please fill the fields");
 			 return false;
 		}
   }

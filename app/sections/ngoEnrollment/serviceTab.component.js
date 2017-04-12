@@ -18,12 +18,18 @@
 
 	}
   
-  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope','toaster']; 
+  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope']; 
   
-  function serviceController ($q,ngoEnrollmentService,$rootScope,toaster) {
+  function serviceController ($q,ngoEnrollmentService,$rootScope) {
 	  var vm =this;
 	  vm.list= [];
+	  vm.flag="false";
 	  
+	  vm.options1 = [];
+      for (var i = 0; i < 10; i++) {
+          vm.options1.push({ key: i + 1, value: 'Prop' + (i + 1).toString() });
+      } 
+  
 	  vm.sunday=[];
 	  vm.monday=[];
 	  vm.tuesday=[];
@@ -38,12 +44,15 @@
 	  vm.frequency = ["Breakfast","Lunch","Dinner"];
 	  
 	  vm.obj={};
+	  vm.expanded="false";
+	  vm.resources = [ "X","Y", "Z"];
+	  vm.resourceList= [];
 	  
 	  vm.foodBbank = function(fdBank){
-		  	if(vm.select){
+		  	if(vm.bank && vm.fdBank != null ){
 			  vm.list.push(fdBank);
 			  vm.flag=true;
-			  
+			  vm.fdBank=" ";
 		  	} 
 	  } 	
 		  vm.delRow = function(index){  
@@ -68,6 +77,7 @@
 				  }
 			  } 
 		  }
+		  
 		  vm.save =  function(){
 			  var data = {
 			  "brkfstQty" : vm.qty1,
@@ -83,22 +93,46 @@
 			  "foodStamp":vm.foodStamp,
 			 // "foodBankSelect": vm.select,
 			  "foodBankValue":vm.list,
-			  "resource":vm.resource
+			  "resource":vm.resourceList
 			  };
 			  
 			  	if(vm.qty1!=null || vm.qty2!=null || vm.qty3!=null || vm.qty4 !=null || vm.card !=null ||vm.other !=null && vm.monthlyCost !=null && vm.foodStamp !=null && vm.select !=null ){
-			  		 //var serviceCalls = ngoEnrollmentService.postServiceList(data);
-					 //return $q.all(serviceCalls);
-					 $rootScope.$broadcast("scroll-tab", [1,2]);
+			  		ngoEnrollmentService.serviceData = data; 
+			  		$rootScope.$broadcast("scroll-tab", [1,2]);
+			  		var serviceCalls = ngoEnrollmentService.postServiceList(data);
+					return $q.all(serviceCalls);
+					 
 				   }
 				 else{
-					 toaster.warning("Please fill Fields");
+					 window.alert("Please fill Fields");
 				
 				        return false;
 					 
 				 }
 		  }
 		  
+		  vm.showCheckboxes=function() {
+				vm.flag="true";
+				debugger;
+			  var checkboxes = document.getElementById("checkboxes");
+			  if (!vm.expanded) {
+			    checkboxes.style.display = "block";
+			    vm.expanded = true;
+			  } else {
+			    checkboxes.style.display = "none";
+			    vm.expanded = false;
+			  }
+			}
+		  
+			vm.select = function(index,event){
+				var isChecked = event.target.checked;
+				if(isChecked){
+				vm.resourceList.push(vm.resources[index]);
+				}else{
+					vm.resourceList.splice(index,1);
+				}
+				console.log(vm.resourceList);
+			}	  
   }	  
 	  
 	  

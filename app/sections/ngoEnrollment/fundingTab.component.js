@@ -35,8 +35,10 @@
    		 		//var serviceCalls = ngoEnrollmentService.postFundingList(data);
    		 		//return $q.all(serviceCalls);
    		 		$rootScope.$broadcast("scroll-tab", [1,2]);
-   		 		return;
-   		 		
+   		 
+   		 	 ngoEnrollmentService.fundingData = data;
+   		 	 var serviceCalls = ngoEnrollmentService.postFundingList(data);
+   		 		return $q.all(serviceCalls);
    		 	}
    		 	else{
    		 		alert("Meal Donation fields are mandatory to save");
