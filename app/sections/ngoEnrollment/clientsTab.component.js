@@ -17,25 +17,26 @@
 		}
 	}
 	
-	clientTabController.inject = ['$q','ngoEnrollmentService','$scope'];
+	clientTabController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state'];
 	
-	function clientTabController($q,ngoEnrollmentService,$scope){
+	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;
     	vm.client = ngoEnrollmentService.clientData;
     	    	
     	vm.save = function(){   		
       		 var data = {
-      				 "individualsServedDaily" : vm.client.individualsServedDaily,
-      				 "individualsServedMonthly" : vm.client.individualsServedMonthly,
-      				 "individualsServedAnnually" : vm.client.individualsServedAnnually,
-      				 "individualClientInfoCollected" : vm.client.individualClientInfoCollected,
-      				 "infoStored" : vm.client.infoStored,
-      				 "unshelteredClientPercentage": vm.client.unshelteredClientPercentage,
-      				 "employeedClientPercentage" : vm.client.employeedClientPercentage
+      				 "indServDaily" : vm.client.indServDaily,
+      				 "indServMonthly" : vm.client.indServMonthly,
+      				 "indServAnnual" : vm.client.indServAnnual,
+      				 "clientInfo" : vm.client.clientInfo,
+      				 "storeClientInfo" : vm.client.storeClientInfo,
+      				 "clientsUnsheltered": vm.client.clientsUnsheltered,
+      				 "clientsEmployed" : vm.client.clientsEmployed
       		 };
-      		 ngoEnrollmentService.clientData = data;
-      		var serviceCalls = ngoEnrollmentService.postNgoClientInfo(data);
-      		return $q.all(serviceCalls);
+      		 ngoEnrollmentService.setClientData(data);
+			 var serviceCalls = ngoEnrollmentService.savePartial();
+	  		 $q.all(serviceCalls)//.then(onSuccess,onError);
+			 
       		
     	}
 	}

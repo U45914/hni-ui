@@ -51,10 +51,23 @@
 	  };
 		
 	  	if(vm.view.name!=null && vm.view.phone!=null && vm.view.website!=null && vm.view.contact !=null && vm.view.employees !=null && vm.view.overview !=null && vm.view.mission !=null){
-	  		ngoEnrollmentService.overviewData = data; 
-	  		//var serviceCalls = ngoEnrollmentService.postOverviewList(data);
-	  		//$q.all(serviceCalls)//.then(onSuccess,onError);
-			 $rootScope.$broadcast("scroll-tab", [1,2]);
+	  		ngoEnrollmentService.setOverviewData(data); 
+	  		var serviceCalls = ngoEnrollmentService.savePartial();
+	  		/*.then(function successCallback(response) {
+						 if (response && response.data.response && response.data.response == "success") {
+							 alert("saved");
+							 $rootScope.$broadcast("scroll-tab", [1,2]);
+						 } else {
+							 alert("Failed : "+ response.data.errorMsg)
+							 //toaster.success("Failed : "+ response.data.errorMsg); 
+						 }
+					  }, function errorCallback(response) {
+						debugger;
+						alert("Something went wrong, please try again");
+						});
+	  		return $q.all(serviceCalls)//.then(onSuccess,onError);
+			 */
+	  		$rootScope.$broadcast("scroll-tab", [1,2]);
 		   }
 		 else{
 			 //toaster.success('Hello world!', 'Toastr fun!');

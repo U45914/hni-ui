@@ -24,18 +24,21 @@
 		shtc.brandPartnersList = [];
 		shtc.localPartnersList= [];
 		
+		shtc.boardMainList = ngoEnrollmentService.stakeHolderData["boardMembers"]; 
+		shtc.brandPartnersList = ngoEnrollmentService.stakeHolderData["brandPartners"];
+		shtc.localPartnersList = ngoEnrollmentService.stakeHolderData["localPartners"];
 		
 		shtc.save = function(){
 			var data = { 
 					"boardMembers" :  shtc.boardMainList,
-					"brandPartners " : shtc.brandPartnersList,
-					"localPartners ": shtc.localPartnersList
+					"brandPartners" : shtc.brandPartnersList,
+					"localPartners": shtc.localPartnersList
 			};
-   		 	
-  	   		//var serviceCalls = ngoEnrollmentService.postStakeholdersList(data);
-  	   		//return $q.all(serviceCalls);
-  	   		$rootScope.$broadcast("scroll-tab", [1,2]);
-		}
+			 ngoEnrollmentService.setStakeHolderData(data);
+			 var serviceCalls = ngoEnrollmentService.savePartial();
+	  		 $q.all(serviceCalls)//.then(onSuccess,onError);
+			 $rootScope.$broadcast("scroll-tab", [1,2]);
+  	   		}
 	}
 
 })();

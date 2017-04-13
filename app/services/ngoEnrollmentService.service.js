@@ -13,51 +13,86 @@
         var fundingData;
         var clientData;
         return {
-              postOverviewList,
-              postStakeholdersList,
-              postServiceList,
-			  postFundingList,
-        	  postNgoClientInfo,
+        	  savePartial,
         	  postNgoEnrollData,
-        	  overviewData,
+        	  setOverviewData:setOverviewData,
+        	  getOverviewData:getOverviewData,
+        	  setStakeHolderData:setStakeHolderData,
+        	  getStakeHolderData:getStakeHolderData,
+        	  setServiceData:setServiceData,
+        	  getServiceData:getServiceData,
+        	  setFundingData:setFundingData,
+        	  getFundingData:getFundingData,
+        	  setClientData:setClientData,
+        	  getClientData:getClientData,
         	  stakeHolderData,
         	  serviceData,
         	  fundingData,
         	  clientData
               };
         
-        
-        //Function to save overview details to temp db
-        function postOverviewList(data) {
-        	let overviewData = JSON.stringify(data);
-        	//return $http.post(`${baseUrl}/`, overviewData);
+         
+        function setOverviewData(data){
+        	overviewData = data
         }
         
-        //Function to save stakeholders details to temp db
-        function postStakeholdersList(data) {
-            let stakeHolderData = JSON.stringify(data);
-           // return $http.post(`${baseUrl}/`, stakeHolderData);
+        function getOverviewData(){
+        	return overviewData
         }
         
-      //Function to call the post service after submitting service details
-        function postServiceList(data) {
-           let serviceData = JSON.stringify(data);
-          // return $http.post(`${baseUrl}/`, enrollData);
+        function setStakeHolderData(data){
+        	stakeHolderData = data
         }
         
-        function postFundingList(data) {
-            let fundingData = JSON.stringify(data);
-          //  return $http.post(`${baseUrl}/`, postData);
+        function getStakeHolderData(){
+        	return stakeHolderData
+        }
+        function setServiceData(data){
+        	serviceData = data
         }
         
-        
-        function postNgoClientInfo(data) {
-            let clientData = JSON.stringify(data);
-           // return $http.post(`${baseUrl}/`, postData);
+        function getServiceData(){
+        	return serviceData
         }
-        function postNgoEnrollData(data){
-        	let enrollData = JSON.stringify(data);
-        	console.log("enroll Data"+enrollData);
+        function setFundingData(data){
+        	fundingData = data
+        }
+        
+        function getFundingData(){
+        	return fundingData
+        }
+        
+        function setClientData(data){
+        	clientData = data
+        }
+        
+        function getClientData(){
+        	return clientData
+        }
+             
+        function savePartial() {
+        	var postData={
+        			"overviewData" : getOverviewData(),
+        			"stakeholdersData" : getStakeHolderData(),
+        			"serviceData" : getServiceData(),
+        			"fundingData" : getFundingData(),
+        			"clientData" : getClientData()
+        	};
+        	let partialData = JSON.stringify(postData);
+        	console.log(partialData);
+        	//return $http.post(`${baseUrl}/`, partialData);
+        }
+        
+        function postNgoEnrollData(){
+        	var postData={
+        			"overviewData" : getOverviewData(),
+        			"stakeholdersData" : getStakeHolderData(),
+        			"serviceData" : getServiceData(),
+        			"fundingData" : getFundingData(),
+        			"clientData" : getClientData()
+        	};
+        	let enrollData = JSON.stringify(postData);
+        	console.log(enrollData);
         	
         }
     }

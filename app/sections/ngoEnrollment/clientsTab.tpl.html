@@ -8,42 +8,42 @@ How many individuals are served?
 				<td>
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
-              			<input type="number"  ng-model="vm.client.individualsServedDaily" >
+              			<input type="number"  ng-model="vm.client.indServDaily" >
               		</md-input-container>
               		{{vm.client.daily}}				
 				</td>
 				<td>
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
-              			<input type="number"  ng-model="vm.client.individualsServedMonthly" >
+              			<input type="number"  ng-model="vm.client.indServMonthly" >
               		</md-input-container>
 				</td>
 				<td>
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
-              			<input type="number"  ng-model="vm.client.individualsServedAnnually">
+              			<input type="number"  ng-model="vm.client.indServAnnual">
               		</md-input-container>
 				</td>
 			</tr>
 </table>
 		 <div flex-gt-sm>
             <label> Do you collect individual client info?</label>
-			<input type="radio"  ng-value="true" ng-model ="vm.client.individualClientInfoCollected">Yes
-			<input type="radio"  ng-value="false" ng-model ="vm.client.individualClientInfoCollected">No
+			<input type="radio"  ng-value="true" ng-model ="vm.client.clientInfo">Yes
+			<input type="radio"  ng-value="false" ng-model ="vm.client.clientInfo">No
 		</div> 
-		<div ng-show= "vm.client.individualClientInfoCollected">
+		<div ng-show= "vm.client.clientInfo">
 			<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label>If yes, How do you store Information?</label>
-				<input type="text" ng-model="vm.client.infoStored"/>
+				<input type="text" ng-model="vm.client.storeClientInfo"/>
 			</md-input-container>
 		</div>
 		<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Percentage of clients unsheltered</label>
-              			<input type="number"  ng-model="vm.client.unshelteredClientPercentage" >
+              			<input type="number"  ng-model="vm.client.clientsUnsheltered" >
          </md-input-container>	
          <md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Percentage of clients employed/ internship</label>
-              			<input type="number"  ng-model="vm.client.employeedClientPercentage" >
+              			<input type="number"  ng-model="vm.client.clientsEmployed" >
          </md-input-container>         
   </fieldset> 
    
