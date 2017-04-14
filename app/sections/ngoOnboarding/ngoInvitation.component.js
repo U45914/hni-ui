@@ -34,7 +34,7 @@
     				 		  ]
 };
    	   			 if(vm.name!=null && vm.phoneNumber!=null && vm.email!=null && vm.webSiteUrl !=null){
-   	   				 var serviceCalls = ngoOnboardingService.postNgo(data)
+   	   				 var serviceCalls = ngoOnboardingService.inviteNgo(data)
 					 .then(function successCallback(response) {
 						 if (response && response.data.response && response.data.response == "success") {
 							toaster.success("Your request has submitted, please check your email for more details") 
@@ -43,7 +43,6 @@
 							 toaster.success("Failed : "+ response.data.errorMsg); 
 						 }
 					  }, function errorCallback(response) {
-						debugger;
 						toaster.success("Something went wrong, please try again")
 						//$state.go('dashboard'); 
 					  });

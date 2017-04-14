@@ -7,9 +7,9 @@
 		controller : NgoEnrollmentController,
 		controllerAs : 'vm'
 	});
-	NgoEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope' ];
+	NgoEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope', '$state' ];
 
-	function NgoEnrollmentController($q, ngoOnboardingService, $scope) {
+	function NgoEnrollmentController($q, ngoOnboardingService, $scope, $state) {
 		var USER_ORG_INFO = "userOrgInfo";
 		var USER_TYPE = "userType";
 
@@ -21,14 +21,21 @@
 			var data = {
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
-				"userName " : vm.username,
-				"password " : vm.password,
-				"confirmedPassword " : vm.passwordConfirm
+				"email" : vm.username,
+				"password" : vm.password,
+				"organizationId": vm.getOrgInfo()
 			};
 
-			var serviceCalls = ngoOnboardingService.postNgoLogin(data);
+			ngoOnboardingService.registerNgo(data).then(function(response) {
+				if (response && response.data && response.data.success){
+					alert(response.data.success)
+					$state.go('login');
+				} else {
+					alert("Failed to create user entry");
+				}
+			});
 
-			return $q.all(serviceCalls);
+			return;
 		};
 
 		vm.checkAvailability = function() {
