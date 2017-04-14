@@ -10,7 +10,8 @@
 
         return {
             postNgo,
-            postNgoLogin
+            postNgoLogin,
+            checkUsernameAvailability
             
         };
         
@@ -25,6 +26,11 @@
             let postData = JSON.stringify(data);
             console.log("inside service controller"+ postData);
             return $http.post(`${baseUrl}/`, postData);
+        }
+        
+        function checkUsernameAvailability(username) {
+        	var usernameObject = {"username": username}
+        	return $http.post(`${baseUrl}/onboard/validate/username`, usernameObject);
         }
      }
 })();
