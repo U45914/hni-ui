@@ -23,7 +23,7 @@
 			brandObject = {};
 			if( $scope.company!=null &&  $scope.phone != null){
 			brandObject.company = $scope.company;
-			brandObject.phoneNumber = $scope.phone;
+			brandObject.phone = $scope.phone;
 			$scope.brandList.push(brandObject);
 			$scope.company = null;
 			$scope.phone = null;

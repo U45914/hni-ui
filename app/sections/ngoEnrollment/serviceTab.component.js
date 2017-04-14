@@ -8,7 +8,7 @@
 	function serviceDirective() {
 		return {
 			scope : {
-				//memberList : "=list"
+				
 			},
 			restrict : "E",
 			templateUrl : "serviceTab.tpl.html",
@@ -94,20 +94,20 @@
 			  "serviceCalender":vm.obj,
 			  "monthlyBudget":vm.service.monthlyBudget,
 			  "operatingCost":vm.service.operatingCost,
-			  "personnelCost":vm.service.personnelCost,
+			  "personalCost":vm.service.personalCost,
 			  "volunteerNbr":vm.service.volunteerNbr,
-			  "foodStamp":vm.service.foodStamp,
-			  "foodBankSelect": vm.service.foodBankSelect,
+			  "foodStampAssist":vm.service.foodStamp,
+			  "foodBank": vm.service.foodBankSelect,
 			  "foodBankValue":vm.list,
 			  "resource":vm.resourceList
 			  };
 			  
 			  	if(vm.service.brkfstQty!=null || vm.service.lunchQty!=null || vm.service.dinnerQty!=null || vm.service.baggedQty !=null || vm.service.giftCard !=null ||vm.service.other !=null && vm.service.monthlyBudget !=null && vm.service.foodStamp !=null && vm.service.foodBankSelect !=null ){
-			  		ngoEnrollmentService.serviceData = data; 
+			  		ngoEnrollmentService.setServiceData(data);
+			  		var serviceCalls = ngoEnrollmentService.savePartial();
+			  		$q.all(serviceCalls)//.then(onSuccess,onError);
 			  		$rootScope.$broadcast("scroll-tab", [1,2]);
-			  		//var serviceCalls = ngoEnrollmentService.postServiceList(data);
-					//return $q.all(serviceCalls);
-					 
+			  		
 				   }
 				 else{
 					 window.alert("Please fill Fields");
