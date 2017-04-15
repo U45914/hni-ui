@@ -11,6 +11,7 @@
         return {
         	inviteNgo,
             registerNgo,
+            addNgoUser,
             checkUsernameAvailability
             
         };
@@ -19,6 +20,12 @@
         function inviteNgo(data) {
             let postData = JSON.stringify(data);
             return $http.post(`${baseUrl}/onboard/ngo/invite`, postData);
+        }
+        
+        //Function to call post service while super admin add a new ngo
+        function addNgoUser(data) {
+            let postData = JSON.stringify(data);
+            return $http.post(`${baseUrl}/onboard/ngo/user/invite`, postData);
         }
         
         //Function to call post service while new ngo login to enroll in HNI.
@@ -30,7 +37,7 @@
             	    url: `${baseUrl}/users/register`,
             	    data: postData,
             	    headers: {
-            	        "user-type": rolesConstant.superAdmin
+            	        "user-type": window.localStorage.getItem("userType")
             	    }
             	}
             return $http(config);

@@ -1,0 +1,64 @@
+<top-nav></top-nav>
+<h1>Add NGO to my Organization</h1>
+<form class="cf">
+
+	<table>
+		<th align='left'>Primary details</th>
+		<th></th>
+		<tr>
+			<td width="50%"><input type="text" id="input-name"
+				placeholder="Organization Name" ng-disabled="vm.noEdit"
+				ng-model="vm.orgInfo.name"></td>
+			<td><input type="text" id="input-phone"
+				placeholder="Phone number" ng-disabled="vm.noEdit"
+				ng-model="vm.orgInfo.phone"></td>
+		</tr>
+		<tr>
+			<td><input type="email" id="input-email"
+				placeholder="Email address" ng-disabled="vm.noEdit"
+				ng-model="vm.orgInfo.email"></td>
+			<td><input type="text" id="input-websiteUrl"
+				placeholder="Web site url" ng-disabled="vm.noEdit"
+				ng-model="vm.orgInfo.website"></td>
+	</table>
+
+
+	<table>
+		<th align='left' ; width="50%">Address</th>
+		<th></th>
+		<tr>
+			<td><input type="text" placeholder="Name"
+				ng-disabled="vm.noEdit" ng-model="vm.orgInfo.addresses[0].name" /></td>
+			<td><input type="text" placeholder="Address"
+				ng-disabled="vm.noEdit" ng-model="vm.orgInfo.addresses[0].address1" /></td>
+		</tr>
+		<tr>
+			<td><input type="text" placeholder="City"
+				ng-disabled="vm.noEdit" ng-model="vm.orgInfo.addresses[0].city" /></td>
+			<td><input type="text" placeholder="State"
+				ng-disabled="vm.noEdit" ng-model="vm.orgInfo.addresses[0].state" /></td>
+			<td><input type="text" placeholder="Zip" ng-disabled="vm.noEdit"
+				ng-model="vm.orgInfo.zip" /></td>
+		</tr>
+	</table>
+
+	<table>
+		<th align='left' ; width="50%">Add new NGO user details</th>
+		<th></th>
+		<tr>
+			<td><input type="text" placeholder="First Name"
+				ng-model="vm.name" /></td>
+			<td><input type="text" placeholder="Last Name"
+				ng-model="vm.lastName" /></td>
+		</tr>
+		<tr>
+			<td><input type="email" placeholder="Email to invite" ng-model="vm.email" /></td>
+			<td><input type="text" placeholder="Phone" ng-model="vm.phone" /></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Invite user" id="input-submit"
+				ng-click="vm.addNgoUser()"></td>
+		</tr>
+	</table>
+
+</form>
