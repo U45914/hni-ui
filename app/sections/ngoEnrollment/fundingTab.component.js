@@ -30,19 +30,16 @@
 		
 		ft.save = function(){
 			var data = { 
-					"fundingSource" :  ft.fundingSourceList,
-					"mealDonation " : ft.mealDonaltionList,
-					"mealFunding ": ft.mealFundingList
+					"ngoFundingSources" :  ft.fundingSourceList,
+					"mealDonation" : ft.mealDonaltionList,
+					"mealFundingSources": ft.mealFundingList
 			};
-			//vm.tabIndex = 0;
+			
    		 	if(ft.mealDonaltionList.length!=0){
-   		 		//var serviceCalls = ngoEnrollmentService.postFundingList(data);
-   		 		//return $q.all(serviceCalls);
-   		 		$rootScope.$broadcast("scroll-tab", [1,2]);
-   		 
-   		 	 ngoEnrollmentService.fundingData = data;
-   		 	 var serviceCalls = ngoEnrollmentService.postFundingList(data);
-   		 		return $q.all(serviceCalls);
+   		 	ngoEnrollmentService.setFundingData(data);
+	  		var serviceCalls = ngoEnrollmentService.savePartial();
+	  		$q.all(serviceCalls)//.then(onSuccess,onError);
+   		 	$rootScope.$broadcast("scroll-tab", [1,2]);
    		 	}
    		 	else{
    		 		alert("Meal Donation fields are mandatory to save");

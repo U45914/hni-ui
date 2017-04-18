@@ -44,13 +44,13 @@
 		  	          "brandPartners": [
 		  	              {
 		  	                  "company": "uytyt",
-		  	                  "phoneNumber": 876
+		  	                  "phone": 876
 		  	              }
 		  	          ],
 		  	          "localPartners": [
 		  	              {
 		  	                  "company": "ygyug",
-		  	                  "phoneNumber": 7678
+		  	                  "phone": 7678
 		  	              }
 		  	          ]
 		  	      },
@@ -87,7 +87,7 @@
 		  		    },
 		  		    "monthlyBudget": "0-$500",
 		  		    "operatingCost": "0-$500",
-		  		    "personnelCost": "0-$500",
+		  		    "personalCost": "0-$500",
 		  		    "volunteerNbr": 3,
 		  		    "foodBankSelect": true,
 		  		    "foodBankValue": [
@@ -118,12 +118,12 @@
 		  	        ]
 		  	    },
 		  		 "client"		: {
-		  		        "individualsServedDaily": 2,
-		  		        "individualsServedMonthly": 2,
-		  		        "individualsServedAnnually": 2,
-		  		        "individualClientInfoCollected": false,
-		  		        "unshelteredClientPercentage": 23,
-		  		        "employeedClientPercentage": 21
+		  		        "indServDaily": 2,
+		  		        "indServMonthly": 2,
+		  		        "indServAnnual": 2,
+		  		        "clientInfo": false,
+		  		        "clientsUnsheltered": 23,
+		  		        "clientsEmployed": 21
 		  		    
 		    }	  
 		  };
@@ -148,14 +148,14 @@
       }
       
       vm.enrollementData = function(){  
-		  var data = {
+		 /* var data = {
 				 "overview" 	: overViewData,
 		  		 "stakeHolder" 	: stakeHolderData,
 		  		 "service"		: serviceData,
 		  		 "funding"		: fundingData,
 		  		 "client"		: clientData	  
-		  };
-		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData(data);
+		  };*/
+		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData();
 		  return $q.all(serviceCalls);
 		  
 	  }

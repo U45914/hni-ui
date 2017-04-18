@@ -46,6 +46,12 @@
             isAuthenticated = true;
             authToken = token;
         }
+        
+        function setOrgInfo(orgInfo) {
+        	if (orgInfo) {
+        		window.localStorage.setItem("userOrgInfo", orgInfo);
+        	}
+        }
 
        function login(username, password) {
         	var vm = {
@@ -55,33 +61,28 @@
         	$http.post(`${baseUrl}/security/authentication`, vm).then(function success(response) {
                 console.log(response);
                 setToken(response.data.token);
+                setOrgInfo(response.data.orgId);
                 $state.go('dashboard');
                 }, function error(error) {
             	alert("error : "+error);
-				debugger;
                 console.log(error);
             });
         	return;
         }
         
-        /*function login(username, password){
-        	var payLoad ={
-        			method: "POST",
-        			url: "http://localhost:8080/hni-admin-service/api/v1/security/authentication",
-        			data: {"username":username, "password":password}        			
-        	}
-        	
-        	$http(payLoad).then(successResp, errorResp);
-        }
-        
-        function successResp(data, status, headers, config){
-        	console.log(resp);
-        }
-        
-        function errorResp(){
-        	console.log("error happened");
-        }
-*/
+        /*
+		 * function login(username, password){ var payLoad ={ method: "POST",
+		 * url:
+		 * "http://localhost:8080/hni-admin-service/api/v1/security/authentication",
+		 * data: {"username":username, "password":password} }
+		 * 
+		 * $http(payLoad).then(successResp, errorResp); }
+		 * 
+		 * function successResp(data, status, headers, config){
+		 * console.log(resp); }
+		 * 
+		 * function errorResp(){ console.log("error happened"); }
+		 */
         function loginExternal(provider, token) {
             $http.get(`${baseUrl}/security/${provider}/authentication?access_token=${token}`)
                 .then(function successCallback(response) {
