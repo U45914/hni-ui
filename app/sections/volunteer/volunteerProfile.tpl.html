@@ -6,21 +6,44 @@
 	<table >
 		<tr>
 		<td><label>First Name</label></td>
-		<td><input type="text" required ng-model="vm.vol.firstName"/></td>
+		<td><input type="text" placeholder="First Name" required ng-model="vm.vol.firstName"/></td>
 		<td><label>Last Name</label></td>
-	    <td><input type="text" required ng-model="vm.vol.lastName"/></td>
+	    <td><input type="text" placeholder="Last Name"  required ng-model="vm.vol.lastName"/></td>
 	    </tr>
 	    <tr>
-	    <td><label>Address</label></td>
-	    <td><textarea required ng-model="vm.vol.address"></textarea></td>
+	    	<td><label>Address</label></td>
+	    <!-- <td><label>Address</label></td>
+	    <td><textarea required ng-model="vm.vol.address"></textarea></td> -->
+	    <td>
+  <input type="text" placeholder="Address" required ng-model="vm.vol.address1"/>
+   </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td>
+  <input type="text" placeholder="City" required ng-model="vm.vol.city"/>
+  </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td>
+  <input type="text" placeholder="State" required ng-model="vm.vol.state"/>
+  </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td>
+  <input type="text" placeholder="Zip" required ng-model="vm.vol.zip"/>
+  </td>
+  
 	    </tr>
 	    <tr>
 	    <td><label>Phone Number</label></td>
-	    <td><input type="number" required ng-model="vm.vol.phoneNumber"/></td>
+	    <td><input type="number" placeholder="Phone number" required ng-model="vm.vol.phoneNumber"/></td>
 	    </tr>
 	    <tr>
 	    <td><label>Email</label></td>
-	    <td><input type="text" required ng-model="vm.vol.email"/></td>
+	    <td><input type="text" placeholder="Email"  required ng-model="vm.vol.email"/></td>
 	    </tr>
 	    <tr>
 	    <td><label>Birthdate</label></td>
@@ -47,7 +70,7 @@
     <td><input type="number" ng-model="vm.vol.kids"></td>
     </tr>
     <tr><td><label>Employer</label></td>
-    <td><input type="text" ng-model="vm.vol.employer"></td>
+    <td><input type="text" placeholder="Employer"  ng-model="vm.vol.employer"></td>
     </tr>
     <tr><td><label>Non-Profit</label></td>
     <td><select ng-model="vm.vol.nonProfit"><option>Y</option><option>N</option></select></td>

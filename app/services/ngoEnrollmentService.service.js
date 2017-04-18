@@ -72,27 +72,28 @@
              
         function savePartial() {
         	var postData={
-        			"overviewData" : getOverviewData(),
-        			"stakeholdersData" : getStakeHolderData(),
-        			"serviceData" : getServiceData(),
-        			"fundingData" : getFundingData(),
-        			"clientData" : getClientData()
+        			"overview" : getOverviewData(),
+        			"stakeholders" : getStakeHolderData(),
+        			"service" : getServiceData(),
+        			"funding" : getFundingData(),
+        			"client" : getClientData()
         	};
         	let partialData = JSON.stringify(postData);
-        	console.log(partialData);
+        	console.log("Partial Data : "+partialData);
         	//return $http.post(`${baseUrl}/`, partialData);
         }
         
         function postNgoEnrollData(){
         	var postData={
-        			"overviewData" : getOverviewData(),
-        			"stakeholdersData" : getStakeHolderData(),
-        			"serviceData" : getServiceData(),
-        			"fundingData" : getFundingData(),
-        			"clientData" : getClientData()
+        			"overview" : getOverviewData(),
+        			"stakeHolder" : getStakeHolderData(),
+        			"service" : getServiceData(),
+        			"funding" : getFundingData(),
+        			"client" : getClientData()
         	};
         	let enrollData = JSON.stringify(postData);
-        	console.log(enrollData);
+        	console.log("Submitted Info : "+enrollData);
+        	return $http.post(`${baseUrl}/onboard/ngo/ngoSave`, enrollData);
         	
         }
     }

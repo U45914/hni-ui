@@ -83,7 +83,13 @@
             .state('ngoEnrollmentTab', {
                 url: '/ngoEnrollmentTab',
                 template: '<ngo-enrollment-tab></ngo-enrollment-tab>'
-            });
+            })
+        
+        	.state('volunteerProfile', {
+        		url: '/volunteerProfile',
+        		template: '<volunteer-profile></volunteer-profile>'
+        	});
+        
              
     }
 })();

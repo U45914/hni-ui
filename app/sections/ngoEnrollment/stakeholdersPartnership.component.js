@@ -21,12 +21,12 @@
 
 		$scope.addNewRow = function() {
 			brandObject = {};
-			if( $scope.company!=null &&  $scope.phone != null){
+			if( $scope.company!=null &&  $scope.phoneNumber != null){
 			brandObject.company = $scope.company;
-			brandObject.phone = $scope.phone;
+			brandObject.phoneNumber = $scope.phoneNumber;
 			$scope.brandList.push(brandObject);
 			$scope.company = null;
-			$scope.phone = null;
+			$scope.phoneNumber = null;
 			}
 			else{
 				alert("Please fill the fields");
