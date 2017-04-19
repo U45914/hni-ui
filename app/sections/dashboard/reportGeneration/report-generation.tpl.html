@@ -1,0 +1,25 @@
+ <table>
+        <tr>
+           <th ng-repeat="head in vm.head"><span>{{head}}</span></th>
+        </tr>
+       
+        <tr ng-repeat="row in vm.service">
+            <td ng-repeat="(name, value) in row" ng-scope>
+                 {{row[name]}}
+            </td>    
+        </tr>
+    </table>
+    
+    
+ <!--     <table>
+        <tr>
+            <th ng-repeat="(head, value) in ds[0]"><span>{{head}}</span></th>
+            
+        </tr>
+         <tr ng-repeat="row in ds">
+            <td ng-repeat="(name, value) in row" ng-scope>
+                {{row[name]}}
+            </td>    
+        </tr>
+        
+    </table> -->

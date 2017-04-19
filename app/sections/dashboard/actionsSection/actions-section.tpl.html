@@ -4,24 +4,7 @@
 	</div>
 </div>
 	userlist
-	<user-list ds="userList"></user-list>
-
-	
-   <!--  <action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE561;" icon-text="Providers"></action-card>
-    <action-card ui-sref="clients" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Clients"></action-card>
-    <action-card ui-sref="volunteers" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE7FB;" icon-text="Volunteers"></action-card>
-    <br><action-card ui-sref="organizations" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE0AF;" icon-text="Organizations"></action-card>
-	<action-card ui-sref="adminDashboard" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE0AF;" icon-text="NGO"></action-card>
-</div>
-<div class="action-cards-section" layout="row" layout-wrap ng-if="vm.userRole == 2">
-    <action-card flex-gt-sm="33" flex="100" icon="&#xE87C;" icon-text="+ Clients"></action-card>
-    <action-card flex-gt-sm="33" flex="100" icon="&#xE7FB;" icon-text="+ Volunteers"></action-card>
-    <action-card flex-gt-sm="33" flex="100" icon="&#xE0DA;" icon-text="+ Access Code"></action-card>
-</div>
-<div ng-if="vm.userRole != 1 && vm.userRole != 2">
-    <div id="welcome-section">
-        <span class="material-icons">&#xE420;</span>
-        <h1>Welcome!</h1>
-    </div>
-    <p class="welcome-paragraph">Thank you for volunteering. Please select the organization you will be placing orders for below.</p>
-</div> -->
+	{{vm.service}}
+	<div ng-repeat="vm.report in vm.service">
+		<report-generation ds="vm.report"></report-generation>
+	</div>

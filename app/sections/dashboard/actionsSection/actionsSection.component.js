@@ -14,12 +14,12 @@
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
    	 	
-        $scope.userList = [
+       /* vm.userList = [
 		    {"firstname":"Chris", "lastname":"Tof", "age":28},
 		    {"firstname":"Flo", "lastname":"Ran", "age":25},
 		    {"firstname":"Dav", "lastname":"Yd", "age":30},
 		    {"firstname":"Soni", "lastname":"Ya", "age":24}
-		    ];
+		    ];*/
         
         vm.$onInit = function() {
         	let baseUrl = serviceConstants.baseUrl;
