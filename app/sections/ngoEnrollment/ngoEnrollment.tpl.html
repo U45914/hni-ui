@@ -21,13 +21,23 @@
                 </md-input-container>
                 <md-input-container class="md-block input-primary" flex-gt-sm>
                     <label>Password</label>
-					<input type="password"  id="input-password1" required ng-model="vm.password">
+					<input type="password"  id="input-password1" required ng-model="vm.password" ng-blur="vm.checkPassword()">
                 </md-input-container>
+                <div id="errorMsg" ng-show="vm.check" style="color:red;">
+               Password must contain <br />
+               <dl>
+	               <li>Atleast 6 characters long</li>
+	               <li>Atleast 1 numberic character</li>
+	               <li>Atlease 1 alphabet</li>
+	               <li>Atleast special character</li>
+               </dl>
+               <br />
+                </div>
      			<md-input-container class="md-block input-primary" flex-gt-sm>
                     <label>Confirm Password</label>
 					<input type="password"  id="input-password2" required ng-model="vm.passwordConfirm">
                 </md-input-container>
-    			 <md-button class="md-raised button-primary" ng-click="vm.signIn()">Start</md-button>
+    			 <md-button class="md-raised button-primary" ng-click="vm.signIn();">Start</md-button>
  		 </div>
 	</md-content>
 </div>
