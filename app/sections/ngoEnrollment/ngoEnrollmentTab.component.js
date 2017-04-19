@@ -22,35 +22,35 @@
 	  
       var data1 = {
 				 "overview" 	:  {
-				        "name": "uyygt",
-				        "phone": 68767868,
-				        "website": "jhghjg",
-				        "contact": "hgghjg",
+				        "name": "aleena",
+				        "phone": 9456378561,
+				        "website": "www.amazon.com",
+				        "contact": "antony",
 				        "employees": 5,
-				        "overview": "jhyghg",
-				        "mission": "jhgjhg",
+				        "overview": "online service",
+				        "mission": "help others",
 				        "promoters": [
-				            "jhghjg",
-				            "uygg"
+				            "xxxx",
+				            "yyyy"
 				        ]
 				    },
 		  		 "stakeHolder" 	: {
 		  	          "boardMembers": [
 		  	              {
-		  	                  "name": "iuyuyiuy",
-		  	                  "company": "uyyiy"
+		  	                  "name": "sarath",
+		  	                  "company": "ust-global"
 		  	              }
 		  	          ],
 		  	          "brandPartners": [
 		  	              {
-		  	                  "company": "uytyt",
-		  	                  "phone": 876
+		  	                  "company": "landmark",
+		  	                  "phoneNumber": 98763467890
 		  	              }
 		  	          ],
 		  	          "localPartners": [
 		  	              {
-		  	                  "company": "ygyug",
-		  	                  "phone": 7678
+		  	                  "company": "ust-global",
+		  	                  "phoneNumber": 9863245678
 		  	              }
 		  	          ]
 		  	      },
@@ -66,53 +66,45 @@
 		  		    "giftCard": 3,
 		  		    "other": "wqer",
 		  		    "serviceCalender": {
-		  		        "Sunday": [
-		  		            "Breakfast"
+		  		        "Breakfast": [
+		  		            "Sunday","Monday"
 		  		        ],
-		  		        "Monday": [
-		  		            "Breakfast"
+		  		        "Lunch": [
+		  		            "Tuesday","Wednesday"
 		  		        ],
-		  		        "Tuesday": [
-		  		            "Lunch"
-		  		        ],
-		  		        "Wednesday": [
-		  		            "Lunch"
-		  		        ],
-		  		        "Thursday": [
-		  		            "Dinner"
-		  		        ],
-		  		        "Friday": [
-		  		            "Dinner"
+		  		        "Dinner": [
+		  		            "Thursday","Friday"
 		  		        ]
 		  		    },
 		  		    "monthlyBudget": "0-$500",
 		  		    "operatingCost": "0-$500",
 		  		    "personalCost": "0-$500",
 		  		    "volunteerNbr": 3,
+		  		    "foodStamp":true,
 		  		    "foodBankSelect": true,
 		  		    "foodBankValue": [
-		  		        "wer",
-		  		        "wewer"
+		  		        "abcd",
+		  		        "qwer"
 		  		    ],
 		  		    "resource": ["Y","X"]
 		  		},
 		  		 "funding"		: {
 		  	        "fundingSource": [
 		  	            {
-		  	                "source": "ygyg",
+		  	                "source": "source1",
 		  	                "amount": 67565
 		  	            }
 		  	        ],
 		  	        "mealDonation": [
 		  	            {
-		  	                "source": "htfthf",
+		  	                "source": "source2",
 		  	                "mealQty": 2,
-		  	                "frequency": "gfhgf"
+		  	                "frequency": "qwer"
 		  	            }
 		  	        ],
 		  	        "mealFunding": [
 		  	            {
-		  	                "source": "tftyf",
+		  	                "source": "source3",
 		  	                "amount": 23
 		  	            }
 		  	        ]
@@ -147,15 +139,27 @@
     	  }
       }
       
-      vm.enrollementData = function(){  
-		 /* var data = {
-				 "overview" 	: overViewData,
-		  		 "stakeHolder" 	: stakeHolderData,
-		  		 "service"		: serviceData,
-		  		 "funding"		: fundingData,
-		  		 "client"		: clientData	  
-		  };*/
-		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData();
+      vm.enrollementData = function(){
+    	  debugger;
+		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
+					function successCallback(response) {
+						if (response
+								&& response.data.response
+								&& response.data.response == "success") {
+							alert("Your request has been submitted")
+							$state.go('dashboard');
+						} else {
+							alert("Failed : "
+									+ response.data.errorMsg);
+						}
+					},
+					function errorCallback(response) {
+						alert("Something went wrong, please try again")
+						// $state.go('dashboard');
+					});
+
+	console.log(data);
+
 		  return $q.all(serviceCalls);
 		  
 	  }

@@ -12,14 +12,23 @@
         return {
         	profileDetails,
             volunteerProfileData,
-            getProfileInfo
+          //  getProfileInfo
             };
         
-        function profileDetails(data) {
-        	return volunteerProfileData;
-        }
+            function profileDetails(data) {
+           	 let postData = JSON.stringify(data);
+           	 console.log("DATA : "+postData);
+                return $http.post(`${baseUrl}/users/volunteerSignup`, postData)
+                .then(function successCallback(response) {
+                    success(response);
+                }, function errorCallback(error) {
+                    failure(error);
+                });
+           	
+           	//return volunteerProfileData;
+           }  
         
-        function getProfileInfo() {
+       /* function getProfileInfo() {
       	  debugger;
         	var volunteer = {
         		    "firstName": "qwe",
@@ -40,6 +49,6 @@
         	
         	volunteerProfileData = volunteer;
         }
-    }
+ */   }
 }
 )();

@@ -18,7 +18,7 @@
     	  this.isOpen = false;
     	  
     	  //vm.vol = volunteerService.volunteerProfileData;
-    	  volunteerService.getProfileInfo();
+    	//  volunteerService.getProfileInfo();
     	 // console.log("Controller : "+vm.vol);
     	  
 /*vm.volunteer = {
@@ -37,14 +37,18 @@
 	    "employer": "qwe",
 	    "nonProfit": "N"
 	};*/
-vm.vol =  volunteerService.profileDetails();
+//vm.vol =  volunteerService.profileDetails();
 console.log("volunteerService.volunteerProfileData ");
 console.log(volunteerService.volunteerProfileData);
-    	  vm.submit = function(){   		
+    	  vm.submit = function(){   
+    		  debugger;
     	   		 var data = {
     	   			 	"firstName" : vm.vol.firstName,
     	   			 	"lastName" : vm.vol.lastName,
-    	   			 	"address" : vm.vol.address,
+    	   			 	"address1" : vm.vol.address1,
+    	   			 	"city" : vm.vol.city,
+    	   			 	"state": vm.vol.state,
+    	   			 	"zip" : vm.vol.zip,
     	   			 	"phoneNumber" : vm.vol.phoneNumber,
     	   			 	"email" : vm.vol.email,
     	   			 	"birthDate" : vm.vol.birthDate,
