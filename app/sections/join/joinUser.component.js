@@ -41,6 +41,10 @@
         function forwardRequest(type) {
         	if (type == 'ngo') {
         		$state.go('ngoEnrollment');
+        	} else if (type == 'volunteer') {
+        		$state.go('volunteerProfile');
+        	} else {
+        		$state.go('dashboard');
         	}
         }
         

@@ -41,7 +41,7 @@
 console.log("volunteerService.volunteerProfileData ");
 console.log(volunteerService.volunteerProfileData);
     	  vm.submit = function(){   
-    		  debugger;
+    		   
     	   		 var data = {
     	   			 	"firstName" : vm.vol.firstName,
     	   			 	"lastName" : vm.vol.lastName,

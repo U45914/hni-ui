@@ -6,7 +6,7 @@
                 <div class="join_user-image-container">
                     <img class="join_user-logo" ng-src="~images/not_impossible_logo.png"/>
                 </div>
-                <div class="join_user-prompt">join_user by signing into your account below.</div>
+                <div class="join_user-prompt">Please secure your account and continue.</div>
                 <md-input-container class="md-block input-primary" flex-gt-sm>
                     <label>Email</label>
                     <input type="email" ng-model="vm.username">
@@ -20,10 +20,6 @@
                 <span ng-show="vm.signInButton == 'Signing In ...'"></span>
            		 {{ vm.signInButton }}
                 </md-button>
-            </div>
-            <div class="join_user-box-external">
-                <div>Or use your social network account</div>
-                <md-button class="md-raised" ng-click="vm.authenticate('google')"><img ng-src="~images/google_icon.png">Sign in with Google</md-button>
             </div>
         </md-content>
     </div>

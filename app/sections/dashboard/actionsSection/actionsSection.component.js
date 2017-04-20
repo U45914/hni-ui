@@ -13,7 +13,7 @@
     function ActionSectionController($scope, $http,userService, serviceConstants) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
-        debugger;
+         
    	 	vm.service = [];
    	 	vm.headers= [];
         

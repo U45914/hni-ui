@@ -30,10 +30,10 @@
            	// return volunteerProfileData;
            }  
             
-          //Function to call post service while super admin add a new ngo
+          //Function to call post service while super admin add a new volunteer
             function inviteVolunteer(data) {
                 let postData = JSON.stringify(data);
-                return $http.post(`${baseUrl}/onboard/volunteer/invite`, postData);
+                return $http.post(`${baseUrl}/onboard/volunteer/user/invite`, postData);
             }
             
             

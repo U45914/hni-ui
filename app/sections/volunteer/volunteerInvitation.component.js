@@ -18,20 +18,12 @@
 			toaster) {
 		var vm = this;
 		vm.orgInfo = {};
-		loadOrgInfo();
 		vm.submit = function() {
 			var data = {
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
-				"logo" : vm.logo,
-				"addresses" : [ {
-					"name" : vm.adminName,
-					"address1" : vm.address,
-					"city" : vm.city,
-					"state" : vm.state,
-					"zip" : vm.zip
-				} ]
+				"invitationMessage" : vm.inviteMsg
 			};
 			if (vm.name != null && vm.phoneNumber != null && vm.email != null) {
 				var serviceCalls = volunteerService
@@ -49,7 +41,7 @@
 								},
 								function errorCallback(response) {
 									toaster
-											.success("Something went wrong, please try again")
+											.error("Something went wrong, please try again")
 									// $state.go('dashboard');
 								});
 
