@@ -118,19 +118,56 @@
 		  
 		  vm.showCheckboxes=function() {
 				vm.flag="true";
-			  var checkboxes = document.getElementById("checkboxes");
+			  /*var checkboxes = document.getElementById("checkboxes");
 			  if (!vm.expanded) {
 			    checkboxes.style.display = "block";
 			    vm.expanded = true;
 			  } else {
 			    checkboxes.style.display = "none";
 			    vm.expanded = false;
-			  }
+			} */ 
 			}
-		  
-			vm.select = function(index,event){
-				var isChecked = event.target.checked;
-				if(isChecked){
+		}
+
+		vm.showCheckboxes = function() {
+			vm.flag = true;
+			return vm.flag;
+			/*var checkboxes = document.getElementById("checkboxes");
+			if (!vm.expanded) {
+				checkboxes.style.display = "block";
+				vm.expanded = true;
+			} else {
+				checkboxes.style.display = "none";
+				vm.expanded = false;
+			}*/
+		}
+		
+		vm.test = function(){
+			vm.flag = false;
+			return vm.flag;
+		}
+		 
+		/*vm.check = function(){
+		vm.resourceReturn = vm.service.resource;
+		debugger;
+		 var index = [];
+		 vm.checked=[];
+		for(var i=0;i<vm.resourceReturn.length;i++){
+			for(var j=0;j<vm.resources.length;j++){
+				if(vm.resourceReturn[i]==vm.resources[j]){
+
+			// vm.resourcesReturn.push(vm.resourceReturn[i]);
+			index.push(j); 
+			vm.service.resourceChck =true;
+			// vm.checked=true;
+				}
+		}
+		}
+		}*/
+		
+		vm.select = function(index, event) {
+			var isChecked = event.target.checked;
+			if (isChecked) {
 				vm.resourceList.push(vm.resources[index]);
 				}else{
 					vm.resourceList.splice(index,1);

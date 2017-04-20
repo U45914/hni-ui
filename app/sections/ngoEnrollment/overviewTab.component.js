@@ -37,7 +37,11 @@
 	} 	 	
   
   vm.view = ngoEnrollmentService.overviewData;
-   
+  vm.list = vm.view.promoters;
+  vm.view.promoters=" ";
+  if(vm.list){
+	  vm.flag=true;
+  }
   vm.save =  function(){
 	  var data = {
 	  "name": vm.view.name,

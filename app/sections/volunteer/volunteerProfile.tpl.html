@@ -14,6 +14,12 @@
 	    	<td><label>Address</label></td>
 	    <!-- <td><label>Address</label></td>
 	    <td><textarea required ng-model="vm.vol.address"></textarea></td> -->
+	    <tr><td></td>
+	    <td>
+  <input type="text" placeholder="House Name" required ng-model="vm.vol.name"/>
+   </td>
+   </tr>
+   <tr><td></td>
 	    <td>
   <input type="text" placeholder="Address" required ng-model="vm.vol.address1"/>
    </td>
@@ -26,9 +32,7 @@
   </tr>
   <tr>
   <td></td>
-  <td>
-  <input type="text" placeholder="State" required ng-model="vm.vol.state"/>
-  </td>
+  <td><select ng-model="vm.vol.state"><option value="KL">Kerala</option><option value="TN">Tamil Nadu</option><option value="KN">Karnataka</option></select></td>
   </tr>
   <tr>
   <td></td>
@@ -55,16 +59,16 @@
     <td><select required ng-model="vm.vol.sex"><option>M</option><option>F</option></select></td>
     </tr>
     <tr><td><label>Race</label></td>
-    <td><select ng-model="vm.vol.race"><option>x</option><option>y</option></select></td>
+    <td><select ng-model="vm.vol.race"><option value=1>x</option><option value=2>y</option></select></td>
     </tr>
      <tr><td><label>Highest Level of Education Completed</label></td>
-    <td><select ng-model="vm.vol.highestLLevelOfEducationCompleted"><option>B-Tech</option><option>Plus Two</option><option>Xth</option></select></td>
+    <td><select ng-model="vm.vol.highestLLevelOfEducationCompleted"><option value=1>B-Tech</option><option value=2>Plus Two</option><option value=3>Xth</option></select></td>
     </tr>
      <tr><td><label>Marital Status</label></td>
-    <td><select ng-model="vm.vol.maritalStatus"><option>Single</option><option>Married</option><option>Divorce</option></select></td>
+    <td><select ng-model="vm.vol.maritalStatus"><option value=1>Single</option><option value=2>Married</option><option value=3>Divorce</option></select></td>
     </tr>
      <tr><td><label>Income</label></td>
-    <td><select ng-model="vm.vol.income"><option>1k-5k</option><option>5k-10k</option><option>10k-15k</option></select></td>
+    <td><select ng-model="vm.vol.income"><option value=1>1k-5k</option><option value=2>5k-10k</option><option value=3>10k-15k</option></select></td>
     </tr>
      <tr><td><label># Kids</label></td>
     <td><input type="number" ng-model="vm.vol.kids"></td>

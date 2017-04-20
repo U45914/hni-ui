@@ -19,9 +19,10 @@
             function profileDetails(data) {
            	 let postData = JSON.stringify(data);
            	 console.log("DATA : "+postData);
-                return $http.post(`${baseUrl}/users/volunteerSignup`, postData)
+                return $http.post(`${baseUrl}/onboard/volunteer/save`, postData)
                 .then(function successCallback(response) {
-                    success(response);
+                   console.log(response.data);
+                	// success(response);
                 }, function errorCallback(error) {
                     failure(error);
                 });
