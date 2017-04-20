@@ -1,0 +1,51 @@
+
+<br>
+<div id="InfoId">
+	<table>
+		<tr>
+			<td><label>First Name</label></td>
+			<td><input type="text" placeholder="First Name" 
+				ng-model="vm.user.firstName" /></td>
+		</tr>
+		<tr>
+			<td><label>Middle Name</label></td>
+			<td><input type="text" placeholder="Middle Name" 
+				ng-model="vm.user.middleName" /></td>
+		</tr>
+		<tr>
+			<td><label>Last Name</label></td>
+			<td><input type="text" placeholder="Last Name" required
+				ng-model="vm.user.lastName" /></td>
+		</tr>
+		<tr>
+			<td><label>Ethnicity</label></td>
+			<td><select required ng-model="vm.user.ethnicity"><option ng-value=1>option 1</option>
+					<option ng-value=2>option 2</option></select></td>
+		</tr>
+		<tr>
+			<td><label>Phone Number </label></td>
+			<td><input type="number" placeholder="Phone number" required
+				ng-model="vm.user.phoneNumber" /></td>
+		</tr>
+		<tr>
+			<td><label>Birthday </label></td>
+			<td><md-datepicker required ng-model="vm.client.bday"
+					md-placeholder="Enter date">{{vm.client.bday|date:'yyyy-MM-dd'}}</md-datepicker>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><label>Have you ever been arrested </label></td> 
+			<td><input	type="radio" ng-model="vm.client.beenArrested" ng-value="true"> Yes <input type="radio" ng-model="vm.client.beenArrested" ng-value="false"> No</td>
+		</tr>
+		<tr>
+		
+			<td><label>Have you ever been convicted of a felony?</label></td> 
+			<td><input	type="radio" ng-model="vm.user.felony" ng-value="true"> Yes <input type="radio" ng-model="vm.client.felony" ng-value="false"> No</td>
+		</tr>
+	</table>
+	<div style="float: right">
+		<br>
+		<md-button class="md-raised button-primary" ng-click="vm.save();">Save & Next</md-button>
+	</div>
+</div>

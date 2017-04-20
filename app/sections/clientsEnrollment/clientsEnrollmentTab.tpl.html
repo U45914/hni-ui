@@ -5,41 +5,42 @@
 	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex"> 
 		<md-tab label="Personal Info" > 
 		<md-content class="md-padding">
-			<!-- <overview-tab></overview-tab> -->
+			<personal-info-tab></personal-info-tab>
 			</md-content>
 		</md-tab>
 
 		<md-tab label="Connection Details">
 	 	<md-content class="md-padding">
- 	    	<!-- <stakeholders-tab> </stakeholders-tab> -->
+ 	    	<stakeholders-tab> </stakeholders-tab>
  	    	</md-content> 
 		</md-tab>
 
 		<md-tab label="Family and Education"> 
 		<md-content class="md-padding">
-			<!-- <service-tab></service-tab> -->
+			<service-tab></service-tab>
 			</md-content> 
  		</md-tab>
 
 		<md-tab label="Employment"> 
 		<md-content class="md-padding">
-			<!-- <funding-tab></funding-tab> -->
+			<funding-tab></funding-tab>
 			</md-content> 
 		</md-tab>
 
 		<md-tab label="Food Preferences"> 
 		<md-content class="md-padding">
-			<!-- <clients-tab></clients-tab> -->
+			<clients-tab></clients-tab>
 			</md-content> 
 		</md-tab>
 		
 		<md-tab label="Health Details"> 
 		<md-content class="md-padding">
-			<!-- <clients-tab></clients-tab> -->
+			<clients-tab></clients-tab>
 			</md-content> 
 		</md-tab>
+
 	</md-tabs>
 </md-content>
-<md-button class="md-raised button-primary"  ng-click="vm.enrollementData();" style="float:right" >Submit</md-button>
+<md-button class="md-raised button-primary"  ng-click="vm.volunteerEnroll();" style="float:right" >Submit</md-button>
 </div>
 
