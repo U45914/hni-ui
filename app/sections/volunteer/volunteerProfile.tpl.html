@@ -1,80 +1,112 @@
 <top-nav></top-nav>
 
-	<h1>Volunteer Profile</h1>
-	<br>
-	<div id="volId">
-	<table >
+<h1>Volunteer Profile</h1>
+<br>
+<div id="volId">
+	<table>
 		<tr>
-		<td><label>First Name</label></td>
-		<td><input type="text" placeholder="First Name" required ng-model="vm.vol.firstName"/></td>
-		<td><label>Last Name</label></td>
-	    <td><input type="text" placeholder="Last Name"  required ng-model="vm.vol.lastName"/></td>
-	    </tr>
-	    <tr>
-	    	<td><label>Address</label></td>
-	    <!-- <td><label>Address</label></td>
-	    <td><textarea required ng-model="vm.vol.address"></textarea></td> -->
-	    <td>
-  <input type="text" placeholder="Address" required ng-model="vm.vol.address1"/>
-   </td>
-  </tr>
-  <tr>
-  <td></td>
-  <td>
-  <input type="text" placeholder="City" required ng-model="vm.vol.city"/>
-  </td>
-  </tr>
-  <tr>
-  <td></td>
-  <td>
-  <input type="text" placeholder="State" required ng-model="vm.vol.state"/>
-  </td>
-  </tr>
-  <tr>
-  <td></td>
-  <td>
-  <input type="text" placeholder="Zip" required ng-model="vm.vol.zip"/>
-  </td>
-  
-	    </tr>
-	    <tr>
-	    <td><label>Phone Number</label></td>
-	    <td><input type="number" placeholder="Phone number" required ng-model="vm.vol.phoneNumber"/></td>
-	    </tr>
-	    <tr>
-	    <td><label>Email</label></td>
-	    <td><input type="text" placeholder="Email"  required ng-model="vm.vol.email"/></td>
-	    </tr>
-	    <tr>
-	    <td><label>Birthdate</label></td>
-    <td>
-     <md-datepicker required ng-model="vm.vol.birthDate" md-placeholder="Enter date"></md-datepicker>
-   </td>
-    </tr>
-    <tr><td><label>Sex</label></td>
-    <td><select required ng-model="vm.vol.sex"><option>M</option><option>F</option></select></td>
-    </tr>
-    <tr><td><label>Race</label></td>
-    <td><select ng-model="vm.vol.race"><option>x</option><option>y</option></select></td>
-    </tr>
-     <tr><td><label>Highest Level of Education Completed</label></td>
-    <td><select ng-model="vm.vol.highestLLevelOfEducationCompleted"><option>B-Tech</option><option>Plus Two</option><option>Xth</option></select></td>
-    </tr>
-     <tr><td><label>Marital Status</label></td>
-    <td><select ng-model="vm.vol.maritalStatus"><option>Single</option><option>Married</option><option>Divorce</option></select></td>
-    </tr>
-     <tr><td><label>Income</label></td>
-    <td><select ng-model="vm.vol.income"><option>1k-5k</option><option>5k-10k</option><option>10k-15k</option></select></td>
-    </tr>
-     <tr><td><label># Kids</label></td>
-    <td><input type="number" ng-model="vm.vol.kids"></td>
-    </tr>
-    <tr><td><label>Employer</label></td>
-    <td><input type="text" placeholder="Employer"  ng-model="vm.vol.employer"></td>
-    </tr>
-    <tr><td><label>Non-Profit</label></td>
-    <td><select ng-model="vm.vol.nonProfit"><option>Y</option><option>N</option></select></td>
-    </tr>
+			<td><label>First Name</label></td>
+			<td><input type="text" placeholder="First Name" required
+				ng-model="vm.vol.firstName" /></td>
+		</tr>
+		<tr>
+			<td><label>Last Name</label></td>
+			<td><input type="text" placeholder="Last Name" required
+				ng-model="vm.vol.lastName" /></td>
+		</tr>
+		<tr>
+			
+			<td><label>Address</label></td>
+			<td><input type="text" placeholder="Name" required
+				ng-model="vm.vol.address.name" /></td>
+		</tr>
+		<tr>
+			
+			<td></td>
+			<td><input type="text" placeholder="Address1" required
+				ng-model="vm.vol.address.address1" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="text" placeholder="Address2" required
+				ng-model="vm.vol.address.address2" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="text" placeholder="City" required
+				ng-model="vm.vol.address.city" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="text" placeholder="State" required
+				ng-model="vm.vol.address.state" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="text" placeholder="Zip" required
+				ng-model="vm.vol.address.zip" /></td>
+
+		</tr>
+		<tr>
+			<td><label>Phone Number</label></td>
+			<td><input type="number" placeholder="Phone number" required
+				ng-model="vm.vol.phoneNumber" /></td>
+		</tr>
+		<tr>
+			<td><label>Email</label></td>
+			<td><input type="text" placeholder="Email" required
+				ng-model="vm.vol.email" /></td>
+		</tr>
+		<tr>
+			<td><label>Birthday</label></td>
+			<td><md-datepicker required ng-model="vm.vol.birthday"
+					md-placeholder="Enter date">{{vm.vol.birthday|date:'yyyy-MM-dd'}}</md-datepicker>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Sex</label></td>
+			<td><select required ng-model="vm.vol.sex"><option>M</option>
+					<option>F</option></select></td>
+		</tr>
+		<tr>
+			<td><label>Race</label></td>
+			<td><select ng-model="vm.vol.race"><option ng-value=1>Asian</option>
+					<option ng-value=2>American</option></select></td>
+		</tr>
+		<tr>
+			<td><label>Highest Level of Education Completed</label></td>
+			<td><select ng-model="vm.vol.education">
+					<option ng-value=1>B-Tech</option>
+					<option ng-value=2>Plus Two</option>
+					<option ng-value=3>Xth</option></select></td>
+		</tr>
+		<tr>
+			<td><label>Marital Status</label></td>
+			<td><select ng-model="vm.vol.maritalStatus"><option ng-value=1>Single</option>
+					<option ng-value=2>Married</option>
+					<option ng-value=3>Divorce</option></select></td>
+		</tr>
+		<tr>
+			<td><label>Income</label></td>
+			<td><select ng-model="vm.vol.income"><option ng-value=1>1k-5k</option>
+					<option ng-value=2>5k-10k</option>
+					<option ng-value=3>10k-15k</option></select></td>
+		</tr>
+		<tr>
+			<td><label># Kids</label></td>
+			<td><input type="number" ng-model="vm.vol.kids"></td>
+		</tr>
+		<tr>
+			<td><label>Employer</label></td>
+			<td><input type="text" placeholder="Employer"
+				ng-model="vm.vol.employer"></td>
+		</tr>
+		<tr>
+			<td><label>Non-Profit</label></td>
+			<td><select ng-model="vm.vol.nonProfit"><option>Y</option>
+					<option>N</option></select></td>
+		</tr>
 	</table>
-<button class="button" ng-click="vm.submit();">Submit Details</button>	
+	<button class="md-raised button-primary md-button md-ink-ripple" id="button" ng-click="vm.submit();"><span class="ng-scope">Submit Details</span></button>
+	<!-- <button class="button" ng-click="vm.submit();">Submit Details</button> -->
 </div>

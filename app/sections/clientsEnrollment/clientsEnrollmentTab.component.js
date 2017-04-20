@@ -6,13 +6,15 @@
 
           },
           templateUrl: 'clientsEnrollmentTab.tpl.html',
-          controller: ngoEnrollmentTabController,
+          controller: clientsEnrollmentTabController,
           controllerAs: 'vm'
   }) ;
-  ngoEnrollmentTabController.$inject = ['$q','$rootScope', '$scope','ngoEnrollmentService'];
+  clientsEnrollmentTabController.$inject = [];
 
-  function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService) {
+  function clientsEnrollmentTabController() {
       var vm = this;
+
   }
   
 })();
+        
