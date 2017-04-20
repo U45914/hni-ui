@@ -12,7 +12,8 @@
         return {
         	profileDetails,
             volunteerProfileData,
-          //  getProfileInfo
+            inviteVolunteer,
+            registerVolunteer
             };
         
             function profileDetails(data) {
@@ -25,30 +26,31 @@
                     failure(error);
                 });
            	
-           	//return volunteerProfileData;
+           	// return volunteerProfileData;
            }  
+            
+          //Function to call post service while super admin add a new ngo
+            function inviteVolunteer(data) {
+                let postData = JSON.stringify(data);
+                return $http.post(`${baseUrl}/onboard/volunteer/invite`, postData);
+            }
+            
+            
+          //Function to call post service while new volunteer login to enroll in HNI.
+            function registerVolunteer(data) {
+                let postData = JSON.stringify(data);
+                console.log("inside service controller"+ postData);
+                let config = {
+                	    method: 'POST',
+                	    url: `${baseUrl}/users/register`,
+                	    data: postData,
+                	    headers: {
+                	        "user-type": window.localStorage.getItem("userType")
+                	    }
+                	}
+                return $http(config);
+            }
         
-       /* function getProfileInfo() {
-      	  debugger;
-        	var volunteer = {
-        		    "firstName": "qwe",
-        		    "lastName": "asd",
-        		    "address": "abcd",
-        		    "phoneNumber": 1234,
-        		    "email": "xxx@yyy",
-        		    "birthDate": "2017-04-13T18:30:00.000Z",
-        		    "sex": "F",
-        		    "race": "x",
-        		    "highestLLevelOfEducationCompleted": "B-Tech",
-        		    "maritalStatus": "Single",
-        		    "income": "10k-15k",
-        		    "kids": 0,
-        		    "employer": "qwe",
-        		    "nonProfit": "N"
-        		};
-        	
-        	volunteerProfileData = volunteer;
-        }
- */   }
+          }
 }
 )();

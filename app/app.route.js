@@ -71,6 +71,10 @@
                 url: '/ngoInvitation',
                 template: '<ngo-invitation></ngo-invitation>'
             })
+            .state('invite-volunter', {
+                url: '/volunteer-invite',
+                template: '<volunteer-invitation></volunteer-invitation>'
+            })
             .state('addNgo', {
                 url: '/addNgo',
                 template: '<add-ngo></add-ngo>'
