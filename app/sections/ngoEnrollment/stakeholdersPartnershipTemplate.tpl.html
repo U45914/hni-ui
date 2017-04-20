@@ -1,7 +1,7 @@
 <fieldset>
 	<span> 
 		<input type="text" required ng-model="company" placeholder="Name"></input> 
-		<input type="number" required ng-model ="phone" placeholder="Phone number"></input>
+		<input type="number" required ng-model ="phoneNumber" placeholder="Phone number"></input>
 		<button  ng-click="addNewRow()">+</button>
 	</span>
 		<table>
@@ -10,7 +10,7 @@
 			<th>Delete</th> 
 			<tr ng-repeat="brand in brandList track by $index">
 				<td>{{brand.company}}</td>
-				<td>{{brand.phone}}</td>
+				<td>{{brand.phoneNumber}}</td>
 				<td><button class="remove" ng-click="deleteBrand($index)">-</button></td>
             <tr>
 		</table>

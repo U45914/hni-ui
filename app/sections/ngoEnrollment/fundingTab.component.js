@@ -30,9 +30,9 @@
 		
 		ft.save = function(){
 			var data = { 
-					"ngoFundingSources" :  ft.fundingSourceList,
+					"fundingSource" :  ft.fundingSourceList,
 					"mealDonation" : ft.mealDonaltionList,
-					"mealFundingSources": ft.mealFundingList
+					"mealFunding": ft.mealFundingList
 			};
 			
    		 	if(ft.mealDonaltionList.length!=0){

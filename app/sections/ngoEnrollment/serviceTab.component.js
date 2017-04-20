@@ -30,15 +30,12 @@
           vm.options1.push({ key: i + 1, value: 'Prop' + (i + 1).toString() });
       } 
   
-	  vm.sunday=[];
-	  vm.monday=[];
-	  vm.tuesday=[];
-	  vm.wednesday=[];
-	  vm.thursday=[];
-	  vm.friday=[];
-	  vm.saturday=[];
+	  vm.breakfast=[];
+	  vm.lunch=[];
+	  vm.dinner=[];
+	 
 	  
-	  vm.daysArray = [vm.sunday, vm.monday, vm.tuesday, vm.wednesday, vm.thursday, vm.friday, vm.saturday]
+	  vm.mealsArray = [vm.breakfast, vm.lunch, vm.dinner]
 	  
 	  vm.days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 	  vm.frequency = ["Breakfast","Lunch","Dinner"];
@@ -65,17 +62,19 @@
 			  var mealType = vm.frequency[y];
 			  
 			  if(isChecked){
-				  vm.daysArray[x].push(mealType)
-				  vm.obj[day] = vm.daysArray[x];
+				  vm.mealsArray[y].push(day);
+				  vm.obj[mealType] = vm.mealsArray[y];
+				 
 			  }else{
-				  var index = vm.daysArray[x].indexOf(mealType);
-				  vm.daysArray[x].splice(index, 1);				 
-				  vm.obj[day] = vm.daysArray[x];
-		 //  If the mealType is empty, the array corresponding that mealType is removed from the obj array 
-				  if(vm.daysArray[x].length == 0){
-					  delete vm.obj[day];
+				  var index = vm.mealsArray[y].indexOf(day);
+				  vm.mealsArray[y].splice(index, 1);				 
+				  vm.obj[mealType] = vm.mealsArray[x];
+		 //  If the days are empty, the meal array corresponding that days are removed from the obj array 
+				  if(vm.mealsArray[y].length == 0){
+					  delete vm.obj[mealType];
 				  }
 			  } 
+			
 		  }
 		  vm.service = ngoEnrollmentService.serviceData;
 		  
@@ -96,8 +95,8 @@
 			  "operatingCost":vm.service.operatingCost,
 			  "personalCost":vm.service.personalCost,
 			  "volunteerNbr":vm.service.volunteerNbr,
-			  "foodStampAssist":vm.service.foodStamp,
-			  "foodBank": vm.service.foodBankSelect,
+			  "foodStamp":vm.service.foodStamp,
+			  "foodBankSelect": vm.service.foodBankSelect,
 			  "foodBankValue":vm.list,
 			  "resource":vm.resourceList
 			  };
