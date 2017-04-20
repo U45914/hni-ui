@@ -84,6 +84,11 @@
                 url: '/ngoEnrollmentTab',
                 template: '<ngo-enrollment-tab></ngo-enrollment-tab>'
             })
+            
+            .state('clientsEnrollmentTab', {
+                url: '/clientsEnrollmentTab',
+                template: '<clients-enrollment-tab></clients-enrollment-tab>'
+            })
         
         	.state('volunteerProfile', {
         		url: '/volunteerProfile',

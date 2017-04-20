@@ -13,13 +13,9 @@
     function ActionSectionController($scope, $http,userService, serviceConstants) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
-   	 	
-        $scope.userList = [
-		    {"firstname":"Chris", "lastname":"Tof", "age":28},
-		    {"firstname":"Flo", "lastname":"Ran", "age":25},
-		    {"firstname":"Dav", "lastname":"Yd", "age":30},
-		    {"firstname":"Soni", "lastname":"Ya", "age":24}
-		    ];
+        debugger;
+   	 	vm.service = [];
+   	 	vm.headers= [];
         
         vm.$onInit = function() {
         	let baseUrl = serviceConstants.baseUrl;
