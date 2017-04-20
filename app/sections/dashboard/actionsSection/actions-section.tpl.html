@@ -4,7 +4,7 @@
 	</div>
 </div>
 	userlist
-	{{vm.service}}
-	<div ng-repeat="vm.report in vm.service">
-		<report-generation ds="vm.report"></report-generation>
+	
+	<!-- <div ng-repeat="report in vm.service"> -->
+		<report-generation serviceds="vm.service" headerds="vm.headers"></report-generation>
 	</div>

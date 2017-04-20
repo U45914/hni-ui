@@ -1,16 +1,18 @@
 (function(){
-	angular
-	.module('app')
-	.directive('reportGeneration', reportGenerationDirective)// change
+	angular.module('app')
+	
+	.directive('reportGeneration', reportGenerationDirective)
 	
 	function reportGenerationDirective() {
 		return {
 			restrict : "E",
 			scope : {
-				ds: "="
+				ds: "=",
+			    serviceds : "=",
+			    headerds : "="
 			},
-			templateUrl : "user-list.tpl.html",
-			controller : "reportGenerationController",
+			templateUrl : "report-generation.tpl.html",
+			controller : reportGenerationController,
 			controllerAs : "vm"
 		}
 		
@@ -22,9 +24,10 @@
 		let baseUrl = serviceConstants.baseUrl;
         var vm = this;
         
-        vm.$onInit = function() {
-        	vm.service =     {"data": [ { "name": "Rahul" }  ]};
-        	vm.headers =     {"headers": [ {  "field": "name",  "label": "FirstName" }]};
+        vm.service =     [{ "name": "Rahul" }];
+        vm.headers =     [{  "field": "name",  "label": "FirstName" }];
+        $scope.serviceds = vm.service;
+        $scope.headerds = vm.headers;
 
         	/*let baseUrl = serviceConstants.baseUrl;
         	$http.get(`${baseUrl}/view/`)
@@ -37,8 +40,7 @@
             }, function error(error) {
                 console.log(error);
             });*/
-	}
+	
 }
 	
-	//$get(`${baseUrl}\report` + vm.report) fu
 })();
