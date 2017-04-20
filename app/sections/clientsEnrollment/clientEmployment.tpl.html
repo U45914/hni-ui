@@ -1,0 +1,82 @@
+<fieldset>
+	<label>Work status</label>
+			<select ng-model="vm.emp.workStatus" ng-options = "a.name for a in vm.wrkStatusList"></select>
+				
+			<br>
+	<label>How much time does it take you to get to work and back?</label>
+			<select ng-model="vm.emp.timeToWorkplace" ng-options = "a.name for a in vm.timeToWrkplace"></select>
+				
+			<br>
+	<label>How many jobs do you have?</label>
+			<select ng-model="vm.emp.noOfJob" ng-options = "a.name for a in vm.noJobs"></select>	
+	
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+           	<label> Employer</label>
+			<input type="text" ng-model="vm.emp.employer"/>
+	</md-input-container>
+			
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            <label>Job Title</label>
+			<input type="text" ng-model="vm.emp.jobTitle"/>
+	</md-input-container>	
+	<label>if unemployed, for how long</label>
+			<select ng-model="vm.emp.durationOfEmployement" ng-options = "a.name for a in vm.unemplDuration"></select>
+	<br>
+	<div flex-gt-sm>
+            <label>Do you receive unemployment benefits?</label>
+			<input type="radio"  ng-value="true" ng-model ="vm.emp.unemploymentBenfits">Yes
+			<input type="radio"  ng-value="false" ng-model ="vm.emp.unemploymentBenfits">No
+	</div>
+	<div class="wrapper">
+      	
+	<div ng-show = "vm.emp.unemploymentBenfits == false">
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Why not?</label>
+				<input type="text" ng-model="vm.emp.reasonUnemploymentBenefits"/>
+			</md-input-container>
+	</div>
+	</div>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Total annual Income?</label>
+				<input type="text" ng-model="vm.emp.totalIncome"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Rate</label>
+				<input type="text" ng-model="vm.emp.rateAmount"/>
+	</md-input-container>
+	<label>Rate type</label>
+			<select ng-model="vm.emp.rateType" ng-options = "a.name for a in vm.rateList"></select>
+			<br>
+	<label>average hours worked per week</label>
+			<select ng-model="vm.emp.avgHoursPerWeek" ng-options = "a.name for a in vm.avgWrkHrs"></select>
+		<br>
+	<label>Resident status</label>
+			<select ng-model="vm.emp.residentStatus" ng-options = "a.name for a in vm.residentList"></select>
+		<br>
+	<lable>How much $ do you spend each month on: </lable>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Food</label>
+				<input type="text" ng-model="vm.emp.dollarSpendFood"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Clothes</label>
+				<input type="text" ng-model="vm.emp.dollarSpendClothes"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Entertainment</label>
+				<input type="text" ng-model="vm.emp.dollarSpendEntertainment"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Transport</label>
+				<input type="text" ng-model="vm.emp.dollarSpendTransport"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Savings</label>
+				<input type="text" ng-model="vm.emp.dollarSpendSavings"/>
+	</md-input-container>
+	
+	<div style="float: right">
+	<br>
+	<md-button class="md-raised button-primary"  ng-click="vm.save();" >Save & Next</md-button>
+	</div>
+</fieldset>
