@@ -13,7 +13,8 @@
         	profileDetails,
             volunteerProfileData,
             inviteVolunteer,
-            registerVolunteer
+            registerVolunteer,
+            volunteerTimeAvailability
             };
         
             function profileDetails(data) {
@@ -51,7 +52,13 @@
                 	}
                 return $http(config);
             }
+            function volunteerTimeAvailability(data) {
+                let postData = JSON.stringify(data);
+                console.log("Time Availabilty : "+ postData);
+               
+            }
         
+            
           }
 }
 )();

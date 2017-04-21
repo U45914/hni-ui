@@ -1,0 +1,19 @@
+<top-nav></top-nav>
+<h1>Volunteer Time Availability</h1><br>
+	<table class="table3">
+		<tr>
+			<td></td>
+			<td ng-repeat="day in vm.days" ng-model="vm.weekDay">{{day}}</td>
+		</tr>
+		<tr ng-repeat="time in vm.availabity" ng-model="vm.time">
+			<td>{{time}}</td>
+			<td><input type="checkbox" ng-click="vm.cal($index,0,$event)"></td>
+			<td><input type="checkbox" ng-click="vm.cal($index,1,$event)"></td>
+			<td><input type="checkbox" ng-click="vm.cal($index,2,$event)"></td>
+			<td><input type="checkbox" ng-click="vm.cal($index,3,$event)"></td>
+			<td><input type="checkbox" ng-click="vm.cal($index,4,$event)"></td>
+			<td><input type="checkbox" ng-click="vm.cal($index,5,$event)"></td>
+			<td><input type="checkbox" ng-click="vm.cal($index,6,$event)"></td>
+		</tr>
+	</table>
+	<md-button class="md-raised button-primary"  id = "button" ng-click="vm.submit()" >Submit</md-button>

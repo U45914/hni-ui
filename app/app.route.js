@@ -96,6 +96,11 @@
                 url: '/clientsEnrollmentTab',
                 template: '<clients-enrollment-tab></clients-enrollment-tab>'
             })
+            
+             .state('volunteerTimeAvailability', {
+                url: '/volunteerTimeAvailability',
+                template: '<volunteer-time-availability></volunteer-time-availability>'
+            })
         	;
         
              
