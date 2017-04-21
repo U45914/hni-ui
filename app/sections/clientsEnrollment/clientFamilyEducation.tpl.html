@@ -1,0 +1,40 @@
+<fieldset>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+           	<label> Number of siblings</label>
+			<input type="number" ng-model="vm.family.sliblings"/>
+	</md-input-container>
+	
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+           	<label> Number of Kids</label>
+			<input type="number" ng-model="vm.family.kids"/>
+	</md-input-container>
+	<div flex-gt-sm>
+            <label>Live at home?</label>
+			<input type="radio"  ng-value="yes" ng-model ="vm.family.liveAtHome">Yes
+			<input type="radio"  ng-value="no" ng-model ="vm.family.liveAtHome">No
+	</div>
+	<label>Housing status</label>
+			<select ng-model="vm.family.sheltered" ng-options = "a.name for a in vm.housingStatus"></select>
+		<br>
+	<label>If sheltered, Who do you live with?</label>
+			<select ng-model="vm.family.liveWith" ng-options="a.name for a in vm.liveWithList"> </select>
+		<br>
+		<label>Highest level of parental education completed</label>
+			<select ng-model="vm.family.parentEducation" ng-options="a.name for a in vm.educationList"> </select>
+		<br>
+		<label>Highest level of education completed</label>
+			<select ng-model="vm.family.education" ng-options="a.name for a in vm.educationList"> </select>
+		<br> 
+		<label>Currently enrolled</label>
+			<select ng-model="vm.family.enrollmentStatus" ng-options="a.name for a in vm.educationList"></select>
+		<br>
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+           	<label> Enrolled where?</label>
+			<input type="text" ng-model="vm.family.enrollmentLocation"/>
+	</md-input-container>
+	
+	<div style="float: right">
+	<br>
+	<md-button class="md-raised button-primary"  ng-click="vm.save();" >Save & Next</md-button>
+	</div>
+</fieldset>

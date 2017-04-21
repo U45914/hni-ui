@@ -1,0 +1,59 @@
+	<div flex-gt-sm>
+            <label> Do you own a smartphone?</label>
+			<input type="radio"  ng-value="true" ng-model ="vm.connection.hasSmartPhone">Yes
+			<input type="radio"  ng-value="false" ng-model ="vm.connection.hasSmartPhone">No
+	</div> 
+	<div>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>Service provider</label>
+				<input type="text" ng-model="vm.connection.serviceProvider"/>
+			</md-input-container>
+	</div>
+	<div>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>Model</label>
+				<input type="text" ng-model="vm.connection.model"/>
+			</md-input-container>
+	</div>
+	<div flex-gt-sm>
+            <label> Do you have a monthly plan?</label>
+			<input type="radio"  ng-value="true" ng-model ="vm.connection.haveMonthlyPlan">Yes
+			<input type="radio"  ng-value="false" ng-model ="vm.connection.haveMonthlyPlan">No
+	</div> 
+	
+    <div class="wrapper">
+      	
+	<div ng-show = "vm.connection.haveMonthlyPlan == true">
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Monthly plan minutes</label>
+				<input type="text" ng-model="vm.connection.monthlyPlanMinute"/>
+			</md-input-container>
+	
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Monthly plan data</label>
+				<input type="text" ng-model="vm.connection.monthlyPlanData"/>
+			</md-input-container>
+			
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>Cost of monthly plan?</label>
+				<input type="text" ng-model="vm.connection.monthlyPlanCost"/>
+			</md-input-container>
+	</div>
+	<div ng-show = "vm.connection.haveMonthlyPlan == false">
+			<label>Alternative plan</label>
+			<select ng-model="vm.service.altMonthlyPlan">
+				<option>purchase pre-paid minutes</option>
+				<option>use wifi exclusively</option>
+				<option>others</option>
+			</select>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>If others,</label>
+				<input type="text" ng-model="vm.connection.altMonthlyPlanTogether"/>
+			</md-input-container>
+	</div>
+	</div>
+	
+	<div style="float: right">
+	<br>
+	<md-button class="md-raised button-primary"  ng-click="vm.save();" >Save & Next</md-button>
+	</div>
