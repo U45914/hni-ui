@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientEmploymentController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state'];
+	clientEmploymentController.inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
 	
-	function clientEmploymentController($q,ngoEnrollmentService,$scope,$rootScope,$state){
+	function clientEmploymentController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;
     	vm.residentList = [
     		{id: 0, name: "Undocumented immigrant"},
@@ -96,8 +96,8 @@
     		    "dollarSpendSavings": vm.emp.dollarSpendSavings
     			}
     	console.log(data);
-    	 //clientEnrollmentService.setEmploymentData(data);
-		 //var serviceCalls = ngoEnrollmentService.savePartial();
+    	clientEnrollmentService.setEmploymentData(data);
+		 //var serviceCalls = clientEnrollmentService.savePartial();
     	}
 	}
 })();

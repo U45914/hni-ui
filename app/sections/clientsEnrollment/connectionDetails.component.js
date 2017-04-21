@@ -17,9 +17,9 @@
 		}
 	}
 	
-	connectionDetailsController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state'];
+	connectionDetailsController.inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
 	
-	function connectionDetailsController($q,ngoEnrollmentService,$scope,$rootScope,$state){
+	function connectionDetailsController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;
     	//vm.connection = clientEnrollmentService.connectionDetails;
     	vm.save = function(){ 
@@ -34,7 +34,7 @@
     		    "altMonthlyPlan": vm.connection.altMonthlyPlan,
     		    "altMonthlyPlanTogether": vm.connection.altMonthlyPlanTogether
     			}
-    	 //clientEnrollmentService.setClientData(data);
+    	 clientEnrollmentService.setConnectionData(data);
 		 //var serviceCalls = ngoEnrollmentService.savePartial();
     	}
 	}
