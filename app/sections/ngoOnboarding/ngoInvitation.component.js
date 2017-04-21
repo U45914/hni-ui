@@ -64,7 +64,7 @@
 		
 		function loadOrgInfo() {
 			let organizationId = window.localStorage.getItem("userOrgInfo");
-			debugger;
+			 
 			if (organizationId) {
 				orgService.getOrganization(organizationId).then(function(orgInfo) {
 					if (orgInfo){

@@ -140,7 +140,7 @@
       }
       
       vm.enrollementData = function(){
-    	  debugger;
+    	   
 		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
 					function successCallback(response) {
 						if (response

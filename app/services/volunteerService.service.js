@@ -12,46 +12,46 @@
         return {
         	profileDetails,
             volunteerProfileData,
-            getProfileInfo
+            inviteVolunteer,
+            registerVolunteer
             };
         
             function profileDetails(data) {
            	 let postData = JSON.stringify(data);
            	 console.log("DATA : "+postData);
-                return $http.post(`${baseUrl}/onboard/volunteer/save`, postData);
+                return $http.post(`${baseUrl}/onboard/volunteer/save`, postData)
+                .then(function successCallback(response) {
+                   console.log(response.data);
+                	// success(response);
+                }, function errorCallback(error) {
+                    failure(error);
+                });
            	
-           	//return volunteerProfileData;
+           	// return volunteerProfileData;
            }  
+            
+          //Function to call post service while super admin add a new volunteer
+            function inviteVolunteer(data) {
+                let postData = JSON.stringify(data);
+                return $http.post(`${baseUrl}/onboard/volunteer/user/invite`, postData);
+            }
+            
+            
+          //Function to call post service while new volunteer login to enroll in HNI.
+            function registerVolunteer(data) {
+                let postData = JSON.stringify(data);
+                console.log("inside service controller"+ postData);
+                let config = {
+                	    method: 'POST',
+                	    url: `${baseUrl}/users/register`,
+                	    data: postData,
+                	    headers: {
+                	        "user-type": window.localStorage.getItem("userType")
+                	    }
+                	}
+                return $http(config);
+            }
         
-        function getProfileInfo() {
-      	  debugger;
-        	var volunteer = {
-        		    "firstName": "qwe",
-        		    "lastName": "asd",
-        		    "address" : {
-        		    			"name":"home Name",
-        		    			"address1": "abcd",
-        		    			"address2":"address2",
-        		    			"city":"thrissur",
-        		    			"state":"KL",
-        		    			"zip":678654
-        		    			},
-        		    "phoneNumber": 1234,
-        		    "email": "xxx@yyy.com",
-        		    "birthday": "2017-01-13T18:30:00.000Z",
-        		    "sex": "F",
-        		    "race": 1,
-        		    "education": 1,
-        		    "maritalStatus": 1,
-        		    "income": 1,
-        		    "kids": 0,
-        		    "employer": "qwe",
-        		    "nonProfit": "N"
-        		};
-        	
-        	volunteerProfileData = volunteer;
-        	return volunteerProfileData;
-        }
-   }
+          }
 }
 )();

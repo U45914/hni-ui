@@ -66,7 +66,7 @@
 							 //toaster.success("Failed : "+ response.data.errorMsg); 
 						 }
 					  }, function errorCallback(response) {
-						debugger;
+						 
 						alert("Something went wrong, please try again");
 						});
 	  		return $q.all(serviceCalls)//.then(onSuccess,onError);

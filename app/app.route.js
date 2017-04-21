@@ -71,6 +71,10 @@
                 url: '/ngoInvitation',
                 template: '<ngo-invitation></ngo-invitation>'
             })
+            .state('inviteVolunteer', {
+                url: '/volunteer-invite',
+                template: '<volunteer-invitation></volunteer-invitation>'
+            })
             .state('addNgo', {
                 url: '/addNgo',
                 template: '<add-ngo></add-ngo>'
@@ -84,12 +88,6 @@
                 url: '/ngoEnrollmentTab',
                 template: '<ngo-enrollment-tab></ngo-enrollment-tab>'
             })
-            
-            .state('clientsEnrollmentTab', {
-                url: '/clientsEnrollmentTab',
-                template: '<clients-enrollment-tab></clients-enrollment-tab>'
-            })
-        
         	.state('volunteerProfile', {
         		url: '/volunteerProfile',
         		template: '<volunteer-profile></volunteer-profile>'

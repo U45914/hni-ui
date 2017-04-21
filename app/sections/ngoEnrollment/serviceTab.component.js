@@ -126,7 +126,6 @@
 			    checkboxes.style.display = "none";
 			    vm.expanded = false;
 			} */ 
-			}
 		}
 
 		vm.showCheckboxes = function() {
@@ -149,7 +148,7 @@
 		 
 		/*vm.check = function(){
 		vm.resourceReturn = vm.service.resource;
-		debugger;
+		 
 		 var index = [];
 		 vm.checked=[];
 		for(var i=0;i<vm.resourceReturn.length;i++){
