@@ -9,9 +9,9 @@
           controller: ngoEnrollmentTabController,
           controllerAs: 'vm'
   }) ;
-  ngoEnrollmentTabController.$inject = ['$q','$rootScope', '$scope','ngoEnrollmentService'];
+  ngoEnrollmentTabController.$inject = ['$q','$rootScope', '$scope','ngoEnrollmentService','$state'];
 
-  function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService) {
+  function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService,$state) {
       var vm = this;
       vm.tabIndex = 0;
       var overViewData = ngoEnrollmentService.overviewData;
@@ -144,8 +144,8 @@
 		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
 					function successCallback(response) {
 						if (response
-								&& response.data.response
-								&& response.data.response == "success") {
+								&& response.status
+								&& response.statusText == "OK") {
 							alert("Your request has been submitted")
 							$state.go('dashboard');
 						} else {

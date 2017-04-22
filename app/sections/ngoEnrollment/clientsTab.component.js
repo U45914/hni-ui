@@ -25,13 +25,13 @@
     	    	
     	vm.save = function(){   		
       		 var data = {
-      				 "indServDaily" : vm.client.indServDaily,
-      				 "indServMonthly" : vm.client.indServMonthly,
-      				 "indServAnnual" : vm.client.indServAnnual,
-      				 "clientInfo" : vm.client.clientInfo,
+      				 "individualsServedDaily" : vm.client.individualsServedDaily,
+      				 "individualsServedMonthly" : vm.client.individualsServedMonthly,
+      				 "individualsServedAnnually" : vm.client.individualsServedAnnually,
+      				 "individualClientInfoCollected" : vm.client.individualClientInfoCollected,
       				 "storeClientInfo" : vm.client.storeClientInfo,
-      				 "clientsUnsheltered": vm.client.clientsUnsheltered,
-      				 "clientsEmployed" : vm.client.clientsEmployed
+      				 "unshelteredClientPercentage": vm.client.unshelteredClientPercentage,
+      				 "employeedClientPercentage" : vm.client.employeedClientPercentage
       		 };
       		 ngoEnrollmentService.setClientData(data);
 			 var serviceCalls = ngoEnrollmentService.savePartial();

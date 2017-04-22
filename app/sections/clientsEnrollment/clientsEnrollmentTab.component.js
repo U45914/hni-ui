@@ -9,10 +9,22 @@
           controller: clientsEnrollmentTabController,
           controllerAs: 'vm'
   }) ;
-  clientsEnrollmentTabController.$inject = [];
+  clientsEnrollmentTabController.$inject = ['$rootScope'];
 
-  function clientsEnrollmentTabController() {
+  function clientsEnrollmentTabController($rootScope) {
       var vm = this;
+      
+      $rootScope.$on("scroll-tab", function(event, data){
+     	 vm.scroll()
+      });
+       vm.scroll = function(){
+     	  if(vm.tabIndex ==  4){
+     		  vm.tabIndex = 0;
+     	  }
+     	  else{
+     	  ++vm.tabIndex 
+     	  }
+       }
 
   }
   

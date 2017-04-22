@@ -12,6 +12,7 @@
         return {
         	//profileDetails,
         	setPersonnalData,
+        	setHealthData
            // getProfileInfo
             };
         
@@ -23,6 +24,15 @@
            	
            	//return volunteerProfileData;
            }  
+            
+            function setHealthData(data) {
+              	 let postData = JSON.stringify(data);
+              	 console.log("health DATA : "+postData);
+              	 
+                //   return $http.post(`${baseUrl}/onboard/volunteer/save`, postData);
+              	
+              	//return volunteerProfileData;
+              }  
         
       
    }
