@@ -1,0 +1,53 @@
+<fieldset>
+	<label>How many meals do you eat a day</label>
+			<select ng-model="vm.food.mealsPerDay" ng-options = "a.name for a in vm.mealsPerDayList"></select>
+			<br>
+	<label>Food preferences</label>
+			<select ng-model="vm.food.foodPreference" ng-options = "a.name for a in vm.foodPreferenceList"></select>
+			<br>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            <label>Where do you purchase your food?</label>
+			<input type="text" ng-model="vm.food.foodSource"/>
+	</md-input-container>
+	<div flex-gt-sm>
+            <label>Do you cook?</label>
+			<input type="radio"  ng-value="true" ng-model ="vm.food.cook">Yes
+			<input type="radio"  ng-value="false" ng-model ="vm.food.cook">No
+	</div>
+	<label>How far do you travel for food ? (miles)</label>
+			<select ng-model="vm.food.travelForFoodDistance" ng-options = "a.name for a in vm.distanceList"></select>
+			<br>
+	<label>How long does that take ? (minutes)</label>
+			<select ng-model="vm.food.travalForFoodTime" ng-options = "a.name for a in vm.travelTimeList"></select>
+			<br>
+	<div flex-gt-sm>
+            <label>Have you participated subsidised food programs in the past?</label>
+			<input type="radio"  ng-value="true" ng-model ="vm.food.subFoodProgram">Yes
+			<input type="radio"  ng-value="false" ng-model ="vm.food.subFoodProgram">No
+	</div>
+	<div class="wrapper">
+      	
+	<div ng-show = "vm.food.subFoodProgram == true">
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Where?</label>
+				<input type="text" ng-model="vm.food.subFoodProgramEntity"/>
+			</md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> For how long?</label>
+				<input type="text" ng-model="vm.food.subFoodProgramDuration"/>
+			</md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> How often renewed?</label>
+				<input type="text" ng-model="vm.food.subFoodProgramRenew"/>
+			</md-input-container>
+			<label>Experience with?</label>
+			<select ng-model="vm.food.subFoodProgramExp" ng-options = "a.name for a in vm.subFoodProgramExpList"></select>
+			<br>
+	</div>
+	</div>
+	
+	<div style="float: right">
+		<br>
+		<md-button class="md-raised button-primary" ng-click="vm.save();">Save & Next</md-button>
+	</div>
+	</fieldset>

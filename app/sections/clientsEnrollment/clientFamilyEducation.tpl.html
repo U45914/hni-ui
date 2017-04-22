@@ -10,8 +10,8 @@
 	</md-input-container>
 	<div flex-gt-sm>
             <label>Live at home?</label>
-			<input type="radio"  ng-value="yes" ng-model ="vm.family.liveAtHome">Yes
-			<input type="radio"  ng-value="no" ng-model ="vm.family.liveAtHome">No
+			<input type="radio"  ng-value="true" ng-model ="vm.family.liveAtHome">Yes
+			<input type="radio"  ng-value="false" ng-model ="vm.family.liveAtHome">No
 	</div>
 	<label>Housing status</label>
 			<select ng-model="vm.family.sheltered" ng-options = "a.name for a in vm.housingStatus"></select>

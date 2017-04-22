@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientFamilyEducationController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state'];
+	clientFamilyEducationController.inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
 	
-	function clientFamilyEducationController($q,ngoEnrollmentService,$scope,$rootScope,$state){
+	function clientFamilyEducationController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;
     	//vm.family = clientEnrollmentService.clientEmployment;
     	vm.educationList = [
@@ -51,8 +51,8 @@
     		    "enrollmentLocation": vm.family.enrollmentLocation,
     			}
     	console.log(data);
-    	 //clientEnrollmentService.setEmploymentData(data);
-		 //var serviceCalls = ngoEnrollmentService.savePartial();
+    	 clientEnrollmentService.setFamilyData(data);
+		 //var serviceCalls = clientEnrollmentService.savePartial();
     	}
 	}
 })();

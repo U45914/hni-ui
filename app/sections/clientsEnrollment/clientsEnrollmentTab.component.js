@@ -9,12 +9,13 @@
           controller: clientsEnrollmentTabController,
           controllerAs: 'vm'
   }) ;
-  clientsEnrollmentTabController.$inject = ['$rootScope'];
+  clientsEnrollmentTabController.$inject = ['$rootScope', 'clientEnrollmentService'];
 
-  function clientsEnrollmentTabController($rootScope) {
+  function clientsEnrollmentTabController($rootScope, clientEnrollmentService) {
       var vm = this;
       
-      $rootScope.$on("scroll-tab", function(event, data){
+      
+       $rootScope.$on("scroll-tab", function(event, data){
      	 vm.scroll()
       });
        vm.scroll = function(){
@@ -25,6 +26,30 @@
      	  ++vm.tabIndex 
      	  }
        }
+      vm.enrollementData = function(){
+    	   
+		  var serviceCalls = clientEnrollmentService.postClientInfo()/*.then(
+					function successCallback(response) {
+						if (response
+								&& response.data.response
+								&& response.data.response == "success") {
+							alert("Your request has been submitted")
+							$state.go('login');
+						} else {
+							alert("Failed : "
+									+ response.data.errorMsg);
+						}
+					},
+					function errorCallback(response) {
+						alert("Something went wrong, please try again")
+						// $state.go('dashboard');
+					});
+
+	console.log(data);
+*/
+		  //return $q.all(serviceCalls);
+		  
+	  }
 
   }
   
