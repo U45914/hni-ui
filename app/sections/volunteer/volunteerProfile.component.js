@@ -38,8 +38,7 @@
 	    "nonProfit": "N"
 	};*/
 //vm.vol =  volunteerService.profileDetails();
-console.log("volunteerService.volunteerProfileData ");
-console.log(volunteerService.volunteerProfileData);
+
     	  vm.submit = function(){   
     		   
     	   		 var data = {

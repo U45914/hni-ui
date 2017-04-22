@@ -44,12 +44,12 @@
                 template: '<user-profile></user-profile>'
             })
             .state('clients', {
-             //   parent: 'workspace-base',
+                parent: 'workspace-base',
                 url: '/clients',
                 template: '<clients></clients>',
-               /* data: {
+                data: {
                     authorizedRoles: [rolesConstant.superAdmin, rolesConstant.ngoAdmin]
-                }*/
+                }
             })
             .state('organizations', {
                 parent: 'workspace-base',
@@ -95,6 +95,11 @@
         	 .state('clientsEnrollmentTab', {
                 url: '/clientsEnrollmentTab',
                 template: '<clients-enrollment-tab></clients-enrollment-tab>'
+            })
+            
+             .state('volunteerTimeAvailability', {
+                url: '/volunteerTimeAvailability',
+                template: '<volunteer-time-availability></volunteer-time-availability>'
             })
         	;
         

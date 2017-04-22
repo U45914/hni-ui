@@ -23,13 +23,10 @@
   function serviceController ($q,ngoEnrollmentService,$rootScope) {
 	  var vm =this;
 	  vm.list= [];
-	  vm.flag="false";
+	  vm.flag=false;
+	  vm.flag1=false;
 	  
-	  vm.options1 = [];
-      for (var i = 0; i < 10; i++) {
-          vm.options1.push({ key: i + 1, value: 'Prop' + (i + 1).toString() });
-      } 
-  
+	  
 	  vm.breakfast=[];
 	  vm.lunch=[];
 	  vm.dinner=[];
@@ -77,6 +74,11 @@
 			
 		  }
 		  vm.service = ngoEnrollmentService.serviceData;
+		  vm.list = vm.service.foodBankValue;
+		  vm.service.foodBankValue=" ";
+		  if(vm.list){
+			  vm.flag1=true;
+		  }
 		  
 		  vm.save =  function(){
 			  var data = {
