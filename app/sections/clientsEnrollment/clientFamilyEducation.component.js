@@ -52,6 +52,7 @@
     			}
     	console.log(data);
     	 clientEnrollmentService.setFamilyData(data);
+    	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 		 //var serviceCalls = clientEnrollmentService.savePartial();
     	}
 	}
