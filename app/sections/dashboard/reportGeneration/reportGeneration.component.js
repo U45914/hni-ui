@@ -76,12 +76,12 @@
         	$http.get(`${baseUrl}/reports/view/getAllVolunteers`)
             .then(function success(response) {
                 if(response.data !== null) {
-                   console.log("responseAkkara : ");
+                   console.log("response : ");
                    console.log(response.data);
                    vm.serviceVolunteer = response.data.data;
                    vm.headersVolunteer= response.data.headers;
                 }
-            }, function error(error) {
+            }, function error(error) {  
                 console.log(error);
             });
 }
