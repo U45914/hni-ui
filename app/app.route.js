@@ -83,7 +83,10 @@
                 url: '/ngoEnrollment',
                 template: '<ngo-enrollment></ngo-enrollment>'
             })
-           
+           .state('volunteerEnrollment', {
+                url: '/volunteerEnrollment',
+                template: '<volunteer-enrollment></volunteer-enrollment>'
+            })
             .state('ngoEnrollmentTab', {
                 url: '/ngoEnrollmentTab',
                 template: '<ngo-enrollment-tab></ngo-enrollment-tab>'

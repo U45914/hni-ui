@@ -42,7 +42,7 @@
         	if (type == 'ngo') {
         		$state.go('ngoEnrollment');
         	} else if (type == 'volunteer') {
-        		$state.go('volunteerProfile');
+        		$state.go('volunteerEnrollment');
         	} else {
         		$state.go('dashboard');
         	}

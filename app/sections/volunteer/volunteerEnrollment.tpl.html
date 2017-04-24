@@ -1,0 +1,64 @@
+<div class="login-background"></div>
+<div id="login-container">
+	<div class="login-box" layout="row" layout-wrap>
+		<md-content class="md-whiteframe-4dp">
+		<div class="login-box-internal">
+			<div class="login-image-container">
+				<img class="login-logo" ng-src="~images/not_impossible_logo.png" />
+			</div>
+			<div class="login-prompt">Volunteer Password creation</div>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+			<label>FirstName</label> <input type="text" id="input-firstName"
+				required ng-model="vm.firstName"> </md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+			<label>Last Name</label> <input type="text" id="input-lastName"
+				required ng-model="vm.lastName"> </md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+			<label>User Name {{vm.userNameMessage}}</label> <input type="email"
+				id="input-userName" required ng-model="vm.username"
+				ng-change="vm.checkAvailability()"> </md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+			<label>Password</label> <input type="password" id="input-password1"
+				required ng-model="vm.password" ng-blur="vm.checkPassword()">
+			</md-input-container>
+			<div id="errorMsg" ng-show="vm.check" style="color: red;">
+				Password must contain <br />
+				<dl>
+					<li>Atleast 6 characters long</li>
+					<li>Atleast 1 numberic character</li>
+					<li>Atlease 1 alphabet</li>
+					<li>Atleast special character</li>
+				</dl>
+				<br />
+			</div>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+			<label>Confirm Password</label> <input type="password"
+				id="input-password2" required ng-model="vm.passwordConfirm">
+			</md-input-container>
+			<table>
+				<th align='left' ; width="50%">Address</th>
+				<th></th>
+				<tr>
+					<td><input type="text" placeholder="Address type" required
+						ng-model="vm.addressType" /></td>
+					<td><input type="text" placeholder="Address" required
+						ng-model="vm.address" /></td>
+				</tr>
+				<tr>
+					<td><input type="text" placeholder="City" required
+						ng-model="vm.city" /></td>
+					<td><input type="text" placeholder="State" required
+						ng-model="vm.state" /></td>
+				<tr>
+					<td><input type="text" placeholder="Zip" required
+						ng-model="vm.zip" /></td>
+					<td><input type="submit" value="Submit" id="input-submit"
+						ng-click="vm.submit()"></td>
+				</tr>
+			</table>
+
+			<md-button class="md-raised button-primary" ng-click="vm.signIn();">Register</md-button></di
+				v>
+		</md-content>
+	</div>
+</div>
