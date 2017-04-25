@@ -15,6 +15,7 @@
         return {
         	  savePartial,
         	  postNgoEnrollData,
+        	  getProfileData,
         	  setOverviewData:setOverviewData,
         	  getOverviewData:getOverviewData,
         	  setStakeHolderData:setStakeHolderData,
@@ -80,7 +81,7 @@
         	};
         	let partialData = JSON.stringify(postData);
         	console.log("Partial Data : "+partialData);
-        	//return $http.post(`${baseUrl}/`, partialData);
+        	return $http.post(`${baseUrl}/onboard/ngo/save`, partialData);
         }
         
         function postNgoEnrollData(){
@@ -95,6 +96,18 @@
         	console.log("Submitted Info : "+enrollData);
         	return $http.post(`${baseUrl}/onboard/ngo/ngoSave`, enrollData);
         	
+        }
+        
+        function getProfileData(){
+        	return $http.get(`${baseUrl}/user/ngo/profile`).then(function(response){
+        		if(response || response.data){
+        			/*overviewData = response.data.overview;
+        			stakeHolderData = response.data.stakeHolderData;
+        			serviceData = response.data.serviceData;
+        			fundingData = response.data.fundingData;
+        			clientData = response.data.clientData;*/
+        		}
+        	});
         }
     }
 })();

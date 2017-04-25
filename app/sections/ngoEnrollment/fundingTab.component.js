@@ -1,49 +1,46 @@
-(function(){
-	angular
-		.module('app')
-		.directive('fundingTab', fundingrDirective)
-	
-	
+(function() {
+	angular.module('app').directive('fundingTab', fundingrDirective)
+
 	function fundingrDirective() {
 		return {
 			scope : {
-				
+
 			},
 			restrict : "E",
 			templateUrl : "fundingTab.tpl.html",
 			controller : FundingTabController,
-			 controllerAs: 'ft'
+			controllerAs : 'ft'
 		}
 	}
-			
-	FundingTabController.$inject = ['$q','ngoEnrollmentService', '$rootScope','$scope',];
-	
-	function FundingTabController($q,ngoEnrollmentService,$rootScope, $scope){
+
+	FundingTabController.$inject = [ '$q', 'ngoEnrollmentService',
+			'$rootScope', '$scope', ];
+
+	function FundingTabController($q, ngoEnrollmentService, $rootScope, $scope) {
 		var ft = this;
 		ft.fundingSourceList = [];
 		ft.mealDonaltionList = [];
 		ft.mealFundingList = [];
-		
-		ft.fundingSourceList = ngoEnrollmentService.fundingData["fundingSource"]; 
-		ft.mealDonaltionList = ngoEnrollmentService.fundingData["mealDonation"];
-		ft.mealFundingList = ngoEnrollmentService.fundingData["mealFunding"];
-		
-		ft.save = function(){
-			var data = { 
-					"fundingSource" :  ft.fundingSourceList,
-					"mealDonation" : ft.mealDonaltionList,
-					"mealFunding": ft.mealFundingList
+		if (ngoEnrollmentService.fundingData) {
+			ft.fundingSourceList = ngoEnrollmentService.fundingData["fundingSource"];
+			ft.mealDonaltionList = ngoEnrollmentService.fundingData["mealDonation"];
+			ft.mealFundingList = ngoEnrollmentService.fundingData["mealFunding"];
+		}
+		ft.save = function() {
+			var data = {
+				"fundingSource" : ft.fundingSourceList,
+				"mealDonation" : ft.mealDonaltionList,
+				"mealFunding" : ft.mealFundingList
 			};
-			
-   		 	if(ft.mealDonaltionList.length!=0){
-   		 	ngoEnrollmentService.setFundingData(data);
-	  		var serviceCalls = ngoEnrollmentService.savePartial();
-	  		$q.all(serviceCalls)//.then(onSuccess,onError);
-   		 	$rootScope.$broadcast("scroll-tab", [1,2]);
-   		 	}
-   		 	else{
-   		 		alert("Meal Donation fields are mandatory to save");
-   		 	}
+
+			if (ft.mealDonaltionList.length != 0) {
+				ngoEnrollmentService.setFundingData(data);
+				var serviceCalls = ngoEnrollmentService.savePartial();
+				$q.all(serviceCalls)// .then(onSuccess,onError);
+				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+			} else {
+				alert("Meal Donation fields are mandatory to save");
+			}
 		}
 	}
 })();

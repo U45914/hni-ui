@@ -1,7 +1,9 @@
-	<table style="width: 100%" name="overview">
+	<div><table style="width: 100%" name="overview">
 		<tr>
-			<td><h5>Name</h5> <input type="text" id="name" required
-				class="register-input" ng-model="vm.view.name"></input></td>
+			<td><md-input-container class="md-block" flex-gt-sm>
+            <label>Name</label>
+            <input ng-model="vm.view.name">
+          </md-input-container></td>
 			<td><label><h5>Phone</h5></label> <input type="number" 
 				name="phone"  class="register-input" required ng-model="vm.view.phone"></input>
 				<!-- <div style="color:red" ng-show="overview.phone.$error.pattern">Only numbers are allowed!</div> -->
@@ -30,12 +32,16 @@
 		</tr>
 		<tr>
 			<td><label><br>
-				<h5>Celebrity endorsements / notable promoters</h5></label></td></tr>
+				<h5>Celebrity endorsements / notable promoters</h5></label> </td></tr>
+				
 				<tr>
 				<td style="width:30%"> 
 				<input type="text" style="width: 95%" name="promoters" id="promoters" ng-model="vm.view.promoters" class="register-input">
 				</td>
-				<td><input type="button" id="button" ng-click="vm.addRow(vm.view.promoters)" value="Add Members"></input><br>				
+				
+				<td>
+				<md-button class="md-fab btn_style">+</md-button>
+				<!--<input type="button" id="button" class="btn_style" ng-click="vm.addRow(vm.view.promoters)" value="+"></input> --><br>				
 			</td>	
 		</tr>
 		<tr ng-repeat="member in vm.list track by $index">
@@ -49,8 +55,10 @@
 	<br>
 	<br>
 	<hr class "register-input" style="width: 100%">
-	<div style="float: right">
+	<div style="float: right;">
 	<br>
 	<md-button class="md-raised button-primary"  ng-click="vm.save();" >Save & Next</md-button>
+	<md-button class="md-primary md-warn "  ng-click="vm.save();" >Save Next</md-button>
 	
+	</div>
 	</div>

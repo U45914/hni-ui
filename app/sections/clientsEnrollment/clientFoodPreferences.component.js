@@ -74,10 +74,11 @@
     		    "subFoodProgramEntity": vm.food.subFoodProgramEntity,
     		    "subFoodProgramDuration": vm.food.subFoodProgramDuration,
     		    "subFoodProgramRenew": vm.food.subFoodProgramRenew,
-    		    "subFoodProgramExp": vm.food.subFoodProgramExp.id 
+    		    "subFoodProgramExp": vm.food.subFoodProgram ? vm.food.subFoodProgramExp.id : "" 
     			}
     	console.log(data);
     	 clientEnrollmentService.setFoodData(data);
+    	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 		 //var serviceCalls = ngoEnrollmentService.savePartial();
     	}
 	}

@@ -35,6 +35,7 @@
     		    "altMonthlyPlanTogether": vm.connection.altMonthlyPlanTogether
     			}
     	 clientEnrollmentService.setConnectionData(data);
+    	$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 		 //var serviceCalls = ngoEnrollmentService.savePartial();
     	}
 	}

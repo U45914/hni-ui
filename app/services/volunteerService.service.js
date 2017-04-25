@@ -20,7 +20,7 @@
             function profileDetails(data) {
            	 let postData = JSON.stringify(data);
            	 console.log("DATA : "+postData);
-                return $http.post(`${baseUrl}/onboard/volunteer/save`, postData)
+                return $http.post(`${baseUrl}/users/volunteer/save`, postData)
                 .then(function successCallback(response) {
                    console.log(response.data);
                 	// success(response);
@@ -58,6 +58,13 @@
                
             }
         
+            function getProfileData(){
+            	return $http.get(`${baseUrl}/user/volunteer/profile`).then(function(response){
+            		if(response || response.data){
+            			volunteerProfileData = response.data;
+            		}
+            	});
+            }
             
           }
 }

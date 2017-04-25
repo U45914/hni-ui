@@ -73,9 +73,12 @@
 			  } 
 			
 		  }
+		  
 		  vm.service = ngoEnrollmentService.serviceData;
-		  vm.list = vm.service.foodBankValue;
-		  vm.service.foodBankValue=" ";
+		  if(vm.service && vm.service.foodBankValue){
+			  vm.list = vm.service.foodBankValue;
+			  vm.service.foodBankValue=" ";
+		  }
 		  if(vm.list){
 			  vm.flag1=true;
 		  }

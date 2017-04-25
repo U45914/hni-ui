@@ -17,9 +17,9 @@
 		}
 	}
 	
-	healthDetailsTabController.inject = ['$q','clientEnrollmentService'];
+	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope'];
 	
-	function healthDetailsTabController($q,clientEnrollmentService){
+	function healthDetailsTabController($q,clientEnrollmentService,$rootScope){
     	var vm = this;
     //	vm.health = clientEnrollmentService.clientData;
     	    	
@@ -36,11 +36,11 @@
       				"lastVisitDoctor" : vm.health.lastVisitDoctor,
       				"lastVisitDentist" : vm.health.lastVisitDentist
       		 };
-      		//clientEnrollmentService.setClientData(data);
+      		
       		var serviceCalls = clientEnrollmentService.setHealthData(data);
 			// var serviceCalls = clientEnrollmentService.savePartial();
 	  		 $q.all(serviceCalls)//.then(onSuccess,onError);
-			 
+	  				 
       		
     	}
 	}
