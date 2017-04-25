@@ -18,3 +18,37 @@ body, html{
 #cell{
 	width: 15%;
 }
+.md-button.md-fab.btn_style
+{
+background-color: #D65439;
+    border: 1px solid #D65439;
+    border-radius: 7;
+    height: 25px;
+    width: 36px;
+    border-radius: 25px;
+    color: white;
+    margin-bottom: 13px;
+}
+.md-button.md-fab.btn_style:hover
+{
+background-color: #D65439;
+    border: 1px solid #D65439;
+    border-radius: 7;
+    height: 25px;
+    width: 36px;
+    border-radius: 25px;
+    color: white;
+    margin-bottom: 13px;
+}
+#button {
+    position: relative;
+    top: 90%;
+     margin-left: 0px !important;
+}
+.btn1 {
+  color : rgb(49, 46, 46);
+  background-color:#D65439 !important ;
+  border-radius: 10px 0 0 10px;
+  font-size: 16px;
+  background:none;
+}
