@@ -1,16 +1,101 @@
+
+.header{
+	background-color:#DB735F;
+	display:flex;
+}
+
+.padding0{
+	padding:0;
+}
+.logo_container{
+	background-color:#D65439;
+	padding:15px;
+	text-align:center;
+	flex:2;
+}
+
+.logo_image{
+	width:85%;
+}
+.space{
+	flex:3;
+}
+.tab_container{
+	flex:3;
+	align-content:flex-end;
+	margin:auto;
+	list-style:none;	
+}
+.tab_container ul {
+	padding: 0;
+    float: left;
+	font-size:14px;
+}
+
+.tab_container ul li {
+    display: inline;
+	margin:2px;
+}
+
+.tab_container ul li a {
+	text-decoration: none;
+    color: white; 
+    padding: 10.5px 11px;  
+}
+ 
+.tab_container ul li a:visited {
+    color: white;
+}
+ 
+.tab_container ul li a:hover, .tab_container ul li .current {
+    color: yellow;
+  
+	padding: 10.5px 11px;
+}
+.donate_btn{
+	border:1px solid white;
+	border-radius:3px;
+	background-color:transparent;
+	color:#fff;
+	font-size:13px;
+	padding:6px 10px;
+	margin:7px;
+	
+}
+.donate_btn:hover{
+	background-color:#D65439;
+	color:yellow;
+}
+
+/*-------login body----------------*/
+
+.adjust_float{
+	float:right;
+}
+.login_bg{
+	background: url('~images/Login_bg.jpg');
+	padding:20px;
+	height:518px;
+	
+	
+}
+
+.nopad_16
+{padding:0px}
+
 @import '_includes';
 
 #login-container {
 	max-width: rem(400px);
 	margin-left: auto;
 	margin-right: auto;
-	padding: rem(60px) rem(160px) rem(60px) rem(160px);
+	padding: 2.5rem 1.5625rem 0 1.5625rem;
 	& .login-box {
         & md-content {
             border-radius: 8px;
 
 		    & .login-box-internal {
-              padding: rem(40px) rem(25px) 0 rem(25px);
+              padding: 0.5rem 3.5625rem 0 3.5625rem;
             }
 
 			& .login-image-container {
@@ -80,7 +165,8 @@
   left: 0;
   height: rem(300px);
   width: 100%;
-  background-color: $color-red-base;
+ 
+  background :url("~images/hero.jpg");
 }
 
 @media screen and (max-width: 960px) {
@@ -100,3 +186,4 @@
     padding: rem(20px);
   }
 }
+

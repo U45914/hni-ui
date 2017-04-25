@@ -14,6 +14,7 @@
         var employmentData;
         var foodData;
         var healthData;
+        var finalSaveData = {};
         return {
         	 savePartial,
         	 postClientInfo,
@@ -82,31 +83,74 @@
            	 
             
             function savePartial() {
-            	var postData={
-            			"personnal" : getPersonnalData(),
-            			"connectionDetails" : getConnectionData(),
-            			"familyAndEducation" : getFamilyData(),
-            			"employment" : getEmploymentData(),
-            			"foodPreferences" : getFoodData(),
-            			"healthDetails" : getHealthData()
-            	};
-            	let partialData = JSON.stringify(postData);
-            	console.log("Partial Data : "+partialData);
-            	//return $http.post(`${baseUrl}/`, partialData);
-            }
-             
-            function postClientInfo(){
             	var psnlData =getPersonnalData();
             	var cntData = getConnectionData();
             	var famData = getFamilyData();
             	var empData = getEmploymentData();
             	var fdData = getFoodData();
             	var hlthData = getHealthData();
-            	var sumData= psnlData +","+ cntData +","+ famData +","+ empData +","+ fdData +","+ hlthData;
-            	var postData={sumData};
-               	let clientInfoData = JSON.stringify(postData);
-            	console.log(postData);
-            	//return $http.post(`${baseUrl}/`, partialData);
+            	
+            	angular.forEach(psnlData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(cntData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(famData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(empData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(fdData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(hlthData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	
+               	let partialData = JSON.stringify(finalSaveData);
+            	return $http.post(`${baseUrl}/onboard/client/save`, partialData);
+            }
+       
+             
+            function postClientInfo(){
+            	var psnlData = getPersonnalData();
+            	var cntData = getConnectionData();
+            	var famData = getFamilyData();
+            	var empData = getEmploymentData();
+            	var fdData = getFoodData();
+            	var hlthData = getHealthData();
+            	
+            	angular.forEach(psnlData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(cntData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(famData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(empData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(fdData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(hlthData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	
+               	let clientInfoData = JSON.stringify(finalSaveData);
+            	
+            	return $http.post(`${baseUrl}/users/client/save`, clientInfoData);
+            }
+            
+          
+            function putElementsToMap(key, val) {
+            	if (key.indexOf("__") == -1 ) {
+            		finalSaveData[key] = val;
+            	}
             }
                
  }
