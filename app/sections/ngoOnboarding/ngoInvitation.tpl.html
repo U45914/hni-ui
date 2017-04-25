@@ -1,63 +1,60 @@
 <top-nav></top-nav>
+<div style="float: left">
+<left-nav-bar></left-nav-bar>
+</div>
+<div style="float: center;">
 <h1>NGO INVITATION</h1>
 <form class="cf">
-  
-  <table>
-    <th align = 'left'>Primary details</th><th></th>
-  <tr>
-  <td width ="50%">
-  <input type="text" id="input-name" placeholder="Organization Name"  required ng-model="vm.name" >
-  </td>
-  <td>
-   <input type="number" id="input-phone" placeholder="Phone number"  required ng-model="vm.phoneNumber" >
-   </td>
-  </tr>
-  <tr>
-  <td>
-  <input type="email" id="input-email" placeholder="Email address" required ng-model="vm.email" >
-  </td>
-  <td>
-  <input type="text"  id="input-websiteUrl" placeholder="Web site url" required ng-model="vm.webSiteUrl">
-  </td>
-  <tr>
-  <td>
-  <!-- <input type="text" id="input-logo" placeholder = "Logo" valve="vm.logo"> -->
-  <h5 align="left">Logo</h5>
-  </td>
-  <td>
-   <input type="file" id="myFile" ng-model="vm.logo">
-   
-   </td>
-   </tr>
-  </table>
-   
-  
-  <table>
-  <th align ='left'; width ="50%">Address</th><th></th>
-  <tr>
-  <td >
-  <input type="text" placeholder="Name" required ng-model="vm.adminName"/>
-  </td>
-  <td>
-  <input type="text" placeholder="Address" required ng-model="vm.address"/>
-   </td>
-  </tr>
-  <tr>
-  <td>
-  <input type="text" placeholder="City" required ng-model="vm.city"/>
-  </td>
-  <td>
-  <input type="text" placeholder="State" required ng-model="vm.state"/>
-    
-  </td>
-  <tr>
-  <td>
-  <input type="text" placeholder="Zip" required ng-model="vm.zip"/>
-  </td>
-  <td>
-   <input type="submit" value="Submit" id="input-submit" ng-click="vm.submit()">
-   </td>
-   </tr>
-  </table>
-    
- </form>
+
+	<table>
+		<th align='left'>Primary details</th>
+		<th></th>
+		<tr>
+			<td width="50%"><input type="text" id="input-name"
+				placeholder="Organization Name" required ng-model="vm.name">
+			</td>
+			<td><input type="number" id="input-phone"
+				placeholder="Phone number" required ng-model="vm.phoneNumber">
+			</td>
+		</tr>
+		<tr>
+			<td><input type="email" id="input-email"
+				placeholder="Email address" required ng-model="vm.email"></td>
+			<td><input type="text" id="input-websiteUrl"
+				placeholder="Web site url" required ng-model="vm.webSiteUrl">
+			</td>
+		<tr>
+			<td>
+				<!-- <input type="text" id="input-logo" placeholder = "Logo" valve="vm.logo"> -->
+				<h5 align="left">Logo</h5>
+			</td>
+			<td><input type="file" id="myFile" ng-model="vm.logo"></td>
+		</tr>
+	</table>
+
+
+	<table>
+		<th align='left' ; width="50%">Address</th>
+		<th></th>
+		<tr>
+			<td><input type="text" placeholder="Name" required
+				ng-model="vm.adminName" /></td>
+			<td><input type="text" placeholder="Address" required
+				ng-model="vm.address" /></td>
+		</tr>
+		<tr>
+			<td><input type="text" placeholder="City" required
+				ng-model="vm.city" /></td>
+			<td><input type="text" placeholder="State" required
+				ng-model="vm.state" /></td>
+		<tr>
+			<td><input type="text" placeholder="Zip" required
+				ng-model="vm.zip" /></td>
+			<td><input type="submit" value="Submit" id="input-submit"
+				ng-click="vm.submit()"></td>
+		</tr>
+	</table>
+
+</form>
+</div>
+<landing-footer></landing-footer>

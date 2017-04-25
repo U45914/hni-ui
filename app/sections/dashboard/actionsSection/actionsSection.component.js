@@ -23,7 +23,7 @@
             .then(function success(response) {
                 if(response.data !== null) {
                    console.log("response : "+response.data);
-                   vm.user = response.data ;
+                   vm.user = response.data.data ;
                 }
             }, function error(error) {
                 console.log(error);
