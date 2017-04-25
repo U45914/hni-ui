@@ -14,7 +14,7 @@
   function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService,$state) {
       var vm = this;
       vm.tabIndex = 0;
-      ngoEnrollmentService.getProfileData();
+      //ngoEnrollmentService.getProfileData();
       var overViewData = ngoEnrollmentService.overviewData;
 	  var stakeHolderData = ngoEnrollmentService.stakeHolderData;
 	  var serviceData = ngoEnrollmentService.serviceData;
