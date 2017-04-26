@@ -39,6 +39,11 @@
                     <label>Confirm Password</label>
 					<input type="password"  id="input-password2" required ng-model="vm.passwordConfirm">
                 </md-input-container>
+                <div ng-hide= "{{vm.errorText}}">
+                	<center>
+                		<font color = "red">{{vm.validateNGOEnrollment}}</font>
+                	</center>
+                </div>
     			 <md-button class="md-raised button-primary" ng-click="vm.signIn();">REGISTER</md-button>
  		 </div>
 	</md-content>

@@ -7,16 +7,18 @@
 		controller : NgoEnrollmentController,
 		controllerAs : 'vm'
 	});
-	NgoEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope',
+	NgoEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
 			'$state' ];
 
-	function NgoEnrollmentController($q, ngoOnboardingService, $scope, $state) {
+	function NgoEnrollmentController($q, ngoOnboardingService, validateService, $scope, $state) {
 		var USER_ORG_INFO = "userOrgInfo";
 		var USER_TYPE = "userType";
 
 		var vm = this;
 		vm.userType = vm.getUserType;
 		vm.userNameMessage = "";
+		vm.errorText = false;
+		vm.validateNGOEnrollment = "";
 
 		vm.signIn = function() {
 			var data = {
@@ -26,16 +28,22 @@
 				"password" : vm.password,
 				"organizationId" : vm.getOrgInfo()
 			};
-
-			ngoOnboardingService.registerNgo(data).then(function(response) {
-				if (response && response.data && response.data.success) {
-					alert(response.data.success)
-					$state.go('login');
-				} else {
-					alert("Failed to create user entry");
-				}
-			});
-
+			
+			vm.validateNGOEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
+			if(vm.validateNGOEnrollment == ""){
+				vm.errorText = false;
+				ngoOnboardingService.registerNgo(data).then(function(response) {
+					if (response && response.data && response.data.success) {
+						alert(response.data.success)
+						$state.go('login');
+					} else {
+						alert("Failed to create user entry");
+					}
+				});
+			}
+			else{
+				vm.errorText = true;
+			}
 			return;
 		};
 
