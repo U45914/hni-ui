@@ -43,7 +43,7 @@
 			  var index = vm.daysArray[y].indexOf(day);
 			  vm.daysArray[y].splice(index, 1);				 
 			  vm.obj[day] = vm.daysArray[x];
-	 //  If the days are empty, the meal array corresponding that days are removed from the obj array 
+	 //  If the available times are empty, the day array corresponding to that time are removed from the obj array 
 			  if(vm.daysArray[y].length == 0){
 				  delete vm.obj[day];
 			  }

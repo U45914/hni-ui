@@ -14,8 +14,8 @@
 		var vm = this;
 		this.myDate = new Date();
 		this.isOpen = false;
-
-		vm.vol = volunteerService.getProfileData();
+		
+	//	vm.vol = volunteerService.getProfileData();
 
 		vm.submit = function() {
 
@@ -46,6 +46,7 @@
 			// if(vm.vol.firstName!=null && vm.vol.lastName !=null &&
 			// vm.vol.address!=null && vm.vol.phoneNumber !=null && vm.vol.email
 			// !=null && vm.vol.birthDate !=null && vm.vol.sex !=null){
+			console.log("Volunteer Json : "+data);
 			volunteerService.volunteerProfileData = data;
 			var serviceCalls = volunteerService.profileDetails(data);
 			return $q.all(serviceCalls);
