@@ -58,6 +58,24 @@
 	margin-top:5px;
 	color:#797B7E;
 	font-size:12px;
+	padding-left: 43px;
+    padding-top: 18px;
+}
+.link_style
+{
+text-decoration:none;
+padding-left:30px;
+}
+.link_style:hover
+{
+text-decoration:none;
+color:white;
+}
+.hor_line
+{
+padding-top:20px;
+width:320px;
+border-bottom:1px solid #EDF0F5;
 }
 .profile_name{
 	font-size:16px;
@@ -73,18 +91,24 @@
 .margin-top-adjust{
 	margin-top:15px;
 }
-.side_menu_item{
-	list-style:none;
-	color:#808080;
-	display:inline-block;
-	width:100%;
-	float:left;
-	line-height:60px;
-	
+.side_menu_item {
+    list-style: none;
+    color: #808080;
+    display: inline-block;
+    width: 318px;
+    float: left;
+    line-height: 60px;
+    /* margin-right: -12px; */
+    /* color: wheat; */
+    
 }
-.padding_30
-{
-padding:30px;
+.padding_30 {
+    padding: 30px;
+   
+}
+.padding_301 {
+    padding: 0px;
+    padding-top: 30px;
 }
 .side_menu_item:hover{
 	background-color:#DB735F;
