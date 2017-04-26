@@ -19,13 +19,6 @@
                 }
             }
 
-          /*  if (!authService.isAuthenticated()) {
-                if (next.name !== 'login' && next.name !== 'landing') {
-                    event.preventDefault();
-                    $state.go('login');
-                }
-            }
-*/
             if(angular.element(document).find('md-dialog').length > 0) {
                 $mdDialog.cancel();
             }
