@@ -5,6 +5,6 @@
 </div>
 	userlist
 	
-	<!-- <div ng-repeat="report in vm.service"> -->
-		<report-generation serviceds="vm.service" headerds="vm.headers"></report-generation>
+	 <div ng-repeat="report in vm.reportCollection">
+		<report-generation ds="report" serviceds="vm.service" headerds="vm.headers"></report-generation>
 	</div>
