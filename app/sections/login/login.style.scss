@@ -111,7 +111,7 @@
 				margin-bottom: 48px;
 			}
 			& md-input-container {
-				margin: 0px;
+				margin:0px;
 			}
 
 			& .password-container {
@@ -178,6 +178,37 @@
 @media screen and (max-width: 768px) {
   #login-container {
     padding: rem(40px);
+    
+    max-width: rem(400px);
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2.5rem 1.5625rem 0 1.5625rem;
+	& .login-box {
+        & md-content {
+            border-radius: 8px;
+
+		    & .login-box-internal {
+              padding: 0.5rem 3.5625rem 0 3.5625rem;
+            }
+
+			& .login-image-container {
+				text-align: center;
+				& .login-logo {
+					width: 75%;
+				}
+			}
+			& .login-prompt {
+				color: $color-gray-darker;
+				text-align: center;
+				margin-top: 30px;
+				margin-bottom: 48px;
+			}
+			& md-input-container {
+				margin:0px;
+			}
+    }
+    
+    }
   }
 }
 
@@ -185,5 +216,27 @@
   #login-container {
     padding: rem(20px);
   }
+}
+
+
+
+
+
+
+#login-container.new_style
+{
+max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.5rem 1.5625rem 2.5rem 1.5625rem;
+}
+#login-container .login-box md-content .login-image-container .login-logo {
+    width: 50%;
+    margin-top:25px;
+    
+}
+.background2
+{
+background:url("~images/hero.jpg");
 }
 

@@ -1,13 +1,15 @@
-<div class="login-background"></div>
-<div id="login-container">
+<top-nav></top-nav>
+
+<div class="background2">
+<div id="login-container" class=" new_style">
     <div class="login-box" layout="row" layout-wrap>
     <md-content class="md-whiteframe-4dp">
             <div class="login-box-internal">
                 <div class="login-image-container">
                     <img class="login-logo" ng-src="~images/not_impossible_logo.png"/>
                 </div>
- <div class="login-prompt">NGO LOGIN</div>
-				<md-input-container class="md-block input-primary" flex-gt-sm>
+ <div class="login-prompt"><b>SET CREDENTIALS</b></div>
+				<md-input-container class="md-block input-primary " flex-gt-sm>
                     <label>FirstName</label>
               		<input type="text" id="input-firstName" required ng-model="vm.firstName" >
                 </md-input-container>
@@ -37,8 +39,10 @@
                     <label>Confirm Password</label>
 					<input type="password"  id="input-password2" required ng-model="vm.passwordConfirm">
                 </md-input-container>
-    			 <md-button class="md-raised button-primary" ng-click="vm.signIn();">Start</md-button>
+    			 <md-button class="md-raised button-primary" ng-click="vm.signIn();">REGISTER</md-button>
  		 </div>
 	</md-content>
 </div>
 </div>
+</div>
+<landing-footer></landing-footer>
