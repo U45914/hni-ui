@@ -26,6 +26,7 @@
                 <span ng-show="vm.signInButton == 'Signing In ...'"></span>
            		 {{ vm.signInButton }}
                 </md-button>
+                <center><div style="color:red" ng-show="vm.loginFail">Username/Password incorrect!</div></center>
             </div>
             <div class="login-box-external">
                 <div>Or use your social network account</div>

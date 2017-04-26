@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['authService', 'externalAuthService', '$state'];
+    LoginController.$inject = ['authService', 'externalAuthService', 'validateService', '$state'];
 
-    function LoginController(authService, externalAuthService, $state) {
+    function LoginController(authService, externalAuthService, validateService, $state) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
@@ -23,6 +23,7 @@
         vm.username="superuser@hni.com";
         vm.password="test123";
         vm.signInButton = "Sign In";
+        vm.loginFail = false;
       
         function authenticate(provider) {
             externalAuthService.googleAuthenticate()
@@ -38,15 +39,25 @@
 
         function signIn() {
         	 vm.signInButton = "Signing In ...";
-        	 //vm.isDisabled = true;
-           var msg =  authService.login(vm.username, vm.password);
+        	 vm.isDisabled = true;
+        	 if(validateService.validateCredentials(vm.username, vm.password)){
+        		 var msg =  authService.login(vm.username, vm.password);
             	 console.log("response : "+ msg);
-            	 if(msg == "error"){
+            	 if(msg == null){
             		 vm.signInButton = "Sign In";
             		 vm.isDisabled = false;
+            		 vm.loginFail = true;
             	 }else{
+            		 vm.isDisabled = true;
+            		 vm.loginFail = false;
                 //$state.go('dashboard', {}, {reload: true});
             	 }
+        	 }
+        	 else{
+        		 vm.signInButton = "Sign In";
+        		 vm.isDisabled = false;
+        		 vm.loginFail = true;
+        	 }
         }
     }
 })();
