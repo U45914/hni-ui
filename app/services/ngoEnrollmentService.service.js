@@ -29,7 +29,8 @@
         	  stakeHolderData,
         	  serviceData,
         	  fundingData,
-        	  clientData
+        	  clientData,
+        	  overviewData
               };
         
          
@@ -99,15 +100,7 @@
         }
         
         function getProfileData(){
-        	return $http.get(`${baseUrl}/user/ngo/profile`).then(function(response){
-        		if(response || response.data){
-        			/*overviewData = response.data.overview;
-        			stakeHolderData = response.data.stakeHolderData;
-        			serviceData = response.data.serviceData;
-        			fundingData = response.data.fundingData;
-        			clientData = response.data.clientData;*/
-        		}
-        	});
+        	return $http.get(`${baseUrl}/users/ngo/profile`)
         }
     }
 })();

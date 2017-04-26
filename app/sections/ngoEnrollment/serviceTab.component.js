@@ -18,9 +18,9 @@
 
 	}
   
-  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope']; 
+  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope', '$scope']; 
   
-  function serviceController ($q,ngoEnrollmentService,$rootScope) {
+  function serviceController ($q,ngoEnrollmentService,$rootScope, $scope) {
 	  var vm =this;
 	  vm.list= [];
 	  vm.flag=false;
@@ -44,6 +44,10 @@
 	  vm.expanded="false";
 	  vm.resources = [ "X","Y", "Z"];
 	  vm.resourceList= [];
+	  
+	  $scope.$on("data-loaded-ngo", function(obj) {
+			vm.load();
+		});
 	  
 	  vm.foodBbank = function(foodBankValue){
 		  	if( foodBankValue != null ){
@@ -88,11 +92,7 @@
 			
 		  }
 		  
-		  vm.service = ngoEnrollmentService.serviceData;
-		  if(vm.service && vm.service.foodBankValue){
-			  vm.list = vm.service.foodBankValue;
-			  vm.service.foodBankValue=" ";
-		  }
+		  
 		  if(vm.list){
 			  vm.flag1=true;
 		  }
@@ -194,6 +194,14 @@
 				}
 				console.log(vm.resourceList);
 			}	  
+		vm.load = function() {
+			vm.service = ngoEnrollmentService.serviceData;
+			debugger;
+			  if(vm.service && vm.service.foodBankValue && vm.service.foodBankValue != ""){
+				  vm.list = vm.service.foodBankValue;
+				  vm.service.foodBankValue="";
+			  }
+		}
   }	  
 	  
 	  
