@@ -28,8 +28,12 @@ How many individuals are served?
 </table>
 		 <div flex-gt-sm>
             <label> Do you collect individual client info?</label>
-			<input type="radio"  ng-value="true" ng-model ="vm.client.individualClientInfoCollected">Yes
-			<input type="radio"  ng-value="false" ng-model ="vm.client.individualClientInfoCollected">No
+            
+            <md-radio-group   layout="row" ng-model ="vm.client.individualClientInfoCollected" class="md-primary"> 
+            <md-radio-button ng-value="true" >Yes</md-radio-button>
+            <md-radio-button ng-value="false">No</md-radio-button> 
+			</md-radio-group> 
+			
 		</div> 
 		<div ng-show= "vm.client.individualClientInfoCollected">
 			<md-input-container class="md-block input-primary" flex-gt-sm>
