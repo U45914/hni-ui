@@ -1,15 +1,15 @@
 <fieldset>
-	<label>Work status</label>
-			<select ng-model="vm.emp.workStatus" ng-options = "a.name for a in vm.wrkStatusList"></select>
-				
-			<br>
+<br> <label>Work status</label>
+	<md-select ng-model="vm.emp.workStatus"> <md-option
+		ng-repeat="a in vm.wrkStatusList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+	<br>
 	<label>How much time does it take you to get to work and back?</label>
-			<select ng-model="vm.emp.timeToWorkplace" ng-options = "a.name for a in vm.timeToWrkplace"></select>
-				
+	<md-select ng-model="vm.emp.timeToWorkplace"> <md-option
+		ng-repeat="a in vm.timeToWrkplace" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
 			<br>
 	<label>How many jobs do you have?</label>
-			<select ng-model="vm.emp.noOfJob" ng-options = "a.name for a in vm.noJobs"></select>	
-	
+	<md-select ng-model="vm.emp.noOfJob"> <md-option
+		ng-repeat="a in vm.noJobs" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>	
 	<md-input-container class="md-block input-primary" flex-gt-sm>
            	<label> Employer</label>
 			<input type="text" ng-model="vm.emp.employer"/>
@@ -20,21 +20,19 @@
 			<input type="text" ng-model="vm.emp.jobTitle"/>
 	</md-input-container>	
 	<label>if unemployed, for how long</label>
-			<select ng-model="vm.emp.durationOfEmployement" ng-options = "a.name for a in vm.unemplDuration"></select>
+			<md-select ng-model="vm.emp.durationOfEmployement"> <md-option
+		ng-repeat="a in vm.unemplDuration" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
 	<br>
-	<div flex-gt-sm>
-            <label>Do you receive unemployment benefits?</label>
-			<input type="radio"  ng-value="true" ng-model ="vm.emp.unemploymentBenfits">Yes
-			<input type="radio"  ng-value="false" ng-model ="vm.emp.unemploymentBenfits">No
-	</div>
-	<div class="wrapper">
-      	
+	<md-radio-group  layout = "row" ng-model ="vm.emp.unemploymentBenfits"  class="md-primary">
+	<label>Do you receive unemployment benefits?</label>
+	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
+	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
+	</md-radio-group>      	
 	<div ng-show = "vm.emp.unemploymentBenfits == false">
 			<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label> Why not?</label>
 				<input type="text" ng-model="vm.emp.reasonUnemploymentBenefits"/>
 			</md-input-container>
-	</div>
 	</div>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label> Total annual Income?</label>
@@ -45,13 +43,18 @@
 				<input type="text" ng-model="vm.emp.rateAmount"/>
 	</md-input-container>
 	<label>Rate type</label>
-			<select ng-model="vm.emp.rateType" ng-options = "a.name for a in vm.rateList"></select>
+	<md-select ng-model="vm.emp.rateType"> <md-option
+		ng-repeat="a in vm.rateList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
 			<br>
 	<label>average hours worked per week</label>
-			<select ng-model="vm.emp.avgHoursPerWeek" ng-options = "a.name for a in vm.avgWrkHrs"></select>
+	<md-select ng-model="vm.emp.avgHoursPerWeek"> <md-option
+		ng-repeat="a in vm.avgWrkHrs" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+			
 		<br>
 	<label>Resident status</label>
-			<select ng-model="vm.emp.residentStatus" ng-options = "a.name for a in vm.residentList"></select>
+	<md-select ng-model="vm.emp.residentStatus"> <md-option
+		ng-repeat="a in vm.residentList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+			
 		<br>
 	<lable>How much $ do you spend each month on: </lable>
 	<md-input-container class="md-block input-primary" flex-gt-sm>

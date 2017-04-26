@@ -1,27 +1,27 @@
 <br>
 <div id="healthId">
-	<table>
-		<tr>
-			<td><label>Allergies</label></td>
-			<td><input type="text" placeholder="Allergies" required
-				ng-model="vm.health.allergies" /></td>
-		</tr>
-		<tr>
-			<td><label>History of addiction</label></td> 
-			<td><input	type="radio" ng-model="vm.health.addiction" ng-value="true"> Yes 
-			<input type="radio" ng-model="vm.health.addiction" ng-value="false"> No
-			<div ng-show="vm.health.addiction">
-			<!-- <md-input-container class="md-block input-primary" flex-gt-sm> -->
+<md-input-container class="md-block input-primary" flex-gt-sm>
+            <label>Allergies</label>
+			<input type="text" placeholder="Allergies" required
+				ng-model="vm.health.allergies" />
+	</md-input-container>
+	<md-radio-group  layout = "row" ng-model="vm.health.addiction"  class="md-primary">
+	<label>History of addiction</label>
+	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
+	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
+	</md-radio-group>
+	<div ng-show="vm.health.addiction">
+	<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label>If yes then: provide type of addiction</label>
 				<input type="text" ng-model="vm.health.addictionType"> 
-			<!-- </md-input-container> -->
+			</md-input-container>
 		</div>
-		</td>
-		<tr>
-			<td><label>History of mental health problems</label></td>
-			<td><input type="text" placeholder="Mental Health Issue" 
-				ng-model="vm.health.mentalHealthIssue" /></td>
-		</tr>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>History of mental health problems</label>
+				<input type="text" placeholder="Mental Health Issue" 
+				ng-model="vm.health.mentalHealthIssue" /> 
+			</md-input-container>
+	<table>
 		<tr>
 			<td><label>If yes then: please explain</label></td>
 			<td><input type="text" ng-model="vm.health.mentalHealthIssueHistory" /></td>
