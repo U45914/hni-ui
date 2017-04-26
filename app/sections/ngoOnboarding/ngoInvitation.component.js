@@ -11,13 +11,15 @@
 		controller : NgoInvitationController,
 		controllerAs : 'vm'
 	});
-	NgoInvitationController.$inject = [ '$q', 'ngoOnboardingService', 'orgService', '$scope',
+	NgoInvitationController.$inject = [ '$q', 'ngoOnboardingService', 'orgService', 'validateService', '$scope',
 			'$state', 'toaster' ];
 
-	function NgoInvitationController($q, ngoOnboardingService, orgService, $scope, $state,
+	function NgoInvitationController($q, ngoOnboardingService, orgService, validateService, $scope, $state,
 			toaster) {
 		var vm = this;
+		vm.incomplete = false;
 		vm.orgInfo = {};
+		vm.validateNGOInvitation = "";
 		loadOrgInfo();
 		vm.submit = function() {
 			var data = {
@@ -34,8 +36,9 @@
 					"zip" : vm.zip
 				} ]
 			};
-			if (vm.name != null && vm.phoneNumber != null && vm.email != null
-					&& vm.webSiteUrl != null) {
+			
+			vm.validateNGOInvitation = validateService.validateNGOOnboard(data);
+			if (validateService.validateNGOOnboard(data) == "") {
 				var serviceCalls = ngoOnboardingService
 						.inviteNgo(data)
 						.then(
@@ -57,8 +60,10 @@
 									// $state.go('dashboard');
 								});
 
-				console.log(data);
 				return $q.all(serviceCalls);
+			}
+			else{
+				vm.incomplete = true;
 			}
 		}
 		

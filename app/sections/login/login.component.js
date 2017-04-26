@@ -24,6 +24,7 @@
         vm.password="test123";
         vm.signInButton = "Sign In";
         vm.loginFail = false;
+        vm.validateCredentials = "";
       
         function authenticate(provider) {
             externalAuthService.googleAuthenticate()
@@ -40,10 +41,11 @@
         function signIn() {
         	 vm.signInButton = "Signing In ...";
         	 vm.isDisabled = true;
-        	 if(validateService.validateCredentials(vm.username, vm.password)){
-        		 var msg =  authService.login(vm.username, vm.password);
-            	 console.log("response : "+ msg);
-            	 if(msg == null){
+        	 vm.validateCredentials = validateService.validateCredentials(vm.username, vm.password);
+        	 if( vm.validateCredentials == ""){
+        		 var response =  authService.login(vm.username, vm.password);
+            	 console.log("response : "+ response);
+            	 if(response == null){
             		 vm.signInButton = "Sign In";
             		 vm.isDisabled = false;
             		 vm.loginFail = true;
