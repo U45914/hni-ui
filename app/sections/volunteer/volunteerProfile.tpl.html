@@ -1,88 +1,97 @@
 <top-nav></top-nav>
-
-
+<div>
+<div style="float:left;width:5%;"><left-nav-bar></left-nav-bar>
+</div>
+<div style="float:left;width:95%;">
 <h1>Volunteer Profile</h1>
 <br>
 <div id="volId">
 <div layout-gt-xs="row">
 	<md-input-container class="" flex-gt-sm>
-	<label>First Name</label> <input type="text" required
+	<label class="text_style_vol">First Name</label> <input type="text" required
 		ng-model="vm.vol.firstName" /></md-input-container>
 	<md-input-container class="" flex-gt-sm>
-	<label>Last Name</label> <input type="text" required
+	<label class="text_style_vol" >Last Name</label> <input type="text" required
 		ng-model="vm.vol.lastName" /> </md-input-container>
 	</md-input-container>
 </div>
-	<label>Address</label>
+	<h4 >Address</h4>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>House Name</label> <input type="text" required
+	<label class="text_style_vol">House Name</label> <input type="text" required
 		ng-model="vm.vol.name" /> </md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Address</label> <input type="text" required
+	<label class="text_style_vol" >Address</label> <input type="text" required
 		ng-model="vm.vol.address1" /> </md-input-container>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
-	<label>City</label> <input type="text" required ng-model="vm.vol.city" />
+	<label class="text_style_vol">City</label> <input type="text" required ng-model="vm.vol.city" />
 	</md-input-container>
 	<md-input-container class="md-block" flex-gt-sm>
-	<label>State</label> <md-select ng-model="vm.vol.state"
+	<label class="text_style_vol" >State</label> <md-select ng-model="vm.vol.state"
 		placeholder="Select a state"> <md-option value="KL">Kerala</md-option>
 	<md-option value="TN">Tamil Nadu</md-option> <md-option value="KN">Karnataka</md-option>
 	</md-select> </md-input-container>
 	<md-input-container class="md-block" flex-gt-sm>
-	<label>Zip</label> <input type="text" required ng-model="vm.vol.zip" />
+	<label class="text_style_vol" >Zip</label> <input type="text" required ng-model="vm.vol.zip" />
 	</md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Phone Number</label> <input type="number" required
+	<label class="text_style_vol" >Phone Number</label> <input type="number" required
 		ng-model="vm.vol.phoneNumber" /> </md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Email</label> <input type="text" required
+	<label class="text_style_vol" class="text_style_vol">Email</label> <input type="text" required
 		ng-model="vm.vol.email" /> </md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
-	<label>Birthdate</label> <input type="date" ng-model="vm.vol.birthDate">
+	<label class="text_style_vol" >Birthdate</label> <input type="date" ng-model="vm.vol.birthDate">
 	<!-- <md-datepicker ng-model="vm.vol.birthDate" md-placeholder="Enter date" md-is-open="true"></md-datepicker> -->
 	</md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Sex</label> <md-select required ng-model="vm.vol.sex">
+	<label class="text_style_vol">Sex</label> <md-select required ng-model="vm.vol.sex">
 	<md-option value="M">Male</md-option> <md-option value="F">Female</md-option></md-select> </md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Race</label> <md-select ng-model="vm.vol.race"> <md-option
+	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.vol.race"> <md-option
 		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Highest Level of Education Completed</label> <md-select
+	<label class="text_style_vol" >Highest Level of Education Completed</label> <md-select
 		ng-model="vm.vol.highestLLevelOfEducationCompleted"> <md-option
 		value=1>B-Tech</md-option> <md-option value=2>Plus Two</md-option> <md-option
 		value=3>Xth</md-option></md-select> </md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Income</label> <md-select ng-model="vm.vol.income">
+	<label class="text_style_vol" class="text_style_vol">Income</label> <md-select ng-model="vm.vol.income">
 	<md-option value=1>1k-5k</md-option> <md-option value=2>5k-10k</md-option>
 	<md-option value=3>10k-15k</md-option></md-select> </md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Marital Status</label> <md-select
+	<label class="text_style_vol" >Marital Status</label> <md-select
 		ng-model="vm.vol.maritalStatus"> <md-option value=1>Single</md-option>
 	<md-option value=2>Married</md-option> <md-option value=3>Divorce</md-option></md-select>
 	</md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label># Kids</label> <input type="number" ng-model="vm.vol.kids">
+	<label class="text_style_vol" ># Kids</label> <input type="number" ng-model="vm.vol.kids">
 	</md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Employer</label> <input type="text" ng-model="vm.vol.employer">
+	<label class="text_style_vol">Employer</label> <input type="text" ng-model="vm.vol.employer">
 	</md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Non-Profit</label> <md-select ng-model="vm.vol.nonProfit">
+	<label class="text_style_vol" >Non-Profit</label> <md-select ng-model="vm.vol.nonProfit">
 	<md-option>Y</md-option> <md-option>N</md-option></md-select> </md-input-container>
 </div>
 	<md-button class="md-raised button-primary" id="button"
-		ng-click=" vm.submit()">Submit Details</md-button>
+		ng-click=" vm.submit()">SAVE PROFILE</md-button>
 	<!-- <button class="button" ng-click="vm.submit();">Submit Details</button>	 -->
+</div>
+
+</div>
+
+</div>
+<div style="clear:both">
+<landing-footer></landing-footer>
 </div>

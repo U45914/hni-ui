@@ -16,12 +16,15 @@
 
 	}
 
-	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope' ];
+	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope' ];
 
-	function overviewController($q, ngoEnrollmentService, $rootScope) {
+	function overviewController($q, ngoEnrollmentService, $rootScope, $scope) {
 		var vm = this;
 		vm.list = [];
 
+		$scope.$on("data-loaded-ngo", function(obj) {
+			vm.load();
+		});
 		vm.addRow = function(promoters) {
 			if (promoters != null) {
 				vm.list.push(promoters);
@@ -32,8 +35,11 @@
 		vm.delRow = function(index) {
 			vm.list.splice(index, 1);
 		}
+		
 
 		vm.view = ngoEnrollmentService.overviewData;
+		console.log("v.view : ");
+		console.log(vm.view);
 		if (vm.view && vm.view.promoters) {
 			vm.list = vm.view.promoters;
 			vm.view.promoters = " ";
@@ -77,6 +83,9 @@
 				window.alert("Please fill the fields");
 				return false;
 			}
+		}
+		vm.load = function() {
+			vm.view = ngoEnrollmentService.overviewData;
 		}
 
 		function onSuccess(response) {
