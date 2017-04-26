@@ -18,9 +18,10 @@
 
 	}
   
-  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope']; 
+  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope','$mdToast']; 
   
-  function serviceController ($q,ngoEnrollmentService,$rootScope) {
+  function serviceController ($q,ngoEnrollmentService,$rootScope,$mdToast) {
+	   
 	  var vm =this;
 	  vm.list= [];
 	  vm.flag=false;
@@ -54,7 +55,7 @@
 			} 
 		  
 		  vm.cal = function(x,y, event){
-			  var isChecked = event.target.checked;
+			  var isChecked = event.currentTarget.getAttribute("class").indexOf("md-checked") == -1;
 			  var day = vm.days[x];
 			  var mealType = vm.frequency[y];
 			  
@@ -82,6 +83,15 @@
 		  if(vm.list){
 			  vm.flag1=true;
 		  }
+		  
+		 /* vm.showCustomToast = function(msg) {
+		        $mdToast.show({
+		          hideDelay   : 3000,
+		          position    : 'top right',
+		          controller  : 'ToastCtrl',
+		          templateUrl : 'toast-template.html'
+		        });
+		      };*/
 		  
 		  vm.save =  function(){
 			  var data = {
@@ -114,10 +124,8 @@
 			  		
 				   }
 				 else{
-					 window.alert("Please fill Fields");
-				
-				        return false;
-					 
+					 //vm.showCustomToast("fill the mandatory fields");
+				     return false;
 				 }
 		  }
 		  
@@ -151,23 +159,7 @@
 			return vm.flag;
 		}
 		 
-		/*vm.check = function(){
-		vm.resourceReturn = vm.service.resource;
-		 
-		 var index = [];
-		 vm.checked=[];
-		for(var i=0;i<vm.resourceReturn.length;i++){
-			for(var j=0;j<vm.resources.length;j++){
-				if(vm.resourceReturn[i]==vm.resources[j]){
-
-			// vm.resourcesReturn.push(vm.resourceReturn[i]);
-			index.push(j); 
-			vm.service.resourceChck =true;
-			// vm.checked=true;
-				}
-		}
-		}
-		}*/
+		
 		
 		vm.select = function(index, event) {
 			var isChecked = event.target.checked;
