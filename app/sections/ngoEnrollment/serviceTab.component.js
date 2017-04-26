@@ -32,7 +32,10 @@
 	  vm.dinner=[];
 	 
 	  
-	  vm.mealsArray = [vm.breakfast, vm.lunch, vm.dinner]
+	  vm.mealsArray = [vm.breakfast, vm.lunch, vm.dinner];
+	  vm.brkfstAvailabilty = [];
+	  vm.lunchAvailabilty = [];
+	  vm.dinnerAvailabilty = [];
 	  
 	  vm.days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 	  vm.frequency = ["Breakfast","Lunch","Dinner"];
@@ -53,22 +56,33 @@
 			 vm.list.splice(index, 1);
 			} 
 		  
-		  vm.cal = function(x,y, event){
+		  vm.cal = function(row,column, event){
 			  var isChecked = event.target.checked;
-			  var day = vm.days[x];
-			  var mealType = vm.frequency[y];
+			  var day = vm.days[row];
+			  var mealType = vm.frequency[column];
 			  
 			  if(isChecked){
-				  vm.mealsArray[y].push(day);
-				  vm.obj[mealType] = vm.mealsArray[y];
-				 
+				  if(mealType=="Breakfast"){
+					  vm.brkfstAvailabilty.push(day);
+				  }
+				  else if(mealType=="Lunch"){
+					  vm.lunchAvailabilty.push(day);
+				  }
+				  else if(mealType=="Dinner"){
+					  vm.dinnerAvailabilty.push(day);
+				  }
 			  }else{
-				  var index = vm.mealsArray[y].indexOf(day);
-				  vm.mealsArray[y].splice(index, 1);				 
-				  vm.obj[mealType] = vm.mealsArray[x];
-		 //  If the days are empty, the meal array corresponding that days are removed from the obj array 
-				  if(vm.mealsArray[y].length == 0){
-					  delete vm.obj[mealType];
+				  if(mealType=="Breakfast"){
+					  var idx = vm.brkfstAvailabilty.indexOf(day);
+					  vm.brkfstAvailabilty.splice(idx,1);
+				  }
+				  else if(mealType=="Lunch"){
+					  var idx = vm.lunchAvailabilty.indexOf(day);
+					  vm.lunchAvailabilty.splice(idx,1);
+				  }
+				  else if(mealType=="Dinner"){
+					  var idx = vm.dinnerAvailabilty.indexOf(day);
+					  vm.dinnerAvailabilty.splice(idx,1);
 				  }
 			  } 
 			
@@ -87,15 +101,17 @@
 			  var data = {
 			  "brkfstChk": vm.service.brkfstChk, 
 			  "brkfstQty" : vm.service.brkfstQty,
+			  "brkfstAvailabilty": vm.brkfstAvailabilty,
 			  "lunchChk": vm.service.lunchChk,
 			  "lunchQty":vm.service.lunchQty,
+			  "lunchAvailabilty": vm.lunchAvailabilty,
 			  "dinnerChk":vm.service.dinnerChk,
 			  "dinnerQty":vm.service.dinnerQty,
+			  "dinnerAvailabilty": vm.dinnerAvailabilty,
 			  "baggedChk":vm.service.baggedChk,
 			  "baggedQty":vm.service.baggedQty,
 			  "giftCard":vm.service.giftCard,
 			  "other":vm.service.other,	
-			  "serviceCalender":vm.obj,
 			  "monthlyBudget":vm.service.monthlyBudget,
 			  "operatingCost":vm.service.operatingCost,
 			  "personalCost":vm.service.personalCost,
