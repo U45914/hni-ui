@@ -21,10 +21,17 @@
 		ft.fundingSourceList = [];
 		ft.mealDonaltionList = [];
 		ft.mealFundingList = [];
+		
+		$scope.$on("data-loaded-ngo", function(obj) {
+			ft.load();
+		});
+		
+		ft.load = function() {
 		if (ngoEnrollmentService.fundingData) {
 			ft.fundingSourceList = ngoEnrollmentService.fundingData["fundingSource"];
 			ft.mealDonaltionList = ngoEnrollmentService.fundingData["mealDonation"];
 			ft.mealFundingList = ngoEnrollmentService.fundingData["mealFunding"];
+		}
 		}
 		ft.save = function() {
 			var data = {

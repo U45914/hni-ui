@@ -21,8 +21,12 @@
 	
 	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;
-    	vm.client = ngoEnrollmentService.clientData;
-    	    	
+    	
+    	 
+    	$scope.$on("data-loaded-ngo", function(obj) {
+			vm.load();
+		});
+    	
     	vm.save = function(){   		
       		 var data = {
       				 "individualsServedDaily" : vm.client.individualsServedDaily,
@@ -38,6 +42,10 @@
 	  		 $q.all(serviceCalls)//.then(onSuccess,onError);
 			 
       		
+    	}
+    	
+    	vm.load = function() {
+    		vm.client = ngoEnrollmentService.clientData;
     	}
 	}
 })();

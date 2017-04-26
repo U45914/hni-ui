@@ -14,14 +14,30 @@
   function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService,$state) {
       var vm = this;
       vm.tabIndex = 0;
-      //ngoEnrollmentService.getProfileData();
-      var overViewData = ngoEnrollmentService.overviewData;
-	  var stakeHolderData = ngoEnrollmentService.stakeHolderData;
-	  var serviceData = ngoEnrollmentService.serviceData;
-	  var fundingData = ngoEnrollmentService.fundingData;
-	  var clientData = ngoEnrollmentService.clientData;
+      vm.$onInit = function() {
+    	  ngoEnrollmentService.getProfileData().then(function success(response) {
+              if(response || response.data) {
+                  console.log("response : "+JSON.stringify(response.data.response));
+                  var response = response.data.response;
+                  console.log(response.overview);
+                  ngoEnrollmentService.overviewData = response.overview;
+                  ngoEnrollmentService.stakeHolderData = response.stakeHolder;
+                  ngoEnrollmentService.serviceData = response.service;
+                  ngoEnrollmentService.fundingData = response.funding;
+                  ngoEnrollmentService.clientData = response.client;
+                  $scope.$broadcast("data-loaded-ngo", response);
+               }
+           }, function error(error) {
+               console.log(error);
+           });;
+      }
+      var overViewData = ngoEnrollmentService.getOverviewData();
+      console.log("--->"+overViewData);
+	  var stakeHolderData = ngoEnrollmentService.getStakeHolderData();
+	  var serviceData = ngoEnrollmentService.getServiceData();
+	  var fundingData = ngoEnrollmentService.getFundingData();
+	  var clientData = ngoEnrollmentService.getClientData();
     
-         
      $rootScope.$on("scroll-tab", function(event, data){
     	 vm.scroll()
      });
