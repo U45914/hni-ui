@@ -1,54 +1,80 @@
-<table id="role" border="1">
+<!-- <table id="role" border="1">
 	<tr>
-		<th ng-repeat="head in vm.headersRole"><span>{{head.label}}</span></th>
+		<th ng-repeat="head in vm.headers"><span>{{head.label}}</span></th>
 	</tr>
 
-	<tr ng-repeat="data in vm.serviceRole">
-		<td ng-repeat=" head in vm.headersRole" ng-scope>
+	<tr ng-repeat="data in vm.service">
+		<td ng-repeat=" head in vm.headers" ng-scope>
+			{{data[head.field]}}</td>
+	</tr>
+</table> -->
+
+
+
+
+<div flex-xs flex-gt-xs="50" layout="column">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{vm.report.label}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+		         <table id="role" border="1">
+	<tr>
+		<th ng-repeat="head in vm.headers"><span>{{head.label}}</span></th>
+	</tr>
+
+	<tr ng-repeat="data in vm.service">
+		<td ng-repeat=" head in vm.headers" ng-scope>
 			{{data[head.field]}}</td>
 	</tr>
 </table>
+        </md-card-content>
+         </md-card>
 
-<table id="organization" border="1">
-	<tr>
-		<th ng-repeat="head in vm.headersOrganization"><span>{{head.label}}</span></th>
-	</tr>
 
-	<tr ng-repeat="data in vm.serviceOrganization">
-		<td ng-repeat=" head in vm.headersOrganization" ng-scope>
-			{{data[head.field]}}</td>
-	</tr>
-</table>
 
-<table id="ngo" border="1">
-	<tr>
-		<th ng-repeat="head in vm.headersNgo"><span>{{head.label}}</span></th>
-	</tr>
 
-	<tr ng-repeat="data in vm.serviceRole">
-		<td ng-repeat=" head in vm.headersNgo" ng-scope>
-			{{data[head.field]}}</td>
-	</tr>
-</table>
+<!-- <p>Organization</p>
+<md-grid-list class="red" md-cols="5" md-row-height="6:1" md-gutter="6px">
+<md-grid-tile ng-repeat="header in vm.headersOrganization">
+<div id="header" layout="row" flex>{{header.label}}</div>
+</md-grid-tile> </md-grid-list>
+<md-grid-list class="green" md-cols="5" md-row-height="6:1" md-gutter="6px"
+	ng-repeat="data in vm.serviceOrganization"> <md-grid-tile
+	ng-repeat="header in vm.headersOrganization">
+<div id="data" layout="row" flex>{{data[header.field]}}</div>
+</md-grid-tile> </md-grid-list>
 
-<table id="NGO" border="1">
-	<tr>
-		<th ng-repeat="head in vm.headersGetAllNGO"><span>{{head.label}}</span></th>
-	</tr>
+<p>Ngo</p>
 
-	<tr ng-repeat="data in vm.serviceGetAllNGO">
-		<td ng-repeat=" head in vm.headersGetAllNGO" ng-scope>
-			{{data[head.field]}}</td>
-	</tr>
-</table>
-
-<table id="volunteer" border="1">
-	<tr>
-		<th ng-repeat="head in vm.headersVolunteer"><span>{{head.label}}</span></th>
-	</tr>
-
-	<tr ng-repeat="data in vm.serviceVolunteer">
-		<td ng-repeat=" head in vm.headersVolunteer" ng-scope>
-			{{data[head.field]}}</td>
-	</tr>
-</table>
+<md-grid-list class="red" md-cols="5" md-row-height="6:1" md-gutter="6px">
+<md-grid-tile ng-repeat="header in vm.headersNgo">
+<div id="header" layout="row" flex>{{header.label}}</div>
+</md-grid-tile> </md-grid-list>
+<md-grid-list class="green" md-cols="5" md-row-height="6:1" md-gutter="6px"
+	ng-repeat="data in vm.serviceNgo"> <md-grid-tile
+	ng-repeat="header in vm.headersNgo">
+<div id="data" layout="row" flex>{{data[header.field]}}</div>
+</md-grid-tile> </md-grid-list>
+<p>Biju</p>
+ <md-grid-list class="red" md-cols="5" md-row-height="6:1" md-gutter="6px">
+<md-grid-tile ng-repeat="header in vm.headersGetAllNGO">
+<div id="header" layout="row" flex>{{header.label}}</div>
+</md-grid-tile> </md-grid-list>
+<md-grid-list class="green" md-cols="5" md-row-height="6:1" md-gutter="6px"
+	ng-repeat="data in vm.serviceGetAllNGO"> <md-grid-tile
+	ng-repeat="header in vm.headersGetAllNGO">
+<div id="data" layout="row" flex>{{data[header.field]}}</div>
+</md-grid-tile> </md-grid-list>
+<p>Nithin</p>
+<md-grid-list class="red" md-cols="5" md-row-height="6:1" md-gutter="6px">
+<md-grid-tile ng-repeat="header in vm.headersVolunteer">
+<div id="header" layout="row" flex>{{header.label}}</div>
+</md-grid-tile> </md-grid-list>
+<md-grid-list class="green" md-cols="5" md-row-height="6:1" md-gutter="6px"
+	ng-repeat="data in vm.serviceVolunteer"> <md-grid-tile
+	ng-repeat="header in vm.headersVolunteer">
+<div id="data" layout="row" flex>{{data[header.field]}}</div>
+</md-grid-tile> </md-grid-list>  -->
