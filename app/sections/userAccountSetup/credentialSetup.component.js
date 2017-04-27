@@ -15,18 +15,19 @@
 		var USER_TYPE = "userType";
 
 		var vm = this;
-		vm.userType = vm.getUserType;
+		vm.userType = getUserType();
 		vm.userNameMessage = "";
 		vm.errorText = false;
 		vm.validateUserEnrollment = "";
+		vm.username = getUserName();
 
 		vm.signIn = function() {
 			var data = {
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
-				"email" : vm.getUserName(),
+				"email" : getUserName(),
 				"password" : vm.password,
-				"organizationId" : vm.getOrgInfo()
+				"organizationId" : getOrgInfo()
 			};
 			
 			vm.validateUserEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
@@ -74,15 +75,15 @@
 			}
 		};
 
-		vm.getUserType = function() {
+		function getUserType() {
 			return window.localStorage.getItem(USER_TYPE);
 		};
 
-		vm.getOrgInfo = function() {
+		function getOrgInfo() {
 			return window.localStorage.getItem(USER_ORG_INFO);
 		};
 		
-		vm.getUserName = function() {
+		function getUserName() {
 			return window.localStorage.getItem("userName");
 		};
 	}

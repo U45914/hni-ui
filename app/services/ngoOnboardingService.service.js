@@ -37,7 +37,8 @@
             	    url: `${baseUrl}/users/register`,
             	    data: postData,
             	    headers: {
-            	        "user-type": window.localStorage.getItem("userType")
+            	        "user-type": window.localStorage.getItem("userType"),
+            	        "act-code": window.localStorage.getItem("activationCode")
             	    }
             	}
             return $http(config);
