@@ -79,13 +79,9 @@
                 url: '/addNgo',
                 template: '<add-ngo></add-ngo>'
             })
-            .state('ngoEnrollment', {
-                url: '/ngoEnrollment',
-                template: '<ngo-enrollment></ngo-enrollment>'
-            })
-           .state('volunteerEnrollment', {
-                url: '/volunteerEnrollment',
-                template: '<volunteer-enrollment></volunteer-enrollment>'
+            .state('credential-setup', {
+                url: '/credential-setup',
+                template: '<credential-setup></credential-setup>'
             })
             .state('ngoEnrollmentTab', {
                 url: '/ngoEnrollmentTab',

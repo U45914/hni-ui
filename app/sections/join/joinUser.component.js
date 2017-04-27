@@ -23,7 +23,7 @@
         	var userType = $state.params.type;
         	joinUserService.validateActivationCode(userType, activationCode).then(function successCallback(httpResponse) {
         		if (httpResponse && httpResponse.data.response == 'success') {
-        			setUserTypeAndOrganizationToLocalStorage(httpResponse.data.orgId, userType);
+        			setUserDataToLocalStorage(httpResponse.data, userType);
         			forwardRequest(userType);
         		} else {
         			console.log('Your invitation code expired');
@@ -33,19 +33,21 @@
         	});
         };
         
-        function setUserTypeAndOrganizationToLocalStorage(orgId, type) {
-        	window.localStorage.setItem(USER_ORG_INFO, orgId);
+        function setUserDataToLocalStorage(userData, type) {
+        	window.localStorage.setItem(USER_ORG_INFO, userData.orgId);
+        	window.localStorage.setItem("userName", userData.userName);
         	window.localStorage.setItem(USER_TYPE, type);
         }
         
         function forwardRequest(type) {
-        	if (type == 'ngo') {
+        	$state.go('ngoEnrollment');
+        	/*if (type == 'ngo') {
         		$state.go('ngoEnrollment');
         	} else if (type == 'volunteer') {
         		$state.go('volunteerEnrollment');
         	} else {
         		$state.go('dashboard');
-        	}
+        	}*/
         }
         
     }   

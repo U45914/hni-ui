@@ -1,16 +1,16 @@
 (function() {
-	angular.module('app').component('ngoEnrollment', {
+	angular.module('app').component('credentialSetup', {
 		bindings : {
 
 		},
-		templateUrl : 'ngoEnrollment.tpl.html',
-		controller : NgoEnrollmentController,
+		templateUrl : 'credential-setup.tpl.html',
+		controller : CredentialSetupController,
 		controllerAs : 'vm'
 	});
-	NgoEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
+	CredentialSetupController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
 			'$state' ];
 
-	function NgoEnrollmentController($q, ngoOnboardingService, validateService, $scope, $state) {
+	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state) {
 		var USER_ORG_INFO = "userOrgInfo";
 		var USER_TYPE = "userType";
 
@@ -18,19 +18,19 @@
 		vm.userType = vm.getUserType;
 		vm.userNameMessage = "";
 		vm.errorText = false;
-		vm.validateNGOEnrollment = "";
+		vm.validateUserEnrollment = "";
 
 		vm.signIn = function() {
 			var data = {
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
-				"email" : vm.username,
+				"email" : vm.getUserName(),
 				"password" : vm.password,
 				"organizationId" : vm.getOrgInfo()
 			};
 			
-			vm.validateNGOEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
-			if(vm.validateNGOEnrollment == ""){
+			vm.validateUserEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
+			if(vm.validateUserEnrollment == ""){
 				vm.errorText = false;
 				ngoOnboardingService.registerNgo(data).then(function(response) {
 					if (response && response.data && response.data.success) {
@@ -80,6 +80,10 @@
 
 		vm.getOrgInfo = function() {
 			return window.localStorage.getItem(USER_ORG_INFO);
+		};
+		
+		vm.getUserName = function() {
+			return window.localStorage.getItem("userName");
 		};
 	}
 
