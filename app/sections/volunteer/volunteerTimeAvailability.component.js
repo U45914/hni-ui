@@ -30,7 +30,7 @@
 	  
 	  
 	  vm.cal = function(x,y, event){
-		  var isChecked = event.target.checked;
+		  var isChecked = event.currentTarget.getAttribute("class").indexOf("md-checked") == -1;
 		  var day = vm.days[y];
 		  var time = vm.availabity[x];
 		  
@@ -47,8 +47,8 @@
 			  if(vm.daysArray[y].length == 0){
 				  delete vm.obj[day];
 			  }
-		  } 
-		  
+		  }
+	  }
 		  vm.submit =  function(){
 			  var data = {
 					  	"availabilityCalender":vm.obj,
@@ -63,6 +63,6 @@
 		
 	  }
 	 
-  }
+  
 }
 )();

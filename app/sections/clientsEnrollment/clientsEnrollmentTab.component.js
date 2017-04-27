@@ -19,7 +19,7 @@
      	 vm.scroll()
       });
        vm.scroll = function(){
-     	  if(vm.tabIndex ==  4){
+     	  if(vm.tabIndex ==  5){
      		  vm.tabIndex = 0;
      	  }
      	  else{

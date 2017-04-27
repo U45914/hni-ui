@@ -1,66 +1,71 @@
 <br>
 <div id="healthId">
-	<table>
-		<tr>
-			<td><label>Allergies</label></td>
-			<td><input type="text" placeholder="Allergies" required
-				ng-model="vm.health.allergies" /></td>
-		</tr>
-		<tr>
-			<td><label>History of addiction</label></td> 
-			<td><input	type="radio" ng-model="vm.health.addiction" ng-value="true"> Yes 
-			<input type="radio" ng-model="vm.health.addiction" ng-value="false"> No
-			<div ng-show="vm.health.addiction">
-			<!-- <md-input-container class="md-block input-primary" flex-gt-sm> -->
+<md-input-container class="md-block input-primary" flex-gt-sm>
+            <label>Allergies</label>
+			<input type="text"  required
+				ng-model="vm.health.allergies" />
+	</md-input-container>
+	<md-radio-group  layout = "row" ng-model="vm.health.addiction"  class="md-primary">
+	<label>History of addiction</label>
+	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
+	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
+	</md-radio-group>
+	<div ng-show="vm.health.addiction">
+	<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label>If yes then: provide type of addiction</label>
 				<input type="text" ng-model="vm.health.addictionType"> 
-			<!-- </md-input-container> -->
+			</md-input-container>
 		</div>
-		</td>
-		<tr>
-			<td><label>History of mental health problems</label></td>
-			<td><input type="text" placeholder="Mental Health Issue" 
-				ng-model="vm.health.mentalHealthIssue" /></td>
-		</tr>
-		<tr>
-			<td><label>If yes then: please explain</label></td>
-			<td><input type="text" ng-model="vm.health.mentalHealthIssueHistory" /></td>
-		</tr>
-		<tr>
-			<td><label>Height</label></td>
-			<td><input type="text" ng-model="vm.health.feet"/>ft &nbsp; <input type="text" ng-model="vm.health.inch"/>in</td>
-		</tr>
-		
-		<tr>
-			<td><label>Weight</label></td>
-			<td><input type="text" ng-model="vm.health.weight"/>Lbs </td></tr>
-		<tr>
-			<td><label>Minutes of Exercise per week</label></td>
-			<td><input type="text" ng-model="vm.health.exercisePerWeek" /></td>
-		</tr>
-		<tr>
-			<td><label>Last time you saw a doctor?</label></td>
-			<td><select ng-model="vm.health.lastVisitDoctor">
-					<option>0-6 Months</option>
-					<option>6-12 Months</option>
-					<option>1-2 Years</option>
-					<option>more than 2 Years</option>
-					<option>I have never seen a doctor</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><label>Last time you saw a dentist?</label></td>
-			<td><select ng-model="vm.health.lastVisitDentist">
-					<option>0-6 Months</option>
-					<option>6-12 Months</option>
-					<option>1-2 Years</option>
-					<option>more than 2 Years</option>
-					<option>I have never seen a dentist</option>
-				</select>
-			</td>
-		</tr>
-	</table>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>History of mental health problems</label>
+				<input type="text" 
+				ng-model="vm.health.mentalHealthIssue" /> 
+			</md-input-container>
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>If yes then: please explain</label>
+				<input type="text" ng-model="vm.health.mentalHealthIssueHistory" />
+			</md-input-container>
+			<label>Height</label>
+			<md-input-container  flex-gt-sm>
+			<label>feet</label>
+            	<input type="text" ng-model="vm.health.feet"/>
+            	</md-input-container>
+            	<md-input-container>
+            	<label>inch</label>
+				<input type="text" ng-model="vm.health.inch"/>
+			</md-input-container>
+			<br>
+			<label>Weight</label>
+			<md-input-container  flex-gt-sm>
+            	<label>Lbs </label>
+				<input type="text" ng-model="vm.health.weight"/>
+			</md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>Minutes of Exercise per week</label>
+				<input type="text" ng-model="vm.health.exercisePerWeek" />
+			</md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+	      <label>Last time you saw a doctor?</label>
+	      	 <md-select name="type" ng-model="vm.health.lastVisitDoctor" required>
+	            <md-option ng-value="0">0-6 Months</md-option>
+	            <md-option ng-value="1">6-12 Months</md-option>
+	            <md-option ng-value="2">1-2 Years</md-option>
+	            <md-option ng-value="3">more than 2 Years</md-option>
+	            <md-option ng-value="4">I have never seen a doctor</md-option>
+	         </md-select>
+     </md-input-container>
+	<br>
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+	      <label>Last time you saw a dentist?</label>
+	      	 <md-select name="type" ng-model="vm.health.lastVisitDentist" required>
+	            <md-option ng-value="0">0-6 Months</md-option>
+	            <md-option ng-value="1">6-12 Months</md-option>
+	            <md-option ng-value="2">1-2 Years</md-option>
+	            <md-option ng-value="3">more than 2 Years</md-option>
+	            <md-option ng-value="4">I have never seen a dentist</md-option>
+	         </md-select>
+     </md-input-container>
+     <br>
 	<div style="float: right">
 		<br>
 		<md-button class="md-raised button-primary" ng-click="vm.save();">Save</md-button>

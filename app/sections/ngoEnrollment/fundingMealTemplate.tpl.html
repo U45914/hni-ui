@@ -5,16 +5,24 @@
 		<input type="text" required ng-model="frequency" placeholder="Frequency"></input> 
 		<button  ng-click="addNewChoice()">+</button>
 	</span>
-		<table>
-			<th>Source</th>
-			<th>Meal Quantity</th>
-			<th>Frequency</th>
-			<th>Delete</th>
-			<tr ng-repeat="element in mealDonaltionList track by $index">
-				<td>{{element.source}}</td>
-				<td>{{element.mealQty}}</td>
-				<td>{{element.frequency}}</td>
-				<td><button class="remove" ng-click="deleteMeal($index)">-</button></td> 
-            <tr>
-		</table>
+		<br>
+	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px">
+	<md-grid-tile>
+	<b>Source</b></md-grid-tile> <md-grid-tile>
+	<b>Meal Quantity</b></md-grid-tile> <md-grid-tile>
+	<b>Frequency</b></md-grid-tile> <md-grid-tile>
+	<b>Delete</b></md-grid-tile> </md-grid-list>
+	<br>
+	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px"
+		ng-repeat="element in mealDonaltionList track by $index"> <md-grid-tile>
+	<div layout="row">{{element.source}}</div>
+	</md-grid-tile> <md-grid-tile>
+	<div layout="row">{{element.mealQty}}</div>
+	</md-grid-tile>
+	<md-grid-tile>
+	<div layout="row">{{element.frequency}}</div>
+	</md-grid-tile>
+	 <md-grid-tile>
+	<button class="remove" ng-click="deleteMeal($index)">-</button>
+	</md-grid-tile> </md-grid-list>
 </fieldset>

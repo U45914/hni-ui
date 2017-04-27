@@ -142,7 +142,8 @@
             	});
             	
                	let clientInfoData = JSON.stringify(finalSaveData);
-            	
+            	console.log("client : ");
+            	console.log(clientInfoData);
             	return $http.post(`${baseUrl}/users/client/save`, clientInfoData);
             }
             
