@@ -19,9 +19,9 @@
 	}
   
 
-  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope','$mdToast']; 
+  serviceController.$inject = ['$q','ngoEnrollmentService','$rootScope','$scope', '$mdToast']; 
   
-  function serviceController ($q,ngoEnrollmentService,$rootScope,$mdToast) {
+  function serviceController ($q,ngoEnrollmentService,$rootScope,$scope, $mdToast) {
 	   
 
 	  var vm =this;
