@@ -19,6 +19,7 @@
 		var vm = this;
 		vm.incomplete = false;
 		vm.orgInfo = {};
+		vm.states = validateService.validateStateDrpdwn();
 		vm.validateNGOInvitation = "";
 		loadOrgInfo();
 		vm.submit = function() {
@@ -30,7 +31,8 @@
 				"logo" : vm.logo,
 				"addresses" : [ {
 					"name" : vm.adminName,
-					"address1" : vm.address,
+					"address1" : vm.address1,
+					"address2" : vm.address2,
 					"city" : vm.city,
 					"state" : vm.state,
 					"zip" : vm.zip

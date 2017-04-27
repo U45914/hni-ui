@@ -8,14 +8,17 @@
 		controllerAs : 'vm'
 	});
 
-	volunteerProfileController.$inject = [ '$q', 'volunteerService' ];
+	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService' ];
 
-	function volunteerProfileController($q, volunteerService) {
+	function volunteerProfileController($q, volunteerService,validateService) {
 		var vm = this;
 		this.myDate = new Date();
 		this.isOpen = false;
+		vm.state=validateService.validateStateDrpdwn();
 		
-	//	vm.vol = volunteerService.getProfileData();
+	    
+		//vm.vol = volunteerService.getProfileData();
+	    
 
 		vm.submit = function() {
 
