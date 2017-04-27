@@ -7,16 +7,17 @@
 		controller : VolunteerEnrollmentController,
 		controllerAs : 'vm'
 	});
-	VolunteerEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope', '$state' ];
+	VolunteerEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope', '$state','validateService' ];
 
-	function VolunteerEnrollmentController($q, ngoOnboardingService, $scope, $state) {
+	function VolunteerEnrollmentController($q, ngoOnboardingService, $scope, $state, validateService) {
 		var USER_TYPE = "userType";
 		var USER_ORG_INFO = "userOrgInfo";
 		
 		var vm = this;
 		vm.userType = vm.getUserType;
 		vm.userNameMessage = "";
-
+		vm.states = validateService.validateStateDrpdwn();
+		
 		vm.signIn = function() {
 			var data = {
 				"firstName" : vm.firstName,

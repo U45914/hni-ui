@@ -35,30 +35,49 @@
 			<label>Confirm Password</label> <input type="password"
 				id="input-password2" required ng-model="vm.passwordConfirm">
 			</md-input-container>
-			<table>
-				<th align='left' ; width="50%">Address</th>
-				<th></th>
-				<tr>
-					<td><input type="text" placeholder="Address type" required
-						ng-model="vm.addressType" /></td>
-					<td><input type="text" placeholder="Address" required
-						ng-model="vm.address" /></td>
-				</tr>
-				<tr>
-					<td><input type="text" placeholder="City" required
-						ng-model="vm.city" /></td>
-					<td><input type="text" placeholder="State" required
-						ng-model="vm.state" /></td>
-				<tr>
-					<td><input type="text" placeholder="Zip" required
-						ng-model="vm.zip" /></td>
-					<td><input type="submit" value="Submit" id="input-submit"
-						ng-click="vm.submit()"></td>
-				</tr>
-			</table>
-
-			<md-button class="md-raised button-primary" ng-click="vm.signIn();">Register</md-button></di
-				v>
+			
+			
+			<div class="login-prompt">Address</div>
+			
+			<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Address Type</label>
+			 	<md-select name="type" ng-model="vm.view.addressType" required>
+            			<md-option value = "home">Home</md-option>
+            			<md-option value = "office">Office</md-option>
+            		</md-select>
+			</md-input-container>
+			
+				<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Address</label>
+			 	<input type="text" required ng-model="vm.address">
+				</md-input-container>
+			
+			</br>
+				<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>City</label>
+			 	<input type="text" required ng-model="vm.city">
+				</md-input-container>
+		
+				<md-input-container class="md-block input-primary" flex-gt-sm>
+         			 <label>State</label>
+          			 <md-select name="type" ng-model="vm.state" required>
+            			<md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
+            		</md-select>
+        		</md-input-container>
+			</br>
+				<md-input-container class="md-block input-primary" flex-gt-sm> 
+					<label>Zip</label>
+			 		<input type="number" required ng-model="vm.zip">
+				</md-input-container>
+			<md-button class="md-raised button-primary" id="button"	ng-click=" vm.submit()">Submit</md-button>
+			</div>
+					<md-button class="md-raised button-primary" ng-click="vm.signIn();">Register</md-button>
+		</div>
 		</md-content>
 	</div>
 </div>
+		
+		
+		
+
+

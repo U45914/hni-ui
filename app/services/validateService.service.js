@@ -10,7 +10,8 @@
 			validateCredentials,
 			validateNGOOnboard,
 			validateNGOEnrollment,
-			validateNGOAdd
+			validateNGOAdd,
+			validateStateDrpdwn
 		};
 		
 		function validateCredentials(username, password){
@@ -90,6 +91,17 @@
 			if(data.genderCode==null)
 				errorFields += "Gender ";
 			return errorFields;
+		}
+		
+		function validateStateDrpdwn(){
+			var states = [	{value :"AL",name :"Alaska"},
+							{value :"AR",name :"Arkansas"},
+							{value :"FL",name :"Florida"},
+							{value :"NJ",name :"New Jersy"},
+							{value :"NY",name :"New York"},
+							{value :"WA",name :"Washington"}];
+			return states;
+
 		}
 	}
 })();
