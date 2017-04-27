@@ -47,11 +47,13 @@
             	 console.log("response : "+ response);
             	 if(response == null){
             		 vm.signInButton = "Sign In";
+            		 vm.validateCredentials = "Username/Password incorrect";
             		 vm.isDisabled = false;
             		 vm.loginFail = true;
             	 }else{
             		 vm.isDisabled = true;
             		 vm.loginFail = false;
+            		 
                 //$state.go('dashboard', {}, {reload: true});
             	 }
         	 }
