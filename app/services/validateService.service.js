@@ -9,7 +9,8 @@
 		return{
 			validateCredentials,
 			validateNGOOnboard,
-			validateNGOEnrollment
+			validateNGOEnrollment,
+			validateNGOAdd
 		};
 		
 		function validateCredentials(username, password){
@@ -75,6 +76,19 @@
 					errorFields += "Password Mismatch ";
 				}
 			}
+			return errorFields;
+		}
+		
+		function validateNGOAdd(data){
+			var errorFields = "";
+			if(data.name==null)
+				errorFields += "Name, ";
+			if(data.phone==null)
+				errorFields += "Phone, ";
+			if(data.email==null)
+				errorFields += "Email, ";
+			if(data.genderCode==null)
+				errorFields += "Gender ";
 			return errorFields;
 		}
 	}

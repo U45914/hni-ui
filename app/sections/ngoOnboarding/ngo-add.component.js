@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 (function() {
 	angular.module('app').component('addNgo', {
 		bindings : {
@@ -11,13 +7,15 @@
 		controller : NgoAddUserController,
 		controllerAs : 'vm'
 	});
-	NgoAddUserController.$inject = [ '$q', 'ngoOnboardingService',
+	NgoAddUserController.$inject = [ '$q', 'ngoOnboardingService', 'validateService',
 			'orgService', '$scope', '$state', 'toaster' ];
 
-	function NgoAddUserController($q, ngoOnboardingService, orgService,
+	function NgoAddUserController($q, ngoOnboardingService, validateService, orgService,
 			$scope, $state, toaster) {
 		var vm = this;
 		vm.noEdit=true;
+		vm.validateNGOAdd = "";
+		vm.validateInvite = true;
 		vm.orgInfo = {};
 		vm.sexList = [ {
 			value : "M",
@@ -38,7 +36,8 @@
 				"genderCode" : vm.sex,
 				"orgId": vm.orgInfo.id
 			};
-			if (vm.name != null && vm.phone != null && vm.email != null) {
+			vm.validateNGOAdd = validateService.validateNGOAdd(data);
+			if (vm.validateNGOAdd=="") {
 				var serviceCalls = ngoOnboardingService
 						.addNgoUser(data)
 						.then(
@@ -63,7 +62,7 @@
 				console.log(data);
 				return $q.all(serviceCalls);
 			} else {
-				alert("Please fill all field for user invitaion");
+				vm.validateInvite = true;
 			}
 		}
 
