@@ -1,59 +1,41 @@
 <top-nav></top-nav>
 <h1>Invite Volunteer to HNI</h1>
 <form class="cf">
+	
+	<div class ="md-title">Primary details</div>
+		<div layout-gt-xs="row">
+			<md-input-container  class="md-block input-primary" flex-gt-sm> 
+				<label>Name of Volunteer</label>
+				<input	type="text" required ng-model="vm.name" class="input_box_md"> 
+			 </md-input-container>
+			 
+			 
+			<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Phone number</label>
+			 	<input type="number" id="input-phone" required ng-model="vm.phoneNumber" class="input_box_md">
+			</md-input-container>
+		</div>
+		
+		<div layout-gt-xs="row">
+		
+			<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Email address</label>
+			 	<input type="email" id="" required ng-model="vm.email" class="input_box_md">
+			</md-input-container>
+			
+			<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Web site url</label>
+			 	<input type="text" id="input-websiteUrl" required ng-model="vm.webSiteUrl" class="input_box_md">
+			</md-input-container>
+		</div>
+	
+			<md-input-container class="md-block input-primary" flex-gt-sm> 
+			<label>Message to Volunteer</label>
+			 <textarea required ng-model="vm.inviteMsg" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+			 </md-input-container>
+			
+			<md-button id="input-submit" class="md-raised button-primary"  ng-click="vm.submit()" >Invite</md-button>
+			
 
-	<table>
-		<th align='left'>Primary details</th>
-		<th></th>
-		<tr>
-			<td width="50%"><input type="text" id="input-name"
-				placeholder="Name of Volunteer" required ng-model="vm.name">
-			</td>
-			<td><input type="number" id="input-phone"
-				placeholder="Phone number" required ng-model="vm.phoneNumber">
-			</td>
-		</tr>
-		<tr>
-			<td><input type="email" id="input-email"
-				placeholder="Email address" required ng-model="vm.email"></td>
-			<td><input type="text" id="input-websiteUrl"
-				placeholder="Web site url" required ng-model="vm.webSiteUrl">
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-			<label>Message to Volunteer</label> 
-			<textarea ng-model="vm.inviteMsg" required></textarea> 
-			</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><input type="submit" value="Invite" id="input-submit"
-				ng-click="vm.submit()"></td>
-		</tr>
-	</table>
-
-	<!-- 	<table>
-		<th align='left' ; width="50%">Address</th>
-		<th></th>
-		<tr>
-			<td><input type="text" placeholder="Name" required
-				ng-model="vm.adminName" /></td>
-			<td><input type="text" placeholder="Address" required
-				ng-model="vm.address" /></td>
-		</tr>
-		<tr>
-			<td><input type="text" placeholder="City" required
-				ng-model="vm.city" /></td>
-			<td><input type="text" placeholder="State" required
-				ng-model="vm.state" /></td>
-		<tr>
-			<td><input type="text" placeholder="Zip" required
-				ng-model="vm.zip" /></td>
-			<td><input type="submit" value="Submit" id="input-submit"
-				ng-click="vm.submit()"></td>
-		</tr>
-	</table> -->
 
 </form>

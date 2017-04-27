@@ -16,12 +16,14 @@
 
 	}
 
-	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope' ];
+	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService'];
 
-	function overviewController($q, ngoEnrollmentService, $rootScope, $scope) {
+	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService) {
 		var vm = this;
 		vm.list = [];
-
+		
+		vm.states = validateService.validateStateDrpdwn();
+		
 		$scope.$on("data-loaded-ngo", function(obj) {
 			vm.load();
 		});
@@ -56,7 +58,15 @@
 				"employees" : vm.view.employees,
 				"overview" : vm.view.overview,
 				"mission" : vm.view.mission,
-				"promoters" : vm.list
+				"promoters" : vm.list,
+				"address" : {
+					"name" : vm.view.addressType,
+					"address1" : vm.view.address1,
+					"address2" : vm.view.address2,
+					"city" : vm.view.city,
+					"state" : vm.view.state,
+					"zip" : vm.view.zip,
+				},
 			};
 
 			if (vm.view.name != null && vm.view.phone != null
