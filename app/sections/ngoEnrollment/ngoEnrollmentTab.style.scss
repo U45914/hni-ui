@@ -3,10 +3,8 @@
 }
 .label_style
 {
-font-color:green ;
+
 background-color:black;
-
-
 
 }
 
@@ -15,7 +13,30 @@ md-tabs.md-default-theme .md-tab.md-active, md-tabs .md-tab.md-active, md-tabs.m
     
     
 }
+md-tabs.md-default-theme .md-tab, md-tabs .md-tab {
+color:orange;
+}
 md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
     color: white;
     background:white;
 }
+.left_style
+{
+
+float: left;
+width: 19%;
+    }
+ .tab_detailsnew_style
+ {
+ float:left;
+ width:77%;
+ padding-left:44px;
+ padding-top:3px;
+ }
+ .tabnew
+ {
+float:left;
+ width:78%;
+ padding-left:44px;
+ padding-top:3px;
+ }

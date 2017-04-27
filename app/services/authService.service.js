@@ -62,7 +62,8 @@
                 console.log(response);
                 setToken(response.data.token);
                 setOrgInfo(response.data.orgId);
-                $state.go('dashboard');
+                //$state.go('dashboard');
+                $state.go('ngoEnrollmentTab');
                 }, function error(error) {
             	alert("error : "+error);
                 console.log(error);

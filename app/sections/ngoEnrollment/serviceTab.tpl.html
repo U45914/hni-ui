@@ -1,4 +1,5 @@
-<h3>Food Service Offered</h3>
+<div class="main_body">
+<h4>Food Service Offered</h4>
 <div id="fdsrv">
 		<div flex-gt-sm="50" layout = "row">
           <md-checkbox md-no-ink  ng-model="vm.service.brkfstChk" class="md-primary">
@@ -51,47 +52,35 @@
           </div>
           
           
-	<hr />
 
-	<label>Calender of Services</label><br>
-	
-		<md-grid-list md-cols="4" md-row-height="20:1" md-gutter="6px">
-			<md-grid-tile></md-grid-tile>
-			<md-grid-tile ng-repeat="type in vm.frequency"ng-model="vm.type">
+	<h4>Calender of Services</h4><br>
+	  <div class="main_grid">
+		<md-grid-list style="margin-bottom:30px; "   md-cols="4" md-row-height="20:1" md-gutter="6px">
+			<md-grid-tile ></md-grid-tile>
+			<md-grid-tile style="margin-left:50px;font-weight:bold;margin-left:80px;"  ng-repeat="type in vm.frequency"ng-model="vm.type">
 				<div layout="row" flex>{{type}}</div>
 			</md-grid-tile> 
 		</md-grid-list>
 		
-		<md-grid-list md-cols="4" md-row-height="6:1" md-gutter="6px" ng-repeat="day in vm.days"ng-model="vm.weekDay">
+		<md-grid-list  md-cols="4" style="margin-bottom:10px;background-color:#EDF0F5;" md-row-height="6:1" md-gutter="6px" ng-repeat="day in vm.days"ng-model="vm.weekDay">
 			<md-grid-tile>
 				<div flex>{{day}}</div>
 			</md-grid-tile> 
 			<md-grid-tile>
-			<md-checkbox aria-label="No" ng-click="vm.cal($index,0,$event)" class="md-primary"></md-checkbox>
+			<md-checkbox style="margin-top:15px;" aria-label="No" ng-click="vm.cal($index,0,$event)" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 			<md-grid-tile>
-			<md-checkbox  aria-label="No" ng-click="vm.cal($index,1,$event)" class="md-primary"></md-checkbox>
+			<md-checkbox style="margin-top:15px;" aria-label="No" ng-click="vm.cal($index,1,$event)" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 			<md-grid-tile>
-			<md-checkbox aria-label="No" ng-click="vm.cal($index,2,$event)" class="md-primary"></md-checkbox>
+			<md-checkbox style="margin-top:15px;" aria-label="No" ng-click="vm.cal($index,2,$event)" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 		</md-grid-list>
-		
-	<!-- <table class="table2">
-		<tr>
-			<td></td>
-			<td ng-repeat="type in vm.frequency" ng-model="vm.type">{{type}}</td>
-		</tr>
-		<tr ng-repeat="day in vm.days" ng-model="vm.weekDay">
-			<td>{{day}}</td>
-			<td><md-checkbox md-no-ink class="md-block input-primary"  ng-click="vm.cal($index,0,$event)"></md-checkbox></td>
-			<td><md-checkbox md-no-ink class="md-block input-primary"  ng-click="vm.cal($index,1,$event)"></md-checkbox></td>
-			<td><md-checkbox md-no-ink class="md-block input-primary" ng-click="vm.cal($index,2,$event)"></md-checkbox></td>
-		</tr>
-	</table> -->
-
-	<hr />
+	</div>	
 	
+
+<div>
+	<div layout-gt-xs="row" class="services_width"> 
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	      <label>Monthly Budget for food</label>
 	      	 <md-select name="type" ng-model="vm.service.monthlyBudget" required>
@@ -102,8 +91,9 @@
 	            <md-option ng-value="4">more than 10k</md-option>
 	         </md-select>
      </md-input-container>
-	<br>
+     </div>
 	
+	<div layout-gt-xs="row" class="services_width">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 		<label>Operating costs associated with meal services</label>
 		 <md-select ng-model="vm.service.operatingCost">
@@ -114,8 +104,11 @@
 			<md-option ng-value="4">more than 10k</md-option>
 		</md-select>
 	</md-input-container>
-	<br>
+	</div>
+</div>
+<div style="clear:both;">
 	
+	<div layout-gt-xs="row" class="services_width">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label>Personnel costs</label> 
 	<md-select ng-model="vm.service.personalCost">
@@ -127,30 +120,37 @@
 		<md-option ng-value="5">personnel are volunteers</md-option>
 	</md-select><br>
 	</md-input-container>
+	</div>
 	
-	
+	    <div layout-gt-xs="row" class="services_width">
 		 <md-input-container class="md-block input-primary"  flex-gt-sm>
             <label>volunteers required </label>
             <input type="number"   required ng-model="vm.service.volunteerNbr"></input>
           </md-input-container>
-	
+	    </div>
+</div>
 
+<div class="radio_style">
 	
 	<label>Assistance with food stamps?</label><br>
+	<div class="padding_top_radio">
 	<md-radio-group   layout="row" ng-model ="vm.service.foodStamp" class="md-primary"> 
             <md-radio-button ng-value="true" >Yes</md-radio-button>
             <md-radio-button ng-value="false">No</md-radio-button> 
 	</md-radio-group> 
-	
-	
+	</div>
+</div>
+<div class="radio_style">	
 	
 	<label>Connections to foodbanks</label><br>
+	<div class="padding_top_radio">
 	<md-radio-group   layout="row" ng-model ="vm.service.foodBankSelect" class="md-primary"> 
             <md-radio-button ng-value="true" >Yes</md-radio-button>
             <md-radio-button ng-value="false">No</md-radio-button> 
 	</md-radio-group> 
-	
-	<br>
+	</div>
+</div>
+
 	<div ng-show="vm.service.foodBankSelect">
 	<div layout ="row" flex-gt-sm="50">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
@@ -175,6 +175,7 @@
 
 	<div ng-click="vm.test()">
 	<label>What resources do you offer to your clients</label>
+	<div class="padding_top_radio">
 		<div class="multiselect" >
 			<div class="selectBox" ng-click="vm.showCheckboxes(); $event.stopPropagation();">
 				<select>
@@ -193,13 +194,16 @@
 				 
 			</div>
 		</div>
+		</div>
 	</div>
 
 	<br>
 	<hr class "register-input" style="width: 100%">
 	<div style="float: right">
 		<br>
-		<md-button class="md-raised button-primary" ng-click="vm.save();">Save
+		<md-button class="md-raised button-primary" style="background-color:#449d44;" ng-click="vm.save();">Save
 		& Next</md-button>
 	</div>
+</div>
+
 </div>

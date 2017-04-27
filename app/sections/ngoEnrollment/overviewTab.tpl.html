@@ -1,3 +1,6 @@
+	<div class="main_body">
+	<h4>Overview Details</h4>
+	
 	<div layout-gt-xs="row">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Name</label>
@@ -32,19 +35,23 @@
             <input type="text"   required ng-model="vm.view.overview"></input>
           </md-input-container>
          </div> 
-         <div layout-gt-xs="row"> 
+         <div layout-gt-xs="row" class="mission_width"> 
           <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Mission Statement</label>
             <input type="text"   required ng-model="vm.view.mission"></input>
           </md-input-container>
-          
+        </div>
+        <div layout-gt-xs="row" class="mission_width"> 
           <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Celebrity endorsements / notable promoters</label>
             <input type="text"   required ng-model="vm.view.promoters"></input>
           </md-input-container>
-		  
-		  <md-button class="md-fab btn_style"  ng-click="vm.addRow(vm.view.promoters)" >+</md-button>
+		   <div style="padding:10px;">
+		  <md-button class="md-fab btn_style"  ng-click="vm.addRow(vm.view.promoters)" >
+		    <md-icon md-svg-icon="images/plus.png"></md-icon>
+		  </md-button>
 		  </div>
+		</div> 
 	<br>
 	
 		<md-grid-list md-cols="1" md-row-height="20:1" md-gutter="6px">
@@ -54,10 +61,10 @@
 		</md-grid-tile> </md-grid-list>
 
 	
-	<hr class "register-input" style="width: 100%">
+	<hr class "register-input" layout="row" layout-align="center center">
 	<div style="float: right;">
 	<br>
-	<md-button class="md-raised button-primary"  ng-click="vm.save();" >Save & Next</md-button>
+	<md-button class="md-raised button-primary " style="background-color:#449d44;" ng-click="vm.save();" >Save & Next</md-button>
 	
 	</div>
 	</div>

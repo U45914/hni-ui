@@ -7,6 +7,7 @@
 
 .multiselect {
   width: 200px;
+  color:#808080 ;
 }
 
 .selectBox {
@@ -16,6 +17,7 @@
 .selectBox select {
   width: 100%;
   font-weight: bold;
+    color:#808080 ;
 }
 
 .overSelect {
@@ -37,4 +39,30 @@
 
 #checkboxes label:hover {
   background-color: #1e90ff;
+}
+
+
+.main_body
+{
+color:#808080;
+
+}
+.services_width
+{
+width:40%;
+float:left;
+}
+.radio_style
+{
+clear:both;
+padding-bottom: 30px;
+}
+.padding_top_radio
+{
+padding-top:10px;
+}
+.main_grid
+{
+
+width:80%;
 }
