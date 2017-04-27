@@ -64,6 +64,9 @@
 				ng-click="vm.addNgoUser()"></td>
 		</tr>
 	</table>
+	<div ng-show = {{vm.validateInvite}}>
+	<font color="red">{{vm.validateNGOAdd}}</font>
+	</div>
 
 </form>
 </div>
