@@ -16,12 +16,21 @@
 	</md-input-container>
 </div>
 	<h4 >Address</h4>
-	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol">House Name</label> <input type="text" required
-		ng-model="vm.vol.name" /> </md-input-container>
+<div layout="row">
+		<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Address Type</label>
+			 	<md-select name="type" ng-model="vm.vol.name" required>
+            			<md-option value = "home">Home</md-option>
+            			<md-option value = "office">Office</md-option>
+            		</md-select>
+			</md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Address</label> <input type="text" required
 		ng-model="vm.vol.address1" /> </md-input-container>
+		</div>
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+	<label class="text_style_vol" >Address</label> <input type="text" 
+		ng-model="vm.vol.address2" /> </md-input-container>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
 	<label class="text_style_vol">City</label> <input type="text" required ng-model="vm.vol.city" />
