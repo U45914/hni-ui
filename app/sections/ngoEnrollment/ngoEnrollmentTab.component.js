@@ -50,7 +50,7 @@
       }
       
       vm.enrollementData = function(){
-    	  var data = {};
+    	  var data = {}; 
     	  data.overviewData = ngoEnrollmentService.getOverviewData();
     	  data.stakeHolderData = ngoEnrollmentService.getStakeHolderData();
     	  data.serviceData = ngoEnrollmentService.getServiceData();
