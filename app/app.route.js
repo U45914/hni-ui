@@ -100,6 +100,11 @@
                 url: '/volunteerTimeAvailability',
                 template: '<volunteer-time-availability></volunteer-time-availability>'
             })
+            
+             .state('clientInvitation', {
+                url: '/clientInvitation',
+                template: '<client-invitation></client-invitation>'
+            })
         	;
         
              
