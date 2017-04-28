@@ -79,8 +79,8 @@
 				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 			} else {
 				// toaster.success('Hello world!', 'Toastr fun!');
-				window.alert("Please fill the fields");
-				return false;
+				//window.alert("Please fill the fields");
+				//return false;
 			}
 		}
 		vm.load = function() {

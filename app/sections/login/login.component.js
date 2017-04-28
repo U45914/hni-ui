@@ -44,15 +44,17 @@
         	 vm.validateCredentials = validateService.validateCredentials(vm.username, vm.password);
         	 if( vm.validateCredentials == ""){
         		 var response =  authService.login(vm.username, vm.password);
-            	 console.log("response : "+ response);
-            	 if(response == null){
+            	 console.log(response);
+            	 if(response.status != 200){
             		 vm.signInButton = "Sign In";
             		 vm.validateCredentials = "Username/Password incorrect";
+            		 vm.password="";
             		 vm.isDisabled = false;
             		 vm.loginFail = true;
             	 }else{
             		 vm.isDisabled = true;
             		 vm.loginFail = false;
+            		 vm.validateCredentials = "";
             		 
                 //$state.go('dashboard', {}, {reload: true});
             	 }
