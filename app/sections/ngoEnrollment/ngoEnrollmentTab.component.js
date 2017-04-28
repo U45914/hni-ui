@@ -17,9 +17,7 @@
       vm.$onInit = function() {
     	  ngoEnrollmentService.getProfileData().then(function success(response) {
               if(response || response.data) {
-                  console.log("response : "+JSON.stringify(response.data.response));
                   var response = response.data.response;
-                  console.log(response.overview);
                   ngoEnrollmentService.overviewData = response.overview;
                   ngoEnrollmentService.stakeHolderData = response.stakeHolder;
                   ngoEnrollmentService.serviceData = response.service;
@@ -32,7 +30,6 @@
            });;
       }
       var overViewData = ngoEnrollmentService.getOverviewData();
-      console.log("--->"+overViewData);
 	  var stakeHolderData = ngoEnrollmentService.getStakeHolderData();
 	  var serviceData = ngoEnrollmentService.getServiceData();
 	  var fundingData = ngoEnrollmentService.getFundingData();

@@ -62,18 +62,12 @@
 			</md-grid-tile> 
 		</md-grid-list>
 		
-		<md-grid-list  md-cols="4" style="margin-bottom:10px;background-color:#EDF0F5;" md-row-height="6:1" md-gutter="6px" ng-repeat="day in vm.days"ng-model="vm.weekDay">
+		<md-grid-list  md-cols="4" style="margin-bottom:10px;background-color:#EDF0F5;" md-row-height="6:1" md-gutter="6px" ng-repeat="var in vm.mealSelect" ng-model="vm.weekDay">
 			<md-grid-tile>
-				<div flex>{{day}}</div>
+				<div flex>{{var.day}}</div>
 			</md-grid-tile> 
-			<md-grid-tile>
-			<md-checkbox style="margin-top:15px;" aria-label="No" ng-click="vm.cal($index,0,$event)" class="md-primary"></md-checkbox>
-			</md-grid-tile>
-			<md-grid-tile>
-			<md-checkbox style="margin-top:15px;" aria-label="No" ng-click="vm.cal($index,1,$event)" class="md-primary"></md-checkbox>
-			</md-grid-tile>
-			<md-grid-tile>
-			<md-checkbox style="margin-top:15px;" aria-label="No" ng-click="vm.cal($index,2,$event)" class="md-primary"></md-checkbox>
+			<md-grid-tile ng-repeat="type in var.type">
+				<md-checkbox style="margin-top:15px;" aria-label="No" ng-model="type.checked" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 		</md-grid-list>
 	</div>	
