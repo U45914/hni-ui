@@ -1,7 +1,7 @@
 (function () {
   angular
       .module('app')
-      .component('ngoEnrollmentTab',{
+      .component('ngoProfile',{
           bindings: {
 
           },
@@ -13,6 +13,7 @@
 
   function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService,$state) {
       var vm = this;
+      
       vm.tabIndex = 0;
       vm.$onInit = function() {
     	  ngoEnrollmentService.getProfileData().then(function success(response) {

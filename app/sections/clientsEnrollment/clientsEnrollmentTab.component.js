@@ -1,7 +1,7 @@
 (function () {
   angular
       .module('app')
-      .component('clientsEnrollmentTab',{
+        .component('clientProfile', {
           bindings: {
 
           },
