@@ -21,6 +21,8 @@
     			$state.go("volunteerProfile")
     		} else if("Client" == vm.userRole) {
     			$state.go("clientProfile")
+    		} else {
+    			$state.go("dashboard");
     		}
         };
 
