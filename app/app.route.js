@@ -106,7 +106,12 @@
             .state('profile', {
             	url: '/profile',
             	template: '<profile></profile>'
-            });        
+            })
+            .state('volunteerEnrollment', {
+                url: '/volunteerEnrollment',
+                template: '<volunteer-enrollment></volunteer-enrollment>'
+            })
+            ;        
              
     }
 })();

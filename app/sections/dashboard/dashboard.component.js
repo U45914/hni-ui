@@ -3,7 +3,10 @@
         .module('app')
         .component('dashboard', {
             bindings: {},
-            template: `<top-nav></top-nav>
+            template: `
+            
+           
+            <top-nav></top-nav>
             			<div layout="row" layout-align="space-around none">
             				<md-content flex="25" layout-padding class="md-whiteframe-4dp">
 		            			<left-nav-bar></left-nav-bar>
@@ -15,6 +18,7 @@
 		                        </div>
 		                     </md-content>
 	                     </div>
+	                     
 	                     <landing-footer></landing-footer>
                         `
         });
