@@ -33,6 +33,9 @@
                    vm.service = response.data.data;
                    vm.headers= response.data.headers;
                 }
+                if(response.data == null){
+                	console.log("Missing Data");
+                }
             }, function error(error) {
                 console.log(error);
             });
