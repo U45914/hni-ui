@@ -57,26 +57,23 @@
     	  data.fundingData = ngoEnrollmentService.getFundingData();
     	  data.clientData = ngoEnrollmentService.getClientData();
     	  vm.validateNGOEnrollmentData = validateService.validateNGOEnrollmentData(data);
-    	  if(vm.validateNGOEnrollmentData.length == null){
+    	  console.log(vm.validateNGOEnrollmentData);
+    	  if(angular.equals(vm.validateNGOEnrollmentData, {})){
 	    	  console.log( vm.validateNGOEnrollmentData);
-	    		  console.log("Attempting function call..");
-		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
-					function successCallback(response) {
-						if (response
-								&& response.status
-								&& response.statusText == "OK") {
-							alert("Your request has been submitted")
-							$state.go('dashboard');
-						} else {
-							alert("Failed : "
-									+ response.data.errorMsg);
-						}
-					},
-					function errorCallback(response) {
-						alert("Something went wrong, please try again")
-						// $state.go('dashboard');
-					});
-
+	    	  console.log("Attempting function call..");
+	    	  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
+	    			  				function successCallback(response) {
+	    			  					if (response && response.status && response.statusText == "OK") {
+	    			  							alert("Your request has been submitted")
+	    			  							$state.go('dashboard');
+	    			  					} else {
+	    			  							alert("Failed : "+ response.data.errorMsg);
+	    			  					}
+	    			  				},
+	    			  				function errorCallback(response) {
+	    			  					alert("Something went wrong, please try again")
+	    			  					// $state.go('dashboard');
+	    			  				});
 		  return $q.all(serviceCalls);
     	  }
 		  
