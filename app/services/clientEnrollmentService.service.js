@@ -31,7 +31,8 @@
         	 setHealthData:setHealthData,
         	 getHealthData:getHealthData,
         	setPersonnalData,
-        	getProfileData
+        	getProfileData,
+        	inviteClient
            
             };
         
@@ -162,15 +163,15 @@
             }
             
             function getProfileData(){
-            	var data = {
-            	    "id": 0,
+             	  /* var finalData = {
+            	  "id": 0,
             	    "userId": 0,
             	    "createdBy": 0,
             	    "race": 0,
             	    "addressId": 0,
-            	    "bday": 0,
-            	    "beenArrested": "string",
-            	    "beenConvicted": "string",
+            	    "bday": "2017-04-28T18:30:00.000Z",
+            	    "beenArrested": true,
+            	    "beenConvicted": true,
             	    "hasSmartPhone": "string",
             	    "serviceProvider": "string",
             	    "model": "string",
@@ -182,8 +183,8 @@
             	    "altMonthlyPlanTogether": "string",
             	   "sliblings": 0,
             	    "kids": 0,
-            	    "liveAtHome": "string",
-            	    "sheltered": 0,
+            	    "liveAtHome": true,
+            	    "sheltered": 1,
             	    "parentEducation": 0,
             	    "education": 0,
             	    "enrollmentStatus": 0,
@@ -228,8 +229,62 @@
             	    "lastVisitDoctor": 0,
             	    "lastVisitDentist": 0
             	}
-
-            	return data;
+*/
+           var finalData =	{
+        		   "user": {
+        		        "firstName": "hghg",
+        		        "lastName": "fhgf",
+        		        "mobilePhone": 897897
+        		    },
+            			    "address": {
+            			        "name": "home",
+            			        "address1" :"ytfytf"
+            			    },
+            			    //"ethnicity": 1,
+            			   // "phoneNumber": 765675,
+            			    "bday": "2017-04-28T18:30:00.000Z",
+            			    "beenArrested": true,
+            			    "beenConvicted": true,
+            			    "race":2,
+            			    "hasSmartPhone": true,
+            			    "serviceProvider": "tyfytf",
+            			    "model": "ytfytf",
+            			    "haveMonthlyPlan": true,
+            			    "monthlyPlanMinute": "grfdgd",
+            			    "monthlyPlanData": "gfdgfd",
+            			    "monthlyPlanCost": "gfdgfd",
+            			    "sliblings": 4,
+            			    "kids": 5,
+            			    "liveAtHome": true,
+            			    "sheltered": 1,
+            			    "enrollmentLocation": "trtre",
+            			    "employer": "grdtrd",
+            			    "jobTitle": "trdtrd",
+            			    "unemploymentBenfits": true,
+            			    "totalIncome": "76567",
+            			    "rateAmount": "56",
+            			    "dollarSpendFood": "45",
+            			    "dollarSpendClothes": "45",
+            			    "dollarSpendEntertainment": "45",
+            			    "dollarSpendTransport": "45",
+            			    "dollarSpendSavings": "45",
+            			    "foodSource": "tre",
+            			    "cook": true,
+            			    "subFoodProgram": true,
+            			    "subFoodProgramEntity": "fdgd",
+            			    "subFoodProgramDuration": "gdgd",
+            			    "subFoodProgramRenew": "gfdgd",
+            			    "allergies": "rdtrd",
+            			    "addiction": true,
+            			    "addictionType": "dfsfds",
+            			    "mentalHealthIssue": "gdgfd",
+            			    "mentalHealthIssueHistory": "fgdgfd",
+            			    "height": "5|5",
+            			    "exercisePerWeek": "4",
+            			    "lastVisitDoctor": 2,
+            			    "lastVisitDentist": 4
+            			}
+            	return finalData;
             	//return $http.get(`${baseUrl}/users/ngo/profile`)
             }
                

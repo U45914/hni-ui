@@ -22,6 +22,15 @@
 	function clientFamilyEducationController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;
     	//vm.family = clientEnrollmentService.clientEmployment;
+    	 $scope.$on("data-loaded-client", function(obj) {
+ 			vm.load();
+ 	 });
+ 	  
+ 	  vm.load = function() {
+ 			vm.family = clientEnrollmentService.finalData;
+ 			vm.family.sheltered=vm.family.sheltered;
+ 		}
+    	
     	vm.educationList = [
     				{id: 0, name: "Elementary"},
     				{id: 1, name: "Middle"},
@@ -44,10 +53,10 @@
     			"sliblings": vm.family.sliblings,
     		    "kids": vm.family.kids,
     		    "liveAtHome": vm.family.liveAtHome,
-    		    "sheltered": vm.family.sheltered.id,
-    		    "parentEducation": vm.family.parentEducation.id,
-    		    "education": vm.family.education.id,
-    		    "enrollmentStatus": vm.family.enrollmentStatus.id,
+    		    "sheltered": vm.family.sheltered,
+    		    "parentEducation": vm.family.parentEducation,
+    		    "education": vm.family.education,
+    		    "enrollmentStatus": vm.family.enrollmentStatus,
     		    "enrollmentLocation": vm.family.enrollmentLocation,
     			}
     	console.log(data);

@@ -45,7 +45,7 @@
         	 if( vm.validateCredentials == ""){
         		 var response =  authService.login(vm.username, vm.password);
             	 console.log(response);
-            	 if(response.status != 200){
+            	 /*if(response.status != 200){
             		 vm.signInButton = "Sign In";
             		 vm.validateCredentials = "Username/Password incorrect";
             		 vm.password="";
@@ -57,7 +57,7 @@
             		 vm.validateCredentials = "";
             		 
                 //$state.go('dashboard', {}, {reload: true});
-            	 }
+            	 }*/
         	 }
         	 else{
         		 vm.signInButton = "Sign In";

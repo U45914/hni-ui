@@ -74,21 +74,29 @@
     		{id: 2, name: "more than 1 year"},
     	]
     	//vm.emp = clientEnrollmentService.clientEmployment;
+    	
+    	 $scope.$on("data-loaded-client", function(obj) {
+ 			vm.load();
+ 	 });
+ 	  
+ 	  vm.load = function() {
+ 			vm.emp = clientEnrollmentService.finalData;
+ 		}
     	vm.save = function(){ 
     	var data = {
-    		    "workStatus": vm.emp.workStatus.id,
-    		    "timeToWorkplace": vm.emp.timeToWorkplace.id,
-    		    "noOfJob": vm.emp.noOfJob.id,
+    		    "workStatus": vm.emp.workStatus,
+    		    "timeToWorkplace": vm.emp.timeToWorkplace,
+    		    "noOfJob": vm.emp.noOfJob,
     		    "employer": vm.emp.employer,
     		    "jobTitle": vm.emp.jobTitle,
-    		    "durationOfEmployement": vm.emp.durationOfEmployement.id,
+    		    "durationOfEmployement": vm.emp.durationOfEmployement,
     		    "unemploymentBenfits": vm.emp.unemploymentBenfits,
     		    "reasonUnemploymentBenefits": vm.emp.reasonUnemploymentBenefits,
     		    "totalIncome": vm.emp.totalIncome,
     		    "rateAmount": vm.emp.rateAmount,
-    		    "rateType": vm.emp.rateType.id,
-    		    "avgHoursPerWeek": vm.emp.avgHoursPerWeek.id,
-    		    "residentStatus": vm.emp.residentStatus.id,
+    		    "rateType": vm.emp.rateType,
+    		    "avgHoursPerWeek": vm.emp.avgHoursPerWeek,
+    		    "residentStatus": vm.emp.residentStatus,
     		    "dollarSpendFood": vm.emp.dollarSpendFood,
     		    "dollarSpendClothes": vm.emp.dollarSpendClothes,
     		    "dollarSpendEntertainment": vm.emp.dollarSpendEntertainment,
