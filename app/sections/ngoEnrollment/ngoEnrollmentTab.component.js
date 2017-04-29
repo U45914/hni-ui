@@ -1,7 +1,7 @@
 (function () {
   angular
       .module('app')
-      .component('ngoEnrollmentTab',{
+      .component('ngoProfile',{
           bindings: {
 
           },
@@ -9,17 +9,17 @@
           controller: ngoEnrollmentTabController,
           controllerAs: 'vm'
   }) ;
-  ngoEnrollmentTabController.$inject = ['$q','$rootScope', '$scope','ngoEnrollmentService','$state'];
+  ngoEnrollmentTabController.$inject = ['$q','$rootScope', '$scope','ngoEnrollmentService', 'validateService', '$state'];
 
-  function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService,$state) {
+  function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService,validateService,$state) {
       var vm = this;
+      
       vm.tabIndex = 0;
+      vm.validateNGOEnrollmentData = "";
       vm.$onInit = function() {
     	  ngoEnrollmentService.getProfileData().then(function success(response) {
               if(response || response.data) {
-                  console.log("response : "+JSON.stringify(response.data.response));
                   var response = response.data.response;
-                  console.log(response.overview);
                   ngoEnrollmentService.overviewData = response.overview;
                   ngoEnrollmentService.stakeHolderData = response.stakeHolder;
                   ngoEnrollmentService.serviceData = response.service;
@@ -32,7 +32,6 @@
            });;
       }
       var overViewData = ngoEnrollmentService.getOverviewData();
-      console.log("--->"+overViewData);
 	  var stakeHolderData = ngoEnrollmentService.getStakeHolderData();
 	  var serviceData = ngoEnrollmentService.getServiceData();
 	  var fundingData = ngoEnrollmentService.getFundingData();
@@ -51,7 +50,16 @@
       }
       
       vm.enrollementData = function(){
-    	   
+    	  var data = {}; 
+    	  data.overviewData = ngoEnrollmentService.getOverviewData();
+    	  data.stakeHolderData = ngoEnrollmentService.getStakeHolderData();
+    	  data.serviceData = ngoEnrollmentService.getServiceData();
+    	  data.fundingData = ngoEnrollmentService.getFundingData();
+    	  data.clientData = ngoEnrollmentService.getClientData();
+    	  vm.validateNGOEnrollmentData = validateService.validateNGOEnrollmentData(data);
+    	  if(vm.validateNGOEnrollmentData.length == null){
+	    	  console.log( vm.validateNGOEnrollmentData);
+	    		  console.log("Attempting function call..");
 		  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
 					function successCallback(response) {
 						if (response
@@ -70,6 +78,7 @@
 					});
 
 		  return $q.all(serviceCalls);
+    	  }
 		  
 	  }
   }

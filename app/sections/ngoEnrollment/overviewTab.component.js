@@ -37,18 +37,7 @@
 		vm.delRow = function(index) {
 			vm.list.splice(index, 1);
 		}
-		
-
-		vm.view = ngoEnrollmentService.overviewData;
-		console.log("v.view : ");
-		console.log(vm.view);
-		if (vm.view && vm.view.promoters) {
-			vm.list = vm.view.promoters;
-			vm.view.promoters = " ";
-		}
-		if (vm.list) {
-			vm.flag = true;
-		}
+	
 		vm.save = function() {
 			var data = {
 				"name" : vm.view.name,
@@ -61,11 +50,11 @@
 				"promoters" : vm.list,
 				"address" : {
 					"name" : vm.view.addressType,
-					"address1" : vm.view.address1,
-					"address2" : vm.view.address2,
-					"city" : vm.view.city,
-					"state" : vm.view.state,
-					"zip" : vm.view.zip,
+					"address1" : vm.view.address.address1,
+					"address2" : vm.view.address.address2,
+					"city" : vm.view.address.city,
+					"state" : vm.view.address.state,
+					"zip" : vm.view.address.zip,
 				},
 			};
 
@@ -90,12 +79,19 @@
 				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 			} else {
 				// toaster.success('Hello world!', 'Toastr fun!');
-				window.alert("Please fill the fields");
-				return false;
+				//window.alert("Please fill the fields");
+				//return false;
 			}
 		}
 		vm.load = function() {
 			vm.view = ngoEnrollmentService.overviewData;
+			if (vm.view && vm.view.promoters) {
+				vm.list = vm.view.promoters;
+				vm.view.promoters = " ";
+			}
+			if (vm.list) {
+				vm.flag = true;
+			}
 		}
 
 		function onSuccess(response) {

@@ -83,25 +83,30 @@
                 url: '/credential-setup',
                 template: '<credential-setup></credential-setup>'
             })
-            .state('ngoEnrollmentTab', {
-                url: '/ngoEnrollmentTab',
-                template: '<ngo-enrollment-tab></ngo-enrollment-tab>'
+            .state('ngoProfile', {
+                url: '/ngoProfile',
+                template: '<ngo-profile></ngo-profile>'
             })
         	.state('volunteerProfile', {
         		url: '/volunteerProfile',
         		template: '<volunteer-profile></volunteer-profile>'
         	})
-        	 .state('clientsEnrollmentTab', {
-                url: '/clientsEnrollmentTab',
-                template: '<clients-enrollment-tab></clients-enrollment-tab>'
+        	 .state('clientProfile', {
+                url: '/clientProfile',
+                template: '<client-profile></client-profile>'
             })
-            
-             .state('volunteerTimeAvailability', {
+            .state('volunteerTimeAvailability', {
                 url: '/volunteerTimeAvailability',
                 template: '<volunteer-time-availability></volunteer-time-availability>'
             })
-        	;
-        
+            .state('clientInvitation', {
+                url: '/clientInvitation',
+                template: '<client-invitation></client-invitation>'
+            })
+            .state('profile', {
+            	url: '/profile',
+            	template: '<profile></profile>'
+            });        
              
     }
 })();

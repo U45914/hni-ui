@@ -30,7 +30,8 @@
         	 getFoodData:getFoodData,
         	 setHealthData:setHealthData,
         	 getHealthData:getHealthData,
-        	setPersonnalData
+        	setPersonnalData,
+        	getProfileData
            
             };
         
@@ -152,6 +153,84 @@
             	if (key.indexOf("__") == -1 ) {
             		finalSaveData[key] = val;
             	}
+            }
+            
+            //Function to call post service to add a new client
+            function inviteClient(data) {
+                let postData = JSON.stringify(data);
+                return $http.post(`${baseUrl}/onboard/client/user/invite`, postData);
+            }
+            
+            function getProfileData(){
+            	var data = {
+            	    "id": 0,
+            	    "userId": 0,
+            	    "createdBy": 0,
+            	    "race": 0,
+            	    "addressId": 0,
+            	    "bday": 0,
+            	    "beenArrested": "string",
+            	    "beenConvicted": "string",
+            	    "hasSmartPhone": "string",
+            	    "serviceProvider": "string",
+            	    "model": "string",
+            	    "haveMonthlyPlan": "string",
+            	    "monthlyPlanMinute": "string",
+            	    "monthlyPlanData": "string",
+            	    "monthlyPlanCost": "string",
+            	    "altMonthlyPlan": 0,
+            	    "altMonthlyPlanTogether": "string",
+            	   "sliblings": 0,
+            	    "kids": 0,
+            	    "liveAtHome": "string",
+            	    "sheltered": 0,
+            	    "parentEducation": 0,
+            	    "education": 0,
+            	    "enrollmentStatus": 0,
+            	    "enrollmentLocation": "string",
+            	    "workStatus": 0,
+            	    "timeToWorkplace": 0,
+            	    "noOfJob": 0,
+            	    "employer": "string",
+            	    "jobTitle": "string",
+            	    "durationOfEmployement": 0,
+            	    "unemploymentBenfits": "string",
+            	    "reasonUnemploymentBenefits": "string",
+            	    "totalIncome": 0,
+            	    "rateAmount": 0,
+            	    "rateType": 0,
+            	    "avgHoursPerWeek": "string",
+            	    "residentStatus": 0,
+            	    "dollarSpendFood": 0,
+            	    "dollarSpendClothes": 0,
+            	    "dollarSpendEntertainment": 0,
+            	    "dollarSpendTransport": 0,
+            	    "dollarSpendSavings": 0,
+            	    "mealsPerDay": 0,
+            	    "foodPreference": 0,
+            	    "foodSource": "string",
+            	    "cook": "string",
+            	    "travelForFoodDistance": 0,
+            	    "travalForFoodTime": 0,
+            	    "subFoodProgram": "string",
+            	    "subFoodProgramEntity": "string",
+            	    "subFoodProgramDuration": 0,
+            	    "subFoodProgramRenew": 0,
+            	    "subFoodProgramExp": "string",
+            	    "allergies": "string",
+            	    "addiction": "string",
+            	    "addictionType": "string",
+            	    "mentalHealthIssue": "string",
+            	    "mentalHealthIssueHistory": "string",
+            	    "height": "string",
+            	    "weight": "string",
+            	    "exercisePerWeek": 0,
+            	    "lastVisitDoctor": 0,
+            	    "lastVisitDentist": 0
+            	}
+
+            	return data;
+            	//return $http.get(`${baseUrl}/users/ngo/profile`)
             }
                
  }

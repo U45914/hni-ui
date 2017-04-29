@@ -9,10 +9,12 @@
             controller: controller,
             controllerAs: 'vm'
         });
-
-    function controller() {
+    controller.$inject = ['$element', '$window', '$document',  'authService', 'rolesConstantName'];
+    function controller($element, $window, $document, authService, rolesConstantName) {
         let vm = this;
-
         vm.selectedNavItem = "orders";
-    }
+        vm.role = authService.getUserRole();
+        vm.rolesConstantName=rolesConstantName;
+        
+            }
 })();
