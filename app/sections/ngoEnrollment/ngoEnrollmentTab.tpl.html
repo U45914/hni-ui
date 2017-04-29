@@ -2,20 +2,23 @@
 <top-nav></top-nav>
 
 <div>
-	<div class="left_style"><left-nav-bar></left-nav-bar>
+	<div class="left_style"  layout="row"><left-nav-bar></left-nav-bar>
 </div>
 	
-<div class="tabnew">
-<div ng-cloak>
+<div class="tabnew" >
+<div ng-cloak >
 
-	<md-content>
+	<md-content >
 	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex"  class="label_style"> 
 	  
 		<md-tab label="overview"  >
-		
-		    <md-content class="md-padding ">
+		<div >
+		    <md-content class="md-padding  " >
+		    
 			<overview-tab></overview-tab>
+			
 			</md-content>
+			</div>
 		</md-tab>
 
 		<md-tab label="Stakeholders">
@@ -44,13 +47,16 @@
 
 	</md-tabs>
 </md-content>
-<md-button class="md-raised button-primary"  ng-click="vm.enrollementData();" style="float:right" >Submit</md-button>
+<div>
+	<center><font color = "red">{{vm.validateNGOEnrollmentData}}</font></center>
+</div>
+<md-button class="md-raised button-primary"  ng-click="vm.enrollementData();" style="float:right;" >Submit</md-button>
 </div>
 
 </div>
 </div>
 
-<div style="clear:both">
+<div class="clear_all">
 <landing-footer></landing-footer>
 </div>
 		

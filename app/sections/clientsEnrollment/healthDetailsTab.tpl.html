@@ -1,49 +1,65 @@
+<div class="font_for_allpages" >
+	<h3>Food Preferences Details</h3>
+
+
+
 <br>
 <div id="healthId">
+<div layout-gt-xs="row" class="width_for_textbox">	
 <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Allergies</label>
 			<input type="text"  required
-				ng-model="vm.health.allergies" />
+				ng-model="vm.health.allergies"/>
 	</md-input-container>
+</div>
 	<md-radio-group  layout = "row" ng-model="vm.health.addiction"  class="md-primary">
 	<label>History of addiction</label>
 	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
 	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
 	</md-radio-group>
 	<div ng-show="vm.health.addiction">
+	<div layout-gt-xs="row" class="width_for_textbox">	
 	<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label>If yes then: provide type of addiction</label>
 				<input type="text" ng-model="vm.health.addictionType"> 
 			</md-input-container>
-		</div>
+		
 	<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label>History of mental health problems</label>
 				<input type="text" 
 				ng-model="vm.health.mentalHealthIssue" /> 
 			</md-input-container>
+	</div>
+	<div layout-gt-xs="row" class="width_for_textbox">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label>If yes then: please explain</label>
 				<input type="text" ng-model="vm.health.mentalHealthIssueHistory" />
 			</md-input-container>
-			<label>Height</label>
-			<md-input-container  flex-gt-sm>
+	</div>
+	</div>
+			
+			<label class="mgn_top10">Height</label>
+			<md-input-container  flex-gt-sm class="mgn_left_25">
 			<label>feet</label>
-            	<input type="text" ng-model="vm.health.feet"/>
+            	<input type="text" ng-model="vm.health.feet" />
             	</md-input-container>
-            	<md-input-container>
+            	<md-input-container class="mgn_left_25">
             	<label>inch</label>
 				<input type="text" ng-model="vm.health.inch"/>
 			</md-input-container>
-			<br>
-			<label>Weight</label>
-			<md-input-container  flex-gt-sm>
+		
+			<label class="mgn_left_25">Weight</label>
+			<md-input-container  flex-gt-sm class="mgn_left_25">
             	<label>Lbs </label>
-				<input type="text" ng-model="vm.health.weight"/>
+				<input type="text" ng-model="vm.health.weight" />
 			</md-input-container>
+		<div layout-gt-xs="row" class="width_for_textbox">	
 			<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label>Minutes of Exercise per week</label>
 				<input type="text" ng-model="vm.health.exercisePerWeek" />
 			</md-input-container>
+		</div>
+	<div layout-gt-xs="row" class="width_for_textbox">	
 			<md-input-container class="md-block input-primary" flex-gt-sm>
 	      <label>Last time you saw a doctor?</label>
 	      	 <md-select name="type" ng-model="vm.health.lastVisitDoctor" required>
@@ -54,7 +70,7 @@
 	            <md-option ng-value="4">I have never seen a doctor</md-option>
 	         </md-select>
      </md-input-container>
-	<br>
+
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	      <label>Last time you saw a dentist?</label>
 	      	 <md-select name="type" ng-model="vm.health.lastVisitDentist" required>
@@ -65,9 +81,14 @@
 	            <md-option ng-value="4">I have never seen a dentist</md-option>
 	         </md-select>
      </md-input-container>
-     <br>
-	<div style="float: right">
-		<br>
-		<md-button class="md-raised button-primary" ng-click="vm.save();">Save</md-button>
-	</div>
+   </div>
+    <br><br>
+		<hr class "register-input mgn_top10" layout="row" layout-align="center center">
+			<div  class="left_float">
+				<br>
+				<md-button class="md-raised button-primary" ng-click="vm.save();">Save
+				</md-button>
+			</div>
+</div>
+
 </div>

@@ -1,9 +1,13 @@
-<div class="main_body">
-<h4>How many individuals are served?</h4>
+<div class="font_for_allpages">
+	<h3>Clients Details</h3>
+<br>
 
+
+<p>How many individuals are served?</p>
+<br>
 			<div>
 			<div style="float:left">
-			      <label>Daily</label>
+			      <label><b>Daily</b></label>
 			     <div style="width:50%;">
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
@@ -13,7 +17,7 @@
 				 </div>
 			</div>
 			<div style="float:left">
-				 <label>Monthly</label>
+				 <label><b>Monthly</b></label>
 			     <div style="width:50%;">
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
@@ -22,7 +26,7 @@
 				</div>
 			</div>	
 			<div style="float:left">
-				<label>Annually</label>
+				<label><b>Annually</b></label>
 			     <div style="width:50%;">
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
@@ -33,7 +37,7 @@
 		</div>
 
 		 <div flex-gt-sm style="clear:both;">
-            <label> Do you collect individual client info?</label>
+            <p> Do you collect individual client info?</p>
             <div class="padding_top_radio">
             <md-radio-group   layout="row" ng-model ="vm.client.individualClientInfoCollected" class="md-primary"> 
             <md-radio-button ng-value="true" >Yes</md-radio-button>
@@ -64,13 +68,13 @@
          </div> 
          
   <br>
-	<hr class "register-input" style="width: 100%">
-	<div style="float: right">
-		<br>
-		<md-button class="md-raised button-primary" style="background-color:#449d44;" ng-click="vm.save();">Save
-		& Next</md-button>
-	</div>               
-
+	<hr class "register-input" layout="row" layout-align="center center">
+	<div  class="left_float">
+	<br>
+	<md-button class="md-raised button-primary " class="save_next_btn" ng-click="vm.save();" >Save </md-button>
+	
+	</div>          
+</div>
    
        
          
