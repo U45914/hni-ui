@@ -306,7 +306,7 @@
 					if(data.lunchQty == null || !angular.isNumber(data.lunchQty)){
 						errorArray.push("Lunch Qty");
 					}
-					if(data.lunchAvailabilty == null || lunchAvailabilty.length == 0){
+					if(data.lunchAvailabilty == null || data.lunchAvailabilty.length == 0){
 						errorArray.push("Lunch Availability");
 					}
 				}
@@ -315,7 +315,7 @@
 					if(data.dinnerQty == null || !angular.isNumber(data.dinnerQty)){
 						errorArray.push("Dinner Qty");
 					}
-					if(data.dinnerAvailabilty == null || dinnerAvailabilty.length == 0){
+					if(data.dinnerAvailabilty == null || data.dinnerAvailabilty.length == 0){
 						errorArray.push("Dinner Availability");
 					}
 				}

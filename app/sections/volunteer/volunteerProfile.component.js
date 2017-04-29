@@ -17,7 +17,12 @@
 		vm.state=validateService.validateStateDrpdwn();
 		
 	    
-		//vm.vol = volunteerService.getProfileData();
+		vm.vol = {};
+		volunteerService.getProfileData().then(function(response){
+			if (response && response.data){
+				vm.vol = response.data.response;
+			}
+		});
 	    
 
 		vm.submit = function() {

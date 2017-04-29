@@ -19,7 +19,8 @@
 		vm.userNameMessage = "";
 		vm.validateUserEnrollment = "";
 		vm.username = getUserName();
-
+		vm.activationCodeNeeded = vm.userType === "client"
+		vm.activationCode;
 		vm.signIn = function() {
 			var data = {
 				"firstName" : vm.firstName,
@@ -32,7 +33,7 @@
 			vm.validateUserEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
 			if(vm.validateUserEnrollment == ""){
 				vm.errorText = false;
-				ngoOnboardingService.registerNgo(data).then(function(response) {
+				ngoOnboardingService.registerNgo(data, vm.activationCode).then(function(response) {
 					if (response && response.data && response.data.success) {
 						alert(response.data.success)
 						$state.go('login');
