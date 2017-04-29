@@ -18,44 +18,49 @@
 
 	} 
   
-  personalInfoController.$inject = ['$q','clientEnrollmentService','validateService','$rootScope','$scope']; 
+  personalInfoController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','validateService']; 
   
-  function personalInfoController ($q,clientEnrollmentService,$rootScope,validateService,$scope) {
+  function personalInfoController ($q,clientEnrollmentService,$rootScope,$scope,validateService) {
 	  var vm = this;
 	 
 	  vm.client = {};
 	  vm.client.user = {};
 	  vm.client.address = {};
-	  
+	  vm.states = validateService.validateStateDrpdwn();
+	 
 	  $scope.$on("data-loaded-client", function(obj) {
 			vm.load();
-		});
+	 });
 	  
 	  vm.load = function() {
-			vm.client = clientEnrollmentService.personnalData;
+			vm.client = clientEnrollmentService.finalData;
+			vm.client.bday = new Date(vm.client.bday);			
 		}
 	  
 	  vm.save = function(){
-		  debugger;
+		 // $scope.bday=parseInt(vm.client.bday);
 		  var data = {
-					"firstName" : vm.client.user.firstName,
-					"middleName" : vm.client.user.middleName,
-					"lastName" : vm.client.user.lastName,
+				  "user" : {
+					  	"firstName" : vm.client.user.firstName,
+						//"middleName" : vm.client.user.middleName,
+						"lastName" : vm.client.user.lastName,
+						//"ethnicity" : vm.client.user.ethnicity,
+						"mobilePhone" : vm.client.user.mobilePhone,
+				  },
 					"address" : {
-						"name" : vm.client.name,
+						"name" : vm.client.address.name,
 						"address1" : vm.client.address.address1,
 						"address2" : vm.client.address.address2,
 						"city" : vm.client.address.city,
 						"state" : vm.client.address.state,
 						"zip" : vm.client.address.zip,
 					},
-					"ethnicity" : vm.client.user.ethnicity,
-					"phoneNumber" : vm.client.user.phoneNumber,
 					"bday" : vm.client.bday,
 					"beenArrested" : vm.client.beenArrested,
-					"felony" : vm.client.user.felony
+					"beenConvicted" : vm.client.beenConvicted,
+					"race"	: vm.client.race
 					};
-	
+		  			console.log(parseInt(vm.client.bday));
 		  /*vm.validatePersonalInfo = validateService.validateClientPersonalInfo(data);
 		  if(vm.validateClientPersonalInfo == ""){
 				vm.errorText = false;
@@ -75,7 +80,7 @@
 				vm.errorText = true;
 			}return;*/
 		  
-				if (vm.user.ethnicity != null && vm.user.phoneNumber != null
+				if (/*vm.client.user.ethnicity != null &&*/ vm.client.user.mobilePhone != null
 						&& vm.client.bday != null) {
 					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
 					//var serviceCalls = clientEnrollmentService.savePartial();

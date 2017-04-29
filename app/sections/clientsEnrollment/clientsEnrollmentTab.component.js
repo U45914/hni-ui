@@ -9,27 +9,25 @@
           controller: clientsEnrollmentTabController,
           controllerAs: 'vm'
   }) ;
-  clientsEnrollmentTabController.$inject = ['$rootScope', 'clientEnrollmentService','$scope'];
+  clientsEnrollmentTabController.$inject = ['$rootScope', 'clientEnrollmentService','$scope','$timeout'];
 
-  function clientsEnrollmentTabController($rootScope, clientEnrollmentService,$scope) {
+  function clientsEnrollmentTabController($rootScope, clientEnrollmentService,$scope,$timeout) {
       var vm = this;
       
       vm.$onInit = function() {
     	  var response = clientEnrollmentService.getProfileData();
     	  debugger;
 		  console.log(response);
-		  $scope.$broadcast("data-loaded-client", response);
+		  clientEnrollmentService.finalData = response;
+		  $timeout(function(){
+			  $scope.$broadcast("data-loaded-client", response);
+		  },2000);
+		  
     	 /* clientEnrollmentService.getProfileData().then(function success(response) {
               if(response || response.data) {
                   console.log("response : "+JSON.stringify(response.data.response));
                   var response = response.data.response;
-                  clientEnrollmentService.personnalData = response;
-                  clientEnrollmentService.personnalData = response.personal;
-                  clientEnrollmentService.connectionData = response.connection;
-                  clientEnrollmentService.familyData = response.family;
-                  clientEnrollmentService.employmentData = response.employment;
-                  clientEnrollmentService.foodData = response.food;
-                  clientEnrollmentService.healthData = response.health;
+                  clientEnrollmentService.finalData = response;
                   $scope.$broadcast("data-loaded-client", response);
                }
            }, function error(error) {

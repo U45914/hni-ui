@@ -6,21 +6,21 @@
 <label>Middle Name</label> <input type="text"
 	ng-model="vm.client.user.middleName" /></md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
-<label>Last Name</label> <input type="text" ng-model="vm.user.lastName" />
+<label>Last Name</label> <input type="text" ng-model="vm.client.user.lastName" />
 </md-input-container>
 </md-input-container>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label>Address Type</label> <md-select name="type"
-		ng-model="vm.client.name" required> <md-option
+		ng-model="vm.client.address.name" required> <md-option
 		value="home">Home</md-option> <md-option value="office">Office</md-option>
 	</md-select> </md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label>Address</label> <input type="text" required
-		ng-model="vm.client.address1"> </md-input-container>
+		ng-model="vm.client.address.address1"> </md-input-container>
 </div>
 <md-input-container class="md-block input-primary" flex-gt-sm>
-<label>Address</label> <input type="text" ng-model="vm.client.address2">
+<label>Address</label> <input type="text" ng-model="vm.client.address.address2">
 </md-input-container>
 
 <div layout-gt-xs="row">
@@ -29,12 +29,12 @@
 		ng-model="vm.client.city"> </md-input-container>
 
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>State</label> <md-select name="type" ng-model="vm.client.state"
+	<label>State</label> <md-select name="type" ng-model="vm.client.address.state"
 		required> <md-option ng-repeat="each in vm.states"
 		value={{each.value}}>{{each.name}}</md-option> </md-select> </md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label>Zip</label> <input type="number" required
-		ng-model="vm.client.zip"> </md-input-container>
+		ng-model="vm.client.address.zip"> </md-input-container>
 </div>
 <br>
 <md-input-container class="md-block input-primary" flex-gt-sm>
@@ -43,8 +43,11 @@
 1</md-option> <md-option ng-value=2>option 2</md-option></md-select> </md-input-container>
 </md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
+	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race"> <md-option
+		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
+<md-input-container class="md-block input-primary" flex-gt-sm>
 <label>Phone Number</label> <input type="number" required
-	ng-model="vm.client.user.phoneNumber" /> </md-input-container>
+	ng-model="vm.client.user.mobilePhone" /> </md-input-container>
 <md-input-container class="md-block" flex-gt-sm> <label>Birthday</label>
 <input type="date" required ng-model="vm.client.bday"> </md-input-container>
 <md-radio-group layout="row" ng-model="vm.client.beenArrested"
@@ -54,7 +57,7 @@ Yes </md-radio-button> <md-radio-button style="left:15px;" ng-value="false">
 No </md-radio-button> </md-radio-group>
 <br>
 <br>
-<md-radio-group layout="row" ng-model="vm.client.user.felony"
+<md-radio-group layout="row" ng-model="vm.client.beenConvicted"
 	class="md-primary"> <label>Have you ever been
 	convicted of a felony?</label> <md-radio-button style="left:13px;"
 	ng-value="true"> Yes </md-radio-button> <md-radio-button

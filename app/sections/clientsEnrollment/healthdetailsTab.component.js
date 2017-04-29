@@ -17,12 +17,22 @@
 		}
 	}
 	
-	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope'];
+	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope','$scope'];
 	
-	function healthDetailsTabController($q,clientEnrollmentService,$rootScope){
+	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope){
     	var vm = this;
     //	vm.health = clientEnrollmentService.clientData;
-    	    	
+    	 $scope.$on("data-loaded-client", function(obj) {
+ 			vm.load();
+ 	 });
+ 	  
+ 	  vm.load = function() {
+ 		 vm.health = clientEnrollmentService.finalData;
+ 			var height = vm.health.height;
+ 			var height2 = height.toString();
+  			vm.health.feet = height2.split('|')[0];
+ 			vm.health.inch = height2.split('|')[1];
+ 		}	
     	vm.save = function(){   		
       		 var data = {
       				 "allergies" : vm.health.allergies,

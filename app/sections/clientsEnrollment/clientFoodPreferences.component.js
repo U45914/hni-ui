@@ -62,19 +62,27 @@
 			{id: 4, name: "poor"}
     	];
     	//vm.food = clientEnrollmentService.foodPreferences;
+    	 $scope.$on("data-loaded-client", function(obj) {
+ 			vm.load();
+ 	 });
+ 	  
+ 	  vm.load = function() {
+ 			vm.food = clientEnrollmentService.finalData;
+ 		}
+    	
     	vm.save = function(){ 
     	var data = {
-    		    "mealsPerDay": vm.food.mealsPerDay.id,
-    		    "foodPreference": vm.food.foodPreference.id,
+    		    "mealsPerDay": vm.food.mealsPerDay,
+    		    "foodPreference": vm.food.foodPreference,
     		    "foodSource": vm.food.foodSource,
     		    "cook": vm.food.cook,
-    		    "travelForFoodDistance": vm.food.travelForFoodDistance.id,
-    		    "travalForFoodTime": vm.food.travalForFoodTime.id,
+    		    "travelForFoodDistance": vm.food.travelForFoodDistance,
+    		    "travalForFoodTime": vm.food.travalForFoodTime,
     		    "subFoodProgram": vm.food.subFoodProgram,
     		    "subFoodProgramEntity": vm.food.subFoodProgramEntity,
     		    "subFoodProgramDuration": vm.food.subFoodProgramDuration,
     		    "subFoodProgramRenew": vm.food.subFoodProgramRenew,
-    		    "subFoodProgramExp": vm.food.subFoodProgram ? vm.food.subFoodProgramExp.id : "" 
+    		    "subFoodProgramExp": vm.food.subFoodProgram ? vm.food.subFoodProgramExp : "" 
     			}
     	console.log(data);
     	 clientEnrollmentService.setFoodData(data);

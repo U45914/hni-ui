@@ -22,6 +22,14 @@
 	function connectionDetailsController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;
     	//vm.connection = clientEnrollmentService.connectionDetails;
+    	 $scope.$on("data-loaded-client", function(obj) {
+ 			vm.load();
+ 	 });
+ 	  
+ 	  vm.load = function() {
+ 			vm.connection = clientEnrollmentService.finalData;
+ 		}
+    	
     	vm.save = function(){ 
     	var data = {
     		    "hasSmartPhone": vm.connection.hasSmartPhone,
