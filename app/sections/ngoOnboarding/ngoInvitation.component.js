@@ -51,15 +51,25 @@
 										toaster
 												.success("Your request has been submitted")
 										$state.go('dashboard');
-									} else {
+									} 
+									else if(response && response.data.response && response.data.response == "error"){
+										vm.incomplete = true;
+										vm.validateNGOInvitation = "Error : " +response.data.errorMsg;
+									}
+									else {
 										toaster.success("Failed : "
 												+ response.data.errorMsg);
+										window.alert(response.data.errorMsg);
+										vm.incomplete = true;
+										vm.validateNGOInvitation = "Something went wrong, please try again";
 									}
 								},
 								function errorCallback(response) {
 									toaster
 											.success("Something went wrong, please try again")
 									// $state.go('dashboard');
+									vm.incomplete = true;
+									vm.validateNGOInvitation = "Something went wrong, please try again";
 								});
 
 				return $q.all(serviceCalls);
