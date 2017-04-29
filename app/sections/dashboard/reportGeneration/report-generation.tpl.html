@@ -1,21 +1,21 @@
-
+<div class="font_for_allpages">
 <md-content layout-padding layout="row" layout-align="center">
-<div flex-gt-md="60" flex-md="80" flex-xs="100">
+<div flex-gt-md="100" flex-md="100" flex-xs="100" class="border shade-box">
 	<div grid-data id='test' grid-options="gridOptions"
 		grid-actions="gridActions">
-		<div>
+		<div >
 		<table
 			class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-			<thead>
+			<thead class="report_text_align">
 				<tr>
 					<th sortable="value"
-						class="sortable mdl-data-table__cell--non-numeric"
+						class="sortable mdl-data-table__cell--non-numeric report_padding  "
 						ng-repeat="head in vm.headers"><span>{{head.label}}</span></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr grid-item ng-repeat="data in vm.service">
-					<td class="mdl-data-table__cell--non-numeric"
+					<td class="mdl-data-table__cell--non-numeric padding_top_report"
 						ng-repeat=" head in vm.headers"><span>{{data[head.field]}}</span>
 					</td>
 				</tr>
@@ -26,7 +26,7 @@
 </div>
 </md-content>
 
-
+</div>
 
 
 

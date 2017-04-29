@@ -17,7 +17,6 @@
 		var vm = this;
 		vm.userType = getUserType();
 		vm.userNameMessage = "";
-		vm.errorText = false;
 		vm.validateUserEnrollment = "";
 		vm.username = getUserName();
 
@@ -41,9 +40,6 @@
 						alert("Failed to create user entry");
 					}
 				});
-			}
-			else{
-				vm.errorText = true;
 			}
 			return;
 		};

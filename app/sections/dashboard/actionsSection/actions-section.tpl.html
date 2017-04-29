@@ -1,10 +1,17 @@
-<div class="action-cards-section" layout="row" layout-wrap>
-	<div ng-repeat="x in vm.user">
-	<action-card ui-sref="{{x.servicePath}}" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="{{x.serviceName}}"></action-card>
+
+<div class="font_for_allpages">
+<div>
+</div>
+<div class="action-cards-section " layout="row" layout-wrap>
+	<div ng-repeat="x in vm.user" >
+	<action-card ui-sref="{{x.servicePath}}" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="{{x.serviceName}}">aaa</action-card>
 	</div>
 </div>
-	userlist
+	<b>SUMMARY</b>
 	
-	 <div ng-repeat="report in vm.reportCollection">
-		<report-generation ds="report" serviceds="vm.service" headerds="vm.headers"></report-generation>
-	</div>
+		 <div ng-repeat="report in vm.reportCollection" class="scroll_vertical">
+			<report-generation ds="report" serviceds="vm.service" headerds="vm.headers"></report-generation>
+		</div>
+	
+
+</div>	

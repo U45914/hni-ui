@@ -1,32 +1,32 @@
-	<div class="main_body">
-	<h4>Overview Details</h4>
+	<div class="font_for_allpages" >
+	<h3>Overview Details</h3>
 	
-	<div layout-gt-xs="row">
+	<div layout-gt-xs="row" class="width_for_textbox">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Name</label>
             <input type="text" ng-model="vm.view.name" required>
           </md-input-container>
           
-          <md-input-container class="md-block input-primary" flex-gt-sm>
+          <md-input-container class="md-block input-primary mgn_left_25" flex- gt-sm>
             <label>Phone</label>
             <input type="number" name="phone" required ng-model="vm.view.phone"></input>
           </md-input-container>
          </div>
          
-         <div layout-gt-xs="row">
+         <div layout-gt-xs="row" class="width_for_textbox">
           <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Website Link</label>
             <input type="text" name="websiteLink"  required ng-model="vm.view.website"></input>
           </md-input-container>
          
-          <md-input-container class="md-block input-primary" flex-gt-sm>
+          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
             <label>Contact Person</label>
             <input type="text"   required ng-model="vm.view.contact"></input>
           </md-input-container>
           </div>
           
          <div class="login-prompt"><b>Address</b></div>
-			<div layout-gt-xs="row" class="mission_width"> 
+			<div layout-gt-xs="row" class="width_for_textbox"> 
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
 				<label>Address Type</label>
 			 	<md-select name="type" ng-model="vm.view.address.addressType" required>
@@ -36,12 +36,12 @@
 			</md-input-container>
 			</div>
 			<div layout-gt-xs="row" class="mission_width1">
-				<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<md-input-container class="md-block input-primary " flex-gt-sm> 
 				<label>Address 1</label>
 			 	<input type="text" required ng-model="vm.view.address.address1">
 				</md-input-container>
 				
-				<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Address 2</label>
 			 	<input type="text" required ng-model="vm.view.address.address2">
 				</md-input-container>
@@ -53,12 +53,12 @@
 			 	<input type="text" required ng-model="vm.view.address.city">
 				</md-input-container>
 		
-				<md-input-container class="md-block input-primary" flex-gt-sm>
+				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
          			 <label>State</label>
           			 <md-select name="type" ng-model="vm.view.address.state" required>
             			<md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
             		</md-select>
-        		</md-input-container><md-input-container class="md-block input-primary" flex-gt-sm> 
+        		</md-input-container><md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 					<label>Zip</label>
 			 		<input type="number" required ng-model="vm.view.address.zip">
 				</md-input-container>
@@ -74,7 +74,7 @@
             <input type="number"   required ng-model="vm.view.employees"></input>
           </md-input-container>
           
-          <md-input-container class="md-block input-primary" flex-gt-sm>
+          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
             <label>Overview</label>
             <input type="text"   required ng-model="vm.view.overview"></input>
           </md-input-container>
@@ -90,9 +90,9 @@
             <label>Celebrity endorsements / notable promoters</label>
             <input type="text"   required ng-model="vm.view.promoters"></input>
           </md-input-container>
-		   <div style="padding:10px;">
+		   <div style="padding-top:10px;">
 		  <md-button class="md-fab btn_style"  ng-click="vm.addRow(vm.view.promoters)" >
-		    <md-icon md-svg-icon="images/plus.png">+</md-icon>
+		    <md-icon md-svg-src="app/assets/images/add.svg" ></md-icon>
 		  </md-button>
 		  </div>
 		</div> 
@@ -108,9 +108,9 @@
 	
 	
 	<hr class "register-input" layout="row" layout-align="center center">
-	<div style="float: right;">
+	<div  class="left_float">
 	<br>
-	<md-button class="md-raised button-primary " style="background-color:#449d44;" ng-click="vm.save();" >Save & Next</md-button>
+	<md-button class="md-raised button-primary " class="save_next_btn" ng-click="vm.save();" >Save & Next</md-button>
 	
 	</div>
 	</div>

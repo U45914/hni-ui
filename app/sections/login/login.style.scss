@@ -67,15 +67,11 @@
 	color:yellow;
 }
 
-/*-------login body----------------*/
 
-.adjust_float{
-	float:right;
-}
 .login_bg{
 	background: url('~images/Login_bg.jpg');
 	padding:20px;
-	height:518px;
+	height:530px;
 	
 	
 }
@@ -111,7 +107,8 @@
 				margin-bottom: 48px;
 			}
 			& md-input-container {
-				margin:0px;
+	margin:0px;
+			
 			}
 
 			& .password-container {

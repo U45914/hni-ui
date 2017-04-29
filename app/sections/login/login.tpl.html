@@ -17,11 +17,13 @@
                     <label>Email</label>
                     <input type="email" ng-model="vm.username">
                 </md-input-container>
-                <md-input-container class="md-block password-container input-primary" flex-gt-sm>
+                <div class="mgn_top20">
+                <md-input-container class="md-block password-container input-primary mgn_top10" flex-gt-sm>
                     <label>Password</label>
                     <input type="{{vm.inputType}}"  ng-model="vm.password"  class="visible" >
                     <i class="material-icons" ng-class="{'active': vm.isActive}" ng-click="vm.togglePassword()">&#xE417;</i>
                 </md-input-container>
+                </div>
                 <md-button class="md-raised button-primary"  ng-click="vm.signIn()" ng-disabled="vm.isDisabled" ng-model="vm.isDisabled">
                 <span ng-show="vm.signInButton == 'Signing In ...'"></span>
            		 {{ vm.signInButton }}

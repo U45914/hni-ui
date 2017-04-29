@@ -25,8 +25,9 @@
             	
                 if(response.data !== null) {
                 	vm.userRole = response.data.role;
+                	window.localStorage.setItem("userRole", vm.userRole);
                 	vm.user = response.data.data;  
-                	if (response.data.profileStatus == true) {
+                	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
                 		vm.user = response.data.data;                		
                 	} else {
                 		window.localStorage.setItem("userRole", vm.userRole);

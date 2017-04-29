@@ -40,7 +40,7 @@
 			};
 			
 			vm.validateNGOInvitation = validateService.validateNGOOnboard(data);
-			if (validateService.validateNGOOnboard(data) == "") {
+			if (vm.validateNGOInvitation == "") {
 				var serviceCalls = ngoOnboardingService
 						.inviteNgo(data)
 						.then(

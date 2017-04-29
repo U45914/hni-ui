@@ -52,7 +52,7 @@
                 	}
                 return $http(config);
             }
-            function volunteerTimeAvailability(data) {
+            function saveVolunteerTimeAvailability(data) {
                 let postData = JSON.stringify(data);
                 console.log("Time Availabilty : "+ postData);
                

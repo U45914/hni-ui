@@ -1,45 +1,66 @@
+<div class="font_for_allpages">
 <top-nav></top-nav>
-<h1>Volunteer Time Availability</h1><br>
+
 <div>
-<md-grid-list md-cols="8" md-row-height="6:1" md-gutter="6px">
+	<div class="left_style"  layout="row"><left-nav-bar></left-nav-bar>
+</div>
+<div class="tabnew" >
+<h1>Volunteer Time Availability</h1><br>
+<div class="main_grid">
+<md-grid-list md-cols="8" md-row-height="6:1" md-gutter="6px" class="md_grid_list">
 			<md-grid-tile></md-grid-tile>
-			<md-grid-tile ng-repeat="day in vm.days" ng-model="vm.weekDay">
+			<md-grid-tile ng-repeat="day in vm.days" ng-model="vm.weekDay" class="grid_tile_style" >
 				<div id="dayId" layout="row" flex>{{day}}</div>
 			</md-grid-tile> 
 		</md-grid-list>
 		<br>
-<md-grid-list md-cols="8" md-row-height="6:1" md-gutter="6px" ng-repeat="time in vm.availabity" ng-model="vm.time">
-			<md-grid-tile>
+<md-grid-list md-cols="8" md-row-height="6:1" md-gutter="6px" ng-repeat="time in vm.availabity" ng-model="vm.time" class="md_grid_list">
+	<md-grid-list md-cols="8" md-row-height="6:1" md-gutter="6px" ng-repeat="dayAvail in vm.dayAvailableArray" ng-model="vm.time"> 
+		<md-grid-tile>
+			<div flex>{{dayAvail.timeline}}</div>
+		</md-grid-tile> 
+		<md-grid-tile ng-repeat="day in dayAvail.weekday"> 
+			<md-checkbox aria-label="No" style="margin-top:15px;" ng-model="day.checked" class="md-primary"/>
+		</md-grid-tile>
+	</md-grid-list>
+
+	<!-- <md-grid-list md-cols="8" md-row-height="6:1" md-gutter="6px" ng-repeat="time in vm.availabity" ng-model="vm.time">
+			<md-grid-tile >
 				<div flex>{{time}}</div>
 			</md-grid-tile> 
 			<md-grid-tile>
-			<md-checkbox aria-label="No" ng-click="vm.cal($index,0,$event)" class="md-primary"></md-checkbox>
+			<md-checkbox aria-label="No" ng-click="vm.cal($index,0,$event)" style="margin-top:15px;" class="md-primary"></md-checkbox>
+			</md-grid-tile>
+			<md-grid-tile >
+			<md-checkbox  aria-label="No" ng-click="vm.cal($index,1,$event)" style="margin-top:15px;" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 			<md-grid-tile>
-			<md-checkbox  aria-label="No" ng-click="vm.cal($index,1,$event)" class="md-primary"></md-checkbox>
+			<md-checkbox aria-label="No" ng-click="vm.cal($index,2,$event)" style="margin-top:15px;" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 			<md-grid-tile>
-			<md-checkbox aria-label="No" ng-click="vm.cal($index,2,$event)" class="md-primary"></md-checkbox>
-			</md-grid-tile>
-			<md-grid-tile>
-			<md-checkbox aria-label="No" ng-click="vm.cal($index,3,$event)" class="md-primary"></md-checkbox>
+			<md-checkbox aria-label="No" ng-click="vm.cal($index,3,$event)" style="margin-top:15px;" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 			<md-grid-tile>
 			<md-checkbox aria-label="No" ng-click="vm.cal($index,4,$event)" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 			<md-grid-tile>
-			<md-checkbox aria-label="No" ng-click="vm.cal($index,5,$event)" class="md-primary"></md-checkbox>
+			<md-checkbox aria-label="No" ng-click="vm.cal($index,5,$event)" style="margin-top:15px;" class="md-primary"></md-checkbox>
 			</md-grid-tile>
 			<md-grid-tile>
-			<md-checkbox aria-label="No" ng-click="vm.cal($index,6,$event)" class="md-primary"></md-checkbox>
+			<md-checkbox aria-label="No" ng-click="vm.cal($index,6,$event)" style="margin-top:15px;" class="md-primary"></md-checkbox>
 			</md-grid-tile>
-		</md-grid-list>
+		</md-grid-list> -->
 		<br>
 		<hr class "register-input" style="width: 100%">
-	<div style="float: right">
+	<div  class="left_float">
 		<br>
 		<md-button class="md-raised button-primary" ng-click="vm.submit()" >Submit</md-button>
 	</div>
 	
 </div>
-	
+</div>
+</div>
+<div class="clear_all">
+<landing-footer></landing-footer>
+</div>
+</div>	
