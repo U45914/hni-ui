@@ -1,38 +1,40 @@
-<div class="main_body">
+<div class="font_for_allpages">
+	<h3>Services Details</h3>
+<br>
 <h4>Food Service Offered</h4>
 <div id="fdsrv">
-		<div flex-gt-sm="50" layout = "row">
-          <md-checkbox md-no-ink  ng-model="vm.service.brkfstChk" class="md-primary">
+		<div flex layout = "row" layout-align="start center">
+          <md-checkbox ng-model="vm.service.brkfstChk" class="md-primary">
             Breakfast
           </md-checkbox>
-          <md-input-container class="md-block input-primary" ng-show ="vm.service.brkfstChk" flex-gt-sm>
+          <md-input-container class="md-block input-primary" flex="60" ng-show ="vm.service.brkfstChk" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
             <input type="number"   required ng-model="vm.service.brkfstQty"></input>
           </md-input-container>
         </div>
-		<div flex-gt-sm="50" layout = "row">
+		<div flex layout = "row" layout-align="start center">
           <md-checkbox md-no-ink  ng-model="vm.service.lunchChk" class="md-primary">
             Lunch
           </md-checkbox>
-          <md-input-container class="md-block input-primary" ng-show ="vm.service.lunchChk" flex-gt-sm>
+          <md-input-container class="md-block input-primary" ng-show ="vm.service.lunchChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
             <input type="number"   required ng-model="vm.service.lunchQty"></input>
           </md-input-container>
         </div>
-        <div flex-gt-sm="50" layout = "row">
+        <div flex layout = "row" layout-align="start center">
           <md-checkbox md-no-ink  ng-model="vm.service.dinnerChk" class="md-primary">
             Dinner
           </md-checkbox>
-          <md-input-container class="md-block input-primary" ng-show ="vm.service.dinnerChk" flex-gt-sm>
+          <md-input-container class="md-block input-primary" ng-show ="vm.service.dinnerChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
             <input type="number"   required ng-model="vm.service.dinnerQty"></input>
           </md-input-container>
         </div>
-        <div flex-gt-sm="50" layout = "row">
+        <div flex layout = "row" layout-align="start center">
           <md-checkbox md-no-ink  ng-model="vm.service.baggedChk" class="md-primary">
             Bagged
           </md-checkbox>
-          <md-input-container class="md-block input-primary" ng-show ="vm.service.baggedChk" flex-gt-sm>
+          <md-input-container class="md-block input-primary" ng-show ="vm.service.baggedChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
             <input type="number"   required ng-model="vm.service.baggedQty"></input>
           </md-input-container>
@@ -45,7 +47,7 @@
             <input type="number"   required ng-model="vm.service.giftCard"></input>
           </md-input-container> 
           
-          <md-input-container class="md-block input-primary"  flex-gt-sm>
+          <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
             <label>Others </label>
             <input type="number"   required ng-model="vm.service.other"></input>
           </md-input-container>
@@ -94,7 +96,7 @@
      </div>
 	
 	<div layout-gt-xs="row" class="services_width">
-	<md-input-container class="md-block input-primary" flex-gt-sm>
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 		<label>Operating costs associated with meal services</label>
 		 <md-select ng-model="vm.service.operatingCost">
 			<md-option ng-value="0">0-$500</md-option>
@@ -123,7 +125,7 @@
 	</div>
 	
 	    <div layout-gt-xs="row" class="services_width">
-		 <md-input-container class="md-block input-primary"  flex-gt-sm>
+		 <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
             <label>volunteers required </label>
             <input type="number"   required ng-model="vm.service.volunteerNbr"></input>
           </md-input-container>
@@ -157,7 +159,11 @@
             <label>Name of food bank </label>
             <input type="text"   ng-model="vm.service.foodBankValue"></input>
           </md-input-container> 
-		  <md-button class="md-fab btn_style"  ng-click="vm.foodBbank(vm.service.foodBankValue)" >+</md-button>
+          <div style="padding-top:10px;">
+		  <md-button class="md-fab btn_style"  ng-click="vm.foodBbank(vm.service.foodBankValue)" >
+		   <md-icon md-svg-src="app/assets/images/add.svg" ></md-icon>
+		  </md-button>
+		  </div>
 	</div>
 		
 		<div>
@@ -199,9 +205,9 @@
 
 	<br>
 	<hr class "register-input" style="width: 100%">
-	<div style="float: right">
+	<div  class="left_float">
 		<br>
-		<md-button class="md-raised button-primary" style="background-color:#449d44;" ng-click="vm.save();">Save
+		<md-button class="md-raised button-primary" class="save_next_btn" ng-click="vm.save();">Save
 		& Next</md-button>
 	</div>
 </div>
