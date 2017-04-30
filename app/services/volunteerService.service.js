@@ -14,8 +14,9 @@
             volunteerProfileData,
             inviteVolunteer,
             registerVolunteer,
-            volunteerTimeAvailability,
-            getProfileData
+            saveVolunteerTimeAvailability,
+            getProfileData,
+            getVolunteerTimeAvailability
             };
         
             function profileDetails(data) {
@@ -53,10 +54,15 @@
                 	}
                 return $http(config);
             }
-            function volunteerTimeAvailability(data) {
+            function saveVolunteerTimeAvailability(data) {
                 let postData = JSON.stringify(data);
                 console.log("Time Availabilty : "+ postData);
+                return $http.post(`${baseUrl}/users/volunteer/availability/save`, postData);
                
+            }
+            
+            function getVolunteerTimeAvailability(){
+            	return $http.get(`${baseUrl}/users/volunteer/availability`)
             }
         
             function getProfileData(){
