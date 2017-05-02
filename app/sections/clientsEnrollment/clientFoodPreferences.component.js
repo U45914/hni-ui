@@ -87,7 +87,7 @@
     	console.log(data);
     	 clientEnrollmentService.setFoodData(data);
     	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-		 //var serviceCalls = ngoEnrollmentService.savePartial();
+		 var serviceCalls = clientEnrollmentService.savePartial();
     	}
 	}
 })();

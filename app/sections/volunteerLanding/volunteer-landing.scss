@@ -137,6 +137,12 @@ $color-volunteer-bottom: $color-gray-light;
   }
 }
 
+.img_landing_style
+{
+height: 13.8125rem;
+    width: 23.25rem;
+}
+
 @media screen and (min-width: 1280px) {
   .volunteer-landing-learn, .volunteer-landing-signup, .volunteer-landing-contact {
     height: rem(360px);
@@ -220,3 +226,5 @@ $color-volunteer-bottom: $color-gray-light;
     }
   }
 }
+
+

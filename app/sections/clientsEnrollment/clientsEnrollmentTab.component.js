@@ -14,25 +14,25 @@
   function clientsEnrollmentTabController($rootScope, clientEnrollmentService,$scope,$timeout) {
       var vm = this;
       
-      vm.$onInit = function() {
+     /* vm.$onInit = function() {
     	  var response = clientEnrollmentService.getProfileData();
     	  debugger;
 		  console.log(response);
 		  clientEnrollmentService.finalData = response;
 		  $timeout(function(){
 			  $scope.$broadcast("data-loaded-client", response);
-		  },2000);
+		  },2000);*/
 		  
-    	 /* clientEnrollmentService.getProfileData().then(function success(response) {
+      vm.$onInit = function() {
+    	  clientEnrollmentService.getProfileData().then(function success(response) {
               if(response || response.data) {
-                  console.log("response : "+JSON.stringify(response.data.response));
                   var response = response.data.response;
                   clientEnrollmentService.finalData = response;
                   $scope.$broadcast("data-loaded-client", response);
                }
            }, function error(error) {
                console.log(error);
-           });;*/
+           });;
       }
       
        $rootScope.$on("scroll-tab", function(event, data){

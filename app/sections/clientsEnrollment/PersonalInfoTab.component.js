@@ -34,7 +34,9 @@
 	  
 	  vm.load = function() {
 			vm.client = clientEnrollmentService.finalData;
-			vm.client.bday = new Date(vm.client.bday);			
+			vm.client.bday = new Date(vm.client.bday);	
+			console.log("data Returned : ");
+			console.log(vm.client.address);
 		}
 	  
 	  vm.save = function(){
@@ -83,7 +85,7 @@
 				if (/*vm.client.user.ethnicity != null &&*/ vm.client.user.mobilePhone != null
 						&& vm.client.bday != null) {
 					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
-					//var serviceCalls = clientEnrollmentService.savePartial();
+					var serviceCalls = clientEnrollmentService.savePartial();
 					$q.all(serviceCalls)// .then(onSuccess,onError);
 					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 
