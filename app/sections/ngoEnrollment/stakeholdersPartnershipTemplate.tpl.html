@@ -17,14 +17,17 @@
 	<md-grid-tile>
 	<b>Company</b></md-grid-tile> <md-grid-tile>
 	<b>Phone Number</b></md-grid-tile> <md-grid-tile>
-	<b>Delete</b></md-grid-tile> </md-grid-list>
+	<b></b></md-grid-tile> </md-grid-list>
 	<br>
 	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px"
-		ng-repeat="brand in brandList track by $index"> <md-grid-tile>
+		ng-repeat="brand in brandList track by $index"> 
+		<br><br>
+		<md-grid-tile>
 	<div layout="row">{{brand.company}}</div>
 	</md-grid-tile> <md-grid-tile>
 	<div layout="column">{{brand.phoneNumber}}</div>
 	</md-grid-tile> <md-grid-tile>
-	 <md-button class="md-fab btn_style"  ng-click="deleteBrand($index)">-</md-button>
+	 <md-button class="md-fab btn_style"  ng-click="deleteBrand($index)"> <div style="position: relative;
+    bottom: 8px;">X</div></md-button>
 	</md-grid-tile> </md-grid-list>
 </fieldset>
