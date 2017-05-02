@@ -57,30 +57,6 @@ th md-select {
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased; }
 
-.sortable span {
-  position: relative; }
-  .sortable span:before {
-    content: 'arrow_drop_down';
-    position: absolute;
-    right: -18px;
-    top: -2px; }
-  .sortable span:after {
-    content: 'arrow_drop_up';
-    position: absolute;
-    right: -18px;
-    top: -9px; }
-
-.sortable.sort-ascent span:before {
-  display: none; }
-
-.sortable.sort-ascent span:after {
-  top: -5px; }
-
-.sortable.sort-descent span:before {
-  top: -5px; }
-
-.sortable.sort-descent span:after {
-  display: none; }
   
   
   .report_text_align
