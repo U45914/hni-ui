@@ -9,9 +9,9 @@
           controller: ngoEnrollmentTabController,
           controllerAs: 'vm'
   }) ;
-  ngoEnrollmentTabController.$inject = ['$q','$rootScope', '$scope','ngoEnrollmentService', 'validateService', '$state'];
+  ngoEnrollmentTabController.$inject = ['$q','$rootScope', '$scope','ngoEnrollmentService', 'validateService', '$state','toastService'];
 
-  function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService,validateService,$state) {
+  function ngoEnrollmentTabController($q,$rootScope, $scope,ngoEnrollmentService,validateService,$state, toastService) {
       var vm = this;
       
       vm.tabIndex = 0;
@@ -64,14 +64,14 @@
 	    	  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
 	    			  				function successCallback(response) {
 	    			  					if (response && response.status && response.statusText == "OK") {
-	    			  							alert("Your request has been submitted")
+	    			  						toastService.showToast("Your request has been submitted")
 	    			  							$state.go('dashboard');
 	    			  					} else {
-	    			  							alert("Failed : "+ response.data.errorMsg);
+	    			  						toastService.showToast("Failed : "+ response.data.errorMsg);
 	    			  					}
 	    			  				},
 	    			  				function errorCallback(response) {
-	    			  					alert("Something went wrong, please try again")
+	    			  					toastService.showToast("Something went wrong, please try again")
 	    			  					// $state.go('dashboard');
 	    			  				});
 		  return $q.all(serviceCalls);

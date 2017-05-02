@@ -8,10 +8,10 @@
 		controllerAs : 'vm'
 	});
 	NgoAddUserController.$inject = [ '$q', 'ngoOnboardingService', 'validateService',
-			'orgService', '$scope', '$state', 'toaster' ];
+			'orgService', '$scope', '$state', 'toastService' ];
 
 	function NgoAddUserController($q, ngoOnboardingService, validateService, orgService,
-			$scope, $state, toaster) {
+			$scope, $state, toastService) {
 		var vm = this;
 		vm.noEdit=true;
 		vm.validateNGOAdd = "";
@@ -45,17 +45,15 @@
 									if (response
 											&& response.data.response
 											&& response.data.response == "success") {
-										toaster
-												.success("Your request has submitted, please check your email for more details")
+										toastService.showToast("Your request has submitted, please check your email for more details")
 										$state.go('dashboard');
 									} else {
-										toaster.success("Failed : "
+										toastService.showToast("Failed : "
 												+ response.data.errorMsg);
 									}
 								},
 								function errorCallback(response) {
-									toaster
-											.success("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again")
 									 $state.go('dashboard');
 								});
 

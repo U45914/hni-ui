@@ -12,10 +12,10 @@
 		controllerAs : 'vm'
 	});
 	NgoInvitationController.$inject = [ '$q', 'ngoOnboardingService', 'orgService', 'validateService', '$scope',
-			'$state', 'toaster' ];
+			'$state', 'toastService' ];
 
 	function NgoInvitationController($q, ngoOnboardingService, orgService, validateService, $scope, $state,
-			toaster) {
+			toastService) {
 		var vm = this;
 		vm.incomplete = false;
 		vm.orgInfo = {};
@@ -48,8 +48,7 @@
 									if (response
 											&& response.data.response
 											&& response.data.response == "success") {
-										toaster
-												.success("Your request has been submitted")
+										toastService.showToast("Your request has been submitted")
 										$state.go('dashboard');
 									} 
 									else if(response && response.data.response && response.data.response == "error"){
@@ -57,16 +56,15 @@
 										vm.validateNGOInvitation = "Error : " +response.data.errorMsg;
 									}
 									else {
-										toaster.success("Failed : "
+										toastService.showToast("Failed : "
 												+ response.data.errorMsg);
-										window.alert(response.data.errorMsg);
+										toastService.showToast(response.data.errorMsg);
 										vm.incomplete = true;
 										vm.validateNGOInvitation = "Something went wrong, please try again";
 									}
 								},
 								function errorCallback(response) {
-									toaster
-											.success("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again")
 									// $state.go('dashboard');
 									vm.incomplete = true;
 									vm.validateNGOInvitation = "Something went wrong, please try again";

@@ -7,9 +7,9 @@
 		controller : VolunteerEnrollmentController,
 		controllerAs : 'vm'
 	});
-	VolunteerEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope', '$state','validateService' ];
+	VolunteerEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope', '$state','validateService', 'toastService' ];
 
-	function VolunteerEnrollmentController($q, ngoOnboardingService, $scope, $state, validateService) {
+	function VolunteerEnrollmentController($q, ngoOnboardingService, $scope, $state, validateService, toastService) {
 		var USER_TYPE = "userType";
 		var USER_ORG_INFO = "userOrgInfo";
 		
@@ -36,10 +36,10 @@
 
 			ngoOnboardingService.registerNgo(data).then(function(response) {
 				if (response && response.data && response.data.success) {
-					alert(response.data.success + ", Please login with your credentials");
+					toastService.showToast(response.data.success + ", Please login with your credentials");
 					$state.go('login');
 				} else {
-					alert("Failed to create user entry");
+					toastService.showToast("Failed to create user entry");
 				}
 			});
 
