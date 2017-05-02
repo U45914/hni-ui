@@ -32,7 +32,7 @@
                 if(response.data !== null) {
                    console.log("response : ");
                    console.log(response.data);
-                   debugger;
+            
                    vm.service = response.data.data;
                    if(vm.service.length==0)
                 	   {
