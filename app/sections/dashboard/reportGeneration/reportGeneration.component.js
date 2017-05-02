@@ -33,9 +33,12 @@
                    vm.service = response.data.data;
                    vm.headers= response.data.headers;
                 }
+<<<<<<< Updated upstream
                 if(response.data == null){
                 	console.log("Missing Data");
                 }
+=======
+>>>>>>> Stashed changes
             }, function error(error) {
                 console.log(error);
             });
