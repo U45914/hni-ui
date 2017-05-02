@@ -98,7 +98,6 @@
 				}, function error(error) {
 					console.log(error);
 				});
-
 		}
 
 		vm.cal = function(x, y, event) {
@@ -123,6 +122,13 @@
 			}
 		}
 		vm.submit = function() {
+			vm.shiftOne = [];
+			vm.shiftTwo = [];
+			vm.shiftThree = [];
+			vm.shiftFour = [];
+			vm.shiftFive = [];
+			vm.shiftSix = [];
+			vm.shiftSeven = [];
 			vm.dayAvailableArray.forEach(function(dayAvail) {
 				dayAvail.weekday.forEach(function(day) {
 					if (day.checked) {
@@ -151,7 +157,7 @@
 				"shiftFour" : vm.shiftFour,
 				"shiftFive" : vm.shiftFive,
 				"shiftSix" : vm.shiftSix,
-				"shiftseven" : vm.shiftSeven,
+				"shiftSeven" : vm.shiftSeven,
 			};
 			
 			// volunteerService.volunteerProfileData = data;

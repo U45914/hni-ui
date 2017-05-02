@@ -7,14 +7,21 @@
         },
         transclude: true,
         templateUrl: 'user-detail.tpl.html',
-        controller: userDetailController,
+        controller: UserDetailController,
         controllerAs: 'vm'
     });
     
-    function userDetailController() {
+    UserDetailController.$inject = ['$scope', '$element', 'userService'];
+    
+    function UserDetailController($scope, $element, userService) {
         var vm = this;
+        vm.user;
         
-       // alert("entered");
+        
+        vm.$onInit = function() {
+            vm.user = userService.getUser();
+        }
+        debugger;
     }
     
 }
