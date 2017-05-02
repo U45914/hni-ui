@@ -7,6 +7,7 @@
 		<table
 			class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
 			<thead class="report_text_align">
+			 <span class="md-headline">{{vm.report.label}}</span>
 				<tr>
 					<th sortable="value"
 						class="sortable mdl-data-table__cell--non-numeric report_padding  "
@@ -14,10 +15,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr grid-item ng-repeat="data in vm.service">
+				<tr grid-item ng-repeat="data in vm.service" ng-if="vm.showData">
 					<td class="mdl-data-table__cell--non-numeric padding_top_report"
 						ng-repeat=" head in vm.headers"><span>{{data[head.field]}}</span>
 					</td>
+				</tr>
+				<tr grid-item ng-if="vm.showNothing" align="center">
+					<td align="center" colspan="3">
+						Nothing to show
+					</td>	
 				</tr>
 			</tbody>
 		</table>
