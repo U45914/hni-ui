@@ -9,7 +9,7 @@
           
           <md-input-container class="md-block input-primary mgn_left_25" flex- gt-sm>
             <label>Phone</label>
-            <input type="number" name="phone" required ng-model="vm.view.phone"></input>
+            <input type="text" name="phone" required ng-model="vm.view.phone"></input>
           </md-input-container>
          </div>
          
@@ -98,10 +98,14 @@
 		</div> 
 	<br>
 	
-		<md-grid-list md-cols="1" md-row-height="20:1" md-gutter="6px">
+		<md-grid-list md-cols="1" md-row-height="20:1" md-row-width="3:1"  md-gutter="6px">
 		<md-grid-tile ng-repeat="member in vm.list track by $index">
 			<div id="header" layout="row" flex>{{member}}</div>
-			<md-button class="md-fab btn_style"  ng-click="vm.delRow($index)" ng-show="vm.flag">-</md-button>
+			<md-button class="md-fab btn_style mgn_rt"  ng-click="vm.delRow($index)" ng-show="vm.flag">
+		    <div style="position: relative;
+    bottom: 8px;">X</div>
+		  </md-button>
+			
 		</md-grid-tile> </md-grid-list>
 
 	

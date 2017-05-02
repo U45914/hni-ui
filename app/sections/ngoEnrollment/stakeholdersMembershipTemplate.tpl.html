@@ -16,14 +16,23 @@
 	<md-grid-tile>
 	<b>Name</b></md-grid-tile> <md-grid-tile>
 	<b>Company</b></md-grid-tile> <md-grid-tile>
-	<b>Delete</b></md-grid-tile> </md-grid-list>
+	<b></b></md-grid-tile> </md-grid-list>
 	<br>
+	
 	<md-grid-list md-cols="12" md-row-height="6:1" md-gutter="6px"
-		ng-repeat="member in memberList track by $index"> <md-grid-tile>
+		ng-repeat="member in memberList track by $index" > 
+	<br><br>
+		<md-grid-tile>
 	<div layout="row">{{member.name}}</div>
-	</md-grid-tile> <md-grid-tile>
+	</md-grid-tile> 
+
+	<md-grid-tile>
 	<div layout="column">{{member.company}}</div>
-	</md-grid-tile> <md-grid-tile>
-	 <md-button class="md-fab btn_style"  ng-click="deleteRow($index)">-</md-button>
+	</md-grid-tile> 
+	
+	<md-grid-tile>
+	 <md-button class="md-fab btn_style"  ng-click="deleteRow($index)"> <div style="position: relative;
+    bottom: 8px;">X</div>
 	</md-grid-tile> </md-grid-list>
+	
 </fieldset>

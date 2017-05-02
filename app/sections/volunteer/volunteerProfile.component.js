@@ -21,6 +21,8 @@
 		volunteerService.getProfileData().then(function(response){
 			if (response && response.data){
 				vm.vol = response.data.response;
+				console.log(vm.vol);
+				vm.vol.birthDate = new Date(vm.vol.birthday);		
 			}
 		});
 	    
@@ -28,22 +30,26 @@
 		vm.submit = function() {
 
 			var data = {
-				"firstName" : vm.vol.firstName,
-				"lastName" : vm.vol.lastName,
-				"address" : {
-					"name" : vm.vol.name,
-					"address1" : vm.vol.address1,
-					"address2" : vm.vol.address2,
-					"city" : vm.vol.city,
-					"state" : vm.vol.state,
-					"zip" : vm.vol.zip,
+				"user" : {
+					"firstName" : vm.vol.user.firstName,
+					"lastName" : vm.vol.user.lastName,
+					"mobilePhone" : vm.vol.user.mobilePhone,
+					"email" : vm.vol.user.email
 				},
-				"phoneNumber" : vm.vol.phoneNumber,
-				"email" : vm.vol.email,
+				
+				"address" : {
+					"name" : vm.vol.address.name,
+					"address1" : vm.vol.address.address1,
+					"address2" : vm.vol.address.address2,
+					"city" : vm.vol.address.city,
+					"state" : vm.vol.address.state,
+					"zip" : vm.vol.address.zip,
+				},
+				
 				"birthday" : vm.vol.birthDate,
 				"sex" : vm.vol.sex,
 				"race" : vm.vol.race,
-				"education" : vm.vol.highestLLevelOfEducationCompleted,
+				"education" : vm.vol.education,
 				"maritalStatus" : vm.vol.maritalStatus,
 				"income" : vm.vol.income,
 				"kids" : vm.vol.kids,
