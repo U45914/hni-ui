@@ -24,13 +24,23 @@
 		let baseUrl = serviceConstants.baseUrl;
         var vm = this;
         vm.report = $scope.ds;
+        vm.showNothing=false;
+        vm.showData=true;
  
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
             .then(function success(response) {
                 if(response.data !== null) {
                    console.log("response : ");
                    console.log(response.data);
+            
                    vm.service = response.data.data;
+                   if(vm.service.length==0)
+                	   {
+                	   vm.showNothing=true;
+                	   vm.showData=false;
+                	   }
+           
+                   console.log(vm.service);
                    vm.headers= response.data.headers;
                 }
                 if(response.data == null){

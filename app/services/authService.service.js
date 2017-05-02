@@ -48,7 +48,7 @@
         }
         
         function getUserRole() {
-        	window.localStorage.getItem("userType");
+        	return window.localStorage.getItem("userType");
         }
         
         function setToken(token) {
