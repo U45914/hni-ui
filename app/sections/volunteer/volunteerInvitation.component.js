@@ -12,10 +12,10 @@
 		controllerAs : 'vm'
 	});
 	VolunteerInvitationController.$inject = [ '$q', 'volunteerService', '$scope',
-			'$state', 'toaster' ];
+			'$state', 'toastService' ];
 
 	function VolunteerInvitationController($q, volunteerService,  $scope, $state,
-			toaster) {
+			toastService) {
 		var vm = this;
 		vm.orgInfo = {};
 		vm.submit = function() {
@@ -33,15 +33,14 @@
 									if (response
 											&& response.data.response
 											&& response.data.response == "success") {
-										toaster.success("Your request has been submitted")
+										toastService.showToast("Your request has been submitted")
 										$state.go('dashboard');
 									} else {
-										toaster.success("Failed : "+ response.data.errorMsg);
+										toastService.showToast("Failed : "+ response.data.errorMsg);
 									}
 								},
 								function errorCallback(response) {
-									toaster
-											.error("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again")
 									// $state.go('dashboard');
 								});
 

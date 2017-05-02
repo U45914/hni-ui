@@ -8,9 +8,9 @@
 		controllerAs : 'vm'
 	});
 	CredentialSetupController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
-			'$state' ];
+			'$state','toastService' ];
 
-	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state) {
+	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state, toastService) {
 		var USER_ORG_INFO = "userOrgInfo";
 		var USER_TYPE = "userType";
 
@@ -35,10 +35,10 @@
 				vm.errorText = false;
 				ngoOnboardingService.registerNgo(data, vm.activationCode).then(function(response) {
 					if (response && response.data && response.data.success) {
-						alert(response.data.success)
+						toastService.showToast(response.data.success)
 						$state.go('login');
 					} else {
-						alert("Failed to create user entry");
+						toastService.showToast("Failed to create user entry");
 					}
 				});
 			}
