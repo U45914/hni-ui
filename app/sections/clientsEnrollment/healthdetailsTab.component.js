@@ -49,7 +49,7 @@
       		
       		var serviceCalls = clientEnrollmentService.setHealthData(data);
       		 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-			// var serviceCalls = clientEnrollmentService.savePartial();
+			 var serviceCalls = clientEnrollmentService.savePartial();
 	  		 $q.all(serviceCalls)//.then(onSuccess,onError);
 	  				 
       		

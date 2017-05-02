@@ -54,6 +54,7 @@
     		    "kids": vm.family.kids,
     		    "liveAtHome": vm.family.liveAtHome,
     		    "sheltered": vm.family.sheltered,
+    		    "liveWith": vm.family.liveWith,
     		    "parentEducation": vm.family.parentEducation,
     		    "education": vm.family.education,
     		    "enrollmentStatus": vm.family.enrollmentStatus,
@@ -62,7 +63,7 @@
     	console.log(data);
     	 clientEnrollmentService.setFamilyData(data);
     	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-		 //var serviceCalls = clientEnrollmentService.savePartial();
+		 var serviceCalls = clientEnrollmentService.savePartial();
     	}
 	}
 })();

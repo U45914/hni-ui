@@ -230,8 +230,8 @@
             	    "lastVisitDentist": 0
             	}
 */
-           var finalData =	{
-        		   "user": {
+            	  /*  var finalData =	{
+        		 "user": {
         		        "firstName": "hghg",
         		        "lastName": "fhgf",
         		        "mobilePhone": 897897
@@ -272,8 +272,8 @@
             			    "cook": true,
             			    "subFoodProgram": true,
             			    "subFoodProgramEntity": "fdgd",
-            			    "subFoodProgramDuration": "gdgd",
-            			    "subFoodProgramRenew": "gfdgd",
+            			    "subFoodProgramDuration": 2,
+            			    "subFoodProgramRenew": 3,
             			    "allergies": "rdtrd",
             			    "addiction": true,
             			    "addictionType": "dfsfds",
@@ -283,9 +283,9 @@
             			    "exercisePerWeek": "4",
             			    "lastVisitDoctor": 2,
             			    "lastVisitDentist": 4
-            			}
-            	return finalData;
-            	//return $http.get(`${baseUrl}/users/ngo/profile`)
+            			}*/
+            	//return finalData;
+            	return $http.get(`${baseUrl}/users/client/profile`)
             }
                
  }
