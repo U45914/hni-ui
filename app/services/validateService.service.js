@@ -245,9 +245,6 @@
 		
 					}
 				}
-				else{
-					errorArray.push({field : "Board Member", value : "Empty" });
-				}
 				
 				if(brandPartners.length>0){
 					for(var index=0; index<brandPartners.length; index++){
@@ -259,10 +256,7 @@
 						}
 					}
 				}
-				else{
-					errorArray.push({field : "Brand Partner", value : "Empty" });
-				}
-				
+
 				if(localPartners.length>0){
 					for(var index=0; index<localPartners.length; index++){
 						if(localPartners[index].company == null){
@@ -273,12 +267,6 @@
 						}
 					}
 				}
-				else{
-					errorArray.push({field : "Local Partners", value : "Empty" });
-				}
-			}
-			else{
-				errorArray.push({field : "StakeHolders", value : "Empty"});
 			}
 			errorJson = errorArray;
 			return errorJson;
