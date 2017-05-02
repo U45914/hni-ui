@@ -1,59 +1,60 @@
 <top-nav></top-nav>
 <div>
-<div style="float:left;width:5%;"><left-nav-bar></left-nav-bar>
+<div style="float:left;width:10%;"><left-nav-bar></left-nav-bar>
 </div>
-<div style="float:left;width:95%;">
+<div style="float:left;width:90%;">
 <h1>Volunteer Profile</h1>
 <br>
 <div id="volId">
 <div layout-gt-xs="row">
 	<md-input-container class="" flex-gt-sm>
 	<label class="text_style_vol">First Name</label> <input type="text" required
-		ng-model="vm.vol.firstName" /></md-input-container>
+		ng-model="vm.vol.user.firstName" /></md-input-container>
 	<md-input-container class="" flex-gt-sm>
 	<label class="text_style_vol" >Last Name</label> <input type="text" required
-		ng-model="vm.vol.lastName" /> </md-input-container>
+		ng-model="vm.vol.user.lastName" /> </md-input-container>
 	</md-input-container>
 </div>
 	<h4 >Address</h4>
-<div layout="row">
-		<md-input-container class="md-block input-primary" flex-gt-sm> 
+<div layout="row" class="mission_width4">
+		<md-input-container class="md-block input-primary miss" flex-gt-sm> 
 				<label>Address Type</label>
-			 	<md-select name="type" ng-model="vm.vol.name" required>
+			 	<md-select name="type" ng-model="vm.vol.address.name" required>
             			<md-option value = "home">Home</md-option>
             			<md-option value = "office">Office</md-option>
             		</md-select>
 			</md-input-container>
+			</div>
 <md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Address</label> <input type="text" required
-		ng-model="vm.vol.address1" /> </md-input-container>
-		</div>
+		ng-model="vm.vol.address.address1" /> </md-input-container>
+		
 		<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Address</label> <input type="text" 
-		ng-model="vm.vol.address2" /> </md-input-container>
+		ng-model="vm.vol.address.address2" /> </md-input-container>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
-	<label class="text_style_vol">City</label> <input type="text" required ng-model="vm.vol.city" />
+	<label class="text_style_vol">City</label> <input type="text" required ng-model="vm.vol.address.city" />
 	</md-input-container>
 	
 	<md-input-container class="md-block input-primary" flex-gt-sm>
          	 <label>State</label>
-          <md-select name="type" ng-model="vm.vol.state" required>
+          <md-select name="type" ng-model="vm.vol.address.state" required>
            		<md-option ng-repeat="each in vm.state" value = {{each.value}}>{{each.name}}</md-option>
            </md-select>
      </md-input-container>
 	
 	<md-input-container class="md-block" flex-gt-sm>
-	<label class="text_style_vol" >Zip</label> <input type="text" required ng-model="vm.vol.zip" />
+	<label class="text_style_vol" >Zip</label> <input type="text" required ng-model="vm.vol.address.zip" />
 	</md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Phone Number</label> <input type="text" required
-		ng-model="vm.vol.phoneNumber" /> </md-input-container>
+		ng-model="vm.vol.user.mobilePhone" /> </md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" class="text_style_vol">Email</label> <input type="text" required
-		ng-model="vm.vol.email" /> </md-input-container>
+		ng-model="vm.vol.user.email" /> </md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
@@ -70,7 +71,7 @@
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Highest Level of Education Completed</label> 
-	<md-select ng-model="vm.vol.highestLLevelOfEducationCompleted">
+	<md-select ng-model="vm.vol.education">
 	  <md-option value=1>Gratuate</md-option>
 	  <md-option value=2>HS</md-option>
 	  <md-option value=3>Elementary</md-option>
