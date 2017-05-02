@@ -11,10 +11,10 @@
 		controller : VolunteerInvitationController,
 		controllerAs : 'vm'
 	});
-	VolunteerInvitationController.$inject = [ '$q', 'volunteerService', 'orgService', '$scope',
+	VolunteerInvitationController.$inject = [ '$q', 'volunteerService', '$scope',
 			'$state', 'toaster' ];
 
-	function VolunteerInvitationController($q, volunteerService, orgService, $scope, $state,
+	function VolunteerInvitationController($q, volunteerService,  $scope, $state,
 			toaster) {
 		var vm = this;
 		vm.orgInfo = {};

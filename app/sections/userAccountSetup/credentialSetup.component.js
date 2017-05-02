@@ -1,38 +1,39 @@
 (function() {
-	angular.module('app').component('ngoEnrollment', {
+	angular.module('app').component('credentialSetup', {
 		bindings : {
 
 		},
-		templateUrl : 'ngoEnrollment.tpl.html',
-		controller : NgoEnrollmentController,
+		templateUrl : 'credential-setup.tpl.html',
+		controller : CredentialSetupController,
 		controllerAs : 'vm'
 	});
-	NgoEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
+	CredentialSetupController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
 			'$state' ];
 
-	function NgoEnrollmentController($q, ngoOnboardingService, validateService, $scope, $state) {
+	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state) {
 		var USER_ORG_INFO = "userOrgInfo";
 		var USER_TYPE = "userType";
 
 		var vm = this;
-		vm.userType = vm.getUserType;
+		vm.userType = getUserType();
 		vm.userNameMessage = "";
-		vm.errorText = false;
-		vm.validateNGOEnrollment = "";
-
+		vm.validateUserEnrollment = "";
+		vm.username = getUserName();
+		vm.activationCodeNeeded = vm.userType === "client"
+		vm.activationCode;
 		vm.signIn = function() {
 			var data = {
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
-				"email" : vm.username,
+				"email" : getUserName(),
 				"password" : vm.password,
-				"organizationId" : vm.getOrgInfo()
+				"organizationId" : getOrgInfo()
 			};
 			
-			vm.validateNGOEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
-			if(vm.validateNGOEnrollment == ""){
+			vm.validateUserEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
+			if(vm.validateUserEnrollment == ""){
 				vm.errorText = false;
-				ngoOnboardingService.registerNgo(data).then(function(response) {
+				ngoOnboardingService.registerNgo(data, vm.activationCode).then(function(response) {
 					if (response && response.data && response.data.success) {
 						alert(response.data.success)
 						$state.go('login');
@@ -40,9 +41,6 @@
 						alert("Failed to create user entry");
 					}
 				});
-			}
-			else{
-				vm.errorText = true;
 			}
 			return;
 		};
@@ -74,12 +72,16 @@
 			}
 		};
 
-		vm.getUserType = function() {
+		function getUserType() {
 			return window.localStorage.getItem(USER_TYPE);
 		};
 
-		vm.getOrgInfo = function() {
+		function getOrgInfo() {
 			return window.localStorage.getItem(USER_ORG_INFO);
+		};
+		
+		function getUserName() {
+			return window.localStorage.getItem("userName");
 		};
 	}
 

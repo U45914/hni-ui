@@ -9,7 +9,7 @@
         return {
             'request': function(configuration) {
                 let authService = $injector.get('authService');
-                let token = authService.getToken();
+                let token = window.localStorage.getItem("hni_token");
 
                 if(token && token.length > 0) {
                     configuration.headers['X-hni-token'] = token;

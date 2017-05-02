@@ -1,8 +1,13 @@
 <top-nav></top-nav>
 
+<div>
+	<div class="left_style"  layout="row"><left-nav-bar></left-nav-bar>
+</div>
+
+<div class="tabnew" >
 <div ng-cloak>
 	<md-content>
-	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex"> 
+	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex" class="label_style"> 
 		<md-tab label="Personal Info" > 
 		<md-content class="md-padding">
 			<personal-info-tab></personal-info-tab> 
@@ -40,6 +45,12 @@
 		</md-tab>
 	</md-tabs>
 </md-content>
-<md-button class="md-raised button-primary"  ng-click="vm.enrollementData();" style="float:right" >Submit</md-button>
+<md-button class="md-raised button-primary"  ng-click="vm.enrollementData();" style="float:right;" >Submit</md-button>
+</div>
 </div>
 
+</div>
+
+<div class="clear_all">
+<landing-footer></landing-footer>
+</div>

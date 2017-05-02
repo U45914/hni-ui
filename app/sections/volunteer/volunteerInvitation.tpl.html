@@ -1,41 +1,52 @@
+<div class="font_for_allpages">
 <top-nav></top-nav>
+<div class="left_float">
+<left-nav-bar></left-nav-bar>
+</div>
+<div class="left_float">
 <h1>Invite Volunteer to HNI</h1>
-<form class="cf">
+<div class="form_style">
 	
-	<div class ="md-title">Primary details</div>
-		<div layout-gt-xs="row">
+	<div class ="md-title mgn_bottom_20">Primary details</div>
+		<div layout-gt-xs="row" class="width_for_textbox">
 			<md-input-container  class="md-block input-primary" flex-gt-sm> 
 				<label>Name of Volunteer</label>
 				<input	type="text" required ng-model="vm.name" class="input_box_md"> 
 			 </md-input-container>
 			 
 			 
-			<md-input-container class="md-block input-primary" flex-gt-sm> 
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Phone number</label>
 			 	<input type="text" id="input-phone" required ng-model="vm.phoneNumber" class="input_box_md">
 			</md-input-container>
 		</div>
 		
-		<div layout-gt-xs="row">
+		<div layout-gt-xs="row" class="width_for_textbox">
 		
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
 				<label>Email address</label>
 			 	<input type="email" id="" required ng-model="vm.email" class="input_box_md">
 			</md-input-container>
 			
-			<md-input-container class="md-block input-primary" flex-gt-sm> 
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Web site url</label>
 			 	<input type="text" id="input-websiteUrl" required ng-model="vm.webSiteUrl" class="input_box_md">
 			</md-input-container>
 		</div>
-	
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
 			<label>Message to Volunteer</label>
 			 <textarea required ng-model="vm.inviteMsg" md-maxlength="150" rows="3" md-select-on-focus></textarea>
 			 </md-input-container>
-			
+		
+		
 			<md-button id="input-submit" class="md-raised button-primary"  ng-click="vm.submit()" >Invite</md-button>
 			
 
 
-</form>
+</div>
+
+</div>
+<div class="clear_all">
+<landing-footer></landing-footer>
+</div>
+</div>

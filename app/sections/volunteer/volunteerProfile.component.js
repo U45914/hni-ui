@@ -17,7 +17,12 @@
 		vm.state=validateService.validateStateDrpdwn();
 		
 	    
-		//vm.vol = volunteerService.getProfileData();
+		vm.vol = {};
+		volunteerService.getProfileData().then(function(response){
+			if (response && response.data){
+				vm.vol = response.data.response;
+			}
+		});
 	    
 
 		vm.submit = function() {
@@ -28,6 +33,7 @@
 				"address" : {
 					"name" : vm.vol.name,
 					"address1" : vm.vol.address1,
+					"address2" : vm.vol.address2,
 					"city" : vm.vol.city,
 					"state" : vm.vol.state,
 					"zip" : vm.vol.zip,

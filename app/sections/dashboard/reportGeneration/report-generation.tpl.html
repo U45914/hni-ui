@@ -1,3 +1,44 @@
+<div class="font_for_allpages">
+<md-content layout-padding layout="row" layout-align="center">
+<div flex-gt-md="100" flex-md="100" flex-xs="100" class="border shade-box">
+	<div grid-data id='test' grid-options="gridOptions"
+		grid-actions="gridActions">
+		<div >
+		<table
+			class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+			<thead class="report_text_align">
+				<tr>
+					<th sortable="value"
+						class="sortable mdl-data-table__cell--non-numeric report_padding  "
+						ng-repeat="head in vm.headers"><span>{{head.label}}</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr grid-item ng-repeat="data in vm.service">
+					<td class="mdl-data-table__cell--non-numeric padding_top_report"
+						ng-repeat=" head in vm.headers"><span>{{data[head.field]}}</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+</md-content>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- <table id="role" border="1">
 	<tr>
 		<th ng-repeat="head in vm.headers"><span>{{head.label}}</span></th>
@@ -11,7 +52,7 @@
 
 
 
-
+<!-- 
 <div flex-xs flex-gt-xs="50" layout="column">
       <md-card>
         <md-card-title>
@@ -19,20 +60,19 @@
             <span class="md-headline">{{vm.report.label}}</span>
           </md-card-title-text>
         </md-card-title>
-        <md-card-content>
-		         <table id="role" border="1">
-	<tr>
-		<th ng-repeat="head in vm.headers"><span>{{head.label}}</span></th>
-	</tr>
-
-	<tr ng-repeat="data in vm.service">
-		<td ng-repeat=" head in vm.headers" ng-scope>
-			{{data[head.field]}}</td>
-	</tr>
-</table>
+        <md-card-content >
+		<md-grid-list  md-cols="5" md-row-height="6:1" md-gutter="6px" style="padding-bottom: calc(((3.33333% - 4.8px) * 1) + 0px);">
+<md-grid-tile ng-repeat="header in vm.headers" >
+<div  layout="row" flex>{{header.label}}</div>
+</md-grid-tile> </md-grid-list>
+<md-grid-list  md-cols="5" md-row-height="6:1" md-gutter="6px"
+	ng-repeat="data in vm.service"> <md-grid-tile
+	ng-repeat="header in vm.headers">
+<div layout="row" flex>{{data[header.field]}}</div>
+</md-grid-tile> </md-grid-list>
         </md-card-content>
          </md-card>
-
+ -->
 
 
 

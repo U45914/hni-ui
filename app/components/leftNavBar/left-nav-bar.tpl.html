@@ -1,15 +1,35 @@
 <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="true">
+<div layout="column" flex></div>
 <user-detail></user-detail>
-	<div class="hor_line"></div>
+		<div class="hor_line"></div>
+	<div ng-if="vm.role === vm.rolesConstantName.superAdmin">
 	<ul class="padding_301">
-			<li class="side_menu_item"><a href="#" class="link_style">My Dashboard</a></li>		
-			<li class="side_menu_item"><a href="#" class="link_style">Onboard a Volunteer</a></li>
-			<li class="side_menu_item"><a href="#" class="link_style">Onboard an NGO</a></li>
-			<li class="side_menu_item"><a href="#" class="link_style">My Profile</a></li>
-			<li class="side_menu_item"><a href="#" class="link_style">View / Update Profile</a></li>
-			<li class="side_menu_item"><a href="#" class="link_style">Settings</a></li>
-			<li class="side_menu_item"><a href="#" class="link_style">Logout</a></li>
-		
+			<li class="side_menu_item"><a ui-sref="dashboard" class="link_style">My Dashboard</a></li>		
+			<li class="side_menu_item"><a ui-sref=inviteVolunteer class="link_style">Onboard a Volunteer</a></li>
+			<li class="side_menu_item"><a ui-sref="ngoInvitation" class="link_style">Onboard an NGO</a></li>
+			<li class="side_menu_item"><a ui-sref="clientInvitation" class="link_style">Onboard a client</a></li>
+			<li class="side_menu_item"><a ui-sref="profile" class="link_style">View / Update Profile</a></li> 
+			<li class="side_menu_item"><a ui-sref="credential-setup" class="link_style">Change Password</a></li>
+			<li class="side_menu_item"><a ui-sref="login" class="link_style">Logout</a></li>	
 	</ul>
-	
+	</div>
+	<div ng-if="vm.role === vm.rolesConstantName.ngoAdmin||vm.role === vm.rolesConstantName.ngo" >
+	<ul class="padding_301">
+			<li class="side_menu_item"><a ui-sref="dashboard" class="link_style">My Dashboard</a></li>		
+			<li class="side_menu_item"><a ui-sref="ngoInvitation" class="link_style">Onboard an NGO</a></li>
+			<li class="side_menu_item"><a ui-sref="clientInvitation" class="link_style">Onboard a client</a></li>
+			<li class="side_menu_item"><a ui-sref="profile" class="link_style">View / Update Profile</a></li>
+			<li class="side_menu_item"><a ui-sref="credential-setup" class="link_style">Change Password</a></li>
+			<li class="side_menu_item"><a ui-sref="login" class="link_style">Logout</a></li>	
+	</ul>
+	</div>
+	<div ng-if="vm.role === vm.rolesConstantName.volunteer|| vm.role === vm.rolesConstantName.client" >
+	<ul class="padding_301">
+			<li class="side_menu_item"><a ui-sref="dashboard" class="link_style">My Dashboard</a></li>		
+			<li class="side_menu_item"><a ui-sref="profile" class="link_style">View / Update Profile</a></li>
+			<li class="side_menu_item"><a ui-sref="credential-setup" class="link_style">Change Password</a></li>
+			<li class="side_menu_item"><a ui-sref="login" class="link_style">Logout</a></li>	
+	</ul>
+	</div>
+	<div layout="column" flex></div>
 </md-sidenav>

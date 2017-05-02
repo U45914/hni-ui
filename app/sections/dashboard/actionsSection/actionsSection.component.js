@@ -8,9 +8,9 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$scope', '$http','userService', 'serviceConstants'];
+    ActionSectionController.$inject = ['$scope', '$http', '$state', 'userService', 'serviceConstants'];
 
-    function ActionSectionController($scope, $http,userService, serviceConstants) {
+    function ActionSectionController($scope, $http, $state, userService, serviceConstants) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
          
@@ -24,8 +24,15 @@
             .then(function success(response) {
             	
                 if(response.data !== null) {
-                   console.log("response : "+response.data);
-                   vm.user = response.data.data;
+                	vm.userRole = response.data.role;
+                	window.localStorage.setItem("userRole", vm.userRole);
+                	vm.user = response.data.data;  
+                	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
+                		vm.user = response.data.data;                		
+                	} else {
+                		window.localStorage.setItem("userRole", vm.userRole);
+                		$state.go("profile");
+                	}
                 }
             }, function error(error) {
                 console.log(error);

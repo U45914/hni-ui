@@ -1,10 +1,18 @@
-<fieldset>
-	<span> 
-		<input type="text" required ng-model="company" placeholder="Name"></input> 
-		<input type="text" required ng-model ="phoneNumber" placeholder="Phone number"></input>
-		<button  ng-click="addNewRow()">+</button>
+<fieldset  class="border">
+<span layout="row"> 
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+           <input type="text" required ng-model="company" placeholder="Name"></input> 
+          </md-input-container>
+          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            <input type="number" required ng-model ="phoneNumber" placeholder="Phone number"></input>
+          </md-input-container>
+          <div style="padding-top:10px;">
+		 <md-button class="md-fab btn_style"  ng-click="addNewRow()">
+		  <md-icon md-svg-src="app/assets/images/add.svg" ></md-icon>
+		 </md-button>
+		 </div>
+
 	</span>
-	<br>
 	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px">
 	<md-grid-tile>
 	<b>Company</b></md-grid-tile> <md-grid-tile>
@@ -17,6 +25,6 @@
 	</md-grid-tile> <md-grid-tile>
 	<div layout="column">{{brand.phoneNumber}}</div>
 	</md-grid-tile> <md-grid-tile>
-	<button class="remove" ng-click="deleteBrand($index)">-</button>
+	 <md-button class="md-fab btn_style"  ng-click="deleteBrand($index)">-</md-button>
 	</md-grid-tile> </md-grid-list>
 </fieldset>

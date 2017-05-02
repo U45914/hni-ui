@@ -25,7 +25,9 @@
             isAuthenticated: () => isAuthenticated,
             getToken: () => authToken,
             getRole: () => authRole,
-            getPermissions: () => authPermissions
+            getPermissions: () => authPermissions,
+            getUserRole,
+            setUserRole
         };
 
         function loadUserCredentials() {
@@ -41,6 +43,14 @@
             }
         }
 
+        function setUserRole(userRole) {
+        	window.localStorage.setItem("userType", userRole);
+        }
+        
+        function getUserRole() {
+        	window.localStorage.getItem("userType");
+        }
+        
         function setToken(token) {
             window.localStorage.setItem(LOCAL_TOKEN_KEY, token);
             isAuthenticated = true;
@@ -61,9 +71,11 @@
         	$http.post(`${baseUrl}/security/authentication`, vm).then(function success(response) {
                 console.log(response);
                 setToken(response.data.token);
-                setOrgInfo(response.data.orgId);
+                setOrgInfo(response.data.user.organizationId);
+                userService.setUser(response.data.user);
+                setUserRole(response.data.roleName)
                 $state.go('dashboard');
-                }, function error(error) {
+            }, function error(error) {
             	alert("error : "+error);
                 console.log(error);
             });

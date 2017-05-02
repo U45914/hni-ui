@@ -1,8 +1,16 @@
-<fieldset>
-	<span> <input type="text" required ng-model="name"
-		placeholder="Name"></input> <input type="text" required
-		ng-model="company" placeholder="Company"></input>
-		<button ng-click="addNewChoice()">+</button>
+<fieldset class="border">
+	<span layout="row"> 
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+            <input type="text" required ng-model="name"	placeholder="Name"></input> 
+          </md-input-container>
+          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            <input type="text" required ng-model="company" placeholder="Company"></input>
+          </md-input-container>
+          <div style="padding-top:10px;">
+		 <md-button class="md-fab btn_style"  ng-click="addNewChoice()">
+		  <md-icon md-svg-src="app/assets/images/add.svg" ></md-icon>
+		 </md-button>
+		 </div>
 	</span>
 	<md-grid-list md-cols="12" md-row-height="6:1" md-gutter="6px">
 	<md-grid-tile>
@@ -16,6 +24,6 @@
 	</md-grid-tile> <md-grid-tile>
 	<div layout="column">{{member.company}}</div>
 	</md-grid-tile> <md-grid-tile>
-	<button class="remove" ng-click="deleteRow($index)">-</button>
+	 <md-button class="md-fab btn_style"  ng-click="deleteRow($index)">-</md-button>
 	</md-grid-tile> </md-grid-list>
 </fieldset>
