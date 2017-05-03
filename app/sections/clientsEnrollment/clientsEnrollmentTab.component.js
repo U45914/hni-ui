@@ -32,7 +32,7 @@
                }
            }, function error(error) {
                console.log(error);
-           });;
+           });
       }
       
        $rootScope.$on("scroll-tab", function(event, data){
