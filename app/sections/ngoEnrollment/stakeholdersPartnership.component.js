@@ -21,7 +21,7 @@
 
 		$scope.addNewRow = function() {
 			brandObject = {};
-			if( $scope.company!=null &&  $scope.phoneNumber != null){
+			if( $scope.company!=null &&  $scope.phoneNumber != null && $scope.check != true){
 			brandObject.company = $scope.company;
 			brandObject.phoneNumber = $scope.phoneNumber;
 			$scope.brandList.push(brandObject);
@@ -37,6 +37,17 @@
 			$scope.brandList.splice(idx,1);
 			console.log( $scope.brandList);
 		}
+		
+		$scope.checkPhoneNbr = function() {
+			var phone = $scope.phoneNumber;
+			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			var res = patt.test(phone);
+			if (res == true) {
+				$scope.check=false;
+			} else {
+				$scope.check=true;
+			}
+		};
 
 	}
 })();

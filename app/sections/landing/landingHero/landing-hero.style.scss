@@ -89,6 +89,21 @@
             background-color: $color-red-base;
           }
         }
+        .login{
+        	background: $color-red-base;
+          display: none;
+          font-size: rem(16px);
+          margin: 0px;
+          min-height: 30px;
+          min-width: 114px;
+          font-weight: $font-weight-semibold;
+          @media only screen and (min-width: 376px) {
+            display: inline-block;
+          }
+          &:hover {
+            background-color: $color-red-base;
+          }
+        }
       }      
     }
   }

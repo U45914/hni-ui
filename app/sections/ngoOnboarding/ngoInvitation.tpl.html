@@ -21,7 +21,8 @@
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 
 				<label>Phone number</label>
-			 	<input type="text" id="input-phone" required ng-model="vm.phoneNumber" class="input_box_md">
+			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur = "vm.checkPhoneNbr()">
+			 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
 			</md-input-container>
 		</div>
 		<div layout-gt-xs="row" class="width_for_textbox">
@@ -61,7 +62,7 @@
 				
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Address 2</label>
-			 	<input type="text" required ng-model="vm.address2">
+			 	<input type="text" ng-model="vm.address2">
 				</md-input-container>
 			</div>
 			<div layout-gt-xs="row"  class="width_for_textbox">
@@ -80,7 +81,7 @@
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Zip</label>
-			 	<input type="number" required ng-model="vm.zip">
+			 	<input type="text" required maxlength="6" ng-model="vm.zip">
 				</md-input-container>
 			</div>
 				<md-button class="md-raised button-primary"  ng-click="vm.submit()" >Submit</md-button>

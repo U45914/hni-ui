@@ -40,7 +40,7 @@
 		> <md-option ng-repeat="each in vm.states"
 		value={{each.value}} ng-init = "vm.client.address.state" >{{each.name}}</md-option> </md-select> </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label>Zip</label> <input type="text" required
+	<label>Zip</label> <input type="number" required 
 		ng-model="vm.client.address.zip"> </md-input-container>
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
@@ -53,8 +53,10 @@
 	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race"> <md-option
 		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
-<label>Phone Number</label> <input type="text" required
-	ng-model="vm.client.user.mobilePhone" /> </md-input-container>
+<label>Phone Number</label> <input type="text" required maxlength="12"
+	ng-model="vm.client.user.mobilePhone" ng-blur = "vm.checkPhoneNbr()">
+	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
+	 </md-input-container>
 	<md-input-container class="md-block mgn_left_25" flex-gt-sm> <label>Birthday</label>
 <input type="date" required ng-model="vm.client.bday"> </md-input-container>
 </div>

@@ -45,13 +45,14 @@
      </md-input-container>
 	
 	<md-input-container class="md-block" flex-gt-sm>
-	<label class="text_style_vol" >Zip</label> <input type="text" required ng-model="vm.vol.address.zip" />
+	<label class="text_style_vol" >Zip</label> <input type="text" required maxlength="6" ng-model="vm.vol.address.zip" />
 	</md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol" >Phone Number</label> <input type="text" required
-		ng-model="vm.vol.user.mobilePhone" /> </md-input-container>
+	<label class="text_style_vol" >Phone Number</label> <input type="text" required maxlength="12" ng-model="vm.vol.user.mobilePhone" ng-blur = "vm.checkPhoneNbr()"> 
+		 <div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
+		</md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" class="text_style_vol">Email</label> <input type="text" required
 		ng-model="vm.vol.user.email" /> </md-input-container>

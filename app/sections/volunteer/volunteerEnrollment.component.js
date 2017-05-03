@@ -80,6 +80,17 @@
 		vm.getOrgInfo = function() {
 			return window.localStorage.getItem(USER_ORG_INFO);
 		};
+		
+		vm.checkPhoneNbr = function() {
+			var phone = vm.vol.user.mobilePhone;
+			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			var res = patt.test(phone);
+			if (res == true) {
+				vm.check=false;
+			} else {
+				vm.check=true;
+			}
+		};
 	}
 
 })();
