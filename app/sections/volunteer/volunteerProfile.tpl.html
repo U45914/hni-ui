@@ -16,15 +16,7 @@
 	</md-input-container>
 </div>
 	<h4 >Address</h4>
-<div layout="row" class="mission_width4">
-		<md-input-container class="md-block input-primary miss" flex-gt-sm> 
-				<label>Address Type</label>
-			 	<md-select name="type" ng-model="vm.vol.address.name" required>
-            			<md-option value = "home">Home</md-option>
-            			<md-option value = "office">Office</md-option>
-            		</md-select>
-			</md-input-container>
-			</div>
+
 <md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Address</label> <input type="text" required
 		ng-model="vm.vol.address.address1" /> </md-input-container>
@@ -63,7 +55,7 @@
 	<!-- <md-datepicker ng-model="vm.vol.birthDate" md-placeholder="Enter date" md-is-open="true"></md-datepicker> -->
 	</md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol">Sex</label> <md-select required ng-model="vm.vol.sex">
+	<label class="text_style_vol">Sex</label> <md-select  ng-model="vm.vol.sex">
 	<md-option value="M">Male</md-option> <md-option value="F">Female</md-option></md-select> </md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.vol.race"> <md-option
@@ -86,11 +78,11 @@
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Marital Status</label> <md-select
-		ng-model="vm.vol.maritalStatus"> <md-option value=1>Single</md-option>
+		ng-model="vm.vol.maritalStatus" ng-change="vm.onChange()"> <md-option value=1>Single</md-option>
 	<md-option value=2>Married</md-option> <md-option value=3>Divorce</md-option></md-select>
 	</md-input-container>
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol" ># Kids</label> <input type="number" ng-model="vm.vol.kids">
+	<label class="text_style_vol" ># Kids</label> <input type="number" ng-model="vm.vol.kids" min="0">
 	</md-input-container>
 </div>
 <div layout-gt-xs="row">

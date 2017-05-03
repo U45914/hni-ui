@@ -26,7 +26,7 @@
 				"password" : vm.password,
 				"organizationId" : vm.getOrgInfo(),
 				"addresses" : [ {
-					"name" : vm.addressType,
+					"name" : "office",
 					"address1" : vm.address,
 					"city" : vm.city,
 					"state" : vm.state,

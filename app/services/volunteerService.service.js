@@ -3,9 +3,9 @@
         .module('app')
         .factory('volunteerService', volunteerService);
 
-    volunteerService.$inject = ['$http', 'serviceConstants'];
+    volunteerService.$inject = ['$http', 'serviceConstants','toastService'];
 
-    function volunteerService($http, serviceConstants) {
+    function volunteerService($http, serviceConstants,toastService) {
         let baseUrl = serviceConstants.baseUrl;
         var volunteerProfileData;
         
@@ -25,9 +25,24 @@
                 return $http.post(`${baseUrl}/users/volunteer/save`, postData)
                 .then(function successCallback(response) {
                    console.log(response.data);
+                   if (response
+							&& response.data.response
+							&& response.data.response == "success") {
+						toastService.showToast("Your profile has been saved");
+                   }
+                   else if(response && response.data.response && response.data.response == "error"){
+						toastService.showToast("Error : " +response.data.errorMsg);
+					}
+                   else if(response && response.data && !response.data.errorMsg){
+                	   toastService.showToast("Something went wrong. Try again later");
+                   }
+                   else {
+						toastService.showToast("Failed : " + response.data.errorMsg);
+					}
                 	// success(response);
                 }, function errorCallback(error) {
                     failure(error);
+                	toastService.showToast("Something went wrong, please try again");
                 });
            	
            	// return volunteerProfileData;

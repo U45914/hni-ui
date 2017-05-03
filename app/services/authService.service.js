@@ -3,9 +3,9 @@
         .module('app')
         .service('authService', authService);
 
-    authService.$inject = ['$http', '$timeout', '$state', 'userService', 'rolesConstant', 'serviceConstants'];
+    authService.$inject = ['$http', '$timeout', '$state', 'userService', 'rolesConstant', 'serviceConstants','toastService'];
 
-    function authService($http, $timeout, $state, userService, rolesConstant, serviceConstants) {
+    function authService($http, $timeout, $state, userService, rolesConstant, serviceConstants, toastService) {
         let baseUrl = serviceConstants.baseUrl;
         let LOCAL_TOKEN_KEY = 'hni_token';
         let LOCAL_ROLE = 'hni_role';
@@ -75,8 +75,9 @@
                 userService.setUser(response.data.user);
                 setUserRole(response.data.roleName)
                 $state.go('dashboard');
+                toastService.showToast("Welcome " + response.data.user.firstName +" "+response.data.user.lastName +" !");
             }, function error(error) {
-            	alert("error : "+error);
+            	toastService.showToast("error : "+error);
                 console.log(error);
             });
         	return;

@@ -2,30 +2,25 @@
     angular
         .module('app')
         .service('toastService', toastService);
+    	
+    toastService.$inject = ['$mdToast'];
 
-    toastService.$inject = ['$mdToast' ];
-
-    function toastService( $mdToast) {
-    	return{
+    function toastService($mdToast) {
+    	var service = {
     		showToast
     	};
-    	  var vm = this;
-          var last = {
-          	      bottom: false,
-          	      top: true,
-          	      left: false,
-          	      right: true
-          	    };
-
-          	var toastPosition = angular.extend({},last);
-          	
+    	  
+    	return service;
+         
           function showToast(msg){
-        	  $mdToast.show(
-        		      $mdToast.simple()
-        		        .textContent(msg)
-        		       // .position(toastPosition)
-        		        .hideDelay(3000)
-        		    );  
+        	  service.msg = msg;
+        	  $mdToast.show({
+        		  hideDelay: 5000,
+        		  templateUrl: 'app/components/toast-template/toast-template.tpl.html',
+        		  controller: 'toastController',
+        		  position: 'top right'
+        	  });
+        		    
           }	  
  }
 })();

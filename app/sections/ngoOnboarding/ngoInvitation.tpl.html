@@ -23,7 +23,7 @@
 				<label>Phone number</label>
 			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur = "vm.checkPhoneNbr()">
 			 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
-			</md-input-container>
+			 			</md-input-container>
 		</div>
 		<div layout-gt-xs="row" class="width_for_textbox">
 		
@@ -42,18 +42,6 @@
 		<div class ="md-title mgn_bottom_20">Organization Address</div>
 		
 		<div layout-gt-xs="row"  class="width_for_textbox">
-			<!-- <md-input-container class="md-block input-primary" flex-gt-sm> 
-				<label>Name</label>
-			 	<input type="text" required ng-model="vm.adminName">
-			</md-input-container> -->
-			
-			<md-input-container class="md-block input-primary " flex-gt-sm> 
-				<label>Address Type</label>
-			 	<md-select name="type" ng-model="vm.adminName" required>
-            			<md-option value = "home">Home</md-option>
-            			<md-option value = "office">Office</md-option>
-            		</md-select>
-			</md-input-container>
 			
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Address 1</label>

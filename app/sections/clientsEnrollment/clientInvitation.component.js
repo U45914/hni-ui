@@ -12,10 +12,10 @@
 		controllerAs : 'vm'
 	});
 	clientInvitationController.$inject = [ '$q', 'clientEnrollmentService', '$scope',
-			'$state', 'toaster' ];
+			'$state', 'toastService' ];
 
 	function clientInvitationController($q, clientEnrollmentService, $scope, $state,
-			toaster) {
+			toastService) {
 		var vm = this;
 		vm.orgInfo = {};
 		vm.submit = function() {
@@ -33,20 +33,28 @@
 									if (response
 											&& response.data.response
 											&& response.data.response == "success") {
-										toaster.success("Your request has been submitted")
-										$state.go('dashboard');
-									} else {
-										toaster.success("Failed : "+ response.data.errorMsg);
+										toastService.showToast("Your request has been submitted");
+										//$state.go('dashboard');
+									} 
+									else if(response
+											&& response.data && !response.data.errorMsg){
+										toastService.showToast("Something went wrong. Try again later");
+									}
+									else {
+										toastService.showToast("Failed : "+ response.data.errorMsg);
 									}
 								},
 								function errorCallback(response) {
-									toaster
-											.error("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again")
 									// $state.go('dashboard');
 								});
 
 				console.log(data);
 				return $q.all(serviceCalls);
+			}
+			
+			else{
+				toastService.showToast("Please fill mandatory fields");
 			}
 		}
 		
