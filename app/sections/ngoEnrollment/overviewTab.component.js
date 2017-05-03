@@ -49,7 +49,7 @@
 				"mission" : vm.view.mission,
 				"promoters" : vm.list,
 				"address" : {
-					"name" : vm.view.address.addressType,
+					"name" : "office",
 					"address1" : vm.view.address.address1,
 					"address2" : vm.view.address.address2,
 					"city" : vm.view.address.city,

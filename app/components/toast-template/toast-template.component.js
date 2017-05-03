@@ -1,24 +1,16 @@
 (function() {
     angular
         .module('app')
-        .component('toastTemplate', {
-            bindings: {
-            	msg:'@'
-            },
-            templateUrl: 'toast-template.tpl.html',
-            controller: ToastCtrl,
-            controllerAs: 'vm'
-        });
+        .controller('toastController', toastController);
     
-    ToastCtrl.inject =['$mdToast'];
-    
-    function ToastCtrl($mdToast) {
+    toastController.$inject = ['$scope', 'toastService']
+    function toastController($scope, toastService) {
+    	$scope.msg = toastService.msg;
     	let vm = this;
-
-	     vm.closeToast = function() {
-
+	    
+    	vm.closeToast = function() {
 	        $mdToast.hide();
 	      };
-       
     }
+ 
 })();

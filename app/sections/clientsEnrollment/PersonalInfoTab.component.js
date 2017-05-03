@@ -44,13 +44,12 @@
 		  var data = {
 				  "user" : {
 					  	"firstName" : vm.client.user.firstName,
-						//"middleName" : vm.client.user.middleName,
 						"lastName" : vm.client.user.lastName,
 						//"ethnicity" : vm.client.user.ethnicity,
 						"mobilePhone" : vm.client.user.mobilePhone,
 				  },
 					"address" : {
-						"name" : vm.client.address.name,
+						"name" : "home",
 						"address1" : vm.client.address.address1,
 						"address2" : vm.client.address.address2,
 						"city" : vm.client.address.city,

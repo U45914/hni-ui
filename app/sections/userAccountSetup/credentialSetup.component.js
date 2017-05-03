@@ -26,6 +26,7 @@
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
 				"email" : getUserName(),
+				"mobilePhone" : vm.mobilePhone,
 				"password" : vm.password,
 				"organizationId" : getOrgInfo()
 			};

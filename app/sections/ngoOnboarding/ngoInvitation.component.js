@@ -30,7 +30,7 @@
 				"website" : vm.webSiteUrl,
 				"logo" : vm.logo,
 				"addresses" : [ {
-					"name" : vm.adminName,
+					"name" : "office",
 					"address1" : vm.address1,
 					"address2" : vm.address2,
 					"city" : vm.city,
@@ -53,21 +53,20 @@
 									} 
 									else if(response && response.data.response && response.data.response == "error"){
 										vm.incomplete = true;
-										vm.validateNGOInvitation = "Error : " +response.data.errorMsg;
+										//vm.validateNGOInvitation = "Error : " +response.data.errorMsg;
+										toastService.showToast("Error : " +response.data.errorMsg);
 									}
 									else {
-										toastService.showToast("Failed : "
-												+ response.data.errorMsg);
-										toastService.showToast(response.data.errorMsg);
+										toastService.showToast("Failed : " + response.data.errorMsg);
 										vm.incomplete = true;
-										vm.validateNGOInvitation = "Something went wrong, please try again";
+										//vm.validateNGOInvitation = "Something went wrong, please try again";
 									}
 								},
 								function errorCallback(response) {
 									toastService.showToast("Something went wrong, please try again")
 									// $state.go('dashboard');
 									vm.incomplete = true;
-									vm.validateNGOInvitation = "Something went wrong, please try again";
+									//vm.validateNGOInvitation = "Something went wrong, please try again";
 								});
 
 				return $q.all(serviceCalls);

@@ -5,11 +5,11 @@
 <div layout-gt-xs="row" class="width_for_textbox">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label> Number of siblings</label> <input type="number"
-		ng-model="vm.family.sliblings" /> </md-input-container>
+		ng-model="vm.family.sliblings" min="0"/> </md-input-container>
 
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label> Number of Kids</label> <input type="number"
-		ng-model="vm.family.kids" /> </md-input-container>
+		ng-model="vm.family.kids" min="0"/> </md-input-container>
 		
 </div>
 	<md-radio-group layout="row" ng-model="vm.family.liveAtHome"
