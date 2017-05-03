@@ -53,7 +53,7 @@
 			var errorFields = "";
 			if(data.name==null)
 				errorFields += "Name, " ;
-			if(data.phone==null || !angular.isNumber(data.phone))
+			if(data.phone==null || !angular.isNumber(!isNaN(parseInt(data.phone.replace(/-/g, "")))))
 				errorFields += "Phone, " ;
 			if(data.email==null)
 				errorFields += "Email, ";
@@ -108,7 +108,7 @@
 			var errorFields = "";
 			if(data.name==null)
 				errorFields += "Name, ";
-			if(data.phone==null || !angular.isNumber(data.phone))
+			if(data.phone==null || !angular.isNumber(!isNaN(pareseInt(data.phone.replace(/-/g, "")))))
 				errorFields += "Phone, ";
 			if(data.email==null)
 				errorFields += "Email, ";
@@ -174,7 +174,7 @@
 				if(data.name == null){
 					field.push("Name");
 				}
-				if(data.phone == null || !angular.isNumber(data.phone)){
+				if(data.phone == null || !angular.isNumber(!isNaN(parseInt(data.phone.replace(/-/g, ""))))){
 					field.push("Phone");
 				}
 				if(data.website == null){
@@ -251,7 +251,7 @@
 						if(brandPartners[index].company == null){
 							errorArray.push({ field : "Brand Partner "+(index+1), value : "Company" });
 						}
-						if(brandPartners[index].phoneNumber == null || !angular.isNumber(brandPartners[index].phoneNumber)){
+						if(brandPartners[index].phoneNumber == null || !angular.isNumber(!isNaN(parseInt(brandPartners[index].phoneNumber.replace(/-/g, ""))))){
 							errorArray.push({ field : "Brand Partner "+(index+1), value : "Phone Number" });
 						}
 					}
@@ -262,7 +262,7 @@
 						if(localPartners[index].company == null){
 							errorArray.push({field : "Local Partners "+(index+1), value : "Company"});
 						}
-						if(localPartners[index].phoneNumber == null || !angular.isNumber(localPartners[index].phoneNumber)){
+						if(localPartners[index].phoneNumber == null || !angular.isNumber(!isNaN(parseInt(localPartners[index].phoneNumber.replace(/-/g, ""))))){
 							errorArray.push({field : "Local Partners "+(index+1), value : "Phone  Number"});
 						}
 					}

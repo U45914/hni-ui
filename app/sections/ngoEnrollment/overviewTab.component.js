@@ -57,7 +57,7 @@
 					"zip" : vm.view.address.zip,
 				},
 			};
-
+			console.log(data);
 			if (vm.view.name != null && vm.view.phone != null
 					&& vm.view.website != null && vm.view.contact != null
 					&& vm.view.employees != null && vm.view.overview != null
@@ -101,6 +101,16 @@
 		function onError(response) {
 			console.log(response)
 		}
-
+		
+		vm.checkPhoneNbr = function() {
+			var phone = vm.view.phone;
+			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			var res = patt.test(phone);
+			if (res == true) {
+				vm.check=false;
+			} else {
+				vm.check=true;
+			}
+		};
 	}
 })();

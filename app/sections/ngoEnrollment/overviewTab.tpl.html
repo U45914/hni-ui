@@ -7,12 +7,12 @@
             <input type="text" ng-model="vm.view.name" required>
           </md-input-container>
           
-          <md-input-container class="md-block input-primary mgn_left_25" flex- gt-sm>
+          <md-input-container name="myForm" class="md-block input-primary mgn_left_25" flex- gt-sm>
             <label>Phone</label>
-            <input type="text" name="phone" required ng-model="vm.view.phone"></input>
-          </md-input-container>
+            <input type="text" name="phone" required maxlength="12" ng-model="vm.view.phone" ng-blur = "vm.checkPhoneNbr()" >
+           <div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
+		 </md-input-container>
          </div>
-         
          <div layout-gt-xs="row" class="width_for_textbox">
           <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Website Link</label>
@@ -43,7 +43,7 @@
 				
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Address 2</label>
-			 	<input type="text" required ng-model="vm.view.address.address2">
+			 	<input type="text" ng-model="vm.view.address.address2">
 				</md-input-container>
 			</div>
 		    
@@ -60,7 +60,7 @@
             		</md-select>
         		</md-input-container><md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 					<label>Zip</label>
-			 		<input type="number" required ng-model="vm.view.address.zip">
+			 		<input type="text" required maxlength="6" ng-model="vm.view.address.zip">
 				</md-input-container>
         		
         		
@@ -88,7 +88,7 @@
         <div layout-gt-xs="row" class="mission_width"> 
           <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Celebrity endorsements / notable promoters</label>
-            <input type="text"   required ng-model="vm.view.promoters"></input>
+             <textarea required ng-model="vm.view.promoters" md-maxlength="150" rows="3" md-select-on-focus></textarea>
           </md-input-container>
 		   <div style="padding-top:10px;">
 		  <md-button class="md-fab btn_style"  ng-click="vm.addRow(vm.view.promoters)" >

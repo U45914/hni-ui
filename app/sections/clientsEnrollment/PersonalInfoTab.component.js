@@ -62,27 +62,8 @@
 					"beenConvicted" : vm.client.beenConvicted,
 					"race"	: vm.client.race
 					};
-		  			console.log(parseInt(vm.client.bday));
-		  /*vm.validatePersonalInfo = validateService.validateClientPersonalInfo(data);
-		  if(vm.validateClientPersonalInfo == ""){
-				vm.errorText = false;
-				clientEnrollmentService.setPersonnalData(data);
-				//var serviceCalls = clientEnrollmentService.savePartial();
-				clientEnrollmentService.savePartial().then(function(response) {
-					if (response && response.data && response.data.success) {
-						alert(response.data.success)
-						$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-
-					} else {
-						alert("Failed to save client Personal Info entry");
-					}
-				});
-			}
-			else{
-				vm.errorText = true;
-			}return;*/
-		  
-				if (/*vm.client.user.ethnicity != null &&*/ vm.client.user.mobilePhone != null
+		  		
+		 	if (/*vm.client.user.ethnicity != null &&*/ vm.client.user.mobilePhone != null
 						&& vm.client.bday != null) {
 					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
 					var serviceCalls = clientEnrollmentService.savePartial();
@@ -95,6 +76,16 @@
 					return false;
 				}
 	  }
+	  vm.checkPhoneNbr = function() {
+			var phone = vm.client.user.mobilePhone;
+			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			var res = patt.test(phone);
+			if (res == true) {
+				vm.check=false;
+			} else {
+				vm.check=true;
+			}
+		};
 	  }
   
  })();

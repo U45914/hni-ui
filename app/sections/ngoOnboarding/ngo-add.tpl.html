@@ -62,7 +62,7 @@
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Zip</label>
-			 	<input type="number" required  ng-disabled="vm.noEdit" ng-model="vm.orgInfo.zip">
+			 	<input type="text" required  maxlength = "6" ng-disabled="vm.noEdit" ng-model="vm.orgInfo.zip">
 				</md-input-container>
 		</div>
 	
@@ -88,7 +88,8 @@
 			
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Phone</label>
-			 	<input type="text" required ng-model="vm.phone">
+			 	<input type="text" required maxlength="12" ng-model="vm.phone" ng-blur = "vm.checkPhoneNbr()">
+			 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
 				</md-input-container>
 			</div>
 			

@@ -4,7 +4,8 @@
            <input type="text" required ng-model="company" placeholder="Name"></input> 
           </md-input-container>
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-            <input type="number" required ng-model ="phoneNumber" placeholder="Phone number"></input>
+            <input type="text" required maxlength="12" ng-model ="phoneNumber" placeholder="Phone number" ng-blur = "checkPhoneNbr()">
+            <div id="errorMsg" ng-show="check" style="color:red;">Phone number (eg:'123-456-7890')</div>
           </md-input-container>
           <div style="padding-top:10px;">
 		 <md-button class="md-fab btn_style"  ng-click="addNewRow()">

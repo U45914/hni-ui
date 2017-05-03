@@ -17,7 +17,8 @@
 			 
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Phone number</label>
-			 	<input type="text" id="input-phone" required ng-model="vm.phoneNumber" class="input_box_md">
+			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur = "vm.checkPhoneNbr()">
+			 	 <div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
 			</md-input-container>
 		</div>
 		

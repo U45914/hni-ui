@@ -21,7 +21,7 @@
         vm.$onInit = function() {
             vm.user = userService.getUser();
         }
-        debugger;
+
     }
     
 }
