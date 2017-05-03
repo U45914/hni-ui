@@ -106,7 +106,7 @@
     	console.log(data);
     	clientEnrollmentService.setEmploymentData(data);
     	$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-		 //var serviceCalls = clientEnrollmentService.savePartial();
+		var serviceCalls = clientEnrollmentService.savePartial();
     	}
 	}
 })();

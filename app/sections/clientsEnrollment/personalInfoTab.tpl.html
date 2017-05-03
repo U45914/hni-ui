@@ -25,7 +25,7 @@
 </div>
 <div layout-gt-xs="row" class="mission_width">		
 <md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Address 2</label> <input type="text" ng-model="vm.client.address2">
+	<label>Address 2</label> <input type="text" ng-model="vm.client.address.address2">
 </md-input-container>
 </div>
 
@@ -33,14 +33,14 @@
 <div layout-gt-xs="row" class="width_for_textbox">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label>City</label> <input type="text" required
-		ng-model="vm.client.city"> </md-input-container>
+		ng-model="vm.client.address.city" > </md-input-container>
 
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label>State</label> <md-select name="type" ng-model="vm.client.address.state"
-		required> <md-option ng-repeat="each in vm.states"
-		value={{each.value}}>{{each.name}}</md-option> </md-select> </md-input-container>
+	<label>State</label> <md-select ng-init="vm.client.address.state" name="type" required ng-model="vm.client.address.state"
+		> <md-option ng-repeat="each in vm.states"
+		value={{each.value}} ng-init = "vm.client.address.state" >{{each.name}}</md-option> </md-select> </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label>Zip</label> <input type="number" required
+	<label>Zip</label> <input type="text" required
 		ng-model="vm.client.address.zip"> </md-input-container>
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
@@ -53,7 +53,7 @@
 	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race"> <md-option
 		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
-<label>Phone Number</label> <input type="number" required
+<label>Phone Number</label> <input type="text" required
 	ng-model="vm.client.user.mobilePhone" /> </md-input-container>
 	<md-input-container class="md-block mgn_left_25" flex-gt-sm> <label>Birthday</label>
 <input type="date" required ng-model="vm.client.bday"> </md-input-container>
