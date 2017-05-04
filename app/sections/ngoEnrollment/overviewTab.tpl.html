@@ -4,7 +4,8 @@
 	<div layout-gt-xs="row" class="width_for_textbox">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Name</label>
-            <input type="text" ng-model="vm.view.name" required>
+            <input type="text" ng-model="vm.view.name" required  ng-blur="vm.validationCheck('text','name',vm.view.name)" autofocus= "on">
+            <div id="errorMsg" ng-if="vm.fields['name']" style="color:red;"ng-bind="vm.msgs['name']"></div>
           </md-input-container>
           
           <md-input-container name="myForm" class="md-block input-primary mgn_left_25" flex- gt-sm>
@@ -16,12 +17,14 @@
          <div layout-gt-xs="row" class="width_for_textbox">
           <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Website Link</label>
-            <input type="text" name="websiteLink"  required ng-model="vm.view.website"></input>
+            <input type="url" name="websiteLink" placeholder="http://www.example.com" required ng-model="vm.view.website"  ng-blur="vm.validationCheck('text','website',vm.view.website,$event)"></input>
+            <div id="errorMsg" ng-if="vm.fields['website']" style="color:red;"ng-bind="vm.msgs['website']"></div>
           </md-input-container>
          
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
             <label>Contact Person</label>
-            <input type="text"   required ng-model="vm.view.contact"></input>
+            <input type="text"   required ng-model="vm.view.contact" ng-blur="vm.validationCheck('text','contact',vm.view.contact)"></input>
+            <div id="errorMsg" ng-if="vm.fields['contact']" style="color:red;" ng-bind="vm.msgs['contact']" /></div>
           </md-input-container>
           </div>
           
@@ -38,7 +41,8 @@
 			<div layout-gt-xs="row" class="mission_width1">
 				<md-input-container class="md-block input-primary " flex-gt-sm> 
 				<label>Address 1</label>
-			 	<input type="text" required ng-model="vm.view.address.address1">
+			 	<input type="text" required ng-model="vm.view.address.address1" ng-blur="vm.validationCheck('text','address1',vm.view.address.address1)"> 
+			 	<div id="errorMsg" ng-if="vm.fields['address1']" style="color:red;" ng-bind="vm.msgs['address1']" /></div>
 				</md-input-container>
 				
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
@@ -50,17 +54,20 @@
 		    <div layout-gt-xs="row" class="mission_width1">
 				<md-input-container class="md-block input-primary" flex-gt-sm> 
 				<label>City</label>
-			 	<input type="text" required ng-model="vm.view.address.city">
+			 	<input type="text" required ng-model="vm.view.address.city"  ng-blur="vm.validationCheck('text','city',vm.view.address.city)">
+			 	<div id="errorMsg" ng-if="vm.fields['city']" style="color:red;" ng-bind="vm.msgs['city']" /></div>
 				</md-input-container>
 		
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
          			 <label>State</label>
-          			 <md-select name="type" ng-model="vm.view.address.state" required>
+          			 <md-select name="type" ng-model="vm.view.address.state" required  ng-blur="vm.validationCheck('text','state',vm.view.address.state)">
             			<md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
             		</md-select>
+            		<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']" /></div>
         		</md-input-container><md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 					<label>Zip</label>
-			 		<input type="text" required maxlength="6" ng-model="vm.view.address.zip">
+			 		<input type="text" required maxlength="6" ng-model="vm.view.address.zip" ng-blur="vm.validationCheck('number','zip',vm.view.address.zip)">
+			 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;" ng-bind="vm.msgs['zip']" /></div>
 				</md-input-container>
         		
         		
@@ -71,18 +78,21 @@
          <div layout-gt-xs="row">
            <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Full time Employees</label>
-            <input type="number"   required ng-model="vm.view.employees"></input>
+            <input type="number"   required ng-model="vm.view.employees" ng-blur="vm.validationCheck('number','fte',vm.view.employees)"></input>
+            <div id="errorMsg" ng-if="vm.fields['fte']" style="color:red;" ng-bind="vm.msgs['fte']" /></div>
           </md-input-container>
           
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
             <label>Overview</label>
-            <input type="text"   required ng-model="vm.view.overview"></input>
+            <input type="text"   required ng-model="vm.view.overview" ng-blur="vm.validationCheck('text','overview',vm.view.overview)"></input>
+            <div id="errorMsg" ng-if="vm.fields['overview']" style="color:red;" ng-bind="vm.msgs['overview']" /></div>
           </md-input-container>
          </div> 
          <div layout-gt-xs="row" class="mission_width"> 
           <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Mission Statement</label>
-            <input type="text"   required ng-model="vm.view.mission"></input>
+            <input type="text"   required ng-model="vm.view.mission" ng-blur="vm.validationCheck('text','mission',vm.view.mission)"></input>
+            <div id="errorMsg" ng-if="vm.fields['mission']" style="color:red;" ng-bind="vm.msgs['mission']" /></div>
           </md-input-container>
         </div>
         <div layout-gt-xs="row" class="mission_width"> 
