@@ -21,6 +21,8 @@
 				
 		var fundingMealObj ={};
 		//$scope.mealDonaltionList =[];
+		$scope.show = false;
+		
 		$scope.addNewChoice = function(){
 			fundingMealObj = {};
 			if($scope.source!=null && $scope.mealQty!=null && $scope.frequency!= null){
@@ -28,6 +30,7 @@
 				fundingMealObj.mealQty = $scope.mealQty;
 				fundingMealObj.frequency = $scope.frequency;
 				$scope.mealDonaltionList.push(fundingMealObj);
+				$scope.show = true;
 				$scope.source = null;
 				$scope.mealQty = null;
 				$scope.frequency = null;
@@ -39,6 +42,9 @@
 		
 		$scope.deleteMeal = function(idx) {
 			$scope.mealDonaltionList.splice(idx,1);
+			if($scope.mealDonaltionList.length == 0){
+				$scope.show = false;
+			}
 		}
 	}
 	

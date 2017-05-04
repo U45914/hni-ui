@@ -18,6 +18,7 @@
 		
 		var brandObject = {};
 		//$scope.brandList = [];
+		$scope.show = false;
 
 		$scope.addNewRow = function() {
 			brandObject = {};
@@ -25,6 +26,7 @@
 			brandObject.company = $scope.company;
 			brandObject.phoneNumber = $scope.phoneNumber;
 			$scope.brandList.push(brandObject);
+			$scope.show = true;
 			$scope.company = null;
 			$scope.phoneNumber = null;
 			}
@@ -35,7 +37,9 @@
 		
 		$scope.deleteBrand = function(idx) {
 			$scope.brandList.splice(idx,1);
-			console.log( $scope.brandList);
+			if($scope.brandList.length == 0){
+				$scope.show = false;
+			}
 		}
 		
 		$scope.checkPhoneNbr = function() {
