@@ -19,6 +19,8 @@
 		var vm = this;
 		vm.incomplete = false;
 		vm.orgInfo = {};
+		vm.fields = {};
+		vm.msgs = {};
 		vm.states = validateService.validateStateDrpdwn();
 		vm.validateNGOInvitation = "";
 		loadOrgInfo();
@@ -38,7 +40,7 @@
 					"zip" : vm.zip
 				} ]
 			};
-			
+			console.log(data);
 			vm.validateNGOInvitation = validateService.validateNGOOnboard(data);
 			if (vm.validateNGOInvitation == "") {
 				var serviceCalls = ngoOnboardingService
@@ -55,6 +57,9 @@
 										vm.incomplete = true;
 										//vm.validateNGOInvitation = "Error : " +response.data.errorMsg;
 										toastService.showToast("Error : " +response.data.errorMsg);
+									}
+									else if(response && response.data && !response.data.errorMsg){
+										toastService.showToast("Something went wrong, please try again");
 									}
 									else {
 										toastService.showToast("Failed : " + response.data.errorMsg);
@@ -87,6 +92,41 @@
 				});
 			}
 		}
+		vm.validationCheck = function (type, id, value, event){
+	
+			if(value!=null){
+							
+				vm.fields[id] = false;
+				
+				if(type=="number"){
+					
+					if(id=="zip"){
+						var zip=vm.zip;
+						if (isNaN(Number(zip))|| (zip.length != 6) || zip.indexOf("-")!=-1) {
+							vm.fields[id] = true;
+							vm.msgs[id]="Invalid Zip";
+						}else{
+							vm.fields[id]=false;
+						}
+			
+					}
+					
+				}
+				}	
+			if(id=="email"||id=="website"){
+				if (event.target.value != "" && value == null) {
+					vm.fields[id] = true;
+					vm.msgs[id]="Invalid Format";
+				} else {
+					vm.fields[id] = false;
+				}
+			    
+			}
+			
+			}
+				
+			
+		
 		
 		vm.checkPhoneNbr = function() {
 			var phone = vm.phoneNumber;
