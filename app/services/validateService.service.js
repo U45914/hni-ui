@@ -53,7 +53,7 @@
 			var errorFields = "";
 			if(data.name==null)
 				errorFields += "Name, " ;
-			if(data.phone==null || !angular.isNumber(!isNaN(parseInt(data.phone.replace(/-/g, "")))))
+			if(data.phone==null || isNaN(Number(data.phone.replace(/-/g, ""))))
 				errorFields += "Phone, " ;
 			if(data.email==null)
 				errorFields += "Email, ";
@@ -68,7 +68,7 @@
 					errorFields += "Address City, " ;
 				if(address[i].state==null)
 					errorFields += "Address State, " ;
-				if(address[i].zip==null || !angular.isNumber(address[i].zip))
+				if(address[i].zip==null)
 					errorFields += "Address Zip" ;
 			}
 			return errorFields;
@@ -108,7 +108,7 @@
 			var errorFields = "";
 			if(data.name==null)
 				errorFields += "Name, ";
-			if(data.phone==null || !angular.isNumber(!isNaN(pareseInt(data.phone.replace(/-/g, "")))))
+			if(data.phone==null || isNaN(Number(data.phone.replace(/-/g, ""))))
 				errorFields += "Phone, ";
 			if(data.email==null)
 				errorFields += "Email, ";
@@ -168,13 +168,14 @@
 		 */
 		
 		function validateNGOEnrollmentTabOverview(data){
+			console.log(data);
 			var errorText = {};
 			var field = [];
 			if(data != null){
 				if(data.name == null){
 					field.push("Name");
 				}
-				if(data.phone == null || !angular.isNumber(!isNaN(parseInt(data.phone.replace(/-/g, ""))))){
+				if(data.phone == null || isNaN(Number(data.phone.replace(/-/g, "")))){
 					field.push("Phone");
 				}
 				if(data.website == null){
@@ -198,7 +199,7 @@
 				if(data.address.state == null){
 					field.push("State");
 				}
-				if(data.address.zip == null || !angular.isNumber(data.address.zip)){
+				if(data.address.zip == null){
 					field.push("Zip");
 				}
 				if(data.employees == null || !angular.isNumber(data.employees)){
@@ -251,7 +252,7 @@
 						if(brandPartners[index].company == null){
 							errorArray.push({ field : "Brand Partner "+(index+1), value : "Company" });
 						}
-						if(brandPartners[index].phoneNumber == null || !angular.isNumber(!isNaN(parseInt(brandPartners[index].phoneNumber.replace(/-/g, ""))))){
+						if(brandPartners[index].phoneNumber == null || isNaN(Number(brandPartners[index].phoneNumber.replace(/-/g, "")))){
 							errorArray.push({ field : "Brand Partner "+(index+1), value : "Phone Number" });
 						}
 					}
@@ -262,7 +263,7 @@
 						if(localPartners[index].company == null){
 							errorArray.push({field : "Local Partners "+(index+1), value : "Company"});
 						}
-						if(localPartners[index].phoneNumber == null || !angular.isNumber(!isNaN(parseInt(localPartners[index].phoneNumber.replace(/-/g, ""))))){
+						if(localPartners[index].phoneNumber == null || isNaN(Number(localPartners[index].phoneNumber.replace(/-/g, "")))){
 							errorArray.push({field : "Local Partners "+(index+1), value : "Phone  Number"});
 						}
 					}

@@ -21,6 +21,9 @@
 	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService) {
 		var vm = this;
 		vm.list = [];
+		vm.fields = {};
+		vm.msgs = {};
+		var validateFail = false;
 		
 		vm.states = validateService.validateStateDrpdwn();
 		
@@ -36,6 +39,50 @@
 		}
 		vm.delRow = function(index) {
 			vm.list.splice(index, 1);
+		}
+		 vm.validationCheck = function (type, id, value, event){
+				if(value!=null){
+					vm.fields[id] = false;
+					if(type=="number"){
+						if(id=="zip"){
+								var zip=vm.view.address.zip;
+								if (isNaN(Number(zip))|| (zip.length != 6) || zip.indexOf("-")!=-1) {
+									vm.fields[id] = true;
+									vm.msgs[id]="Invalid Zip";
+									validateFail = true;
+								}else{
+									vm.fields[id]=false;
+									validateFail = false;
+								}
+						}
+						if(id=="fte"){
+							var fte = vm.view.employees;
+							if (isNaN(Number(fte)) ||  fte < 0) {
+								vm.fields[id] = true;
+								vm.msgs[id]="Invalid Employee";
+								validateFail = true;
+							}else{
+								vm.fields[id]=false;
+								validateFail = false;
+							}
+					}
+					}
+				}
+				else{
+					validateFail = true;
+					if(id=="email"||id=="website"){
+						if (event.target.value != "" && value == null) {
+							vm.fields[id] = true;
+							vm.msgs[id]="Invalid Format";
+						} else {
+							vm.fields[id] = false;
+						}
+					}
+					if(id == "zip" ||id == "name" || id == "contact" || id === "address1" || id === "city" || id === "state" || id == "fte" || id == "mission" || id == "overview"){
+						vm.fields[id] = true;
+						vm.msgs[id]="Please fill this field";
+					}
+				}
 		}
 	
 		vm.save = function() {
@@ -58,6 +105,7 @@
 				},
 			};
 			console.log(data);
+			alert(vm.validateFail);
 			if (vm.view.name != null && vm.view.phone != null
 					&& vm.view.website != null && vm.view.contact != null
 					&& vm.view.employees != null && vm.view.overview != null

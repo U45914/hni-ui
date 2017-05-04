@@ -20,14 +20,18 @@
 	<br>
 	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px"
 		ng-repeat="element in fundingSourceList track by $index">
-		<br><br>
+		<br>
 		 <md-grid-tile>
 		
 	<div layout="row">{{element.source}}</div>
 	</md-grid-tile> <md-grid-tile>
 	<div layout="column">{{element.amount}}</div>
 	</md-grid-tile> <md-grid-tile>
-	<md-button class="md-fab btn_style"  ng-click="vm.deleteRow($index)"> <div style="position: relative;
-    bottom: 8px;">X</div></md-button>
+	<md-button class="md-fab btn_style" style="background-color:transparent;
+border-radius:0;
+color:#D65439;
+
+box-shadow:none;border:none;"  ng-click="vm.deleteRow($index)"> <div style="position: relative;
+    bottom: 10px;">X</div></md-button>
 	</md-grid-tile> </md-grid-list>
 </fieldset>
