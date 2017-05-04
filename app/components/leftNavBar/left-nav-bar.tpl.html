@@ -1,4 +1,4 @@
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="true">
+<md-sidenav class="md-sidenav-left leftNavAdj" md-component-id="left" md-is-locked-open="true">
 <div layout="column" flex></div>
 <user-detail></user-detail>
 		<div class="hor_line"></div>
@@ -15,20 +15,20 @@
 	</div>
 	<div ng-if="vm.role === vm.rolesConstantName.ngoAdmin||vm.role === vm.rolesConstantName.ngo" >
 	<ul class="padding_301">
-			<li class="side_menu_item"><a ui-sref="dashboard" class="link_style">My Dashboard</a></li>		
-			<li class="side_menu_item"><a ui-sref="ngoInvitation" class="link_style">NGO Invitation</a></li>
-			<li class="side_menu_item"><a ui-sref="clientInvitation" class="link_style">Customer Onboarding</a></li>
-			<li class="side_menu_item"><a ui-sref="profile" class="link_style">View / Update Profile</a></li>
-			<li class="side_menu_item"><a ui-sref="credential-setup" class="link_style">Change Password</a></li>
-			<li class="side_menu_item"><a ui-sref="login" class="link_style">Logout</a></li>	
+			<li class="side_menu_item"><a ui-sref="dashboard" class="link_style fa fa-tachometer">My Dashboard</a></li>		
+			<li class="side_menu_item"><a ui-sref="ngoInvitation" class="link_style fa fa-tachometer">NGO Invitation</a></li>
+			<li class="side_menu_item"><a ui-sref="clientInvitation" class="link_style fa fa-tachometer">Customer Onboarding</a></li>
+			<li class="side_menu_item"><a ui-sref="profile" class="link_style fa fa-tachometer">View / Update Profile</a></li>
+			<li class="side_menu_item"><a ui-sref="credential-setup" class="link_style fa fa-tachometer">Change Password</a></li>
+			<li class="side_menu_item"><a ui-sref="login" class="link_style fa fa-tachometer">Logout</a></li>	
 	</ul>
 	</div>
 	<div ng-if="vm.role === vm.rolesConstantName.volunteer|| vm.role === vm.rolesConstantName.client" >
 	<ul class="padding_301">
-			<li class="side_menu_item"><a ui-sref="dashboard" class="link_style">My Dashboard</a></li>		
-			<li class="side_menu_item"><a ui-sref="profile" class="link_style">View / Update Profile</a></li>
-			<li class="side_menu_item"><a ui-sref="credential-setup" class="link_style">Change Password</a></li>
-			<li class="side_menu_item"><a ui-sref="login" class="link_style">Logout</a></li>	
+			<li class="side_menu_item"><a ui-sref="dashboard" class="link_style fa fa-tachometer">My Dashboard</a></li>		
+			<li class="side_menu_item"><a ui-sref="profile" class="link_style fa fa-tachometer">View / Update Profile</a></li>
+			<li class="side_menu_item"><a ui-sref="credential-setup" class="link_style fa fa-tachometer">Change Password</a></li>
+			<li class="side_menu_item"><a ui-sref="login" class="link_style fa fa-tachometer">Logout</a></li>	
 	</ul>
 	</div>
 	<div layout="column" flex></div>

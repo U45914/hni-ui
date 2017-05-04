@@ -99,18 +99,21 @@ color:#808080;
 
 
 @media screen and (max-width: 768px) {
-
-.width_for_textbox
-{
-width:100%;
+	.width_for_textbox
+	{
+		width:100%;
+	}
+	.mgn_left_25
+	{
+		margin-left:0px;
+	}
+	.mgn_left_50
+	{
+		margin-left:0px;
+	}
 }
-.mgn_left_25
-{
-margin-left:0px;
-}
-.mgn_left_50
-{
-margin-left:0px;
-}
-
+.leftNavAdj{
+	overflow: hidden;
+	width: 103%;
+	margin-top:-15px;
 }
