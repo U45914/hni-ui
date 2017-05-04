@@ -55,7 +55,7 @@
     	}
     	
     	vm.enrollementData = function(){
-       	   
+       	   	vm.save();
     		  var serviceCalls = clientEnrollmentService.postClientInfo().then(
     					function successCallback(response) {
     						if (response
