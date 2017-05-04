@@ -1,4 +1,4 @@
-<div class="font_for_allpages">
+<div class="font_for_allpages1">
 	<h3>Services Details</h3>
 <br>
 <h4>Food Service Offered</h4>
@@ -7,36 +7,36 @@
           <md-checkbox ng-model="vm.service.brkfstChk" class="md-primary">
             Breakfast
           </md-checkbox>
-          <md-input-container class="md-block input-primary" flex="60" ng-show ="vm.service.brkfstChk" style="padding: 0px;margin: 0px;">
+          <md-input-container class="md-block input-primary " style="margin-left:25px;" flex="60" ng-show ="vm.service.brkfstChk" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number"   required ng-model="vm.service.brkfstQty"></input>
+            <input type="number" style="margin-bottom:28px;"  required ng-model="vm.service.brkfstQty"></input>
           </md-input-container>
         </div>
 		<div flex layout = "row" layout-align="start center">
           <md-checkbox md-no-ink  ng-model="vm.service.lunchChk" class="md-primary">
             Lunch
           </md-checkbox>
-          <md-input-container class="md-block input-primary" ng-show ="vm.service.lunchChk" flex="60" style="padding: 0px;margin: 0px;">
+          <md-input-container class="md-block input-primary " style="margin-left:25px;" ng-show ="vm.service.lunchChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number"   required ng-model="vm.service.lunchQty"></input>
+            <input type="number"  style="margin-bottom:28px;"  required ng-model="vm.service.lunchQty"></input>
           </md-input-container>
         </div>
         <div flex layout = "row" layout-align="start center">
           <md-checkbox md-no-ink  ng-model="vm.service.dinnerChk" class="md-primary">
             Dinner
           </md-checkbox>
-          <md-input-container class="md-block input-primary" ng-show ="vm.service.dinnerChk" flex="60" style="padding: 0px;margin: 0px;">
+          <md-input-container class="md-block input-primary " style="margin-left:25px;" ng-show ="vm.service.dinnerChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number"   required ng-model="vm.service.dinnerQty"></input>
+            <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.dinnerQty"></input>
           </md-input-container>
         </div>
         <div flex layout = "row" layout-align="start center">
           <md-checkbox md-no-ink  ng-model="vm.service.baggedChk" class="md-primary">
             Bagged
           </md-checkbox>
-          <md-input-container class="md-block input-primary" ng-show ="vm.service.baggedChk" flex="60" style="padding: 0px;margin: 0px;">
+          <md-input-container class="md-block input-primary" style="margin-left:25px;" ng-show ="vm.service.baggedChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number"   required ng-model="vm.service.baggedQty"></input>
+            <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.baggedQty"></input>
           </md-input-container>
         </div>
 
@@ -164,7 +164,12 @@
 			<md-grid-list md-cols="1" md-row-height="20:1" md-gutter="6px">
 			<md-grid-tile ng-repeat="fdbnk in vm.list track by $index">
 				<div id="header" layout="row" flex>{{fdbnk}}</div>
-				<md-button class="md-fab btn_style"  ng-click="vm.delRow($index)" ng-show="vm.flag1">-</md-button>
+				<md-button class="md-fab btn_style mgn_rt" style="background-color:transparent;
+border-radius:0;
+color:#D65439;
+
+box-shadow:none;border:none;" ng-click="vm.delRow($index)" ng-show="vm.flag1"><div style="position: relative;
+    bottom: 10px;">X</div></md-button>
 			</md-grid-tile>
 			</md-grid-list>
 		</div>

@@ -1,45 +1,47 @@
+<div class="font_for_allpages">
 <top-nav></top-nav>
 
 <div>
-	<div class="left_style"  layout="row"><left-nav-bar></left-nav-bar>
+	<div class="left_float" style="width:19%;padding-top:15px;"><left-nav-bar></left-nav-bar>
 </div>
 
-<div class="tabnew" >
+<div class="left_float" style="width:79.5%;background:white;margin-left:11px;">
 <div ng-cloak>
 	<md-content>
 	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex" class="label_style"> 
-		<md-tab label="Personal Info" > 
-		<md-content class="md-padding">
+		<md-tab label="Personal" > 
+		<md-content class="md-padding" style="background: #fff;">
 			<personal-info-tab></personal-info-tab> 
 			</md-content>
 		</md-tab>
 
-		<md-tab label="Connection Details">
-	 	<md-content class="md-padding">
+		<md-tab label="Connections">
+	 	<md-content class="md-padding" style="background: #fff;">
 	 	<connection-details></connection-details>
  	    </md-content> 
 		</md-tab>
 
-		<md-tab label="Family and Education"> 
-		<md-content class="md-padding">
+		<md-tab label="Family">
+		<!-- <md-tab label="Family and Education"> --> 
+		<md-content class="md-padding" style="background: #fff;">
 		<client-family-education></client-family-education>	
 			</md-content> 
  		</md-tab>
 
-		<md-tab label="Employment"> 
-		<md-content class="md-padding">
+		<md-tab label="Employment" style="text-align:left"> 
+		<md-content class="md-padding" style="background: #fff;">
 			<client-employment></client-employment>
 			</md-content> 
 		</md-tab>
 
-		<md-tab label="Food Preferences"> 
-		<md-content class="md-padding">
+		<md-tab label="Food"> 
+		<md-content class="md-padding" style="background: #fff;">
 		<client-food-preferences></client-food-preferences>
 			</md-content> 
 		</md-tab>
 		
-		<md-tab label="Health Details"> 
-		<md-content class="md-padding">
+		<md-tab label="Health"> 
+		<md-content class="md-padding" style="background: #fff;">
 			<health-details-tab></health-details-tab>
 			</md-content> 
 		</md-tab>
@@ -53,4 +55,5 @@
 
 <div class="clear_all">
 <landing-footer></landing-footer>
+</div>
 </div>
