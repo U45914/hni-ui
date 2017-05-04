@@ -42,6 +42,10 @@
 		<div class ="md-title ">Organization Address</div>
 		
 		<div layout-gt-xs="row"  class="width_for_textbox">
+			<!-- <md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Name</label>
+			 	<input type="text" required ng-model="vm.adminName">
+			</md-input-container> -->
 			
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Address 1</label>
@@ -69,7 +73,7 @@
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Zip</label>
-			 	<input type="text" required maxlength="6" ng-model="vm.zip">
+			 	<input type="number" required ng-model="vm.zip">
 				</md-input-container>
 			</div>
 				<md-button class="md-raised button-primary"  ng-click="vm.submit()" >Submit</md-button>
@@ -81,6 +85,9 @@
 	
 </div>
 </div>
+
+</div>
+
 <div class="clear_all">
 <landing-footer></landing-footer>
 </div>

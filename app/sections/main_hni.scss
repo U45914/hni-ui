@@ -1,5 +1,10 @@
 @CHARSET "ISO-8859-1";
 
+html
+{
+padding:0px;
+}
+
 
 .font_for_allpages
 {
@@ -96,6 +101,11 @@ input
 font-weight:600;
 color:#808080;
 }
+
+
+
+
+
 
 
 @media screen and (max-width: 768px) {
