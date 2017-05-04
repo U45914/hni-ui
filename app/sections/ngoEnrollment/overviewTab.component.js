@@ -111,7 +111,7 @@
 					&& vm.view.employees != null && vm.view.overview != null
 					&& vm.view.mission != null) {
 				ngoEnrollmentService.setOverviewData(data);
-				//var serviceCalls = ngoEnrollmentService.savePartial();
+				var serviceCalls = ngoEnrollmentService.savePartial();
 				/*
 				 * .then(function successCallback(response) { if (response &&
 				 * response.data.response && response.data.response ==
