@@ -8,13 +8,17 @@
             controllerAs: 'vm'
         });
 
-    LandingHeroController.$inject = ['hashScroll'];
+    LandingHeroController.$inject = ['hashScroll','$state'];
 
-    function LandingHeroController(hashScroll) {
+    function LandingHeroController(hashScroll,$state) {
         var vm = this;
 
         vm.scrollTo = function(hash) {
             hashScroll.scrollToHash(hash);
         };
+        
+        vm.load = function(){
+        	$state.go('login');
+        }
     }
 })();

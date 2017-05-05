@@ -53,7 +53,7 @@
 			var errorFields = "";
 			if(data.name==null)
 				errorFields += "Name, " ;
-			if(data.phone==null || !angular.isNumber(data.phone))
+			if(data.phone==null || isNaN(Number(data.phone.replace(/-/g, ""))))
 				errorFields += "Phone, " ;
 			if(data.email==null)
 				errorFields += "Email, ";
@@ -68,7 +68,7 @@
 					errorFields += "Address City, " ;
 				if(address[i].state==null)
 					errorFields += "Address State, " ;
-				if(address[i].zip==null || !angular.isNumber(address[i].zip))
+				if(address[i].zip==null)
 					errorFields += "Address Zip" ;
 			}
 			return errorFields;
@@ -106,14 +106,18 @@
 		
 		function validateNGOAdd(data){
 			var errorFields = "";
-			if(data.name==null)
-				errorFields += "Name, ";
-			if(data.phone==null || !angular.isNumber(data.phone))
+			/*if(data.name==null)
+				errorFields += "Name, ";*/
+			if(data.firstName==null)
+				errorFields += "First Name, ";
+			if(data.lastName==null)
+				errorFields += "Last Name, ";
+			if(data.phone==null || isNaN(Number(data.phone.replace(/-/g, ""))))
 				errorFields += "Phone, ";
 			if(data.email==null)
 				errorFields += "Email, ";
-			if(data.genderCode==null)
-				errorFields += "Gender ";
+			/*if(data.genderCode==null)
+				errorFields += "Gender ";*/
 			return errorFields;
 		}
 		
@@ -168,13 +172,14 @@
 		 */
 		
 		function validateNGOEnrollmentTabOverview(data){
+			console.log(data);
 			var errorText = {};
 			var field = [];
 			if(data != null){
 				if(data.name == null){
 					field.push("Name");
 				}
-				if(data.phone == null || !angular.isNumber(data.phone)){
+				if(data.phone == null || isNaN(Number(data.phone.replace(/-/g, "")))){
 					field.push("Phone");
 				}
 				if(data.website == null){
@@ -189,16 +194,13 @@
 				if(data.address.address1 == null){
 					field.push("Address 1");
 				}
-				if(data.address.address2 == null){
-					field.push("Address 2");
-				}
 				if(data.address.city == null){
 					field.push("City");
 				}
 				if(data.address.state == null){
 					field.push("State");
 				}
-				if(data.address.zip == null || !angular.isNumber(data.address.zip)){
+				if(data.address.zip == null){
 					field.push("Zip");
 				}
 				if(data.employees == null || !angular.isNumber(data.employees)){
@@ -251,7 +253,7 @@
 						if(brandPartners[index].company == null){
 							errorArray.push({ field : "Brand Partner "+(index+1), value : "Company" });
 						}
-						if(brandPartners[index].phoneNumber == null || !angular.isNumber(brandPartners[index].phoneNumber)){
+						if(brandPartners[index].phoneNumber == null || isNaN(Number(brandPartners[index].phoneNumber.replace(/-/g, "")))){
 							errorArray.push({ field : "Brand Partner "+(index+1), value : "Phone Number" });
 						}
 					}
@@ -262,7 +264,7 @@
 						if(localPartners[index].company == null){
 							errorArray.push({field : "Local Partners "+(index+1), value : "Company"});
 						}
-						if(localPartners[index].phoneNumber == null || !angular.isNumber(localPartners[index].phoneNumber)){
+						if(localPartners[index].phoneNumber == null || isNaN(Number(localPartners[index].phoneNumber.replace(/-/g, "")))){
 							errorArray.push({field : "Local Partners "+(index+1), value : "Phone  Number"});
 						}
 					}
@@ -326,13 +328,13 @@
 					errorArray.push("Monthly Budget");
 				}
 				
-				if(data.operatingCost == null){
+				/*if(data.operatingCost == null){
 					errorArray.push("Operating Cost");
 				}
 				
 				if(data.personalCost == null){
 					errorArray.push("Personal Cost");
-				}
+				}*/
 				
 				if(data.volunteerNbr == null || !angular.isNumber(data.volunteerNbr)){
 					errorArray.push("Volunteer Number");
@@ -351,8 +353,8 @@
 						errorArray.push("Food Name");
 				}
 				
-				if(data.resource == null || data.resource.length == 0)
-					errorArray.push("Resource");
+				/*if(data.resource == null || data.resource.length == 0)
+					errorArray.push("Resource");*/
 			}	
 			else{
 				errorArray.push({field : "Services Tab", value : "Empty"});

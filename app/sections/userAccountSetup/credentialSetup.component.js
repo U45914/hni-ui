@@ -26,6 +26,7 @@
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
 				"email" : getUserName(),
+				"mobilePhone" : vm.mobilePhone,
 				"password" : vm.password,
 				"organizationId" : getOrgInfo()
 			};
@@ -82,6 +83,16 @@
 		
 		function getUserName() {
 			return window.localStorage.getItem("userName");
+		};
+		vm.checkPhoneNbr = function() {
+			var phone = vm.mobilePhone;
+			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			var res = patt.test(phone);
+			if (res == true) {
+				vm.check1=false;
+			} else {
+				vm.check1=true;
+			}
 		};
 	}
 

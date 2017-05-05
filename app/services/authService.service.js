@@ -3,9 +3,9 @@
         .module('app')
         .service('authService', authService);
 
-    authService.$inject = ['$http', '$timeout', '$state', 'userService', 'rolesConstant', 'serviceConstants'];
+    authService.$inject = ['$http', '$timeout', '$state', 'userService', 'rolesConstant', 'serviceConstants','toastService'];
 
-    function authService($http, $timeout, $state, userService, rolesConstant, serviceConstants) {
+    function authService($http, $timeout, $state, userService, rolesConstant, serviceConstants, toastService) {
         let baseUrl = serviceConstants.baseUrl;
         let LOCAL_TOKEN_KEY = 'hni_token';
         let LOCAL_ROLE = 'hni_role';
@@ -22,6 +22,7 @@
             loginExternal,
             logout,
             isAuthorized,
+            setLoginResponse,
             isAuthenticated: () => isAuthenticated,
             getToken: () => authToken,
             getRole: () => authRole,
@@ -62,24 +63,21 @@
         		window.localStorage.setItem("userOrgInfo", orgInfo);
         	}
         }
+        
+        function setLoginResponse(response) {
+        	setToken(response.data.token);
+            setOrgInfo(response.data.user.organizationId);
+            userService.setUser(response.data.user);
+            setUserRole(response.data.roleName)
+        }
 
+       
        function login(username, password) {
         	var vm = {
         			username : username,
         			password : password
         	}
-        	$http.post(`${baseUrl}/security/authentication`, vm).then(function success(response) {
-                console.log(response);
-                setToken(response.data.token);
-                setOrgInfo(response.data.user.organizationId);
-                userService.setUser(response.data.user);
-                setUserRole(response.data.roleName)
-                $state.go('dashboard');
-            }, function error(error) {
-            	alert("error : "+error);
-                console.log(error);
-            });
-        	return;
+        	return $http.post(`${baseUrl}/security/authentication`, vm);
         }
         
         /*

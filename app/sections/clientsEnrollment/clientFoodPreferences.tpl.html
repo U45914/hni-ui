@@ -1,17 +1,19 @@
-<div class="font_for_allpages" >
+<div class="font_for_allpages1" >
 	<h3>Food Preferences Details</h3>
 
 
 <br>
+<div layout-gt-xs="row" class="width_for_textbox">
+	<md-input-container class="md-block input-primary"  flex-gt-sm>
 	<label>How many meals do you eat a day</label>
-	<md-select ng-model="vm.food.mealsPerDay" class="width_for_textbox"> <md-option
-		ng-repeat="a in vm.mealsPerDayList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
-<br>
+	<md-select ng-model="vm.food.mealsPerDay"> <md-option
+		ng-repeat="a in vm.mealsPerDayList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
+	<md-input-container class="md-block input-primary"  flex-gt-sm>
 	<label>Food preferences</label>
-	<md-select ng-model="vm.food.foodPreference" class="width_for_textbox"> <md-option
-		ng-repeat="a in vm.foodPreferenceList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
-			<br>
-<div layout-gt-xs="row" class="width_for_textbox">	
+	<md-select ng-model="vm.food.foodPreference"> <md-option
+		ng-repeat="a in vm.foodPreferenceList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
+</div>
+<div layout-gt-xs="row" class="mission_width3">	
 	<md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Where do you purchase your food?</label>
 			<input type="text" ng-model="vm.food.foodSource"/>
@@ -23,23 +25,26 @@
 	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
 	</md-radio-group>
 	<br>
-	<br>
+	
+	<div layout-gt-xs="row" class="width_for_textbox">
+	<md-input-container class="md-block input-primary"  flex-gt-sm>
 	<label>How far do you travel for food ? (miles)</label>
-	<md-select ng-model="vm.food.travelForFoodDistance" class="width_for_textbox"> <md-option
-		ng-repeat="a in vm.distanceList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
-			<br>
+	<md-select ng-model="vm.food.travelForFoodDistance" > <md-option
+		ng-repeat="a in vm.distanceList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
+	<md-input-container class="md-block input-primary"  flex-gt-sm>		
 	<label>How long does that take ? (minutes)</label>
-	<md-select ng-model="vm.food.travalForFoodTime" class="width_for_textbox"> <md-option
-		ng-repeat="a in vm.travelTimeList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
-			<br>
-			<md-radio-group  layout = "row" ng-model ="vm.food.subFoodProgram" class="md-primary">
+	<md-select ng-model="vm.food.travalForFoodTime"> <md-option
+		ng-repeat="a in vm.travelTimeList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
+		</div>
+		
+	<md-radio-group  layout = "row" ng-model ="vm.food.subFoodProgram" class="md-primary">
 	  <label>Have you participated subsidised food programs in the past?</label>
 	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
 	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
 	</md-radio-group>
 
 	<div ng-show = "vm.food.subFoodProgram == true">
-	<div layout-gt-xs="row" class="width_for_textbox">	
+	<div layout-gt-xs="row" class="mission_width3">	
 			<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label> Where?</label>
 				<input type="text" ng-model="vm.food.subFoodProgramEntity"/>
@@ -54,7 +59,7 @@
 			</md-input-container>
 	</div>
 			<label>Experience with?</label>
-			<md-select ng-model="vm.food.subFoodProgramExp" class="width_for_textbox"> <md-option
+			<md-select ng-model="vm.food.subFoodProgramExp" class="mission_width3"> <md-option
 		ng-repeat="a in vm.subFoodProgramExpList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
 			<br>
 	</div>

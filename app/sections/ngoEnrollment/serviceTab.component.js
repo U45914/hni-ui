@@ -15,11 +15,13 @@
 
     }
 
-    serviceController.$inject = ['$q', 'ngoEnrollmentService', '$rootScope', '$scope', '$mdToast'];
+    serviceController.$inject = ['$q', 'ngoEnrollmentService', '$rootScope', '$scope', '$mdToast', 'validateFormData'];
 
-    function serviceController($q, ngoEnrollmentService, $rootScope, $scope, $mdToast) {
+    function serviceController($q, ngoEnrollmentService, $rootScope, $scope, $mdToast, validateFormData) {
 
         var vm = this;
+        vm.fields = {};
+		vm.msgs = {};
         vm.list = [];
         vm.flag = false;
         vm.flag1 = false;
@@ -211,6 +213,72 @@
             }
             console.log(vm.resourceList);
         }
+        
+        vm.validationCheck = function (type, id, value, event){
+			if(value!=null){
+				vm.fields[id] = false;
+				if(type=="number"){
+					if(id=="brkfstQty"){
+						var brkfstQty=vm.service.brkfstQty;
+						if (isNaN(Number(brkfstQty)) || brkfstQty < 0) {
+							vm.fields[id] = true;
+							vm.msgs[id]="Invalid Quantity";
+						}else{
+							vm.fields[id]=false;
+						}
+					}
+					if(id=="lunchQty"){
+						var lunchQty=vm.service.lunchQty;
+						if (isNaN(Number(lunchQty)) || lunchQty < 0) {
+							vm.fields[id] = true;
+							vm.msgs[id]="Invalid Quantity";
+						}else{
+							vm.fields[id]=false;
+						}
+					}
+					if(id=="dinnerQty"){
+						var dinnerQty=vm.service.dinnerQty;
+						if (isNaN(Number(dinnerQty)) || dinnerQty < 0) {
+							vm.fields[id] = true;
+							vm.msgs[id]="Invalid Quantity";
+						}else{
+							vm.fields[id]=false;
+						}
+					}
+					
+					if(id == "volunteerNbr"){
+						var volunteerNbr=vm.service.volunteerNbr;
+						if (isNaN(Number(volunteerNbr)) || volunteerNbr < 0) {
+							vm.fields[id] = true;
+							vm.msgs[id]="Invalid Quantity";
+						}else{
+							vm.fields[id]=false;
+						}
+					}
+					
+				}
+			}	
+			else{
+				/*if(type=="number"){
+					if((vm.service.brkfstChk && vm.service.brkfstQty == null) || (vm.service.lunchQty && vm.service.lunchQty == null) || (vm.service.dinnerQty && vm.service.dinnerQty == null)){
+						vm.fields[id] = true;
+						vm.msgs[id]="Please fill this field";
+					}
+					if(type = "other"){
+						
+					}
+				}*/
+				vm.fields[id] = true;
+				vm.msgs[id]="Please fill this field";
+				
+			}
+			
+			};
+        vm.validate = function(type, id, value, event){
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
+		};
     }
 
 })();

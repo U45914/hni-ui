@@ -1,12 +1,12 @@
 <div class="font_for_allpages">
 <top-nav></top-nav>
-<div class="left_float">
+<div class="left_float" style="width:19%;padding-top:15px;">
 <left-nav-bar></left-nav-bar>
 </div>
-<div class="left_float">
-
-<h1>Invite Client </h1>
-
+<div class="left_float" style="width:80.2%;background-color:white;margin-left:9px;">
+<div style="padding:1px;background-color:rgba(128, 128, 128, 0.43);">
+<h1 style="color:white;text-align:left;padding-left:50px;">Customer Onboarding </h1>
+</div>
 <div class="form_style">
 	
 	<div class ="md-title mgn_bottom_20">Primary details</div>
@@ -19,7 +19,8 @@
 			 
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Phone number</label>
-			 	<input type="number" id="input-phone" required ng-model="vm.phoneNumber" class="input_box_md">
+			 	<input type="text" id="input-phone" required maxlength = "12" ng-model="vm.phoneNumber" ng-blur = "vm.checkPhoneNbr()" placeholder="999-999-9999" class="input_box_md" >
+			 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
 			</md-input-container>
 		</div>
 		
@@ -31,8 +32,8 @@
 			</md-input-container>
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-				<label>Web site url</label>
-			 	<input type="text" id="input-websiteUrl" required ng-model="vm.webSiteUrl" class="input_box_md">
+				<label>Website url</label>
+			 	<input type="text" id="input-websiteUrl" ng-model="vm.webSiteUrl" class="input_box_md">
 			</md-input-container>
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
@@ -41,7 +42,7 @@
 			</md-input-container>
 		</div>
 		
-			<md-button id="input-submit" class="md-raised button-primary"  ng-click="vm.submit()" >Invite</md-button>
+			<md-button id="input-submit" class="md-raised button-primary" style="float:right;"  ng-click="vm.submit()" >Invite</md-button>
 </div>
 
 </div>

@@ -1,44 +1,65 @@
 
 <div class="font_for_allpages">
 <top-nav></top-nav>
-<div class="left_float">
+<div class="left_float" style="width:19%;padding-top:15px;">
 <left-nav-bar></left-nav-bar>
 </div>
-<div class="left_float">
-
-<h1>NGO INVITATION</h1>
+<div class="left_float" style="width:80.2%;background-color:white;padding-bottom:840px;margin-left:9px;">
+<div style="padding:1px;background-color:rgba(128, 128, 128, 0.43);">
+<h1 style="color:white;text-align:left;padding-left:50px;">NGO INVITATION</h1>
+</div>
 <div class="form_style">
 
 	
-		<div class ="md-title mgn_bottom_20">Primary details</div>
+		<div class ="md-title ">Primary details</div>
 		<div layout-gt-xs="row" class="width_for_textbox">
 			<md-input-container class="md-block input-primary " flex-gt-sm> 
 				<label>Organization Name</label>
-				<input	type="text" required ng-model="vm.name" class="input_box_md"> 
-			 </md-input-container>
-			 
-
+				<input type="text" required ng-model="vm.name" class="input_box_md" ng-blur="vm.validationCheck('text','organizationName',vm.name)"> 
+      		<div id="errorMsg" ng-if="vm.fields['organizationName']" style="color:red;" ng-bind="vm.msgs['organizationName']">
+               		{{vm.msg}}
+                </div>
+      		 </md-input-container>
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-
 				<label>Phone number</label>
-			 	<input type="text" id="input-phone" required ng-model="vm.phoneNumber" class="input_box_md">
-			</md-input-container>
+			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur = "vm.checkPhoneNbr()" placeholder="999-999-9999">
+			 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
+			 			</md-input-container>
 		</div>
+		
+		<!-- <div layout-gt-xs="row" class="width_for_textbox">
+		<md-input-container class="md-block input-primary " flex-gt-sm> 
+				<div id="errorMsg" ng-if="vm.valid" style="color:red;">
+               		Please fill this field
+                </div>
+      		 </md-input-container>
+      		 <md-input-container class="md-block input-primary " flex-gt-sm> 
+				<div id="errorMsg" ng-if="vm.valid" style="color:red;">
+               		Please fill this field
+                </div>
+		 
+      		 </md-input-container>
+      		 </div>
+		 -->
 		<div layout-gt-xs="row" class="width_for_textbox">
 		
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
 				<label>Email address</label>
-			 	<input type="email" id="" required ng-model="vm.email" class="input_box_md">
+			 	<input type="email" id="" name="email" required ng-model="vm.email" class="input_box_md" ng-blur="vm.validationCheck('email','email',vm.email, $event)">
+					<div id="errorMsg" ng-if="vm.fields['email']" style="color:red;" ng-bind="vm.msgs['email']">
+                </div>		
 			</md-input-container>
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Web site url</label>
-			 	<input type="text" id="input-websiteUrl" required ng-model="vm.webSiteUrl" class="input_box_md">
+			 	<input type="url"  id="input-websiteUrl" required ng-model="vm.webSiteUrl" placeholder="eg: http://www.example.com" class="input_box_md" ng-blur="vm.validationCheck('url','website',vm.webSiteUrl,$event)">
+			<div id="errorMsg" ng-if="vm.fields['website']" style="color:red;"ng-bind="vm.msgs['website']">
+                </div>
 			</md-input-container>
 		</div>
+		<br>
 		
-		
-		<div class ="md-title mgn_bottom_20">Organization Address</div>
+		<div class ="md-title ">Organization Address</div>
 		
 		<div layout-gt-xs="row"  class="width_for_textbox">
 			<!-- <md-input-container class="md-block input-primary" flex-gt-sm> 
@@ -46,44 +67,44 @@
 			 	<input type="text" required ng-model="vm.adminName">
 			</md-input-container> -->
 			
-			<md-input-container class="md-block input-primary " flex-gt-sm> 
-				<label>Address Type</label>
-			 	<md-select name="type" ng-model="vm.adminName" required>
-            			<md-option value = "home">Home</md-option>
-            			<md-option value = "office">Office</md-option>
-            		</md-select>
-			</md-input-container>
-			
-				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<md-input-container class="md-block input-primary " flex-gt-sm> 
 				<label>Address 1</label>
-			 	<input type="text" required ng-model="vm.address1">
+			 	<input type="text" required ng-model="vm.address1" ng-blur="vm.validationCheck('text','address1',vm.address1)">
+				<div id="errorMsg" ng-if="vm.fields['address1']" style="color:red;" ng-bind="vm.msgs['address1']">
+                </div>
 				</md-input-container>
 				
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Address 2</label>
-			 	<input type="text" required ng-model="vm.address2">
+			 	<input type="text" ng-model="vm.address2">
 				</md-input-container>
 			</div>
 			<div layout-gt-xs="row"  class="width_for_textbox">
 				<md-input-container class="md-block input-primary" flex-gt-sm> 
 				<label>City</label>
-			 	<input type="text" required ng-model="vm.city">
+			 	<input type="text" required ng-model="vm.city" ng-blur="vm.validationCheck('text','city',vm.city)">
+				<div id="errorMsg" ng-if="vm.fields['city']" style="color:red;" ng-bind="vm.msgs['city']">
+                </div>
 				</md-input-container>
 		
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
          			 <label>State</label>
-          			 <md-select name="type" ng-model="vm.state" required>
+          			 <md-select name="type" ng-model="vm.state" required  ng-blur="vm.validationCheck('text','state',vm.state)">
             			<md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
             		</md-select>
+            		<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']">
+                </div>
         		</md-input-container>
 			
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Zip</label>
-			 	<input type="number" required ng-model="vm.zip">
+			 	<input type="text" required ng-model="vm.zip" ng-blur="vm.validationCheck('number','zip',vm.zip)">
+				<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;" ng-bind="vm.msgs['zip']" />
 				</md-input-container>
 			</div>
-				<md-button class="md-raised button-primary"  ng-click="vm.submit()" >Submit</md-button>
+			<br>
+				<md-button class="md-raised button-primary" style="float:right;" ng-click="vm.submit()" >Submit</md-button>
 				<div ng-show="vm.incomplete" ">
 			 <font color="red">{{vm.validateNGOInvitation}}</font> 
 		     </div>
@@ -92,8 +113,11 @@
 	
 </div>
 </div>
+
+</div>
+
 <div class="clear_all">
 <landing-footer></landing-footer>
 </div>
-</div>
+
 		

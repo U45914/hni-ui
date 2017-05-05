@@ -8,7 +8,7 @@
 		controllerAs : 'vm'
 	});
 
-	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService' ];
+	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService'];
 
 	function volunteerProfileController($q, volunteerService,validateService) {
 		var vm = this;
@@ -38,7 +38,7 @@
 				},
 				
 				"address" : {
-					"name" : vm.vol.address.name,
+					"name" : "office",
 					"address1" : vm.vol.address.address1,
 					"address2" : vm.vol.address.address2,
 					"city" : vm.vol.address.city,
@@ -65,10 +65,24 @@
 			volunteerService.volunteerProfileData = data;
 			var serviceCalls = volunteerService.profileDetails(data);
 			return $q.all(serviceCalls);
-			/*
-			 * } else{ console.log("Failed"); }
-			 */
 		}
+		
+		vm.onChange = function(){
+			if(vm.vol.maritalStatus == 1){
+				vm.vol.kids = 0;
+			}
+		}
+		
+		vm.checkPhoneNbr = function() {
+			var phone = vm.vol.user.mobilePhone;
+			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			var res = patt.test(phone);
+			if (res == true) {
+				vm.check=false;
+			} else {
+				vm.check=true;
+			}
+		};
 
 	}
 })();

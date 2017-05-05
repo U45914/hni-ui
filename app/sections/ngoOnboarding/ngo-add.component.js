@@ -30,10 +30,11 @@
 		loadOrgInfo();
 		vm.addNgoUser = function() {
 			var data = {
-				"name" : vm.name,
+				"firstName" : vm.adminName,
+				"lastName" : vm.lastName,
 				"phone" : vm.phone,
 				"email" : vm.email,
-				"genderCode" : vm.sex,
+				//"genderCode" : vm.sex,
 				"orgId": vm.orgInfo.id
 			};
 			vm.validateNGOAdd = validateService.validateNGOAdd(data);
@@ -75,6 +76,16 @@
 						});
 			}
 		}
+		vm.checkPhoneNbr = function() {
+			var phone = vm.phone;
+			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			var res = patt.test(phone);
+			if (res == true) {
+				vm.check=false;
+			} else {
+				vm.check=true;
+			}
+		};
 
 	}
 

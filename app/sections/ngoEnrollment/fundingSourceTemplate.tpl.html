@@ -2,9 +2,10 @@
 <span layout="row"> 
 		<md-input-container class="md-block input-primary" flex-gt-sm>
             <input type="text" required ng-model="source" placeholder="Source"></input> 
+            <div id="errorMsg" ng-if= "fields['fundSource']" style="color:red;"ng-bind="msgs['fundSource']"></div>
           </md-input-container>
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-            <input type="number" required ng-model="amount" placeholder="Amount"></input>
+            <input type="number" ng-model="amount" placeholder="Amount" min="0"></input>
           </md-input-container>
           <div style="padding-top:10px;">
 		 <md-button class="md-fab btn_style"  ng-click="addNewChoice()"> 
@@ -12,6 +13,7 @@
 		 </md-button>
 		 </div>
 	</span>
+	<div ng-show = "show">
 	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px">
 	<md-grid-tile>
 	<b>Source</b></md-grid-tile> <md-grid-tile>
@@ -20,14 +22,17 @@
 	<br>
 	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px"
 		ng-repeat="element in fundingSourceList track by $index">
-		<br><br>
+		<br>
 		 <md-grid-tile>
 		
 	<div layout="row">{{element.source}}</div>
 	</md-grid-tile> <md-grid-tile>
 	<div layout="column">{{element.amount}}</div>
 	</md-grid-tile> <md-grid-tile>
-	<md-button class="md-fab btn_style"  ng-click="vm.deleteRow($index)"> <div style="position: relative;
-    bottom: 8px;">X</div></md-button>
+	<md-button class="md-fab btn_style" style="background-color:transparent;
+border-radius:0;color:#D65439;box-shadow:none;border:none;" 
+ ng-click="deleteRow($index)"> <div style="position: relative; bottom: 10px;">X</div></md-button>
+
 	</md-grid-tile> </md-grid-list>
+	</div>
 </fieldset>

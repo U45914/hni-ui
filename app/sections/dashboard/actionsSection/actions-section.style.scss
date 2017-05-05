@@ -46,25 +46,26 @@
 	border-left:1px solid #EDF0F5;
 }
 .left_profile_pic{
-	margin:0 auto;
-	margin-top:28px;
+	width: 100%;
+	margin-top:16px;
+	margin-left:5px;
 }
 .profile_pic{
 	float:left;
 	width:25px;
 	margin-right:5px;
+	
 }
 .profile_details{
-	margin-top:5px;
+	
 	color:#797B7E;
 	font-size:12px;
-	padding-left: 43px;
-    padding-top: 18px;
+	
 }
 .link_style
 {
 text-decoration:none;
-padding-left:30px;
+padding-left:10px;
 }
 .link_style:hover
 {
@@ -73,8 +74,8 @@ color:white;
 }
 .hor_line
 {
-padding-top:80px;
-width:320px;
+padding-top:30px;
+
 border-bottom:1px solid #EDF0F5;
 }
 .profile_name{
@@ -208,8 +209,8 @@ height: 170px;
     width: 174px;
     font-size:13px;
     color:#D65439;
-    border: 2px solid #D65439;
-   box-shadow: 4px 4px 8px 0px #D65439;
+    border: 0px solid #D65439;
+   box-shadow: 0px 0px 9px -1px #D65439;
 }
 .scroll_vertical
 {

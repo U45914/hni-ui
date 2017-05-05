@@ -1,0 +1,18 @@
+<div >
+<md-toolbar id="top-nav" >
+    <div class="md-toolbar-tools background">
+        <div class="collapse-nav-button" hide show-xs ng-click="vm.toggleCollapsedNav()">
+            <md-button class="md-icon-button" md-ink-ripple="#D65439">
+                <md-icon class="material-icons" style="color:#595959">&#xE5D2;</md-icon>
+            </md-button>
+        </div>
+        <div id="not-impossible-logo" ui-sref="volunteer-landing"><img src="~images/logo.png"/></div>
+        <div id="toolbar-content"></div>
+        <span flex></span>
+        <div id="user-name" hide show-gt-sm>{{vm.user.email}}</div>
+        <pop-down popup-shown="vm.showPopup" name="{{::vm.user.firstName + ' ' + vm.user.lastName}}" email="{{::vm.user.email}}">
+            <div class="account-icon material-icons" ng-click="vm.togglePopup()">
+               
+    </div>
+</md-toolbar>
+</div>

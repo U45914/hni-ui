@@ -1,35 +1,35 @@
-<div class="font_for_allpages" >
+<div class="font_for_allpages1" >
 	<h3>Personal Details</h3>
 	
 <div layout-gt-xs="row" class="width_for_textbox">	
 <md-input-container class="md-block input-primary" flex-gt-sm>
-<label>First Name</label> <input type="text" required
+<label>First name</label> <input type="text" required
 	ng-model="vm.client.user.firstName" /></md-input-container>
-<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+<!-- <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 <label>Middle Name</label> <input type="text"
-	ng-model="vm.client.user.middleName" /></md-input-container>
+	ng-model="vm.client.user.middleName" /></md-input-container> -->
 <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-<label>Last Name</label> <input type="text" ng-model="vm.client.user.lastName" />
+<label>Last name</label> <input type="text" ng-model="vm.client.user.lastName" />
 </md-input-container>
 </md-input-container>
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
-	<md-input-container class="md-block input-primary" flex-gt-sm>
+	<!-- <md-input-container class="md-block input-primary" flex-gt-sm>
 	<label>Address Type</label> <md-select name="type"
 		ng-model="vm.client.address.name" required> <md-option
 		value="home">Home</md-option> <md-option value="office">Office</md-option>
-	</md-select> </md-input-container>
-	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label>Address1</label> <input type="text" required
+	</md-select> </md-input-container> -->
+	<md-input-container class="md-block input-primary " flex-gt-sm>
+	<label>Address line 1</label> <input type="text" required
 		ng-model="vm.client.address.address1"> </md-input-container>
-</div>
-<div layout-gt-xs="row" class="mission_width">		
-<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Address 2</label> <input type="text" ng-model="vm.client.address.address2">
+
+		
+<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+	<label>Address line 2</label> <input type="text" ng-model="vm.client.address.address2">
 </md-input-container>
+
+
 </div>
-
-
 <div layout-gt-xs="row" class="width_for_textbox">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label>City</label> <input type="text" required
@@ -40,24 +40,27 @@
 		> <md-option ng-repeat="each in vm.states"
 		value={{each.value}} ng-init = "vm.client.address.state" >{{each.name}}</md-option> </md-select> </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label>Zip</label> <input type="text" required
+	<label>Zip</label> <input type="number" required 
 		ng-model="vm.client.address.zip"> </md-input-container>
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
 <md-input-container class="md-block input-primary" flex-gt-sm>
 <label>Ethnicity</label> <md-select required
-	ng-model="vm.client.user.ethnicity"> <md-option ng-value=1>option
-1</md-option> <md-option ng-value=2>option 2</md-option></md-select> </md-input-container>
+	ng-model="vm.client.user.ethnicity"> <md-option ng-value=1>North American</md-option> <md-option ng-value=2>South American</md-option>
+	<md-option ng-value=3>Iranian</md-option><md-option ng-value=4>Korean</md-option><md-option ng-value=5>Indian Americans</md-option>
+	</md-select> </md-input-container>
 </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race"> <md-option
 		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
-<label>Phone Number</label> <input type="text" required
-	ng-model="vm.client.user.mobilePhone" /> </md-input-container>
+<label>Phone number</label> <input type="text" required maxlength="12"
+	ng-model="vm.client.user.mobilePhone" ng-blur = "vm.checkPhoneNbr()" placeholder="999-999-9999" >
+	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
+	 </md-input-container>
 	<md-input-container class="md-block mgn_left_25" flex-gt-sm> <label>Birthday</label>
 <input type="date" required ng-model="vm.client.bday"> </md-input-container>
-</div>
+</div><br><br>
 <md-radio-group layout="row" ng-model="vm.client.beenArrested"
 	class="md-primary"> <label>Have you ever been
 	arrested </label> <md-radio-button style="left:15px;" ng-value="true">

@@ -4,7 +4,7 @@
             <input type="text" required ng-model="source" placeholder="Source"></input> 
           </md-input-container>
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-            <input type="number" required ng-model="mealQty" placeholder="Meal Quantity"></input>
+            <input type="number" required ng-model="mealQty" placeholder="Meal Quantity" min="0"></input>
           </md-input-container>
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
             <input type="text" required ng-model="frequency" placeholder="Frequency"></input>
@@ -15,6 +15,7 @@
 		 </md-button>
 		 </div>
 	</span>
+	<div ng-show = "show">
 	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px">
 	<md-grid-tile>
 	<b>Source</b></md-grid-tile> <md-grid-tile>
@@ -24,7 +25,7 @@
 	<br>
 	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px"
 		ng-repeat="element in mealDonaltionList track by $index">
-		<br><br>
+		<br>
 		 <md-grid-tile>
 		
 	<div layout="row">{{element.source}}</div>
@@ -35,7 +36,12 @@
 	<div layout="row">{{element.frequency}}</div>
 	</md-grid-tile>
 	 <md-grid-tile>
-	  <md-button class="md-fab btn_style"   ng-click="deleteMeal($index)"> <div style="position: relative;
-    bottom: 8px;">X</div></md-button>
+	  <md-button class="md-fab btn_style" style="background-color:transparent;
+border-radius:0;
+color:#D65439;
+
+box-shadow:none;border:none;"  ng-click="deleteMeal($index)"> <div style="position: relative;
+    bottom: 10px;">X</div></md-button>
 	</md-grid-tile> </md-grid-list>
+	</div>
 </fieldset>

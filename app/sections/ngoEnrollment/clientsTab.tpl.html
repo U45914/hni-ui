@@ -1,4 +1,4 @@
-<div class="font_for_allpages">
+<div class="font_for_allpages1">
 	<h3>Clients Details</h3>
 <br>
 
@@ -11,7 +11,7 @@
 			     <div style="width:50%;">
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
-              			<input type="number"  ng-model="vm.client.individualsServedDaily" >
+              			<input type="number"  ng-model="vm.client.individualsServedDaily" min="0">
               		</md-input-container>
               		{{vm.client.daily}}				
 				 </div>
@@ -21,7 +21,7 @@
 			     <div style="width:50%;">
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
-              			<input type="number"  ng-model="vm.client.individualsServedMonthly" >
+              			<input type="number"  ng-model="vm.client.individualsServedMonthly" min="0">
               		</md-input-container>
 				</div>
 			</div>	
@@ -30,7 +30,7 @@
 			     <div style="width:50%;">
 					<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Quantity</label>
-              			<input type="number"  ng-model="vm.client.individualsServedAnnually">
+              			<input type="number"  ng-model="vm.client.individualsServedAnnually" min="0">
               		</md-input-container>
 				</div>
 		</div>
@@ -57,13 +57,13 @@
 		<div style="width:40%;">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Percentage of clients unsheltered</label>
-              			<input type="number"  ng-model="vm.client.unshelteredClientPercentage" >
+              			<input type="number"  ng-model="vm.client.unshelteredClientPercentage" min="0">
          </md-input-container>
          </div>
          <div style="width:40%;">	
          <md-input-container class="md-block input-primary" flex-gt-sm>
                     	<label>Percentage of clients employed/ internship</label>
-              			<input type="number"  ng-model="vm.client.employeedClientPercentage" >
+              			<input type="number"  ng-model="vm.client.employeedClientPercentage" min="0">
          </md-input-container>
          </div> 
          

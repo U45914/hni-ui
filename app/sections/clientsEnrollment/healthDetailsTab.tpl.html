@@ -1,4 +1,4 @@
-<div class="font_for_allpages" >
+<div class="font_for_allpages1" >
 	<h3>Food Preferences Details</h3>
 
 
@@ -12,6 +12,7 @@
 				ng-model="vm.health.allergies"/>
 	</md-input-container>
 </div>
+<br>
 	<md-radio-group  layout = "row" ng-model="vm.health.addiction"  class="md-primary">
 	<label>History of addiction</label>
 	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
@@ -37,7 +38,7 @@
 			</md-input-container>
 	</div>
 	</div>
-			
+			<br>
 			<label class="mgn_top10">Height</label>
 			<md-input-container  flex-gt-sm class="mgn_left_25">
 			<label>feet</label>
@@ -84,11 +85,12 @@
    </div>
     <br><br>
 		<hr class "register-input mgn_top10" layout="row" layout-align="center center">
-			<div  class="left_float">
+		<!-- 	<div  class="left_float">
 				<br>
 				<md-button class="md-raised button-primary" ng-click="vm.save();">Save
 				</md-button>
-			</div>
+			</div> -->
+		<md-button class="md-raised button-primary"  ng-click="vm.enrollementData();" style="float:right;" >Submit</md-button>
 </div>
 
 </div>

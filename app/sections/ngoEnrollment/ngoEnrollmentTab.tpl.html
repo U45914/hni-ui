@@ -1,19 +1,20 @@
-
+<div class="font_for_allpages">
 <top-nav></top-nav>
 
 <div>
-	<div class="left_style"  layout="row"><left-nav-bar></left-nav-bar>
+	<div class="left_float" style="width:19%;padding-top:15px;"><left-nav-bar></left-nav-bar>
 </div>
 	
-<div class="tabnew" >
+<div class="left_float" style="width:79.5%;background:white;margin-left:11px;">
+
 <div ng-cloak >
 
-	<md-content >
-	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex"  class="label_style"> 
+	<md-content style="background:white;" >
+	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex"    class="label_style"> 
 	  
 		<md-tab label="overview"  >
 		<div >
-		    <md-content class="md-padding  " >
+		    <md-content class="md-padding  " style="background: #fff;" >
 		    
 			<overview-tab></overview-tab>
 			
@@ -22,25 +23,25 @@
 		</md-tab>
 
 		<md-tab label="Stakeholders">
-	 	<md-content class="md-padding">
+	 	<md-content class="md-padding" style="background: #fff;">
  	    	<stakeholders-tab> </stakeholders-tab>
  	    	</md-content> 
 		</md-tab>
 
 		<md-tab label="Services"> 
-		<md-content class="md-padding">
+		<md-content class="md-padding" style="background: #fff;">
 			<service-tab></service-tab>
 			</md-content> 
  		</md-tab>
 
 		<md-tab label="Funding"> 
-		<md-content class="md-padding">
+		<md-content class="md-padding" style="background: #fff;">
 			<funding-tab></funding-tab>
 			</md-content> 
 		</md-tab>
 
 		<md-tab label="Clients"> 
-		<md-content class="md-padding">
+		<md-content class="md-padding" style="background: #fff;">
 			<clients-tab></clients-tab>
 			</md-content> 
 		</md-tab>
@@ -52,11 +53,11 @@
 </div>
 <md-button class="md-raised button-primary"  ng-click="vm.enrollementData();" style="float:right;" >Submit</md-button>
 </div>
+</div>
+</div>
 
-</div>
-</div>
 
 <div class="clear_all">
 <landing-footer></landing-footer>
 </div>
-		
+</div>

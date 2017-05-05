@@ -16,11 +16,14 @@
 
 	}
 
-	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService'];
+	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService', 'validateFormData'];
 
-	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService) {
+	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService, validateFormData) {
 		var vm = this;
 		vm.list = [];
+		vm.fields = {};
+		vm.msgs = {};
+		var validateFail = false;
 		
 		vm.states = validateService.validateStateDrpdwn();
 		
@@ -37,6 +40,55 @@
 		vm.delRow = function(index) {
 			vm.list.splice(index, 1);
 		}
+		 vm.validationCheck = function (type, id, value, event){
+				if(value!=null){
+					vm.fields[id] = false;
+					if(type=="number"){
+						if(id=="zip"){
+								var zip=vm.view.address.zip;
+								if (isNaN(Number(zip))|| (zip.length != 6) || zip.indexOf("-")!=-1) {
+									vm.fields[id] = true;
+									vm.msgs[id]="Invalid Zip";
+									validateFail = true;
+								}else{
+									vm.fields[id]=false;
+									validateFail = false;
+								}
+						}
+						if(id=="fte"){
+							var fte = vm.view.employees;
+							if (isNaN(Number(fte)) ||  fte < 0) {
+								vm.fields[id] = true;
+								vm.msgs[id]="Invalid Employee";
+								validateFail = true;
+							}else{
+								vm.fields[id]=false;
+								validateFail = false;
+							}
+					}
+					}
+				}
+				else{
+					
+
+					validateFail = true;
+					if(id=="email"||id=="website"){
+						debugger;
+						if (event.target.value != "" && value == null) {
+							vm.fields[id] = true;
+							vm.msgs[id]="Invalid Format";
+						} else {
+							vm.fields[id] = true;
+							vm.msgs[id]="Please fill this field";
+						}
+					}
+					else{
+						vm.fields[id] = true;
+						vm.msgs[id]="Please fill this field";
+					}
+											
+				}
+		}
 	
 		vm.save = function() {
 			var data = {
@@ -49,7 +101,7 @@
 				"mission" : vm.view.mission,
 				"promoters" : vm.list,
 				"address" : {
-					"name" : vm.view.address.addressType,
+					"name" : "office",
 					"address1" : vm.view.address.address1,
 					"address2" : vm.view.address.address2,
 					"city" : vm.view.address.city,
@@ -57,7 +109,8 @@
 					"zip" : vm.view.address.zip,
 				},
 			};
-
+			console.log(data);
+			alert(vm.validateFail);
 			if (vm.view.name != null && vm.view.phone != null
 					&& vm.view.website != null && vm.view.contact != null
 					&& vm.view.employees != null && vm.view.overview != null
@@ -101,6 +154,27 @@
 		function onError(response) {
 			console.log(response)
 		}
+		
+		vm.checkPhoneNbr = function() {
+			var phone = vm.view.phone;
+			
+			
+			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			
+			var res = patt.test(phone);
+			if (res == true) {
+				vm.check=false;
+			} else {
+				vm.check=true;
+			}
+		};
+		
 
+		vm.validate = function(type, id, value, event){
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
+		};
+		
 	}
 })();
