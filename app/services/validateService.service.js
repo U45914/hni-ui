@@ -106,14 +106,18 @@
 		
 		function validateNGOAdd(data){
 			var errorFields = "";
-			if(data.name==null)
-				errorFields += "Name, ";
+			/*if(data.name==null)
+				errorFields += "Name, ";*/
+			if(data.firstName==null)
+				errorFields += "First Name, ";
+			if(data.lastName==null)
+				errorFields += "Last Name, ";
 			if(data.phone==null || isNaN(Number(data.phone.replace(/-/g, ""))))
 				errorFields += "Phone, ";
 			if(data.email==null)
 				errorFields += "Email, ";
-			if(data.genderCode==null)
-				errorFields += "Gender ";
+			/*if(data.genderCode==null)
+				errorFields += "Gender ";*/
 			return errorFields;
 		}
 		
@@ -189,9 +193,6 @@
 				}
 				if(data.address.address1 == null){
 					field.push("Address 1");
-				}
-				if(data.address.address2 == null){
-					field.push("Address 2");
 				}
 				if(data.address.city == null){
 					field.push("City");

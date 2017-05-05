@@ -9,7 +9,7 @@
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:25px;" flex="60" ng-show ="vm.service.brkfstChk" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number" style="margin-bottom:28px;"  required ng-model="vm.service.brkfstQty"></input>
+            <input type="number" style="margin-bottom:28px;"  required ng-model="vm.service.brkfstQty" min="0"></input>
           </md-input-container>
         </div>
 		<div flex layout = "row" layout-align="start center">
@@ -18,7 +18,7 @@
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:25px;" ng-show ="vm.service.lunchChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number"  style="margin-bottom:28px;"  required ng-model="vm.service.lunchQty"></input>
+            <input type="number"  style="margin-bottom:28px;"  required ng-model="vm.service.lunchQty" min="0"></input>
           </md-input-container>
         </div>
         <div flex layout = "row" layout-align="start center">
@@ -27,7 +27,7 @@
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:25px;" ng-show ="vm.service.dinnerChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.dinnerQty"></input>
+            <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.dinnerQty" min="0"></input>
           </md-input-container>
         </div>
         <div flex layout = "row" layout-align="start center">
@@ -36,7 +36,7 @@
           </md-checkbox>
           <md-input-container class="md-block input-primary" style="margin-left:25px;" ng-show ="vm.service.baggedChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.baggedQty"></input>
+            <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.baggedQty" min="0"></input>
           </md-input-container>
         </div>
 
@@ -44,12 +44,12 @@
 		<div flex-gt-sm="50" layout = "row">
 			<md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Gift Card </label>
-            <input type="number"   required ng-model="vm.service.giftCard"></input>
+            <input type="number"   required ng-model="vm.service.giftCard" min="0"></input>
           </md-input-container> 
           
           <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
             <label>Others </label>
-            <input type="number"   required ng-model="vm.service.other"></input>
+            <input type="number"   required ng-model="vm.service.other" min="0"></input>
           </md-input-container>
           </div>
           
@@ -121,7 +121,7 @@
 	    <div layout-gt-xs="row" class="services_width">
 		 <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
             <label>volunteers required </label>
-            <input type="number"   required ng-model="vm.service.volunteerNbr"></input>
+            <input type="number"   required ng-model="vm.service.volunteerNbr" min="0"></input>
           </md-input-container>
 	    </div>
 </div>
