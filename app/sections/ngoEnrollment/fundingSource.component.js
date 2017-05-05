@@ -17,7 +17,7 @@
 
 	}
 	
-	function fundingSourceController($scope) {
+	function fundingSourceController($scope, validateFormData) {
 				
 		var fundingSourceObj ={};
 		//$scope.fundingSourceList =[];
@@ -25,6 +25,9 @@
 		
 		$scope.addNewChoice = function(){
 			fundingSourceObj = {};
+			var data = validateFormData.validate("text", "fundSource" ,$scope.source );
+			$scope.fields = data.field;
+			$scope.msgs = data.msg;
 			if($scope.source!= null ) {
 				fundingSourceObj.source = $scope.source;
 				fundingSourceObj.amount = $scope.amount;
@@ -33,9 +36,6 @@
 				$scope.source = null;
 				$scope.amount = null;
 				}
-			else{
-				alert("please fill the fields");
-			}
 		}
 		
 		$scope.deleteRow = function(idx) {

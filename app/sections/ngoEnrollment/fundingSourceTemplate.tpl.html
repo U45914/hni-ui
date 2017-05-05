@@ -2,9 +2,10 @@
 <span layout="row"> 
 		<md-input-container class="md-block input-primary" flex-gt-sm>
             <input type="text" required ng-model="source" placeholder="Source"></input> 
+            <div id="errorMsg" ng-if= "fields['fundSource']" style="color:red;"ng-bind="msgs['fundSource']"></div>
           </md-input-container>
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-            <input type="number" required ng-model="amount" placeholder="Amount" min="0"></input>
+            <input type="number" ng-model="amount" placeholder="Amount" min="0"></input>
           </md-input-container>
           <div style="padding-top:10px;">
 		 <md-button class="md-fab btn_style"  ng-click="addNewChoice()"> 
