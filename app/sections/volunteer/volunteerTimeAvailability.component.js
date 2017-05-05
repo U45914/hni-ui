@@ -23,9 +23,9 @@
 
 		vm.daysArray = [ vm.sunday, vm.monday, vm.tuesday, vm.wednesday, vm.thursday, vm.friday, vm.saturday ];
 		vm.days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
-		vm.availabity = [ "8am-10am", "10am-12pm", "12pm-2pm", "2pm-4pm", "4pm-6pm", "6pm-8pm", "8pm-10pm" ];
+		vm.availabity = [ "8am - 10am", "10am - 12pm", "12pm - 2pm", "2pm - 4pm", "4pm - 6pm", "6pm - 8pm", "8pm - 10pm" ];
 
-		vm.dayAvailableArray = [{"timeline":"8am-10am","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"10am-12pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"12pm-2pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"2pm-4pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"4pm-6pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"6pm-8pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"8pm-10pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]}];
+		vm.dayAvailableArray = [{"timeline":"8am - 10am","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"10am - 12pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"12pm - 2pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"2pm - 4pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"4pm - 6pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"6pm - 8pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]},{"timeline":"8pm - 10pm","weekday":[{"weekday":"Sunday","checked":false},{"weekday":"Monday","checked":false},{"weekday":"Tuesday","checked":false},{"weekday":"Wednesday","checked":false},{"weekday":"Thursday","checked":false},{"weekday":"Friday","checked":false},{"weekday":"Saturday","checked":false}]}];
 		vm.shiftOne = [];
 		vm.shiftTwo = [];
 		vm.shiftThree = [];
@@ -49,43 +49,43 @@
 						
 						vm.dayAvailableArray.forEach(function(dayAvail) {
 							dayAvail.weekday.forEach(function(day) {
-								if (dayAvail.timeline == '8am-10am') {
+								if (dayAvail.timeline == '8am - 10am') {
 									vm.shiftOne.forEach(function(availDay){
 										if(day.weekday==availDay){
 											day.checked = true;
 										}
 									});
-								} else if (dayAvail.timeline == '10am-12pm') {
+								} else if (dayAvail.timeline == '10am - 12pm') {
 									vm.shiftTwo.forEach(function(availDay){
 										if(day.weekday==availDay){
 											day.checked = true;
 										}
 									});
-								} else if (dayAvail.timeline == '12pm-2pm') {
+								} else if (dayAvail.timeline == '12pm - 2pm') {
 									vm.shiftThree.forEach(function(availDay){
 										if(day.weekday==availDay){
 											day.checked = true;
 										}
 									});
-								} else if (dayAvail.timeline == '2pm-4pm') {
+								} else if (dayAvail.timeline == '2pm - 4pm') {
 									vm.shiftFour.forEach(function(availDay){
 										if(day.weekday==availDay){
 											day.checked = true;
 										}
 									});
-								} else if (dayAvail.timeline == '4pm-6pm') {
+								} else if (dayAvail.timeline == '4pm - 6pm') {
 									vm.shiftFive.forEach(function(availDay){
 										if(day.weekday==availDay){
 											day.checked = true;
 										}
 									});
-								} else if (dayAvail.timeline == '6pm-8pm') {
+								} else if (dayAvail.timeline == '6pm - 8pm') {
 									vm.shiftSix.forEach(function(availDay){
 										if(day.weekday==availDay){
 											day.checked = true;
 										}
 									});
-								} else if (dayAvail.timeline == '8pm-10pm') {
+								} else if (dayAvail.timeline == '8pm - 10pm') {
 									vm.shiftSeven.forEach(function(availDay){
 										if(day.weekday==availDay){
 											day.checked = true;
@@ -132,19 +132,19 @@
 			vm.dayAvailableArray.forEach(function(dayAvail) {
 				dayAvail.weekday.forEach(function(day) {
 					if (day.checked) {
-						if (dayAvail.timeline == '8am-10am') {
+						if (dayAvail.timeline == '8am - 10am') {
 							vm.shiftOne.push(day.weekday);
-						} else if (dayAvail.timeline == '10am-12pm') {
+						} else if (dayAvail.timeline == '10am - 12pm') {
 							vm.shiftTwo.push(day.weekday);
-						} else if (dayAvail.timeline == '12pm-2pm') {
+						} else if (dayAvail.timeline == '12pm - 2pm') {
 							vm.shiftThree.push(day.weekday);
-						} else if (dayAvail.timeline == '2pm-4pm') {
+						} else if (dayAvail.timeline == '2pm - 4pm') {
 							vm.shiftFour.push(day.weekday);
-						} else if (dayAvail.timeline == '4pm-6pm') {
+						} else if (dayAvail.timeline == '4pm - 6pm') {
 							vm.shiftFive.push(day.weekday);
-						} else if (dayAvail.timeline == '6pm-8pm') {
+						} else if (dayAvail.timeline == '6pm - 8pm') {
 							vm.shiftSix.push(day.weekday);
-						} else if (dayAvail.timeline == '8pm-10pm') {
+						} else if (dayAvail.timeline == '8pm - 10pm') {
 							vm.shiftSeven.push(day.weekday);
 						}
 					}

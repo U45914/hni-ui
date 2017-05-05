@@ -12,21 +12,21 @@
 
 <div layout-gt-xs="row">
 	<md-input-container class="" flex-gt-sm>
-	<label class="text_style_vol">First Name</label> <input type="text" required
+	<label class="text_style_vol">First name</label> <input type="text" required
 		ng-model="vm.vol.user.firstName" /></md-input-container>
 	<md-input-container class="mgn_left_25" flex-gt-sm>
-	<label class="text_style_vol" >Last Name</label> <input type="text" required
+	<label class="text_style_vol" >Last name</label> <input type="text" required
 		ng-model="vm.vol.user.lastName" /> </md-input-container>
 	</md-input-container>
-</div>
-	<h4 >Address</h4>
+</div><br><br>
+	<h4 >Contact Details</h4>
 <div layout-gt-xs="row">
 <md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol" >Address</label> <input type="text" required
+	<label class="text_style_vol" >Address line 1</label> <input type="text" required
 		ng-model="vm.vol.address.address1" /> </md-input-container>
 		
 		<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label class="text_style_vol" >Address</label> <input type="text" 
+	<label class="text_style_vol" >Address line 2</label> <input type="text" 
 		ng-model="vm.vol.address.address2" /> </md-input-container>
 </div>		
 <div layout-gt-xs="row">
@@ -47,13 +47,14 @@
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol" >Phone Number</label> <input type="text" required maxlength="12" ng-model="vm.vol.user.mobilePhone" ng-blur = "vm.checkPhoneNbr()" placeholder="999-999-9999"> 
+	<label class="text_style_vol" >Phone number</label> <input type="text" required maxlength="12" ng-model="vm.vol.user.mobilePhone" ng-blur = "vm.checkPhoneNbr()" placeholder="999-999-9999"> 
 		 <div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
 		</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" class="text_style_vol">Email</label> <input type="text" required
 		ng-model="vm.vol.user.email" /> </md-input-container>
 </div>
+<br><br>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
 	<label class="text_style_vol" >Birthdate</label> <input type="date" ng-model="vm.vol.birthDate">
@@ -82,7 +83,7 @@
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol" >Marital Status</label> <md-select
+	<label class="text_style_vol" >Marital status</label> <md-select
 		ng-model="vm.vol.maritalStatus" ng-change="vm.onChange()"> <md-option value=1>Single</md-option>
 	<md-option value=2>Married</md-option> <md-option value=3>Divorce</md-option></md-select>
 	</md-input-container>
@@ -92,7 +93,7 @@
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol">Employer</label> <input type="text" ng-model="vm.vol.employer">
+	<label class="text_style_vol">Employer name</label> <input type="text" ng-model="vm.vol.employer">
 	</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" >Non-Profit</label> 
