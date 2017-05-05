@@ -8,16 +8,18 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService'];
+    ActionSectionController.$inject = ['$rootScope,', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName'];
 
-    function ActionSectionController($scope, $http, $state, userService, serviceConstants, popupService) {
+    function ActionSectionController($rootScope,, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
          
    	 	vm.service = [];
    	 	vm.headers= [];
    	 	vm.reportCollection = [];
-        
+   	 	
+   	 	vm.rolesConstantName = rolesConstantName;
+	   	
         vm.$onInit = function() {
         	let baseUrl = serviceConstants.baseUrl;
         	$http.get(`${baseUrl}/users/services`)
@@ -53,5 +55,13 @@
             });
         	
         };
+        
+        vm.setReportView = function(viewName) {
+        	
+        }
+        vm.showReportView = function(type) {
+        	$rootScope.$broadcast('show-report-view', type);
+        }
+        
     }
 })();
