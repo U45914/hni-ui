@@ -8,9 +8,9 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$rootScope,', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName'];
+    ActionSectionController.$inject = ['$rootScope', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName'];
 
-    function ActionSectionController($rootScope,, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName) {
+    function ActionSectionController($rootScope, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
          
