@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['authService', 'externalAuthService', 'validateService', '$state'];
+    LoginController.$inject = ['authService', 'externalAuthService', 'validateService', '$state', 'toastService'];
 
-    function LoginController(authService, externalAuthService, validateService, $state) {
+    function LoginController(authService, externalAuthService, validateService, $state, toastService) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
@@ -43,23 +43,21 @@
         	 vm.isDisabled = true;
         	 vm.validateCredentials = validateService.validateCredentials(vm.username, vm.password);
         	 if( vm.validateCredentials == ""){
-        		 var response =  authService.login(vm.username, vm.password);
-            	 console.log(response);
-            	 /*if(response.status != 200){
-            		 vm.signInButton = "Sign In";
-            		 vm.validateCredentials = "Username/Password incorrect";
-            		 vm.password="";
-            		 vm.isDisabled = false;
-            		 vm.loginFail = true;
-            	 }else{
-            		 vm.isDisabled = true;
-            		 vm.loginFail = false;
-            		 vm.validateCredentials = "";
-            		 
-                //$state.go('dashboard', {}, {reload: true});
-            	 }*/
-        	 }
-        	 else{
+        		 authService.login(vm.username, vm.password)
+        		 	.then((response) => {
+        		 		if (response) {
+        		 			vm.validateCredentials = "";
+        		 			authService.setLoginResponse(response);   
+        		 			$state.go('dashboard');
+        		 			toastService.showToast("Welcome " + response.data.user.firstName +" "+response.data.user.lastName +" !");
+        		 		} else {
+        		 			vm.validateCredentials = "Username/Password incorrect";
+        		 			vm.isDisabled = false;
+            		 		vm.signInButton = "SIGN IN";
+        		 		}
+        		 		
+        		 	});
+        	 } else{
         		 vm.signInButton = "Sign In";
         		 vm.isDisabled = false;
         		 vm.loginFail = true;

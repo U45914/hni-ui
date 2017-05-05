@@ -29,7 +29,7 @@
             
                             
                 <div class="login-prompt">Login by signing into your account below.</div>
-                <center><div style="color:red" ng-show="vm.loginFail">{{vm.validateCredentials}}</div></center>
+                <center><div style="color:red" ng-bind="vm.validateCredentials"></div></center>
                 <br>
                 <md-input-container class="md-block input-primary" flex-gt-sm>
                     <label>Email</label>

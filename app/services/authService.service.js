@@ -22,6 +22,7 @@
             loginExternal,
             logout,
             isAuthorized,
+            setLoginResponse,
             isAuthenticated: () => isAuthenticated,
             getToken: () => authToken,
             getRole: () => authRole,
@@ -62,25 +63,21 @@
         		window.localStorage.setItem("userOrgInfo", orgInfo);
         	}
         }
+        
+        function setLoginResponse(response) {
+        	setToken(response.data.token);
+            setOrgInfo(response.data.user.organizationId);
+            userService.setUser(response.data.user);
+            setUserRole(response.data.roleName)
+        }
 
+       
        function login(username, password) {
         	var vm = {
         			username : username,
         			password : password
         	}
-        	$http.post(`${baseUrl}/security/authentication`, vm).then(function success(response) {
-                console.log(response);
-                setToken(response.data.token);
-                setOrgInfo(response.data.user.organizationId);
-                userService.setUser(response.data.user);
-                setUserRole(response.data.roleName)
-                $state.go('dashboard');
-                toastService.showToast("Welcome " + response.data.user.firstName +" "+response.data.user.lastName +" !");
-            }, function error(error) {
-            	toastService.showToast("error : "+error);
-                console.log(error);
-            });
-        	return;
+        	return $http.post(`${baseUrl}/security/authentication`, vm);
         }
         
         /*
