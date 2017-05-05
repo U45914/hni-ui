@@ -36,7 +36,15 @@
 				} ]
 			};
 
-			if(vm.fields == null){
+			var doNotPost = false;
+			var keys = Object.keys(vm.fields);
+			for(var index = 0; index < keys.length; index++){
+				if(vm.fields[keys[index]]) {
+					doNotPost = true;
+					break;
+				}
+			}
+			if(!doNotPost){
 				ngoOnboardingService.registerNgo(data).then(function(response) {
 					if (response && response.data && response.data.success) {
 						toastService.showToast(response.data.success + ", Please login with your credentials");

@@ -8,14 +8,15 @@
 		controllerAs : 'vm'
 	});
 
-	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService'];
+	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService', 'validateFormData' , 'toastService'];
 
-	function volunteerProfileController($q, volunteerService,validateService) {
+	function volunteerProfileController($q, volunteerService,validateService,validateFormData,toastService) {
 		var vm = this;
 		this.myDate = new Date();
 		this.isOpen = false;
 		vm.state=validateService.validateStateDrpdwn();
-		
+		vm.fields = {};
+		vm.msgs = {};
 	    
 		vm.vol = {};
 		volunteerService.getProfileData().then(function(response){
@@ -58,13 +59,23 @@
 
 			};
 
-			// if(vm.vol.firstName!=null && vm.vol.lastName !=null &&
-			// vm.vol.address!=null && vm.vol.phoneNumber !=null && vm.vol.email
-			// !=null && vm.vol.birthDate !=null && vm.vol.sex !=null){
-			console.log("Volunteer Json : "+data);
-			volunteerService.volunteerProfileData = data;
-			var serviceCalls = volunteerService.profileDetails(data);
-			return $q.all(serviceCalls);
+			var doNotPost = false;
+			var keys = Object.keys(vm.fields);
+			for(var index = 0; index < keys.length; index++){
+				if(vm.fields[keys[index]]) {
+					doNotPost = true;
+					break;
+				}
+			}
+			if(!doNotPost){
+				console.log("Volunteer Json : "+data);
+				volunteerService.volunteerProfileData = data;
+				var serviceCalls = volunteerService.profileDetails(data);
+				return $q.all(serviceCalls);
+			}
+			else{
+				toastService.showToast("Please fill required fields");
+			}
 		}
 		
 		vm.onChange = function(){
@@ -82,6 +93,12 @@
 			} else {
 				vm.check=true;
 			}
+		};
+		
+		vm.validationCheck = function(type, id, value, event){
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
 		};
 
 	}
