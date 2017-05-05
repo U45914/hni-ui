@@ -27,7 +27,7 @@
                 	vm.userRole = response.data.role;
                 	window.localStorage.setItem("userRole", vm.userRole);
                 	vm.user = response.data.data;  
-                	if (response.data.profileStatus == true/* || vm.userRole === "Super Admin"*/) {
+                	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
                 		//popupService.showAlert("Please take few minitues to complete your profile");
                 		vm.user = response.data.data;                		
                 	} else {
