@@ -328,13 +328,13 @@
 					errorArray.push("Monthly Budget");
 				}
 				
-				if(data.operatingCost == null){
+				/*if(data.operatingCost == null){
 					errorArray.push("Operating Cost");
 				}
 				
 				if(data.personalCost == null){
 					errorArray.push("Personal Cost");
-				}
+				}*/
 				
 				if(data.volunteerNbr == null || !angular.isNumber(data.volunteerNbr)){
 					errorArray.push("Volunteer Number");
@@ -353,8 +353,8 @@
 						errorArray.push("Food Name");
 				}
 				
-				if(data.resource == null || data.resource.length == 0)
-					errorArray.push("Resource");
+				/*if(data.resource == null || data.resource.length == 0)
+					errorArray.push("Resource");*/
 			}	
 			else{
 				errorArray.push({field : "Services Tab", value : "Empty"});

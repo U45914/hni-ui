@@ -16,9 +16,9 @@
 
 	}
 
-	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService'];
+	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService', 'validateFormData'];
 
-	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService) {
+	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService, validateFormData) {
 		var vm = this;
 		vm.list = [];
 		vm.fields = {};
@@ -69,19 +69,24 @@
 					}
 				}
 				else{
+					
+
 					validateFail = true;
 					if(id=="email"||id=="website"){
+						debugger;
 						if (event.target.value != "" && value == null) {
 							vm.fields[id] = true;
 							vm.msgs[id]="Invalid Format";
 						} else {
-							vm.fields[id] = false;
+							vm.fields[id] = true;
+							vm.msgs[id]="Please fill this field";
 						}
 					}
-					if(id == "zip" ||id == "name" || id == "contact" || id === "address1" || id === "city" || id === "state" || id == "fte" || id == "mission" || id == "overview"){
+					else{
 						vm.fields[id] = true;
 						vm.msgs[id]="Please fill this field";
 					}
+											
 				}
 		}
 	
@@ -163,5 +168,13 @@
 				vm.check=true;
 			}
 		};
+		
+
+		vm.validate = function(type, id, value, event){
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
+		};
+		
 	}
 })();

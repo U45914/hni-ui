@@ -11,11 +11,11 @@
 		controller : NgoInvitationController,
 		controllerAs : 'vm'
 	});
-	NgoInvitationController.$inject = [ '$q', 'ngoOnboardingService', 'orgService', 'validateService', '$scope',
-			'$state', 'toastService' ];
+	NgoInvitationController.$inject = [ '$q', 'ngoOnboardingService',
+			'orgService', 'validateService', '$scope', '$state', 'toastService' ];
 
-	function NgoInvitationController($q, ngoOnboardingService, orgService, validateService, $scope, $state,
-			toastService) {
+	function NgoInvitationController($q, ngoOnboardingService, orgService,
+			validateService, $scope, $state, toastService) {
 		var vm = this;
 		vm.incomplete = false;
 		vm.orgInfo = {};
@@ -50,95 +50,110 @@
 									if (response
 											&& response.data.response
 											&& response.data.response == "success") {
-										toastService.showToast("Your request has been submitted")
+										toastService
+												.showToast("Your request has been submitted")
 										$state.go('dashboard');
-									} 
-									else if(response && response.data.response && response.data.response == "error"){
+									} else if (response
+											&& response.data.response
+											&& response.data.response == "error") {
 										vm.incomplete = true;
-										//vm.validateNGOInvitation = "Error : " +response.data.errorMsg;
-										toastService.showToast("Error : " +response.data.errorMsg);
-									}
-									else if(response && response.data && !response.data.errorMsg){
-										toastService.showToast("Something went wrong, please try again");
-									}
-									else {
-										toastService.showToast("Failed : " + response.data.errorMsg);
+										// vm.validateNGOInvitation = "Error : "
+										// +response.data.errorMsg;
+										toastService.showToast("Error : "
+												+ response.data.errorMsg);
+									} else if (response && response.data
+											&& !response.data.errorMsg) {
+										toastService
+												.showToast("Something went wrong, please try again");
+									} else {
+										toastService.showToast("Failed : "
+												+ response.data.errorMsg);
 										vm.incomplete = true;
-										//vm.validateNGOInvitation = "Something went wrong, please try again";
+										// vm.validateNGOInvitation = "Something
+										// went wrong, please try again";
 									}
 								},
 								function errorCallback(response) {
-									toastService.showToast("Something went wrong, please try again")
+									toastService
+											.showToast("Something went wrong, please try again")
 									// $state.go('dashboard');
 									vm.incomplete = true;
-									//vm.validateNGOInvitation = "Something went wrong, please try again";
+									// vm.validateNGOInvitation = "Something
+									// went wrong, please try again";
 								});
 
 				return $q.all(serviceCalls);
-			}
-			else{
+			} else {
 				vm.incomplete = true;
 			}
 		}
-		
+
 		function loadOrgInfo() {
-			let organizationId = window.localStorage.getItem("userOrgInfo");
-			 
+			let
+			organizationId = window.localStorage.getItem("userOrgInfo");
+
 			if (organizationId) {
-				orgService.getOrganization(organizationId).then(function(orgInfo) {
-					if (orgInfo){
-						vm.orgInfo = orgInfo.data;
-					}
-				});
+				orgService.getOrganization(organizationId).then(
+						function(orgInfo) {
+							if (orgInfo) {
+								vm.orgInfo = orgInfo.data;
+							}
+						});
 			}
 		}
-		vm.validationCheck = function (type, id, value, event){
-	
-			if(value!=null){
-							
+		vm.validationCheck = function(type, id, value, event) {
+
+			if (value != null) {
+
 				vm.fields[id] = false;
-				
-				if(type=="number"){
-					
-					if(id=="zip"){
-						var zip=vm.zip;
-						if (isNaN(Number(zip))|| (zip.length != 6) || zip.indexOf("-")!=-1) {
+
+				if (type == "number") {
+
+					if (id == "zip") {
+						var zip = vm.zip;
+						if (isNaN(Number(zip)) || (zip.length != 6)
+								|| zip.indexOf("-") != -1) {
 							vm.fields[id] = true;
-							vm.msgs[id]="Invalid Zip";
-						}else{
-							vm.fields[id]=false;
+							vm.msgs[id] = "Invalid Zip";
+						} else {
+							vm.fields[id] = false;
 						}
-			
+
 					}
-					
-				}
-				}	
-			if(id=="email"||id=="website"){
-				if (event.target.value != "" && value == null) {
-					vm.fields[id] = true;
-					vm.msgs[id]="Invalid Format";
-				} else {
+
+				}else{
 					vm.fields[id] = false;
 				}
-			    
-			}
-			
-			}
 				
-			
-		
-		
+			} else {
+				if (id == "email" || id == "website") {
+					if (event.target.value != "" && value == null) {
+						vm.fields[id] = true;
+						vm.msgs[id] = "Invalid Format";
+					} else {
+						vm.fields[id] = true;
+						vm.msgs[id] = "Please fill this field";
+					}
+
+				} else {
+					vm.fields[id] = true;
+					vm.msgs[id] = "Please fill this field";
+				}
+			}
+
+		}
+
 		vm.checkPhoneNbr = function() {
 			var phone = vm.phoneNumber;
 			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
 			var res = patt.test(phone);
 			if (res == true) {
-				vm.check=false;
+				vm.check = false;
 			} else {
-				vm.check=true;
+				vm.check = true;
 			}
 		};
-		
+
 	}
 
 })();

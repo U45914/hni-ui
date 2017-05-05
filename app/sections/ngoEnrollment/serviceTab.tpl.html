@@ -9,7 +9,8 @@
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:25px;" flex="60" ng-show ="vm.service.brkfstChk" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number" style="margin-bottom:28px;"  required ng-model="vm.service.brkfstQty" min="0"></input>
+            <input type="number" style="margin-bottom:28px;" min="0" required ng-model="vm.service.brkfstQty"  ng-blur="vm.validate('number','brkfstQty',vm.service.brkfstQty)"></input>
+            <div id="errorMsg" ng-if="vm.fields['brkfstQty']" style="color:red;"ng-bind="vm.msgs['brkfstQty']"></div>
           </md-input-container>
         </div>
 		<div flex layout = "row" layout-align="start center">
@@ -18,7 +19,8 @@
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:25px;" ng-show ="vm.service.lunchChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
-            <input type="number"  style="margin-bottom:28px;"  required ng-model="vm.service.lunchQty" min="0"></input>
+            <input type="number"  style="margin-bottom:28px;" min="0" required ng-model="vm.service.lunchQty" ng-blur="vm.validate('number','lunchQty',vm.service.lunchQty)"></input>
+             <div id="errorMsg" ng-if="vm.fields['lunchQty']" style="color:red;"ng-bind="vm.msgs['lunchQty']"></div>
           </md-input-container>
         </div>
         <div flex layout = "row" layout-align="start center">
@@ -37,6 +39,7 @@
           <md-input-container class="md-block input-primary" style="margin-left:25px;" ng-show ="vm.service.baggedChk" flex="60" style="padding: 0px;margin: 0px;">
             <label>Quantity : </label>
             <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.baggedQty" min="0"></input>
+            <div id="errorMsg" ng-if="vm.fields['baggedQty']" style="color:red;"ng-bind="vm.msgs['baggedQty']"></div>
           </md-input-container>
         </div>
 
@@ -79,13 +82,14 @@
 	<div layout-gt-xs="row" class="services_width"> 
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	      <label>Monthly Budget for food</label>
-	      	 <md-select name="type" ng-model="vm.service.monthlyBudget" required>
+	      	 <md-select name="type" ng-model="vm.service.monthlyBudget" required  ng-blur="vm.validate('number','monthlyBudget',vm.service.monthlyBudget)">
 	            <md-option ng-value="0">0-$500</md-option>
 	            <md-option ng-value="1">$500-2500</md-option>
 	            <md-option ng-value="2">2500-5k</md-option>
 	            <md-option ng-value="3">5k-10k</md-option>
 	            <md-option ng-value="4">more than 10k</md-option>
 	         </md-select>
+	         <div id="errorMsg" ng-if="vm.fields['monthlyBudget']" style="color:red;"ng-bind="vm.msgs['monthlyBudget']"></div>
      </md-input-container>
      </div>
 	
@@ -164,12 +168,7 @@
 			<md-grid-list md-cols="1" md-row-height="20:1" md-gutter="6px">
 			<md-grid-tile ng-repeat="fdbnk in vm.list track by $index">
 				<div id="header" layout="row" flex>{{fdbnk}}</div>
-				<md-button class="md-fab btn_style mgn_rt" style="background-color:transparent;
-border-radius:0;
-color:#D65439;
-
-box-shadow:none;border:none;" ng-click="vm.delRow($index)" ng-show="vm.flag1"><div style="position: relative;
-    bottom: 10px;">X</div></md-button>
+				<md-button class="md-fab btn_style"  ng-click="vm.delRow($index)" ng-show="vm.flag1">-</md-button>
 			</md-grid-tile>
 			</md-grid-list>
 		</div>

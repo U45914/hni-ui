@@ -25,7 +25,7 @@
 		
 		$scope.addNewChoice = function(){
 			fundingSourceObj = {};
-			if($scope.source!= null && $scope.amount!= null) {
+			if($scope.source!= null ) {
 				fundingSourceObj.source = $scope.source;
 				fundingSourceObj.amount = $scope.amount;
 				$scope.fundingSourceList.push(fundingSourceObj);
