@@ -4,7 +4,7 @@
 	<div layout-gt-xs="row" class="width_for_textbox">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Name</label>
-            <input type="text" ng-model="vm.view.name" required  ng-blur="vm.validationCheck('text','name',vm.view.name)" autofocus= "on">
+            <input type="text" ng-model="vm.view.name" required  ng-blur="vm.validate('text','name',vm.view.name)" autofocus= "on">
             <div id="errorMsg" ng-if="vm.fields['name']" style="color:red;"ng-bind="vm.msgs['name']"></div>
           </md-input-container>
           
