@@ -12,6 +12,7 @@
 		 </md-button>
 		 </div>
 	</span>
+	<div ng-show = "show">
 	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px">
 	<md-grid-tile>
 	<b>Source</b></md-grid-tile> <md-grid-tile>
@@ -28,10 +29,9 @@
 	<div layout="column">{{element.amount}}</div>
 	</md-grid-tile> <md-grid-tile>
 	<md-button class="md-fab btn_style" style="background-color:transparent;
-border-radius:0;
-color:#D65439;
+border-radius:0;color:#D65439;box-shadow:none;border:none;" 
+ ng-click="deleteRow($index)"> <div style="position: relative; bottom: 10px;">X</div></md-button>
 
-box-shadow:none;border:none;"  ng-click="vm.deleteRow($index)"> <div style="position: relative;
-    bottom: 10px;">X</div></md-button>
 	</md-grid-tile> </md-grid-list>
+	</div>
 </fieldset>

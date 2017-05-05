@@ -19,6 +19,7 @@
 	function membershipController($scope) {
 		
 		var memberObject = {};
+		$scope.show = false;
 		//$scope.memberList = [];
 
 		$scope.addNewChoice = function() {
@@ -27,6 +28,7 @@
 				memberObject.name = $scope.name;
 				memberObject.company = $scope.company;
 				$scope.memberList.push(memberObject);
+				$scope.show = true;
 				$scope.name = null;
 				$scope.company = null;
 				//console.log($scope.memberList);
@@ -38,6 +40,9 @@
 		
 		$scope.deleteRow = function(idx) {
 			$scope.memberList.splice(idx,1);
+			if($scope.memberList.length == 0){
+				$scope.show = false;
+			}
 			//console.log( $scope.memberList);
 		}
 	}
