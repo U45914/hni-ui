@@ -1,7 +1,7 @@
 <div class="font_for_allpages1">
-	<h3>Services Details</h3>
+	<h3>Meal services details</h3>
 <br>
-<h4>Food Service Offered</h4>
+<h4>Existing services offered</h4>
 <div id="fdsrv">
 		<div flex layout = "row" layout-align="start center">
           <md-checkbox ng-model="vm.service.brkfstChk" class="md-primary">
@@ -46,13 +46,13 @@
 	
 		<div flex-gt-sm="50" layout = "row">
 			<md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Gift Card </label>
-            <input type="number"   required ng-model="vm.service.giftCard" min="0"></input>
+            <label>Number of gift cards </label>
+            <input type="number" ng-model="vm.service.giftCard" min="0"></input>
           </md-input-container> 
           
           <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
             <label>Others </label>
-            <input type="number"   required ng-model="vm.service.other" min="0"></input>
+            <input type="number"  ng-model="vm.service.other" min="0"></input>
           </md-input-container>
           </div>
           
@@ -77,17 +77,19 @@
 		</md-grid-list>
 	</div>	
 	
-
+<br>
 <div>
 	<div layout-gt-xs="row" class="services_width"> 
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	      <label>Monthly Budget for food</label>
+	      <label>NGO monthly budget for food</label>
 	      	 <md-select name="type" ng-model="vm.service.monthlyBudget" required  ng-blur="vm.validate('number','monthlyBudget',vm.service.monthlyBudget)">
-	            <md-option ng-value="0">0-$500</md-option>
-	            <md-option ng-value="1">$500-2500</md-option>
-	            <md-option ng-value="2">2500-5k</md-option>
-	            <md-option ng-value="3">5k-10k</md-option>
-	            <md-option ng-value="4">more than 10k</md-option>
+	           	
+	           	<md-option ng-value="0">$0</md-option>
+	            <md-option ng-value="1">$1 - $500</md-option>
+	            <md-option ng-value="2">$500 - $2500</md-option>
+	            <md-option ng-value="3">$2500 - $5k</md-option>
+	            <md-option ng-value="4">$5k - $10k</md-option>
+	            <md-option ng-value="5">more than $10k</md-option>
 	         </md-select>
 	         <div id="errorMsg" ng-if="vm.fields['monthlyBudget']" style="color:red;"ng-bind="vm.msgs['monthlyBudget']"></div>
      </md-input-container>
@@ -97,27 +99,32 @@
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 		<label>Operating costs associated with meal services</label>
 		 <md-select ng-model="vm.service.operatingCost">
-			<md-option ng-value="0">0-$500</md-option>
-			<md-option ng-value="1">$500-2500</md-option>
-			<md-option ng-value="2">2500-5k</md-option>
-			<md-option ng-value="3">5k-10k</md-option>
-			<md-option ng-value="4">more than 10k</md-option>
+		 		<md-option ng-value="-1">Select</md-option>
+				<md-option ng-value="0">$0</md-option>
+	            <md-option ng-value="1">$1 - $500</md-option>
+	            <md-option ng-value="2">$500 - $2500</md-option>
+	            <md-option ng-value="3">$2500 - $5k</md-option>
+	            <md-option ng-value="4">$5k - $10k</md-option>
+	            <md-option ng-value="5">more than $10k</md-option>
 		</md-select>
 	</md-input-container>
 	</div>
 </div>
+<br><br><br>
 <div style="clear:both;">
 	
 	<div layout-gt-xs="row" class="services_width">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label>Personnel costs</label> 
 	<md-select ng-model="vm.service.personalCost">
-		<md-option ng-value="0">0-$500</md-option>
-		<md-option ng-value="1">$500-2500</md-option>
-		<md-option ng-value="2">2500-5k</md-option>
-		<md-option ng-value="3">5k-10k</md-option>
-		<md-option ng-value="4">more than 10k</md-option>
-		<md-option ng-value="5">personnel are volunteers</md-option>
+				<md-option ng-value="-1">Select</md-option>
+				<md-option ng-value="0">$0</md-option>
+	            <md-option ng-value="1">$1 - $500</md-option>
+	            <md-option ng-value="2">$500 - $2500</md-option>
+	            <md-option ng-value="3">$2500 - $5k</md-option>
+	            <md-option ng-value="4">$5k - $10k</md-option>
+	            <md-option ng-value="5">more than $10k</md-option>
+				<md-option ng-value="6">personnel are volunteers</md-option>
 	</md-select><br>
 	</md-input-container>
 	</div>
@@ -168,7 +175,12 @@
 			<md-grid-list md-cols="1" md-row-height="20:1" md-gutter="6px">
 			<md-grid-tile ng-repeat="fdbnk in vm.list track by $index">
 				<div id="header" layout="row" flex>{{fdbnk}}</div>
-				<md-button class="md-fab btn_style"  ng-click="vm.delRow($index)" ng-show="vm.flag1">-</md-button>
+				<md-button class="md-fab btn_style mgn_rt" style="background-color:transparent;
+border-radius:0;
+color:#D65439;
+
+box-shadow:none;border:none;" ng-click="vm.delRow($index)" ng-show="vm.flag1"><div style="position: relative;
+    bottom: 10px;">X</div></md-button>
 			</md-grid-tile>
 			</md-grid-list>
 		</div>
