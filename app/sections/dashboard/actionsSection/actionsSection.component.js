@@ -8,9 +8,9 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$scope', '$http', '$state', 'userService', 'serviceConstants'];
+    ActionSectionController.$inject = ['$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService'];
 
-    function ActionSectionController($scope, $http, $state, userService, serviceConstants) {
+    function ActionSectionController($scope, $http, $state, userService, serviceConstants, popupService) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
          
@@ -27,11 +27,16 @@
                 	vm.userRole = response.data.role;
                 	window.localStorage.setItem("userRole", vm.userRole);
                 	vm.user = response.data.data;  
-                	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
+                	if (response.data.profileStatus == true/* || vm.userRole === "Super Admin"*/) {
+                		//popupService.showAlert("Please take few minitues to complete your profile");
                 		vm.user = response.data.data;                		
                 	} else {
-                		window.localStorage.setItem("userRole", vm.userRole);
-                		$state.go("profile");
+                		popupService.showAlert("Please take few minitues to complete your profile to start")
+                		.then(function(){
+                			window.localStorage.setItem("userRole", vm.userRole);
+                    		$state.go("profile");	
+                		});
+                		
                 	}
                 }
             }, function error(error) {
