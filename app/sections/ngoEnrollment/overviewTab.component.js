@@ -152,7 +152,10 @@
 		
 		vm.checkPhoneNbr = function() {
 			var phone = vm.view.phone;
+			
+			
 			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			
 			var res = patt.test(phone);
 			if (res == true) {
 				vm.check=false;

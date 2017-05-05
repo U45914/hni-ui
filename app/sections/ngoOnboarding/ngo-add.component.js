@@ -30,10 +30,11 @@
 		loadOrgInfo();
 		vm.addNgoUser = function() {
 			var data = {
-				"name" : vm.name,
+				"firstName" : vm.adminName,
+				"lastName" : vm.lastName,
 				"phone" : vm.phone,
 				"email" : vm.email,
-				"genderCode" : vm.sex,
+				//"genderCode" : vm.sex,
 				"orgId": vm.orgInfo.id
 			};
 			vm.validateNGOAdd = validateService.validateNGOAdd(data);

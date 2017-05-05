@@ -46,15 +46,16 @@
 <div layout-gt-xs="row" class="width_for_textbox">
 <md-input-container class="md-block input-primary" flex-gt-sm>
 <label>Ethnicity</label> <md-select required
-	ng-model="vm.client.user.ethnicity"> <md-option ng-value=1>option
-1</md-option> <md-option ng-value=2>option 2</md-option></md-select> </md-input-container>
+	ng-model="vm.client.user.ethnicity"> <md-option ng-value=1>North American</md-option> <md-option ng-value=2>South American</md-option>
+	<md-option ng-value=3>Iranian</md-option><md-option ng-value=4>Korean</md-option><md-option ng-value=5>Indian Americans</md-option>
+	</md-select> </md-input-container>
 </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race"> <md-option
 		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
 <label>Phone Number</label> <input type="text" required maxlength="12"
-	ng-model="vm.client.user.mobilePhone" ng-blur = "vm.checkPhoneNbr()">
+	ng-model="vm.client.user.mobilePhone" ng-blur = "vm.checkPhoneNbr()" placeholder="999-999-9999" >
 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
 	 </md-input-container>
 	<md-input-container class="md-block mgn_left_25" flex-gt-sm> <label>Birthday</label>
