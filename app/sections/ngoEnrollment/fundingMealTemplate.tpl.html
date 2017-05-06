@@ -16,31 +16,31 @@
 		 </div>
 	</span>
 	<div ng-show = "show">
-	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px">
-	<md-grid-tile>
-	<b>Source</b></md-grid-tile> <md-grid-tile>
-	<b>Meal quantity</b></md-grid-tile> <md-grid-tile>
+	<md-grid-list md-cols="4" md-row-height="45:1" md-gutter="6px">
+	<md-grid-tile  md-rowspan="4" class="grid_list_multi">
+	<b>Source</b></md-grid-tile> <md-grid-tile md-rowspan="4" class="grid_list_multi">
+	<b>Meal quantity</b></md-grid-tile> <md-grid-tile md-rowspan="4" class="grid_list_multi"> 
 	<b>Frequency</b></md-grid-tile> <md-grid-tile>
 	<b></b></md-grid-tile> </md-grid-list>
 	<br>
-	<md-grid-list md-cols="10" md-row-height="6:1" md-gutter="6px"
+	<md-grid-list md-cols="4" md-row-height="45:1" md-gutter="6px"
 		ng-repeat="element in mealDonaltionList track by $index">
 		<br>
-		 <md-grid-tile>
-		
-	<div layout="row">{{element.source}}</div>
-	</md-grid-tile> <md-grid-tile>
-	<div layout="row">{{element.mealQty}}</div>
+		 <md-grid-tile md-rowspan="4" class="grid_list_multi">
+	{{element.source}}
+	</md-grid-tile> <md-grid-tile md-rowspan="4" class="grid_list_multi">
+	{{element.mealQty}}
 	</md-grid-tile>
-	<md-grid-tile>
-	<div layout="row">{{element.frequency}}</div>
+	<md-grid-tile md-rowspan="4" class="grid_list_multi">
+	{{element.frequency}}
 	</md-grid-tile>
 	 <md-grid-tile>
 	  <md-button class="md-fab btn_style" style="background-color:transparent;
 border-radius:0;
 color:#D65439;
 
-box-shadow:none;border:none;"  ng-click="deleteMeal($index)"> <div style="position: relative;
+box-shadow:none;border:none; margin-left: -211px;
+    margin-top: 28px;""  ng-click="deleteMeal($index)"> <div style="position: relative;
     bottom: 10px;">X</div></md-button>
 	</md-grid-tile> </md-grid-list>
 	</div>
