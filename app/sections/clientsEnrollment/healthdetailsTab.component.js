@@ -17,9 +17,9 @@
 		}
 	}
 	
-	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope','$scope','toastService'];
+	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope','$scope','$state','toastService'];
 	
-	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, toastService){
+	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, $state, toastService){
     	var vm = this;
     //	vm.health = clientEnrollmentService.clientData;
     	 $scope.$on("data-loaded-client", function(obj) {
@@ -32,10 +32,46 @@
  			var height2 = height.toString();
   			vm.health.feet = height2.split('|')[0];
  			vm.health.inch = height2.split('|')[1];
+ 			clientEnrollmentService.setHealthData(vm.getDataModel(vm.health));
  		}
  	  
     	vm.save = function(){   		
-      		 var data = {
+      		 var data = vm.getDataModel(vm.health);
+      		
+      		var serviceCalls = clientEnrollmentService.setHealthData(data);
+      		 //$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+			 var serviceCalls = clientEnrollmentService.savePartial();
+	  		 $q.all(serviceCalls)//.then(onSuccess,onError) 
+    	}
+    	
+    	vm.enrollementData = function(){
+       	
+    		  var serviceCalls = clientEnrollmentService.postClientInfo().then(
+    					function successCallback(response) {
+    						if (response
+    								&& response.data.response
+    								&& response.data.response == "success") {
+    							toastService.showToast("Your profile has been saved")
+    							$state.go('dashboard');
+    						} else if(response && response.data && !response.data.errorMsg){
+			                	   toastService.showToast("Something went wrong. Try again later");
+			                   } else {
+    							toastService.showToast("Failed : "
+    									+ response.data.errorMsg);
+    						}
+    					},
+    					function errorCallback(response) {
+    						toastService.showToast("Something went wrong, please try again")
+    						// $state.go('dashboard');
+    					});
+
+    
+    		  return $q.all(serviceCalls);
+    		  
+    	  }
+    	
+    	vm.getDataModel = function(health){
+    		var data = {
       				 "allergies" : vm.health.allergies,
       				 "addiction" : vm.health.addiction,
       				 "addictionType" : vm.health.addictionType,
@@ -47,36 +83,8 @@
       				"lastVisitDoctor" : vm.health.lastVisitDoctor,
       				"lastVisitDentist" : vm.health.lastVisitDentist
       		 };
-      		
-      		var serviceCalls = clientEnrollmentService.setHealthData(data);
-      		 //$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-			 var serviceCalls = clientEnrollmentService.savePartial();
-	  		 $q.all(serviceCalls)//.then(onSuccess,onError) 
+    		return data;
     	}
     	
-    	vm.enrollementData = function(){
-       	   	vm.save();
-    		  var serviceCalls = clientEnrollmentService.postClientInfo().then(
-    					function successCallback(response) {
-    						if (response
-    								&& response.data.response
-    								&& response.data.response == "success") {
-    							toastService.showToast("Your profile has been saved")
-    							$state.go('dashboard');
-    						} else {
-    							toastService.showToast("Failed : "
-    									+ response.data.errorMsg);
-    						}
-    					},
-    					function errorCallback(response) {
-    						toastService.showToast("Something went wrong, please try again")
-    						// $state.go('dashboard');
-    					});
-
-    	console.log(data);
-    
-    		  return $q.all(serviceCalls);
-    		  
-    	  }
 	}
 })();

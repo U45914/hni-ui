@@ -92,7 +92,7 @@
 		vm.save = function() {
 			var data = {
 				"name" : vm.view.name,
-				"phone" : vm.view.mobilePhone,
+				"mobilePhone" : vm.view.mobilePhone,
 				"website" : vm.view.website,
 				"contact" : vm.view.contact,
 				"employees" : vm.view.employees,
@@ -135,6 +135,7 @@
 		}
 		vm.load = function() {
 			vm.view = ngoEnrollmentService.overviewData;
+			vm.view.contact=vm.view.name;
 			if (vm.view && vm.view.promoters) {
 				vm.list = vm.view.promoters;
 				vm.view.promoters = " ";

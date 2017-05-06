@@ -48,7 +48,10 @@
 											&& response.data.response == "success") {
 										toastService.showToast("Your request has submitted, please check your email for more details")
 										$state.go('dashboard');
-									} else {
+									} else if(response && response.data && !response.data.errorMsg){
+					                	   toastService.showToast("Something went wrong. Try again later");
+					                   }
+									else {
 										toastService.showToast("Failed : "
 												+ response.data.errorMsg);
 									}

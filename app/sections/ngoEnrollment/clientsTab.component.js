@@ -49,11 +49,11 @@
     	}
     	  vm.enrollementData = function(){
         	  var data = {}; 
-        	  data.overviewData = ngoEnrollmentService.getOverviewData();
-        	  data.stakeHolderData = ngoEnrollmentService.getStakeHolderData();
-        	  data.serviceData = ngoEnrollmentService.getServiceData();
-        	  data.fundingData = ngoEnrollmentService.getFundingData();
-        	  data.clientData = ngoEnrollmentService.getClientData();
+        	  data.overviewData = ngoEnrollmentService.overviewData;
+        	  data.stakeHolderData = ngoEnrollmentService.stakeHolderData;
+        	  data.serviceData = ngoEnrollmentService.serviceData;
+        	  data.fundingData = ngoEnrollmentService.fundingData;
+        	  data.clientData = ngoEnrollmentService.clientData;
         	  vm.validateNGOEnrollmentData = validateService.validateNGOEnrollmentData(data);
         	  console.log(vm.validateNGOEnrollmentData);
         	  if(angular.equals(vm.validateNGOEnrollmentData, {})){
@@ -64,15 +64,20 @@
     	    			  					if (response && response.status && response.statusText == "OK") {
     	    			  						toastService.showToast("Your request has been submitted")
     	    			  							$state.go('dashboard');
-    	    			  					} else {
+    	    			  					} else if(response && response.data && !response.data.errorMsg){
+    						                	   toastService.showToast("Something went wrong. Try again later");
+    						                   }
+    	    			  					else {
     	    			  						toastService.showToast("Failed : "+ response.data.errorMsg);
     	    			  					}
     	    			  				},
     	    			  				function errorCallback(response) {
     	    			  					toastService.showToast("Something went wrong, please try again")
-    	    			  					// $state.go('dashboard');
     	    			  				});
     		  return $q.all(serviceCalls);
+        	  }
+        	  else {
+        		  toastService.showToast("Please fill all required fields");
         	  }
     		  
     	  }

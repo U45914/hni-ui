@@ -35,17 +35,33 @@
 	  vm.load = function() {
 			vm.client = clientEnrollmentService.finalData;
 			vm.client.bday = new Date(vm.client.bday);	
-			console.log("data Returned : ");
-			console.log(vm.client.address);
+			clientEnrollmentService.setPersonnalData(vm.getDataModel(vm.client));
 		}
 	  
 	  vm.save = function(){
 		 // $scope.bday=parseInt(vm.client.bday);
+		  var data = vm.getDataModel(vm.client);
+		  		console.log(data);
+		 	if (/*vm.client.user.ethnicity != null &&*/ vm.client.user.mobilePhone != null
+						&& vm.client.bday != null) {
+					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
+					var serviceCalls = clientEnrollmentService.savePartial();
+					$q.all(serviceCalls)// .then(onSuccess,onError);
+					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+
+				} else {
+					window.alert("Please fill Fields");
+
+					return false;
+				}
+	  }
+	  
+	  vm.getDataModel = function(client) {
 		  var data = {
 				  "user" : {
 					  	"firstName" : vm.client.user.firstName,
 						"lastName" : vm.client.user.lastName,
-						//"ethnicity" : vm.client.user.ethnicity,
+						"ethnicity" : vm.client.user.ethnicity,
 						"mobilePhone" : vm.client.user.mobilePhone,
 				  },
 					"address" : {
@@ -60,20 +76,9 @@
 					"beenArrested" : vm.client.beenArrested,
 					"beenConvicted" : vm.client.beenConvicted,
 					"race"	: vm.client.race
-					};
-		  		
-		 	if (/*vm.client.user.ethnicity != null &&*/ vm.client.user.mobilePhone != null
-						&& vm.client.bday != null) {
-					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
-					var serviceCalls = clientEnrollmentService.savePartial();
-					$q.all(serviceCalls)// .then(onSuccess,onError);
-					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-
-				} else {
-					window.alert("Please fill Fields");
-
-					return false;
-				}
+	};
+		
+		  return data;
 	  }
 	  vm.checkPhoneNbr = function() {
 			var phone = vm.client.user.mobilePhone;

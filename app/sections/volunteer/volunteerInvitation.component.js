@@ -48,7 +48,11 @@
 											&& response.data.response == "success") {
 										toastService.showToast("Your request has been submitted")
 										$state.go('dashboard');
-									} else {
+									} else if(response
+											&& response.data.response && !response.data.errorMsg){
+										toastService.showToast("Something went wrong. Try again later");
+									}
+										else {
 										toastService.showToast("Failed : "+ response.data.errorMsg);
 									}
 								},

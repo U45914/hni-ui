@@ -1,5 +1,5 @@
 <div class="font_for_allpages1" >
-	<h3>Personal Details</h3>
+	<h3>Personal details</h3>
 	
 <div layout-gt-xs="row" class="width_for_textbox">	
 <md-input-container class="md-block input-primary" flex-gt-sm>
@@ -40,7 +40,7 @@
 		> <md-option ng-repeat="each in vm.states"
 		value={{each.value}} ng-init = "vm.client.address.state" >{{each.name}}</md-option> </md-select> </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label>Zip</label> <input type="number" required 
+	<label>Zipcode</label> <input type="number" required min="0"
 		ng-model="vm.client.address.zip"> </md-input-container>
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
