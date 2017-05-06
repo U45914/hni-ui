@@ -12,14 +12,23 @@
 		controllerAs : 'vm'
 	});
 	NgoInvitationController.$inject = [ '$q', 'ngoOnboardingService',
-			'orgService', 'validateService', '$scope', '$state', 'toastService' ];
+			'orgService', 'validateService', '$scope', '$state', 'toastService', 'validateFormData' ];
 
 	function NgoInvitationController($q, ngoOnboardingService, orgService,
-			validateService, $scope, $state, toastService) {
+			validateService, $scope, $state, toastService, validateFormData) {
 		var vm = this;
 		vm.incomplete = false;
 		vm.orgInfo = {};
-		vm.fields = {};
+		vm.fields = {
+				"name" : true,
+				"phone" : true,
+				"email" : true,
+				"website" : true,
+				"address1" : true,
+				"city" : true,
+				"state" : true,
+				"zip" : true
+		};
 		vm.msgs = {};
 		vm.states = validateService.validateStateDrpdwn();
 		vm.validateNGOInvitation = "";
@@ -30,7 +39,6 @@
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
 				"website" : vm.webSiteUrl,
-				"logo" : vm.logo,
 				"addresses" : [ {
 					"name" : "office",
 					"address1" : vm.address1,
@@ -40,9 +48,15 @@
 					"zip" : vm.zip
 				} ]
 			};
-			console.log(data);
-			vm.validateNGOInvitation = validateService.validateNGOOnboard(data);
-			if (vm.validateNGOInvitation == "") {
+			var doNotPost = false;
+			var keys = Object.keys(vm.fields);
+			for(var index = 0; index < keys.length; index++){
+				if(vm.fields[keys[index]]) {
+					doNotPost = true;
+					break;
+				}
+			}
+			if (!doNotPost) {
 				var serviceCalls = ngoOnboardingService
 						.inviteNgo(data)
 						.then(
@@ -84,7 +98,9 @@
 
 				return $q.all(serviceCalls);
 			} else {
-				vm.incomplete = true;
+				toastService
+				.showToast("Please fill required fields")
+				/*vm.incomplete = true;*/
 			}
 		}
 
@@ -102,48 +118,12 @@
 			}
 		}
 		vm.validationCheck = function(type, id, value, event) {
-
-			if (value != null) {
-
-				vm.fields[id] = false;
-
-				if (type == "number") {
-
-					if (id == "zip") {
-						var zip = vm.zip;
-						if (isNaN(Number(zip)) || (zip.length != 6)
-								|| zip.indexOf("-") != -1) {
-							vm.fields[id] = true;
-							vm.msgs[id] = "Invalid Zip";
-						} else {
-							vm.fields[id] = false;
-						}
-
-					}
-
-				}else{
-					vm.fields[id] = false;
-				}
-				
-			} else {
-				if (id == "email" || id == "website") {
-					if (event.target.value != "" && value == null) {
-						vm.fields[id] = true;
-						vm.msgs[id] = "Invalid Format";
-					} else {
-						vm.fields[id] = true;
-						vm.msgs[id] = "Please fill this field";
-					}
-
-				} else {
-					vm.fields[id] = true;
-					vm.msgs[id] = "Please fill this field";
-				}
-			}
-
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
 		}
 
-		vm.checkPhoneNbr = function() {
+		/*vm.checkPhoneNbr = function() {
 			var phone = vm.phoneNumber;
 			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
 			var res = patt.test(phone);
@@ -152,7 +132,7 @@
 			} else {
 				vm.check = true;
 			}
-		};
+		};*/
 
 	}
 

@@ -15,7 +15,16 @@
 		this.myDate = new Date();
 		this.isOpen = false;
 		vm.state=validateService.validateStateDrpdwn();
-		vm.fields = {};
+		vm.fields = {
+				"firstName" : true,
+				"lastName" : true,
+				"address" : true,
+				"city" : true,
+				"state" : true,
+				"zip" : true,
+				"phone" : true,
+				"email" : true,
+		};
 		vm.msgs = {};
 	    
 		vm.vol = {};

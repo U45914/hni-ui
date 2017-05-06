@@ -12,12 +12,19 @@
 		controllerAs : 'vm'
 	});
 	clientInvitationController.$inject = [ '$q', 'clientEnrollmentService', '$scope',
-			'$state', 'toastService' ];
+			'$state', 'toastService', 'validateFormData' ];
 
 	function clientInvitationController($q, clientEnrollmentService, $scope, $state,
-			toastService) {
+			toastService, validateFormData) {
 		var vm = this;
 		vm.orgInfo = {};
+		vm.fields = {
+				"name" : true,
+				"phone" : true,
+				"email" : true,
+				"activationCode" : true,
+		};
+		vm.msgs = {};
 		vm.submit = function() {
 			var data = {
 				"name" : vm.name,
@@ -25,7 +32,15 @@
 				"email" : vm.email,
 				"activationCode" : vm.activationCode
 			};
-			if (vm.name != null && vm.phoneNumber != null && vm.email != null) {
+			var doNotPost = false;
+			var keys = Object.keys(vm.fields);
+			for(var index = 0; index < keys.length; index++){
+				if(vm.fields[keys[index]]) {
+					doNotPost = true;
+					break;
+				}
+			}
+			if (!doNotPost) {
 				var serviceCalls = clientEnrollmentService
 						.inviteClient(data)
 						.then(
@@ -58,16 +73,11 @@
 			}
 		}
 		
-		vm.checkPhoneNbr = function() {
-			var phone = vm.phoneNumber;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check=false;
-			} else {
-				vm.check=true;
-			}
-		};
+		vm.validationCheck = function(type, id, value, event) {
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
+		}
 		
 	}
 
