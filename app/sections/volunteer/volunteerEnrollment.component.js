@@ -47,6 +47,7 @@
 			};
 
 			var doNotPost = false;
+			debugger;
 			var keys = Object.keys(vm.fields);
 			for(var index = 0; index < keys.length; index++){
 				if(vm.fields[keys[index]]) {
