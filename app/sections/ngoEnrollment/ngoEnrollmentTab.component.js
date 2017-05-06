@@ -49,7 +49,7 @@
     	  }
       }
       
-      vm.enrollementData = function(){
+    /*  vm.enrollementData = function(){
     	  var data = {}; 
     	  data.overviewData = ngoEnrollmentService.getOverviewData();
     	  data.stakeHolderData = ngoEnrollmentService.getStakeHolderData();
@@ -77,7 +77,7 @@
 		  return $q.all(serviceCalls);
     	  }
 		  
-	  }
+	  }*/
   }
   
 })();

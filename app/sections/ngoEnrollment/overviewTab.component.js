@@ -92,7 +92,7 @@
 		vm.save = function() {
 			var data = {
 				"name" : vm.view.name,
-				"phone" : vm.view.phone,
+				"phone" : vm.view.mobilePhone,
 				"website" : vm.view.website,
 				"contact" : vm.view.contact,
 				"employees" : vm.view.employees,
@@ -108,7 +108,7 @@
 					"zip" : vm.view.address.zip,
 				},
 			};
-			if (vm.view.name != null && vm.view.phone != null
+			if (vm.view.name != null && vm.view.mobilePhone != null
 					&& vm.view.website != null && vm.view.contact != null
 					&& vm.view.employees != null && vm.view.overview != null
 					&& vm.view.mission != null) {
@@ -153,7 +153,7 @@
 		}
 		
 		vm.checkPhoneNbr = function() {
-			var phone = vm.view.phone;
+			var phone = vm.view.mobilePhone;
 			
 			
 			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");

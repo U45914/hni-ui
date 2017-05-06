@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientTabController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state'];
+	clientTabController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService'];
 	
-	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state){
+	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService){
     	var vm = this;
     	
     	 
@@ -47,5 +47,35 @@
     	vm.load = function() {
     		vm.client = ngoEnrollmentService.clientData;
     	}
+    	  vm.enrollementData = function(){
+        	  var data = {}; 
+        	  data.overviewData = ngoEnrollmentService.getOverviewData();
+        	  data.stakeHolderData = ngoEnrollmentService.getStakeHolderData();
+        	  data.serviceData = ngoEnrollmentService.getServiceData();
+        	  data.fundingData = ngoEnrollmentService.getFundingData();
+        	  data.clientData = ngoEnrollmentService.getClientData();
+        	  vm.validateNGOEnrollmentData = validateService.validateNGOEnrollmentData(data);
+        	  console.log(vm.validateNGOEnrollmentData);
+        	  if(angular.equals(vm.validateNGOEnrollmentData, {})){
+    	    	  console.log( vm.validateNGOEnrollmentData);
+    	    	  console.log("Attempting function call..");
+    	    	  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
+    	    			  				function successCallback(response) {
+    	    			  					if (response && response.status && response.statusText == "OK") {
+    	    			  						toastService.showToast("Your request has been submitted")
+    	    			  							$state.go('dashboard');
+    	    			  					} else {
+    	    			  						toastService.showToast("Failed : "+ response.data.errorMsg);
+    	    			  					}
+    	    			  				},
+    	    			  				function errorCallback(response) {
+    	    			  					toastService.showToast("Something went wrong, please try again")
+    	    			  					// $state.go('dashboard');
+    	    			  				});
+    		  return $q.all(serviceCalls);
+        	  }
+    		  
+    	  }
+    	
 	}
 })();

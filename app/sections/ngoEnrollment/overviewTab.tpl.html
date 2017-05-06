@@ -10,7 +10,7 @@
           
           <md-input-container name="myForm" class="md-block input-primary mgn_left_25" flex- gt-sm>
             <label>NGO phone</label>
-            <input type="text" name="phone" required maxlength="12" ng-model="vm.view.phone" ng-blur = "vm.validate('number','phone',vm.view.phone)" >
+            <input type="text" name="phone" required maxlength="12" ng-model="vm.view.mobilePhone" ng-blur = "vm.validate('number','phone',vm.view.mobilePhone)" >
            <div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>
 		 </md-input-container>
          </div>
@@ -69,7 +69,7 @@
          <div layout-gt-xs="row" class="mission_width3">
            <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Number of full time employees at the NGO</label>
-            <input type="number"   required ng-model="vm.view.employees" ng-blur="vm.validate('number','fte',vm.view.employees)"></input>
+            <input type="number"   required min="0" ng-model="vm.view.employees" ng-blur="vm.validate('number','fte',vm.view.employees)"></input>
             <div id="errorMsg" ng-if="vm.fields['fte']" style="color:red;" ng-bind="vm.msgs['fte']" /></div>
           </md-input-container>
           </div> 
