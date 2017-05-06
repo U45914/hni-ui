@@ -22,7 +22,7 @@
 	</md-input-container>
 </div><br><br>
 	<h4 >Contact Details</h4>
-<div layout-gt-xs="row">
+<div layout-gt-xs="row" style="margin-top: -15px;">
 <md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Address line 1</label> <input type="text" required
 		ng-model="vm.vol.address.address1" ng-blur="vm.validationCheck('text','address',vm.vol.address.address1)"/>
@@ -32,7 +32,7 @@
 	<label class="text_style_vol" >Address line 2</label> <input type="text" 
 		ng-model="vm.vol.address.address2" /> </md-input-container>
 </div>		
-<div layout-gt-xs="row">
+<div layout-gt-xs="row" style="margin-top: -15px;">
 	<md-input-container class="md-block" flex-gt-sm>
 	<label class="text_style_vol">City</label> <input type="text" required ng-model="vm.vol.address.city" ng-blur="vm.validationCheck('text','city',vm.vol.address.city)" />
 	<div id="errorMsg" ng-if="vm.fields['city']" style="color:red;"ng-bind="vm.msgs['city']"></div>	
@@ -51,7 +51,7 @@
 	<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;"ng-bind="vm.msgs['zip']"></div>	
 	</md-input-container>
 </div>
-<div layout-gt-xs="row">
+<div layout-gt-xs="row" style="margin-top: -15px;">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Phone number</label> <input type="text" required maxlength="12" ng-model="vm.vol.user.mobilePhone" ng-blur="vm.validationCheck('number','phone',vm.vol.user.mobilePhone)" placeholder="999-999-9999"> 
 		<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>	

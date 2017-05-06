@@ -251,6 +251,13 @@ md-tab-item:nth-child(2) span{
 
 .grid_list_multi{
 border-width:1px;
-border-color:rgba(132, 119, 119, 0.2);
+border-color:rgba(132, 119, 119, 0.52);
 border-bottom-style: solid;
+}
+
+.grid_tile_width{
+border-width:1px;
+border-color:rgba(132, 119, 119, 0.52);
+border-bottom-style: solid;
+width: 448px;
 }

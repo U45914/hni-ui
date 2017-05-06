@@ -8,7 +8,7 @@
 	function fundingSourceDirective() {
 		return {
 			scope : {
-				fundingSourceList : "=list"
+				fundingSourceList : "=list",
 			},
 			restrict : "E",
 			templateUrl : 'fundingSourceTemplate.tpl.html',
@@ -20,12 +20,7 @@
 	function fundingSourceController($scope, validateFormData) {
 				
 		var fundingSourceObj ={};
-		//$scope.fundingSourceList =[];
-		$scope.show = false;
-		
-		if($scope.fundingSourceList.length != 0){
-			$scope.show = true;
-		}
+				
 		
 		$scope.addNewChoice = function(){
 			fundingSourceObj = {};
@@ -36,7 +31,6 @@
 				fundingSourceObj.source = $scope.source;
 				fundingSourceObj.amount = $scope.amount;
 				$scope.fundingSourceList.push(fundingSourceObj);
-				$scope.show = true;
 				$scope.source = null;
 				$scope.amount = null;
 				}
@@ -44,9 +38,6 @@
 		
 		$scope.deleteRow = function(idx) {
 			$scope.fundingSourceList.splice(idx,1);
-			if($scope.fundingSourceList.length == 0){
-				$scope.show = false;
-			}
 		}
 	}
 	
