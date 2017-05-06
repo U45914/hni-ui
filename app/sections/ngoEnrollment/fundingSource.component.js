@@ -23,6 +23,10 @@
 		//$scope.fundingSourceList =[];
 		$scope.show = false;
 		
+		if($scope.fundingSourceList.length != 0){
+			$scope.show = true;
+		}
+		
 		$scope.addNewChoice = function(){
 			fundingSourceObj = {};
 			var data = validateFormData.validate("text", "fundSource" ,$scope.source );
