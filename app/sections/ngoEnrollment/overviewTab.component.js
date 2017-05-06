@@ -40,54 +40,6 @@
 		vm.delRow = function(index) {
 			vm.list.splice(index, 1);
 		}
-		 vm.validationCheck = function (type, id, value, event){
-				if(value!=null){
-					vm.fields[id] = false;
-					if(type=="number"){
-						if(id=="zip"){
-								var zip=vm.view.address.zip;
-								if (isNaN(Number(zip))|| (zip.length != 6) || zip.indexOf("-")!=-1) {
-									vm.fields[id] = true;
-									vm.msgs[id]="Invalid Zip";
-									validateFail = true;
-								}else{
-									vm.fields[id]=false;
-									validateFail = false;
-								}
-						}
-						if(id=="fte"){
-							var fte = vm.view.employees;
-							if (isNaN(Number(fte)) ||  fte < 0) {
-								vm.fields[id] = true;
-								vm.msgs[id]="Invalid Employee";
-								validateFail = true;
-							}else{
-								vm.fields[id]=false;
-								validateFail = false;
-							}
-					}
-					}
-				}
-				else{
-					
-
-					validateFail = true;
-					if(id=="email"||id=="website"){
-						if (event.target.value != "" && value == null) {
-							vm.fields[id] = true;
-							vm.msgs[id]="Invalid Format";
-						} else {
-							vm.fields[id] = true;
-							vm.msgs[id]="Please fill this field";
-						}
-					}
-					else{
-						vm.fields[id] = true;
-						vm.msgs[id]="Please fill this field";
-					}
-											
-				}
-		}
 	
 		vm.save = function() {
 			var data = {
@@ -152,7 +104,7 @@
 			console.log(response)
 		}
 		
-		vm.checkPhoneNbr = function() {
+		/*vm.checkPhoneNbr = function() {
 			var phone = vm.view.phone;
 			
 			
@@ -164,7 +116,7 @@
 			} else {
 				vm.check=true;
 			}
-		};
+		};*/
 		
 
 		vm.validate = function(type, id, value, event){

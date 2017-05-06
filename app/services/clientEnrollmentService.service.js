@@ -3,9 +3,9 @@
         .module('app')
         .factory('clientEnrollmentService', clientEnrollmentService);
 
-    clientEnrollmentService.$inject = ['$http', 'serviceConstants'];
+    clientEnrollmentService.$inject = ['$http', 'serviceConstants', 'toastService'];
 
-    function clientEnrollmentService($http, serviceConstants) {
+    function clientEnrollmentService($http, serviceConstants, toastService) {
         let baseUrl = serviceConstants.baseUrl;
         var clientProfileData;
         var personnalData;
@@ -112,7 +112,7 @@
             	});
             	
                	let partialData = JSON.stringify(finalSaveData);
-            	return $http.post(`${baseUrl}/onboard/client/save`, partialData);
+            	return $http.post('${baseUrl}/onboard/client/save', partialData);
             }
        
              
@@ -143,12 +143,42 @@
             		putElementsToMap(key, val);
             	});
             	
+            	
+            	
                	let clientInfoData = JSON.stringify(finalSaveData);
-            	console.log("client : ");
-            	console.log(clientInfoData);
-            	return $http.post(`${baseUrl}/users/client/save`, clientInfoData);
+            	debugger;
+            	var pass = validateCientInfoData(clientInfoData);
+            	if(!pass){
+            		toastService.showToast("Please fill required fields");
+            		return;
+            	}
+            	return $http.post('${baseUrl}/users/client/save', clientInfoData);
             }
             
+            function validateCientInfoData(data){
+            	debugger;
+            	var user = data.user;
+            	var address = data.address;
+            	if(user == null || address == null){
+            		return false;
+            	}
+            	if(user.firstName == null || user.ethnicity == null || user.mobilePhone == null){
+            		return false;
+            	}
+            	if(	address.address1 == null || address.city == null ||	address.state == null || address.zip == null ){
+            		return false;
+            	}
+            	if(	data.allergies == null){
+            		return false;}
+            	if(	data.lastVisitDoctor == null){
+            		return false;
+            	}
+            	if(	data.lastVisitDentist == null){
+            		return false;
+            	}
+            	return true;
+            	
+            }
           
             function putElementsToMap(key, val) {
             	if (key.indexOf("__") == -1 ) {

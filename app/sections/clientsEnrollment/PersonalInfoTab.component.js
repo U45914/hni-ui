@@ -18,9 +18,9 @@
 
 	} 
   
-  personalInfoController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','validateService']; 
+  personalInfoController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','validateService', 'validateFormData']; 
   
-  function personalInfoController ($q,clientEnrollmentService,$rootScope,$scope,validateService) {
+  function personalInfoController ($q,clientEnrollmentService,$rootScope,$scope,validateService,validateFormData) {
 	  var vm = this;
 	 
 	  vm.client = {};
@@ -28,6 +28,8 @@
 	  vm.client.address = {};
 	  vm.states = validateService.validateStateDrpdwn();
 	 
+	  vm.fields = {};
+	 vm.msgs = {};
 	  $scope.$on("data-loaded-client", function(obj) {
 			vm.load();
 	 });
@@ -62,20 +64,13 @@
 					"race"	: vm.client.race
 					};
 		  		
-		 	if (/*vm.client.user.ethnicity != null &&*/ vm.client.user.mobilePhone != null
-						&& vm.client.bday != null) {
 					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
 					var serviceCalls = clientEnrollmentService.savePartial();
 					$q.all(serviceCalls)// .then(onSuccess,onError);
 					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 
-				} else {
-					window.alert("Please fill Fields");
-
-					return false;
-				}
 	  }
-	  vm.checkPhoneNbr = function() {
+	  /*vm.checkPhoneNbr = function() {
 			var phone = vm.client.user.mobilePhone;
 			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
 			var res = patt.test(phone);
@@ -84,6 +79,12 @@
 			} else {
 				vm.check=true;
 			}
+		};*/
+		
+		vm.validationCheck = function(type, id, value, event) {
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
 		};
 	  }
   

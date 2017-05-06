@@ -15,15 +15,15 @@
 		<div layout-gt-xs="row" class="width_for_textbox">
 			<md-input-container class="md-block input-primary " flex-gt-sm> 
 				<label>Organization Name</label>
-				<input type="text" required ng-model="vm.name" class="input_box_md" ng-blur="vm.validationCheck('text','organizationName',vm.name)"> 
-      		<div id="errorMsg" ng-if="vm.fields['organizationName']" style="color:red;" ng-bind="vm.msgs['organizationName']">
+				<input type="text" required autofocus = "on" ng-model="vm.name" class="input_box_md" ng-blur="vm.validationCheck('text','name',vm.name)"> 
+      		<div id="errorMsg" ng-if="vm.fields['name']" style="color:red;" ng-bind="vm.msgs['name']">
                		{{vm.msg}}
                 </div>
       		 </md-input-container>
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Phone number</label>
-			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur = "vm.checkPhoneNbr()" placeholder="999-999-9999">
-			 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
+			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur = "vm.validationCheck('number','phone',vm.phoneNumber)">
+			 	<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>
 			 			</md-input-container>
 		</div>
 		
@@ -45,7 +45,7 @@
 		
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
 				<label>Email address</label>
-			 	<input type="email" id="" name="email" required ng-model="vm.email" class="input_box_md" ng-blur="vm.validationCheck('email','email',vm.email, $event)">
+			 	<input type="email" id="" name="email" required ng-model="vm.email" class="input_box_md" ng-blur="vm.validationCheck('text','email',vm.email, $event)">
 					<div id="errorMsg" ng-if="vm.fields['email']" style="color:red;" ng-bind="vm.msgs['email']">
                 </div>		
 			</md-input-container>
