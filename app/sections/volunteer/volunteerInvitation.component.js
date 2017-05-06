@@ -12,12 +12,15 @@
 		controllerAs : 'vm'
 	});
 	VolunteerInvitationController.$inject = [ '$q', 'volunteerService', '$scope',
-			'$state', 'toastService' ];
+			'$state', 'toastService', 'validateFormData' ];
 
 	function VolunteerInvitationController($q, volunteerService,  $scope, $state,
-			toastService) {
+			toastService, validateFormData) {
 		var vm = this;
 		vm.orgInfo = {};
+		vm.fields = {};
+		vm.msgs = {};
+		
 		vm.submit = function() {
 			var data = {
 				"name" : vm.name,
@@ -25,7 +28,17 @@
 				"email" : vm.email,
 				"invitationMessage" : vm.inviteMsg
 			};
-			if (vm.name != null && vm.phoneNumber != null && vm.email != null) {
+			
+			var doNotPost = false;
+			var keys = Object.keys(vm.fields);
+			for(var index = 0; index < keys.length; index++){
+				if(vm.fields[keys[index]]) {
+					doNotPost = true;
+					break;
+				}
+			}
+			
+			if (!doNotPost) {
 				var serviceCalls = volunteerService
 						.inviteVolunteer(data)
 						.then(
@@ -47,6 +60,9 @@
 				console.log(data);
 				return $q.all(serviceCalls);
 			}
+			else{
+				toastService.showToast("Please fill required fields")
+			}
 		}
 		
 		vm.checkPhoneNbr = function() {
@@ -58,6 +74,11 @@
 			} else {
 				vm.check=true;
 			}
+		};
+		vm.validationCheck = function(type, id, value, event){
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
 		};
 		
 	}

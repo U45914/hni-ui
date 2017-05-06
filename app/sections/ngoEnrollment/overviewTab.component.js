@@ -73,7 +73,6 @@
 
 					validateFail = true;
 					if(id=="email"||id=="website"){
-						debugger;
 						if (event.target.value != "" && value == null) {
 							vm.fields[id] = true;
 							vm.msgs[id]="Invalid Format";
@@ -109,8 +108,6 @@
 					"zip" : vm.view.address.zip,
 				},
 			};
-			console.log(data);
-			alert(vm.validateFail);
 			if (vm.view.name != null && vm.view.phone != null
 					&& vm.view.website != null && vm.view.contact != null
 					&& vm.view.employees != null && vm.view.overview != null

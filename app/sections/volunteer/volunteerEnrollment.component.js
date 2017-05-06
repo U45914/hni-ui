@@ -7,9 +7,9 @@
 		controller : VolunteerEnrollmentController,
 		controllerAs : 'vm'
 	});
-	VolunteerEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope', '$state','validateService', 'toastService' ];
+	VolunteerEnrollmentController.$inject = [ '$q', 'ngoOnboardingService', '$scope', '$state','validateService', 'toastService', 'validateFormData'];
 
-	function VolunteerEnrollmentController($q, ngoOnboardingService, $scope, $state, validateService, toastService) {
+	function VolunteerEnrollmentController($q, ngoOnboardingService, $scope, $state, validateService, toastService, validateFormData) {
 		var USER_TYPE = "userType";
 		var USER_ORG_INFO = "userOrgInfo";
 		
@@ -17,6 +17,8 @@
 		vm.userType = vm.getUserType;
 		vm.userNameMessage = "";
 		vm.states = validateService.validateStateDrpdwn();
+		vm.fields = {};
+		vm.msgs = {};
 		
 		vm.signIn = function() {
 			var data = {
@@ -34,15 +36,27 @@
 				} ]
 			};
 
-			ngoOnboardingService.registerNgo(data).then(function(response) {
-				if (response && response.data && response.data.success) {
-					toastService.showToast(response.data.success + ", Please login with your credentials");
-					$state.go('login');
-				} else {
-					toastService.showToast("Failed to create user entry");
+			var doNotPost = false;
+			var keys = Object.keys(vm.fields);
+			for(var index = 0; index < keys.length; index++){
+				if(vm.fields[keys[index]]) {
+					doNotPost = true;
+					break;
 				}
-			});
-
+			}
+			if(!doNotPost){
+				ngoOnboardingService.registerNgo(data).then(function(response) {
+					if (response && response.data && response.data.success) {
+						toastService.showToast(response.data.success + ", Please login with your credentials");
+						$state.go('login');
+					} else {
+						toastService.showToast("Failed to create user entry");
+					}
+				});
+			}
+			else{
+				toastService.showToast("Please fill required fields");
+			}
 			return;
 		};
 
@@ -90,6 +104,12 @@
 			} else {
 				vm.check=true;
 			}
+		};
+		
+		vm.validationCheck = function(type, id, value, event){
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
 		};
 	}
 

@@ -1,46 +1,37 @@
 	<div class="font_for_allpages1" >
-	<h3>Overview Details</h3>
+	<h3>Overview</h3>
 	
-	<div layout-gt-xs="row" class="width_for_textbox">
+	<div layout-gt-xs="row" class="mission_width1">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Name</label>
-            <input type="text" ng-model="vm.view.name" required  ng-blur="vm.validationCheck('text','name',vm.view.name)" autofocus= "on">
+            <label>NGO name</label>
+            <input type="text" ng-model="vm.view.name" required  ng-blur="vm.validate('text','name',vm.view.name)" autofocus= "on">
             <div id="errorMsg" ng-if="vm.fields['name']" style="color:red;"ng-bind="vm.msgs['name']"></div>
           </md-input-container>
           
           <md-input-container name="myForm" class="md-block input-primary mgn_left_25" flex- gt-sm>
-            <label>Phone</label>
+            <label>NGO phone</label>
             <input type="text" name="phone" required maxlength="12" ng-model="vm.view.phone" ng-blur = "vm.validate('number','phone',vm.view.phone)" >
            <div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>
 		 </md-input-container>
          </div>
-         <div layout-gt-xs="row" class="width_for_textbox">
+         <div layout-gt-xs="row" class="mission_width1">
           <md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Website Link</label>
-            <input type="url" name="websiteLink" placeholder="http://www.example.com" required ng-model="vm.view.website"  ng-blur="vm.validate('url','website',vm.view.website,$event)"></input>
+            <label>NGO website url</label>
+<input type="url" name="websiteLink" placeholder="http://www.example.com" required ng-model="vm.view.website"  ng-blur="vm.validate('url','website',vm.view.website,$event)"></input>
             <div id="errorMsg" ng-if="vm.fields['website']" style="color:red;"ng-bind="vm.msgs['website']"></div>
           </md-input-container>
          
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-            <label>Contact Person</label>
-            <input type="text"   required ng-model="vm.view.contact" ng-blur="vm.validate('text','contact',vm.view.contact)"></input>
-            <div id="errorMsg" ng-if="vm.fields['contact']" style="color:red;" ng-bind="vm.msgs['contact']" /></div>
+            <label>NGO contact person</label>
+            <input type="text"   required ng-model="vm.view.contact" ng-blur="vm.validate('text','contact',vm.view.contact)"></input>            <div id="errorMsg" ng-if="vm.fields['contact']" style="color:red;" ng-bind="vm.msgs['contact']" /></div>
+            <div id="errorMsg" ng-if="vm.fields['contact']" style="color:red;" ng-bind="vm.msgs['contact']" /></div>   
           </md-input-container>
           </div>
          <br> 
          <div class="login-prompt"><b>Address</b></div>
-			<div layout-gt-xs="row" class="width_for_textbox"> 
-			<!-- <md-input-container class="md-block input-primary" flex-gt-sm> 
-				<label>Address Type</label>
-			 	<md-select name="type" ng-model="vm.view.address.addressType" required>
-            			<md-option value = "home">Home</md-option>
-            			<md-option value = "office">Office</md-option>
-            		</md-select>
-			</md-input-container> -->
-			</div>
 			<div layout-gt-xs="row" class="mission_width1">
 				<md-input-container class="md-block input-primary " flex-gt-sm> 
-				<label>Address 1</label>
+				<label>Address line 1</label>
 			 	<input type="text" required ng-model="vm.view.address.address1" ng-blur="vm.validate('text','address1',vm.view.address.address1)"> 
 			 	<div id="errorMsg" ng-if="vm.fields['address1']" style="color:red;" ng-bind="vm.msgs['address1']" /></div>
 				</md-input-container>
@@ -65,7 +56,7 @@
             		</md-select>
             		<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']" /></div>
         		</md-input-container><md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-					<label>Zip</label>
+					<label>Zip code</label>
 			 		<input type="text" required maxlength="6" ng-model="vm.view.address.zip" ng-blur="vm.validate('number','zip',vm.view.address.zip)">
 			 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;" ng-bind="vm.msgs['zip']" /></div>
 				</md-input-container>
@@ -75,30 +66,32 @@
 			
 	 
           
-         <div layout-gt-xs="row">
+         <div layout-gt-xs="row" class="mission_width3">
            <md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Full time Employees</label>
+            <label>Number of full time employees at the NGO</label>
             <input type="number"   required ng-model="vm.view.employees" ng-blur="vm.validate('number','fte',vm.view.employees)"></input>
             <div id="errorMsg" ng-if="vm.fields['fte']" style="color:red;" ng-bind="vm.msgs['fte']" /></div>
           </md-input-container>
-          
-          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-            <label>Overview</label>
-            <input type="text"   required ng-model="vm.view.overview" ng-blur="vm.validate('text','overview',vm.view.overview)"></input>
+          </div> 
+         
+         <div layout-gt-xs="row" class="mission_width1">
+          <md-input-container class="md-block input-primary" flex-gt-sm>
+            <label>About the NGO</label>
+            <textarea md-maxlength="100" rows="2"  ng-model="vm.view.overview" ng-blur="vm.validate('text','overview',vm.view.overview)" required></textarea>
             <div id="errorMsg" ng-if="vm.fields['overview']" style="color:red;" ng-bind="vm.msgs['overview']" /></div>
           </md-input-container>
-         </div> 
-         <div layout-gt-xs="row" class="mission_width"> 
-          <md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Mission Statement</label>
-            <input type="text"   required ng-model="vm.view.mission" ng-blur="vm.validate('text','mission',vm.view.mission)"></input>
+         
+          <md-input-container class="md-block input-primary  mgn_left_25" flex-gt-sm>
+            <label>Mission statement</label>
+            <textarea md-maxlength="100" rows="2" required ng-model="vm.view.mission" ng-blur="vm.validate('text','mission',vm.view.mission)"></textarea>
             <div id="errorMsg" ng-if="vm.fields['mission']" style="color:red;" ng-bind="vm.msgs['mission']" /></div>
           </md-input-container>
         </div>
+        
         <div layout-gt-xs="row" class="mission_width"> 
           <md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Celebrity endorsements / notable promoters</label>
-             <textarea required ng-model="vm.view.promoters"  md-select-on-focus></textarea>
+            <label>Celebrity endorsers/ Notable affiliates</label>
+             <textarea ng-model="vm.view.promoters"  md-select-on-focus></textarea>
           </md-input-container>
 		   <div style="padding-top:7px;">
 		  <md-button class="md-fab btn_style"  ng-click="vm.addRow(vm.view.promoters)" >
