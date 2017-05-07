@@ -49,7 +49,7 @@
     	  }
       }
       
-      vm.enrollementData = function(){
+    /*  vm.enrollementData = function(){
     	  var data = {}; 
     	  data.overviewData = ngoEnrollmentService.getOverviewData();
     	  data.stakeHolderData = ngoEnrollmentService.getStakeHolderData();
@@ -82,7 +82,7 @@
     		  toastService.showToast("Please fill required fields");
     	  }
 		  
-	  }
+	  }*/
   }
   
 })();

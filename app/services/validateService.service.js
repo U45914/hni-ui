@@ -179,7 +179,7 @@
 				if(data.name == null){
 					field.push("Name");
 				}
-				if(data.phone == null || isNaN(Number(data.phone.replace(/-/g, "")))){
+				if(data.mobilePhone == null || isNaN(Number(data.mobilePhone.replace(/-/g, "")))){
 					field.push("Phone");
 				}
 				if(data.website == null){
@@ -201,7 +201,7 @@
 					field.push("State");
 				}
 				if(data.address.zip == null){
-					field.push("Zip");
+					field.push("Zip code");
 				}
 				if(data.employees == null || !angular.isNumber(data.employees)){
 					field.push("Full time Employees");
@@ -316,11 +316,11 @@
 					}
 				}
 				
-				/*if(!angular.isNumber(data.giftCard)){
+				/*if(data.giftCard != null && !angular.isNumber(data.giftCard)){
 					errorArray.push("Gift Card");
-				}*/
+				}
 				
-				/*if(!angular.isNumber(data.giftCard)){
+				if(data.other != null && !angular.isNumber(data.other)){
 					errorArray.push("Other");
 				}*/
 				
@@ -436,11 +436,11 @@
 				if(data.individualClientInfoCollected == null){
 					errorArray.push("Client info collected");
 				}
-				if(data.individualClientInfoCollected == true){
+				/*if(data.individualClientInfoCollected == true){
 					if(data.storeClientInfo == null){
 						errorArray.push("Store Client Info");
 					}
-				}
+				}*/
 				if(data.unshelteredClientPercentage == null || !angular.isNumber(data.unshelteredClientPercentage)){
 					errorArray.push("Unsheltered Clients");
 				}

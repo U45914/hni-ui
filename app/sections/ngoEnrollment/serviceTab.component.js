@@ -54,9 +54,17 @@
             var dinnerflag = false;
             
             vm.service = ngoEnrollmentService.serviceData;
-            vm.brkfstAvailabilty = vm.service.brkfstAvailabilty.split(",");
-            vm.lunchAvailabilty = vm.service.lunchAvailabilty.split(",");
-            vm.dinnerAvailabilty = vm.service.dinnerAvailabilty.split(",");
+            
+            if(vm.service.brkfstAvailabilty != null){
+            	   vm.brkfstAvailabilty = vm.service.brkfstAvailabilty.split(",");
+             }
+            if(vm.service.lunchAvailabilty != null){
+            	vm.lunchAvailabilty = vm.service.lunchAvailabilty.split(",");
+            }
+            if( vm.service.dinnerAvailabilty != null){
+            	vm.dinnerAvailabilty = vm.service.dinnerAvailabilty.split(",");
+            }
+         
             
             vm.mealSelect.forEach(function(entry) {
             	if(vm.brkfstAvailabilty.indexOf(entry.day)>-1){

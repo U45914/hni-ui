@@ -29,6 +29,7 @@
  	  vm.load = function() {
  			vm.family = clientEnrollmentService.finalData;
  			vm.family.sheltered=vm.family.sheltered;
+ 			clientEnrollmentService.setFamilyData(vm.getDataModel(vm.family));
  		}
     	
     	vm.educationList = [
@@ -49,21 +50,26 @@
 			{id: 2, name: "Alone"}
     	];
     	vm.save = function(){ 
-    	var data = {
-    			"sliblings": vm.family.sliblings,
-    		    "kids": vm.family.kids,
-    		    "liveAtHome": vm.family.liveAtHome,
-    		    "sheltered": vm.family.sheltered,
-    		    "liveWith": vm.family.liveWith,
-    		    "parentEducation": vm.family.parentEducation,
-    		    "education": vm.family.education,
-    		    "enrollmentStatus": vm.family.enrollmentStatus,
-    		    "enrollmentLocation": vm.family.enrollmentLocation,
-    			}
+    	var data = vm.getDataModel(vm.family);
     	console.log(data);
     	 clientEnrollmentService.setFamilyData(data);
     	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 		 var serviceCalls = clientEnrollmentService.savePartial();
+    	}
+    	
+    	vm.getDataModel = function(family){
+    		var data = {
+        			"sliblings": vm.family.sliblings,
+        		    "kids": vm.family.kids,
+        		    "liveAtHome": vm.family.liveAtHome,
+        		    "sheltered": vm.family.sheltered,
+        		    "liveWith": vm.family.liveWith,
+        		    "parentEducation": vm.family.parentEducation,
+        		    "education": vm.family.education,
+        		    "enrollmentStatus": vm.family.enrollmentStatus,
+        		    "enrollmentLocation": vm.family.enrollmentLocation,
+        			};
+    		return data;
     	}
 	}
 })();

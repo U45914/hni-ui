@@ -44,7 +44,7 @@
 		vm.save = function() {
 			var data = {
 				"name" : vm.view.name,
-				"phone" : vm.view.phone,
+				"mobilePhone" : vm.view.mobilePhone,
 				"website" : vm.view.website,
 				"contact" : vm.view.contact,
 				"employees" : vm.view.employees,
@@ -60,7 +60,7 @@
 					"zip" : vm.view.address.zip,
 				},
 			};
-			if (vm.view.name != null && vm.view.phone != null
+			if (vm.view.name != null && vm.view.mobilePhone != null
 					&& vm.view.website != null && vm.view.contact != null
 					&& vm.view.employees != null && vm.view.overview != null
 					&& vm.view.mission != null) {
@@ -87,6 +87,7 @@
 		}
 		vm.load = function() {
 			vm.view = ngoEnrollmentService.overviewData;
+			vm.view.contact=vm.view.name;
 			if (vm.view && vm.view.promoters) {
 				vm.list = vm.view.promoters;
 				vm.view.promoters = " ";
@@ -105,7 +106,7 @@
 		}
 		
 		/*vm.checkPhoneNbr = function() {
-			var phone = vm.view.phone;
+			var phone = vm.view.mobilePhone;
 			
 			
 			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");

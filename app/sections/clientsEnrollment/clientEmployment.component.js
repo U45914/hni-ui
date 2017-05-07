@@ -81,32 +81,38 @@
  	  
  	  vm.load = function() {
  			vm.emp = clientEnrollmentService.finalData;
+ 			clientEnrollmentService.setEmploymentData(vm.getDataModel(vm.emp));
  		}
     	vm.save = function(){ 
-    	var data = {
-    		    "workStatus": vm.emp.workStatus,
-    		    "timeToWorkplace": vm.emp.timeToWorkplace,
-    		    "noOfJob": vm.emp.noOfJob,
-    		    "employer": vm.emp.employer,
-    		    "jobTitle": vm.emp.jobTitle,
-    		    "durationOfEmployement": vm.emp.durationOfEmployement,
-    		    "unemploymentBenfits": vm.emp.unemploymentBenfits,
-    		    "reasonUnemploymentBenefits": vm.emp.reasonUnemploymentBenefits,
-    		    "totalIncome": vm.emp.totalIncome,
-    		    "rateAmount": vm.emp.rateAmount,
-    		    "rateType": vm.emp.rateType,
-    		    "avgHoursPerWeek": vm.emp.avgHoursPerWeek,
-    		    "residentStatus": vm.emp.residentStatus,
-    		    "dollarSpendFood": vm.emp.dollarSpendFood,
-    		    "dollarSpendClothes": vm.emp.dollarSpendClothes,
-    		    "dollarSpendEntertainment": vm.emp.dollarSpendEntertainment,
-    		    "dollarSpendTransport": vm.emp.dollarSpendTransport,
-    		    "dollarSpendSavings": vm.emp.dollarSpendSavings
-    			}
+    	var data = vm.getDataModel(vm.emp);
     	console.log(data);
     	clientEnrollmentService.setEmploymentData(data);
     	$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 		var serviceCalls = clientEnrollmentService.savePartial();
+    	}
+    	
+    	vm.getDataModel = function (emp){
+    		var data = {
+        		    "workStatus": vm.emp.workStatus,
+        		    "timeToWorkplace": vm.emp.timeToWorkplace,
+        		    "noOfJob": vm.emp.noOfJob,
+        		    "employer": vm.emp.employer,
+        		    "jobTitle": vm.emp.jobTitle,
+        		    "durationOfEmployement": vm.emp.durationOfEmployement,
+        		    "unemploymentBenfits": vm.emp.unemploymentBenfits,
+        		    "reasonUnemploymentBenefits": vm.emp.reasonUnemploymentBenefits,
+        		    "totalIncome": vm.emp.totalIncome,
+        		    "rateAmount": vm.emp.rateAmount,
+        		    "rateType": vm.emp.rateType,
+        		    "avgHoursPerWeek": vm.emp.avgHoursPerWeek,
+        		    "residentStatus": vm.emp.residentStatus,
+        		    "dollarSpendFood": vm.emp.dollarSpendFood,
+        		    "dollarSpendClothes": vm.emp.dollarSpendClothes,
+        		    "dollarSpendEntertainment": vm.emp.dollarSpendEntertainment,
+        		    "dollarSpendTransport": vm.emp.dollarSpendTransport,
+        		    "dollarSpendSavings": vm.emp.dollarSpendSavings
+        			};
+    		return data;
     	}
 	}
 })();

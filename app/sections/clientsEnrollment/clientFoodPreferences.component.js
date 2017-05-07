@@ -68,26 +68,32 @@
  	  
  	  vm.load = function() {
  			vm.food = clientEnrollmentService.finalData;
+ 			clientEnrollmentService.setFoodData(vm.getDataModel(vm.food));
  		}
     	
     	vm.save = function(){ 
-    	var data = {
-    		    "mealsPerDay": vm.food.mealsPerDay,
-    		    "foodPreference": vm.food.foodPreference,
-    		    "foodSource": vm.food.foodSource,
-    		    "cook": vm.food.cook,
-    		    "travelForFoodDistance": vm.food.travelForFoodDistance,
-    		    "travalForFoodTime": vm.food.travalForFoodTime,
-    		    "subFoodProgram": vm.food.subFoodProgram,
-    		    "subFoodProgramEntity": vm.food.subFoodProgramEntity,
-    		    "subFoodProgramDuration": vm.food.subFoodProgramDuration,
-    		    "subFoodProgramRenew": vm.food.subFoodProgramRenew,
-    		    "subFoodProgramExp": vm.food.subFoodProgram ? vm.food.subFoodProgramExp : "" 
-    			}
-    	console.log(data);
+    	var data = vm.getDataModel(vm.food);
+    	
     	 clientEnrollmentService.setFoodData(data);
     	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 		 var serviceCalls = clientEnrollmentService.savePartial();
+    	}
+    	
+    	vm.getDataModel = function(food){
+    		var data = {
+        		    "mealsPerDay": vm.food.mealsPerDay,
+        		    "foodPreference": vm.food.foodPreference,
+        		    "foodSource": vm.food.foodSource,
+        		    "cook": vm.food.cook,
+        		    "travelForFoodDistance": vm.food.travelForFoodDistance,
+        		    "travalForFoodTime": vm.food.travalForFoodTime,
+        		    "subFoodProgram": vm.food.subFoodProgram,
+        		    "subFoodProgramEntity": vm.food.subFoodProgramEntity,
+        		    "subFoodProgramDuration": vm.food.subFoodProgramDuration,
+        		    "subFoodProgramRenew": vm.food.subFoodProgramRenew,
+        		    "subFoodProgramExp": vm.food.subFoodProgram ? vm.food.subFoodProgramExp : "" 
+        			};
+    		return data;
     	}
 	}
 })();

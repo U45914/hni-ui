@@ -32,7 +32,13 @@
         	 getHealthData:getHealthData,
         	setPersonnalData,
         	getProfileData,
-        	inviteClient
+        	inviteClient,
+        	personnalData,
+            connectionData,
+            familyData,
+            employmentData,
+            foodData,
+            healthData
            
             };
         

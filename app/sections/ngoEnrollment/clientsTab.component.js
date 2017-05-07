@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientTabController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state'];
+	clientTabController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService'];
 	
-	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state){
+	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService){
     	var vm = this;
     	
     	 
@@ -48,5 +48,40 @@
     	vm.load = function() {
     		vm.client = ngoEnrollmentService.clientData;
     	}
+    	  vm.enrollementData = function(){
+        	  var data = {}; 
+        	  data.overviewData = ngoEnrollmentService.overviewData;
+        	  data.stakeHolderData = ngoEnrollmentService.stakeHolderData;
+        	  data.serviceData = ngoEnrollmentService.serviceData;
+        	  data.fundingData = ngoEnrollmentService.fundingData;
+        	  data.clientData = ngoEnrollmentService.clientData;
+        	  vm.validateNGOEnrollmentData = validateService.validateNGOEnrollmentData(data);
+        	  console.log(vm.validateNGOEnrollmentData);
+        	  if(angular.equals(vm.validateNGOEnrollmentData, {})){
+    	    	  console.log( vm.validateNGOEnrollmentData);
+    	    	  console.log("Attempting function call..");
+    	    	  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
+    	    			  				function successCallback(response) {
+    	    			  					if (response && response.status && response.statusText == "OK") {
+    	    			  						toastService.showToast("Your request has been submitted")
+    	    			  							$state.go('dashboard');
+    	    			  					} else if(response && response.data && !response.data.errorMsg){
+    						                	   toastService.showToast("Something went wrong. Try again later");
+    						                   }
+    	    			  					else {
+    	    			  						toastService.showToast("Failed : "+ response.data.errorMsg);
+    	    			  					}
+    	    			  				},
+    	    			  				function errorCallback(response) {
+    	    			  					toastService.showToast("Something went wrong, please try again")
+    	    			  				});
+    		  return $q.all(serviceCalls);
+        	  }
+        	  else {
+        		  toastService.showToast("Please fill all required fields");
+        	  }
+    		  
+    	  }
+    	
 	}
 })();

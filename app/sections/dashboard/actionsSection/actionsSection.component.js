@@ -30,10 +30,10 @@
                 	window.localStorage.setItem("userRole", vm.userRole);
                 	vm.user = response.data.data;  
                 	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
-                		//popupService.showAlert("Please take few minitues to complete your profile");
+                		//popupService.showAlert("Please take few minutes to complete your profile");
                 		vm.user = response.data.data;                		
                 	} else {
-                		popupService.showAlert("Please take few minitues to complete your profile to start")
+                		popupService.showAlert("Please take few minutes to complete your profile")
                 		.then(function(){
                 			window.localStorage.setItem("userRole", vm.userRole);
                     		$state.go("profile");	

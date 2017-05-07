@@ -71,8 +71,6 @@
 											&& response.data.response
 											&& response.data.response == "error") {
 										vm.incomplete = true;
-										// vm.validateNGOInvitation = "Error : "
-										// +response.data.errorMsg;
 										toastService.showToast("Error : "
 												+ response.data.errorMsg);
 									} else if (response && response.data
@@ -83,8 +81,6 @@
 										toastService.showToast("Failed : "
 												+ response.data.errorMsg);
 										vm.incomplete = true;
-										// vm.validateNGOInvitation = "Something
-										// went wrong, please try again";
 									}
 								},
 								function errorCallback(response) {
@@ -92,8 +88,6 @@
 											.showToast("Something went wrong, please try again")
 									// $state.go('dashboard');
 									vm.incomplete = true;
-									// vm.validateNGOInvitation = "Something
-									// went wrong, please try again";
 								});
 
 				return $q.all(serviceCalls);
