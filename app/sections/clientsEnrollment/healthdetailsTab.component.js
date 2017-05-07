@@ -93,6 +93,5 @@
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		}
-    	
 	}
 })();

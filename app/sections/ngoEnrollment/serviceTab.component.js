@@ -33,6 +33,7 @@
         vm.expanded = "false";
         vm.resources = ["X", "Y", "Z"];
         vm.resourceList = [];
+        vm.service = {};
 
         vm.mealsArray = [vm.breakfast, vm.lunch, vm.dinner];
         vm.brkfstAvailabilty = [];
@@ -156,17 +157,18 @@
                 });
             });
 
+            if(vm.service){
             var data = {
-                "brkfstChk": vm.service.brkfstChk,
+                "brkfstChk": vm.service.brkfstChk ? vm.service.brkfstChk : false,
                 "brkfstQty": vm.service.brkfstQty,
                 "brkfstAvailabilty": vm.brkfstAvailabilty,
-                "lunchChk": vm.service.lunchChk,
+                "lunchChk": vm.service.lunchChk ? vm.service.lunchChk : false,
                 "lunchQty": vm.service.lunchQty,
                 "lunchAvailabilty": vm.lunchAvailabilty,
-                "dinnerChk": vm.service.dinnerChk,
+                "dinnerChk": vm.service.dinnerChk ? vm.service.dinnerChk : false,
                 "dinnerQty": vm.service.dinnerQty,
                 "dinnerAvailabilty": vm.dinnerAvailabilty,
-                "baggedChk": vm.service.baggedChk,
+                "baggedChk": vm.service.baggedChk ? vm.service.baggedChk : false,
                 "baggedQty": vm.service.baggedQty,
                 "giftCard": vm.service.giftCard,
                 "other": vm.service.other,
@@ -195,6 +197,11 @@
             } else {
                 // vm.showCustomToast("fill the mandatory fields");
                 return false;
+            }
+            
+            }
+            else{
+            	$rootScope.$broadcast("scroll-tab", [1, 2]);
             }
         }
 

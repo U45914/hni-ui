@@ -4,7 +4,7 @@
 	function fundingrDirective() {
 		return {
 			scope : {
-
+				
 			},
 			restrict : "E",
 			templateUrl : "fundingTab.tpl.html",
@@ -31,10 +31,7 @@
 			ft.fundingSourceList = ngoEnrollmentService.fundingData["fundingSource"];
 			ft.mealDonaltionList = ngoEnrollmentService.fundingData["mealDonation"];
 			ft.mealFundingList = ngoEnrollmentService.fundingData["mealFunding"];
-			
-			if(ft.fundingSourceList.length != 0){
-				$scope.show = true;
-			}
+
 		}
 		}
 		ft.save = function() {
@@ -44,14 +41,10 @@
 				"mealFunding" : ft.mealFundingList
 			};
 
-			if (ft.mealDonaltionList.length != 0) {
 				ngoEnrollmentService.setFundingData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
 				$q.all(serviceCalls)// .then(onSuccess,onError);
 				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-			} else {
-				alert("Meal Donation fields are mandatory to save");
-			}
 		}
 	}
 })();

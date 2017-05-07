@@ -4,7 +4,7 @@
 <h4>Existing services offered</h4>
 <div id="fdsrv">
 		<div flex layout = "row" layout-align="start center">
-          <md-checkbox ng-model="vm.service.brkfstChk" class="md-primary">
+          <md-checkbox ng-model="vm.service.brkfstChk" class="md-primary" md-autofocus>
             Breakfast
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:25px;" flex="60" ng-show ="vm.service.brkfstChk" style="padding: 0px;margin: 0px;">
@@ -48,7 +48,7 @@
 		<div flex-gt-sm="50" layout = "row">
 			<md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Number of gift cards </label>
-            <input type="number" ng-model="vm.service.giftCard" min="0"></input>
+            <input type="number" ng-model="vm.service.giftCard" min="0" autofocus= "on"></input>
           </md-input-container> 
           
           <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>

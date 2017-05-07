@@ -27,7 +27,8 @@
 			vm.load();
 		});
     	
-    	vm.save = function(){   		
+    	vm.save = function(){   
+    		if(vm.client){
       		 var data = {
       				 "individualsServedDaily" : vm.client.individualsServedDaily,
       				 "individualsServedMonthly" : vm.client.individualsServedMonthly,
@@ -40,7 +41,7 @@
       		 ngoEnrollmentService.setClientData(data);
 			 var serviceCalls = ngoEnrollmentService.savePartial();
 	  		 $q.all(serviceCalls)//.then(onSuccess,onError);
-			 
+    		}
       		
     	}
     	

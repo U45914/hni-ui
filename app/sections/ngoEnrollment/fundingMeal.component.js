@@ -21,7 +21,7 @@
 				
 		var fundingMealObj ={};
 		//$scope.mealDonaltionList =[];
-		$scope.show = false;
+		
 		
 		$scope.addNewChoice = function(){
 			fundingMealObj = {};
@@ -30,7 +30,6 @@
 				fundingMealObj.mealQty = $scope.mealQty;
 				fundingMealObj.frequency = $scope.frequency;
 				$scope.mealDonaltionList.push(fundingMealObj);
-				$scope.show = true;
 				$scope.source = null;
 				$scope.mealQty = null;
 				$scope.frequency = null;
