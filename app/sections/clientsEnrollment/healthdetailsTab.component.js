@@ -29,10 +29,12 @@
  	  vm.load = function() {
  		 vm.health = clientEnrollmentService.finalData;
  			var height = vm.health.height;
+ 			if(height != null){
  			var height2 = height.toString();
   			vm.health.feet = height2.split('|')[0];
  			vm.health.inch = height2.split('|')[1];
  			clientEnrollmentService.setHealthData(vm.getDataModel(vm.health));
+ 			}
  		};
  		
  		vm.fields = {};

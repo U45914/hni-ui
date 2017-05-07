@@ -23,7 +23,7 @@
          
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
             <label>NGO contact person</label>
-            <input type="text"   required ng-model="vm.view.name" ng-blur="vm.validate('text','contact',vm.view.name)"></input>
+            <input type="text"  ng-disabled="true" required ng-model="vm.view.name" ng-blur="vm.validate('text','contact',vm.view.name)"></input>
             <div id="errorMsg" ng-if="vm.fields['contact']" style="color:red;" ng-bind="vm.msgs['contact']" /></div>   
           </md-input-container>
           </div>
