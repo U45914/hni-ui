@@ -8,7 +8,7 @@
 	function fundingMealDirective() {
 		return {
 			scope : {
-				mealDonaltionList : "=list",
+				mealDonaltionList : "=list"
 			},
 			restrict : "E",
 			templateUrl : 'fundingMealTemplate.tpl.html',
