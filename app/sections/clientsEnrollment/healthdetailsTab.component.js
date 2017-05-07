@@ -17,9 +17,9 @@
 		}
 	}
 	
-	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope','$scope','$state','toastService'];
+	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope','$scope','$state','toastService','validateFormData'];
 	
-	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, $state, toastService){
+	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, $state, toastService, validateFormData){
     	var vm = this;
     //	vm.health = clientEnrollmentService.clientData;
     	 $scope.$on("data-loaded-client", function(obj) {
@@ -33,7 +33,10 @@
   			vm.health.feet = height2.split('|')[0];
  			vm.health.inch = height2.split('|')[1];
  			clientEnrollmentService.setHealthData(vm.getDataModel(vm.health));
- 		}
+ 		};
+ 		
+ 		vm.fields = {};
+		vm.msgs = {};
  	  
     	vm.save = function(){   		
       		 var data = vm.getDataModel(vm.health);
@@ -85,6 +88,11 @@
       		 };
     		return data;
     	}
+    vm.validationCheck = function(type, id, value, event) {
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
+		}
     	
 	}
 })();

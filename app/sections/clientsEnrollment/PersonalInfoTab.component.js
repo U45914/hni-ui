@@ -18,9 +18,9 @@
 
 	} 
   
-  personalInfoController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','validateService']; 
+  personalInfoController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','validateService', 'validateFormData','toastService']; 
   
-  function personalInfoController ($q,clientEnrollmentService,$rootScope,$scope,validateService) {
+  function personalInfoController ($q,clientEnrollmentService,$rootScope,$scope,validateService,validateFormData, toastService) {
 	  var vm = this;
 	 
 	  vm.client = {};
@@ -28,6 +28,8 @@
 	  vm.client.address = {};
 	  vm.states = validateService.validateStateDrpdwn();
 	 
+	  vm.fields = {};
+	 vm.msgs = {};
 	  $scope.$on("data-loaded-client", function(obj) {
 			vm.load();
 	 });
@@ -50,7 +52,7 @@
 					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 
 				} else {
-					window.alert("Please fill Fields");
+					toastService.showToast("Please fill Fields");
 
 					return false;
 				}
@@ -76,11 +78,11 @@
 					"beenArrested" : vm.client.beenArrested,
 					"beenConvicted" : vm.client.beenConvicted,
 					"race"	: vm.client.race
-	};
-		
+		  };
 		  return data;
 	  }
-	  vm.checkPhoneNbr = function() {
+	  
+	  /*vm.checkPhoneNbr = function() {
 			var phone = vm.client.user.mobilePhone;
 			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
 			var res = patt.test(phone);
@@ -89,6 +91,12 @@
 			} else {
 				vm.check=true;
 			}
+		};*/
+		
+		vm.validationCheck = function(type, id, value, event) {
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
 		};
 	  }
   
