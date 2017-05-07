@@ -20,8 +20,6 @@
         vm.signIn = signIn;
         vm.authenticate = authenticate;
         vm.isDisabled = false;
-        vm.username="superuser@hni.com";
-        vm.password="test123";
         vm.signInButton = "Sign In";
         vm.loginFail = false;
         vm.validateCredentials = "";

@@ -182,23 +182,12 @@
                 "resource": vm.resourceList
             };
 
-            if (vm.service.brkfstQty != null || vm.service.lunchQty != null ||
-                vm.service.dinnerQty != null ||
-                vm.service.baggedQty != null ||
-                vm.service.giftCard != null || vm.service.other != null &&
-                vm.service.monthlyBudget != null &&
-                vm.service.foodStamp != null &&
-                vm.service.foodBankSelect != null) {
-                ngoEnrollmentService.setServiceData(data);
-                var serviceCalls = ngoEnrollmentService.savePartial();
-                $q.all(serviceCalls) // .then(onSuccess,onError);
-                $rootScope.$broadcast("scroll-tab", [1, 2]);
+           
+            ngoEnrollmentService.setServiceData(data);
+            var serviceCalls = ngoEnrollmentService.savePartial();
+            $q.all(serviceCalls) // .then(onSuccess,onError);
+            $rootScope.$broadcast("scroll-tab", [1, 2]);
 
-            } else {
-                // vm.showCustomToast("fill the mandatory fields");
-                return false;
-            }
-            
             }
             else{
             	$rootScope.$broadcast("scroll-tab", [1, 2]);

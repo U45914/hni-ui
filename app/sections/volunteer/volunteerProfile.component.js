@@ -16,14 +16,14 @@
 		this.isOpen = false;
 		vm.state=validateService.validateStateDrpdwn();
 		vm.fields = {
-				"firstName" : true,
+				/*"firstName" : true,
 				"lastName" : true,
 				"address" : true,
 				"city" : true,
 				"state" : true,
 				"zip" : true,
 				"phone" : true,
-				"email" : true,
+				"email" : true,*/
 		};
 		vm.msgs = {};
 	    
@@ -73,6 +73,7 @@
 			for(var index = 0; index < keys.length; index++){
 				if(vm.fields[keys[index]]) {
 					doNotPost = true;
+					debugger;
 					break;
 				}
 			}

@@ -51,11 +51,11 @@
 			</md-input-container>
 			<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label> For how long?</label>
-				<input type="text" ng-model="vm.food.subFoodProgramDuration"/>
+				<input type="number" min = "0" ng-model="vm.food.subFoodProgramDuration"/>
 			</md-input-container>
 			<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label> How often renewed?</label>
-				<input type="text" ng-model="vm.food.subFoodProgramRenew"/>
+				<input type="number"  min = "0"  ng-model="vm.food.subFoodProgramRenew"/>
 			</md-input-container>
 	</div>
 			<label>Experience with?</label>

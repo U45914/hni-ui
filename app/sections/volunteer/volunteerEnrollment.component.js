@@ -18,7 +18,7 @@
 		vm.userNameMessage = "";
 		vm.states = validateService.validateStateDrpdwn();
 		vm.fields = {
-				"firstName" : true ,
+				/*"firstName" : true ,
 				"lastName" : true ,
 				"userName" : true ,
 				"password" : false ,
@@ -26,7 +26,7 @@
 				"address" : true ,
 				"city" : true ,
 				"state" : true ,
-				"zip" :  true
+				"zip" :  true*/
 		};
 		vm.msgs = {};
 		

@@ -118,7 +118,7 @@
             	});
             	
                	let partialData = JSON.stringify(finalSaveData);
-            	return $http.post('${baseUrl}/onboard/client/save', partialData);
+            	return $http.post(`${baseUrl}/onboard/client/save`, partialData);
             }
        
              
@@ -153,12 +153,12 @@
             	
                	let clientInfoData = JSON.stringify(finalSaveData);
             	debugger;
-            	var pass = validateCientInfoData(clientInfoData);
+            	var pass = validateCientInfoData(finalSaveData);
             	if(!pass){
             		toastService.showToast("Please fill required fields");
             		return;
             	}
-            	return $http.post('${baseUrl}/users/client/save', clientInfoData);
+            	return $http.post(`${baseUrl}/users/client/save`, clientInfoData);
             }
             
             function validateCientInfoData(data){
@@ -168,7 +168,7 @@
             	if(user == null || address == null){
             		return false;
             	}
-            	if(user.firstName == null || user.ethnicity == null || user.mobilePhone == null){
+            	if(user.firstName == null || user.mobilePhone == null){
             		return false;
             	}
             	if(	address.address1 == null || address.city == null ||	address.state == null || address.zip == null ){

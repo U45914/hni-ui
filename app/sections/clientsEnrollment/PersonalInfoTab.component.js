@@ -43,43 +43,46 @@
 	  vm.save = function(){
 		 // $scope.bday=parseInt(vm.client.bday);
 		  var data = vm.getDataModel(vm.client);
-		  		console.log(data);
-		 	if (/*vm.client.user.ethnicity != null &&*/ vm.client.user.mobilePhone != null
-						&& vm.client.bday != null) {
+		  /*		console.log(data);
+		 	if (vm.client.user.ethnicity != null && vm.client.user.mobilePhone != null
+						&& vm.client.bday != null) {*/
 					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
 					var serviceCalls = clientEnrollmentService.savePartial();
 					$q.all(serviceCalls)// .then(onSuccess,onError);
 					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 
-				} else {
+				/*} else {
 					toastService.showToast("Please fill Fields");
 
 					return false;
-				}
+				}*/
 	  }
 	  
 	  vm.getDataModel = function(client) {
-		  var data = {
-				  "user" : {
-					  	"firstName" : vm.client.user.firstName,
-						"lastName" : vm.client.user.lastName,
-						"ethnicity" : vm.client.user.ethnicity,
-						"mobilePhone" : vm.client.user.mobilePhone,
-				  },
-					"address" : {
-						"name" : "home",
-						"address1" : vm.client.address.address1,
-						"address2" : vm.client.address.address2,
-						"city" : vm.client.address.city,
-						"state" : vm.client.address.state,
-						"zip" : vm.client.address.zip,
-					},
-					"bday" : vm.client.bday,
-					"beenArrested" : vm.client.beenArrested,
-					"beenConvicted" : vm.client.beenConvicted,
-					"race"	: vm.client.race
-		  };
-		  return data;
+		  if(vm.client){
+			  var data = {
+					  "user" : {
+						  	"firstName" : vm.client.user.firstName,
+							"lastName" : vm.client.user.lastName,
+							
+							"mobilePhone" : vm.client.user.mobilePhone,
+					  },
+						"address" : {
+							"name" : "home",
+							"address1" : vm.client.address.address1,
+							"address2" : vm.client.address.address2,
+							"city" : vm.client.address.city,
+							"state" : vm.client.address.state,
+							"zip" : vm.client.address.zip,
+						},
+						"bday" : vm.client.bday,
+						"beenArrested" : vm.client.beenArrested,
+						"beenConvicted" : vm.client.beenConvicted,
+						"race"	: vm.client.race,
+						"ethnicity" : vm.client.ethnicity
+			  };
+			  return data;
+		  }
 	  }
 	  
 	  /*vm.checkPhoneNbr = function() {
