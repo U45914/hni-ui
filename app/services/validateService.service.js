@@ -185,9 +185,7 @@
 				if(data.website == null){
 					field.push("Website Link");
 				}
-				if(data.contact == null){
-					field.push("Contact Person");
-				}
+				
 				if(data.address.name == null){
 					field.push("Address Type");
 				}

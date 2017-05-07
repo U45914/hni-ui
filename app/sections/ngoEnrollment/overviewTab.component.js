@@ -60,34 +60,14 @@
 					"zip" : vm.view.address.zip,
 				},
 			};
-			if (vm.view.name != null && vm.view.mobilePhone != null
-					&& vm.view.website != null && vm.view.contact != null
-					&& vm.view.employees != null && vm.view.overview != null
-					&& vm.view.mission != null) {
+		
 				ngoEnrollmentService.setOverviewData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
-				/*
-				 * .then(function successCallback(response) { if (response &&
-				 * response.data.response && response.data.response ==
-				 * "success") { alert("saved");
-				 * $rootScope.$broadcast("scroll-tab", [1,2]); } else {
-				 * alert("Failed : "+ response.data.errorMsg)
-				 * //toaster.success("Failed : "+ response.data.errorMsg); } },
-				 * function errorCallback(response) {
-				 * 
-				 * alert("Something went wrong, please try again"); }); return
-				 * $q.all(serviceCalls)//.then(onSuccess,onError);
-				 */
 				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-			} else {
-				// toaster.success('Hello world!', 'Toastr fun!');
-				//window.alert("Please fill the fields");
-				//return false;
-			}
+			
 		}
 		vm.load = function() {
 			vm.view = ngoEnrollmentService.overviewData;
-			vm.view.contact=vm.view.name;
 			if (vm.view && vm.view.promoters) {
 				vm.list = vm.view.promoters;
 				vm.view.promoters = " ";
