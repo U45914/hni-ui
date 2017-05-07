@@ -4,7 +4,7 @@
 	function fundingrDirective() {
 		return {
 			scope : {
-
+				
 			},
 			restrict : "E",
 			templateUrl : "fundingTab.tpl.html",
@@ -31,10 +31,7 @@
 			ft.fundingSourceList = ngoEnrollmentService.fundingData["fundingSource"];
 			ft.mealDonaltionList = ngoEnrollmentService.fundingData["mealDonation"];
 			ft.mealFundingList = ngoEnrollmentService.fundingData["mealFunding"];
-			
-			if(ft.fundingSourceList.length != 0){
-				$scope.show = true;
-			}
+
 		}
 		}
 		ft.save = function() {

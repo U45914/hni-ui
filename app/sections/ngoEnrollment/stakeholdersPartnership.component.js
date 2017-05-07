@@ -17,8 +17,7 @@
 	function partnershipController($scope) {
 		
 		var brandObject = {};
-		//$scope.brandList = [];
-		$scope.show = false;
+		
 
 		$scope.addNewRow = function() {
 			brandObject = {};
@@ -26,7 +25,6 @@
 			brandObject.company = $scope.company;
 			brandObject.phoneNumber = $scope.phoneNumber;
 			$scope.brandList.push(brandObject);
-			$scope.show = true;
 			$scope.company = null;
 			$scope.phoneNumber = null;
 			}
@@ -37,9 +35,6 @@
 		
 		$scope.deleteBrand = function(idx) {
 			$scope.brandList.splice(idx,1);
-			if($scope.brandList.length == 0){
-				$scope.show = false;
-			}
 		}
 		
 		$scope.checkPhoneNbr = function() {
