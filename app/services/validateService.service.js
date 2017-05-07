@@ -346,10 +346,10 @@
 					errorArray.push("Food Bank Select");
 				}
 				
-				if(data.foodBankSelect == true){
+				/*if(data.foodBankSelect == true){
 					if(data.foodBankValue == null || data.foodBankValue.length == 0)
 						errorArray.push("Food Name");
-				}
+				}*/
 				
 				/*if(data.resource == null || data.resource.length == 0)
 					errorArray.push("Resource");*/

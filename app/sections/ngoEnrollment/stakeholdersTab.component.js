@@ -19,13 +19,15 @@
 	function StakeHolderTabController($q, ngoEnrollmentService, $scope,
 			$rootScope) {
 		
-		$scope.$on("data-loaded-ngo", function(obj) {
-			shtc.load();
-		});
+		
 		var shtc = this;
 		shtc.boardMainList = [];
 		shtc.brandPartnersList = [];
 		shtc.localPartnersList = [];
+		
+		$scope.$on("data-loaded-ngo", function(obj) {
+			shtc.load();
+		});
 		
 		shtc.save = function() {
 			var data = {
@@ -40,6 +42,7 @@
 		}
 		shtc.load = function() {
 			if (ngoEnrollmentService.stakeHolderData) {
+				ngoEnrollmentService.setStakeHolderData(ngoEnrollmentService.stakeHolderData);
 				shtc.boardMainList = ngoEnrollmentService.stakeHolderData["boardMembers"];
 				shtc.brandPartnersList = ngoEnrollmentService.stakeHolderData["brandPartners"];
 				shtc.localPartnersList = ngoEnrollmentService.stakeHolderData["localPartners"];

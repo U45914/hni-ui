@@ -54,7 +54,7 @@
             var dinnerflag = false;
             
             vm.service = ngoEnrollmentService.serviceData;
-            
+            ngoEnrollmentService.setServiceData(vm.service);
             if(vm.service.brkfstAvailabilty != null){
             	   vm.brkfstAvailabilty = vm.service.brkfstAvailabilty.split(",");
              }

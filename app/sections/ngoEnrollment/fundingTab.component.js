@@ -28,6 +28,7 @@
 		
 		ft.load = function() {
 		if (ngoEnrollmentService.fundingData) {
+			ngoEnrollmentService.setFundingData(ngoEnrollmentService.fundingData);
 			ft.fundingSourceList = ngoEnrollmentService.fundingData["fundingSource"];
 			ft.mealDonaltionList = ngoEnrollmentService.fundingData["mealDonation"];
 			ft.mealFundingList = ngoEnrollmentService.fundingData["mealFunding"];

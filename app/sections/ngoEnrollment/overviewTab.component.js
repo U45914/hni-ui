@@ -34,7 +34,7 @@
 			if (promoters != null) {
 				vm.list.push(promoters);
 				vm.flag = true;
-				vm.view.promoters = " ";
+				vm.view.promoters = "";
 			}
 		}
 		vm.delRow = function(index) {
@@ -68,9 +68,10 @@
 		}
 		vm.load = function() {
 			vm.view = ngoEnrollmentService.overviewData;
+			ngoEnrollmentService.setOverviewData(vm.view);
 			if (vm.view && vm.view.promoters) {
 				vm.list = vm.view.promoters;
-				vm.view.promoters = " ";
+				vm.view.promoters = "";
 			}
 			if (vm.list) {
 				vm.flag = true;
