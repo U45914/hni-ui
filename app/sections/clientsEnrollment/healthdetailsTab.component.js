@@ -17,7 +17,7 @@
 		}
 	}
 	
-	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope','$scope','toastService', validateFormData];
+	healthDetailsTabController.inject = ['$q','clientEnrollmentService','$rootScope','$scope','toastService', 'validateFormData'];
 	
 	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, toastService, validateFormData){
     	var vm = this;
