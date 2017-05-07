@@ -1,7 +1,7 @@
 <fieldset  class="border" style="margin-top: 8px;">
 <span layout="row"> 
 		<md-input-container class="md-block input-primary" flex-gt-sm>
-            <input type="text" required ng-model="source" placeholder="Source"></input> 
+            <input type="text" required ng-model="source" placeholder="Source" autofocus= "on"></input> 
             <div id="errorMsg" ng-if= "fields['fundSource']" style="color:red;"ng-bind="msgs['fundSource']"></div>
           </md-input-container>
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
