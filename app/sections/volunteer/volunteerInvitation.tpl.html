@@ -1,0 +1,58 @@
+<div class="font_for_allpages">
+<top-nav></top-nav>
+<div class="left_float" style="width:19%;padding-top:15px;">
+<left-nav-bar></left-nav-bar>
+</div>
+<div class="left_float" style="width:80.2%;background-color:white;margin-left:9px;">
+<div style="padding:1px;background-color:rgba(128, 128, 128, 0.43);">
+<h1 style="color:white;text-align:left;padding-left:50px;">Onboard the Volunteer</h1>
+</div>
+<div class="form_style">
+	
+	<div class ="md-title mgn_bottom_20">Primary details</div>
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<md-input-container  class="md-block input-primary" flex-gt-sm> 
+				<label>Name of Volunteer</label>
+				<input	type="text" required autofocus = "on" ng-model="vm.name" class="input_box_md" ng-blur="vm.validationCheck('text','name',vm.name)">
+				<div id="errorMsg" ng-if="vm.fields['name']" style="color:red;"ng-bind="vm.msgs['name']"></div> 
+			 </md-input-container>
+			 
+			 
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Phone number</label>
+			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur="vm.validationCheck('number','phone',vm.phoneNumber)">
+			 	 <div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>
+			</md-input-container>
+		</div>
+		
+		<div layout-gt-xs="row" class="width_for_textbox">
+		
+			<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Email address</label>
+			 	<input type="email" id="" required ng-model="vm.email" class="input_box_md" ng-blur="vm.validationCheck('text','email',vm.email,$event)">
+			 	<div id="errorMsg" ng-if="vm.fields['email']" style="color:red;"ng-bind="vm.msgs['email']"></div>
+			</md-input-container>
+			
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Website url</label>
+			 	<input type="text" id="input-websiteUrl" ng-model="vm.webSiteUrl" class="input_box_md">
+			</md-input-container>
+		</div>
+			<md-input-container class="md-block input-primary" flex-gt-sm> 
+			<label>Message to Volunteer</label>
+			 <textarea required ng-model="vm.inviteMsg" md-maxlength="150" rows="3" md-select-on-focus ng-blur="vm.validationCheck('text','inviteMsg',vm.inviteMsg)"></textarea>
+			 <div id="errorMsg" ng-if="vm.fields['inviteMsg']" style="color:red;"ng-bind="vm.msgs['inviteMsg']"></div>
+			 </md-input-container>
+		
+		<br>
+			<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.submit()" >Invite</md-button>
+			
+
+
+</div>
+
+</div>
+<div class="clear_all">
+<landing-footer></landing-footer>
+</div>
+</div>

@@ -1,0 +1,37 @@
+<fieldset  class="border" style="margin-top: 8px;">
+	<span layout="row"> 
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+            <input type="text" required ng-model="source" placeholder="Source" autofocus= "on"></input> 
+          </md-input-container>
+          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            <input type="number" required ng-model="mealQty" placeholder="Meal Quantity" min="0"></input>
+          </md-input-container>
+          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            <input type="text" required ng-model="frequency" placeholder="Frequency"></input>
+          </md-input-container>
+		<div style="padding-top:10px;">
+		 <md-button class="md-fab btn_style"  ng-click="addNewChoice()">
+		  <md-icon md-svg-src="app/assets/images/add.svg" ></md-icon>
+		 </md-button>
+		 </div>
+	</span>
+	<div ng-show = "mealDonaltionList.length != 0">
+	<md-grid-list md-cols="3" md-row-height="45:1" md-gutter="6px" style="margin-top: 17px;">
+	<md-grid-tile  md-rowspan="4" class="grid_list_multi">
+	<b>Source</b></md-grid-tile> <md-grid-tile md-rowspan="4" class="grid_list_multi">
+	<b>Meal quantity</b></md-grid-tile> <md-grid-tile md-rowspan="4" class="grid_list_multi"> 
+	<b>Frequency</b></md-grid-tile> <md-grid-tile>
+	<b></b></md-grid-tile> </md-grid-list>
+	<br>
+	<md-grid-list md-cols="3" md-row-height="45:1" md-gutter="6px" style="margin-top: -28px;"
+		ng-repeat="element in mealDonaltionList track by $index">
+		<br>
+		 <md-grid-tile md-rowspan="3" class="grid_list_multi">	{{element.source}}	</md-grid-tile>
+		 <md-grid-tile md-rowspan="3" class="grid_list_multi">	{{element.mealQty}}	</md-grid-tile>
+		 <md-grid-tile md-rowspan="3" class="grid_list_multi">	{{element.frequency}}	</md-grid-tile>
+	  <md-button class="md-fab btn_style" style="background-color:transparent;
+border-radius:0;color:#D65439;box-shadow:none;border:none;margin-left: 960px; margin-top: -8px;"  ng-click="deleteMeal($index)"> <div style="position: relative;
+    bottom: 10px;">X</div></md-button>
+	 </md-grid-list>
+	</div>
+</fieldset>

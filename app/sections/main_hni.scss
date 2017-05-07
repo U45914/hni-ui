@@ -1,0 +1,192 @@
+@CHARSET "ISO-8859-1";
+
+html
+{
+padding:0px;
+font-family: 'Roboto', sans-serif;
+}
+a
+{
+
+font-family: 'Roboto', sans-serif;
+}
+.action-card.cardStylez{
+box-shadow:none;
+}
+
+.action-card.cardStylez:hover{
+box-shadow:0px 0px 9px -1px #D65439;;
+}
+
+.new_1
+{
+background-color:transparent;
+border-radius:0;
+color:#D65439;
+padding-top:10px;
+box-shadow:none;
+}
+
+
+
+
+
+
+.font_for_allpages1
+{
+color:#808080;
+
+}
+
+
+.font_for_allpages
+{
+color:#808080;
+background: #fff;
+}
+.left_float
+{
+float:left;
+}
+.right_float
+{
+float:right;
+}
+.clear_all
+{
+clear:both;
+}
+
+.form_style
+{
+margin: 60px;
+
+}
+.width_for_textbox
+{
+width:800px;
+}
+.mission_width4
+{
+width:50%;
+}
+.mission_width3
+{
+width:41%;
+}
+.mgn_bottom_20
+{
+margin-bottom:20px;
+}
+.mgn_top10
+{
+margin-top:10px;
+}
+
+.mgn_top20
+{
+margin-top:20px;
+}
+.mgn_left_25
+{
+margin-left:25px;
+}
+.mgn_rt
+{
+margin-right:700px !important;
+}
+.mgn_left_50
+{
+margin-left:250px;
+}
+.save_next_btn
+{
+background:#449d44;
+}
+.border{
+border:1px solid #c0c0c0;
+margin-top:20px;
+
+}
+
+.mgn_left_volunteer
+{
+margin-left:100px;
+}
+
+mission_width2
+{
+width:100%;
+}
+
+.mission_width5
+{
+margin-top:4px;
+width:799px;
+}
+
+.grid_tile_style
+{
+
+font-weight:bold;
+margin-left:30px;
+}
+.md_grid_list
+{
+margin-bottom:18px;
+background-color:#EDF0F5;
+padding:12px;
+}
+.font-weight_credential
+{
+font-weight:bold;
+}
+input
+{
+font-weight:600;
+color:#808080;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+	.width_for_textbox
+	{
+		width:100%;
+	}
+	.mgn_left_25
+	{
+		margin-left:0px;
+	}
+	.mgn_left_50
+	{
+		margin-left:0px;
+	}
+}
+.leftNavAdj{
+	overflow: hidden;
+	width: 103%;
+	margin-top:-15px;
+}
+
+#fdsrv md-input-container.input-primary{
+	margin-top:0px;
+	margin-bottom: 0px;
+}
+
+.grid_list_multi{
+border-width:1px;
+border-color:rgba(132, 119, 119, 0.52);
+border-bottom-style: solid;
+}
+
+.grid_tile_width{
+border-width:1px;
+border-color:rgba(132, 119, 119, 0.52);
+border-bottom-style: solid;
+width: 448px;
+}

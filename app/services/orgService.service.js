@@ -12,7 +12,8 @@
             getOrgs,
             getOrgUser,
             postOrg,
-            removeOrg
+            removeOrg,
+            getOrganization
         };
 
         function getOrgs(success, failure) {
@@ -26,6 +27,10 @@
 
         function getOrgUser(id) {
             return $http.get(`${baseUrl}/organizations/users/${id}`);
+        }
+        
+        function getOrganization(id) {
+            return $http.get(`${baseUrl}/organizations/${id}`);
         }
 
         function postOrg(data) {

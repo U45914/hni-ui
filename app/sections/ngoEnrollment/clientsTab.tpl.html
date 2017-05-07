@@ -1,0 +1,80 @@
+<div class="font_for_allpages1">
+	<h3>Participant Details</h3>
+<br>
+
+
+<p>How many individuals are served?</p>
+<br>
+			<div>
+			<div style="float:left">
+			      <label><b>Daily</b></label>
+			     <div style="width:50%;">
+					<md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Quantity</label>
+              			<input type="number"  ng-model="vm.client.individualsServedDaily" min="0" autofocus = "on">
+              		</md-input-container>
+              		{{vm.client.daily}}				
+				 </div>
+			</div>
+			<div style="float:left">
+				 <label><b>Monthly</b></label>
+			     <div style="width:50%;">
+					<md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Quantity</label>
+              			<input type="number"  ng-model="vm.client.individualsServedMonthly" min="0">
+              		</md-input-container>
+				</div>
+			</div>	
+			<div style="float:left">
+				<label><b>Annually</b></label>
+			     <div style="width:50%;">
+					<md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Quantity</label>
+              			<input type="number"  ng-model="vm.client.individualsServedAnnually" min="0">
+              		</md-input-container>
+				</div>
+		</div>
+		</div>
+
+		 <div flex-gt-sm style="clear:both;">
+            <p> Do you collect individual client info?</p>
+            <div class="padding_top_radio">
+            <md-radio-group   layout="row" ng-model ="vm.client.individualClientInfoCollected" class="md-primary"> 
+            <md-radio-button ng-value="true" >Yes</md-radio-button>
+            <md-radio-button ng-value="false">No</md-radio-button> 
+			</md-radio-group> 
+			</div>
+		</div>
+
+		<div ng-show= "vm.client.individualClientInfoCollected">
+		<div style="width:40%;">
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>If yes, How do you store Information?</label>
+				<input type="text" ng-model="vm.client.storeClientInfo"/>
+			</md-input-container>
+			</div>
+		</div>
+		<div style="width:40%;">
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Percentage of clients unsheltered</label>
+              			<input type="number"  ng-model="vm.client.unshelteredClientPercentage" min="0">
+         </md-input-container>
+         </div>
+         <div style="width:40%;">	
+         <md-input-container class="md-block input-primary" flex-gt-sm>
+                    	<label>Percentage of clients employed/ internship</label>
+              			<input type="number"  ng-model="vm.client.employeedClientPercentage" min="0">
+         </md-input-container>
+         </div> 
+         
+  <br>
+	<hr class "register-input" layout="row" layout-align="center center">
+
+	<br>
+	<md-button class="md-raised button-primary"  ng-click="vm.save();vm.enrollementData();" style="float:right;" >Submit</md-button>
+	<!-- <md-button class="md-raised button-primary " class="save_next_btn" ng-click="vm.save();" >Save </md-button> -->
+         
+</div>
+   
+       
+         

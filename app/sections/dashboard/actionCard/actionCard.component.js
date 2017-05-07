@@ -5,18 +5,19 @@
             bindings: {
                 icon: '@',
                 iconText: '@',
-                bgImage: '@'
+                bgImage: '@',
+                reportType: '=reportType'
             },
             templateUrl: 'action-card.tpl.html',
             controller: ActionCardController,
             controllerAs: 'vm'
         });
 
-    ActionCardController.$inject = [];
+    ActionCardController.$inject = ['$rootScope', '$scope'];
 
-    function ActionCardController() {
+    function ActionCardController($rootScope, $scope) {
         var vm = this;
-
+       
         vm.$onInit = function() {
 
         };

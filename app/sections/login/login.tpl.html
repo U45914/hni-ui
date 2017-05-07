@@ -1,22 +1,51 @@
-<div class="login-background"></div>
+<div >
+<md-toolbar id="top-nav" >
+    <div class="md-toolbar-tools background">
+        <div class="collapse-nav-button" hide show-xs ng-click="vm.toggleCollapsedNav()">
+            <md-button class="md-icon-button" md-ink-ripple="#D65439">
+                <md-icon class="material-icons" style="color:#595959">&#xE5D2;</md-icon>
+            </md-button>
+        </div>
+        <div id="not-impossible-logo" ui-sref="volunteer-landing"><img src="~images/logo.png"/></div>
+        <div id="toolbar-content"></div>
+        <span flex></span>
+        
+    </div>
+</md-toolbar>
+</div>
+
+
+
+
+
+<div class="nopad_16">
+        
+       <div class="login_bg">   	 
+ 
 <div id="login-container">
     <div class="login-box" layout="row" layout-wrap>
         <md-content class="md-whiteframe-4dp">
             <div class="login-box-internal">
-                <div class="login-image-container">
-                    <img class="login-logo" ng-src="~images/not_impossible_logo.png"/>
-                </div>
+            
+                            
                 <div class="login-prompt">Login by signing into your account below.</div>
+                <center><div style="color:red" ng-bind="vm.validateCredentials"></div></center>
+                <br>
                 <md-input-container class="md-block input-primary" flex-gt-sm>
                     <label>Email</label>
                     <input type="email" ng-model="vm.username">
                 </md-input-container>
-                <md-input-container class="md-block password-container input-primary" flex-gt-sm>
+                <div class="mgn_top20">
+                <md-input-container class="md-block password-container input-primary mgn_top10" flex-gt-sm>
                     <label>Password</label>
-                    <input type="{{vm.inputType}}" ng-model="vm.password" class="visible">
+                    <input type="{{vm.inputType}}"  ng-model="vm.password"  class="visible" >
                     <i class="material-icons" ng-class="{'active': vm.isActive}" ng-click="vm.togglePassword()">&#xE417;</i>
                 </md-input-container>
-                <md-button class="md-raised button-primary" ng-click="vm.signIn()">Sign In</md-button>
+                </div>
+                <md-button class="md-raised button-primary md-ink-ripple md-button"  ng-click="vm.signIn()" ng-disabled="vm.isDisabled" ng-model="vm.isDisabled">
+                <span ng-show="vm.signInButton == 'Signing In ...'"></span>
+           		 {{ vm.signInButton }}
+                </md-button>
             </div>
             <div class="login-box-external">
                 <div>Or use your social network account</div>
@@ -25,3 +54,8 @@
         </md-content>
     </div>
 </div>
+       </div>
+       
+
+	<landing-footer></landing-footer>
+	</div>

@@ -3,9 +3,9 @@
         .module('app')
         .service('authService', authService);
 
-    authService.$inject = ['$http', '$timeout', '$state', 'userService', 'rolesConstant', 'serviceConstants'];
+    authService.$inject = ['$http', '$timeout', '$state', 'userService', 'rolesConstant', 'serviceConstants','toastService'];
 
-    function authService($http, $timeout, $state, userService, rolesConstant, serviceConstants) {
+    function authService($http, $timeout, $state, userService, rolesConstant, serviceConstants, toastService) {
         let baseUrl = serviceConstants.baseUrl;
         let LOCAL_TOKEN_KEY = 'hni_token';
         let LOCAL_ROLE = 'hni_role';
@@ -22,10 +22,13 @@
             loginExternal,
             logout,
             isAuthorized,
+            setLoginResponse,
             isAuthenticated: () => isAuthenticated,
             getToken: () => authToken,
             getRole: () => authRole,
-            getPermissions: () => authPermissions
+            getPermissions: () => authPermissions,
+            getUserRole,
+            setUserRole
         };
 
         function loadUserCredentials() {
@@ -41,16 +44,55 @@
             }
         }
 
+        function setUserRole(userRole) {
+        	window.localStorage.setItem("userType", userRole);
+        }
+        
+        function getUserRole() {
+        	return window.localStorage.getItem("userType");
+        }
+        
         function setToken(token) {
             window.localStorage.setItem(LOCAL_TOKEN_KEY, token);
             isAuthenticated = true;
             authToken = token;
         }
-
-        function login(name, pw) {
-
+        
+        function setOrgInfo(orgInfo) {
+        	if (orgInfo) {
+        		window.localStorage.setItem("userOrgInfo", orgInfo);
+        	}
+        }
+        
+        function setLoginResponse(response) {
+        	setToken(response.data.token);
+            setOrgInfo(response.data.user.organizationId);
+            userService.setUser(response.data.user);
+            setUserRole(response.data.roleName)
         }
 
+       
+       function login(username, password) {
+        	var vm = {
+        			username : username,
+        			password : password
+        	}
+        	return $http.post(`${baseUrl}/security/authentication`, vm);
+        }
+        
+        /*
+		 * function login(username, password){ var payLoad ={ method: "POST",
+		 * url:
+		 * "http://localhost:8080/hni-admin-service/api/v1/security/authentication",
+		 * data: {"username":username, "password":password} }
+		 * 
+		 * $http(payLoad).then(successResp, errorResp); }
+		 * 
+		 * function successResp(data, status, headers, config){
+		 * console.log(resp); }
+		 * 
+		 * function errorResp(){ console.log("error happened"); }
+		 */
         function loginExternal(provider, token) {
             $http.get(`${baseUrl}/security/${provider}/authentication?access_token=${token}`)
                 .then(function successCallback(response) {

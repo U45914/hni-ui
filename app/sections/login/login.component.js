@@ -10,16 +10,20 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['authService', 'externalAuthService'];
+    LoginController.$inject = ['authService', 'externalAuthService', 'validateService', '$state', 'toastService'];
 
-    function LoginController(authService, externalAuthService) {
+    function LoginController(authService, externalAuthService, validateService, $state, toastService) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
         vm.isActive = false;
         vm.signIn = signIn;
         vm.authenticate = authenticate;
-
+        vm.isDisabled = false;
+        vm.signInButton = "Sign In";
+        vm.loginFail = false;
+        vm.validateCredentials = "";
+      
         function authenticate(provider) {
             externalAuthService.googleAuthenticate()
                 .then((response) => {
@@ -33,9 +37,29 @@
         }
 
         function signIn() {
-            //authService.login(vm.username, vm.password).then(function() {
-            //    $state.go('dashboard', {}, {reload: true});
-            //});
+        	 vm.signInButton = "Signing In ...";
+        	 vm.isDisabled = true;
+        	 vm.validateCredentials = validateService.validateCredentials(vm.username, vm.password);
+        	 if( vm.validateCredentials == ""){
+        		 authService.login(vm.username, vm.password)
+        		 	.then((response) => {
+        		 		if (response) {
+        		 			vm.validateCredentials = "";
+        		 			authService.setLoginResponse(response);   
+        		 			$state.go('dashboard');
+        		 			toastService.showToast("Welcome " + response.data.user.firstName +" "+response.data.user.lastName +" !");
+        		 		} else {
+        		 			vm.validateCredentials = "Username/Password incorrect";
+        		 			vm.isDisabled = false;
+            		 		vm.signInButton = "SIGN IN";
+        		 		}
+        		 		
+        		 	});
+        	 } else{
+        		 vm.signInButton = "Sign In";
+        		 vm.isDisabled = false;
+        		 vm.loginFail = true;
+        	 }
         }
     }
 })();

@@ -1,3 +1,8 @@
+<div>
+<div class="left_float" style="width:19%;padding-top:15px;">
+<left-nav-bar></left-nav-bar>
+</div>
+<div class="left_float" style="width:80.2%;background-color:white;padding-bottom:30px;margin-left:9px;">
 <div class="volunteer-landing-header" layout="row" layout-wrap>
     <div class="volunteer-welcome-header" flex="100">
         <span class="material-icons">&#xE420;</span>
@@ -13,7 +18,8 @@
 
 <div class="volunteer-landing-learn" layout="row" layout-wrap>
     <div flex="50" flex-xs="100">
-        <img ng-src="~images/volunteer_landing_video.png" ng-click="vm.openVideo()">
+        <img ng-src="~images/volunteer_landing_video.png" style="height: 13.8125rem;
+    width: 23.25rem;"  ng-click="vm.openVideo()">
     </div>
     <div flex="50" flex-xs="100">
         <div>
@@ -26,6 +32,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="volunteer-landing-signup" layout="row" layout-wrap>
     <div flex="50" flex-xs="100" flex-order-xs="1">
@@ -40,13 +47,15 @@
         </div>
     </div>
     <div flex="50" flex-xs="100" flex-order-xs="-1">
-        <img ng-src="~images/volunteer_landing_volunteer.jpg" ng-click="vm.signUp()">
+        <img ng-src="~images/volunteer_landing_volunteer.jpg" style="height: 13.8125rem;
+    width: 23.25rem;" ng-click="vm.signUp()">
     </div>
 </div>
 
 <div class="volunteer-landing-contact" layout="row" layout-wrap>
     <div flex="50" flex-xs="100">
-        <img ng-src="~images/volunteer_questions.jpg">
+        <img ng-src="~images/volunteer_questions.jpg" style="height: 13.8125rem;
+    width: 23.25rem;">
     </div>
     <div flex="50" flex-xs="100">
         <div>
@@ -60,4 +69,11 @@
     </div>
 </div>
 
-<div class="volunteer-landing-bottom"></div>
+</div>
+
+
+
+</div>
+<div class="clear_all">
+<landing-footer></landing-footer>
+</div>

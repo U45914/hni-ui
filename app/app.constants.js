@@ -2,7 +2,7 @@
     angular
         .module('app')
         .constant('serviceConstants', {
-            baseUrl: "http://hni-api-dev3.centralus.cloudapp.azure.com:8080/api/v1"
+            baseUrl: "http://localhost:8080/hni-admin-service/api/v1"
         })
         .constant('rolesConstant', {
             superAdmin: '1',
@@ -10,5 +10,12 @@
             volunteer: '3',
             client: '4',
             user: '5'
+        })
+        .constant('rolesConstantName', {
+            superAdmin: 'Super Admin',
+            ngoAdmin: 'NGOAdmin',
+            volunteer: 'Volunteer',
+            client: 'Client',
+            user: 'User'
         });
 })();

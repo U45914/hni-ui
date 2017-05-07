@@ -1,18 +1,44 @@
-<div class="action-cards-section" layout="row" layout-wrap ng-if="vm.userRole == 1">
-    <action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE561;" icon-text="Providers"></action-card>
-    <action-card ui-sref="clients" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Clients"></action-card>
-    <action-card ui-sref="volunteers" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE7FB;" icon-text="Volunteers"></action-card>
-    <action-card ui-sref="organizations" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE0AF;" icon-text="Organizations"></action-card>
-</div>
-<div class="action-cards-section" layout="row" layout-wrap ng-if="vm.userRole == 2">
-    <action-card flex-gt-sm="33" flex="100" icon="&#xE87C;" icon-text="+ Clients"></action-card>
-    <action-card flex-gt-sm="33" flex="100" icon="&#xE7FB;" icon-text="+ Volunteers"></action-card>
-    <action-card flex-gt-sm="33" flex="100" icon="&#xE0DA;" icon-text="+ Access Code"></action-card>
-</div>
-<div ng-if="vm.userRole != 1 && vm.userRole != 2">
-    <div id="welcome-section">
-        <span class="material-icons">&#xE420;</span>
-        <h1>Welcome!</h1>
-    </div>
-    <p class="welcome-paragraph">Thank you for volunteering. Please select the organization you will be placing orders for below.</p>
-</div>
+
+<div class="font_for_allpages"></div>
+<div align="left">
+<!-- 	<div class="action-cards-section " layout="row" layout-wrap>
+		<div ng-repeat="x in vm.user" >
+		<action-card ui-sref="{{x.servicePath}}" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="{{x.serviceName}}">aaa</action-card>
+		<action-card ui-sref="{{x.servicePath}}" flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="{{x.serviceName}}">aaa</action-card>
+		</div>
+	</div> -->
+		
+	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.superAdmin">
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="NGO" report-type="ngo" ng-click="vm.showReportView('ngo')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE925;" icon-text="Volunteers" ng-click="vm.showReportView('volunteer')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" ng-click="vm.showReportView('participant')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" ng-click="vm.showReportView('provider')"></action-card>
+	</div>
+	
+	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.ngoAdmin" >
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE925;" icon-text="Volunteers" ng-click="vm.showReportView('volunteer')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" ng-click="vm.showReportView('participant')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" ng-click="vm.showReportView('provider')"></action-card>
+	</div>
+	
+	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.ngo" >
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Volunteers" ng-click="vm.showReportView('volunteer')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" ng-click="vm.showReportView('participant')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" ng-click="vm.showReportView('provider')"></action-card>
+	</div>
+	
+	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.volunteer" >
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Orders Completed" ng-click="vm.showReportView('order')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Reports" ng-click="vm.showReportView('report')"></action-card>
+	</div>
+	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.client" >
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Orders" ng-click="vm.showReportView('report')"></action-card>
+	</div>	
+	
+	
+	 <div ng-repeat="report in vm.reportCollection" class="scroll_vertical">
+		<report-generation ds="report" index-first="$index" reportType="report.typeKey" serviceds="vm.service" headerds="vm.headers"></report-generation>
+	 </div>
+	
+
+</div>	

@@ -6,6 +6,7 @@ md-card.action-card {
   align-items: center;
   position: relative;
   height: rem(280px);
+  width: rem(350px);
   color: $color-white;
   background-color: $color-action-card;
   text-transform: uppercase;
@@ -16,4 +17,7 @@ md-card.action-card {
 .action-card-icon {
   font-size: rem(35px);
   padding: rem(12px);
+}
+.fa-handshake-o{
+font-size: rem(62px);
 }

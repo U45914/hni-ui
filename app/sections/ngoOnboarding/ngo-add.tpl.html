@@ -1,0 +1,107 @@
+<div class="font_for_allpages">
+<top-nav></top-nav>
+<div class="left_float">
+<left-nav-bar></left-nav-bar>
+</div>
+<div class="left_float">
+	<h1>Add NGO to my Organization</h1>
+
+<div class="form_style">
+	<div class ="md-title mgn_bottom_20">Primary details</div>
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<md-input-container class="md-block input-primary" > 
+				<label>Organization Name</label>
+				<input	type="text" required  ng-disabled="vm.noEdit" ng-model="vm.orgInfo.name" class="input_box_md "> 
+			 </md-input-container>
+			 
+			 
+			<md-input-container class="md-block input-primary mgn_left_50" flex-gt-sm> 
+				<label>Phone number</label>
+			 	<input type="text" id="input-phone" required  ng-disabled="vm.noEdit" ng-model="vm.orgInfo.phone" class="input_box_md">
+			</md-input-container>
+	</div>
+	<div layout-gt-xs="row" class="width_for_textbox">
+		
+			<md-input-container class="md-block input-primary " flex-gt-sm> 
+				<label>Email address</label>
+			 	<input type="email" id="" required ng-disabled="vm.noEdit" ng-model="vm.orgInfo.email" class="input_box_md">
+			</md-input-container>
+			
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Web site url</label>
+			 	<input type="text" id="input-websiteUrl" required ng-disabled="vm.noEdit" ng-model="vm.orgInfo.website" class="input_box_md">
+			</md-input-container>
+		</div>
+	
+	
+	<div class ="md-title mgn_bottom_20">Address</div>
+		
+		 <div layout-gt-xs="row" class="width_for_textbox">
+				<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>Name</label>
+			 	<input type="text" required ng-disabled="vm.noEdit" ng-model="vm.orgInfo.addresses[0].name" >
+				</md-input-container>
+			
+				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Address</label>
+			 	<input type="text" required ng-disabled="vm.noEdit" ng-model="vm.orgInfo.addresses[0].address1" >
+				</md-input-container>
+			</div>
+			<div layout-gt-xs="row" class="width_for_textbox">
+				<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>City</label>
+			 	<input type="text" required ng-disabled="vm.noEdit" ng-model="vm.orgInfo.addresses[0].city">
+				</md-input-container>
+		
+				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+         			 <label>State</label>
+          			 <input type="text" name="type" required ng-disabled="vm.noEdit" ng-model="vm.orgInfo.addresses[0].state">
+            			
+        		</md-input-container>
+			
+			
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Zip code</label>
+			 	<input type="text" required  maxlength = "6" ng-disabled="vm.noEdit" ng-model="vm.orgInfo.zip">
+				</md-input-container>
+		</div>
+	
+		<div class ="md-title mgn_bottom_20">Add new NGO user details</div>
+		
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<md-input-container class="md-block input-primary" flex-gt-sm> 
+				<label>First Name</label>
+			 	<input type="text" required ng-model="vm.adminName">
+			</md-input-container>
+			
+				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Last Name</label>
+			 	<input type="text" required ng-model="vm.lastName">
+				</md-input-container>
+			</div>
+			
+			<div layout-gt-xs="row">
+			<md-input-container class="md-block input-primary " flex-gt-sm> 
+				<label>E-mail to invite</label>
+			 	<input type="text" required ng-model="vm.email">
+			</md-input-container>
+			
+				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Phone</label>
+			 	<input type="text" required maxlength="12" ng-model="vm.phone" ng-blur = "vm.checkPhoneNbr()" placeholder="999-999-9999">
+			 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
+				</md-input-container>
+			</div>
+			
+			<md-button class="md-raised button-primary"  id="input-submit" ng-click="vm.addNgoUser()" >Invite user</md-button>
+		
+	<div ng-show = {{vm.validateInvite}}>
+	<font color="red">{{vm.validateNGOAdd}}</font>
+	</div>
+
+</div>
+</div>
+<div class="clear_all">
+<landing-footer></landing-footer>
+</div>
+</div>			

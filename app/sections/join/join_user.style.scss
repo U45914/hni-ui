@@ -1,0 +1,102 @@
+@import '_includes';
+
+#join_user-container {
+	max-width: rem(400px);
+	margin-left: auto;
+	margin-right: auto;
+	padding: rem(60px) rem(160px) rem(60px) rem(160px);
+	& .join_user-box {
+        & md-content {
+            border-radius: 8px;
+
+		    & .join_user-box-internal {
+              padding: rem(40px) rem(25px) 0 rem(25px);
+            }
+
+			& .join_user-image-container {
+				text-align: center;
+				& .join_user-logo {
+					width: 75%;
+				}
+			}
+			& .join_user-prompt {
+				color: $color-gray-darker;
+				text-align: center;
+				margin-top: 30px;
+				margin-bottom: 48px;
+			}
+			& md-input-container {
+				margin: 0px;
+			}
+
+			& .password-container {
+				position: relative;
+
+				& i {
+					-webkit-touch-callout: none;
+				    user-select: none;
+				    outline: none;
+					cursor: pointer;
+					position: absolute;
+					right: 20px;
+					color: $color-gray-lighter;
+					&.active {
+						color: $color-gray-dark;
+					}
+				}
+			}
+
+			& .md-button {
+              display: flex;
+              justify-content: center;
+              margin: rem(16px) auto rem(32px) auto;
+			}
+
+            .join_user-box-external {
+              padding: rem(30px);
+              text-align: center;
+              color: $color-text;
+              background-color: $color-gray-lighter;
+
+              & button.md-button {
+                margin-bottom: 0;
+                color: $color-text;
+                text-transform: none;
+              }
+
+              & img {
+                height: rem(20px);
+                width: rem(20px);
+                margin-right: rem(6px);
+              }
+            }
+		}
+	}
+}
+
+.join_user-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: rem(300px);
+  width: 100%;
+  background-color: $color-red-base;
+}
+
+@media screen and (max-width: 960px) {
+  #join_user-container {
+    padding: rem(80px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #join_user-container {
+    padding: rem(40px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #join_user-container {
+    padding: rem(20px);
+  }
+}

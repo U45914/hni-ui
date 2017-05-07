@@ -1,0 +1,99 @@
+<div class="font_for_allpages1" >
+	<h3>Food Preferences Details</h3>
+
+
+
+<br>
+<div id="healthId">
+<div layout-gt-xs="row" class="width_for_textbox">	
+<md-input-container class="md-block input-primary" flex-gt-sm>
+            <label>Allergies</label>
+			<input type="text"  required ng-blur="vm.validationCheck('text','allergies',vm.health.allergies)"
+				ng-model="vm.health.allergies"/>
+	<div id="errorMsg" ng-if="vm.fields['allergies']" style="color:red;" ng-bind="vm.msgs['allergies']"></div>
+	</md-input-container>
+</div>
+<br>
+	<md-radio-group  layout = "row" ng-model="vm.health.addiction"  class="md-primary">
+	<label>History of addiction</label>
+	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
+	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
+	</md-radio-group>
+	<div ng-show="vm.health.addiction">
+	<div layout-gt-xs="row" class="width_for_textbox">	
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>If yes then: provide type of addiction</label>
+				<input type="text" ng-model="vm.health.addictionType"> 
+			</md-input-container>
+		
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>History of mental health problems</label>
+				<input type="text" 
+				ng-model="vm.health.mentalHealthIssue" /> 
+			</md-input-container>
+	</div>
+	<div layout-gt-xs="row" class="width_for_textbox">
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>If yes then: please explain</label>
+				<input type="text" ng-model="vm.health.mentalHealthIssueHistory" />
+			</md-input-container>
+	</div>
+	</div>
+			<br>
+			<label class="mgn_top10">Height</label>
+			<md-input-container  flex-gt-sm class="mgn_left_25">
+			<label>feet</label>
+            	<input type="text" ng-model="vm.health.feet" />
+            	</md-input-container>
+            	<md-input-container class="mgn_left_25">
+            	<label>inch</label>
+				<input type="text" ng-model="vm.health.inch"/>
+			</md-input-container>
+		
+			<label class="mgn_left_25">Weight</label>
+			<md-input-container  flex-gt-sm class="mgn_left_25">
+            	<label>Lbs </label>
+				<input type="text" ng-model="vm.health.weight" />
+			</md-input-container>
+		<div layout-gt-xs="row" class="width_for_textbox">	
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label>Minutes of Exercise per week</label>
+				<input type="text" ng-model="vm.health.exercisePerWeek" />
+			</md-input-container>
+		</div>
+	<div layout-gt-xs="row" class="width_for_textbox">	
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+	      <label>Last time you saw a doctor?</label>
+	      	 <md-select name="type" ng-model="vm.health.lastVisitDoctor" required ng-blur="vm.validationCheck('text','lastVisitDoctor',vm.health.lastVisitDoctor)">
+	            <md-option ng-value="0">0-6 Months</md-option>
+	            <md-option ng-value="1">6-12 Months</md-option>
+	            <md-option ng-value="2">1-2 Years</md-option>
+	            <md-option ng-value="3">more than 2 Years</md-option>
+	            <md-option ng-value="4">I have never seen a doctor</md-option>
+	         </md-select>
+	        <div id="errorMsg" ng-if="vm.fields['lastVisitDoctor']" style="color:red;" ng-bind="vm.msgs['lastVisitDoctor']"></div>
+     </md-input-container>
+
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+	      <label>Last time you saw a dentist?</label>
+	      	 <md-select name="type" ng-model="vm.health.lastVisitDentist" required ng-blur="vm.validationCheck('text','lastVisitDentist',vm.health.lastVisitDentist)">
+	            <md-option ng-value="0">0-6 Months</md-option>
+	            <md-option ng-value="1">6-12 Months</md-option>
+	            <md-option ng-value="2">1-2 Years</md-option>
+	            <md-option ng-value="3">more than 2 Years</md-option>
+	            <md-option ng-value="4">I have never seen a dentist</md-option>
+	         </md-select>
+	         <div id="errorMsg" ng-if="vm.fields['lastVisitDentist']" style="color:red;" ng-bind="vm.msgs['lastVisitDentist']"></div>
+     </md-input-container>
+   </div>
+    <br><br>
+		<hr class "register-input mgn_top10" layout="row" layout-align="center center">
+		<!-- 	<div  class="left_float">
+				<br>
+				<md-button class="md-raised button-primary" ng-click="vm.save();">Save
+				</md-button>
+			</div> -->
+		<md-button class="md-raised button-primary"  ng-click="vm.save();vm.enrollementData();" style="float:right;" >Submit</md-button>
+</div>
+
+</div>

@@ -1,0 +1,93 @@
+@import '_includes';
+
+*, 
+*:before, 
+*:after {
+   
+}
+
+html, body {
+  background: #f1f1f1;
+  font-family: 'Merriweather', sans-serif;
+  padding: 1em;
+}
+
+h1 {
+   text-align: center;
+   color: #a8a8a8;
+   
+}
+
+form {
+   max-width: 700px;
+   text-align: center;
+   margin: 20px auto;
+  
+  input, textarea {
+     border:0; outline:0;
+     padding: 1em;
+     display: block;
+     width: 90%;
+     margin-top: 1em;
+     font-family: 'Merriweather', sans-serif;
+    border-radius: 15px;
+     resize: none;
+    
+    &:focus {
+     
+    }
+  }
+  
+  #input-submit {
+     color: white; 
+     background:  $color-red-base;
+     cursor: pointer;
+     width: 53%;
+     margin-left: 27%;
+    border-radius: 15px;
+   
+  }
+  
+  textarea {
+      height: 126px;
+  }
+}
+
+
+.half {
+  float: left;
+  width: 48%;
+  margin-bottom: 1em;
+}
+
+.right { width: 50%; }
+
+.left {
+     margin-left: 27%; 
+}
+
+
+@media (max-width: 480px) {
+  .half {
+     width: 100%; 
+     float: none;
+     margin-bottom: 0; 
+  }
+}
+
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+.ng-pristine .ng-untouched .md-input .ng-empty .ng-invalid .ng-invalid-required .input_box_md
+{
+width:410px;
+}

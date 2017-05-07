@@ -1,0 +1,227 @@
+<div class="font_for_allpages1">
+	<h3>Meal services details</h3>
+<br>
+<h4>Existing services offered</h4>
+<div id="fdsrv">
+		<div flex layout = "row" layout-align="start center">
+          <md-checkbox ng-model="vm.service.brkfstChk" class="md-primary" md-autofocus>
+            Breakfast
+          </md-checkbox>
+          <md-input-container class="md-block input-primary " style="margin-left:25px;" flex="60" ng-show ="vm.service.brkfstChk" style="padding: 0px;margin: 0px;">
+            <label>Quantity : </label>
+            <input type="number" required ng-model="vm.service.brkfstQty"  ng-blur="vm.validate('number','brkfstQty',vm.service.brkfstQty)"></input>
+            <div id="errorMsg" ng-if="vm.fields['brkfstQty']" style="color:red;"ng-bind="vm.msgs['brkfstQty']"></div>
+          </md-input-container>
+        </div>
+		<div flex layout = "row" layout-align="start center">
+          <md-checkbox md-no-ink  ng-model="vm.service.lunchChk" class="md-primary">
+            Lunch
+          </md-checkbox>
+          <md-input-container class="md-block input-primary " style="margin-left:25px;" ng-show ="vm.service.lunchChk" flex="60" style="padding: 0px;margin: 0px;">
+            <label>Quantity : </label>
+            <input type="number"  style="margin-bottom:28px;"  required ng-model="vm.service.lunchQty" ng-blur="vm.validate('number','lunchQty',vm.service.lunchQty)"></input>
+             <div id="errorMsg" ng-if="vm.fields['lunchQty']" style="color:red;"ng-bind="vm.msgs['lunchQty']"></div>
+          </md-input-container>
+        </div>
+        <div flex layout = "row" layout-align="start center">
+          <md-checkbox md-no-ink  ng-model="vm.service.dinnerChk" class="md-primary">
+            Dinner
+          </md-checkbox>
+          <md-input-container class="md-block input-primary " style="margin-left:25px;" ng-show ="vm.service.dinnerChk" flex="60" style="padding: 0px;margin: 0px;">
+            <label>Quantity : </label>
+            <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.dinnerQty" ng-blur="vm.validate('number','dinnerQty',vm.service.dinnerQty)"></input>
+            <div id="errorMsg" ng-if="vm.fields['dinnerQty']" style="color:red;"ng-bind="vm.msgs['dinnerQty']"></div>
+          </md-input-container>
+        </div>
+        <div flex layout = "row" layout-align="start center">
+          <md-checkbox md-no-ink  ng-model="vm.service.baggedChk" class="md-primary">
+            Bagged
+          </md-checkbox>
+          <md-input-container class="md-block input-primary" style="margin-left:25px;" ng-show ="vm.service.baggedChk" flex="60" style="padding: 0px;margin: 0px;">
+            <label>Quantity : </label>
+            <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.baggedQty"></input>
+            <div id="errorMsg" ng-if="vm.fields['baggedQty']" style="color:red;"ng-bind="vm.msgs['baggedQty']"></div>
+          </md-input-container>
+        </div>
+
+	
+		<div flex-gt-sm="50" layout = "row">
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            <label>Number of gift cards </label>
+            <input type="number" ng-model="vm.service.giftCard" min="0" autofocus= "on"></input>
+          </md-input-container> 
+          
+          <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
+            <label>Others </label>
+            <input type="number"  ng-model="vm.service.other" min="0"></input>
+          </md-input-container>
+          </div>
+          
+          
+
+	<h4>Calender of Services</h4><br>
+	  <div class="main_grid">
+		<md-grid-list style="margin-bottom:30px; "   md-cols="4" md-row-height="20:1" md-gutter="6px">
+			<md-grid-tile ></md-grid-tile>
+			<md-grid-tile style="margin-left:50px;font-weight:bold;margin-left:80px;"  ng-repeat="type in vm.frequency"ng-model="vm.type">
+				<div layout="row" flex>{{type}}</div>
+			</md-grid-tile> 
+		</md-grid-list>
+		
+		<md-grid-list  md-cols="4" style="margin-bottom:10px;background-color:#EDF0F5;" md-row-height="6:1" md-gutter="6px" ng-repeat="var in vm.mealSelect" ng-model="vm.weekDay">
+			<md-grid-tile>
+				<div flex>{{var.day}}</div>
+			</md-grid-tile> 
+			<md-grid-tile ng-repeat="type in var.type">
+				<md-checkbox style="margin-top:15px;" aria-label="No" ng-model="type.checked" class="md-primary"></md-checkbox>
+			</md-grid-tile>
+		</md-grid-list>
+	</div>	
+	
+<br>
+<div>
+	<div layout-gt-xs="row" class="services_width"> 
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+	      <label>NGO monthly budget for food</label>
+	      	 <md-select name="type" ng-model="vm.service.monthlyBudget" required  ng-blur="vm.validate('number','monthlyBudget',vm.service.monthlyBudget)">
+	           	
+	           	<md-option ng-value="0">$0</md-option>
+	            <md-option ng-value="1">$1 - $500</md-option>
+	            <md-option ng-value="2">$500 - $2500</md-option>
+	            <md-option ng-value="3">$2500 - $5k</md-option>
+	            <md-option ng-value="4">$5k - $10k</md-option>
+	            <md-option ng-value="5">more than $10k</md-option>
+	         </md-select>
+	         <div id="errorMsg" ng-if="vm.fields['monthlyBudget']" style="color:red;"ng-bind="vm.msgs['monthlyBudget']"></div>
+     </md-input-container>
+     </div>
+	
+	<div layout-gt-xs="row" class="services_width">
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+		<label>Operating costs associated with meal services</label>
+		 <md-select ng-model="vm.service.operatingCost">
+		 		<md-option ng-value="-1">Select</md-option>
+				<md-option ng-value="0">$0</md-option>
+	            <md-option ng-value="1">$1 - $500</md-option>
+	            <md-option ng-value="2">$500 - $2500</md-option>
+	            <md-option ng-value="3">$2500 - $5k</md-option>
+	            <md-option ng-value="4">$5k - $10k</md-option>
+	            <md-option ng-value="5">more than $10k</md-option>
+		</md-select>
+	</md-input-container>
+	</div>
+</div>
+<br><br><br>
+<div style="clear:both;">
+	
+	<div layout-gt-xs="row" class="services_width">
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+	<label>Personnel costs</label> 
+	<md-select ng-model="vm.service.personalCost">
+				<md-option ng-value="-1">Select</md-option>
+				<md-option ng-value="0">$0</md-option>
+	            <md-option ng-value="1">$1 - $500</md-option>
+	            <md-option ng-value="2">$500 - $2500</md-option>
+	            <md-option ng-value="3">$2500 - $5k</md-option>
+	            <md-option ng-value="4">$5k - $10k</md-option>
+	            <md-option ng-value="5">more than $10k</md-option>
+				<md-option ng-value="6">personnel are volunteers</md-option>
+	</md-select><br>
+	</md-input-container>
+	</div>
+	
+	    <div layout-gt-xs="row" class="services_width">
+		 <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
+            <label>volunteers required </label>
+            <input type="number"   required ng-model="vm.service.volunteerNbr"  ng-blur="vm.validate('number','volunteerNbr',vm.service.volunteerNbr)"></input>
+             <div id="errorMsg" ng-if="vm.fields['volunteerNbr']" style="color:red;"ng-bind="vm.msgs['volunteerNbr']"></div>
+          </md-input-container>
+	    </div>
+</div>
+
+<div class="radio_style">
+	
+	<label>Assistance with food stamps?</label><br>
+	<div class="padding_top_radio">
+	<md-radio-group   layout="row" ng-model ="vm.service.foodStamp" class="md-primary"> 
+            <md-radio-button ng-value="true" >Yes</md-radio-button>
+            <md-radio-button ng-value="false">No</md-radio-button> 
+	</md-radio-group> 
+	</div>
+</div>
+<div class="radio_style">	
+	
+	<label>Connections to foodbanks</label><br>
+	<div class="padding_top_radio">
+	<md-radio-group   layout="row" ng-model ="vm.service.foodBankSelect" class="md-primary"> 
+            <md-radio-button ng-value="true" >Yes</md-radio-button>
+            <md-radio-button ng-value="false">No</md-radio-button> 
+	</md-radio-group> 
+	</div>
+</div>
+
+	<div ng-show="vm.service.foodBankSelect">
+	<div layout ="row" flex-gt-sm="50">
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+            <label>Name of food bank </label>
+            <input type="text"   ng-model="vm.service.foodBankValue"></input>
+          </md-input-container> 
+          <div style="padding-top:10px;">
+		  <md-button class="md-fab btn_style"  ng-click="vm.foodBbank(vm.service.foodBankValue)" >
+		   <md-icon md-svg-src="app/assets/images/add.svg" ></md-icon>
+		  </md-button>
+		  </div>
+	</div>
+		
+		<div>
+			<md-grid-list md-cols="1" md-row-height="20:1" md-gutter="6px">
+			<md-grid-tile ng-repeat="fdbnk in vm.list track by $index">
+				<div id="header" layout="row" flex>{{fdbnk}}</div>
+				<md-button class="md-fab btn_style mgn_rt" style="background-color:transparent;
+border-radius:0;
+color:#D65439;
+
+box-shadow:none;border:none;" ng-click="vm.delRow($index)" ng-show="vm.flag1"><div style="position: relative;
+    bottom: 10px;">X</div></md-button>
+			</md-grid-tile>
+			</md-grid-list>
+		</div>
+	</div>
+	
+	
+	
+
+	<div ng-click="vm.test()">
+	<label>What resources do you offer to your clients</label>
+	<div class="padding_top_radio">
+		<div class="multiselect" >
+			<div class="selectBox" ng-click="vm.showCheckboxes(); $event.stopPropagation();">
+				<select>
+					<option>Select an option</option>
+				</select>
+				<div class="overSelect"></div>
+			</div>
+			 <div id="checkboxes" ng-show="vm.flag" >
+				<label for="one" ng-repeat="p in vm.resources"> 
+				
+				<!-- <input	type="checkbox" id="one" ng-model="vm.service.resourceChck" ng-click="vm.select($index,$event); $event.stopPropagation();" ng-checked = "vm.check();" />{{p}} -->
+				 <input	type="checkbox" id="one" ng-click="vm.select($index,$event); $event.stopPropagation();"/>{{p}}
+				</label>
+			</div> 
+			
+				 
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<br>
+	<hr class "register-input" style="width: 100%">
+	<div  class="left_float">
+		<br>
+		<md-button class="md-raised button-primary" class="save_next_btn" ng-click="vm.save();">Save
+		& Next</md-button>
+	</div>
+</div>
+
+</div>

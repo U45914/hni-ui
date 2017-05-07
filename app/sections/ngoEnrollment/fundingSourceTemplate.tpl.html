@@ -1,0 +1,39 @@
+<fieldset  class="border" style="margin-top: 8px;">
+<span layout="row"> 
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+            <input type="text" required ng-model="source" placeholder="Source" autofocus= "on"></input> 
+            <div id="errorMsg" ng-if= "fields['fundSource']" style="color:red;"ng-bind="msgs['fundSource']"></div>
+          </md-input-container>
+          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+          <input type="number" ng-model="amount" placeholder="Annual contribution" min="0"></input>
+          </md-input-container>
+          <div style="padding-top:10px;">
+		 <md-button class="md-fab btn_style"  ng-click="addNewChoice()"> 
+		 <md-icon md-svg-src="app/assets/images/add.svg" ></md-icon>
+		 </md-button>
+		 </div>
+	</span>
+	<div ng-show="fundingSourceList.length != 0">
+	<md-grid-list md-cols="2" md-row-height="45:1" md-gutter="6px" style="margin-top: 9px;">
+	<md-grid-tile  md-rowspan="3" class="grid_list_multi">
+	<b>Source</b></md-grid-tile> <md-grid-tile md-rowspan="3" class="grid_list_multi">
+	<b>Annual contribution</b></md-grid-tile> <md-grid-tile>
+	<b></b></md-grid-tile> </md-grid-list>
+	<br>
+	<md-grid-list md-cols="2" md-row-height="45:1" md-gutter="6px" style="margin-top: -35px;"
+		ng-repeat="element in fundingSourceList track by $index">
+		<br>
+		 <md-grid-tile md-rowspan="2" class="grid_list_multi">{{element.source}}</md-grid-tile>
+		 <md-grid-tile md-rowspan="2" class="grid_list_multi" >{{element.amount}}</md-grid-tile>
+		 <md-button class="md-fab btn_style" style="background-color:transparent;
+border-radius:0;color:#D65439;box-shadow:none;border:none; margin-left: 960px;
+    margin-top: -6px;" 
+ ng-click="deleteRow($index)"> <div style="position: relative; bottom: 10px;">X</div></md-button>
+		 </md-grid-tile>
+		  <!-- <md-grid-tile md-rowspan="3">
+	
+
+	</md-grid-tile> --> </md-grid-list>
+	</div>
+	
+</fieldset>

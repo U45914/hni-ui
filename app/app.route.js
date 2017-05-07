@@ -21,8 +21,12 @@
                 url: '/login',
                 template: '<login></login>'
             })
+            .state('join-user', {
+                url: '/join-user/{type}/{activationCode}',
+                template: '<join-user></join-user>'
+            })
             .state('workspace-base', {
-                abstract: true,
+                abstract: false,
                 template: '<workspace-base></workspace-base>'
             })
             .state('volunteer-landing', {
@@ -62,6 +66,52 @@
                 data: {
                     authorizedRoles: [rolesConstant.superAdmin]
                 }
-            });
+            })
+            .state('ngoInvitation', {
+                url: '/ngoInvitation',
+                template: '<ngo-invitation></ngo-invitation>'
+            })
+            .state('inviteVolunteer', {
+                url: '/volunteer-invite',
+                template: '<volunteer-invitation></volunteer-invitation>'
+            })
+            .state('addNgo', {
+                url: '/addNgo',
+                template: '<add-ngo></add-ngo>'
+            })
+            .state('credential-setup', {
+                url: '/credential-setup',
+                template: '<credential-setup></credential-setup>'
+            })
+            .state('ngoProfile', {
+                url: '/ngoProfile',
+                template: '<ngo-profile></ngo-profile>'
+            })
+        	.state('volunteerProfile', {
+        		url: '/volunteerProfile',
+        		template: '<volunteer-profile></volunteer-profile>'
+        	})
+        	 .state('clientProfile', {
+                url: '/clientProfile',
+                template: '<client-profile></client-profile>'
+            })
+            .state('volunteerTimeAvailability', {
+                url: '/volunteerTimeAvailability',
+                template: '<volunteer-time-availability></volunteer-time-availability>'
+            })
+            .state('clientInvitation', {
+                url: '/clientInvitation',
+                template: '<client-invitation></client-invitation>'
+            })
+            .state('profile', {
+            	url: '/profile',
+            	template: '<profile></profile>'
+            })
+            .state('volunteerEnrollment', {
+                url: '/volunteerEnrollment',
+                template: '<volunteer-enrollment></volunteer-enrollment>'
+            })
+            ;        
+             
     }
 })();

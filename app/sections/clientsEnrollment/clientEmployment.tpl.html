@@ -1,0 +1,102 @@
+<div class="font_for_allpages1" >
+	<h3>Employment Details</h3>
+
+
+<br> <label>Work status</label>
+	<md-select ng-model="vm.emp.workStatus" class="mission_width6"> <md-option
+		ng-repeat="a in vm.wrkStatusList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+	<br>
+	<label>How much time does it take you to get to work and back?</label>
+	<md-select ng-model="vm.emp.timeToWorkplace" class="mission_width6"> <md-option
+		ng-repeat="a in vm.timeToWrkplace" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+			<br>
+	<label>How many jobs do you have?</label>
+	<md-select ng-model="vm.emp.noOfJob" class="mission_width6"> <md-option
+		ng-repeat="a in vm.noJobs" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+		
+	<div layout-gt-xs="row" class="width_for_textbox">	
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+           	<label> Employer</label>
+			<input type="text" ng-model="vm.emp.employer"/>
+	</md-input-container>
+			
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            <label>Job Title</label>
+			<input type="text" ng-model="vm.emp.jobTitle"/>
+	</md-input-container>
+
+</div>	
+	<label>if unemployed, for how long</label>
+			<md-select ng-model="vm.emp.durationOfEmployement" class="mission_width6"> <md-option
+		ng-repeat="a in vm.unemplDuration" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+	<br>
+	<md-radio-group  layout = "row" ng-model ="vm.emp.unemploymentBenfits"  class="md-primary">
+	<label>Do you receive unemployment benefits?</label>
+	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
+	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
+	</md-radio-group>
+	<div layout-gt-xs="row" class="width_for_textbox">	      	
+	<div ng-show = "vm.emp.unemploymentBenfits == false">
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Why not?</label>
+				<input type="text" ng-model="vm.emp.reasonUnemploymentBenefits"/>
+			</md-input-container>
+	</div>
+	<md-input-container class="md-block input-primary " flex-gt-sm>
+            	<label> Total annual Income?</label>
+				<input type="text" ng-model="vm.emp.totalIncome"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            	<label> Rate</label>
+				<input type="text" ng-model="vm.emp.rateAmount"/>
+	</md-input-container>
+	
+</div>
+	<label>Rate type</label>
+	<md-select ng-model="vm.emp.rateType" class="mission_width5"> <md-option
+		ng-repeat="a in vm.rateList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+			<br>
+	<label>average hours worked per week</label>
+	<md-select ng-model="vm.emp.avgHoursPerWeek" class="mission_width5"> <md-option
+		ng-repeat="a in vm.avgWrkHrs" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+			
+		<br>
+	<label>Resident status</label>
+	<md-select ng-model="vm.emp.residentStatus" class="mission_width5"> <md-option
+		ng-repeat="a in vm.residentList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select>
+			
+		<br>
+	<lable>How much $ do you spend each month on: </lable>
+	<div layout-gt-xs="row" class="width_for_textbox">	
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Food</label>
+				<input type="number"  min = "0"  ng-model="vm.emp.dollarSpendFood"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            	<label> Clothes</label>
+				<input type="number"   min = "0" ng-model="vm.emp.dollarSpendClothes"/>
+	</md-input-container>
+	</div>
+	<div layout-gt-xs="row" class="width_for_textbox">	
+	<md-input-container class="md-block input-primary" flex-gt-sm>
+            	<label> Entertainment</label>
+				<input type="number"   min = "0"  ng-model="vm.emp.dollarSpendEntertainment"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            	<label> Transport</label>
+				<input type="number"   min = "0" ng-model="vm.emp.dollarSpendTransport"/>
+	</md-input-container>
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+            	<label> Savings</label>
+				<input type="number"   min = "0" ng-model="vm.emp.dollarSpendSavings"/>
+	</md-input-container>
+	</div>
+	<br><br>
+		<hr class "register-input mgn_top10" layout="row" layout-align="center center">
+			<div  class="left_float">
+				<br>
+				<md-button class="md-raised button-primary" ng-click="vm.save();">Save
+				& Next</md-button>
+			</div>
+
+</div>

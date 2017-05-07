@@ -1,0 +1,86 @@
+<top-nav></top-nav>
+
+<div class="background2">
+<div id="login-container"  class=" new_style" >
+	<div class="login-box" layout="row" layout-align="center center" layout-wrap>
+		<md-content class="md-whiteframe-4dp">
+		<div class="login-box-internal ">
+			<div class="login-image-container">
+				<img class="login-logo" ng-src="~images/not_impossible_logo.png" />
+			</div>
+			<div class="login-prompt"><b>REGISTER PROFILE</b></div>
+		
+			<md-input-container class="md-block input-primary " style="margin-bottom:20px;" flex-gt-sm>
+				<label>FirstName</label> <input type="text" id="input-firstName" autofocus = "on"
+					required ng-model="vm.firstName" ng-blur="vm.validationCheck('text','firstName',vm.firstName)">
+				<div id="errorMsg" ng-if="vm.fields['firstName']" style="color:red;"ng-bind="vm.msgs['firstName']"></div>
+			 </md-input-container>
+			<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm>
+				<label>Last Name</label> <input type="text" id="input-lastName"
+					required ng-model="vm.lastName" ng-blur="vm.validationCheck('text','lastName',vm.lastName)">
+				<div id="errorMsg" ng-if="vm.fields['lastName']" style="color:red;"ng-bind="vm.msgs['lastName']"></div>	
+			</md-input-container>
+			<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm>
+			<label>User Name {{vm.userNameMessage}}</label> <input type="email"
+				id="input-userName" required ng-model="vm.username"
+				ng-change="vm.checkAvailability()" ng-blur="vm.validationCheck('text','userName',vm.username)"> 
+				<div id="errorMsg" ng-if="vm.fields['userName']" style="color:red;"ng-bind="vm.msgs['userName']"></div>	
+				</md-input-container>
+			<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm>
+			<label>Password</label> <input type="password" id="input-password1"
+				required ng-model="vm.password" ng-blur="vm.validationCheck('password','password', vm.password)">
+			</md-input-container>
+			<div id="errorMsg" ng-show="vm.fields['password']" style="color: red;">
+				Password must contain <br />
+				<dl>
+					<li>Atleast 6 characters long</li>
+					<li>Atleast 1 numberic character</li>
+					<li>Atlease 1 alphabet</li>
+					<li>Atleast special character</li>
+				</dl>
+				<br />
+			</div>
+			<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm>
+			<label>Confirm Password</label> <input type="password"
+				id="input-password2" required ng-model="vm.passwordConfirm" ng-blur="vm.validationCheck('password', 'confirmPassword', vm.password, vm.passwordConfirm)">
+				<div id="errorMsg" ng-if="vm.fields['confirmPassword']" style="color:red;"ng-bind="vm.msgs['confirmPassword']"></div>
+			</md-input-container>	
+				<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm> 
+				<label>Address</label>
+			 	<input type="text" required ng-model="vm.address" ng-blur="vm.validationCheck('text','address',vm.address)">
+			 	<div id="errorMsg" ng-if="vm.fields['address']" style="color:red;"ng-bind="vm.msgs['address']"></div>	
+				</md-input-container>
+			
+			</br>
+				<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm> 
+				<label>City</label>
+			 	<input type="text" required ng-model="vm.city" ng-blur="vm.validationCheck('text','city',vm.city)">
+			 	<div id="errorMsg" ng-if="vm.fields['city']" style="color:red;"ng-bind="vm.msgs['city']"></div>	
+				</md-input-container>
+		
+				<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm>
+         			 <label>State</label>
+          			 <md-select name="type" ng-model="vm.state" required ng-blur="vm.validationCheck('text','state',vm.state)">
+            			<md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
+            		</md-select>
+            		<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;"ng-bind="vm.msgs['state']"></div>	
+        		</md-input-container>
+			</br>
+				<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm> 
+					<label>Zip</label>
+			 		<input type="text" required maxlength= "6" ng-model="vm.zip" ng-blur="vm.validationCheck('number','zip',vm.zip)">
+			 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;"ng-bind="vm.msgs['zip']"></div>	
+				</md-input-container>
+			
+			</div>
+					<md-button class="md-raised button-primary" ng-click="vm.signIn();">Register</md-button>
+		</div>
+		</md-content>
+	</div>
+</div>
+		
+</div>
+<landing-footer></landing-footer>		
+		
+
+
