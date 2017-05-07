@@ -67,6 +67,8 @@
 	    			  						toastService.showToast("Your request has been submitted")
 	    			  							$state.go('dashboard');
 	    			  					} else {
+	    			  						 if(response.data.errorMsg == null)
+	    			  							response.data.errorMsg = "Internal Error";
 	    			  						toastService.showToast("Failed : "+ response.data.errorMsg);
 	    			  					}
 	    			  				},
@@ -75,6 +77,9 @@
 	    			  					// $state.go('dashboard');
 	    			  				});
 		  return $q.all(serviceCalls);
+    	  }
+    	  else{
+    		  toastService.showToast("Please fill required fields");
     	  }
 		  
 	  }

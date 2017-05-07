@@ -41,14 +41,10 @@
 				"mealFunding" : ft.mealFundingList
 			};
 
-			if (ft.mealDonaltionList.length != 0) {
 				ngoEnrollmentService.setFundingData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
 				$q.all(serviceCalls)// .then(onSuccess,onError);
 				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-			} else {
-				alert("Meal Donation fields are mandatory to save");
-			}
 		}
 	}
 })();

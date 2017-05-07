@@ -143,8 +143,8 @@
 			var overviewTab = validateNGOEnrollmentTabOverview(data.overviewData);
 			var stakeholdersTab = validateNGOEnrollmentTabStakeHolders(data.stakeHolderData);
 			var serviceTab = validateNGOEnrollmentTabService(data.serviceData);
-			var fundingTab = validateNGOEnrollmentTabFunding(data.fundingData);
-			var clientTab = validateNGOEnrollmentTabClient(data.clientData);
+			//var fundingTab = validateNGOEnrollmentTabFunding(data.fundingData);
+			//var clientTab = validateNGOEnrollmentTabClient(data.clientData);
 
 			if(overviewTab != ""){
 				errorText.Overview = overviewTab;
@@ -155,12 +155,12 @@
 			if(serviceTab != ""){
 				errorText.Services = serviceTab;
 			}
-			if(fundingTab != ""){
+			/*if(fundingTab != ""){
 				errorText.Funding = fundingTab;
 			}
 			if(clientTab != ""){
 				errorText.Clients = clientTab;
-			}
+			}*/
 			console.log(errorText);
 			return errorText;
 		}
@@ -212,9 +212,9 @@
 				if(data.mission == null){
 					field.push("Mission Statement");
 				}
-				if(data.promoters == null || data.promoters.length == 0){
+				/*if(data.promoters == null || data.promoters.length == 0){
 					field.push("Celebrity endorsements / notable promoters");
-				}
+				}*/
 			}
 			else{
 				field.push({field : "Overview Tab", value : "Empty"});
@@ -287,27 +287,27 @@
 					if(data.brkfstQty == null || !angular.isNumber(data.brkfstQty)){
 						errorArray.push("Breakfast Qty");
 					}
-					if(data.brkfstAvailabilty == null || data.brkfstAvailabilty.length == 0){
+					/*if(data.brkfstAvailabilty == null || data.brkfstAvailabilty.length == 0){
 						errorArray.push("Breakfast Availability");
-					}
+					}*/
 				}
 				
 				if(data.lunchChk == true){
 					if(data.lunchQty == null || !angular.isNumber(data.lunchQty)){
 						errorArray.push("Lunch Qty");
 					}
-					if(data.lunchAvailabilty == null || data.lunchAvailabilty.length == 0){
+					/*if(data.lunchAvailabilty == null || data.lunchAvailabilty.length == 0){
 						errorArray.push("Lunch Availability");
-					}
+					}*/
 				}
 				
 				if(data.dinnerChk == true){
 					if(data.dinnerQty == null || !angular.isNumber(data.dinnerQty)){
 						errorArray.push("Dinner Qty");
 					}
-					if(data.dinnerAvailabilty == null || data.dinnerAvailabilty.length == 0){
+					/*if(data.dinnerAvailabilty == null || data.dinnerAvailabilty.length == 0){
 						errorArray.push("Dinner Availability");
-					}
+					}*/
 				}
 				
 				if(data.baggedChk == true){
@@ -316,13 +316,13 @@
 					}
 				}
 				
-				if(!angular.isNumber(data.giftCard)){
+				/*if(!angular.isNumber(data.giftCard)){
 					errorArray.push("Gift Card");
-				}
+				}*/
 				
-				if(!angular.isNumber(data.giftCard)){
+				/*if(!angular.isNumber(data.giftCard)){
 					errorArray.push("Other");
-				}
+				}*/
 				
 				if(data.monthlyBudget == null){
 					errorArray.push("Monthly Budget");
