@@ -18,7 +18,12 @@
 			toastService, validateFormData) {
 		var vm = this;
 		vm.orgInfo = {};
-		vm.fields = {};
+		vm.fields = {
+				"name" : true,
+				"phone" : true,
+				"email" : true,
+				"inviteMsg" : true
+		};
 		vm.msgs = {};
 		
 		vm.submit = function() {
@@ -65,16 +70,6 @@
 			}
 		}
 		
-		vm.checkPhoneNbr = function() {
-			var phone = vm.phoneNumber;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check=false;
-			} else {
-				vm.check=true;
-			}
-		};
 		vm.validationCheck = function(type, id, value, event){
 			var data = validateFormData.validate(type, id, value, event);
 			vm.fields[id] = data.field[id];

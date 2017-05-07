@@ -23,6 +23,8 @@
 									 return validateText(fields, msgs, id, value, event); 
 					case "url"    : 
 									 return validateUrl(fields, msgs, id, value, event);
+					case "password" :
+									 return validatePassword(fields, msgs, id, value, event);
 				}
 			}
 			else{
@@ -79,7 +81,6 @@
 				}
 			}
 			if(id=="phone"){
-				debugger;
 				var phone = value;
 				var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
 				var res = patt.test(phone);
@@ -100,6 +101,29 @@
 				}
 			}
 			
+			return {
+				"field" : fields,
+				"msg"   : msgs
+				};
+		}
+		
+		function validatePassword(fields, msgs, id, value, event){
+			if(id == "confirmPassword" && (value != event)){
+				fields[id] = true;
+				msgs[id] = "Password Mismatch";
+			}else if(id == "confirmPassword" && (value == event)){
+				fields[id] = false;
+			}
+			if(id == "password"){
+				var pass = value;
+				var patt = new RegExp("(?=.*[0-9])(?=.*[a-z])(?=.*[@#$%^&+=]).{6,}");
+				var res = patt.test(pass);
+				if (res == true) {
+					fields[id] = false;
+				} else {
+					fields[id] = true;
+				}
+			}
 			return {
 				"field" : fields,
 				"msg"   : msgs
