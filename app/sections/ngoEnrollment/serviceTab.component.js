@@ -143,6 +143,10 @@
         }
 
         vm.save = function() {
+        	vm.brkfstAvailabilty = [];
+            vm.lunchAvailabilty = [];
+            vm.dinnerAvailabilty = [];
+
             vm.mealSelect.forEach(function(entry) {
                 entry.type.forEach(function(typeObj) {
                     if (typeObj.checked) {

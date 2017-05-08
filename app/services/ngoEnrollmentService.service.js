@@ -75,7 +75,7 @@
         function savePartial() {
         	var postData={
         			"overview" : getOverviewData(),
-        			"stakeholders" : getStakeHolderData(),
+        			"stakeHolder" : getStakeHolderData(),
         			"service" : getServiceData(),
         			"funding" : getFundingData(),
         			"client" : getClientData()

@@ -21,17 +21,22 @@
 
 <br>
 <div layout-gt-xs="row" class="width_for_textbox">
+<div class="mission_width4">
 <md-input-container class="md-block input-primary" flex-gt-sm>
 	 <label>Housing status</label>
 	<md-select ng-model="vm.family.sheltered" > <md-option
 		ng-repeat="a in vm.housingStatus" ng-value={{a.id}}>{{a.name}}</md-option></md-select></md-input-container>
-	<br>
-	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+
+	</div>
+	<div ng-show="vm.family.sheltered ==0" class="mission_width4">
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm">
 	 <label>If sheltered, Who do you live with?</label>
 	<md-select ng-model="vm.family.liveWith" > <md-option
 		ng-repeat="a in vm.liveWithList" ng-value={{a.id}}>{{a.name}}</md-option></md-select></md-input-container>
-		
-</div>
+	</div>
+	</div>	
+	
+
 	<br>
 
 <div layout-gt-xs="row" class="width_for_textbox">
