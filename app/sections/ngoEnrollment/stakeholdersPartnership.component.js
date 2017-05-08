@@ -25,8 +25,8 @@
 			brandObject.company = $scope.company;
 			brandObject.phoneNumber = $scope.phoneNumber;
 			$scope.brandList.push(brandObject);
-			/*$scope.company = null;
-			$scope.phoneNumber = null;*/
+			$scope.company = null;
+			$scope.phoneNumber = null;
 			}
 			else{
 				alert("Please fill the fields");
