@@ -1,7 +1,11 @@
 (function() {
     angular
         .module('app')
-        .controller('toastController', toastController);
+        .component('toastComponent', {
+        	templateUrl : 'toast-template.tpl.html',
+		controller : toastController,
+		controllerAs: 'vm'
+        });
     
     toastController.$inject = ['$scope', 'toastService']
     function toastController($scope, toastService) {

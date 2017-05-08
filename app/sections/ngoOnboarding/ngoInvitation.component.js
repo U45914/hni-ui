@@ -7,7 +7,7 @@
 		bindings : {
 
 		},
-		templateUrl : 'ngoInvitation.tpl.html',
+		templateUrl : 'ngo-invitation.tpl.html',
 		controller : NgoInvitationController,
 		controllerAs : 'vm'
 	});
