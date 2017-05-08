@@ -25,7 +25,7 @@
 		  
       vm.$onInit = function() {
     	  clientEnrollmentService.getProfileData().then(function success(response) {
-              if(response || response.data) {
+              if(response && response.data) {
                   var response = response.data.response;
                   clientEnrollmentService.finalData = response;
                   $scope.$broadcast("data-loaded-client", response);

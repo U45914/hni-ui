@@ -29,7 +29,7 @@
 
 	</div>
 	<div ng-show="vm.family.sheltered ==0" class="mission_width4">
-	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm">
+	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	 <label>If sheltered, Who do you live with?</label>
 	<md-select ng-model="vm.family.liveWith" > <md-option
 		ng-repeat="a in vm.liveWithList" ng-value={{a.id}}>{{a.name}}</md-option></md-select></md-input-container>
@@ -63,7 +63,7 @@
 		ng-model="vm.family.enrollmentLocation" /> </md-input-container>
 </div>
 	<br><br>
-		<hr class "register-input mgn_top10" layout="row" layout-align="center center">
+		<hr class="register-input mgn_top10" layout="row" layout-align="center center">
 			<div  class="left_float">
 				<br>
 				<md-button class="md-raised button-primary" ng-click="vm.save();">Save

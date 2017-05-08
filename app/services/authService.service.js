@@ -115,8 +115,8 @@
                 isAuthenticated = false;
                 window.localStorage.removeItem(LOCAL_TOKEN_KEY);
                 window.localStorage.removeItem(LOCAL_ROLE);
-                window.localStorage.removetItem("userOrgInfo");
-                window.localStorage.removetItem("userType");
+                window.localStorage.removeItem("userOrgInfo");
+                window.localStorage.removeItem("userType");
                 userService.removeUserDetails();
             }, 300)
         }

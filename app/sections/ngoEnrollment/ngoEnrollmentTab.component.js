@@ -18,7 +18,7 @@
       vm.validateNGOEnrollmentData = "";
       vm.$onInit = function() {
     	  ngoEnrollmentService.getProfileData().then(function success(response) {
-              if(response || response.data) {
+              if(response && response.data) {
                   var response = response.data.response;
                   ngoEnrollmentService.overviewData = response.overview;
                   ngoEnrollmentService.stakeHolderData = response.stakeHolder;

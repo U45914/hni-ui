@@ -16,7 +16,7 @@
         	  service.msg = msg;
         	  $mdToast.show({
         		  hideDelay: 5000,
-        		  templateUrl: 'app/components/toast-template/toast-template.tpl.html',
+        		  templateUrl: 'toast-template.tpl.html',
         		  controller: 'toastController',
         		  position: 'top right'
         	  });

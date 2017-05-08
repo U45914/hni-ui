@@ -1,4 +1,4 @@
 (function() {
     angular
-        .module('app', ['ui.router', 'ngMaterial', 'toaster']);
+        .module('app', ['ui.router', 'ngMaterial']);
 })();
