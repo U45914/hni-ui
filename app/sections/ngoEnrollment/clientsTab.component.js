@@ -17,7 +17,7 @@
 		}
 	}
 	
-	clientTabController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService'];
+	clientTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService'];
 	
 	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService){
     	var vm = this;

@@ -15,6 +15,7 @@
 		}
 
 	}
+	membershipController.$inject = ['$scope'];
 	
 	function membershipController($scope) {
 		

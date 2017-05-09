@@ -17,7 +17,7 @@
 		}
 	}
 	
-	clientFoodPreferencesController.inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	clientFoodPreferencesController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
 	
 	function clientFoodPreferencesController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;
