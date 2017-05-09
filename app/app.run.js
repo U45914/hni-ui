@@ -11,14 +11,20 @@
         requireAllComponents(require.context('./components', true, /\.html/));
 
         $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
-
             if ('data' in next && 'authorizedRoles' in next.data) {
                 var authorizedRoles = next.data.authorizedRoles;
                 if (!authService.isAuthorized(authorizedRoles)) {
                     event.preventDefault();
                 }
             }
-
+            var state = next.name;
+            
+            var noAuthStates = ["landing", "join-user", "credential-setup"];
+            if (noAuthStates.indexOf(state) == -1 && state != "login" && !authService.isUserLoggedIn()) {
+            	event.preventDefault();
+            	$state.go("login");
+            }
+            
             if(angular.element(document).find('md-dialog').length > 0) {
                 $mdDialog.cancel();
             }
