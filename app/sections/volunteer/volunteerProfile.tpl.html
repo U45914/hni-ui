@@ -65,12 +65,12 @@
 <br><br>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
-	<label class="text_style_vol" >Birthdate</label> <input type="date" ng-model="vm.vol.birthDate">
+	<label class="text_style_vol" >Birthdate</label> <input type="date" required ng-model="vm.vol.birthDate">
 	<!-- <md-datepicker ng-model="vm.vol.birthDate" md-placeholder="Enter date" md-is-open="true"></md-datepicker> -->
 	</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol">Sex</label> <md-select  ng-model="vm.vol.sex">
-	<md-option value="M">Male</md-option> <md-option value="F">Female</md-option></md-select> </md-input-container>
+	<md-option value="M">Male</md-option> <md-option value="F">Female</md-option><md-option value="O">Other</md-option></md-select> </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.vol.race"> <md-option
 		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
@@ -79,6 +79,7 @@
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Highest Level of Education Completed</label> 
 	<md-select ng-model="vm.vol.education">
+	<md-option value=0>Not intrested to disclose</md-option>
 	  <md-option value=1>Gratuate</md-option>
 	  <md-option value=2>HS</md-option>
 	  <md-option value=3>Elementary</md-option>
@@ -86,6 +87,7 @@
 	</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" class="text_style_vol">Income</label> <md-select ng-model="vm.vol.income">
+	<md-option value=0>Not intrested to disclose</md-option>
 	<md-option value=1>1k-5k</md-option> <md-option value=2>5k-10k</md-option>
 	<md-option value=3>10k-15k</md-option></md-select> </md-input-container>
 </div>

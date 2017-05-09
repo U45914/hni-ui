@@ -20,7 +20,7 @@
 			 
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Phone number</label>
-			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur="vm.validationCheck('number','phone',vm.phoneNumber)">
+			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur="vm.validationCheck('number','phone',vm.phoneNumber)" >
 			 	 <div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>
 			</md-input-container>
 		</div>
@@ -29,8 +29,9 @@
 		
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
 				<label>Email address</label>
-			 	<input type="email" id="" required ng-model="vm.email" class="input_box_md" ng-blur="vm.validationCheck('text','email',vm.email,$event)">
+			 	<input type="email" id="" required ng-model="vm.email" class="input_box_md" ng-blur="vm.checkVolunteerEmailAvailability();vm.validationCheck('text','email',vm.email,$event)">
 			 	<div id="errorMsg" ng-if="vm.fields['email']" style="color:red;"ng-bind="vm.msgs['email']"></div>
+			 	<div id="errorMsg" style="color:red;"ng-bind="vm.userEmailMessage"></div>
 			</md-input-container>
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 

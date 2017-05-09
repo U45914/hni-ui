@@ -30,7 +30,6 @@
         vm.showReport = {};
         vm.showData=true;
         vm.reportType = getReportKey(vm.report.label);
-        debugger;
         if ($scope.indexFirst == 0) {
         	vm.showReport[vm.reportType] = true;
         } else {
@@ -40,8 +39,6 @@
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
             .then(function success(response) {
                 if(response.data !== null) {
-                   console.log("response : ");
-                   console.log(response.data);
                    vm.service = response.data.data;
                    if(vm.service.length==0)
                 	   {
@@ -51,7 +48,7 @@
                    vm.headers= response.data.headers;
                 }
                 if(response.data == null){
-                	console.log("Missing Data");
+                	
                 }
             }, function error(error) {
                 console.log(error);

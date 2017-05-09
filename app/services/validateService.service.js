@@ -3,16 +3,18 @@
 		.module('app')
 		.service('validateService',validateService);
 	
-	validateService.$inject = [];
+	validateService.$inject = ['$http','serviceConstants'];
 	
-	function validateService(){
+	function validateService($http,serviceConstants){
+		  let baseUrl = serviceConstants.baseUrl;
 		return{
 			validateCredentials,
 			validateNGOOnboard,
 			validateNGOEnrollment,
 			validateNGOAdd,
 			validateStateDrpdwn,
-			validateNGOEnrollmentData
+			validateNGOEnrollmentData,
+			checkEmailAvailability
 		};
 		
 		
@@ -453,5 +455,10 @@
 			errorJson = errorArray;
 			return errorJson;
 		}
+		
+		 function checkEmailAvailability(username) {
+         	var usernameObject = {"username": username}
+         	return $http.post(`${baseUrl}/onboard/validate/username`, usernameObject);
+         }
 	}
 })();
