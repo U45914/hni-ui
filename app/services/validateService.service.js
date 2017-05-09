@@ -88,7 +88,9 @@
 				errorFields += "Last Name, ";
 			if(data.email==null)
 				errorFields += "Email, ";
-			if(data.password==null || data.password!=confirmPassword){
+			if(data.mobilePhone==null)
+				errorFields += "Phone, ";
+			if(data.password==null || data.password!=confirmPassword ){
 				if(data.password==null){
 					errorFields += "Password ";
 				}else{

@@ -24,6 +24,8 @@
 				"email" : true,
 				"activationCode" : true,
 		};
+		vm.buttonText = "Invite";
+		vm.isDisabled = false;
 		vm.msgs = {};
 		vm.submit = function() {
 			var data = {
@@ -41,6 +43,8 @@
 				}
 			}
 			if (!doNotPost) {
+				vm.buttonText = "Please wait...";
+				vm.isDisabled = true;	
 				var serviceCalls = clientEnrollmentService
 						.inviteClient(data)
 						.then(
@@ -49,18 +53,24 @@
 											&& response.data.response
 											&& response.data.response == "success") {
 										toastService.showToast("Your request has been submitted");
-										//$state.go('dashboard');
+										$state.go('dashboard');
 									} 
 									else if(response
 											&& response.data && !response.data.errorMsg){
 										toastService.showToast("Something went wrong. Try again later");
+										vm.buttonText = "Invite";
+										vm.isDisabled = false;
 									}
 									else {
 										toastService.showToast("Failed : "+ response.data.errorMsg);
+										vm.buttonText = "Invite";
+										vm.isDisabled = false;
 									}
 								},
 								function errorCallback(response) {
-									toastService.showToast("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again");
+									vm.buttonText = "Invite";
+									vm.isDisabled = false;
 									// $state.go('dashboard');
 								});
 

@@ -45,7 +45,7 @@
 			 </md-input-container>
 		
 		<br>
-			<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.submit()" >Invite</md-button>
+			<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.submit()" ng-disabled = "vm.isDisabled" >{{vm.buttonText}}</md-button>
 			
 
 

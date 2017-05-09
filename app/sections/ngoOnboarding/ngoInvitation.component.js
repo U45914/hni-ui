@@ -18,6 +18,8 @@
 			validateService, $scope, $state, toastService, validateFormData) {
 		var vm = this;
 		vm.incomplete = false;
+		vm.buttonAction = "Submit";
+		vm.disableSubmitButton = false;		
 		vm.orgInfo = {};
 		vm.fields = {
 				"name" : true,
@@ -34,6 +36,7 @@
 		vm.validateNGOInvitation = "";
 		loadOrgInfo();
 		vm.submit = function() {
+			
 			var data = {
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,
@@ -57,43 +60,40 @@
 				}
 			}
 			if (!doNotPost) {
-				var serviceCalls = ngoOnboardingService
-						.inviteNgo(data)
-						.then(
+				vm.buttonAction = "Please wait...";
+				vm.disableSubmitButton = true;			
+				var serviceCalls = ngoOnboardingService.inviteNgo(data).then(
 								function successCallback(response) {
-									if (response
-											&& response.data.response
-											&& response.data.response == "success") {
-										toastService
-												.showToast("Your request has been submitted")
+									if (response && response.data.response && response.data.response == "success") {
+										toastService.showToast("Your request has been submitted")
 										$state.go('dashboard');
-									} else if (response
-											&& response.data.response
-											&& response.data.response == "error") {
+									} else if (response && response.data.response && response.data.response == "error") {
 										vm.incomplete = true;
-										toastService.showToast("Error : "
-												+ response.data.errorMsg);
-									} else if (response && response.data
-											&& !response.data.errorMsg) {
-										toastService
-												.showToast("Something went wrong, please try again");
+										toastService.showToast("Error : "+ response.data.errorMsg);
+										vm.buttonAction = "Submit";
+										vm.disableSubmitButton = false;
+										
+									} else if (response && response.data && !response.data.errorMsg) {
+										toastService.showToast("Something went wrong, please try again");
+										vm.buttonAction = "Submit";
+										vm.disableSubmitButton = false;
+										
 									} else {
-										toastService.showToast("Failed : "
-												+ response.data.errorMsg);
+										toastService.showToast("Failed : "+ response.data.errorMsg);
 										vm.incomplete = true;
-									}
+										vm.buttonAction = "Submit";
+										vm.disableSubmitButton = false;										
+									}									
 								},
 								function errorCallback(response) {
-									toastService
-											.showToast("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again")
 									// $state.go('dashboard');
 									vm.incomplete = true;
 								});
 
 				return $q.all(serviceCalls);
 			} else {
-				toastService
-				.showToast("Please fill required fields")
+				toastService.showToast("Please fill required fields");
 				/*vm.incomplete = true;*/
 			}
 		}
