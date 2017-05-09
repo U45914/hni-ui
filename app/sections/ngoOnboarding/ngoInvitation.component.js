@@ -21,6 +21,7 @@
 		vm.buttonAction = "Submit";
 		vm.disableSubmitButton = false;		
 		vm.orgInfo = {};
+		vm.checkEmail=false;
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
@@ -59,7 +60,7 @@
 					break;
 				}
 			}
-			if (!doNotPost) {
+			if (!doNotPost && (vm.checkEmail == true)) {
 				vm.buttonAction = "Please wait...";
 				vm.disableSubmitButton = true;			
 				var serviceCalls = ngoOnboardingService.inviteNgo(data).then(
@@ -93,7 +94,7 @@
 
 				return $q.all(serviceCalls);
 			} else {
-				toastService.showToast("Please fill required fields");
+				toastService.showToast("Please complete all the fields");
 				/*vm.incomplete = true;*/
 			}
 		}
@@ -117,16 +118,25 @@
 			vm.msgs[id] = data.msg[id];
 		}
 
-		/*vm.checkPhoneNbr = function() {
-			var phone = vm.phoneNumber;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check = false;
-			} else {
-				vm.check = true;
-			}
-		};*/
+		vm.checkNgoEmailAvailability = function() {
+			validateService.checkEmailAvailability(vm.email).then(
+					function(response) {
+		            	console.log(response)
+						if (response && response.data
+								&& response.data.available == 'true') {
+							vm.userEmailMessage = null;
+							vm.checkEmail = true;
+						} else if (response && response.data
+								&& response.data.available == 'false') {
+							vm.userEmailMessage = "Email id already registered";
+							vm.checkEmail = false;
+						} else if (response && response.data
+								&& response.data.error) {
+							vm.userEmailMessage = response.data.error;
+							vm.checkEmail = false;
+						}
+					});
+		};
 
 	}
 

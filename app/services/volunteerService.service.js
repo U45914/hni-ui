@@ -21,7 +21,6 @@
         
             function profileDetails(data) {
            	 let postData = JSON.stringify(data);
-           	 console.log("DATA : "+postData);
                 return $http.post(`${baseUrl}/users/volunteer/save`, postData)
                 .then(function successCallback(response) {
                    console.log(response.data);
@@ -58,7 +57,6 @@
           //Function to call post service while new volunteer login to enroll in HNI.
             function registerVolunteer(data) {
                 let postData = JSON.stringify(data);
-                console.log("inside service controller"+ postData);
                 let config = {
                 	    method: 'POST',
                 	    url: `${baseUrl}/users/register`,
@@ -71,8 +69,22 @@
             }
             function saveVolunteerTimeAvailability(data) {
                 let postData = JSON.stringify(data);
-                console.log("Time Availabilty : "+ postData);
-                return $http.post(`${baseUrl}/users/volunteer/availability/save`, postData);
+                return $http.post(`${baseUrl}/users/volunteer/availability/save`, postData)
+                .then(
+		  				function successCallback(response) {
+		  					if (response && response.status && response.statusText == "OK") {
+		  						toastService.showToast("Your time availability has been saved")
+		  						
+		  					} else if(response && response.data && !response.data.errorMsg){
+			                	   toastService.showToast("Something went wrong. Try again later");
+			                   }
+		  					else {
+		  						toastService.showToast("Failed : "+ response.data.errorMsg);
+		  					}
+		  				},
+		  				function errorCallback(response) {
+		  					toastService.showToast("Something went wrong, please try again")
+		  				});
                
             }
             

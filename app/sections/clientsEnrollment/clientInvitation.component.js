@@ -12,12 +12,13 @@
 		controllerAs : 'vm'
 	});
 	clientInvitationController.$inject = [ '$q', 'clientEnrollmentService', '$scope',
-			'$state', 'toastService', 'validateFormData' ];
+			'$state', 'toastService', 'validateFormData','validateService'];
 
 	function clientInvitationController($q, clientEnrollmentService, $scope, $state,
-			toastService, validateFormData) {
+			toastService, validateFormData,validateService) {
 		var vm = this;
 		vm.orgInfo = {};
+		vm.checkEmail=false;
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
@@ -42,7 +43,7 @@
 					break;
 				}
 			}
-			if (!doNotPost) {
+			if (!doNotPost && (vm.checkEmail == true)) {
 				vm.buttonText = "Please wait...";
 				vm.isDisabled = true;	
 				var serviceCalls = clientEnrollmentService
@@ -79,7 +80,7 @@
 			}
 			
 			else{
-				toastService.showToast("Please fill mandatory fields");
+				toastService.showToast("Please complete all the fields");
 			}
 		}
 		
@@ -89,6 +90,25 @@
 			vm.msgs[id] = data.msg[id];
 		}
 		
+		vm.checkClientEmailAvailability = function() {
+			validateService.checkEmailAvailability(vm.email).then(
+					function(response) {
+		            	
+						if (response && response.data
+								&& response.data.available == 'true') {
+							vm.userEmailMessage = null;
+							vm.checkEmail=true;
+						} else if (response && response.data
+								&& response.data.available == 'false') {
+							vm.userEmailMessage = "Email id already registered";
+							vm.checkEmail = false;
+						} else if (response && response.data
+								&& response.data.error) {
+							vm.userEmailMessage = response.data.error;
+							vm.checkEmail = false;
+						}
+					});
+		};
 	}
 
 })();
