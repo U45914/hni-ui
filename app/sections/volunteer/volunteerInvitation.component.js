@@ -18,6 +18,8 @@
 			toastService, validateFormData) {
 		var vm = this;
 		vm.orgInfo = {};
+		vm.buttonText = "Invite";
+		vm.isDisabled = false;
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
@@ -44,6 +46,8 @@
 			}
 			
 			if (!doNotPost) {
+				vm.buttonText = "Please wait...";
+				vm.isDisabled = true;	
 				var serviceCalls = volunteerService
 						.inviteVolunteer(data)
 						.then(
@@ -56,13 +60,19 @@
 									} else if(response
 											&& response.data.response && !response.data.errorMsg){
 										toastService.showToast("Something went wrong. Try again later");
+										vm.buttonText = "Invite";
+										vm.isDisabled = false;
 									}
 										else {
 										toastService.showToast("Failed : "+ response.data.errorMsg);
+										vm.buttonText = "Invite";
+										vm.isDisabled = false;
 									}
 								},
 								function errorCallback(response) {
-									toastService.showToast("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again");
+									vm.buttonText = "Invite";
+									vm.isDisabled = false;
 									// $state.go('dashboard');
 								});
 

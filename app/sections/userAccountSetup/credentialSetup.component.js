@@ -16,6 +16,8 @@
 
 		var vm = this;
 		vm.userType = getUserType();
+		vm.buttonText = "Register";
+		vm.isDisabled = false;
 		vm.userNameMessage = "";
 		vm.validateUserEnrollment = "";
 		vm.username = getUserName();
@@ -34,11 +36,15 @@
 			vm.validateUserEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
 			if(vm.validateUserEnrollment == ""){
 				vm.errorText = false;
+				vm.buttonText = "Please wait...";
+				vm.isDisabled = true;	
 				ngoOnboardingService.registerNgo(data, vm.activationCode).then(function(response) {
 					if (response && response.data && response.data.success) {
 						toastService.showToast(response.data.success)
 						$state.go('login');
 					} else {
+						vm.buttonText = "Register";
+						vm.isDisabled = false;
 						toastService.showToast("Failed to create user entry");
 					}
 				});

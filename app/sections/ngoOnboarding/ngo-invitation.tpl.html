@@ -26,21 +26,6 @@
 			 	<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>
 			 			</md-input-container>
 		</div>
-		
-		<!-- <div layout-gt-xs="row" class="width_for_textbox">
-		<md-input-container class="md-block input-primary " flex-gt-sm> 
-				<div id="errorMsg" ng-if="vm.valid" style="color:red;">
-               		Please fill this field
-                </div>
-      		 </md-input-container>
-      		 <md-input-container class="md-block input-primary " flex-gt-sm> 
-				<div id="errorMsg" ng-if="vm.valid" style="color:red;">
-               		Please fill this field
-                </div>
-		 
-      		 </md-input-container>
-      		 </div>
-		 -->
 		<div layout-gt-xs="row" class="width_for_textbox">
 		
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
@@ -104,7 +89,7 @@
 				</md-input-container>
 			</div>
 			<br>
-				<md-button class="md-raised button-primary" style="float:right;" ng-click="vm.submit()" >Submit</md-button>
+				<md-button class="md-raised button-primary" style="float:right;" ng-click="vm.submit()" ng-disabled = "!!vm.disableSubmitButton" >{{vm.buttonAction}}</md-button>
 				<div ng-show="vm.incomplete">
 			 <font color="red">{{vm.validateNGOInvitation}}</font> 
 		     </div>
