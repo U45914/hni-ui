@@ -90,6 +90,14 @@
 				errorFields += "Email, ";
 			if(data.mobilePhone==null)
 				errorFields += "Phone, ";
+			else{
+				var phone = data.mobilePhone;
+				var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+				var res = patt.test(phone);
+				if (res != true || isNaN(Number(phone.replace(/-/g, "")))) {
+					errorFields += "Phone, ";
+				}
+			}
 			if(data.password==null || data.password!=confirmPassword ){
 				if(data.password==null){
 					errorFields += "Password ";
