@@ -19,14 +19,6 @@
 		this.isOpen = false;
 		vm.state=validateService.validateStateDrpdwn();
 		vm.fields = {
-				/*"firstName" : true,
-				"lastName" : true,
-				"address" : true,
-				"city" : true,
-				"state" : true,
-				"zip" : true,
-				"phone" : true,
-				"email" : true,*/
 		};
 		vm.msgs = {};
 	    
@@ -41,7 +33,6 @@
 		
 	    
 		function validateForm(data){
-			debugger;
 			if(data == null){
 				return false;
 			}
@@ -97,16 +88,7 @@
 	
 				};
 	
-				/*//var doNotPost = false;
-				var keys = Object.keys(vm.fields);
-				for(var index = 0; index < keys.length; index++){
-					if(vm.fields[keys[index]]) {
-						doNotPost = true;
-						break;
-					}
-				}
-				*/
-					console.log("Volunteer Json : "+data);
+		
 					volunteerService.volunteerProfileData = data;
 					var serviceCalls = volunteerService.profileDetails(data);
 					return $q.all(serviceCalls);
