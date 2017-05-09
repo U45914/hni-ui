@@ -3,16 +3,18 @@
 		.module('app')
 		.service('validateService',validateService);
 	
-	validateService.$inject = [];
+	validateService.$inject = ['$http','serviceConstants'];
 	
-	function validateService(){
+	function validateService($http,serviceConstants){
+		  let baseUrl = serviceConstants.baseUrl;
 		return{
 			validateCredentials,
 			validateNGOOnboard,
 			validateNGOEnrollment,
 			validateNGOAdd,
 			validateStateDrpdwn,
-			validateNGOEnrollmentData
+			validateNGOEnrollmentData,
+			checkEmailAvailability
 		};
 		
 		
@@ -88,7 +90,17 @@
 				errorFields += "Last Name, ";
 			if(data.email==null)
 				errorFields += "Email, ";
-			if(data.password==null || data.password!=confirmPassword){
+			if(data.mobilePhone==null)
+				errorFields += "Phone, ";
+			else{
+				var phone = data.mobilePhone;
+				var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+				var res = patt.test(phone);
+				if (res != true || isNaN(Number(phone.replace(/-/g, "")))) {
+					errorFields += "Phone, ";
+				}
+			}
+			if(data.password==null || data.password!=confirmPassword ){
 				if(data.password==null){
 					errorFields += "Password ";
 				}else{
@@ -346,10 +358,10 @@
 					errorArray.push("Food Bank Select");
 				}
 				
-				if(data.foodBankSelect == true){
+				/*if(data.foodBankSelect == true){
 					if(data.foodBankValue == null || data.foodBankValue.length == 0)
 						errorArray.push("Food Name");
-				}
+				}*/
 				
 				/*if(data.resource == null || data.resource.length == 0)
 					errorArray.push("Resource");*/
@@ -451,5 +463,10 @@
 			errorJson = errorArray;
 			return errorJson;
 		}
+		
+		 function checkEmailAvailability(username) {
+         	var usernameObject = {"username": username}
+         	return $http.post(`${baseUrl}/onboard/validate/username`, usernameObject);
+         }
 	}
 })();

@@ -59,7 +59,7 @@
 <md-input-container class="md-block input-primary" flex-gt-sm>
 <label>Ethnicity</label> <md-select required
 	ng-model="vm.client.ethnicity" ng-blur="vm.validationCheck('text','ethnicity',vm.client.ethnicity)"> <md-option ng-value=1>North American</md-option> <md-option ng-value=2>South American</md-option>
-	<md-option ng-value=3>Iranian</md-option><md-option ng-value=4>Korean</md-option><md-option ng-value=5>Indian Americans</md-option>
+	<md-option ng-value=3>Iranian</md-option><md-option ng-value=4>Korean</md-option><md-option ng-value=5>Indian Americans</md-option><md-option ng-value=0>Other</md-option>
 	</md-select> 
 	<div id="errorMsg" ng-if="vm.fields['ethnicity']" style="color:red;" ng-bind="vm.msgs['ethnicity']"></div></md-input-container>
 </md-input-container>
@@ -89,7 +89,7 @@ No </md-radio-button> </md-radio-group>
 	style="left:13px;" ng-value="false"> No </md-radio-button> </md-radio-group>
 		
 		<br><br>
-		<hr class "register-input mgn_top10" layout="row" layout-align="center center">
+		<hr class="register-input-test mgn_top10" layout="row" layout-align="center center">
 			<div  class="left_float">
 	<br>
 	<md-button class="md-raised button-primary" ng-click="vm.save();">Save

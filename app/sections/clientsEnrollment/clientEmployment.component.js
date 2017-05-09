@@ -17,7 +17,7 @@
 		}
 	}
 	
-	clientEmploymentController.inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	clientEmploymentController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
 	
 	function clientEmploymentController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;

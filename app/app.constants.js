@@ -2,7 +2,7 @@
     angular
         .module('app')
         .constant('serviceConstants', {
-            baseUrl: "http://localhost:8080/hni-admin-service/api/v1"
+            baseUrl: "http://104.43.165.131:8080/api/v1"
         })
         .constant('rolesConstant', {
             superAdmin: '1',

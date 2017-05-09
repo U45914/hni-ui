@@ -39,7 +39,6 @@
     function DashboardController($scope, authService) {
     	
     	 vm.$onInit = function() {
-             debugger;
     		 vm.user = userService.getUser();
     		 vm.welcomeName = vm.user.firstName + " " + vm.user.lastName;
     		 $scope.welcomeName = vm.welcomeName;

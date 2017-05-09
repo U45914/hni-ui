@@ -7,7 +7,7 @@
 		bindings : {
 
 		},
-		templateUrl : 'ngoInvitation.tpl.html',
+		templateUrl : 'ngo-invitation.tpl.html',
 		controller : NgoInvitationController,
 		controllerAs : 'vm'
 	});
@@ -18,7 +18,10 @@
 			validateService, $scope, $state, toastService, validateFormData) {
 		var vm = this;
 		vm.incomplete = false;
+		vm.buttonAction = "Submit";
+		vm.disableSubmitButton = false;		
 		vm.orgInfo = {};
+		vm.checkEmail=false;
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
@@ -34,6 +37,7 @@
 		vm.validateNGOInvitation = "";
 		loadOrgInfo();
 		vm.submit = function() {
+			
 			var data = {
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,
@@ -56,44 +60,41 @@
 					break;
 				}
 			}
-			if (!doNotPost) {
-				var serviceCalls = ngoOnboardingService
-						.inviteNgo(data)
-						.then(
+			if (!doNotPost && (vm.checkEmail == true)) {
+				vm.buttonAction = "Please wait...";
+				vm.disableSubmitButton = true;			
+				var serviceCalls = ngoOnboardingService.inviteNgo(data).then(
 								function successCallback(response) {
-									if (response
-											&& response.data.response
-											&& response.data.response == "success") {
-										toastService
-												.showToast("Your request has been submitted")
+									if (response && response.data.response && response.data.response == "success") {
+										toastService.showToast("Your request has been submitted")
 										$state.go('dashboard');
-									} else if (response
-											&& response.data.response
-											&& response.data.response == "error") {
+									} else if (response && response.data.response && response.data.response == "error") {
 										vm.incomplete = true;
-										toastService.showToast("Error : "
-												+ response.data.errorMsg);
-									} else if (response && response.data
-											&& !response.data.errorMsg) {
-										toastService
-												.showToast("Something went wrong, please try again");
+										toastService.showToast("Error : "+ response.data.errorMsg);
+										vm.buttonAction = "Submit";
+										vm.disableSubmitButton = false;
+										
+									} else if (response && response.data && !response.data.errorMsg) {
+										toastService.showToast("Something went wrong, please try again");
+										vm.buttonAction = "Submit";
+										vm.disableSubmitButton = false;
+										
 									} else {
-										toastService.showToast("Failed : "
-												+ response.data.errorMsg);
+										toastService.showToast("Failed : "+ response.data.errorMsg);
 										vm.incomplete = true;
-									}
+										vm.buttonAction = "Submit";
+										vm.disableSubmitButton = false;										
+									}									
 								},
 								function errorCallback(response) {
-									toastService
-											.showToast("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again")
 									// $state.go('dashboard');
 									vm.incomplete = true;
 								});
 
 				return $q.all(serviceCalls);
 			} else {
-				toastService
-				.showToast("Please fill required fields")
+				toastService.showToast("Please complete all the fields");
 				/*vm.incomplete = true;*/
 			}
 		}
@@ -117,16 +118,25 @@
 			vm.msgs[id] = data.msg[id];
 		}
 
-		/*vm.checkPhoneNbr = function() {
-			var phone = vm.phoneNumber;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check = false;
-			} else {
-				vm.check = true;
-			}
-		};*/
+		vm.checkNgoEmailAvailability = function() {
+			validateService.checkEmailAvailability(vm.email).then(
+					function(response) {
+		            	console.log(response)
+						if (response && response.data
+								&& response.data.available == 'true') {
+							vm.userEmailMessage = null;
+							vm.checkEmail = true;
+						} else if (response && response.data
+								&& response.data.available == 'false') {
+							vm.userEmailMessage = "Email id already registered";
+							vm.checkEmail = false;
+						} else if (response && response.data
+								&& response.data.error) {
+							vm.userEmailMessage = response.data.error;
+							vm.checkEmail = false;
+						}
+					});
+		};
 
 	}
 

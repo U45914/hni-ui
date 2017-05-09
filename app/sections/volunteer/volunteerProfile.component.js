@@ -12,18 +12,13 @@
 
 	function volunteerProfileController($q, volunteerService,validateService,validateFormData,toastService) {
 		var vm = this;
+		vm.vol = {};
+		vm.vol.user = {};
+		vm.vol.address = {};
 		this.myDate = new Date();
 		this.isOpen = false;
 		vm.state=validateService.validateStateDrpdwn();
 		vm.fields = {
-				/*"firstName" : true,
-				"lastName" : true,
-				"address" : true,
-				"city" : true,
-				"state" : true,
-				"zip" : true,
-				"phone" : true,
-				"email" : true,*/
 		};
 		vm.msgs = {};
 	    
@@ -35,53 +30,68 @@
 				vm.vol.birthDate = new Date(vm.vol.birthday);		
 			}
 		});
+		
 	    
-
-		vm.submit = function() {
-
-			var data = {
-				"user" : {
-					"firstName" : vm.vol.user.firstName,
-					"lastName" : vm.vol.user.lastName,
-					"mobilePhone" : vm.vol.user.mobilePhone,
-					"email" : vm.vol.user.email
-				},
-				
-				"address" : {
-					"name" : "office",
-					"address1" : vm.vol.address.address1,
-					"address2" : vm.vol.address.address2,
-					"city" : vm.vol.address.city,
-					"state" : vm.vol.address.state,
-					"zip" : vm.vol.address.zip,
-				},
-				
-				"birthday" : vm.vol.birthDate,
-				"sex" : vm.vol.sex,
-				"race" : vm.vol.race,
-				"education" : vm.vol.education,
-				"maritalStatus" : vm.vol.maritalStatus,
-				"income" : vm.vol.income,
-				"kids" : vm.vol.kids,
-				"employer" : vm.vol.employer,
-				"nonProfit" : vm.vol.nonProfit
-
-			};
-
-			var doNotPost = false;
-			var keys = Object.keys(vm.fields);
-			for(var index = 0; index < keys.length; index++){
-				if(vm.fields[keys[index]]) {
-					doNotPost = true;
-					debugger;
-					break;
-				}
+		function validateForm(data){
+			if(data == null){
+				return false;
 			}
-			if(!doNotPost){
-				console.log("Volunteer Json : "+data);
-				volunteerService.volunteerProfileData = data;
-				var serviceCalls = volunteerService.profileDetails(data);
-				return $q.all(serviceCalls);
+			else if(data.birthDate == null){
+				return false;
+			}
+			
+			if(data.user == null){
+				return false;
+			}
+			else if( data.user.firstName == null || data.user.firstName == null || data.user.mobilePhone == null || data.user.email == null){
+				return false;
+			}
+			
+			if(data.address == null){
+				return false;
+			}
+			else if(data.address.address1 == null || data.address.city == null || data.address.state == null || data.address.zip == null ){
+				return false;
+			}
+			return true;
+		}
+		
+		vm.submit = function() {
+			var doNotPost = validateForm(vm.vol);
+			if(doNotPost){
+				var data = {
+					"user" : {
+						"firstName" : vm.vol.user.firstName,
+						"lastName" : vm.vol.user.lastName,
+						"mobilePhone" : vm.vol.user.mobilePhone,
+						"email" : vm.vol.user.email
+					},
+					
+					"address" : {
+						"name" : "office",
+						"address1" : vm.vol.address.address1,
+						"address2" : vm.vol.address.address2,
+						"city" : vm.vol.address.city,
+						"state" : vm.vol.address.state,
+						"zip" : vm.vol.address.zip,
+					},
+					
+					"birthday" : vm.vol.birthDate,
+					"sex" : vm.vol.sex,
+					"race" : vm.vol.race,
+					"education" : vm.vol.education,
+					"maritalStatus" : vm.vol.maritalStatus,
+					"income" : vm.vol.income,
+					"kids" : vm.vol.kids,
+					"employer" : vm.vol.employer,
+					"nonProfit" : vm.vol.nonProfit
+	
+				};
+	
+		
+					volunteerService.volunteerProfileData = data;
+					var serviceCalls = volunteerService.profileDetails(data);
+					return $q.all(serviceCalls);
 			}
 			else{
 				toastService.showToast("Please fill required fields");

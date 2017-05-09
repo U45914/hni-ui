@@ -15,9 +15,9 @@
 
     }
 
-    serviceController.$inject = ['$q', 'ngoEnrollmentService', '$rootScope', '$scope', '$mdToast', 'validateFormData'];
+    serviceController.$inject = ['$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateFormData'];
 
-    function serviceController($q, ngoEnrollmentService, $rootScope, $scope, $mdToast, validateFormData) {
+    function serviceController($q, ngoEnrollmentService, $rootScope, $scope, validateFormData) {
 
         var vm = this;
         vm.fields = {};
@@ -42,7 +42,7 @@
 
         vm.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"]
         vm.frequency = ["Breakfast", "Lunch", "Dinner"];
-        vm.mealSelect = [{"day":"Sunday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Monday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Tuesday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Wednesday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Thursday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Friday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]}]
+        vm.mealSelect = [{"day":"Sunday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Monday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Tuesday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Wednesday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Thursday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]},{"day":"Friday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]}, {"day":"Saturday","type":[{"type":"breakfast","checked":false},{"type":"lunch","checked":false},{"type":"dinner","checked":false}]}]
 
         $scope.$on("data-loaded-ngo", function(obj) {
             vm.load();
@@ -54,15 +54,39 @@
             var dinnerflag = false;
             
             vm.service = ngoEnrollmentService.serviceData;
-            
+            ngoEnrollmentService.setServiceData(vm.service);
             if(vm.service.brkfstAvailabilty != null){
-            	   vm.brkfstAvailabilty = vm.service.brkfstAvailabilty.split(",");
+            	if (vm.service.brkfstAvailabilty.constructor === Array) {
+            		vm.brkfstAvailabilty = vm.service.brkfstAvailabilty;
+            	} else {
+            		if (vm.service.brkfstAvailabilty.indexOf(",") != -1) {
+            			vm.brkfstAvailabilty = vm.service.brkfstAvailabilty.split(",");
+            		} else {
+            			vm.brkfstAvailabilty.push(vm.service.brkfstAvailabilty);
+            		}
+            	}
              }
             if(vm.service.lunchAvailabilty != null){
-            	vm.lunchAvailabilty = vm.service.lunchAvailabilty.split(",");
+            	if (vm.service.lunchAvailabilty.constructor === Array) {
+            		vm.lunchAvailabilty = vm.service.lunchAvailabilty;
+            	} else {         
+            		if (vm.service.lunchAvailabilty.indexOf(",") != -1) {
+            			vm.lunchAvailabilty = vm.service.lunchAvailabilty.split(",");
+            		} else {
+            			vm.lunchAvailabilty.push(vm.service.lunchAvailabilty);
+            		}
+            	}
             }
             if( vm.service.dinnerAvailabilty != null){
-            	vm.dinnerAvailabilty = vm.service.dinnerAvailabilty.split(",");
+            	if (vm.service.dinnerAvailabilty.constructor === Array ) {
+            		vm.dinnerAvailabilty = vm.service.dinnerAvailabilty;
+            	} else {
+            		if (vm.service.dinnerAvailabilty.indexOf(",") != -1) {
+            			vm.dinnerAvailabilty = vm.service.dinnerAvailabilty.split(",");
+            		} else {
+            			vm.dinnerAvailabilty.push(vm.service.dinnerAvailabilty);
+            		}
+            	}
             }
          
             
@@ -143,6 +167,10 @@
         }
 
         vm.save = function() {
+        	vm.brkfstAvailabilty = [];
+            vm.lunchAvailabilty = [];
+            vm.dinnerAvailabilty = [];
+
             vm.mealSelect.forEach(function(entry) {
                 entry.type.forEach(function(typeObj) {
                     if (typeObj.checked) {

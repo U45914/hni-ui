@@ -13,19 +13,10 @@
 
   function clientsEnrollmentTabController($rootScope, clientEnrollmentService,$scope,$timeout) {
       var vm = this;
-      
-     /* vm.$onInit = function() {
-    	  var response = clientEnrollmentService.getProfileData();
-    	  debugger;
-		  console.log(response);
-		  clientEnrollmentService.finalData = response;
-		  $timeout(function(){
-			  $scope.$broadcast("data-loaded-client", response);
-		  },2000);*/
 		  
       vm.$onInit = function() {
     	  clientEnrollmentService.getProfileData().then(function success(response) {
-              if(response || response.data) {
+              if(response && response.data) {
                   var response = response.data.response;
                   clientEnrollmentService.finalData = response;
                   $scope.$broadcast("data-loaded-client", response);

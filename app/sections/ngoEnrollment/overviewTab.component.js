@@ -34,7 +34,7 @@
 			if (promoters != null) {
 				vm.list.push(promoters);
 				vm.flag = true;
-				vm.view.promoters = " ";
+				vm.view.promoters = "";
 			}
 		}
 		vm.delRow = function(index) {
@@ -68,38 +68,24 @@
 		}
 		vm.load = function() {
 			vm.view = ngoEnrollmentService.overviewData;
+			ngoEnrollmentService.setOverviewData(vm.view);
 			if (vm.view && vm.view.promoters) {
 				vm.list = vm.view.promoters;
-				vm.view.promoters = " ";
+				vm.view.promoters = "";
 			}
 			if (vm.list) {
 				vm.flag = true;
 			}
 		}
 
-		function onSuccess(response) {
+	/*	function onSuccess(response) {
 
 		}
 
 		function onError(response) {
 			console.log(response)
-		}
+		}*/
 		
-		/*vm.checkPhoneNbr = function() {
-			var phone = vm.view.mobilePhone;
-			
-			
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check=false;
-			} else {
-				vm.check=true;
-			}
-		};*/
-		
-
 		vm.validate = function(type, id, value, event){
 			var data = validateFormData.validate(type, id, value, event);
 			vm.fields[id] = data.field[id];

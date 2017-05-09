@@ -28,7 +28,8 @@
             getRole: () => authRole,
             getPermissions: () => authPermissions,
             getUserRole,
-            setUserRole
+            setUserRole,
+            isUserLoggedIn
         };
 
         function loadUserCredentials() {
@@ -115,7 +116,8 @@
                 isAuthenticated = false;
                 window.localStorage.removeItem(LOCAL_TOKEN_KEY);
                 window.localStorage.removeItem(LOCAL_ROLE);
-
+                window.localStorage.removeItem("userOrgInfo");
+                window.localStorage.removeItem("userType");
                 userService.removeUserDetails();
             }, 300)
         }
@@ -162,6 +164,15 @@
             window.localStorage.setItem(LOCAL_ROLE, role);
             authPermissions = data.permissions.join();
             authRole = role;
+        }
+        
+        function isUserLoggedIn() {
+        	let token = window.localStorage.getItem("hni_token");
+        	if(token && token.length > 0) {
+                return true;
+            } else {
+            	return false
+            }
         }
     }
 })();

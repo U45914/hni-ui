@@ -17,7 +17,7 @@
 		}
 	}
 	
-	connectionDetailsController.inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	connectionDetailsController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
 	
 	function connectionDetailsController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;

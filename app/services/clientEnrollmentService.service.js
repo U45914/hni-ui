@@ -152,7 +152,6 @@
             	
             	
                	let clientInfoData = JSON.stringify(finalSaveData);
-            	debugger;
             	var pass = validateCientInfoData(finalSaveData);
             	if(!pass){
             		toastService.showToast("Please fill required fields");
@@ -162,7 +161,6 @@
             }
             
             function validateCientInfoData(data){
-            	debugger;
             	var user = data.user;
             	var address = data.address;
             	if(user == null || address == null){

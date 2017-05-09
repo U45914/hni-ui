@@ -12,12 +12,15 @@
 		controllerAs : 'vm'
 	});
 	VolunteerInvitationController.$inject = [ '$q', 'volunteerService', '$scope',
-			'$state', 'toastService', 'validateFormData' ];
+			'$state', 'toastService', 'validateFormData','validateService' ];
 
 	function VolunteerInvitationController($q, volunteerService,  $scope, $state,
-			toastService, validateFormData) {
+			toastService, validateFormData,validateService) {
 		var vm = this;
 		vm.orgInfo = {};
+		vm.checkEmail=false;
+		vm.buttonText = "Invite";
+		vm.isDisabled = false;
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
@@ -43,7 +46,9 @@
 				}
 			}
 			
-			if (!doNotPost) {
+			if (!doNotPost && (vm.checkEmail == true)) {
+				vm.buttonText = "Please wait...";
+				vm.isDisabled = true;	
 				var serviceCalls = volunteerService
 						.inviteVolunteer(data)
 						.then(
@@ -56,21 +61,26 @@
 									} else if(response
 											&& response.data.response && !response.data.errorMsg){
 										toastService.showToast("Something went wrong. Try again later");
+										vm.buttonText = "Invite";
+										vm.isDisabled = false;
 									}
 										else {
 										toastService.showToast("Failed : "+ response.data.errorMsg);
+										vm.buttonText = "Invite";
+										vm.isDisabled = false;
 									}
 								},
 								function errorCallback(response) {
-									toastService.showToast("Something went wrong, please try again")
+									toastService.showToast("Something went wrong, please try again");
+									vm.buttonText = "Invite";
+									vm.isDisabled = false;
 									// $state.go('dashboard');
 								});
 
-				console.log(data);
 				return $q.all(serviceCalls);
 			}
 			else{
-				toastService.showToast("Please fill required fields")
+				toastService.showToast("Please complete all the fields")
 			}
 		}
 		
@@ -78,6 +88,26 @@
 			var data = validateFormData.validate(type, id, value, event);
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
+		};
+		
+		vm.checkVolunteerEmailAvailability = function() {
+			validateService.checkEmailAvailability(vm.email).then(
+					function(response) {
+		            	console.log(response)
+						if (response && response.data
+								&& response.data.available == 'true') {
+							vm.userEmailMessage = null;
+							vm.checkEmail=true;
+						} else if (response && response.data
+								&& response.data.available == 'false') {
+							vm.userEmailMessage = "Email id already registered";
+							vm.checkEmail = false;
+						} else if (response && response.data
+								&& response.data.error) {
+							vm.userEmailMessage = response.data.error;
+							vm.checkEmail = false;
+						}
+					});
 		};
 		
 	}

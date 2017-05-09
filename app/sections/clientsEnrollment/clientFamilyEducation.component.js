@@ -17,7 +17,7 @@
 		}
 	}
 	
-	clientFamilyEducationController.inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	clientFamilyEducationController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
 	
 	function clientFamilyEducationController($q,clientEnrollmentService,$scope,$rootScope,$state){
     	var vm = this;

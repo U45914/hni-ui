@@ -30,8 +30,9 @@
 		
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
 				<label>Email address</label>
-			 	<input type="email" id="" required ng-model="vm.email" class="input_box_md" ng-blur="vm.validationCheck('text','email',vm.email)">
+			 	<input type="email" id="" required ng-model="vm.email" class="input_box_md" ng-blur="vm.checkClientEmailAvailability();vm.validationCheck('text','email',vm.email,$event)">
 			 	<div id="errorMsg" ng-if="vm.fields['email']" style="color:red;" ng-bind="vm.msgs['email']"></div>
+			 	<div id="errorMsg" style="color:red;"ng-bind="vm.userEmailMessage"></div>
 			</md-input-container>
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
@@ -46,7 +47,7 @@
 			</md-input-container>
 		</div>
 		
-			<md-button id="input-submit" class="md-raised button-primary" style="float:right;"  ng-click="vm.submit()" >Invite</md-button>
+			<md-button id="input-submit" class="md-raised button-primary" style="float:right;"  ng-click="vm.submit()" ng-disabled = "vm.isDisabled" >{{vm.buttonText}}</md-button>
 </div>
 
 </div>

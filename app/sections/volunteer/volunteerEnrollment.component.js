@@ -17,17 +17,6 @@
 		vm.userType = vm.getUserType;
 		vm.userNameMessage = "";
 		vm.states = validateService.validateStateDrpdwn();
-		vm.fields = {
-				/*"firstName" : true ,
-				"lastName" : true ,
-				"userName" : true ,
-				"password" : false ,
-				"confirmPassword" : true ,
-				"address" : true ,
-				"city" : true ,
-				"state" : true ,
-				"zip" :  true*/
-		};
 		vm.msgs = {};
 		
 		vm.signIn = function() {
@@ -47,7 +36,6 @@
 			};
 
 			var doNotPost = false;
-			debugger;
 			var keys = Object.keys(vm.fields);
 			for(var index = 0; index < keys.length; index++){
 				if(vm.fields[keys[index]]) {
@@ -87,18 +75,6 @@
 					});
 		};
 
-		/*vm.checkPassword = function() {
-			var pass = vm.password;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[a-z])(?=.*[@#$%^&+=]).{6,}");
-			var res = patt.test(pass);
-			if (res == true) {
-				vm.check=false;
-			} else {
-				vm.check=true;
-			}
-			debugger;
-			vm.fields['confirmPassword'] = !vm.check;
-		};*/
 
 		vm.getUserType = function() {
 			return window.localStorage.getItem(USER_TYPE);

@@ -16,5 +16,11 @@
         vm.role = authService.getUserRole();
         vm.rolesConstantName=rolesConstantName;
         
-            }
+        
+        
+        vm.logout = function() {
+            authService.logout();
+        };
+        
+    }
 })();

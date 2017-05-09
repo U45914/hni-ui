@@ -13,6 +13,7 @@
 		}
 
 	}
+	partnershipController.$inject = ['$scope'];
 	
 	function partnershipController($scope) {
 		

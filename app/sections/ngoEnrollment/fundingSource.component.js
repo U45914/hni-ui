@@ -17,6 +17,7 @@
 
 	}
 	
+	fundingSourceController.$inject = ['$scope' ,'validateFormData'];
 	function fundingSourceController($scope, validateFormData) {
 				
 		var fundingSourceObj ={};

@@ -16,6 +16,7 @@
 		}
 
 	}
+	fundingMealController.$inject = ['$scope'];
 	
 	function fundingMealController($scope) {
 				

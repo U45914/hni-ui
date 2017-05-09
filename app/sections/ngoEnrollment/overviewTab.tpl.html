@@ -1,127 +1,156 @@
-	<div class="font_for_allpages1" >
+
+<div class="font_for_allpages1">
 	<h3>Overview</h3>
-	
+
 	<div layout-gt-xs="row" class="mission_width1">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>NGO name</label>
-            <input type="text" ng-model="vm.view.name" required  ng-blur="vm.validate('text','name',vm.view.name)" autofocus= "on">
-            <div id="errorMsg" ng-if="vm.fields['name']" style="color:red;"ng-bind="vm.msgs['name']"></div>
-          </md-input-container>
-          
-          <md-input-container name="myForm" class="md-block input-primary mgn_left_25" flex- gt-sm>
-            <label>NGO phone</label>
-            <input type="text" name="phone" required maxlength="12" ng-model="vm.view.mobilePhone" ng-blur = "vm.validate('number','phone',vm.view.mobilePhone)" >
-           <div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>
-		 </md-input-container>
-         </div>
-         <div layout-gt-xs="row" class="mission_width1">
-          <md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>NGO website url</label>
-<input type="url" name="websiteLink" placeholder="http://www.example.com" required ng-model="vm.view.website"  ng-blur="vm.validate('url','website',vm.view.website,$event)"></input>
-            <div id="errorMsg" ng-if="vm.fields['website']" style="color:red;"ng-bind="vm.msgs['website']"></div>
-          </md-input-container>
-         
-          <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-            <label>NGO contact person</label>
-            <input type="text"  ng-disabled="true" required ng-model="vm.view.name" ng-blur="vm.validate('text','contact',vm.view.name)"></input>
-            <div id="errorMsg" ng-if="vm.fields['contact']" style="color:red;" ng-bind="vm.msgs['contact']" /></div>   
-          </md-input-container>
-          </div>
-         <br> 
-         <div class="login-prompt"><b>Address</b></div>
-			<div layout-gt-xs="row" class="mission_width1">
-				<md-input-container class="md-block input-primary " flex-gt-sm> 
-				<label>Address line 1</label>
-			 	<input type="text" required ng-model="vm.view.address.address1" ng-blur="vm.validate('text','address1',vm.view.address.address1)"> 
-			 	<div id="errorMsg" ng-if="vm.fields['address1']" style="color:red;" ng-bind="vm.msgs['address1']" /></div>
-				</md-input-container>
-				
-				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-				<label>Address line 2</label>
-			 	<input type="text" ng-model="vm.view.address.address2">
-				</md-input-container>
-			</div>
-		    
-		    <div layout-gt-xs="row" class="mission_width1">
-				<md-input-container class="md-block input-primary" flex-gt-sm> 
-				<label>City</label>
-			 	<input type="text" required ng-model="vm.view.address.city"  ng-blur="vm.validate('text','city',vm.view.address.city)">
-			 	<div id="errorMsg" ng-if="vm.fields['city']" style="color:red;" ng-bind="vm.msgs['city']" /></div>
-				</md-input-container>
-		
-				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-         			 <label>State</label>
-          			 <md-select name="type" ng-model="vm.view.address.state" required  ng-blur="vm.validate('text','state',vm.view.address.state)">
-            			<md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
-            		</md-select>
-            		<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']" /></div>
-        		</md-input-container><md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-					<label>Zip code</label>
-			 		<input type="text" required maxlength="6" ng-model="vm.view.address.zip" ng-blur="vm.validate('number','zip',vm.view.address.zip)">
-			 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;" ng-bind="vm.msgs['zip']" /></div>
-				</md-input-container>
-        		
-        		
-			</div>
-			
-	 
-          
-         <div layout-gt-xs="row" class="mission_width3">
-           <md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Number of full time employees at the NGO</label>
-            <input type="number"   required min="0" ng-model="vm.view.employees" ng-blur="vm.validate('number','fte',vm.view.employees)"></input>
-            <div id="errorMsg" ng-if="vm.fields['fte']" style="color:red;" ng-bind="vm.msgs['fte']" /></div>
-          </md-input-container>
-          </div> 
-         
-         <div layout-gt-xs="row" class="mission_width1">
-          <md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>About the NGO</label>
-            <textarea md-maxlength="100" rows="2"  ng-model="vm.view.overview" ng-blur="vm.validate('text','overview',vm.view.overview)" required></textarea>
-            <div id="errorMsg" ng-if="vm.fields['overview']" style="color:red;" ng-bind="vm.msgs['overview']" /></div>
-          </md-input-container>
-         
-          <md-input-container class="md-block input-primary  mgn_left_25" flex-gt-sm>
-            <label>Mission statement</label>
-            <textarea md-maxlength="100" rows="2" required ng-model="vm.view.mission" ng-blur="vm.validate('text','mission',vm.view.mission)"></textarea>
-            <div id="errorMsg" ng-if="vm.fields['mission']" style="color:red;" ng-bind="vm.msgs['mission']" /></div>
-          </md-input-container>
-        </div>
-        
-        <div layout-gt-xs="row" class="mission_width"> 
-          <md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Celebrity endorsers/ Notable affiliates</label>
-             <textarea ng-model="vm.view.promoters"  md-select-on-focus></textarea>
-          </md-input-container>
-		   <div style="padding-top:7px;">
-		  <md-button class="md-fab btn_style"  ng-click="vm.addRow(vm.view.promoters)" >
-		    <md-icon md-svg-src="app/assets/images/add.svg" ></md-icon>
-		  </md-button>
-		  </div>
-		</div> 
-	
-	
-		<md-grid-list md-cols="1" md-row-height="20:1" md-row-width="3:1"  md-gutter="6px">
-		<md-grid-tile ng-repeat="member in vm.list track by $index">
-			<div id="header" layout="row" flex>{{member}}</div>
-			<md-button class="md-fab btn_style mgn_rt " style="background-color:transparent;
+		<label>NGO name</label> <input type="text" ng-model="vm.view.name"
+			required ng-blur="vm.validate('text','name',vm.view.name)"
+			autofocus="on">
+		<div id="errorMsg" ng-if="vm.fields['name']" style="color: red;"
+			ng-bind="vm.msgs['name']"></div>
+		</md-input-container>
+
+		<md-input-container name="myForm"
+			class="md-block input-primary mgn_left_25" flex- gt-sm>
+		<label>NGO phone</label> <input type="text" name="phone" required
+			maxlength="12" ng-model="vm.view.mobilePhone"
+			ng-blur="vm.validate('number','phone',vm.view.mobilePhone)">
+		<div id="errorMsg" ng-if="vm.fields['phone']" style="color: red;"
+			ng-bind="vm.msgs['phone']"></div>
+		</md-input-container>
+	</div>
+	<div layout-gt-xs="row" class="mission_width1">
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+		<label>NGO website url</label> <input type="url" name="websiteLink"
+			placeholder="http://www.example.com" required
+			ng-model="vm.view.website"
+			ng-blur="vm.validate('url','website',vm.view.website,$event)"></input>
+		<div id="errorMsg" ng-if="vm.fields['website']" style="color: red;"
+			ng-bind="vm.msgs['website']"></div>
+		</md-input-container>
+
+		<md-input-container class="md-block input-primary mgn_left_25"
+			flex-gt-sm> <label>NGO contact person</label> <input
+			type="text" ng-disabled="true" required ng-model="vm.view.name"
+			ng-blur="vm.validate('text','contact',vm.view.name)"></input>
+		<div id="errorMsg" ng-if="vm.fields['contact']" style="color: red;"
+			ng-bind="vm.msgs['contact']" /></div>
+		</md-input-container>
+	</div>
+	<br>
+	<div class="login-prompt">
+		<b>Address</b>
+	</div>
+	<div layout-gt-xs="row" class="mission_width1">
+		<md-input-container class="md-block input-primary " flex-gt-sm>
+		<label>Address line 1</label> <input type="text" required
+			ng-model="vm.view.address.address1"
+			ng-blur="vm.validate('text','address1',vm.view.address.address1)"/>
+		<div id="errorMsg" ng-if="vm.fields['address1']" style="color: red;"
+			ng-bind="vm.msgs['address1']"></div>
+		</md-input-container>
+
+		<md-input-container class="md-block input-primary mgn_left_25"
+			flex-gt-sm> <label>Address line 2</label> <input
+			type="text" ng-model="vm.view.address.address2"/> </md-input-container>
+	</div>
+
+	<div layout-gt-xs="row" class="mission_width1">
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+		<label>City</label> <input type="text" required
+			ng-model="vm.view.address.city"
+			ng-blur="vm.validate('text','city',vm.view.address.city)"/>
+		<div id="errorMsg" ng-if="vm.fields['city']" style="color: red;"
+			ng-bind="vm.msgs['city']" ></div>
+		</md-input-container>
+
+		<md-input-container class="md-block input-primary mgn_left_25"
+			flex-gt-sm> <label>State</label> <md-select
+			name="type" ng-model="vm.view.address.state" required
+			ng-blur="vm.validate('text','state',vm.view.address.state)">
+		<md-option ng-repeat="each in vm.states" value={{each.value}}>{{each.name}}</md-option>
+		</md-select>
+		<div id="errorMsg" ng-if="vm.fields['state']" style="color: red;"
+			ng-bind="vm.msgs['state']"></div>
+		</md-input-container>
+		<md-input-container class="md-block input-primary mgn_left_25"
+			flex-gt-sm> <label>Zip code</label> <input
+			type="text" required maxlength="6" ng-model="vm.view.address.zip"
+			ng-blur="vm.validate('number','zip',vm.view.address.zip)"/>
+		<div id="errorMsg" ng-if="vm.fields['zip']" style="color: red;"
+			ng-bind="vm.msgs['zip']" ></div>
+		</md-input-container>
+
+
+	</div>
+
+
+
+	<div layout-gt-xs="row" class="mission_width3">
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+		<label>Number of full time employees at the NGO</label> <input
+			type="number" required min="0" ng-model="vm.view.employees"
+			ng-blur="vm.validate('number','fte',vm.view.employees)"></input>
+		<div id="errorMsg" ng-if="vm.fields['fte']" style="color: red;"
+			ng-bind="vm.msgs['fte']"></div>
+		</md-input-container>
+	</div>
+
+	<div layout-gt-xs="row" class="mission_width1">
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+		<label>About the NGO</label> <textarea md-maxlength="100" rows="2"
+			ng-model="vm.view.overview"
+			ng-blur="vm.validate('text','overview',vm.view.overview)" required></textarea>
+		<div id="errorMsg" ng-if="vm.fields['overview']" style="color: red;"
+			ng-bind="vm.msgs['overview']" ></div>
+		</md-input-container>
+
+		<md-input-container class="md-block input-primary  mgn_left_25"
+			flex-gt-sm> <label>Mission statement</label> <textarea
+			md-maxlength="100" rows="2" required ng-model="vm.view.mission"
+			ng-blur="vm.validate('text','mission',vm.view.mission)"></textarea>
+		<div id="errorMsg" ng-if="vm.fields['mission']" style="color: red;"
+			ng-bind="vm.msgs['mission']" ></div>
+		</md-input-container>
+	</div>
+
+	<div layout-gt-xs="row" class="mission_width">
+		<md-input-container class="md-block input-primary" flex-gt-sm>
+		<label>Celebrity endorsers/ Notable affiliates</label> <textarea
+			ng-model="vm.view.promoters" md-select-on-focus></textarea> </md-input-container>
+		<div style="padding-top: 7px;">
+			<md-button class="md-fab btn_style"
+				ng-click="vm.addRow(vm.view.promoters)"> <md-icon
+				style="margin-top: 10px;">
+			<i class="material-icons">&#xE03B;</i></md-icon> </md-button>
+		</div>
+	</div>
+
+
+	<md-grid-list md-cols="1" md-row-height="20:1" md-row-width="3:1"
+		md-gutter="6px"> <md-grid-tile
+		ng-repeat="member in vm.list track by $index">
+	<div id="header" layout="row" flex>{{member}}</div>
+	<md-button class="md-fab btn_style mgn_rt "
+		style="background-color:transparent;
 border-radius:0;
 color:#D65439;
 
-box-shadow:none;border:none;" ng-click="vm.delRow($index)" ng-show="vm.flag">
-		    <div style="position: relative;
-    bottom: 10px;">X</div>
-		  </md-button>
-			
-		</md-grid-tile> </md-grid-list>
+box-shadow:none;border:none;"
+		ng-click="vm.delRow($index)" ng-show="vm.flag">
+	<div style="position: relative; bottom: 10px;">X</div>
+	</md-button> </md-grid-tile> </md-grid-list>
 
-	
-	
-	
-	<hr class "register-input" layout="row" layout-align="center center">
-	<div  class="left_float">
-	<br>
-	<md-button class="md-raised button-primary " class="save_next_btn" ng-click="vm.save();" >Save & Next</md-button>
-	
+
+
+
+	<hr class="register-input-test" layout="row"
+		layout-align="center center"/>
+	<div class="left_float">
+		<br>
+		<md-button class="md-raised button-primary " class="save_next_btn"
+			ng-click="vm.save();">Save & Next</md-button>
+
 	</div>
-	</div>
+</div>

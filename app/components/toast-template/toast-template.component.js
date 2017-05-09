@@ -7,10 +7,7 @@
     function toastController($scope, toastService) {
     	$scope.msg = toastService.msg;
     	let vm = this;
-	    
-    	vm.closeToast = function() {
-	        $mdToast.hide();
-	      };
+	   
     }
  
 })();

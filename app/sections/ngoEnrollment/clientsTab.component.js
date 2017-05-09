@@ -17,7 +17,7 @@
 		}
 	}
 	
-	clientTabController.inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService'];
+	clientTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService'];
 	
 	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService){
     	var vm = this;
@@ -47,14 +47,15 @@
     	
     	vm.load = function() {
     		vm.client = ngoEnrollmentService.clientData;
+    		ngoEnrollmentService.setClientData(vm.client);
     	}
     	  vm.enrollementData = function(){
         	  var data = {}; 
-        	  data.overviewData = ngoEnrollmentService.overviewData;
-        	  data.stakeHolderData = ngoEnrollmentService.stakeHolderData;
-        	  data.serviceData = ngoEnrollmentService.serviceData;
-        	  data.fundingData = ngoEnrollmentService.fundingData;
-        	  data.clientData = ngoEnrollmentService.clientData;
+        	  data.overviewData = ngoEnrollmentService.getOverviewData();
+        	  data.stakeHolderData = ngoEnrollmentService.getStakeHolderData();
+        	  data.serviceData = ngoEnrollmentService.getServiceData();
+        	  data.fundingData = ngoEnrollmentService.getFundingData();
+        	  data.clientData = ngoEnrollmentService.getClientData();
         	  vm.validateNGOEnrollmentData = validateService.validateNGOEnrollmentData(data);
         	  console.log(vm.validateNGOEnrollmentData);
         	  if(angular.equals(vm.validateNGOEnrollmentData, {})){
