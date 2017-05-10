@@ -318,8 +318,7 @@
 		};
 		
 
-		$rootScope.$on("tabFocusChangedFromTabThree", function(event, data){
-			vm.load();
+		$rootScope.$on("tabFocusChangedFromTabThree", function(event, data){			
 			vm.save(true);
 		})
     }

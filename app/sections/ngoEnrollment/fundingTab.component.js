@@ -50,8 +50,7 @@
 				}
 		}
 		
-		$rootScope.$on("tabFocusChangedFromTabFour", function(event, data){
-			ft.load();
+		$rootScope.$on("tabFocusChangedFromTabFour", function(event, data){			
 			ft.save(true);
 		})
 	}

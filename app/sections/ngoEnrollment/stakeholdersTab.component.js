@@ -51,8 +51,7 @@
 			}
 		}
 		
-		$rootScope.$on("tabFocusChangedFromTabTwo", function(event, data){
-			shtc.load();
+		$rootScope.$on("tabFocusChangedFromTabTwo", function(event, data){			
 			shtc.save(true);
 		})
 		
