@@ -71,12 +71,15 @@
  			clientEnrollmentService.setFoodData(vm.getDataModel(vm.food));
  		}
     	
-    	vm.save = function(){ 
-    	var data = vm.getDataModel(vm.food);
-    	
-    	 clientEnrollmentService.setFoodData(data);
-    	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-		 var serviceCalls = clientEnrollmentService.savePartial();
+    	vm.save = function(isTopTabClicked){ 
+	    	var data = vm.getDataModel(vm.food);
+	    	
+	    	 clientEnrollmentService.setFoodData(data);
+	    	 var serviceCalls = clientEnrollmentService.savePartial();
+	    	 if(!isTopTabClicked){
+	    		 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+	    	 }	    	 
+			 
     	}
     	
     	vm.getDataModel = function(food){
@@ -95,5 +98,9 @@
         			};
     		return data;
     	}
+    	
+    	$rootScope.$on("saveTabFive", function(event, data){			
+			vm.save(true);
+		})
 	}
 })();

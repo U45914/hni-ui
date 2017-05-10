@@ -63,7 +63,10 @@
 		
 				ngoEnrollmentService.setOverviewData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
-				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+					if(!isTopTabClicked){
+					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+					}
+			}			
 			
 		}
 		vm.load = function() {
@@ -91,6 +94,11 @@
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		};
+		
+		$rootScope.$on("tabFocusChangedFromTabOne", function(event, data){
+			vm.load();
+			vm.save(true);
+		})
 		
 	}
 })();

@@ -49,12 +49,16 @@
 			{id: 1, name: "Friends"},
 			{id: 2, name: "Alone"}
     	];
-    	vm.save = function(){ 
-    	var data = vm.getDataModel(vm.family);
-    	console.log(data);
-    	 clientEnrollmentService.setFamilyData(data);
-    	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-		 var serviceCalls = clientEnrollmentService.savePartial();
+    	vm.save = function(isTopTabClicked){ 
+	    	var data = vm.getDataModel(vm.family);
+	    	console.log(data);
+	    	clientEnrollmentService.setFamilyData(data);
+	    	var serviceCalls = clientEnrollmentService.savePartial();
+	    	if(!isTopTabClicked){
+	    		$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+	    	}
+	    	
+			
     	}
     	
     	vm.getDataModel = function(family){
@@ -71,5 +75,9 @@
         			};
     		return data;
     	}
+    	
+    	$rootScope.$on("saveTabThree", function(event, data){			
+			vm.save(true);
+		})
 	}
 })();

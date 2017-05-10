@@ -83,13 +83,15 @@
  			vm.emp = clientEnrollmentService.finalData;
  			clientEnrollmentService.setEmploymentData(vm.getDataModel(vm.emp));
  		}
-    	vm.save = function(){ 
-    	var data = vm.getDataModel(vm.emp);
-    	console.log(data);
-    	clientEnrollmentService.setEmploymentData(data);
-    	$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+	vm.save = function(isTopTabClicked){ 
+		var data = vm.getDataModel(vm.emp);
+		console.log(data);
+		clientEnrollmentService.setEmploymentData(data)		
 		var serviceCalls = clientEnrollmentService.savePartial();
-    	}
+		if(!isTopTabClicked){
+			$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+		}
+	}
     	
     	vm.getDataModel = function (emp){
     		var data = {
@@ -114,5 +116,9 @@
         			};
     		return data;
     	}
+    	
+    	$rootScope.$on("saveTabFour", function(event, data){			
+			vm.save(true);
+		})
 	}
 })();

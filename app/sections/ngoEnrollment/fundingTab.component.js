@@ -35,7 +35,7 @@
 
 		}
 		}
-		ft.save = function() {
+		ft.save = function(isTopTabClicked) {
 			var data = {
 				"fundingSource" : ft.fundingSourceList,
 				"mealDonation" : ft.mealDonaltionList,
@@ -45,7 +45,14 @@
 				ngoEnrollmentService.setFundingData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
 				$q.all(serviceCalls)// .then(onSuccess,onError);
-				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+				if(!isTopTabClicked){
+					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+				}
 		}
+		
+		$rootScope.$on("tabFocusChangedFromTabFour", function(event, data){
+			ft.load();
+			ft.save(true);
+		})
 	}
 })();
