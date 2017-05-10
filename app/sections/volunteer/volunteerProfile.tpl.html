@@ -47,7 +47,7 @@
      </md-input-container>
 	
 	<md-input-container class="md-block mgn_left_25" flex-gt-sm>
-	<label class="text_style_vol" >Zip</label> <input type="text" required maxlength="6" ng-model="vm.vol.address.zip" ng-blur="vm.validationCheck('number','zip',vm.vol.address.zip)"/>
+	<label class="text_style_vol" >Zip</label> <input type="text" required maxlength="5" ng-model="vm.vol.address.zip" ng-blur="vm.validationCheck('number','zip',vm.vol.address.zip)"/>
 	<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;"ng-bind="vm.msgs['zip']"></div>	
 	</md-input-container>
 </div>

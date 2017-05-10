@@ -54,7 +54,10 @@
                 	vm.user = response.data.data;  
                 	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
                 		//popupService.showAlert("Please take few minutes to complete your profile");
-                		vm.user = response.data.data;                		
+                		vm.user = response.data.data;    
+                		if(vm.userRole == "Volunteer"){
+                			$state.go("volunteer-landing");
+                		}
                 	} else {
                 		popupService.showAlert("Please take few minutes to complete your profile")
                 		.then(function(){

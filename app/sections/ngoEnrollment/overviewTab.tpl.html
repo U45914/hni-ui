@@ -14,7 +14,7 @@
 		<md-input-container name="myForm"
 			class="md-block input-primary mgn_left_25" flex- gt-sm>
 		<label>NGO phone</label> <input type="text" name="phone" required
-			maxlength="12" ng-model="vm.view.mobilePhone"
+			maxlength="12" ng-model="vm.view.mobilePhone" placeholder="999-999-9999"
 			ng-blur="vm.validate('number','phone',vm.view.mobilePhone)">
 		<div id="errorMsg" ng-if="vm.fields['phone']" style="color: red;"
 			ng-bind="vm.msgs['phone']"></div>
@@ -76,7 +76,7 @@
 		</md-input-container>
 		<md-input-container class="md-block input-primary mgn_left_25"
 			flex-gt-sm> <label>Zip code</label> <input
-			type="text" required maxlength="6" ng-model="vm.view.address.zip"
+			type="text" required maxlength="5" ng-model="vm.view.address.zip"
 			ng-blur="vm.validate('number','zip',vm.view.address.zip)"/>
 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color: red;"
 			ng-bind="vm.msgs['zip']" ></div>

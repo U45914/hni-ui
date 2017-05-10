@@ -17,6 +17,7 @@
 		vm.userType = vm.getUserType;
 		vm.userNameMessage = "";
 		vm.states = validateService.validateStateDrpdwn();
+		vm.fields = {};
 		vm.msgs = {};
 		
 		vm.signIn = function() {
