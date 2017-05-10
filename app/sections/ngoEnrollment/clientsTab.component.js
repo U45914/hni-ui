@@ -56,31 +56,37 @@
         	  data.serviceData = ngoEnrollmentService.getServiceData();
         	  data.fundingData = ngoEnrollmentService.getFundingData();
         	  data.clientData = ngoEnrollmentService.getClientData();
-        	  vm.validateNGOEnrollmentData = validateService.validateNGOEnrollmentData(data);
-        	  console.log(vm.validateNGOEnrollmentData);
-        	  if(angular.equals(vm.validateNGOEnrollmentData, {})){
-    	    	  console.log( vm.validateNGOEnrollmentData);
+        	  
+        	  vm.validateErrors = validateService.validateNGOEnrollmentData(data);
+
+        	  debugger;
+        	  console.log(vm.validateErrors);
+        	  if (vm.validateErrors.length > 0) {
+        		  // Now prepare message for user
+        		var validationMessage = validateService.getFormattedErrorMessageForUser(vm.validateErrors);
+        		toastService.showToastWithFormatting(validationMessage);
+        		  
+        	  } else {
+        		  
     	    	  console.log("Attempting function call..");
     	    	  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
-    	    			  				function successCallback(response) {
-    	    			  					if (response && response.status && response.statusText == "OK") {
-    	    			  						toastService.showToast("Your request has been submitted")
-    	    			  							$state.go('dashboard');
-    	    			  					} else if(response && response.data && !response.data.errorMsg){
-    						                	   toastService.showToast("Something went wrong. Try again later");
-    						                   }
-    	    			  					else {
-    	    			  						toastService.showToast("Failed : "+ response.data.errorMsg);
-    	    			  					}
-    	    			  				},
-    	    			  				function errorCallback(response) {
-    	    			  					toastService.showToast("Something went wrong, please try again")
-    	    			  				});
-    		  return $q.all(serviceCalls);
+			  				function successCallback(response) {
+			  					if (response && response.status && response.statusText == "OK") {
+			  						toastService.showToast("Your request has been submitted")
+			  							$state.go('dashboard');
+			  					} else if(response && response.data && !response.data.errorMsg){
+				                	   toastService.showToast("Something went wrong. Try again later");
+				                   }
+			  					else {
+			  						toastService.showToast("Failed : "+ response.data.errorMsg);
+			  					}
+			  				},
+			  				function errorCallback(response) {
+			  					toastService.showToast("Something went wrong, please try again")
+			  				});
+    	    	  return $q.all(serviceCalls);
         	  }
-        	  else {
-        		  toastService.showToast("Please fill all required fields");
-        	  }
+        	  
     		  
     	  }
     	

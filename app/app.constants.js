@@ -2,7 +2,7 @@
     angular
         .module('app')
         .constant('serviceConstants', {
-            baseUrl: "http://hni-api-prod.centralus.cloudapp.azure.com:8080/api/v1"
+            baseUrl: "http://104.43.165.131:8080/api/v1"
         })
         .constant('rolesConstant', {
             superAdmin: '1',

@@ -14,7 +14,8 @@
 			validateNGOAdd,
 			validateStateDrpdwn,
 			validateNGOEnrollmentData,
-			checkEmailAvailability
+			checkEmailAvailability,
+			getFormattedErrorMessageForUser
 		};
 		
 		
@@ -147,34 +148,45 @@
 		/*
 		 * 
 		 * Method to validate the NGO Profile data
+		 * This method will return errors object if anything exists
+		 * error object will be in below format
+		 * {
+		 * 	"field": fileName,
+		 * 	"component" "Overview",
+		 *  "message": description for validation error,
+		 *  "focus": true or false focusing column,
+		 *  "severity": scale error validation
+		 *  }
 		 * 
 		 */
 		
+		function getErrorObject(fieldName, viewName, errorMessage, focusOn, serverity) {
+			var errorObject = {
+					field: fieldName,
+					component: viewName,
+					message:errorMessage,
+					focus: focusOn,
+					severity: serverity
+			}
+			
+			return errorObject;
+		}
+		
+		
 		function validateNGOEnrollmentData(data){
-			var errorText = {};
-			var overviewTab = validateNGOEnrollmentTabOverview(data.overviewData);
-			var stakeholdersTab = validateNGOEnrollmentTabStakeHolders(data.stakeHolderData);
-			var serviceTab = validateNGOEnrollmentTabService(data.serviceData);
-			//var fundingTab = validateNGOEnrollmentTabFunding(data.fundingData);
-			//var clientTab = validateNGOEnrollmentTabClient(data.clientData);
+			var validationErrors = [];
+			
+			var overviewTabValidationErrors = validateNGOEnrollmentTabOverview(data.overviewData);
+			validationErrors = overviewTabValidationErrors;
+			
+			
+			var clientTabValidationErrors = validateNGOEnrollmentTabClient(data.clientData);
+			validationErrors = validationErrors.concat(clientTabValidationErrors);
 
-			if(overviewTab != ""){
-				errorText.Overview = overviewTab;
-			}
-			if(stakeholdersTab != ""){
-				errorText.StakeHolders = stakeholdersTab;
-			}
-			if(serviceTab != ""){
-				errorText.Services = serviceTab;
-			}
-			/*if(fundingTab != ""){
-				errorText.Funding = fundingTab;
-			}
-			if(clientTab != ""){
-				errorText.Clients = clientTab;
-			}*/
-			console.log(errorText);
-			return errorText;
+			var serviceTabValidationErrors = validateNGOEnrollmentTabService(data.serviceData);
+			validationErrors = validationErrors.concat(serviceTabValidationErrors);
+			
+			return validationErrors;
 		}
 		
 		/*
@@ -183,54 +195,72 @@
 		 * 
 		 */
 		
+		var FIELD_OVERVIEW_TAB_NAME = "name";
+		var FIELD_OVERVIEW_CONTACT_NAME = "contactName";
+		var FIELD_OVERVIEW_TAB_PHONE = "mobilePhone";
+		var FIELD_OVERVIEW_TAB_WEBSITE = "website";
+		var FIELD_OVERVIEW_TAB_ADDRESS_1 ="address1";
+		var	FIELD_OVERVIEW_TAB_CITY = "city";
+		var FIELD_OVERVIEW_TAB_STATE = "state";
+		var FIELD_OVERVIEW_TAB_ZIP_COE = "zipCode";
+		var FIELD_OVERVIEW_TAB_FTE = "fte";
+		var FIELD_OVERVIEW_TAB_OVER_VIEW = "overview";
+		var FIELD_OVERVIEW_TAB_MISSION_STATEMENT = "missionStatement";
+		
 		function validateNGOEnrollmentTabOverview(data){
-			console.log(data);
-			var errorText = {};
-			var field = [];
+			var overViewTabValidationErrors = [];
+			
 			if(data != null){
 				if(data.name == null){
-					field.push("Name");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_NAME, "Overview",  "NGO Name", false, 1));
+				}
+				if(data.contactPerson == null){
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_CONTACT_NAME, "Overview", "Contact Name", false, 1));
 				}
 				if(data.mobilePhone == null || isNaN(Number(data.mobilePhone.replace(/-/g, "")))){
-					field.push("Phone");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_PHONE, "Overview", "Phone number field", false, 1));
+				} else if(isNaN(Number(data.mobilePhone.replace(/-/g, "")))){
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_PHONE, "Overview", data.mobilePhone + " is not a valid value for phone", false, 1));
 				}
 				if(data.website == null){
-					field.push("Website Link");
-				}
-				
-				if(data.address.name == null){
-					field.push("Address Type");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_WEBSITE, "Overview", "Website url", false, 1));
 				}
 				if(data.address.address1 == null){
-					field.push("Address 1");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_ADDRESS_1, "Overview", "Address details", false, 1));
 				}
 				if(data.address.city == null){
-					field.push("City");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_CITY, "Overview", "City", false, 1));
 				}
 				if(data.address.state == null){
-					field.push("State");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_STATE, "Overview", "State", false, 1));
 				}
 				if(data.address.zip == null){
-					field.push("Zip code");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_ZIP_COE, "Overview", "Zipcode", false, 1));
 				}
 				if(data.employees == null || !angular.isNumber(data.employees)){
-					field.push("Full time Employees");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_FTE, "Overview", "Full time employees", false, 1));
 				}
 				if(data.overview == null){
-					field.push("Overview");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_OVER_VIEW, "Overview", "Overview", false, 1));
 				}
 				if(data.mission == null){
-					field.push("Mission Statement");
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_MISSION_STATEMENT, "Overview", "Please provide value for mission statement", false, 1));
 				}
-				/*if(data.promoters == null || data.promoters.length == 0){
-					field.push("Celebrity endorsements / notable promoters");
-				}*/
 			}
 			else{
-				field.push({field : "Overview Tab", value : "Empty"});
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_NAME, "Overview", "NGO Name", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_CONTACT_NAME, "Overview", "Contact Name", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_WEBSITE, "Overview", "Website url", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_ADDRESS_1, "Overview", "Address details", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_CITY, "Overview", "City", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_STATE, "Overview", "State", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_ZIP_COE, "Overview", "Zipcode", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_FTE, "Overview", "Full time employees", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_OVER_VIEW, "Overview", "Overview", false, 1));
+				overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_MISSION_STATEMENT, "Overview", "Mission statement", false, 1));
 			}
-			errorText = field;
-			return errorText;
+
+			return overViewTabValidationErrors;
 		}
 		
 		/*
@@ -290,87 +320,64 @@
 		 * 
 		 */
 		function validateNGOEnrollmentTabService(data){
-			var errorJson = {};
-			var errorArray = [];
+			var serviceTabValidationErrors = [];
+			
 			if(data != null){
 				if(data.brkfstChk == true){
 					if(data.brkfstQty == null || !angular.isNumber(data.brkfstQty)){
-						errorArray.push("Breakfast Qty");
+						serviceTabValidationErrors.push(getErrorObject("brkfstQty", "Services",  "Please provide breakfast quantity", false, 1));
 					}
-					/*if(data.brkfstAvailabilty == null || data.brkfstAvailabilty.length == 0){
-						errorArray.push("Breakfast Availability");
-					}*/
-				}
+				} 
 				
 				if(data.lunchChk == true){
 					if(data.lunchQty == null || !angular.isNumber(data.lunchQty)){
-						errorArray.push("Lunch Qty");
+						serviceTabValidationErrors.push(getErrorObject("lunchQty", "Services",  "Please provide lunch quantity", false, 1));
 					}
-					/*if(data.lunchAvailabilty == null || data.lunchAvailabilty.length == 0){
-						errorArray.push("Lunch Availability");
-					}*/
+					
 				}
 				
 				if(data.dinnerChk == true){
 					if(data.dinnerQty == null || !angular.isNumber(data.dinnerQty)){
-						errorArray.push("Dinner Qty");
+						serviceTabValidationErrors.push(getErrorObject("dinnerQty", "Services",  "Please provide dinner quantity", false, 1));
 					}
-					/*if(data.dinnerAvailabilty == null || data.dinnerAvailabilty.length == 0){
-						errorArray.push("Dinner Availability");
-					}*/
 				}
 				
 				if(data.baggedChk == true){
 					if(data.baggedQty == null || !angular.isNumber(data.baggedQty)){
-						errorArray.push("Bagged Qty");
+						serviceTabValidationErrors.push(getErrorObject("baggedQty", "Services",  "Please provide bagged quantity", false, 1));
 					}
 				}
 				
-				/*if(data.giftCard != null && !angular.isNumber(data.giftCard)){
-					errorArray.push("Gift Card");
-				}
-				
-				if(data.other != null && !angular.isNumber(data.other)){
-					errorArray.push("Other");
-				}*/
-				
 				if(data.monthlyBudget == null){
-					errorArray.push("Monthly Budget");
+					serviceTabValidationErrors.push(getErrorObject("monthlyBudget", "Services",  "Please provide value for monthly budget", false, 1));
 				}
-				
-				/*if(data.operatingCost == null){
-					errorArray.push("Operating Cost");
-				}
-				
-				if(data.personalCost == null){
-					errorArray.push("Personal Cost");
-				}*/
 				
 				if(data.volunteerNbr == null || !angular.isNumber(data.volunteerNbr)){
-					errorArray.push("Volunteer Number");
+					serviceTabValidationErrors.push(getErrorObject("volunteerNbr", "Services",  "Please provide value for volunteer required", false, 1));
 				}
 				
 				if(data.foodStamp == null){
-					errorArray.push("Food Stamp");
+					serviceTabValidationErrors.push(getErrorObject("foodStamp", "Services",  "Please select a oprion for food stamp", false, 1));
 				}
 				
 				if(data.foodBankSelect == null){
-					errorArray.push("Food Bank Select");
+					serviceTabValidationErrors.push(getErrorObject("foodBankSelect", "Services",  "Please select a option for food bank", false, 1));
+				} else if (data.foodBankSelect == true) {
+					//TODO: Need to check with actual data
+					/*if (data.foodBankValue == null || data.foodBankValue.length == 0) {
+						serviceTabValidationErrors.push(getErrorObject("foodBankSelect", "Services",  "Please give values for food bank", false, 1));
+					}*/
 				}
 				
-				/*if(data.foodBankSelect == true){
-					if(data.foodBankValue == null || data.foodBankValue.length == 0)
-						errorArray.push("Food Name");
-				}*/
-				
-				/*if(data.resource == null || data.resource.length == 0)
-					errorArray.push("Resource");*/
 			}	
 			else{
-				errorArray.push({field : "Services Tab", value : "Empty"});
-				}
-			errorJson = errorArray;
-			return errorJson;
+				serviceTabValidationErrors.push(getErrorObject("monthlyBudget", "Services",  "Please provide value for monthly budget", false, 1));
+				serviceTabValidationErrors.push(getErrorObject("foodStamp", "Services",  "Please select a option for food stamp", false, 1));
+				serviceTabValidationErrors.push(getErrorObject("foodBankSelect", "Services",  "Please select a option for food bank", false, 1));
+				serviceTabValidationErrors.push(getErrorObject("volunteerNbr", "Services",  "Please provide value for volunteer required", false, 1));
+				
+			}
+			return serviceTabValidationErrors;
 		}
 		
 		/*
@@ -430,43 +437,48 @@
 		 * 
 		 */
 		function validateNGOEnrollmentTabClient(data){
-			var errorJson = {};
-			var errorArray = [];
 
-			if(data != null){
-				if(data.individualsServedDaily == null || !angular.isNumber(data.individualsServedDaily)){
-					errorArray.push("Individuals Served Daily");
-				}
-				if(data.individualsServedMonthly == null || !angular.isNumber(data.individualsServedMonthly)){
-					errorArray.push("Individuals Served Monthly");
-				}
-				if(data.individualsServedAnnually == null || !angular.isNumber(data.individualsServedAnnually)){
-					errorArray.push("Individuals Served Annually");
-				}
-				if(data.individualClientInfoCollected == null){
-					errorArray.push("Client info collected");
-				}
-				/*if(data.individualClientInfoCollected == true){
+			var ngoClientTabValidationErrors = [];
+			
+			if(data != null) {
+				if(data.individualClientInfoCollected){
 					if(data.storeClientInfo == null){
-						errorArray.push("Store Client Info");
+						ngoClientTabValidationErrors.push(getErrorObject("storeClientInfo", "Participant",  "Please provide details for how you store client information", false, 1));
 					}
-				}*/
-				if(data.unshelteredClientPercentage == null || !angular.isNumber(data.unshelteredClientPercentage)){
-					errorArray.push("Unsheltered Clients");
 				}
-				if(data.employeedClientPercentage == null || !angular.isNumber(data.employeedClientPercentage)){
-					errorArray.push("Clients Employed");
-				}
-		}else{
-			errorArray.push({field : "Client Tab", value : "Empty"});
-		}
-			errorJson = errorArray;
-			return errorJson;
+			}
+			return ngoClientTabValidationErrors;
 		}
 		
 		 function checkEmailAvailability(username) {
          	var usernameObject = {"username": username}
          	return $http.post(`${baseUrl}/onboard/validate/username`, usernameObject);
          }
+		 
+		 function getFormattedErrorMessageForUser(errorObjects) {
+			 // First group error messages by component
+			 var components = {};
+			 angular.forEach(errorObjects, function(error) {
+				 if (components[error.component]) {
+					 components[error.component].push(error);
+				 } else {
+					 components[error.component] = [];
+					 components[error.component].push(error);
+				 }
+			 });
+			 
+			 var messageToUser = "";
+				 
+			 messageToUser += "<ul>";
+			 angular.forEach(components, function(errorsList, key){
+				 messageToUser += "<br />One or more mandatory fields not filled in " + key;
+				 angular.forEach(errorsList, function(error){
+					 messageToUser += "<li>" + error.message + "</li>";
+				 });
+			 });
+			 messageToUser += "</ul>";
+			 
+			 return messageToUser;
+		 }
 	}
 })();

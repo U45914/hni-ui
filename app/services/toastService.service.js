@@ -7,7 +7,8 @@
 
     function toastService($mdToast) {
     	var service = {
-    		showToast
+    		showToast,
+    		showToastWithFormatting
     	};
     	  
     	return service;
@@ -22,5 +23,16 @@
         	  });
         		    
           }	  
+          
+          function showToastWithFormatting(msg){
+        	  service.msg = msg;
+        	  $mdToast.show({
+        		  hideDelay: 7000,
+        		  template: '<md-toast >'+
+        			  '<div class="md-toast-content md_toast_new_validation" flex >' + msg +'<br /><br /></div> </md-toast>',
+        		  position: 'top right'
+        	  });
+        		    
+          }	
  }
 })();
