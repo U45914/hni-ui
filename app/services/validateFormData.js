@@ -64,7 +64,7 @@
 		function validateNumber(fields, msgs, id, value, event){
 			if(id=="zip"){
 				var zip = value;
-				if (isNaN(Number(zip))|| (zip.length != 6) || zip.indexOf("-")!=-1) {
+				if (isNaN(Number(zip))|| (zip.length != 5) || zip.indexOf("-")!=-1) {
 					fields[id] = true;
 					msgs[id]="Invalid Zip Code";
 				}else{

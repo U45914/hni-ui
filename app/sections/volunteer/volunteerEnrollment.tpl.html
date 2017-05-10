@@ -13,7 +13,7 @@
 			<md-input-container class="md-block input-primary " style="margin-bottom:20px;" flex-gt-sm>
 				<label>FirstName</label> <input type="text" id="input-firstName" autofocus = "on"
 					required ng-model="vm.firstName" ng-blur="vm.validationCheck('text','firstName',vm.firstName)">
-				<div id="errorMsg" ng-if="vm.fields['firstName']" style="color:red;"ng-bind="vm.msgs['firstName']"></div>
+				<div id="errorMsg" ng-if="vm.fields['firstName']" style="color:red;" ng-bind="vm.msgs['firstName']"></div>
 			 </md-input-container>
 			<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm>
 				<label>Last Name</label> <input type="text" id="input-lastName"
@@ -68,7 +68,7 @@
 			</br>
 				<md-input-container class="md-block input-primary" style="margin-bottom:20px;" flex-gt-sm> 
 					<label>Zip</label>
-			 		<input type="text" required maxlength= "6" ng-model="vm.zip" ng-blur="vm.validationCheck('number','zip',vm.zip)">
+			 		<input type="text" required maxlength= "5" ng-model="vm.zip" ng-blur="vm.validationCheck('number','zip',vm.zip)">
 			 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;"ng-bind="vm.msgs['zip']"></div>	
 				</md-input-container>
 			
