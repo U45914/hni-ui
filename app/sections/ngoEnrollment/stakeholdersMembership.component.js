@@ -15,9 +15,9 @@
 		}
 
 	}
-	membershipController.$inject = ['$scope'];
+	membershipController.$inject = ['$scope','toastService'];
 	
-	function membershipController($scope) {
+	function membershipController($scope,toastService) {
 		
 		var memberObject = {};
 		$scope.show = false;
@@ -25,17 +25,16 @@
 
 		$scope.addNewChoice = function() {
 			memberObject = {};
-			if($scope.name!= null && $scope.company!= null){
+			if($scope.name!= null && $scope.company!= null && $scope.name!= " " && $scope.company!= " "){
 				memberObject.name = $scope.name;
 				memberObject.company = $scope.company;
 				$scope.memberList.push(memberObject);
 				$scope.show = true;
-				$scope.name = null;
-				$scope.company = null;
-				//console.log($scope.memberList);
+				$scope.name = " ";
+				$scope.company = " ";
 			}
 			else{
-				alert("Enter values in text fields");
+				toastService.showToast("Enter valid values in the fields");
 			}
 		}
 		

@@ -8,13 +8,15 @@
 		controllerAs : 'vm'
 	});
 	CredentialSetupController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
-			'$state','toastService' ];
+			'$state','toastService','validateFormData' ];
 
-	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state, toastService) {
+	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state, toastService,validateFormData) {
 		var USER_ORG_INFO = "userOrgInfo";
 		var USER_TYPE = "userType";
 
 		var vm = this;
+		vm.fields = {};
+		vm.msgs = {};
 		vm.userType = getUserType();
 		vm.buttonText = "Register";
 		vm.isDisabled = false;
@@ -101,13 +103,23 @@
 		
 		vm.checkPhoneNbr = function() {
 			var phone = vm.mobilePhone;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+			
+			 if (phone.indexOf("-") == -1 && phone.length > 4)
+		      {
+		    	  vm.mobilePhone = phone.substring(0,3) + "-" + phone.substring(3,6) + "-" + phone.substring(6,10);
+		      }  
+			/*var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
 			var res = patt.test(phone);
 			if (res == true) {
 				vm.check1=false;
 			} else {
 				vm.check1=true;
-			}
+			}*/
+		};
+		vm.validationCheck = function(type, id, value, event) {
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
 		};
 	}
 

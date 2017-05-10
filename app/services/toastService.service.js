@@ -8,7 +8,8 @@
     function toastService($mdToast) {
     	var service = {
     		showToast,
-    		showToastWithFormatting
+    		showToastWithFormatting,
+    		showSaveToast
     	};
     	  
     	return service;
@@ -23,6 +24,17 @@
         	  });
         		    
           }	  
+          
+          function showSaveToast(msg){
+        	  service.msg = msg;
+        	  $mdToast.show({
+        		  hideDelay: 2000,
+        		  templateUrl: 'toast-template.tpl.html',
+        		  controller: 'toastController',
+        		  position: 'top right'
+        	  });
+        		    
+          }	
           
           function showToastWithFormatting(msg){
         	  service.msg = msg;

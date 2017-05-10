@@ -16,9 +16,9 @@
 
 	}
 
-	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService', 'validateFormData'];
+	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService', 'validateFormData','toastService'];
 
-	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService, validateFormData) {
+	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService, validateFormData,toastService) {
 		var vm = this;
 		vm.list = [];
 		vm.fields = {};
@@ -38,7 +38,7 @@
 			}
 		}
 		vm.delRow = function(index) {
-			vm.list.splice(index, 1); 
+			vm.list.splice(index, 1);
 		}
 	
 		vm.save = function(isTopTabClicked) {
@@ -64,6 +64,7 @@
 		
 				ngoEnrollmentService.setOverviewData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
+				toastService.showSaveToast("Your data has been Saved");
 				if(!isTopTabClicked){
 					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 				}
@@ -82,14 +83,6 @@
 				vm.flag = true;
 			}
 		}
-
-	/*	function onSuccess(response) {
-
-		}
-
-		function onError(response) {
-			console.log(response)
-		}*/
 		
 		vm.validate = function(type, id, value, event){
 			var data = validateFormData.validate(type, id, value, event);
@@ -100,6 +93,15 @@
 		$rootScope.$on("tabFocusChangedFromTabOne", function(event, data){			
 			vm.save(true);
 		})
+		
+		vm.phoneFormat = function(event){
+			var num = vm.view.mobilePhone;
+			
+		      if (num.indexOf("-") == -1 && num.length > 4)
+		      {
+		    	  vm.view.mobilePhone = num.substring(0,3) + "-" + num.substring(3,6) + "-" + num.substring(6,10);
+		      }    
+		}
 		
 	}
 })();

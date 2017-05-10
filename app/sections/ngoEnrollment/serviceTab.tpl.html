@@ -125,7 +125,7 @@
 	            <md-option ng-value="3">$2500 - $5k</md-option>
 	            <md-option ng-value="4">$5k - $10k</md-option>
 	            <md-option ng-value="5">more than $10k</md-option>
-				<md-option ng-value="6">personnel are volunteers</md-option>
+				<md-option ng-value="6">Personnel are volunteers</md-option>
 	</md-select><br>
 	</md-input-container>
 	</div>
@@ -133,7 +133,7 @@
 	    <div layout-gt-xs="row" class="services_width">
 		 <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
             <label>volunteers required </label>
-            <input type="number"   required ng-model="vm.service.volunteerNbr"  ng-blur="vm.validate('number','volunteerNbr',vm.service.volunteerNbr)"></input>
+            <input type="number"  min="0" required ng-model="vm.service.volunteerNbr"  ng-blur="vm.validate('number','volunteerNbr',vm.service.volunteerNbr)"></input>
              <div id="errorMsg" ng-if="vm.fields['volunteerNbr']" style="color:red;"ng-bind="vm.msgs['volunteerNbr']"></div>
           </md-input-container>
 	    </div>
@@ -217,7 +217,7 @@ box-shadow:none;border:none;" ng-click="vm.delRow($index)" ng-show="vm.flag1"><d
 
 	<br>
 	<hr class="register-input-test" style="width: 100%">
-	<div  class="left_float">
+	<div  class="right_float">
 		<br>
 		<md-button class="md-raised button-primary" class="save_next_btn" ng-click="vm.save();">Save
 		& Next</md-button>

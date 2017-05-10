@@ -14,9 +14,9 @@
 	}
 
 	FundingTabController.$inject = [ '$q', 'ngoEnrollmentService',
-			'$rootScope', '$scope', ];
+			'$rootScope', '$scope','toastService' ];
 
-	function FundingTabController($q, ngoEnrollmentService, $rootScope, $scope) {
+	function FundingTabController($q, ngoEnrollmentService, $rootScope, $scope,toastService) {
 		var ft = this;
 		ft.fundingSourceList = [];
 		ft.mealDonaltionList = [];
@@ -45,6 +45,7 @@
 				ngoEnrollmentService.setFundingData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
 				$q.all(serviceCalls)// .then(onSuccess,onError);
+				toastService.showSaveToast("Your data has been Saved");
 				if(!isTopTabClicked){
 					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 				}

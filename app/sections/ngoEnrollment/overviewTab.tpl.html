@@ -15,7 +15,7 @@
 			class="md-block input-primary mgn_left_25" flex- gt-sm>
 		<label>NGO phone</label> <input type="text" name="phone" required
 			maxlength="12" ng-model="vm.view.mobilePhone" placeholder="999-999-9999"
-			ng-blur="vm.validate('number','phone',vm.view.mobilePhone)">
+			ng-blur="vm.phoneFormat($event);vm.validate('number','phone',vm.view.mobilePhone)">
 		<div id="errorMsg" ng-if="vm.fields['phone']" style="color: red;"
 			ng-bind="vm.msgs['phone']"></div>
 		</md-input-container>
@@ -147,7 +147,7 @@ box-shadow:none;border:none;"
 
 	<hr class="register-input-test" layout="row"
 		layout-align="center center"/>
-	<div class="left_float">
+	<div class="right_float">
 		<br>
 		<md-button class="md-raised button-primary " class="save_next_btn"
 			ng-click="vm.save();">Save & Next</md-button>
