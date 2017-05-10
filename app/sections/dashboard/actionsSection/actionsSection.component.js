@@ -18,6 +18,14 @@
    	 	vm.headers= [];
    	 	vm.reportCollection = [];
    	 	
+   	 	vm.isFirstCardActive = false;
+   	 	vm.isSecondTabActive = false;
+   	 	vm.isThirdTabActive = false;
+   		vm.isFourthTabActive = false;
+   		vm.isOrderActive = false;
+   		vm.isReportActive = false;
+   	 	
+   	 	
    	 	vm.rolesConstantName = rolesConstantName;
 	   	
         vm.$onInit = function() {
@@ -27,6 +35,21 @@
             	
                 if(response.data !== null) {
                 	vm.userRole = response.data.role;
+                	if(vm.userRole === vm.rolesConstantName.superAdmin){
+                		vm.isFirstCardActive = true;
+                	}
+                	if(vm.userRole === vm.rolesConstantName.ngoAdmin){
+                		vm.isSecondTabActive = true;
+                	}
+                	if(vm.userRole === vm.rolesConstantName.ngo){
+                		vm.isSecondTabActive = true;
+                	}
+                	if(vm.userRole === vm.rolesConstantName.volunteer){
+                		vm.isOrderActive = true;
+                	}
+                	if(vm.userRole === vm.rolesConstantName.client){
+                		vm.isReportActive = true;
+                	}
                 	window.localStorage.setItem("userRole", vm.userRole);
                 	vm.user = response.data.data;  
                 	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
@@ -59,7 +82,40 @@
         vm.setReportView = function(viewName) {
         	
         }
-        vm.showReportView = function(type) {
+        vm.showReportView = function(type) { 
+        	if(type === "ngo"){
+        		vm.isFirstCardActive = true;
+           	 	vm.isSecondTabActive = false;
+           	 	vm.isThirdTabActive = false;
+           		vm.isFourthTabActive = false;
+        	}
+        	if(type === "volunteer"){
+        		vm.isFirstCardActive = false;
+           	 	vm.isSecondTabActive = true;
+           	 	vm.isThirdTabActive = false;
+           		vm.isFourthTabActive = false;
+        	}
+        	if(type === "participant"){
+        		vm.isFirstCardActive = false;
+           	 	vm.isSecondTabActive = false;
+           	 	vm.isThirdTabActive = true;
+           		vm.isFourthTabActive = false;
+        	}
+        	if(type === "provider"){
+        		vm.isFirstCardActive = false;
+           	 	vm.isSecondTabActive = false;
+           	 	vm.isThirdTabActive = false;
+           		vm.isFourthTabActive = true;
+        	}
+        	if(type === "order"){
+        		vm.isOrderActive = true;
+        		vm.isReportActive = false;
+        	}
+        	if(type === "report"){
+        		vm.isOrderActive = false;
+        		vm.isReportActive = true;
+        	}
+        	
         	$rootScope.$broadcast('show-report-view', type);
         }
         

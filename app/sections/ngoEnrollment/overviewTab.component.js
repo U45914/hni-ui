@@ -46,7 +46,7 @@
 				"name" : vm.view.name,
 				"mobilePhone" : vm.view.mobilePhone,
 				"website" : vm.view.website,
-				"contact" : vm.view.contact,
+				"contactPerson" : vm.view.contactPerson,
 				"employees" : vm.view.employees,
 				"overview" : vm.view.overview,
 				"mission" : vm.view.mission,

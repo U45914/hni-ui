@@ -42,7 +42,7 @@
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Activation Code</label>
-			 	<input type="text" id="input-activationCode" required ng-model="vm.activationCode" class="input_box_md" ng-blur="vm.validationCheck('text','activationCode',vm.activationCode)">
+			 	<input type="text" id="input-activationCode" required ng-model="vm.activationCode" class="input_box_md" ng-blur="vm.validationCheck('text','activationCode',vm.activationCode)"/>
 			 	<div id="errorMsg" ng-if="vm.fields['activationCode']" style="color:red;" ng-bind="vm.msgs['activationCode']"></div>
 			</md-input-container>
 		</div>

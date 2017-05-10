@@ -21,11 +21,12 @@
 		vm.userNameMessage = "";
 		vm.validateUserEnrollment = "";
 		vm.username = getUserName();
+		vm.firstName = getFirstName();
 		vm.activationCodeNeeded = vm.userType === "client"
-		vm.activationCode;
+		vm.activationCode= getActivationCode();
 		vm.signIn = function() {
 			var data = {
-				"firstName" : vm.firstName,
+				"firstName" : getFirstName(),
 				"lastName" : vm.lastName,
 				"email" : getUserName(),
 				"mobilePhone" : vm.mobilePhone,
@@ -90,6 +91,14 @@
 		function getUserName() {
 			return window.localStorage.getItem("userName");
 		};
+		function getFirstName() {
+			return window.localStorage.getItem("firstName");
+		};
+		function getActivationCode() {
+			return window.localStorage.getItem("userActivationCode");
+		};
+		
+		
 		vm.checkPhoneNbr = function() {
 			var phone = vm.mobilePhone;
 			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
