@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientEmploymentController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	clientEmploymentController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
 	
-	function clientEmploymentController($q,clientEnrollmentService,$scope,$rootScope,$state){
+	function clientEmploymentController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	vm.residentList = [
     		{id: 0, name: "Undocumented immigrant"},
@@ -88,6 +88,7 @@
 		console.log(data);
 		clientEnrollmentService.setEmploymentData(data)		
 		var serviceCalls = clientEnrollmentService.savePartial();
+		toastService.showSaveToast("Your data has been Saved");
 		if(!isTopTabClicked){
 			$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 		}

@@ -49,6 +49,7 @@
 					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
 					var serviceCalls = clientEnrollmentService.savePartial();
 					$q.all(serviceCalls)// .then(onSuccess,onError);
+					toastService.showSaveToast("Your data has been Saved");
 					if(!isTopTabClicked){
 						$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 					}
@@ -108,6 +109,14 @@
 		$rootScope.$on("saveTabOne", function(event, data){			
 			vm.save(true);
 		})
+		
+		vm.phoneFormat = function(event){
+			var num = vm.client.user.mobilePhone;
+		      if (num.indexOf("-") == -1 && num.length > 4)
+		      {
+		    	  vm.client.user.mobilePhone = num.substring(0,3) + "-" + num.substring(3,6) + "-" + num.substring(6,10);
+		      }    
+		}
 	  }
   
  })();

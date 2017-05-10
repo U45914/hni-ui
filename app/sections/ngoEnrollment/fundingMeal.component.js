@@ -16,9 +16,9 @@
 		}
 
 	}
-	fundingMealController.$inject = ['$scope'];
+	fundingMealController.$inject = ['$scope','toastService'];
 	
-	function fundingMealController($scope) {
+	function fundingMealController($scope,toastService) {
 				
 		var fundingMealObj ={};
 		//$scope.mealDonaltionList =[];
@@ -26,17 +26,17 @@
 		
 		$scope.addNewChoice = function(){
 			fundingMealObj = {};
-			if($scope.source!=null && $scope.mealQty!=null && $scope.frequency!= null){
+			if($scope.source!=null && $scope.mealQty!=null && $scope.frequency!= null && $scope.source != " " && $scope.frequency != " "){
 				fundingMealObj.source = $scope.source;
 				fundingMealObj.mealQty = $scope.mealQty;
 				fundingMealObj.frequency = $scope.frequency;
 				$scope.mealDonaltionList.push(fundingMealObj);
-				$scope.source = null;
+				$scope.source = " ";
 				$scope.mealQty = null;
-				$scope.frequency = null;
+				$scope.frequency = " ";
 			}
 			else{
-				alert("please fill the Fields");
+				toastService.showToast(" Please enter valid values in the fields");
 			}
 		}
 		

@@ -13,24 +13,24 @@
 		}
 
 	}
-	partnershipController.$inject = ['$scope'];
+	partnershipController.$inject = ['$scope','toastService'];
 	
-	function partnershipController($scope) {
+	function partnershipController($scope,toastService) {
 		
 		var brandObject = {};
 		
 
 		$scope.addNewRow = function() {
 			brandObject = {};
-			if( $scope.company!=null &&  $scope.phoneNumber != null && $scope.check != true){
+			if( $scope.company!=null &&  $scope.phoneNumber != null && $scope.check != true && $scope.company != " " && $scope.phoneNumber != " "){
 			brandObject.company = $scope.company;
 			brandObject.phoneNumber = $scope.phoneNumber;
 			$scope.brandList.push(brandObject);
-			$scope.company = null;
-			$scope.phoneNumber = null;
+			$scope.company = " ";
+			$scope.phoneNumber = " ";
 			}
 			else{
-				alert("Please fill the fields");
+				toastService.showToast("Please enter valid values in the fields");
 			}
 		}
 		

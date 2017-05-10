@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientFoodPreferencesController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	clientFoodPreferencesController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
 	
-	function clientFoodPreferencesController($q,clientEnrollmentService,$scope,$rootScope,$state){
+	function clientFoodPreferencesController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	
     	vm.mealsPerDayList = [
@@ -76,6 +76,7 @@
 	    	
 	    	 clientEnrollmentService.setFoodData(data);
 	    	 var serviceCalls = clientEnrollmentService.savePartial();
+	    	 toastService.showSaveToast("Your data has been Saved");
 	    	 if(!isTopTabClicked){
 	    		 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 	    	 }	    	 

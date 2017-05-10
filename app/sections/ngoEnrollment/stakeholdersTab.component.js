@@ -14,10 +14,10 @@
 	}
 
 	StakeHolderTabController.$inject = [ '$q', 'ngoEnrollmentService',
-			'$scope', '$rootScope' ];
+			'$scope', '$rootScope','toastService' ];
 
 	function StakeHolderTabController($q, ngoEnrollmentService, $scope,
-			$rootScope) {
+			$rootScope,toastService) {
 		
 		
 		var shtc = this;
@@ -38,6 +38,7 @@
 			ngoEnrollmentService.setStakeHolderData(data);
 			var serviceCalls = ngoEnrollmentService.savePartial();
 			$q.all(serviceCalls)// .then(onSuccess,onError);
+			toastService.showSaveToast("Your data has been Saved");
 			if(!isTopTabClicked){
 				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 			}

@@ -79,23 +79,30 @@
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Highest Level of Education Completed</label> 
 	<md-select ng-model="vm.vol.education">
-	<md-option value=0>Not intrested to disclose</md-option>
-	  <md-option value=1>Gratuate</md-option>
-	  <md-option value=2>HS</md-option>
-	  <md-option value=3>Elementary</md-option>
+	<md-option value=0>Elementary</md-option>
+	<md-option value=1>Middle</md-option>
+	<md-option value=2>High School</md-option>
+	<md-option value=3>2 Year college degree</md-option>
+	<md-option value=4>Gratuate</md-option>
+	<md-option value=5>Post Graduate</md-option>
+	<md-option value=6>Don&#39;t want to disclose</md-option>
+	  
 	 </md-select> 
 	</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" class="text_style_vol">Income</label> <md-select ng-model="vm.vol.income">
-	<md-option value=0>Not intrested to disclose</md-option>
-	<md-option value=1>1k-5k</md-option> <md-option value=2>5k-10k</md-option>
-	<md-option value=3>10k-15k</md-option></md-select> </md-input-container>
+	<md-option value=0>Don&#39;t want to disclose</md-option>
+	<md-option value=1>1k-5k</md-option> 
+	<md-option value=2>5k-10k</md-option>
+	<md-option value=3>10k-15k</md-option>
+	<md-option value=4>More than 15K</md-option>
+	</md-select> </md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Marital status</label> <md-select
 		ng-model="vm.vol.maritalStatus" ng-change="vm.onChange()"> <md-option value=1>Single</md-option>
-	<md-option value=2>Married</md-option> <md-option value=3>Divorce</md-option></md-select>
+	<md-option value=2>Married</md-option> <md-option value=3>Divorcee</md-option></md-select>
 	</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" ># Kids</label> <input type="number" ng-model="vm.vol.kids" min="0">

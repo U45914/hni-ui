@@ -82,7 +82,8 @@
 			}
 			if(id=="phone"){
 				var phone = value;
-				var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+				//var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+				var patt = new RegExp("(([0-9]{3})(-{1}[0-9]{3})(-{1}[0-9]{4}))");
 				var res = patt.test(phone);
 				if (res != true || isNaN(Number(value.replace(/-/g, "")))) {
 					fields[id] = true;

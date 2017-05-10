@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientFamilyEducationController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	clientFamilyEducationController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
 	
-	function clientFamilyEducationController($q,clientEnrollmentService,$scope,$rootScope,$state){
+	function clientFamilyEducationController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	//vm.family = clientEnrollmentService.clientEmployment;
     	 $scope.$on("data-loaded-client", function(obj) {
@@ -54,6 +54,7 @@
 	    	console.log(data);
 	    	clientEnrollmentService.setFamilyData(data);
 	    	var serviceCalls = clientEnrollmentService.savePartial();
+	    	toastService.showSaveToast("Your data has been Saved");
 	    	if(!isTopTabClicked){
 	    		$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 	    	}
