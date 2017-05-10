@@ -35,8 +35,11 @@
         
         function setUserDataToLocalStorage(userData, type, activationCode) {
         	window.localStorage.setItem(USER_ORG_INFO, userData.orgId);
+        	window.localStorage.setItem("firstName", userData.firstName);
         	window.localStorage.setItem("userName", userData.userName);
         	window.localStorage.setItem("activationCode", activationCode);
+        	if(type === 'client')
+        	window.localStorage.setItem("userActivationCode", userData.userActivationCode);
         	window.localStorage.setItem(USER_TYPE, type);
         }
         
