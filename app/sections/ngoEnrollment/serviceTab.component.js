@@ -216,7 +216,7 @@
             ngoEnrollmentService.setServiceData(data);
             var serviceCalls = ngoEnrollmentService.savePartial();
             $q.all(serviceCalls) // .then(onSuccess,onError);
-            toastService.showSaveToast("Your data has been Saved");
+   
             if(!isTopTabClicked){
             	$rootScope.$broadcast("scroll-tab", [1, 2]);
              }

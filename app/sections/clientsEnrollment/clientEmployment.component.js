@@ -88,7 +88,6 @@
 		console.log(data);
 		clientEnrollmentService.setEmploymentData(data)		
 		var serviceCalls = clientEnrollmentService.savePartial();
-		toastService.showSaveToast("Your data has been Saved");
 		if(!isTopTabClicked){
 			$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 		}

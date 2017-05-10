@@ -59,7 +59,6 @@
         	  
         	  vm.validateErrors = validateService.validateNGOEnrollmentData(data);
 
-        	  debugger;
         	  console.log(vm.validateErrors);
         	  if (vm.validateErrors.length > 0) {
         		  // Now prepare message for user

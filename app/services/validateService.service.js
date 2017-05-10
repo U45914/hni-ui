@@ -214,7 +214,7 @@
 				if(data.name == null){
 					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_NAME, "Overview",  "NGO Name", false, 1));
 				}
-				if(data.contactPerson == null){
+				if(data.contactName == null){
 					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_CONTACT_NAME, "Overview", "Contact Name", false, 1));
 				}
 				if(data.mobilePhone == null || isNaN(Number(data.mobilePhone.replace(/-/g, "")))){
@@ -441,11 +441,21 @@
 			var ngoClientTabValidationErrors = [];
 			
 			if(data != null) {
-				if(data.individualClientInfoCollected){
+				if(data.individualClientInfoCollected) {
 					if(data.storeClientInfo == null){
 						ngoClientTabValidationErrors.push(getErrorObject("storeClientInfo", "Participant",  "Please provide details for how you store client information", false, 1));
 					}
 				}
+				if(!data.individualsServedDaily || data.individualsServedDaily  == null) {
+					ngoClientTabValidationErrors.push(getErrorObject("individualsServedDaily", "Participant",  "Please provide value individual served daily", false, 1));
+				}
+				if(!data.individualsServedMonthly || data.individualsServedMonthly == null) {
+					ngoClientTabValidationErrors.push(getErrorObject("individualsServedMonthly", "Participant",  "Please provide value individual served monthly", false, 1));
+				}
+				if(!data.individualsServedAnnually || data.individualsServedAnnually == null) {
+					ngoClientTabValidationErrors.push(getErrorObject("individualsServedAnnually", "Participant",  "Please provide value individual served annually", false, 1));
+				}
+				
 			}
 			return ngoClientTabValidationErrors;
 		}

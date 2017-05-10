@@ -54,7 +54,7 @@
 	    	console.log(data);
 	    	clientEnrollmentService.setFamilyData(data);
 	    	var serviceCalls = clientEnrollmentService.savePartial();
-	    	toastService.showSaveToast("Your data has been Saved");
+
 	    	if(!isTopTabClicked){
 	    		$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 	    	}

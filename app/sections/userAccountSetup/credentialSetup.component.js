@@ -28,7 +28,7 @@
 		vm.activationCode= getActivationCode();
 		vm.signIn = function() {
 			var data = {
-				"firstName" : getFirstName(),
+				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
 				"email" : getUserName(),
 				"mobilePhone" : vm.mobilePhone,

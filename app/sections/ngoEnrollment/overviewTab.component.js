@@ -47,7 +47,7 @@
 				"name" : vm.view.name,
 				"mobilePhone" : vm.view.mobilePhone,
 				"website" : vm.view.website,
-				"contactPerson" : vm.view.contactPerson,
+				"contactName" : vm.view.contactName,
 				"employees" : vm.view.employees,
 				"overview" : vm.view.overview,
 				"mission" : vm.view.mission,
@@ -64,7 +64,7 @@
 		
 				ngoEnrollmentService.setOverviewData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
-				toastService.showSaveToast("Your data has been Saved");
+
 				if(!isTopTabClicked){
 					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 				}

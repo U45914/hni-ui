@@ -35,7 +35,7 @@
 	    	 var data = vm.getDataModel(vm.connection);
 	    	 clientEnrollmentService.setConnectionData(data);
 	    	 var serviceCalls = clientEnrollmentService.savePartial();
-	    	 toastService.showSaveToast("Your data has been Saved");
+
 	    	 if(!isTopTabClicked){
 	    		 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
 	    	 }
