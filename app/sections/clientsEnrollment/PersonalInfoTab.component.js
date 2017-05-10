@@ -40,7 +40,7 @@
 			clientEnrollmentService.setPersonnalData(vm.getDataModel(vm.client));
 		}
 	  
-	  vm.save = function(){
+	  vm.save = function(isTopTabClicked){
 		 // $scope.bday=parseInt(vm.client.bday);
 		  var data = vm.getDataModel(vm.client);
 		  /*		console.log(data);
@@ -49,7 +49,10 @@
 					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
 					var serviceCalls = clientEnrollmentService.savePartial();
 					$q.all(serviceCalls)// .then(onSuccess,onError);
-					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+					if(!isTopTabClicked){
+						$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+					}
+					
 
 				/*} else {
 					toastService.showToast("Please fill Fields");
@@ -101,6 +104,10 @@
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		};
+		
+		$rootScope.$on("saveTabOne", function(event, data){			
+			vm.save(true);
+		})
 	  }
   
  })();

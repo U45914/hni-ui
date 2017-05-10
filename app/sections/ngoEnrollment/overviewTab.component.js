@@ -38,10 +38,11 @@
 			}
 		}
 		vm.delRow = function(index) {
-			vm.list.splice(index, 1);
+			vm.list.splice(index, 1); 
 		}
 	
-		vm.save = function() {
+		vm.save = function(isTopTabClicked) {
+			if(vm.view){
 			var data = {
 				"name" : vm.view.name,
 				"mobilePhone" : vm.view.mobilePhone,
@@ -63,9 +64,13 @@
 		
 				ngoEnrollmentService.setOverviewData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
-				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-			
+				if(!isTopTabClicked){
+					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+				}
+			}	
 		}
+			
+		
 		vm.load = function() {
 			vm.view = ngoEnrollmentService.overviewData;
 			ngoEnrollmentService.setOverviewData(vm.view);
@@ -91,6 +96,10 @@
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		};
+		 
+		$rootScope.$on("tabFocusChangedFromTabOne", function(event, data){			
+			vm.save(true);
+		})
 		
 	}
 })();

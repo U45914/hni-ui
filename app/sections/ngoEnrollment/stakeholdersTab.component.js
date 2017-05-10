@@ -29,7 +29,7 @@
 			shtc.load();
 		});
 		
-		shtc.save = function() {
+		shtc.save = function(isTopTabClicked) { 			
 			var data = {
 				"boardMembers" : shtc.boardMainList,
 				"brandPartners" : shtc.brandPartnersList,
@@ -38,7 +38,9 @@
 			ngoEnrollmentService.setStakeHolderData(data);
 			var serviceCalls = ngoEnrollmentService.savePartial();
 			$q.all(serviceCalls)// .then(onSuccess,onError);
-			$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+			if(!isTopTabClicked){
+				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+			}
 		}
 		shtc.load = function() {
 			if (ngoEnrollmentService.stakeHolderData) {
@@ -48,6 +50,11 @@
 				shtc.localPartnersList = ngoEnrollmentService.stakeHolderData["localPartners"];
 			}
 		}
+		
+		$rootScope.$on("tabFocusChangedFromTabTwo", function(event, data){			
+			shtc.save(true);
+		})
+		
 	}
 
 })();

@@ -55,6 +55,7 @@
             
             vm.service = ngoEnrollmentService.serviceData;
             ngoEnrollmentService.setServiceData(vm.service);
+            if(vm.service){
             if(vm.service.brkfstAvailabilty != null){
             	if (vm.service.brkfstAvailabilty.constructor === Array) {
             		vm.brkfstAvailabilty = vm.service.brkfstAvailabilty;
@@ -114,7 +115,8 @@
                         }
                     });
             	}
-            });
+             });
+            }
             
             if (vm.service && vm.service.foodBankValue && vm.service.foodBankValue != "") {
                 vm.list = vm.service.foodBankValue;
@@ -166,7 +168,7 @@
             vm.flag1 = true;
         }
 
-        vm.save = function() {
+        vm.save = function(isTopTabClicked) {
         	vm.brkfstAvailabilty = [];
             vm.lunchAvailabilty = [];
             vm.dinnerAvailabilty = [];
@@ -214,11 +216,14 @@
             ngoEnrollmentService.setServiceData(data);
             var serviceCalls = ngoEnrollmentService.savePartial();
             $q.all(serviceCalls) // .then(onSuccess,onError);
-            $rootScope.$broadcast("scroll-tab", [1, 2]);
-
+            if(!isTopTabClicked){
+            	$rootScope.$broadcast("scroll-tab", [1, 2]);
+             }
             }
             else{
-            	$rootScope.$broadcast("scroll-tab", [1, 2]);
+            	if(!isTopTabClicked){
+            		$rootScope.$broadcast("scroll-tab", [1, 2]);
+            	}
             }
         }
 
@@ -311,6 +316,11 @@
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		};
+		
+
+		$rootScope.$on("tabFocusChangedFromTabThree", function(event, data){			
+			vm.save(true);
+		})
     }
 
 })();

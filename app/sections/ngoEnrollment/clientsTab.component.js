@@ -27,7 +27,7 @@
 			vm.load();
 		});
     	
-    	vm.save = function(){   
+    	vm.save = function(isTopTabClicked){   
     		if(vm.client){
       		 var data = {
       				 "individualsServedDaily" : vm.client.individualsServedDaily,
@@ -89,6 +89,10 @@
         	  
     		  
     	  }
+    	  
+    	  $rootScope.$on("tabFocusChangedFromTabFive", function(event, data){  			
+  			vm.save(true);
+  		})
     	
 	}
 })();

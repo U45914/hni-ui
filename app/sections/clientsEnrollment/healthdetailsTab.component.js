@@ -40,7 +40,7 @@
  		vm.fields = {};
 		vm.msgs = {};
  	  
-    	vm.save = function(){   		
+    	vm.save = function(isTopTabClicked){   		
       		 var data = vm.getDataModel(vm.health);
       		
       		var serviceCalls = clientEnrollmentService.setHealthData(data);
@@ -95,5 +95,9 @@
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		}
+    
+    $rootScope.$on("saveTabSix", function(event, data){			
+		vm.save(true);
+	})
 	}
 })();
