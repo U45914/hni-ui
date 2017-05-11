@@ -14,7 +14,7 @@
 		<div class ="md-title ">Primary details</div>
 		<div layout-gt-xs="row" class="width_for_textbox">
 			<md-input-container class="md-block input-primary " flex-gt-sm> 
-				<label>Organization Name</label>
+				<label>Organization name</label>
 				<input type="text" required autofocus = "on" ng-model="vm.name" class="input_box_md" ng-blur="vm.validationCheck('text','name',vm.name)"> 
       		<div id="errorMsg" ng-if="vm.fields['name']" style="color:red;" ng-bind="vm.msgs['name']">
                		{{vm.msg}}
@@ -50,49 +50,42 @@
 		<div class ="md-title ">Organization Address</div>
 		
 		<div layout-gt-xs="row"  class="width_for_textbox">
-			<!-- <md-input-container class="md-block input-primary" flex-gt-sm> 
-				<label>Name</label>
-			 	<input type="text" required ng-model="vm.adminName">
-			</md-input-container> -->
 			
 				<md-input-container class="md-block input-primary " flex-gt-sm> 
-				<label>Address 1</label>
-			 	<input type="text" required ng-model="vm.address1" ng-blur="vm.validationCheck('text','address1',vm.address1)">
+				<label>Address line 1</label>
+			 	<input type="text" required ng-model="vm.address1" ng-blur="vm.validationCheck('text','address1',vm.address1)"></input>
 				<div id="errorMsg" ng-if="vm.fields['address1']" style="color:red;" ng-bind="vm.msgs['address1']">
                 </div>
                 
 				</md-input-container>
 				
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-				<label>Address 2</label>
-			 	<input type="text" ng-model="vm.address2">
+				<label>Address line 2</label>
+			 	<input type="text" ng-model="vm.address2"></input>
 				</md-input-container>
 			</div>
+			
 			<div layout-gt-xs="row"  class="width_for_textbox">
 				<md-input-container class="md-block input-primary" flex-gt-sm> 
-				<label>City</label>
-			 	<input type="text" required ng-model="vm.city" ng-blur="vm.validationCheck('text','city',vm.city)">
-				<div id="errorMsg" ng-if="vm.fields['city']" style="color:red;" ng-bind="vm.msgs['city']">
-                </div>
-               
-				</md-input-container>
+					<label>City</label>
+			 		<input type="text" required ng-model="vm.city" ng-blur="vm.validationCheck('text','city',vm.city)"/>
+					<div id="errorMsg" ng-if="vm.fields['city']" style="color:red;" ng-bind="vm.msgs['city']"> </div>
+               	</md-input-container>
 		
 				<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
          			 <label>State</label>
           			 <md-select name="type" ng-model="vm.state" required  ng-blur="vm.validationCheck('text','state',vm.state)">
-            			<md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
-            		</md-select>
-            		<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']">
-                </div>
-               
-        		</md-input-container>
+            		 <md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
+            		 </md-select>
+            		 <div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']"></div>
+               	</md-input-container>
 			
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Zip code</label>
-<input type="text" required ng-model="vm.zip" maxlength="5" ng-blur="vm.validationCheck('number','zip',vm.zip)">
-				<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;" ng-bind="vm.msgs['zip']" />
-				</md-input-container>
+				<input type="text" required ng-model="vm.zip" maxlength="5" ng-blur="vm.validationCheck('number','zip',vm.zip)"/>
+				<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;" ng-bind="vm.msgs['zip']"></div>
+			</md-input-container>
 			</div>
 			<br>
 				<md-button class="md-raised button-primary" style="float:right;" ng-click="vm.submit()" ng-disabled = "!!vm.disableSubmitButton" >{{vm.buttonAction}}</md-button>
@@ -104,8 +97,8 @@
 	
 </div>
 </div>
-
 </div>
+
 
 <div class="clear_all">
 <landing-footer></landing-footer>

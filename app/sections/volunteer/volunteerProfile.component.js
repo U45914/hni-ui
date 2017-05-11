@@ -33,6 +33,7 @@
 		
 	    
 		function validateForm(data){
+			console.log(data);
 			if(data == null){
 				return false;
 			}
@@ -43,7 +44,7 @@
 			if(data.user == null){
 				return false;
 			}
-			else if( data.user.firstName == null || data.user.firstName == null || data.user.mobilePhone == null || data.user.email == null){
+			else if( data.user.firstName == null || data.user.lastName == null || data.user.mobilePhone == null || data.user.email == null){
 				return false;
 			}
 			
@@ -57,8 +58,11 @@
 		}
 		
 		vm.submit = function() {
-			var doNotPost = validateForm(vm.vol);
-			if(doNotPost){
+			/*var doNotPost = validateForm(vm.vol);
+			if(doNotPost){*/
+			
+				vm.vol.user = vm.vol.user ? vm.vol.user : {};
+				vm.vol.address = vm.vol.address ? vm.vol.address : {};
 				var data = {
 					"user" : {
 						"firstName" : vm.vol.user.firstName,
@@ -87,15 +91,21 @@
 					"nonProfit" : vm.vol.nonProfit
 	
 				};
-	
+	 
+				vm.validateErrors= validateService.validateVolunteerProfile(data);
+				if(vm.validateErrors.length > 0){
+					var validationMessage = validateService.getFormattedErrorMessageForUser(vm.validateErrors);
+	        		toastService.showToastWithFormatting(validationMessage);
+	        		  
+	        	  } else {
 		
 					volunteerService.volunteerProfileData = data;
 					var serviceCalls = volunteerService.profileDetails(data);
 					return $q.all(serviceCalls);
 			}
-			else{
+			/*else{
 				toastService.showToast("Please fill required fields");
-			}
+			}*/
 		}
 		
 		vm.onChange = function(){
@@ -104,16 +114,14 @@
 			}
 		}
 		
-		vm.checkPhoneNbr = function() {
-			var phone = vm.vol.user.mobilePhone;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check=false;
-			} else {
-				vm.check=true;
-			}
-		};
+		
+		vm.phoneFormat = function(event){
+			var num = vm.phoneNumber;
+		      if (num != null && num.indexOf("-") == -1 && num.length > 4)
+		      {
+		    	  vm.phoneNumber = num.substring(0,3) + "-" + num.substring(3,6) + "-" + num.substring(6,10);
+		      }    
+		}
 		
 		vm.validationCheck = function(type, id, value, event){
 			var data = validateFormData.validate(type, id, value, event);
