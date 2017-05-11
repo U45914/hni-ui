@@ -61,7 +61,7 @@
         	} else if (reportKey.toLocaleLowerCase().indexOf("volunteer") != -1) {
         		key = "volunteer";
         	} else if (reportKey.toLocaleLowerCase().indexOf("customer") != -1) {
-        		key = "participant";
+        		key = "client";
         	} else if (reportKey.toLocaleLowerCase().indexOf("provider") != -1) {
         		key = "provider";
         	}

@@ -9,16 +9,18 @@
 			},
 			restrict : "E",
 			templateUrl : "stakeholdersPartnershipTemplate.tpl.html",
-			controller : partnershipController
+			controller : partnershipController,
+			controllerAs : 'vm'
 		}
 
 	}
-	partnershipController.$inject = ['$scope','toastService'];
+	partnershipController.$inject = ['$scope','toastService','validateFormData'];
 	
-	function partnershipController($scope,toastService) {
-		
+	function partnershipController($scope,toastService,validateFormData) {
+		var vm=this;
 		var brandObject = {};
-		
+		vm.fields = {};
+		vm.msgs = {};
 
 		$scope.addNewRow = function() {
 			brandObject = {};
@@ -40,14 +42,17 @@
 		
 		$scope.checkPhoneNbr = function() {
 			var phone = $scope.phoneNumber;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				$scope.check=false;
-			} else {
-				$scope.check=true;
-			}
+			if (phone != null && phone.indexOf("-") == -1 && phone.length > 4)
+		      {
+				$scope.phoneNumber = phone.substring(0,3) + "-" + phone.substring(3,6) + "-" + phone.substring(6,10);
+		      }  
 		};
+		
+		$scope.validationCheck = function(type, id, value, event) {
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
+		}
 
 	}
 })();
