@@ -1,5 +1,5 @@
 <div class="font_for_allpages1" >
-	<h3>Personal details</h3>
+	<h3>Personal Information</h3>
 	
 <div layout-gt-xs="row" class="width_for_textbox">	
 <md-input-container class="md-block input-primary" flex-gt-sm>
@@ -11,7 +11,7 @@
 <label>Middle Name</label> <input type="text"
 	ng-model="vm.client.user.middleName" /></md-input-container> -->
 <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-<label>Last name</label> <input type="text" ng-model="vm.client.user.lastName" />
+<label>Last name</label> <input type="text" required ng-model="vm.client.user.lastName" />
 </md-input-container>
 </md-input-container>
 </div>
@@ -64,7 +64,7 @@
 	<div id="errorMsg" ng-if="vm.fields['ethnicity']" style="color:red;" ng-bind="vm.msgs['ethnicity']"></div></md-input-container>
 </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race"> <md-option
+	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race" required> <md-option
 		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
 <md-input-container class="md-block input-primary" flex-gt-sm>
 <label>Phone number</label> <input type="text" required maxlength="12"

@@ -15,7 +15,8 @@
 			validateStateDrpdwn,
 			validateNGOEnrollmentData,
 			checkEmailAvailability,
-			getFormattedErrorMessageForUser
+			getFormattedErrorMessageForUser,
+			validateClientInformation
 		};
 		
 		
@@ -119,8 +120,6 @@
 		
 		function validateNGOAdd(data){
 			var errorFields = "";
-			/*if(data.name==null)
-				errorFields += "Name, ";*/
 			if(data.firstName==null)
 				errorFields += "First Name, ";
 			if(data.lastName==null)
@@ -129,8 +128,7 @@
 				errorFields += "Phone, ";
 			if(data.email==null)
 				errorFields += "Email, ";
-			/*if(data.genderCode==null)
-				errorFields += "Gender ";*/
+s
 			return errorFields;
 		}
 		
@@ -244,7 +242,7 @@
 					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_OVER_VIEW, "Overview", "Overview", false, 1));
 				}
 				if(data.mission == null){
-					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_MISSION_STATEMENT, "Overview", "Please provide value for mission statement", false, 1));
+					overViewTabValidationErrors.push(getErrorObject(FIELD_OVERVIEW_TAB_MISSION_STATEMENT, "Overview", "Mission statement", false, 1));
 				}
 			}
 			else{
@@ -325,43 +323,43 @@
 			if(data != null){
 				if(data.brkfstChk == true){
 					if(data.brkfstQty == null || !angular.isNumber(data.brkfstQty)){
-						serviceTabValidationErrors.push(getErrorObject("brkfstQty", "Services",  "Please provide breakfast quantity", false, 1));
+						serviceTabValidationErrors.push(getErrorObject("brkfstQty", "Services",  "Breakfast quantity", false, 1));
 					}
 				} 
 				
 				if(data.lunchChk == true){
 					if(data.lunchQty == null || !angular.isNumber(data.lunchQty)){
-						serviceTabValidationErrors.push(getErrorObject("lunchQty", "Services",  "Please provide lunch quantity", false, 1));
+						serviceTabValidationErrors.push(getErrorObject("lunchQty", "Services",  "Lunch quantity", false, 1));
 					}
 					
 				}
 				
 				if(data.dinnerChk == true){
 					if(data.dinnerQty == null || !angular.isNumber(data.dinnerQty)){
-						serviceTabValidationErrors.push(getErrorObject("dinnerQty", "Services",  "Please provide dinner quantity", false, 1));
+						serviceTabValidationErrors.push(getErrorObject("dinnerQty", "Services",  "Dinner quantity", false, 1));
 					}
 				}
 				
 				if(data.baggedChk == true){
 					if(data.baggedQty == null || !angular.isNumber(data.baggedQty)){
-						serviceTabValidationErrors.push(getErrorObject("baggedQty", "Services",  "Please provide bagged quantity", false, 1));
+						serviceTabValidationErrors.push(getErrorObject("baggedQty", "Services",  "Bagged quantity", false, 1));
 					}
 				}
 				
 				if(data.monthlyBudget == null){
-					serviceTabValidationErrors.push(getErrorObject("monthlyBudget", "Services",  "Please provide value for monthly budget", false, 1));
+					serviceTabValidationErrors.push(getErrorObject("monthlyBudget", "Services",  "Monthly budget", false, 1));
 				}
 				
 				if(data.volunteerNbr == null || !angular.isNumber(data.volunteerNbr)){
-					serviceTabValidationErrors.push(getErrorObject("volunteerNbr", "Services",  "Please provide value for volunteer required", false, 1));
+					serviceTabValidationErrors.push(getErrorObject("volunteerNbr", "Services",  "Volunteer required", false, 1));
 				}
 				
 				if(data.foodStamp == null){
-					serviceTabValidationErrors.push(getErrorObject("foodStamp", "Services",  "Please select a oprion for food stamp", false, 1));
+					serviceTabValidationErrors.push(getErrorObject("foodStamp", "Services",  "Food stamp", false, 1));
 				}
 				
 				if(data.foodBankSelect == null){
-					serviceTabValidationErrors.push(getErrorObject("foodBankSelect", "Services",  "Please select a option for food bank", false, 1));
+					serviceTabValidationErrors.push(getErrorObject("foodBankSelect", "Services",  "Food bank", false, 1));
 				} else if (data.foodBankSelect == true) {
 					//TODO: Need to check with actual data
 					/*if (data.foodBankValue == null || data.foodBankValue.length == 0) {
@@ -371,10 +369,10 @@
 				
 			}	
 			else{
-				serviceTabValidationErrors.push(getErrorObject("monthlyBudget", "Services",  "Please provide value for monthly budget", false, 1));
-				serviceTabValidationErrors.push(getErrorObject("foodStamp", "Services",  "Please select a option for food stamp", false, 1));
-				serviceTabValidationErrors.push(getErrorObject("foodBankSelect", "Services",  "Please select a option for food bank", false, 1));
-				serviceTabValidationErrors.push(getErrorObject("volunteerNbr", "Services",  "Please provide value for volunteer required", false, 1));
+				serviceTabValidationErrors.push(getErrorObject("monthlyBudget", "Services",  "Monthly budget", false, 1));
+				serviceTabValidationErrors.push(getErrorObject("foodStamp", "Services",  "Food stamp", false, 1));
+				serviceTabValidationErrors.push(getErrorObject("foodBankSelect", "Services",  "Food bank", false, 1));
+				serviceTabValidationErrors.push(getErrorObject("volunteerNbr", "Services",  "Volunteer required", false, 1));
 				
 			}
 			return serviceTabValidationErrors;
@@ -443,22 +441,71 @@
 			if(data != null) {
 				if(data.individualClientInfoCollected) {
 					if(data.storeClientInfo == null){
-						ngoClientTabValidationErrors.push(getErrorObject("storeClientInfo", "Participant",  "Please provide details for how you store client information", false, 1));
+						ngoClientTabValidationErrors.push(getErrorObject("storeClientInfo", "Participant",  "How you store client information", false, 1));
 					}
 				}
 				if(!data.individualsServedDaily || data.individualsServedDaily  == null) {
-					ngoClientTabValidationErrors.push(getErrorObject("individualsServedDaily", "Participant",  "Please provide value individual served daily", false, 1));
+					ngoClientTabValidationErrors.push(getErrorObject("individualsServedDaily", "Participant",  "Individual served daily", false, 1));
 				}
 				if(!data.individualsServedMonthly || data.individualsServedMonthly == null) {
-					ngoClientTabValidationErrors.push(getErrorObject("individualsServedMonthly", "Participant",  "Please provide value individual served monthly", false, 1));
+					ngoClientTabValidationErrors.push(getErrorObject("individualsServedMonthly", "Participant",  "Individual served monthly", false, 1));
 				}
 				if(!data.individualsServedAnnually || data.individualsServedAnnually == null) {
-					ngoClientTabValidationErrors.push(getErrorObject("individualsServedAnnually", "Participant",  "Please provide value individual served annually", false, 1));
+					ngoClientTabValidationErrors.push(getErrorObject("individualsServedAnnually", "Participant",  "Individual served annually", false, 1));
 				}
 				
 			}
 			return ngoClientTabValidationErrors;
 		}
+		
+		function validateClientInformation(data) {
+			
+			var clientDataValidationErrors = [];
+			
+			if(!data.user) {
+				clientDataValidationErrors.push(getErrorObject("user", "Personal",  "User information is missing", false, 1));
+			}
+			if(data.user && data.user.firstName == null) {
+				clientDataValidationErrors.push(getErrorObject("user.firstName", "Personal",  "First name", false, 1));
+			}
+			if(data.user && data.user.lastName == null) {
+				clientDataValidationErrors.push(getErrorObject("user.lastName", "Personal",  "Last Name", false, 1));
+			}
+			if(data.user && data.user.mobilePhone == null) {
+				clientDataValidationErrors.push(getErrorObject("user.mobilePhone", "Personal",  "Phone number", false, 1));
+			}
+			if(!data.address) {
+				clientDataValidationErrors.push(getErrorObject("user", "Personal",  "User address information is missing", false, 1));
+			}
+			if(data.address && data.address.address1 == null){
+				clientDataValidationErrors.push(getErrorObject("address.address1", "Personal", "Address details", false, 1));
+			}
+			if(data.address && data.address.city == null){
+				clientDataValidationErrors.push(getErrorObject("address.city", "Personal", "City", false, 1));
+			}
+			if(data.address && data.address.state == null){
+				clientDataValidationErrors.push(getErrorObject("address.state", "Personal", "State", false, 1));
+			}
+			if(data.address && data.address.zip == null){
+				clientDataValidationErrors.push(getErrorObject("address.zipCode", "Personal", "Zipcode", false, 1));
+			}
+			if(data.race == null){
+				clientDataValidationErrors.push(getErrorObject("race", "Personal", "Race", false, 1));
+        	}
+			if(data.address && data.allergies == null){
+				clientDataValidationErrors.push(getErrorObject("allergies", "Health", "Allergies", false, 1));
+        	}
+			if(data.address && data.lastVisitDoctor == null){
+				clientDataValidationErrors.push(getErrorObject("lastVisitDoctor", "Health", "Last time doctor visit", false, 1));
+        	}
+			if(data.address && data.lastVisitDentist == null){
+				clientDataValidationErrors.push(getErrorObject("lastVisitDentist", "Health", "Last time you saw dentist", false, 1));
+        	}
+			
+			
+			return clientDataValidationErrors;
+		}
+		
 		
 		 function checkEmailAvailability(username) {
          	var usernameObject = {"username": username}
