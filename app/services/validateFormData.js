@@ -116,10 +116,11 @@
 				fields[id] = false;
 			}
 			if(id == "password"){
-				var pass = value;
-				var patt = new RegExp("(?=.*[0-9])(?=.*[a-z])(?=.*[@#$%^&+=]).{6,}");
-				var res = patt.test(pass);
-				if (res == true) {
+				var value = vm.password;
+				var specialChar = /^[a-zA-Z0-9- ]*$/;
+				var alphabets = /[a-z]/i;
+				var number = /\d+/g;
+				if (!specialChar.test(value) && number.test(value) && alphabets.test(value) && value.length>=6) {
 					fields[id] = false;
 				} else {
 					fields[id] = true;
