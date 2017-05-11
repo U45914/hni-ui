@@ -24,8 +24,17 @@
 		vm.validateUserEnrollment = "";
 		vm.username = getUserName();
 		vm.firstName = getFirstName();
-		vm.activationCodeNeeded = vm.userType === "client"
+		vm.activationCodeNeeded = vm.userType === "client";
 		vm.activationCode= getActivationCode();
+		console.log(vm.userType);
+		if(vm.userType.toUpperCase() == "Volunteer".toUpperCase()){
+			vm.headerMsg = "Create Primary volunteer profile";
+		}else if(vm.userType.toUpperCase() == "NGOAdmin".toUpperCase()){
+			vm.headerMsg  = "Create Primary NGO administrator profile";
+		}else if(vm.userType.toUpperCase() == "client".toUpperCase()){
+			vm.headerMsg  = "Create Primary client profile";
+		}
+		
 		vm.signIn = function() {
 			var data = {
 				"firstName" : vm.firstName,
@@ -108,13 +117,6 @@
 		      {
 		    	  vm.mobilePhone = phone.substring(0,3) + "-" + phone.substring(3,6) + "-" + phone.substring(6,10);
 		      }  
-			/*var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check1=false;
-			} else {
-				vm.check1=true;
-			}*/
 		};
 		vm.validationCheck = function(type, id, value, event) {
 			var data = validateFormData.validate(type, id, value, event);

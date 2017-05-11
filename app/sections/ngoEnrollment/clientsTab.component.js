@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService'];
+	clientTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService','$timeout'];
 	
-	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService){
+	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService,$timeout){
     	var vm = this;
     	
     	 
@@ -72,7 +72,10 @@
 			  				function successCallback(response) {
 			  					if (response && response.status && response.statusText == "OK") {
 			  						toastService.showToast("Your request has been submitted")
-			  							$state.go('dashboard');
+			  						$timeout(() => {
+			  								$state.go('dashboard');                    
+			  							}, 3000)
+			  							//$state.go('dashboard');
 			  					} else if(response && response.data && !response.data.errorMsg){
 				                	   toastService.showToast("Something went wrong. Try again later");
 				                   }
