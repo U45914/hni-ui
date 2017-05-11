@@ -72,13 +72,14 @@
 		};
 
 		vm.checkPassword = function() {
-			var pass = vm.password;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[a-z])(?=.*[@#$%^&+=]).{6,}");
-			var res = patt.test(pass);
-			if (res == true) {
-				vm.check=false;
+			var value = vm.password;
+			var specialChar = /^[a-zA-Z0-9- ]*$/;
+			var alphabets = /[a-z]/i;
+			var number = /\d+/g;
+			if (!specialChar.test(value) && number.test(value) && alphabets.test(value) && value.length>=6) {
+				vm.check = false;
 			} else {
-				vm.check=true;
+				vm.check = true;
 			}
 		};
 
