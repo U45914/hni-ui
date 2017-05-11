@@ -98,7 +98,7 @@
            	 	vm.isThirdTabActive = false;
            		vm.isFourthTabActive = false;
         	}
-        	if(type === "client"){
+        	if(type === "participant"){
         		vm.isFirstCardActive = false;
            	 	vm.isSecondTabActive = false;
            	 	vm.isThirdTabActive = true;
