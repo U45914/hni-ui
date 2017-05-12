@@ -43,6 +43,10 @@
     		 vm.welcomeName = vm.user.firstName + " " + vm.user.lastName;
     		 $scope.welcomeName = vm.welcomeName;
          }
+    	 
+    	 window.onbeforeunload = function () {
+    		  window.scrollTo(0, 0);
+    		}
     	
     }
 })();

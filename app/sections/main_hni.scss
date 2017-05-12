@@ -187,6 +187,7 @@ color:#808080;
 border-width:1px;
 border-color:rgba(132, 119, 119, 0.52);
 border-bottom-style: solid;
+max-width: calc(((46% - 3px) * 1) + 0px);
 }
 
 .grid_tile_width{
@@ -199,3 +200,7 @@ width: 448px;
 	max-height:100%;
     overflow: hidden;
  }
+ 
+ .grid_list_multi > figure {
+ justify-content: left;
+ } 
