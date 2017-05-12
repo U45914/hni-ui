@@ -58,9 +58,7 @@
 		}
 		
 		vm.submit = function() {
-			/*var doNotPost = validateForm(vm.vol);
-			if(doNotPost){*/
-			
+						
 				vm.vol.user = vm.vol.user ? vm.vol.user : {};
 				vm.vol.address = vm.vol.address ? vm.vol.address : {};
 				var data = {
@@ -103,9 +101,7 @@
 					var serviceCalls = volunteerService.profileDetails(data);
 					return $q.all(serviceCalls);
 			}
-			/*else{
-				toastService.showToast("Please fill required fields");
-			}*/
+
 		}
 		
 		vm.onChange = function(){

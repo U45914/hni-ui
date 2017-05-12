@@ -586,8 +586,8 @@
 				 if(data.address.zip == null){
 					 volunteerProfileErrors.push(getErrorObject("zip", "Volunteer",  "Zip code", false, 1));
 				 }
-				 if(data.birthDate == null){
-					 volunteerProfileErrors.push(getErrorObject("birthDate", "Volunteer",  "Birth Date", false, 1));
+				 if(data.birthday == null){
+					 volunteerProfileErrors.push(getErrorObject("birthday", "Volunteer",  "Birth Date", false, 1));
 				 }
 			 }
 			 
