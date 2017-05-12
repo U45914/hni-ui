@@ -11,7 +11,7 @@
 <div class="form_style">
 
 <div layout-gt-xs="row">
-	<md-input-container class="" flex-gt-sm>
+	<md-input-container flex-gt-sm>
 	<label class="text_style_vol">First name</label> <input type="text" required autofocus="on"
 		ng-model="vm.vol.user.firstName" ng-blur="vm.validationCheck('text','firstName',vm.vol.user.firstName)"/>
 	<div id="errorMsg" ng-if="vm.fields['firstName']" style="color:red;"ng-bind="vm.msgs['firstName']"></div>	</md-input-container>
@@ -21,7 +21,7 @@
 	<div id="errorMsg" ng-if="vm.fields['lastName']" style="color:red;"ng-bind="vm.msgs['lastName']"></div>	</md-input-container>
 	</md-input-container>
 </div><br>
-	<h4 >Contact details</h4>
+	<h3>Contact details</h3>
 <div layout-gt-xs="row" style="margin-top: -15px;">
 <md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Address line 1</label> <input type="text" required
@@ -63,6 +63,7 @@
 		</md-input-container>
 </div>
 <br>
+<h3>Personal information</h3>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
 	<label class="text_style_vol" >Birthdate</label> <input type="date" required ng-model="vm.vol.birthDate">
