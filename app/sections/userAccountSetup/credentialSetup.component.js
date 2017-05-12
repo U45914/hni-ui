@@ -27,9 +27,9 @@
 		vm.activationCodeNeeded = vm.userType === "client";
 		vm.activationCode= getActivationCode();
 		console.log(vm.userType);
-		if(vm.userType.toUpperCase() == "Volunteer".toUpperCase()){
+		if(vm.userType.toUpperCase() == "volunteer".toUpperCase()){
 			vm.headerMsg = "Create Primary volunteer profile";
-		}else if(vm.userType.toUpperCase() == "NGOAdmin".toUpperCase()){
+		}else if(vm.userType.toUpperCase() == "ngo".toUpperCase()){
 			vm.headerMsg  = "Create Primary NGO administrator profile";
 		}else if(vm.userType.toUpperCase() == "client".toUpperCase()){
 			vm.headerMsg  = "Create Primary client profile";

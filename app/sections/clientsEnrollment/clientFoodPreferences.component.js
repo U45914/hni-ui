@@ -31,35 +31,35 @@
     	];
     	
     	vm.foodPreferenceList = [
-    		{id: 0, name: "vegetarian"},
-			{id: 1, name: "pescatarian"},
-			{id: 2, name: "organic"},
-			{id: 3, name: "gluten free"},
-			{id: 4, name: "vegan"},
-			{id: 5, name: "paleo"},
-			{id: 6, name: "no preference"}
+    		{id: 0, name: "Vegetarian"},
+			{id: 1, name: "Pescatarian"},
+			{id: 2, name: "Organic"},
+			{id: 3, name: "Gluten free"},
+			{id: 4, name: "Vegan"},
+			{id: 5, name: "Paleo"},
+			{id: 6, name: "No preference"}
     	];
     	
     	vm.distanceList = [
     		{id: 0, name: "0-2"},
 			{id: 1, name: "2-5"},
 			{id: 2, name: "5-10"},
-			{id: 3, name: "more than 10"}
+			{id: 3, name: "More than 10"}
     	];
     	
     	vm.travelTimeList = [
     		{id: 0, name: "0-5"},
 			{id: 1, name: "5-10"},
 			{id: 2, name: "10-30"},
-			{id: 3, name: "more than 30"}
+			{id: 3, name: "More than 30"}
     	];
     	
     	vm.subFoodProgramExpList = [
-    		{id: 0, name: "great"},
-			{id: 1, name: "good"},
-			{id: 2, name: "ok"},
-			{id: 3, name: "fair"},
-			{id: 4, name: "poor"}
+    		{id: 0, name: "Great"},
+			{id: 1, name: "Good"},
+			{id: 2, name: "Ok"},
+			{id: 3, name: "Fair"},
+			{id: 4, name: "Poor"}
     	];
     	//vm.food = clientEnrollmentService.foodPreferences;
     	 $scope.$on("data-loaded-client", function(obj) {

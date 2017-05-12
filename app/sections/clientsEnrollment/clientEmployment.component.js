@@ -21,6 +21,8 @@
 	
 	function clientEmploymentController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
     	var vm = this;
+    	vm.employed = false;
+    	vm.unEmployed = false;
     	vm.residentList = [
     		{id: 0, name: "Undocumented immigrant"},
 			{id: 1, name: "Travel visa"},
@@ -71,7 +73,7 @@
     	vm.unemplDuration =[
     		{id: 0, name: "0-6 months"},
     		{id: 1, name: "6 months- 1 year"},
-    		{id: 2, name: "more than 1 year"},
+    		{id: 2, name: "More than 1 year"},
     	]
     	//vm.emp = clientEnrollmentService.clientEmployment;
     	
@@ -82,6 +84,16 @@
  	  vm.load = function() {
  			vm.emp = clientEnrollmentService.finalData;
  			clientEnrollmentService.setEmploymentData(vm.getDataModel(vm.emp));
+ 			if(vm.emp.workStatus == 2 || vm.emp.workStatus == 3){
+		 		 vm.unEmployed = true; 
+		 		m.employed = false;
+		 	  }else if(workStatus == 0 || workStatus == 1){
+			 		 vm.employed = true;
+				 		vm.unEmployed = false; 
+				 	  }else{
+				 		 vm.employed = false;
+					 	 vm.unEmployed = false; 
+				 	  }
  		}
 	vm.save = function(isTopTabClicked){ 
 		var data = vm.getDataModel(vm.emp);
@@ -115,6 +127,19 @@
         		    "dollarSpendSavings": vm.emp.dollarSpendSavings
         			};
     		return data;
+    	}
+    	
+    	vm.checkEmployed = function(workStatus){
+    		if(workStatus == 2 || workStatus == 3){
+		 		 vm.unEmployed = true; 
+		 		vm.employed = false;
+		 	  }else if(workStatus == 0 || workStatus == 1){
+			 		 vm.employed = true;
+				 		vm.unEmployed = false; 
+				 	  }else{
+				 		 vm.employed = false;
+					 	 vm.unEmployed = false; 
+				 	  }
     	}
     	
     	$rootScope.$on("saveTabFour", function(event, data){			

@@ -35,10 +35,10 @@
     	vm.educationList = [
     				{id: 0, name: "Elementary"},
     				{id: 1, name: "Middle"},
-    				{id: 2, name: "HS"},
+    				{id: 2, name: "High School"},
     				{id: 3, name: "2 year college degee"},
-    				{id: 4, name: "graduate"},
-    				{id: 5, name: "post graduate"}
+    				{id: 4, name: "Graduate"},
+    				{id: 5, name: "Post graduate"}
     				];
     	vm.housingStatus = [
     			{id: 0, name: "Sheltered"},
