@@ -20,24 +20,26 @@
 	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
 	</md-radio-group>
 	<div ng-show="vm.health.addiction">
-	<div layout-gt-xs="row" class="width_for_textbox">	
-	<md-input-container class="md-block input-primary" flex-gt-sm>
-            	<label>If yes then: provide type of addiction</label>
-				<input type="text" ng-model="vm.health.addictionType"> 
+		<div layout-gt-xs="row" class="width_for_textbox">	
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+		            	<label>If yes then: provide type of addiction</label>
+						<input type="text" ng-model="vm.health.addictionType"> 
 			</md-input-container>
-		
-	<md-input-container class="md-block input-primary" flex-gt-sm>
-            	<label>History of mental health problems</label>
-				<input type="text" 
-				ng-model="vm.health.mentalHealthIssue" /> 
-			</md-input-container>
+		</div>
 	</div>
-	<div layout-gt-xs="row" class="width_for_textbox">
-		<md-input-container class="md-block input-primary" flex-gt-sm>
-            	<label>If yes then: please explain</label>
-				<input type="text" ng-model="vm.health.mentalHealthIssueHistory" />
-			</md-input-container>
-	</div>
+	<br>
+	<md-radio-group  layout = "row" ng-model="vm.health.mentalHealthIssue"  class="md-primary">
+	<label>History of mental health problems</label>
+	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
+	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
+	</md-radio-group>
+	<div ng-show="vm.health.mentalHealthIssue">
+		<div layout-gt-xs="row" class="width_for_textbox">
+				<md-input-container class="md-block input-primary" flex-gt-sm>
+		            	<label>If yes then: please explain</label>
+						<input type="text" ng-model="vm.health.mentalHealthIssueHistory" />
+				</md-input-container>
+		</div>
 	</div>
 			<br>
 			<label class="mgn_top10">Height</label>
