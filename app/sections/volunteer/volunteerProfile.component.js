@@ -8,9 +8,9 @@
 		controllerAs : 'vm'
 	});
 
-	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService', 'validateFormData' , 'toastService'];
+	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService', 'validateFormData' , 'toastService', '$window'];
 
-	function volunteerProfileController($q, volunteerService,validateService,validateFormData,toastService) {
+	function volunteerProfileController($q, volunteerService,validateService,validateFormData,toastService, $window) {
 		var vm = this;
 		vm.vol = {};
 		vm.vol.user = {};
@@ -89,8 +89,8 @@
 					"nonProfit" : vm.vol.nonProfit
 	
 				};
-	 
 				vm.validateErrors= validateService.validateVolunteerProfile(data);
+				$window.scrollTo(0, 0);
 				if(vm.validateErrors.length > 0){
 					var validationMessage = validateService.getFormattedErrorMessageForUser(vm.validateErrors);
 	        		toastService.showToastWithFormatting(validationMessage);

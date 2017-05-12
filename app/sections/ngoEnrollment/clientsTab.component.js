@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService','$timeout'];
+	clientTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService','$timeout', '$window'];
 	
-	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService,$timeout){
+	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService,$timeout, $window){
     	var vm = this;
     	
     	 
@@ -57,9 +57,11 @@
         	  data.fundingData = ngoEnrollmentService.getFundingData();
         	  data.clientData = ngoEnrollmentService.getClientData();
         	  
+        	  
         	  vm.validateErrors = validateService.validateNGOEnrollmentData(data);
-
-        	  console.log(vm.validateErrors);
+        	  
+        	  $window.scrollTo(0, 0);
+        	  
         	  if (vm.validateErrors.length > 0) {
         		  // Now prepare message for user
         		var validationMessage = validateService.getFormattedErrorMessageForUser(vm.validateErrors);

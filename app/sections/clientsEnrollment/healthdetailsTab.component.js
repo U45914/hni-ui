@@ -17,9 +17,9 @@
 		}
 	}
 	
-	healthDetailsTabController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','$state','toastService','validateService', 'validateFormData'];
+	healthDetailsTabController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','$state','toastService','validateService', 'validateFormData', '$window'];
 	
-	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, $state, toastService, validateService, validateFormData){
+	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, $state, toastService, validateService, validateFormData, $window){
     	var vm = this;
 
     	 $scope.$on("data-loaded-client", function(obj) {
@@ -54,7 +54,7 @@
     		var clientData = clientEnrollmentService.prepareClientJson();
     		
     		vm.validationErrorsForClient = validateService.validateClientInformation(clientData);
-    		
+    		$window.scrollTo(0, 0);
     		if (vm.validationErrorsForClient.length > 0) {
     			var validationMessage = validateService.getFormattedErrorMessageForUser(vm.validationErrorsForClient);
         		toastService.showToastWithFormatting(validationMessage);

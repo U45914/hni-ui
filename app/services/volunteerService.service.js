@@ -30,7 +30,7 @@
 						toastService.showToast("Your profile has been saved");
 						$timeout(() => {
 								$state.go('dashboard');                    
-							}, 3000)
+							}, 2000)
                    }
                    else if(response && response.data.response && response.data.response == "error"){
 						toastService.showToast("Error : " +response.data.errorMsg);
