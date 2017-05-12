@@ -55,12 +55,13 @@
             });
         
         function getReportKey(reportKey) {
+        	debugger;
         	var key;
         	if (reportKey.toLocaleLowerCase().indexOf("ngo") != -1) {
         		key = "ngo";
         	} else if (reportKey.toLocaleLowerCase().indexOf("volunteer") != -1) {
         		key = "volunteer";
-        	} else if (reportKey.toLocaleLowerCase().indexOf("customer") != -1) {
+        	} else if (reportKey.toLocaleLowerCase().indexOf("participant") != -1) {
         		key = "participant";
         	} else if (reportKey.toLocaleLowerCase().indexOf("provider") != -1) {
         		key = "provider";
