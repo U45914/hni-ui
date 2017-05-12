@@ -82,9 +82,10 @@
 						"bday" : vm.client.bday,
 						"beenArrested" : vm.client.beenArrested,
 						"beenConvicted" : vm.client.beenConvicted,
-						"race"	: vm.client.race,
+						"race"	: 0,
 						"ethnicity" : vm.client.ethnicity
 			  };
+			  console.log(data);
 			  return data;
 		  }
 	  }
