@@ -59,7 +59,7 @@
                 			$state.go("volunteer-landing");
                 		}
                 	} else {
-                		popupService.showAlert("Please take few minutes to complete your profile")
+                		popupService.showAlert("Please take a few minutes to complete your profile")
                 		.then(function(){
                 			window.localStorage.setItem("userRole", vm.userRole);
                     		$state.go("profile");	

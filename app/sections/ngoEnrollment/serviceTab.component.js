@@ -31,7 +31,22 @@
         vm.dinner = [];
         vm.obj = {};
         vm.expanded = "false";
-        vm.resources = ["X", "Y", "Z"];
+        vm.resources = ["Healthcare", 
+        				"Legal",
+        				"Crisis Services",
+        				"Connection to other Shelters",
+        				"Mental health services",
+        				"Drug & Alcohol abuse",
+        				 "Transportation services",
+        				 "Education",
+        				 "Employment", 
+        				 "Entertainment", 
+        				 "Internet services",
+        				 "Clothing", 
+        				 "Food & Snacks",
+        				 "Pet care",
+        				 "Hygiene services","Identification (Birth date, State ID)",
+        				 "Others"];
         vm.resourceList = [];
         vm.service = {};
 
