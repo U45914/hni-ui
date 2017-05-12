@@ -3,9 +3,9 @@
         .module('app')
         .factory('volunteerService', volunteerService);
 
-    volunteerService.$inject = ['$http', 'serviceConstants','toastService'];
+    volunteerService.$inject = ['$http', 'serviceConstants','toastService', '$state', '$timeout'];
 
-    function volunteerService($http, serviceConstants,toastService) {
+    function volunteerService($http, serviceConstants,toastService, $state, $timeout) {
         let baseUrl = serviceConstants.baseUrl;
         var volunteerProfileData;
         
@@ -28,6 +28,9 @@
 							&& response.data.response
 							&& response.data.response == "success") {
 						toastService.showToast("Your profile has been saved");
+						$timeout(() => {
+								$state.go('dashboard');                    
+							}, 3000)
                    }
                    else if(response && response.data.response && response.data.response == "error"){
 						toastService.showToast("Error : " +response.data.errorMsg);
