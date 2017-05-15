@@ -33,6 +33,7 @@
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
+				"website" : "NA",
 				"activationCode" : vm.activationCode
 			};
 			var doNotPost = false;

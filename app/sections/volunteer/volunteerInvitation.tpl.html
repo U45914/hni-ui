@@ -42,8 +42,7 @@
 		<div class="width_for_textbox">
 			<md-input-container class="md-block input-primary" flex-gt-sm> 
 			<label>Message to Volunteer</label>
-			 <textarea required ng-model="vm.inviteMsg" md-maxlength="150" rows="3" md-select-on-focus ng-blur="vm.validationCheck('text','inviteMsg',vm.inviteMsg)"></textarea>
-			 <div id="errorMsg" ng-if="vm.fields['inviteMsg']" style="color:red;"ng-bind="vm.msgs['inviteMsg']"></div>
+			 <textarea ng-model="vm.inviteMsg" md-maxlength="150" rows="3" md-select-on-focus ></textarea>
 			 </md-input-container>
 		</div>
 		<br>

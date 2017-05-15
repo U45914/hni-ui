@@ -24,8 +24,7 @@
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
-				"email" : true,
-				"inviteMsg" : true
+				"email" : true
 		};
 		vm.msgs = {};
 		
