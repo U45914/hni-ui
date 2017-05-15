@@ -24,12 +24,12 @@
 
 		$scope.addNewRow = function() {
 			brandObject = {};
-			if( $scope.company!=null &&  $scope.phoneNumber != null && $scope.check != true && $scope.company != " " && $scope.phoneNumber != " "){
+			if( $scope.company!=null &&  $scope.website != null && $scope.check != true && $scope.company != " " && $scope.website != " "){
 			brandObject.company = $scope.company;
-			brandObject.phoneNumber = $scope.phoneNumber;
+			brandObject.website = $scope.website;
 			$scope.brandList.push(brandObject);
 			$scope.company = " ";
-			$scope.phoneNumber = " ";
+			$scope.website = " ";
 			}
 			else{
 				toastService.showToast("Please enter valid values in the fields");
@@ -40,13 +40,13 @@
 			$scope.brandList.splice(idx,1);
 		}
 		
-		$scope.checkPhoneNbr = function() {
+	/*	$scope.checkPhoneNbr = function() {
 			var phone = $scope.phoneNumber;
 			if (phone != null && phone.indexOf("-") == -1 && phone.length > 4)
 		      {
 				$scope.phoneNumber = phone.substring(0,3) + "-" + phone.substring(3,6) + "-" + phone.substring(6,10);
 		      }  
-		};
+		};*/
 		
 		$scope.validationCheck = function(type, id, value, event) {
 			var data = validateFormData.validate(type, id, value, event);
