@@ -26,6 +26,10 @@
 		vm.firstName = getFirstName();
 		vm.activationCodeNeeded = vm.userType === "client";
 		vm.activationCode= getActivationCode();
+		vm.dependantsList = [];
+		 for(var i=0; i<=getDependants(); i++){
+			 vm.dependantsList.push(i);
+		 }
 		console.log(vm.userType);
 		if(vm.userType.toUpperCase() == "volunteer".toUpperCase()){
 			vm.headerMsg = "Create Primary volunteer profile";
@@ -42,7 +46,11 @@
 				"email" : getUserName(),
 				"mobilePhone" : vm.mobilePhone,
 				"password" : vm.password,
-				"organizationId" : getOrgInfo()
+				"organizationId" : getOrgInfo(),
+				"additionalInfo" :{
+					"dependants" : vm.dependants
+				}
+				
 			};
 			
 			vm.validateUserEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
@@ -50,7 +58,7 @@
 				vm.errorText = false;
 				vm.buttonText = "Please wait...";
 				vm.isDisabled = true;	
-				ngoOnboardingService.registerNgo(data, vm.activationCode).then(function(response) {
+				ngoOnboardingService.registerUser(data).then(function(response) {
 					if (response && response.data && response.data.success) {
 						toastService.showToast(response.data.success)
 						$state.go('login');
@@ -109,7 +117,9 @@
 		function getActivationCode() {
 			return window.localStorage.getItem("userActivationCode");
 		};
-		
+		function getDependants() {
+			return window.localStorage.getItem("dependants");
+		};
 		
 		vm.checkPhoneNbr = function() {
 			var phone = vm.mobilePhone;

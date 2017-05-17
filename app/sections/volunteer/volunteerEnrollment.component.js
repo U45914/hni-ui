@@ -45,7 +45,7 @@
 				}
 			}
 			if(!doNotPost){
-				ngoOnboardingService.registerNgo(data).then(function(response) {
+				ngoOnboardingService.registerUser(data).then(function(response) {
 					if (response && response.data && response.data.success) {
 						toastService.showToast(response.data.success + ", Please login with your credentials");
 						$state.go('login');
