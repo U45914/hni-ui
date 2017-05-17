@@ -31,22 +31,23 @@
         vm.dinner = [];
         vm.obj = {};
         vm.expanded = "false";
-        vm.resources = ["Healthcare", 
-        				"Legal",
-        				"Crisis Services",
-        				"Connection to other Shelters",
-        				"Mental health services",
-        				"Drug & Alcohol abuse",
-        				 "Transportation services",
-        				 "Education",
-        				 "Employment", 
-        				 "Entertainment", 
-        				 "Internet services",
-        				 "Clothing", 
-        				 "Food & Snacks",
-        				 "Pet care",
-        				 "Hygiene services","Identification (Birth date, State ID)",
-        				 "Others"];
+        vm.resources = [{id: 1, name:"Healthcare"},
+        				{id: 2, name:"Legal"}, 
+        				{id: 3, name:"Crisis Services"}, 
+        				{id: 4, name:"Connection to other Shelters"}, 
+        				{id: 5, name:"Mental health services"}, 
+        				{id: 6, name:"Drug & Alcohol abuse"}, 
+        				{id: 7, name:"Transportation services"}, 
+        				{id: 8, name:"Education"}, 
+        				{id: 9, name:"Employment"}, 
+        				{id: 10, name:"Entertainment"}, 
+        				{id: 11, name:"Internet services"}, 
+        				{id: 12, name:"Clothing"}, 
+        				{id: 13, name:"Food & Snacks"}, 
+        				{id: 14, name:"Pet care"}, 
+        				{id: 15, name:"Hygiene services"}, 
+        				{id: 16, name:"Identification (Birth date, State ID)"}, 
+        				{id: 17, name:"Others"}];
         vm.resourceList = [];
         vm.service = {};
 
@@ -131,6 +132,8 @@
                     });
             	}
              });
+            
+            vm.resourceList = vm.service.resource;
             }
             
             if (vm.service && vm.service.foodBankValue && vm.service.foodBankValue != "") {
@@ -257,14 +260,16 @@
             return vm.flag;
         }
 
-        vm.select = function(index, event) {
+        vm.select = function(id,index, event) {
             var isChecked = event.target.checked;
+            var idx = vm.resourceList.indexOf(id);
+        
             if (isChecked) {
-                vm.resourceList.push(vm.resources[index]);
-            } else {
-                vm.resourceList.splice(index, 1);
+                vm.resourceList.push(vm.resources[index].id);
+            } 
+            if(idx >= 0 && !isChecked){
+                vm.resourceList.splice(idx, 1);
             }
-            console.log(vm.resourceList);
         }
         
         vm.validationCheck = function (type, id, value, event){
