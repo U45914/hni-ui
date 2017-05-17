@@ -47,11 +47,21 @@
 		}
 		
 		function validateUrl(fields, msgs, id, value, event){
-			fields[id] = false;
+			if(id=="email"||id=="website"){
+				var url = value;
+				var patt = new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9-@:%._\+~#=]+\.[^\s]{2,}|(?:www\.)[a-zA-Z0-9-@:%._\+~#=]+\.[^\s]{2,})");
+				var res = patt.test(url);
+				if (res != true) {
+					fields[id] = true;
+					msgs[id] = "Invalid Url format";
+				} else {
+					fields[id] = false;
+				}
 			return {
 				"field" : fields,
 				"msg"   : msgs
 				};
+		}
 		}
 		function validateText(fields, msgs, id, value, event){
 			fields[id] = false;

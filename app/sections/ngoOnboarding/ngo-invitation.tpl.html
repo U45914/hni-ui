@@ -39,7 +39,7 @@
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Website url</label>
-			 	<input type="url"  id="input-websiteUrl" required ng-model="vm.webSiteUrl" placeholder="eg: http://www.example.com" class="input_box_md" ng-blur="vm.validationCheck('url','website',vm.webSiteUrl,$event)">
+			 	<input type="text"  id="input-websiteUrl" required ng-model="vm.webSiteUrl" placeholder="eg: http://www.example.com" class="input_box_md" ng-blur="vm.validationCheck('url','website',vm.webSiteUrl,$event)">
 			<div id="errorMsg" ng-if="vm.fields['website']" style="color:red;"ng-bind="vm.msgs['website']">
                 </div>
                
