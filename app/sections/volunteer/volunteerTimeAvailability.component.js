@@ -33,7 +33,9 @@
 		vm.shiftFive = [];
 		vm.shiftSix = [];
 		vm.shiftSeven = [];
-
+		
+		vm.available = true;
+		
 		vm.loadData = function() {
 			volunteerService.getVolunteerTimeAvailability().then(
 				function success(response) {
@@ -158,6 +160,7 @@
 				"shiftFive" : vm.shiftFive,
 				"shiftSix" : vm.shiftSix,
 				"shiftSeven" : vm.shiftSeven,
+				"available" : vm.available	
 			};
 			
 			// volunteerService.volunteerProfileData = data;

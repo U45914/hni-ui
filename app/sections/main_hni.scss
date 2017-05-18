@@ -204,3 +204,10 @@ width: 448px;
  .grid_list_multi > figure {
  justify-content: left;
  } 
+ 
+.switchStyle > md-switch:last-of-type {
+    margin-left: 2px;
+    margin-right: 0;
+    margin-top: 7px;
+    margin-bottom: 0px;
+}
