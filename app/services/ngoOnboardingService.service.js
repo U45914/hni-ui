@@ -10,7 +10,7 @@
 
         return {
         	inviteNgo,
-            registerNgo,
+        	registerUser,
             addNgoUser,
             checkUsernameAvailability
             
@@ -29,7 +29,7 @@
         }
         
         //Function to call post service while new ngo login to enroll in HNI.
-        function registerNgo(data,activationCode) {
+        function registerUser(data) {
             let postData = JSON.stringify(data);
             console.log("inside service controller"+ postData);
             let config = {
@@ -38,9 +38,8 @@
             	    data: postData,
             	    headers: {
             	        "user-type": window.localStorage.getItem("userType"),
-            	        "invite-code": window.localStorage.getItem("activationCode"),
-            	        "act-code": activationCode
-            	    }
+            	        "invite-code": window.localStorage.getItem("activationCode")
+            	        }
             	}
             return $http(config);
         }

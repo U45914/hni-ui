@@ -39,8 +39,8 @@
         	window.localStorage.setItem("userName", userData.userName);
         	window.localStorage.setItem("activationCode", activationCode);
         	if(type === 'client')
-        	window.localStorage.setItem("userActivationCode", userData.userActivationCode);
-        	window.localStorage.setItem(USER_TYPE, type);
+        		window.localStorage.setItem("dependants", userData.dependants);
+            	window.localStorage.setItem(USER_TYPE, type);
         }
         
         function forwardRequest(type) {

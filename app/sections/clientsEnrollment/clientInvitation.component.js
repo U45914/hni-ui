@@ -22,8 +22,7 @@
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
-				"email" : true,
-				"activationCode" : true,
+				"email" : true
 		};
 		vm.buttonText = "Invite";
 		vm.isDisabled = false;
@@ -34,7 +33,7 @@
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
 				"website" : "NA",
-				"activationCode" : vm.activationCode
+				"dependants" : vm.dependants
 			};
 			var doNotPost = false;
 			var keys = Object.keys(vm.fields);
