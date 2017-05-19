@@ -34,7 +34,6 @@
 		vm.shiftSix = [];
 		vm.shiftSeven = [];
 		
-		vm.available = true;
 		
 		vm.loadData = function() {
 			volunteerService.getVolunteerTimeAvailability().then(
@@ -48,7 +47,7 @@
 						vm.shiftFive = response.shiftFive;
 						vm.shiftSix = response.shiftSix;
 						vm.shiftSeven = response.shiftSeven;
-						
+						vm.available = response.available;
 						vm.dayAvailableArray.forEach(function(dayAvail) {
 							dayAvail.weekday.forEach(function(day) {
 								if (dayAvail.timeline == '8am - 10am') {
