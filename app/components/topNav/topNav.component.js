@@ -12,9 +12,9 @@
         controllerAs: 'vm'
     });
 
-    TopNavController.$inject = ['$scope', '$element', '$transclude', 'userService', 'authService'];
+    TopNavController.$inject = ['$scope', '$element', '$transclude', 'userService', 'authService','$rootScope'];
 
-    function TopNavController($scope, $element, $transclude, userService, authService) {
+    function TopNavController($scope, $element, $transclude, userService, authService,$rootScope) {
         var vm = this;
 
         let content = $element[0].querySelector('#toolbar-content');
@@ -39,6 +39,10 @@
 
         vm.togglePopup = function() {
             vm.showPopup = !vm.showPopup;
+        }
+              
+        vm.toggleCollapsedNav = function(){
+        	$rootScope.$broadcast("side-nav-lock");
         }
     }
 })();
