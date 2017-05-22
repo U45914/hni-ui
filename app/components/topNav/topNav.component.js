@@ -21,6 +21,7 @@
 
         vm.showPopup = false;
         vm.userButton = authService.isUserLoggedIn();
+        vm.role = authService.getUserRole();
         console.log( vm.userButton);
 
         $transclude($scope, (clone) => {
