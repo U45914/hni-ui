@@ -34,7 +34,6 @@
         };
         
         function setUserDataToLocalStorage(userData, type, activationCode) {
-        	debugger;
         	var additional = JSON.parse(userData.data);
         	window.localStorage.setItem(USER_ORG_INFO, userData.orgId);
         	window.localStorage.setItem("firstName", userData.firstName ? userData.firstName : "");

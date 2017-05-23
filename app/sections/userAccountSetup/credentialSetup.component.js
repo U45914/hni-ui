@@ -122,8 +122,6 @@
 			return window.localStorage.getItem("dependants");
 		};
 		function getPhone(){
-			console.log("Phone Number : ");
-			console.log(window.localStorage.getItem("mobilePhone"));
 			return window.localStorage.getItem("mobilePhone");
 		}
 		
