@@ -190,33 +190,18 @@ box-shadow:none;border:none;" ng-click="vm.delRow($index)" ng-show="vm.flag1"><d
 	</div>
 	
 	
-	
-
-	<div ng-click="vm.test()">
 	<label>What resources do you offer to your clients</label>
 	<div class="padding_top_radio">
-		<div class="multiselect" >
-			<div class="selectBox" ng-click="vm.showCheckboxes(); $event.stopPropagation();">
-				<select>
-					<option>Select an option</option>
-				</select>
-				<div class="overSelect"></div>
-			</div>
-			 <div id="checkboxes" ng-show="vm.flag" >
-				<label for="one" ng-repeat="p in vm.resources"> 
-				<input type="checkbox" checklist-model="vm.resourceList" checklist-value="p.id" ng-click="vm.select(p.id,$index,$event); $event.stopPropagation();"> {{p.name}}
-				<!-- <input	type="checkbox" id="one" ng-model="vm.service.resourceChck" ng-click="vm.select($index,$event); $event.stopPropagation();" ng-checked = "vm.check();" />{{p}} -->
-				 <!-- <input	type="checkbox" id="one" ng-click="vm.select($index,$event); $event.stopPropagation();"/>{{p}} -->
-				</label>
-			</div> 				 
-			</div>
-		</div>
-		hello {{vm.resourceList}}
-		<!-- <md-grid-list md-cols="1" md-row-height="45:1" md-gutter="6px" style="margin-top: -35px;"
-		ng-repeat="item in vm.resources"> 
-		<br>
-		 <md-grid-tile md-rowspan="2" class="grid_list_multi">{{item.name}}</md-grid-tile>
-		 </md-grid-list> -->
+	 <div layout="row">
+      <md-input-container>
+        <label>Resources</label>
+        <md-select ng-model="vm.resourceList" multiple="">
+               <md-option ng-value="p.id" ng-repeat="p in vm.resources">{{p.name}}</md-option>
+        </md-select>
+      </md-input-container>
+   	 </div>
+	</div>
+		
 	</div>
 
 	<br>

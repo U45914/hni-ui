@@ -8,11 +8,15 @@
 	<label>How many meals do you eat a day</label>
 	<md-select ng-model="vm.food.mealsPerDay"> <md-option
 		ng-repeat="a in vm.mealsPerDayList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
-	<md-input-container class="md-block input-primary"  flex-gt-sm>
-	<label>Food preferences</label>
-	<md-select ng-model="vm.food.foodPreference"> <md-option
-		ng-repeat="a in vm.foodPreferenceList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
-</div>
+	
+	<md-input-container>
+        <label>Food preferences</label>
+        <md-select ng-model="vm.food.foodPreferenceList" multiple="">
+              <md-option ng-value={{a.id}} ng-repeat="a in vm.foodPreferenceMenuList">{{a.name}}</md-option>
+         </md-select>
+      </md-input-container>
+	
+	</div>
 <div layout-gt-xs="row" class="mission_width3">	
 	<md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Where do you purchase your food?</label>
