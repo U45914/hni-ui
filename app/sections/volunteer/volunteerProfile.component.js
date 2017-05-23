@@ -86,7 +86,8 @@
 					"income" : vm.vol.income,
 					"kids" : vm.vol.kids,
 					"employer" : vm.vol.employer,
-					"nonProfit" : vm.vol.nonProfit
+					"nonProfit" : vm.vol.nonProfit,
+					"available" : true
 	
 				};
 				vm.validateErrors= validateService.validateVolunteerProfile(data);
