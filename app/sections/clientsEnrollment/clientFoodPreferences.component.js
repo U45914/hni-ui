@@ -30,7 +30,7 @@
 			{id: 4, name: "More than 3"}
     	];
     	
-    	vm.foodPreferenceList = [
+    	vm.foodPreferenceMenuList = [
     		{id: 0, name: "Vegetarian"},
 			{id: 1, name: "Pescatarian"},
 			{id: 2, name: "Organic"},
@@ -86,7 +86,7 @@
     	vm.getDataModel = function(food){
     		var data = {
         		    "mealsPerDay": vm.food.mealsPerDay,
-        		    "foodPreference": vm.food.foodPreference,
+        		    "foodPreferenceList": vm.food.foodPreferenceList,
         		    "foodSource": vm.food.foodSource,
         		    "cook": vm.food.cook,
         		    "travelForFoodDistance": vm.food.travelForFoodDistance,

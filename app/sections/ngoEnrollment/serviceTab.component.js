@@ -132,8 +132,9 @@
                     });
             	}
              });
-            
+            if(vm.service.resource != null){
             vm.resourceList = vm.service.resource;
+            }
             }
             
             if (vm.service && vm.service.foodBankValue && vm.service.foodBankValue != "") {
@@ -255,22 +256,23 @@
             return vm.flag;
         }
 
-        vm.test = function() {
+       /* vm.test = function() {
             vm.flag = false;
             return vm.flag;
         }
 
         vm.select = function(id,index, event) {
             var isChecked = event.target.checked;
-            var idx = vm.resourceList.indexOf(id);
+            var idx = 0;
         
             if (isChecked) {
                 vm.resourceList.push(vm.resources[index].id);
             } 
             if(idx >= 0 && !isChecked){
+            	idx = vm.resourceList.indexOf(id);
                 vm.resourceList.splice(idx, 1);
             }
-        }
+        }*/
         
         vm.validationCheck = function (type, id, value, event){
 			if(value!=null){
