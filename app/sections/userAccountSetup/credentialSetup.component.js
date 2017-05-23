@@ -24,6 +24,7 @@
 		vm.validateUserEnrollment = "";
 		vm.username = getUserName();
 		vm.firstName = getFirstName();
+		vm.mobilePhone = getPhone();
 		vm.activationCodeNeeded = vm.userType === "client";
 		vm.activationCode= getActivationCode();
 		vm.dependantsList = [];
@@ -44,7 +45,7 @@
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
 				"email" : getUserName(),
-				"mobilePhone" : vm.mobilePhone,
+				"mobilePhone" : getPhone(),
 				"password" : vm.password,
 				"organizationId" : getOrgInfo(),
 				"additionalInfo" :{
@@ -120,6 +121,11 @@
 		function getDependants() {
 			return window.localStorage.getItem("dependants");
 		};
+		function getPhone(){
+			console.log("Phone Number : ");
+			console.log(window.localStorage.getItem("mobilePhone"));
+			return window.localStorage.getItem("mobilePhone");
+		}
 		
 		vm.checkPhoneNbr = function() {
 			var phone = vm.mobilePhone;
