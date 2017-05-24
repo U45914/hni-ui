@@ -86,8 +86,8 @@
  			clientEnrollmentService.setEmploymentData(vm.getDataModel(vm.emp));
  			if(vm.emp.workStatus == 2 || vm.emp.workStatus == 3){
 		 		 vm.unEmployed = true; 
-		 		m.employed = false;
-		 	  }else if(workStatus == 0 || workStatus == 1){
+		 		vm.employed = false;
+		 	  }else if(vm.emp.workStatus == 0 || vm.emp.workStatus == 1){
 			 		 vm.employed = true;
 				 		vm.unEmployed = false; 
 				 	  }else{
