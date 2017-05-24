@@ -72,18 +72,18 @@
 									} else if (response && response.data.response && response.data.response == "error") {
 										vm.incomplete = true;
 										toastService.showToast("Error : "+ response.data.errorMsg);
-										vm.buttonAction = "Submit";
+										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;
 										
 									} else if (response && response.data && !response.data.errorMsg) {
 										toastService.showToast("Something went wrong, please try again");
-										vm.buttonAction = "Submit";
+										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;
 										
 									} else {
 										toastService.showToast("Failed : "+ response.data.errorMsg);
 										vm.incomplete = true;
-										vm.buttonAction = "Submit";
+										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;										
 									}									
 								},
