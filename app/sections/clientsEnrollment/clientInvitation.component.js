@@ -28,6 +28,8 @@
 		vm.isDisabled = false;
 		vm.msgs = {};
 		vm.submit = function() {
+			if(vm.dependants == null)
+				vm.dependants = 0;
 			var data = {
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,

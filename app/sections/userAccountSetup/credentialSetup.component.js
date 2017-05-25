@@ -41,9 +41,12 @@
 		}
 		
 		vm.signIn = function() {
+			if(vm.dependants == null)
+				vm.dependants = 0;
 			var data = {
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
+				"genderCode" : vm.genderCode,
 				"email" : getUserName(),
 				"mobilePhone" : getPhone(),
 				"password" : vm.password,
