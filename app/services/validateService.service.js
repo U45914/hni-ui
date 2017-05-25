@@ -17,7 +17,8 @@
 			checkEmailAvailability,
 			validateVolunteerProfile,
 			getFormattedErrorMessageForUser,
-			validateClientInformation
+			validateClientInformation,
+			validateChangepassword
 		};
 		
 		
@@ -621,5 +622,23 @@
 			 
 			 return messageToUser;
 		 }
+		 
+		 /*
+			 * 
+			 * Method to validate the Change Password
+			 * 
+			 */
+			
+			function validateChangepassword(data,confirmPassword){
+				var errorFields = "";
+				 if(data.password==null || data.password!=confirmPassword ){
+					if(data.password==null){
+						errorFields += "Password ";
+					}else{
+						errorFields += "Password Mismatch ";
+					}
+				}
+				return errorFields;
+			}
 	}
 })();
