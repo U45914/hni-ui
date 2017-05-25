@@ -500,6 +500,8 @@
 					ngoClientTabValidationErrors.push(getErrorObject("individualsServedAnnually", "Participant",  "Individual served annually", false, 1));
 				}
 				
+			}else{
+				ngoClientTabValidationErrors.push(getErrorObject("Individuals Served", "Participant",  "Individual served", false, 1));
 			}
 			return ngoClientTabValidationErrors;
 		}
