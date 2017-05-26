@@ -111,6 +111,10 @@
                 url: '/volunteerEnrollment',
                 template: '<volunteer-enrollment></volunteer-enrollment>'
             })
+             .state('change-password', {
+                url: '/change-password',
+                template: '<change-password></change-password>'
+            })
             ;        
              
     }

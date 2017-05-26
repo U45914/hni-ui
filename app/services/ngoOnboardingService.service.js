@@ -12,7 +12,9 @@
         	inviteNgo,
         	registerUser,
             addNgoUser,
-            checkUsernameAvailability
+            checkUsernameAvailability,
+            getUserData,
+            changePassword
             
         };
         
@@ -47,6 +49,22 @@
         function checkUsernameAvailability(username) {
         	var usernameObject = {"username": username}
         	return $http.post(`${baseUrl}/onboard/validate/username`, usernameObject);
+        }
+        
+        //Function to call post service when password is changed.
+        function changePassword(data) {
+            let postData = JSON.stringify(data);
+            console.log("inside service controller"+ postData);
+            let config = {
+            	    method: 'POST',
+            	    url: `${baseUrl}/users/change/password`,
+            	    data: postData
+            	}
+            return $http(config);
+        }
+        
+        function getUserData() {
+        	return $http.get(`${baseUrl}/users/change/password`)
         }
      }
 })();
