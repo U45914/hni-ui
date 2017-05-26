@@ -128,14 +128,6 @@
 			return window.localStorage.getItem("mobilePhone");
 		}
 		
-		vm.checkPhoneNbr = function() {
-			var phone = vm.mobilePhone;
-			
-			 if (phone.indexOf("-") == -1 && phone.length > 4)
-		      {
-		    	  vm.mobilePhone = phone.substring(0,3) + "-" + phone.substring(3,6) + "-" + phone.substring(6,10);
-		      }  
-		};
 		vm.validationCheck = function(type, id, value, event) {
 			var data = validateFormData.validate(type, id, value, event);
 			vm.fields[id] = data.field[id];
