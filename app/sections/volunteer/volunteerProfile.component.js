@@ -31,31 +31,6 @@
 			}
 		});
 		
-	    
-		function validateForm(data){
-			console.log(data);
-			if(data == null){
-				return false;
-			}
-			else if(data.birthDate == null){
-				return false;
-			}
-			
-			if(data.user == null){
-				return false;
-			}
-			else if( data.user.firstName == null || data.user.lastName == null || data.user.mobilePhone == null || data.user.email == null){
-				return false;
-			}
-			
-			if(data.address == null){
-				return false;
-			}
-			else if(data.address.address1 == null || data.address.city == null || data.address.state == null || data.address.zip == null ){
-				return false;
-			}
-			return true;
-		}
 		
 		vm.submit = function() {
 						
@@ -111,14 +86,6 @@
 			}
 		}
 		
-		
-		vm.phoneFormat = function(event){
-			var num = vm.phoneNumber;
-		      if (num != null && num.indexOf("-") == -1 && num.length > 4)
-		      {
-		    	  vm.phoneNumber = num.substring(0,3) + "-" + num.substring(3,6) + "-" + num.substring(6,10);
-		      }    
-		}
 		
 		vm.validationCheck = function(type, id, value, event){
 			var data = validateFormData.validate(type, id, value, event);

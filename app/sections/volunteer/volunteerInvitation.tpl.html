@@ -20,7 +20,7 @@
 			 
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Phone number</label>
-			 	<input type="text" id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur="vm.phoneFormat($event);vm.validationCheck('number','phone',vm.phoneNumber)" placeholder="999-999-9999" >
+			 	<input type="text"  phone-number-input id="input-phone" required maxlength="12" ng-model="vm.phoneNumber" class="input_box_md" ng-blur="vm.validationCheck('number','phone',vm.phoneNumber)" placeholder="999-999-9999" >
 			 	 <div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>
 			</md-input-container>
 		</div>

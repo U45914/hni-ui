@@ -53,7 +53,7 @@
 </div>
 <div layout-gt-xs="row" style="margin-top: -15px;">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol" >Phone number</label> <input type="text" required maxlength="12" ng-model="vm.vol.user.mobilePhone" ng-blur="vm.phoneFormat($event);vm.validationCheck('number','phone',vm.vol.user.mobilePhone)" placeholder="999-999-9999"> 
+	<label class="text_style_vol" >Phone number</label> <input type="text" phone-number-input required maxlength="12" ng-model="vm.vol.user.mobilePhone" ng-blur="vm.validationCheck('number','phone',vm.vol.user.mobilePhone)" placeholder="999-999-9999"> 
 		<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>	
 		</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>

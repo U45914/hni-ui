@@ -67,8 +67,8 @@
 	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race"> <md-option
 		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container> -->
 <md-input-container class="md-block input-primary" flex-gt-sm>
-<label>Phone number</label> <input type="text" required maxlength="12"
-	ng-model="vm.client.user.mobilePhone" ng-blur="vm.phoneFormat($event);vm.validationCheck('number','phone',vm.client.user.mobilePhone)" placeholder="999-999-9999" >
+<label>Phone number</label> <input type="text" phone-number-input required maxlength="12"
+	ng-model="vm.client.user.mobilePhone" ng-blur="vm.validationCheck('number','phone',vm.client.user.mobilePhone)" placeholder="999-999-9999" >
 	<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;" ng-bind="vm.msgs['phone']"></div>
 	 </md-input-container>
 	<md-input-container class="md-block mgn_left_25" flex-gt-sm> <label>Birthday</label>

@@ -109,13 +109,6 @@
 					});
 		};
 		
-		vm.phoneFormat = function(event){
-			var num = vm.phoneNumber;
-		      if (num.indexOf("-") == -1 && num.length > 4)
-		      {
-		    	  vm.phoneNumber = num.substring(0,3) + "-" + num.substring(3,6) + "-" + num.substring(6,10);
-		      }    
-		}
 	}
 
 })();

@@ -90,17 +90,6 @@
 		  }
 	  }
 	  
-	  /*vm.checkPhoneNbr = function() {
-			var phone = vm.client.user.mobilePhone;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check=false;
-			} else {
-				vm.check=true;
-			}
-		};*/
-		
 		vm.validationCheck = function(type, id, value, event) {
 			var data = validateFormData.validate(type, id, value, event);
 			vm.fields[id] = data.field[id];
@@ -111,13 +100,6 @@
 			vm.save(true);
 		})
 		
-		vm.phoneFormat = function(event){
-			var num = vm.client.user.mobilePhone;
-		      if (num.indexOf("-") == -1 && num.length > 4)
-		      {
-		    	  vm.client.user.mobilePhone = num.substring(0,3) + "-" + num.substring(3,6) + "-" + num.substring(6,10);
-		      }    
-		}
 	  }
   
  })();

@@ -13,9 +13,9 @@
 
 		<md-input-container name="myForm"
 			class="md-block input-primary mgn_left_25" flex- gt-sm>
-		<label>NGO phone</label> <input type="text" name="phone" required
+		<label>NGO phone</label> <input type="text"  phone-number-input name="phone" required
 			maxlength="12" ng-model="vm.view.mobilePhone" placeholder="999-999-9999"
-			ng-blur="vm.phoneFormat($event);vm.validate('number','phone',vm.view.mobilePhone)">
+			ng-blur="vm.validate('number','phone',vm.view.mobilePhone)">
 		<div id="errorMsg" ng-if="vm.fields['phone']" style="color: red;"
 			ng-bind="vm.msgs['phone']"></div>
 		</md-input-container>
