@@ -92,13 +92,12 @@
 			}
 			if(id=="phone"){
 				var phone = value;
-				//var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-				var patt = new RegExp("(([0-9]{3})(-{1}[0-9]{3})(-{1}[0-9]{4}))");
+				var patt = new RegExp("((([0-9]{3})(-{1}[0-9]{3})(-{1}[0-9]{4}))|([0-9]{10}))");
 				var res = patt.test(phone);
 				if (res != true || isNaN(Number(value.replace(/-/g, "")))) {
-					fields[id] = true;
-					msgs[id] = "Phone number (eg:'123-456-7890')";
-				} else {
+						fields[id] = true;
+						msgs[id] = "Phone number (eg:'123-456-7890')";
+				} else{
 					fields[id] = false;
 				}
 			}
