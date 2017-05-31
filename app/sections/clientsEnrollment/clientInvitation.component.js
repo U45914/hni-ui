@@ -19,6 +19,7 @@
 		var vm = this;
 		vm.orgInfo = {};
 		vm.checkEmail=false;
+		vm.states = validateService.validateStateDrpdwn();
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
@@ -35,6 +36,7 @@
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
 				"website" : "NA",
+				"state" : vm.state,
 				"dependants" : vm.dependants
 			};
 			var doNotPost = false;

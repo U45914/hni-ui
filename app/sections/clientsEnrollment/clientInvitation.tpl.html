@@ -35,16 +35,17 @@
 			 	<div id="errorMsg" style="color:red;"ng-bind="vm.userEmailMessage"></div>
 			</md-input-container>
 			
-			<!-- <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-				<label>Website url</label>
-			 	<input type="text" id="input-websiteUrl" ng-model="vm.webSiteUrl" class="input_box_md">
-			</md-input-container> -->
-			
-			<!-- <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-				<label>Activation Code</label>
-			 	<input type="text" id="input-activationCode" required ng-model="vm.activationCode" class="input_box_md" ng-blur="vm.validationCheck('text','activationCode',vm.activationCode)"/>
-			 	<div id="errorMsg" ng-if="vm.fields['activationCode']" style="color:red;" ng-bind="vm.msgs['activationCode']"></div>
-			</md-input-container> -->
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<label>State</label> 
+				<md-select ng-init="vm.state" name="type" required 
+						ng-model="vm.state"	ng-blur="vm.validationCheck('text','state',vm.state)">
+					 <md-option ng-repeat="each in vm.states" value={{each.value}}
+					  ng-init = "vm.state" >{{each.name}}</md-option>
+				 </md-select> 
+				<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']"></div>
+			</md-input-container>
+		
+		
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 				<label>Number of dependants allowed? </label>
 				<md-select ng-model="vm.dependants">
