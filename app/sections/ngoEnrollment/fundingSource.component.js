@@ -28,16 +28,16 @@
 			var data = validateFormData.validate("text", "fundSource" ,$scope.source );
 			$scope.fields = data.field;
 			$scope.msgs = data.msg;
-			if($scope.source!= null && $scope.source != " " ) {
-				fundingSourceObj.source = $scope.source;
-				fundingSourceObj.amount = $scope.amount;
-				$scope.fundingSourceList.push(fundingSourceObj);
-				$scope.source = " ";
-				$scope.amount = null;
-				}else
+			if($scope.source!= null && $scope.source != " " && $scope.amount != null && $scope.amount != " ") {
+					fundingSourceObj.source = $scope.source;
+					fundingSourceObj.amount = $scope.amount;
+					$scope.fundingSourceList.push(fundingSourceObj);
+					$scope.source = " ";
+					$scope.amount = null;
+				} else
 				{
-				toastService.showToast(" Please enter valid values in the fields");
-			}
+					toastService.showToast(" Please enter values in source/ amount fields");
+				}
 		}
 		
 		$scope.deleteRow = function(idx) {
