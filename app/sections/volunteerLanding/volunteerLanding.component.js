@@ -8,11 +8,12 @@
             controllerAs: 'vm'
         });
 
-    controller.$inject = ['$window', '$state', 'selectedNavItemService'];
+    controller.$inject = ['$window', '$state', 'selectedNavItemService', 'serviceConstants'];
 
-    function controller($window, $state, selectedNavItemService) {
+    function controller($window, $state, selectedNavItemService, serviceConstants) {
         let vm = this;
-
+        let resourceUrl = serviceConstants.resourceUrl;
+        
         vm.$onInit = function() {
             selectedNavItemService.setSelectedItem("none");
         };
@@ -31,6 +32,10 @@
 
         vm.openEmail = function() {
             $window.location.href = "mailto:mail@example.org";
-        }
+        };
+        
+        vm.openPdf = function() {
+            $window.open(`${resourceUrl}/docs/Volunteer_Guide.pdf`, '_blank');
+        };
     }
 })();

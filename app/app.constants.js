@@ -2,7 +2,8 @@
     angular
         .module('app')
         .constant('serviceConstants', {
-            baseUrl: "http://104.43.165.131:8080/api/v1"
+        	baseUrl: "http://104.43.165.131:8080/api/v1",
+            resourceUrl: "http://104.43.165.131:8080"
         })
         .constant('rolesConstant', {
             superAdmin: '1',
