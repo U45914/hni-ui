@@ -4,7 +4,15 @@
   padding: rem(60px) rem(80px) rem(60px) rem(80px);
   background-color: $color-background;
 }
-
+.volunteer-landing-header-dashboard{
+ display: flex;
+  align-items: center;
+  height : 245px;
+  padding: rem(40px);
+  text-align: center;
+  color: $color-white;
+  background-color: $color-red-base;
+}
 @media screen and (max-width: 768px) {
   #dashboard-section {
     padding: rem(20px);

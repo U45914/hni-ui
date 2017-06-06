@@ -10,9 +10,11 @@
 
         return {
         	inviteNgo,
-            registerNgo,
+        	registerUser,
             addNgoUser,
-            checkUsernameAvailability
+            checkUsernameAvailability,
+            getUserData,
+            changePassword
             
         };
         
@@ -29,7 +31,7 @@
         }
         
         //Function to call post service while new ngo login to enroll in HNI.
-        function registerNgo(data,activationCode) {
+        function registerUser(data) {
             let postData = JSON.stringify(data);
             console.log("inside service controller"+ postData);
             let config = {
@@ -38,9 +40,8 @@
             	    data: postData,
             	    headers: {
             	        "user-type": window.localStorage.getItem("userType"),
-            	        "invite-code": window.localStorage.getItem("activationCode"),
-            	        "act-code": activationCode
-            	    }
+            	        "invite-code": window.localStorage.getItem("activationCode")
+            	        }
             	}
             return $http(config);
         }
@@ -48,6 +49,22 @@
         function checkUsernameAvailability(username) {
         	var usernameObject = {"username": username}
         	return $http.post(`${baseUrl}/onboard/validate/username`, usernameObject);
+        }
+        
+        //Function to call post service when password is changed.
+        function changePassword(data) {
+            let postData = JSON.stringify(data);
+            console.log("inside service controller"+ postData);
+            let config = {
+            	    method: 'POST',
+            	    url: `${baseUrl}/users/change/password`,
+            	    data: postData
+            	}
+            return $http(config);
+        }
+        
+        function getUserData() {
+        	return $http.get(`${baseUrl}/users/change/password`)
         }
      }
 })();

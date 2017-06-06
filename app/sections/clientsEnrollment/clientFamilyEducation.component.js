@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientFamilyEducationController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	clientFamilyEducationController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
 	
-	function clientFamilyEducationController($q,clientEnrollmentService,$scope,$rootScope,$state){
+	function clientFamilyEducationController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	//vm.family = clientEnrollmentService.clientEmployment;
     	 $scope.$on("data-loaded-client", function(obj) {
@@ -35,10 +35,10 @@
     	vm.educationList = [
     				{id: 0, name: "Elementary"},
     				{id: 1, name: "Middle"},
-    				{id: 2, name: "HS"},
+    				{id: 2, name: "High School"},
     				{id: 3, name: "2 year college degee"},
-    				{id: 4, name: "graduate"},
-    				{id: 5, name: "post graduate"}
+    				{id: 4, name: "Graduate"},
+    				{id: 5, name: "Post graduate"}
     				];
     	vm.housingStatus = [
     			{id: 0, name: "Sheltered"},
@@ -49,12 +49,17 @@
 			{id: 1, name: "Friends"},
 			{id: 2, name: "Alone"}
     	];
-    	vm.save = function(){ 
-    	var data = vm.getDataModel(vm.family);
-    	console.log(data);
-    	 clientEnrollmentService.setFamilyData(data);
-    	 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-		 var serviceCalls = clientEnrollmentService.savePartial();
+    	vm.save = function(isTopTabClicked){ 
+	    	var data = vm.getDataModel(vm.family);
+	    	console.log(data);
+	    	clientEnrollmentService.setFamilyData(data);
+	    	var serviceCalls = clientEnrollmentService.savePartial();
+
+	    	if(!isTopTabClicked){
+	    		$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+	    	}
+	    	
+			
     	}
     	
     	vm.getDataModel = function(family){
@@ -71,5 +76,9 @@
         			};
     		return data;
     	}
+    	
+    	$rootScope.$on("saveTabThree", function(event, data){			
+			vm.save(true);
+		})
 	}
 })();

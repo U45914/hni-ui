@@ -17,8 +17,8 @@
 
 	}
 	
-	fundingSourceController.$inject = ['$scope' ,'validateFormData'];
-	function fundingSourceController($scope, validateFormData) {
+	fundingSourceController.$inject = ['$scope' ,'validateFormData','toastService'];
+	function fundingSourceController($scope, validateFormData,toastService) {
 				
 		var fundingSourceObj ={};
 				
@@ -28,12 +28,15 @@
 			var data = validateFormData.validate("text", "fundSource" ,$scope.source );
 			$scope.fields = data.field;
 			$scope.msgs = data.msg;
-			if($scope.source!= null ) {
-				fundingSourceObj.source = $scope.source;
-				fundingSourceObj.amount = $scope.amount;
-				$scope.fundingSourceList.push(fundingSourceObj);
-				$scope.source = null;
-				$scope.amount = null;
+			if($scope.source!= null && $scope.source != " " && $scope.amount != null && $scope.amount != " ") {
+					fundingSourceObj.source = $scope.source;
+					fundingSourceObj.amount = $scope.amount;
+					$scope.fundingSourceList.push(fundingSourceObj);
+					$scope.source = " ";
+					$scope.amount = null;
+				} else
+				{
+					toastService.showToast(" Please enter values in source/ amount fields");
 				}
 		}
 		

@@ -6,7 +6,8 @@
                 icon: '@',
                 iconText: '@',
                 bgImage: '@',
-                reportType: '=reportType'
+                reportType: '=reportType',
+                isActive : '='
             },
             templateUrl: 'action-card.tpl.html',
             controller: ActionCardController,
@@ -17,7 +18,6 @@
 
     function ActionCardController($rootScope, $scope) {
         var vm = this;
-       
         vm.$onInit = function() {
 
         };

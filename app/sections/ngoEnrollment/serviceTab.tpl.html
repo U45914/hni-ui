@@ -1,14 +1,14 @@
 <div class="font_for_allpages1">
 	<h3>Meal services details</h3>
 <br>
-<h4>Existing services offered</h4>
+<h4>Our organization currently provides:</h4>
 <div id="fdsrv">
 		<div flex layout = "row" layout-align="start center">
           <md-checkbox ng-model="vm.service.brkfstChk" class="md-primary" md-autofocus>
             Breakfast
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:25px;" flex="60" ng-show ="vm.service.brkfstChk" style="padding: 0px;margin: 0px;">
-            <label>Quantity : </label>
+            <label>Quantity(Meals per month) : </label>
             <input type="number" required style="margin-bottom:28px;" ng-model="vm.service.brkfstQty"  ng-blur="vm.validate('number','brkfstQty',vm.service.brkfstQty)"></input>
             <div id="errorMsg" ng-if="vm.fields['brkfstQty']" style="color:red;"ng-bind="vm.msgs['brkfstQty']"></div>
           </md-input-container>
@@ -18,7 +18,7 @@
             Lunch
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:47px;" ng-show ="vm.service.lunchChk" flex="60" style="padding: 0px;margin: 0px;">
-            <label>Quantity : </label>
+            <label>Quantity(Meals per month) : </label>
             <input type="number"  required style="margin-bottom:28px;"   ng-model="vm.service.lunchQty" ng-blur="vm.validate('number','lunchQty',vm.service.lunchQty)"></input>
              <div id="errorMsg" ng-if="vm.fields['lunchQty']" style="color:red;"ng-bind="vm.msgs['lunchQty']"></div>
           </md-input-container>
@@ -28,26 +28,26 @@
             Dinner
           </md-checkbox>
           <md-input-container class="md-block input-primary " style="margin-left:45px;" ng-show ="vm.service.dinnerChk" flex="60" style="padding: 0px;margin: 0px;">
-            <label>Quantity : </label>
+            <label>Quantity(Meals per month) : </label>
             <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.dinnerQty" ng-blur="vm.validate('number','dinnerQty',vm.service.dinnerQty)"></input>
             <div id="errorMsg" ng-if="vm.fields['dinnerQty']" style="color:red;"ng-bind="vm.msgs['dinnerQty']"></div>
           </md-input-container>
         </div>
         <div flex layout = "row" layout-align="start center">
           <md-checkbox md-no-ink  ng-model="vm.service.baggedChk" class="md-primary">
-            Bagged
+            Bagged meals
           </md-checkbox>
           <md-input-container class="md-block input-primary" style="margin-left:38px;" ng-show ="vm.service.baggedChk" flex="60" style="padding: 0px;margin: 0px;">
-            <label>Quantity : </label>
+            <label>Quantity(Meals per month) : </label>
             <input type="number"   style="margin-bottom:28px;" required ng-model="vm.service.baggedQty"></input>
             <div id="errorMsg" ng-if="vm.fields['baggedQty']" style="color:red;"ng-bind="vm.msgs['baggedQty']"></div>
           </md-input-container>
         </div>
 
 	
-		<div flex-gt-sm="50" layout = "row">
+		<div flex-gt-sm="60" layout = "row">
 			<md-input-container class="md-block input-primary" flex-gt-sm>
-            <label>Number of gift cards </label>
+            <label>Gift cards (Total amount per month in $)</label>
             <input type="number" ng-model="vm.service.giftCard" min="0" autofocus= "on"></input>
           </md-input-container> 
           
@@ -78,7 +78,7 @@
 		</md-grid-list>
 	</div>	
 	
-<br>
+<br><br><br>
 <div>
 	<div layout-gt-xs="row" class="services_width"> 
 	<md-input-container class="md-block input-primary" flex-gt-sm>
@@ -96,7 +96,7 @@
      </md-input-container>
      </div>
 	
-	<div layout-gt-xs="row" class="services_width">
+	<div layout-gt-xs="row" class="services_width"><br>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 		<label>Operating costs associated with meal services</label>
 		 <md-select ng-model="vm.service.operatingCost">
@@ -108,6 +108,7 @@
 	            <md-option ng-value="4">$5k - $10k</md-option>
 	            <md-option ng-value="5">more than $10k</md-option>
 		</md-select>
+		<br><p style="margin-top: -14px"><font size="-1.65">For example: kitchen costs, costs of utensils, facility expenses etc</font></p>
 	</md-input-container>
 	</div>
 </div>
@@ -125,7 +126,7 @@
 	            <md-option ng-value="3">$2500 - $5k</md-option>
 	            <md-option ng-value="4">$5k - $10k</md-option>
 	            <md-option ng-value="5">more than $10k</md-option>
-				<md-option ng-value="6">personnel are volunteers</md-option>
+				<md-option ng-value="6">Personnel are volunteers</md-option>
 	</md-select><br>
 	</md-input-container>
 	</div>
@@ -133,7 +134,7 @@
 	    <div layout-gt-xs="row" class="services_width">
 		 <md-input-container class="md-block input-primary mgn_left_25"  flex-gt-sm>
             <label>volunteers required </label>
-            <input type="number"   required ng-model="vm.service.volunteerNbr"  ng-blur="vm.validate('number','volunteerNbr',vm.service.volunteerNbr)"></input>
+            <input type="number"  min="0" required ng-model="vm.service.volunteerNbr"  ng-blur="vm.validate('number','volunteerNbr',vm.service.volunteerNbr)"></input>
              <div id="errorMsg" ng-if="vm.fields['volunteerNbr']" style="color:red;"ng-bind="vm.msgs['volunteerNbr']"></div>
           </md-input-container>
 	    </div>
@@ -141,7 +142,7 @@
 
 <div class="radio_style">
 	
-	<label>Assistance with food stamps?</label><br>
+	<label>Assistance with food stamps? *</label><br>
 	<div class="padding_top_radio">
 	<md-radio-group   layout="row" ng-model ="vm.service.foodStamp" class="md-primary"> 
             <md-radio-button ng-value="true" >Yes</md-radio-button>
@@ -151,7 +152,7 @@
 </div>
 <div class="radio_style">	
 	
-	<label>Connections to foodbanks</label><br>
+	<label>Connections to foodbanks? *</label><br>
 	<div class="padding_top_radio">
 	<md-radio-group   layout="row" ng-model ="vm.service.foodBankSelect" class="md-primary"> 
             <md-radio-button ng-value="true" >Yes</md-radio-button>
@@ -189,35 +190,23 @@ box-shadow:none;border:none;" ng-click="vm.delRow($index)" ng-show="vm.flag1"><d
 	</div>
 	
 	
-	
-
-	<div ng-click="vm.test()">
 	<label>What resources do you offer to your clients</label>
 	<div class="padding_top_radio">
-		<div class="multiselect" >
-			<div class="selectBox" ng-click="vm.showCheckboxes(); $event.stopPropagation();">
-				<select>
-					<option>Select an option</option>
-				</select>
-				<div class="overSelect"></div>
-			</div>
-			 <div id="checkboxes" ng-show="vm.flag" >
-				<label for="one" ng-repeat="p in vm.resources"> 
-				
-				<!-- <input	type="checkbox" id="one" ng-model="vm.service.resourceChck" ng-click="vm.select($index,$event); $event.stopPropagation();" ng-checked = "vm.check();" />{{p}} -->
-				 <input	type="checkbox" id="one" ng-click="vm.select($index,$event); $event.stopPropagation();"/>{{p}}
-				</label>
-			</div> 
-			
-				 
-			</div>
-		</div>
-		</div>
+	 <div layout="row">
+      <md-input-container>
+        <label>Resources</label>
+        <md-select ng-model="vm.resourceList" multiple="">
+               <md-option ng-value="p.id" ng-repeat="p in vm.resources">{{p.name}}</md-option>
+        </md-select>
+      </md-input-container>
+   	 </div>
+	</div>
+		
 	</div>
 
 	<br>
 	<hr class="register-input-test" style="width: 100%">
-	<div  class="left_float">
+	<div  class="right_float">
 		<br>
 		<md-button class="md-raised button-primary" class="save_next_btn" ng-click="vm.save();">Save
 		& Next</md-button>

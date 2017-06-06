@@ -38,7 +38,8 @@
             familyData,
             employmentData,
             foodData,
-            healthData
+            healthData,
+            prepareClientJson
            
             };
         
@@ -91,65 +92,14 @@
            	 
             
             function savePartial() {
-            	var psnlData =getPersonnalData();
-            	var cntData = getConnectionData();
-            	var famData = getFamilyData();
-            	var empData = getEmploymentData();
-            	var fdData = getFoodData();
-            	var hlthData = getHealthData();
-            	
-            	angular.forEach(psnlData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(cntData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(famData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(empData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(fdData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(hlthData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
+            	// Prepared data before saving to sending to partial data services
+            	prepareClientJson();
             	
                	let partialData = JSON.stringify(finalSaveData);
             	return $http.post(`${baseUrl}/onboard/client/save`, partialData);
             }
-       
              
             function postClientInfo(){
-            	var psnlData = getPersonnalData();
-            	var cntData = getConnectionData();
-            	var famData = getFamilyData();
-            	var empData = getEmploymentData();
-            	var fdData = getFoodData();
-            	var hlthData = getHealthData();
-            	
-            	angular.forEach(psnlData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(cntData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(famData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(empData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(fdData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	angular.forEach(hlthData, function(val, key) {
-            		putElementsToMap(key, val);
-            	});
-            	
-            	
             	
                	let clientInfoData = JSON.stringify(finalSaveData);
             	var pass = validateCientInfoData(finalSaveData);
@@ -184,6 +134,36 @@
             	
             }
           
+            function prepareClientJson() {
+            	var psnlData = getPersonnalData();
+            	var cntData = getConnectionData();
+            	var famData = getFamilyData();
+            	var empData = getEmploymentData();
+            	var fdData = getFoodData();
+            	var hlthData = getHealthData();
+            	
+            	angular.forEach(psnlData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(cntData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(famData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(empData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(fdData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	angular.forEach(hlthData, function(val, key) {
+            		putElementsToMap(key, val);
+            	});
+            	
+            	return finalSaveData;
+            }
+            
             function putElementsToMap(key, val) {
             	if (key.indexOf("__") == -1 ) {
             		finalSaveData[key] = val;

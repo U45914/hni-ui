@@ -19,21 +19,25 @@
 		var vm = this;
 		vm.orgInfo = {};
 		vm.checkEmail=false;
+		vm.states = validateService.validateStateDrpdwn();
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
-				"email" : true,
-				"activationCode" : true,
+				"email" : true
 		};
 		vm.buttonText = "Invite";
 		vm.isDisabled = false;
 		vm.msgs = {};
 		vm.submit = function() {
+			if(vm.dependants == null)
+				vm.dependants = 0;
 			var data = {
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
-				"activationCode" : vm.activationCode
+				"website" : "NA",
+				"state" : vm.state,
+				"dependants" : vm.dependants
 			};
 			var doNotPost = false;
 			var keys = Object.keys(vm.fields);
@@ -109,6 +113,7 @@
 						}
 					});
 		};
+		
 	}
 
 })();

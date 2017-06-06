@@ -20,7 +20,7 @@
 			 
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Phone number</label>
-			 	<input type="text" id="input-phone" required maxlength = "12" ng-model="vm.phoneNumber" ng-blur="vm.validationCheck('number','phone',vm.phoneNumber)" placeholder="999-999-9999" class="input_box_md" >
+			 	<input type="text" id="input-phone" phone-number-input required maxlength = "12" ng-model="vm.phoneNumber" ng-blur="vm.validationCheck('number','phone',vm.phoneNumber)" placeholder="999-999-9999" class="input_box_md" >
 			 	<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;" ng-bind="vm.msgs['phone']"></div>
 			 	<div id="errorMsg" ng-show="vm.check" style="color:red;">Phone number (eg:'123-456-7890')</div>
 			</md-input-container>
@@ -35,16 +35,23 @@
 			 	<div id="errorMsg" style="color:red;"ng-bind="vm.userEmailMessage"></div>
 			</md-input-container>
 			
-			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-				<label>Website url</label>
-			 	<input type="text" id="input-websiteUrl" ng-model="vm.webSiteUrl" class="input_box_md">
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<label>State</label> 
+				<md-select ng-init="vm.state" name="type" required 
+						ng-model="vm.state"	ng-blur="vm.validationCheck('text','state',vm.state)">
+					 <md-option ng-repeat="each in vm.states" value={{each.value}}
+					  ng-init = "vm.state" >{{each.name}}</md-option>
+				 </md-select> 
+				<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']"></div>
 			</md-input-container>
-			
-			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
-				<label>Activation Code</label>
-			 	<input type="text" id="input-activationCode" required ng-model="vm.activationCode" class="input_box_md" ng-blur="vm.validationCheck('text','activationCode',vm.activationCode)">
-			 	<div id="errorMsg" ng-if="vm.fields['activationCode']" style="color:red;" ng-bind="vm.msgs['activationCode']"></div>
-			</md-input-container>
+		
+		
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<label>Number of dependants allowed? </label>
+				<md-select ng-model="vm.dependants">
+				<md-option ng-repeat="n in [1,2,3,4,5,6,7,8,9,10]" value={{n}} >{{n}}</md-option>
+				</md-select>
+			</md-input-container> 
 		</div>
 		
 			<md-button id="input-submit" class="md-raised button-primary" style="float:right;"  ng-click="vm.submit()" ng-disabled = "vm.isDisabled" >{{vm.buttonText}}</md-button>
@@ -55,3 +62,4 @@
 <landing-footer></landing-footer>
 </div>
 </div>
+				

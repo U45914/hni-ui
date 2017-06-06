@@ -78,7 +78,6 @@
         function getInitialSuccess(response) {
             if(response.status !== 204) {
                 let data = response.data;
-
                 vm.orderInfo.orderId = data.id;
                 vm.orderInfo.totalCost = data.subTotal;
                 vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;

@@ -25,7 +25,12 @@ html, body {
     top: 90%;
     left: 100%;
 }
-.text_style_vol
+.text_style_vol > md-placeholder
 {
 color:#808080;
+}
+.md-select-value > span:not(.md-select-icon) .md-text
+{
+    font-weight: bold;
+    color: black;
 }

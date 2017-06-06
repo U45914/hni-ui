@@ -8,29 +8,53 @@
 		controllerAs : 'vm'
 	});
 	CredentialSetupController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
-			'$state','toastService' ];
+			'$state','toastService','validateFormData' ];
 
-	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state, toastService) {
+	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state, toastService,validateFormData) {
 		var USER_ORG_INFO = "userOrgInfo";
 		var USER_TYPE = "userType";
 
 		var vm = this;
+		vm.fields = {};
+		vm.msgs = {};
 		vm.userType = getUserType();
 		vm.buttonText = "Register";
 		vm.isDisabled = false;
 		vm.userNameMessage = "";
 		vm.validateUserEnrollment = "";
 		vm.username = getUserName();
-		vm.activationCodeNeeded = vm.userType === "client"
-		vm.activationCode;
+		vm.firstName = getFirstName();
+		vm.mobilePhone = getPhone();
+		vm.activationCodeNeeded = vm.userType === "client";
+		vm.activationCode= getActivationCode();
+		vm.dependantsList = [];
+		 for(var i=0; i<=getDependants(); i++){
+			 vm.dependantsList.push(i);
+		 }
+		console.log(vm.userType);
+		if(vm.userType.toUpperCase() == "volunteer".toUpperCase()){
+			vm.headerMsg = "Create Primary volunteer profile";
+		}else if(vm.userType.toUpperCase() == "ngo".toUpperCase()){
+			vm.headerMsg  = "Create Primary NGO administrator profile";
+		}else if(vm.userType.toUpperCase() == "client".toUpperCase()){
+			vm.headerMsg  = "Create Primary client profile";
+		}
+		
 		vm.signIn = function() {
+			if(vm.dependants == null)
+				vm.dependants = 0;
 			var data = {
 				"firstName" : vm.firstName,
 				"lastName" : vm.lastName,
+				"genderCode" : vm.genderCode,
 				"email" : getUserName(),
-				"mobilePhone" : vm.mobilePhone,
+				"mobilePhone" : getPhone(),
 				"password" : vm.password,
-				"organizationId" : getOrgInfo()
+				"organizationId" : getOrgInfo(),
+				"additionalInfo" :{
+					"dependants" : vm.dependants
+				}
+				
 			};
 			
 			vm.validateUserEnrollment = validateService.validateNGOEnrollment(data,vm.passwordConfirm);
@@ -38,7 +62,7 @@
 				vm.errorText = false;
 				vm.buttonText = "Please wait...";
 				vm.isDisabled = true;	
-				ngoOnboardingService.registerNgo(data, vm.activationCode).then(function(response) {
+				ngoOnboardingService.registerUser(data).then(function(response) {
 					if (response && response.data && response.data.success) {
 						toastService.showToast(response.data.success)
 						$state.go('login');
@@ -69,13 +93,14 @@
 		};
 
 		vm.checkPassword = function() {
-			var pass = vm.password;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[a-z])(?=.*[@#$%^&+=]).{6,}");
-			var res = patt.test(pass);
-			if (res == true) {
-				vm.check=false;
+			var value = vm.password;
+			var specialChar = /^[a-zA-Z0-9- ]*$/;
+			var alphabets = /[a-z]/i;
+			var number = /\d+/g;
+			if (!specialChar.test(value) && number.test(value) && alphabets.test(value) && value.length>=6) {
+				vm.check = false;
 			} else {
-				vm.check=true;
+				vm.check = true;
 			}
 		};
 
@@ -90,15 +115,23 @@
 		function getUserName() {
 			return window.localStorage.getItem("userName");
 		};
-		vm.checkPhoneNbr = function() {
-			var phone = vm.mobilePhone;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check1=false;
-			} else {
-				vm.check1=true;
-			}
+		function getFirstName() {
+			return window.localStorage.getItem("firstName");
+		};
+		function getActivationCode() {
+			return window.localStorage.getItem("userActivationCode");
+		};
+		function getDependants() {
+			return window.localStorage.getItem("dependants");
+		};
+		function getPhone(){
+			return window.localStorage.getItem("mobilePhone");
+		}
+		
+		vm.validationCheck = function(type, id, value, event) {
+			var data = validateFormData.validate(type, id, value, event);
+			vm.fields[id] = data.field[id];
+			vm.msgs[id] = data.msg[id];
 		};
 	}
 

@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService'];
+	clientTabController.$inject = ['$q','ngoEnrollmentService','$scope','$rootScope','$state','toastService','validateService','$timeout', '$window'];
 	
-	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService){
+	function clientTabController($q,ngoEnrollmentService,$scope,$rootScope,$state,toastService,validateService,$timeout, $window){
     	var vm = this;
     	
     	 
@@ -27,7 +27,7 @@
 			vm.load();
 		});
     	
-    	vm.save = function(){   
+    	vm.save = function(isTopTabClicked){   
     		if(vm.client){
       		 var data = {
       				 "individualsServedDaily" : vm.client.individualsServedDaily,
@@ -56,33 +56,47 @@
         	  data.serviceData = ngoEnrollmentService.getServiceData();
         	  data.fundingData = ngoEnrollmentService.getFundingData();
         	  data.clientData = ngoEnrollmentService.getClientData();
-        	  vm.validateNGOEnrollmentData = validateService.validateNGOEnrollmentData(data);
-        	  console.log(vm.validateNGOEnrollmentData);
-        	  if(angular.equals(vm.validateNGOEnrollmentData, {})){
-    	    	  console.log( vm.validateNGOEnrollmentData);
+        	  
+        	  
+        	  vm.validateErrors = validateService.validateNGOEnrollmentData(data);
+        	  
+        	  $window.scrollTo(0, 0);
+        	  
+        	  if (vm.validateErrors.length > 0) {
+        		  // Now prepare message for user
+        		var validationMessage = validateService.getFormattedErrorMessageForUser(vm.validateErrors);
+        		toastService.showToastWithFormatting(validationMessage);
+        		  
+        	  } else {
+        		  
     	    	  console.log("Attempting function call..");
     	    	  var serviceCalls = ngoEnrollmentService.postNgoEnrollData().then(
-    	    			  				function successCallback(response) {
-    	    			  					if (response && response.status && response.statusText == "OK") {
-    	    			  						toastService.showToast("Your request has been submitted")
-    	    			  							$state.go('dashboard');
-    	    			  					} else if(response && response.data && !response.data.errorMsg){
-    						                	   toastService.showToast("Something went wrong. Try again later");
-    						                   }
-    	    			  					else {
-    	    			  						toastService.showToast("Failed : "+ response.data.errorMsg);
-    	    			  					}
-    	    			  				},
-    	    			  				function errorCallback(response) {
-    	    			  					toastService.showToast("Something went wrong, please try again")
-    	    			  				});
-    		  return $q.all(serviceCalls);
+			  				function successCallback(response) {
+			  					if (response && response.status && response.statusText == "OK") {
+			  						toastService.showToast("Your request has been submitted")
+			  						$timeout(() => {
+			  								$state.go('dashboard');                    
+			  							}, 3000)
+			  							//$state.go('dashboard');
+			  					} else if(response && response.data && !response.data.errorMsg){
+				                	   toastService.showToast("Something went wrong. Try again later");
+				                   }
+			  					else {
+			  						toastService.showToast("Failed : "+ response.data.errorMsg);
+			  					}
+			  				},
+			  				function errorCallback(response) {
+			  					toastService.showToast("Something went wrong, please try again")
+			  				});
+    	    	  return $q.all(serviceCalls);
         	  }
-        	  else {
-        		  toastService.showToast("Please fill all required fields");
-        	  }
+        	  
     		  
     	  }
+    	  
+    	  $rootScope.$on("tabFocusChangedFromTabFive", function(event, data){  			
+  			vm.save(true);
+  		})
     	
 	}
 })();

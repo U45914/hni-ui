@@ -1,5 +1,5 @@
 <div class="font_for_allpages1" >
-	<h3>Food Preferences Details</h3>
+	<h3>Health details</h3>
 
 
 
@@ -20,24 +20,26 @@
 	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
 	</md-radio-group>
 	<div ng-show="vm.health.addiction">
-	<div layout-gt-xs="row" class="width_for_textbox">	
-	<md-input-container class="md-block input-primary" flex-gt-sm>
-            	<label>If yes then: provide type of addiction</label>
-				<input type="text" ng-model="vm.health.addictionType"> 
+		<div layout-gt-xs="row" class="width_for_textbox">	
+			<md-input-container class="md-block input-primary" flex-gt-sm>
+		            	<label>If yes then: provide type of addiction</label>
+						<input type="text" ng-model="vm.health.addictionType"> 
 			</md-input-container>
-		
-	<md-input-container class="md-block input-primary" flex-gt-sm>
-            	<label>History of mental health problems</label>
-				<input type="text" 
-				ng-model="vm.health.mentalHealthIssue" /> 
-			</md-input-container>
+		</div>
 	</div>
-	<div layout-gt-xs="row" class="width_for_textbox">
-		<md-input-container class="md-block input-primary" flex-gt-sm>
-            	<label>If yes then: please explain</label>
-				<input type="text" ng-model="vm.health.mentalHealthIssueHistory" />
-			</md-input-container>
-	</div>
+	<br>
+	<md-radio-group  layout = "row" ng-model="vm.health.mentalHealthIssue"  class="md-primary">
+	<label>History of mental health problems</label>
+	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
+	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
+	</md-radio-group>
+	<div ng-show="vm.health.mentalHealthIssue">
+		<div layout-gt-xs="row" class="width_for_textbox">
+				<md-input-container class="md-block input-primary" flex-gt-sm>
+		            	<label>If yes then: please explain</label>
+						<input type="text" ng-model="vm.health.mentalHealthIssueHistory" />
+				</md-input-container>
+		</div>
 	</div>
 			<br>
 			<label class="mgn_top10">Height</label>
@@ -68,7 +70,7 @@
 	            <md-option ng-value="0">0-6 Months</md-option>
 	            <md-option ng-value="1">6-12 Months</md-option>
 	            <md-option ng-value="2">1-2 Years</md-option>
-	            <md-option ng-value="3">more than 2 Years</md-option>
+	            <md-option ng-value="3">More than 2 Years</md-option>
 	            <md-option ng-value="4">I have never seen a doctor</md-option>
 	         </md-select>
 	        <div id="errorMsg" ng-if="vm.fields['lastVisitDoctor']" style="color:red;" ng-bind="vm.msgs['lastVisitDoctor']"></div>
@@ -80,7 +82,7 @@
 	            <md-option ng-value="0">0-6 Months</md-option>
 	            <md-option ng-value="1">6-12 Months</md-option>
 	            <md-option ng-value="2">1-2 Years</md-option>
-	            <md-option ng-value="3">more than 2 Years</md-option>
+	            <md-option ng-value="3">More than 2 Years</md-option>
 	            <md-option ng-value="4">I have never seen a dentist</md-option>
 	         </md-select>
 	         <div id="errorMsg" ng-if="vm.fields['lastVisitDentist']" style="color:red;" ng-bind="vm.msgs['lastVisitDentist']"></div>

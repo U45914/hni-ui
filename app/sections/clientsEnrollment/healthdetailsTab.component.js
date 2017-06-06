@@ -17,11 +17,11 @@
 		}
 	}
 	
-	healthDetailsTabController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','$state','toastService','validateFormData'];
+	healthDetailsTabController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','$state','toastService','validateService', 'validateFormData', '$window'];
 	
-	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, $state, toastService, validateFormData){
+	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, $state, toastService, validateService, validateFormData, $window){
     	var vm = this;
-    //	vm.health = clientEnrollmentService.clientData;
+
     	 $scope.$on("data-loaded-client", function(obj) {
  			vm.load();
  	 });
@@ -40,40 +40,46 @@
  		vm.fields = {};
 		vm.msgs = {};
  	  
-    	vm.save = function(){   		
+    	vm.save = function(isTopTabClicked){   		
       		 var data = vm.getDataModel(vm.health);
       		
       		var serviceCalls = clientEnrollmentService.setHealthData(data);
-      		 //$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+
 			 var serviceCalls = clientEnrollmentService.savePartial();
 	  		 $q.all(serviceCalls)//.then(onSuccess,onError) 
     	}
     	
     	vm.enrollementData = function(){
-       	
+    		// validate client information for integrity
+    		var clientData = clientEnrollmentService.prepareClientJson();
+    		
+    		vm.validationErrorsForClient = validateService.validateClientInformation(clientData);
+    		$window.scrollTo(0, 0);
+    		if (vm.validationErrorsForClient.length > 0) {
+    			var validationMessage = validateService.getFormattedErrorMessageForUser(vm.validationErrorsForClient);
+        		toastService.showToastWithFormatting(validationMessage);
+    		} else {
+    		
     		  var serviceCalls = clientEnrollmentService.postClientInfo().then(
-    					function successCallback(response) {
-    						if (response
-    								&& response.data.response
-    								&& response.data.response == "success") {
-    							toastService.showToast("Your profile has been saved")
-    							$state.go('dashboard');
-    						} else if(response && response.data && !response.data.errorMsg){
-			                	   toastService.showToast("Something went wrong. Try again later");
-			                   } else {
-    							toastService.showToast("Failed : "
-    									+ response.data.errorMsg);
-    						}
-    					},
-    					function errorCallback(response) {
-    						toastService.showToast("Something went wrong, please try again")
-    						// $state.go('dashboard');
-    					});
+					function successCallback(response) {
+						if (response && response.data.response && response.data.response == "success") {
+							toastService.showToast("Your profile has been saved")
+							$state.go('dashboard');
+						} else if(response && response.data && !response.data.errorMsg){
+		                	   toastService.showToast("Something went wrong. Try again later");
+		                } else {
+							toastService.showToast("Failed : "+ response.data.errorMsg);
+						}
+					},
+					function errorCallback(response) {
+						toastService.showToast("Something went wrong, please try again")
+				});
 
-    
     		  return $q.all(serviceCalls);
     		  
-    	  }
+    		}
+    		  
+    	}
     	
     	vm.getDataModel = function(health){
     		var data = {
@@ -95,5 +101,9 @@
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		}
+    
+    $rootScope.$on("saveTabSix", function(event, data){			
+		vm.save(true);
+	})
 	}
 })();

@@ -9,30 +9,30 @@
 	</div> -->
 		
 	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.superAdmin">
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="NGO" style="outline: none;"report-type="ngo" ng-click="vm.showReportView('ngo')"></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE925;" icon-text="Volunteers" style="outline: none;" ng-click="vm.showReportView('volunteer')"></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" style="outline: none;" ng-click="vm.showReportView('participant')"></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" style="outline: none;" ng-click="vm.showReportView('provider')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="NGO" style="outline: none;"report-type="ngo" ng-click="vm.showReportView('ngo')" is-active="vm.isFirstCardActive"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE925;" icon-text="Volunteers" style="outline: none;" ng-click="vm.showReportView('volunteer')" is-active="vm.isSecondTabActive"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" style="outline: none;" ng-click="vm.showReportView('participant')" is-active="vm.isThirdTabActive"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" style="outline: none;" ng-click="vm.showReportView('provider')" is-active="vm.isFourthTabActive"></action-card>
 	</div>
 	
 	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.ngoAdmin" >
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE925;" icon-text="Volunteers" style="outline: none;" ng-click="vm.showReportView('volunteer')"></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" style="outline: none;" ng-click="vm.showReportView('participant')"></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" style="outline: none;" ng-click="vm.showReportView('provider')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE925;" icon-text="Volunteers" style="outline: none;" ng-click="vm.showReportView('volunteer')" is-active="vm.isSecondTabActive"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" style="outline: none;" ng-click="vm.showReportView('participant')" is-active="vm.isThirdTabActive"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" style="outline: none;" ng-click="vm.showReportView('provider')" is-active="vm.isFourthTabActive"></action-card>
 	</div>
 	
 	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.ngo" >
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Volunteers" style="outline: none;"ng-click="vm.showReportView('volunteer')"></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" style="outline: none;" ng-click="vm.showReportView('participant')"></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" style="outline: none;" ng-click="vm.showReportView('provider')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Volunteers" style="outline: none;"ng-click="vm.showReportView('volunteer')" is-active="vm.isSecondTabActive"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Participants" style="outline: none;" ng-click="vm.showReportView('participant')" is-active="vm.isThirdTabActive"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Providers" style="outline: none;" ng-click="vm.showReportView('provider')" is-active="vm.isFourthTabActive"></action-card>
 	</div>
 	
 	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.volunteer">
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Orders Completed"  style="outline: none;" ng-click="vm.showReportView('order')"></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Reports" style="outline: none;" ng-click="vm.showReportView('report')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Orders Completed"  style="outline: none;" ng-click="vm.showReportView('order')" is-active="vm.isOrderActive"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Reports" style="outline: none;" ng-click="vm.showReportView('report')" is-active="vm.isReportActive" ></action-card>
 	</div>
 	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.client" >
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Orders" style="outline: none;" ng-click="vm.showReportView('report')"></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Orders" style="outline: none;" ng-click="vm.showReportView('report')" is-active="vm.isReportActive" ></action-card>
 	</div>	
 	
 	

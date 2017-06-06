@@ -17,7 +17,7 @@
         var USER_ORG_INFO = "userOrgInfo";
         var USER_TYPE 	= "userType";
         
-        vm.message = "Welcome to Hunger: Not Impossible, ";
+        vm.message = "Welcome to Hunger: Not Impossible, Please wait while we validate your invitation";
         vm.$onInit = function() {
         	var activationCode = $state.params.activationCode;
         	var userType = $state.params.type;
@@ -26,7 +26,7 @@
         			setUserDataToLocalStorage(httpResponse.data, userType, activationCode);
         			forwardRequest(userType);
         		} else {
-        			console.log('Your invitation code expired');
+        			 vm.message = "Your invitation code has been expired.  Please raise a request for new invitation at hunger@notimpossiblelabs.com";
         		}
         	}, function errorCallback(err){
         		console.log(err);
@@ -34,10 +34,15 @@
         };
         
         function setUserDataToLocalStorage(userData, type, activationCode) {
+        	var additional = JSON.parse(userData.data);
         	window.localStorage.setItem(USER_ORG_INFO, userData.orgId);
+        	window.localStorage.setItem("firstName", userData.firstName ? userData.firstName : "");
         	window.localStorage.setItem("userName", userData.userName);
         	window.localStorage.setItem("activationCode", activationCode);
-        	window.localStorage.setItem(USER_TYPE, type);
+        	window.localStorage.setItem("mobilePhone", additional.phone);
+        	if(type === 'client')
+        		window.localStorage.setItem("dependants", userData.dependants);
+            	window.localStorage.setItem(USER_TYPE, type);
         }
         
         function forwardRequest(type) {

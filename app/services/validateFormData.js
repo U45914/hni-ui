@@ -47,11 +47,21 @@
 		}
 		
 		function validateUrl(fields, msgs, id, value, event){
-			fields[id] = false;
+			if(id=="email"||id=="website"){
+				var url = value;
+				var patt = new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9-@:%._\+~#=]+\.[^\s]{2,}|(?:www\.)[a-zA-Z0-9-@:%._\+~#=]+\.[^\s]{2,})");
+				var res = patt.test(url);
+				if (res != true) {
+					fields[id] = true;
+					msgs[id] = "Invalid Url format";
+				} else {
+					fields[id] = false;
+				}
 			return {
 				"field" : fields,
 				"msg"   : msgs
 				};
+		}
 		}
 		function validateText(fields, msgs, id, value, event){
 			fields[id] = false;
@@ -64,7 +74,7 @@
 		function validateNumber(fields, msgs, id, value, event){
 			if(id=="zip"){
 				var zip = value;
-				if (isNaN(Number(zip))|| (zip.length != 6) || zip.indexOf("-")!=-1) {
+				if (isNaN(Number(zip))|| (zip.length != 5) || zip.indexOf("-")!=-1) {
 					fields[id] = true;
 					msgs[id]="Invalid Zip Code";
 				}else{
@@ -82,12 +92,12 @@
 			}
 			if(id=="phone"){
 				var phone = value;
-				var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
+				var patt = new RegExp("((([0-9]{3})(-{1}[0-9]{3})(-{1}[0-9]{4}))|([0-9]{10}))");
 				var res = patt.test(phone);
 				if (res != true || isNaN(Number(value.replace(/-/g, "")))) {
-					fields[id] = true;
-					msgs[id] = "Phone number (eg:'123-456-7890')";
-				} else {
+						fields[id] = true;
+						msgs[id] = "Phone number (eg:'123-456-7890')";
+				} else{
 					fields[id] = false;
 				}
 			}
@@ -115,10 +125,11 @@
 				fields[id] = false;
 			}
 			if(id == "password"){
-				var pass = value;
-				var patt = new RegExp("(?=.*[0-9])(?=.*[a-z])(?=.*[@#$%^&+=]).{6,}");
-				var res = patt.test(pass);
-				if (res == true) {
+				var value = vm.password;
+				var specialChar = /^[a-zA-Z0-9- ]*$/;
+				var alphabets = /[a-z]/i;
+				var number = /\d+/g;
+				if (!specialChar.test(value) && number.test(value) && alphabets.test(value) && value.length>=6) {
 					fields[id] = false;
 				} else {
 					fields[id] = true;

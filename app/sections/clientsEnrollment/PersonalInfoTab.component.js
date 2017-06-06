@@ -40,7 +40,7 @@
 			clientEnrollmentService.setPersonnalData(vm.getDataModel(vm.client));
 		}
 	  
-	  vm.save = function(){
+	  vm.save = function(isTopTabClicked){
 		 // $scope.bday=parseInt(vm.client.bday);
 		  var data = vm.getDataModel(vm.client);
 		  /*		console.log(data);
@@ -49,7 +49,11 @@
 					var serviceCalls = clientEnrollmentService.setPersonnalData(data);
 					var serviceCalls = clientEnrollmentService.savePartial();
 					$q.all(serviceCalls)// .then(onSuccess,onError);
-					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+
+					if(!isTopTabClicked){
+						$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+					}
+					
 
 				/*} else {
 					toastService.showToast("Please fill Fields");
@@ -78,29 +82,24 @@
 						"bday" : vm.client.bday,
 						"beenArrested" : vm.client.beenArrested,
 						"beenConvicted" : vm.client.beenConvicted,
-						"race"	: vm.client.race,
+						"race"	: 0,
 						"ethnicity" : vm.client.ethnicity
 			  };
+			  console.log(data);
 			  return data;
 		  }
 	  }
 	  
-	  /*vm.checkPhoneNbr = function() {
-			var phone = vm.client.user.mobilePhone;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check=false;
-			} else {
-				vm.check=true;
-			}
-		};*/
-		
 		vm.validationCheck = function(type, id, value, event) {
 			var data = validateFormData.validate(type, id, value, event);
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		};
+		
+		$rootScope.$on("saveTabOne", function(event, data){			
+			vm.save(true);
+		})
+		
 	  }
   
  })();

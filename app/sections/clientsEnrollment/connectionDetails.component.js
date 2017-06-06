@@ -17,9 +17,9 @@
 		}
 	}
 	
-	connectionDetailsController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state'];
+	connectionDetailsController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
 	
-	function connectionDetailsController($q,clientEnrollmentService,$scope,$rootScope,$state){
+	function connectionDetailsController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	//vm.connection = clientEnrollmentService.connectionDetails;
     	 $scope.$on("data-loaded-client", function(obj) {
@@ -31,11 +31,15 @@
  			clientEnrollmentService.setConnectionData(vm.getDataModel(vm.connection));
  		}
     	
-    	vm.save = function(){ 
-    		var data = vm.getDataModel(vm.connection);
-    	 clientEnrollmentService.setConnectionData(data);
-    	$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-		var serviceCalls = clientEnrollmentService.savePartial();
+    	vm.save = function(isTopTabClicked){ 
+	    	 var data = vm.getDataModel(vm.connection);
+	    	 clientEnrollmentService.setConnectionData(data);
+	    	 var serviceCalls = clientEnrollmentService.savePartial();
+
+	    	 if(!isTopTabClicked){
+	    		 $rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+	    	 }
+		
     	}
     	
     	vm.getDataModel = function(connection){
@@ -53,5 +57,9 @@
     		
   		  return data;
     	}
+    	
+    	$rootScope.$on("saveTabTwo", function(event, data){			
+			vm.save(true);
+		})
 	}
 })();

@@ -18,7 +18,7 @@
 			validateService, $scope, $state, toastService, validateFormData) {
 		var vm = this;
 		vm.incomplete = false;
-		vm.buttonAction = "Submit";
+		vm.buttonAction = "INVITE";
 		vm.disableSubmitButton = false;		
 		vm.orgInfo = {};
 		vm.checkEmail=false;
@@ -37,7 +37,7 @@
 		vm.validateNGOInvitation = "";
 		loadOrgInfo();
 		vm.submit = function() {
-			
+			vm.flag = false;
 			var data = {
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,
@@ -56,8 +56,9 @@
 			var keys = Object.keys(vm.fields);
 			for(var index = 0; index < keys.length; index++){
 				if(vm.fields[keys[index]]) {
+					vm.msgs[keys[index]] = "Please fill these fields";
 					doNotPost = true;
-					break;
+					//break;
 				}
 			}
 			if (!doNotPost && (vm.checkEmail == true)) {
@@ -71,18 +72,18 @@
 									} else if (response && response.data.response && response.data.response == "error") {
 										vm.incomplete = true;
 										toastService.showToast("Error : "+ response.data.errorMsg);
-										vm.buttonAction = "Submit";
+										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;
 										
 									} else if (response && response.data && !response.data.errorMsg) {
 										toastService.showToast("Something went wrong, please try again");
-										vm.buttonAction = "Submit";
+										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;
 										
 									} else {
 										toastService.showToast("Failed : "+ response.data.errorMsg);
 										vm.incomplete = true;
-										vm.buttonAction = "Submit";
+										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;										
 									}									
 								},
@@ -137,7 +138,7 @@
 						}
 					});
 		};
-
+		
 	}
 
 })();

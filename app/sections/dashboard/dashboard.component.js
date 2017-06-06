@@ -13,8 +13,8 @@
 		            		</md-content>
 		            		<md-content flex="80" layout-padding class="md-whiteframe-4dp">
 		            		
-		            			<div class="volunteer-landing-header" layout="row" layout-wrap>
-								    <div class="volunteer-welcome-header" flex="100">
+		            			<div class="volunteer-landing-header-dashboard" layout="row" layout-wrap>
+								    <div class="volunteer-welcome-header" style="margin-top: -35px;" flex="100">
 								        <span class="material-icons">&#xE420;</span>
 								        <div>Welcome {{welcomeName}}!</div>
 								    </div>
@@ -24,7 +24,7 @@
 								</div>
 
 		                    	<actions-section></actions-section>
-		                    	<div>
+		                    	<div style:"margin-top:0px;">
 		                        	<user-list></user-list>
 		                        </div>
 		                     </md-content>
@@ -43,6 +43,10 @@
     		 vm.welcomeName = vm.user.firstName + " " + vm.user.lastName;
     		 $scope.welcomeName = vm.welcomeName;
          }
+    	 
+    	 window.onbeforeunload = function () {
+    		  window.scrollTo(0, 0);
+    		}
     	
     }
 })();

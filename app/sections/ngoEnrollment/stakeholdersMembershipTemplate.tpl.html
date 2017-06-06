@@ -1,10 +1,10 @@
 <fieldset class="border" style="margin-top: 8px;">
 	<span layout="row"> 
 		<md-input-container class="md-block input-primary" flex-gt-sm>
-            <input type="text" required ng-model="name"	placeholder="Name" autofocus= "on"></input> 
+            <input type="text" required ng-model="name"	placeholder="Name"></input> 
           </md-input-container>
           <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-            <input type="text" ng-model="company" placeholder="Company"></input>
+            <input type="text" required ng-model="company" placeholder="Company"></input>
           </md-input-container>
           <div style="padding-top:10px;">
 		 <md-button class="md-fab btn_style"  ng-click="addNewChoice()">
@@ -12,10 +12,11 @@
 		 </md-button>
 		 </div>
 	</span>
-	<div ng-show = "memberList.length != 0">
+	<div ng-show = "memberList.length != 0" layout-fill>
 	<md-grid-list md-cols="2" md-row-height="45:1" md-gutter="6px" style="margin-top: -12px;">
 	<md-grid-tile md-rowspan="3" class="grid_list_multi">
-	<b>Name</b></md-grid-tile> <md-grid-tile  md-rowspan="3" class="grid_list_multi">
+	<b>Name</b></md-grid-tile>
+	<md-grid-tile  md-rowspan="3" class="grid_list_multi">
 	<b>Company</b></md-grid-tile> <md-grid-tile>
 	<b></b></md-grid-tile> </md-grid-list>
 	
@@ -24,8 +25,8 @@
 	<md-grid-list md-cols="2" md-row-height="45:1" md-gutter="6px" style="margin-top: -35px;"
 		ng-repeat="member in memberList track by $index" > 
 	<br>
-		 <md-grid-tile md-rowspan="2" class="grid_list_multi">{{member.name}}</md-grid-tile>
-		 <md-grid-tile md-rowspan="2" class="grid_list_multi" >{{member.company}}</md-grid-tile>
+		 <md-grid-tile md-rowspan="2" class="grid_list_multi"><a>{{member.name}}</a></md-grid-tile>
+		 <md-grid-tile md-rowspan="2" class="grid_list_multi" ><a>{{member.company}}</a></md-grid-tile>
 		
 	 <md-button class="md-fab btn_style" style="background-color:transparent;
 border-radius:0;

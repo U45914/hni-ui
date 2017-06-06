@@ -1,5 +1,5 @@
 <div class="font_for_allpages1" >
-	<h3>Family & Education Details</h3>
+	<h3>Family & Education Information</h3>
 
 
 <div layout-gt-xs="row" class="width_for_textbox">
@@ -40,16 +40,17 @@
 	<br>
 
 <div layout-gt-xs="row" class="width_for_textbox">
-<md-input-container class="md-block input-primary" flex-gt-sm>	
+<md-input-container class="md-block input-primary " flex-gt-sm>		
+	 <label>Highest level of education completed</label>
+	<md-select ng-model="vm.family.education" > <md-option
+		ng-repeat="a in vm.educationList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
+<br>	
+<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>	
 	 <label>Highest level of parental education completed</label>
 	<md-select ng-model="vm.family.parentEducation" > <md-option
 		ng-repeat="a in vm.educationList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
 	<br>
-<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>		
-	 <label>Highest level of education completed</label>
-	<md-select ng-model="vm.family.education" > <md-option
-		ng-repeat="a in vm.educationList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
-<br>		
+	
 </div>
 
 <div layout-gt-xs="row" class="width_for_textbox">
@@ -64,7 +65,7 @@
 </div>
 	<br><br>
 		<hr class="register-input-test mgn_top10" layout="row" layout-align="center center">
-			<div  class="left_float">
+			<div  class="right_float">
 				<br>
 				<md-button class="md-raised button-primary" ng-click="vm.save();">Save
 				& Next</md-button>

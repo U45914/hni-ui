@@ -40,14 +40,35 @@
      $rootScope.$on("scroll-tab", function(event, data){
     	 vm.scroll()
      });
-      vm.scroll = function(){
+     
+     vm.scroll = function(){
     	  if(vm.tabIndex ==  4){
     		  vm.tabIndex = 0;
     	  }
     	  else{
-    	  ++vm.tabIndex 
+    		  ++vm.tabIndex 
     	  }
       }
+     
+     vm.callSaveOnTabOne = function(){
+    	 $rootScope.$broadcast('tabFocusChangedFromTabOne',{});
+     }
+     
+     vm.callSaveOnTabTwo = function(){
+    	 $rootScope.$broadcast('tabFocusChangedFromTabTwo',{});
+     }
+     
+     vm.callSaveOnTabThree = function(){
+    	 $rootScope.$broadcast('tabFocusChangedFromTabThree',{});
+     }
+     
+     vm.callSaveOnTabFour = function(){
+    	 $rootScope.$broadcast('tabFocusChangedFromTabFour',{});
+     }
+     
+     vm.callSaveOnTabFive = function(){
+    	$rootScope.$broadcast('tabFocusChangedFromTabFive',{});
+     }
      
   }
   

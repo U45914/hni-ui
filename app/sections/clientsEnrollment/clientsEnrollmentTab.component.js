@@ -29,6 +29,7 @@
        $rootScope.$on("scroll-tab", function(event, data){
      	 vm.scroll()
       });
+       
        vm.scroll = function(){
      	  if(vm.tabIndex ==  5){
      		  vm.tabIndex = 0;
@@ -36,6 +37,30 @@
      	  else{
      	  ++vm.tabIndex 
      	  }
+       }
+       
+       vm.saveTabOne = function(){
+      	 $rootScope.$broadcast('saveTabOne',{});
+       }
+       
+       vm.saveTabTwo = function(){
+      	 $rootScope.$broadcast('saveTabTwo',{});
+       }
+       
+       vm.saveTabThree = function(){
+      	 $rootScope.$broadcast('saveTabThree',{});
+       }
+       
+       vm.saveTabFour = function(){
+      	 $rootScope.$broadcast('saveTabFour',{});
+       }
+       
+       vm.saveTabFive = function(){
+      	$rootScope.$broadcast('saveTabFive',{});
+       }
+       
+       vm.saveTabSix = function(){
+         $rootScope.$broadcast('saveTabSix',{});
        }
     
 

@@ -16,9 +16,9 @@
 
 	}
 
-	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService', 'validateFormData'];
+	overviewController.$inject = [ '$q', 'ngoEnrollmentService', '$rootScope', '$scope', 'validateService', 'validateFormData','toastService'];
 
-	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService, validateFormData) {
+	function overviewController($q, ngoEnrollmentService, $rootScope, $scope, validateService, validateFormData,toastService) {
 		var vm = this;
 		vm.list = [];
 		vm.fields = {};
@@ -41,12 +41,13 @@
 			vm.list.splice(index, 1);
 		}
 	
-		vm.save = function() {
+		vm.save = function(isTopTabClicked) {
+			if(vm.view){
 			var data = {
 				"name" : vm.view.name,
 				"mobilePhone" : vm.view.mobilePhone,
 				"website" : vm.view.website,
-				"contact" : vm.view.contact,
+				"contactName" : vm.view.contactName,
 				"employees" : vm.view.employees,
 				"overview" : vm.view.overview,
 				"mission" : vm.view.mission,
@@ -63,9 +64,14 @@
 		
 				ngoEnrollmentService.setOverviewData(data);
 				var serviceCalls = ngoEnrollmentService.savePartial();
-				$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
-			
+
+				if(!isTopTabClicked){
+					$rootScope.$broadcast("scroll-tab", [ 1, 2 ]);
+				}
+			}	
 		}
+			
+		
 		vm.load = function() {
 			vm.view = ngoEnrollmentService.overviewData;
 			ngoEnrollmentService.setOverviewData(vm.view);
@@ -77,20 +83,16 @@
 				vm.flag = true;
 			}
 		}
-
-	/*	function onSuccess(response) {
-
-		}
-
-		function onError(response) {
-			console.log(response)
-		}*/
 		
 		vm.validate = function(type, id, value, event){
 			var data = validateFormData.validate(type, id, value, event);
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		};
+		 
+		$rootScope.$on("tabFocusChangedFromTabOne", function(event, data){			
+			vm.save(true);
+		})
 		
 	}
 })();

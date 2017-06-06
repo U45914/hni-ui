@@ -11,7 +11,7 @@
 <div class="form_style">
 
 <div layout-gt-xs="row">
-	<md-input-container class="" flex-gt-sm>
+	<md-input-container flex-gt-sm>
 	<label class="text_style_vol">First name</label> <input type="text" required autofocus="on"
 		ng-model="vm.vol.user.firstName" ng-blur="vm.validationCheck('text','firstName',vm.vol.user.firstName)"/>
 	<div id="errorMsg" ng-if="vm.fields['firstName']" style="color:red;"ng-bind="vm.msgs['firstName']"></div>	</md-input-container>
@@ -20,8 +20,8 @@
 		ng-model="vm.vol.user.lastName" ng-blur="vm.validationCheck('text','lastName',vm.vol.user.lastName)"/>
 	<div id="errorMsg" ng-if="vm.fields['lastName']" style="color:red;"ng-bind="vm.msgs['lastName']"></div>	</md-input-container>
 	</md-input-container>
-</div><br><br>
-	<h4 >Contact Details</h4>
+</div><br>
+	<h3>Contact details</h3>
 <div layout-gt-xs="row" style="margin-top: -15px;">
 <md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Address line 1</label> <input type="text" required
@@ -47,13 +47,13 @@
      </md-input-container>
 	
 	<md-input-container class="md-block mgn_left_25" flex-gt-sm>
-	<label class="text_style_vol" >Zip</label> <input type="text" required maxlength="6" ng-model="vm.vol.address.zip" ng-blur="vm.validationCheck('number','zip',vm.vol.address.zip)"/>
+	<label class="text_style_vol" >Zip code</label> <input type="text" required maxlength="5" ng-model="vm.vol.address.zip" ng-blur="vm.validationCheck('number','zip',vm.vol.address.zip)"/>
 	<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;"ng-bind="vm.msgs['zip']"></div>	
 	</md-input-container>
 </div>
 <div layout-gt-xs="row" style="margin-top: -15px;">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label class="text_style_vol" >Phone number</label> <input type="text" required maxlength="12" ng-model="vm.vol.user.mobilePhone" ng-blur="vm.validationCheck('number','phone',vm.vol.user.mobilePhone)" placeholder="999-999-9999"> 
+	<label class="text_style_vol" >Phone number</label> <input type="text" phone-number-input required maxlength="12" ng-model="vm.vol.user.mobilePhone" ng-blur="vm.validationCheck('number','phone',vm.vol.user.mobilePhone)" placeholder="999-999-9999"> 
 		<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>	
 		</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
@@ -62,40 +62,55 @@
 		<div id="errorMsg" ng-if="vm.fields['email']" style="color:red;"ng-bind="vm.msgs['email']"></div>	
 		</md-input-container>
 </div>
-<br><br>
+<br>
+<h3>Personal information</h3>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block" flex-gt-sm>
 	<label class="text_style_vol" >Birthdate</label> <input type="date" required ng-model="vm.vol.birthDate">
-	<!-- <md-datepicker ng-model="vm.vol.birthDate" md-placeholder="Enter date" md-is-open="true"></md-datepicker> -->
 	</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol">Sex</label> <md-select  ng-model="vm.vol.sex">
 	<md-option value="M">Male</md-option> <md-option value="F">Female</md-option><md-option value="O">Other</md-option></md-select> </md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.vol.race"> <md-option
-		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container>
+	<label class="text_style_vol" >Race</label>
+	 <md-select ng-model="vm.vol.race">
+	  <md-option value=1>White</md-option>
+	   <md-option value=2>Hispanic or Latino</md-option>
+	   <md-option value=3> Black or African American</md-option>
+	   <md-option value=4>Native American or American Indian</md-option>
+	   <md-option value=5>Asian or Pacific Islander</md-option>
+	   <md-option value=6>Other</md-option>
+	   </md-select> 
+	  </md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Highest Level of Education Completed</label> 
 	<md-select ng-model="vm.vol.education">
-	<md-option value=0>Not intrested to disclose</md-option>
-	  <md-option value=1>Gratuate</md-option>
-	  <md-option value=2>HS</md-option>
-	  <md-option value=3>Elementary</md-option>
+	<md-option value=0>Elementary</md-option>
+	<md-option value=1>Middle</md-option>
+	<md-option value=2>High School</md-option>
+	<md-option value=3>2 Year college degree</md-option>
+	<md-option value=4>Graduate </md-option>
+	<md-option value=5>Post Graduate</md-option>
+	<md-option value=6>Don&#39;t want to disclose</md-option>
+	  
 	 </md-select> 
 	</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" class="text_style_vol">Income</label> <md-select ng-model="vm.vol.income">
-	<md-option value=0>Not intrested to disclose</md-option>
-	<md-option value=1>1k-5k</md-option> <md-option value=2>5k-10k</md-option>
-	<md-option value=3>10k-15k</md-option></md-select> </md-input-container>
+	<md-option value=0>1k-5k</md-option> 
+	<md-option value=1>5k-10k</md-option>
+	<md-option value=2>10k-15k</md-option>
+	<md-option value=3>More than 15K</md-option>
+	<md-option value=4>Don&#39;t want to disclose</md-option>
+	</md-select> </md-input-container>
 </div>
 <div layout-gt-xs="row">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	<label class="text_style_vol" >Marital status</label> <md-select
 		ng-model="vm.vol.maritalStatus" ng-change="vm.onChange()"> <md-option value=1>Single</md-option>
-	<md-option value=2>Married</md-option> <md-option value=3>Divorce</md-option></md-select>
+	<md-option value=2>Married</md-option> <md-option value=3>Divorcee</md-option></md-select>
 	</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label class="text_style_vol" ># Kids</label> <input type="number" ng-model="vm.vol.kids" min="0">

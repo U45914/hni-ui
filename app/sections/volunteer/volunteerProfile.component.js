@@ -8,9 +8,9 @@
 		controllerAs : 'vm'
 	});
 
-	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService', 'validateFormData' , 'toastService'];
+	volunteerProfileController.$inject = [ '$q', 'volunteerService','validateService', 'validateFormData' , 'toastService', '$window'];
 
-	function volunteerProfileController($q, volunteerService,validateService,validateFormData,toastService) {
+	function volunteerProfileController($q, volunteerService,validateService,validateFormData,toastService, $window) {
 		var vm = this;
 		vm.vol = {};
 		vm.vol.user = {};
@@ -31,34 +31,11 @@
 			}
 		});
 		
-	    
-		function validateForm(data){
-			if(data == null){
-				return false;
-			}
-			else if(data.birthDate == null){
-				return false;
-			}
-			
-			if(data.user == null){
-				return false;
-			}
-			else if( data.user.firstName == null || data.user.firstName == null || data.user.mobilePhone == null || data.user.email == null){
-				return false;
-			}
-			
-			if(data.address == null){
-				return false;
-			}
-			else if(data.address.address1 == null || data.address.city == null || data.address.state == null || data.address.zip == null ){
-				return false;
-			}
-			return true;
-		}
 		
 		vm.submit = function() {
-			var doNotPost = validateForm(vm.vol);
-			if(doNotPost){
+						
+				vm.vol.user = vm.vol.user ? vm.vol.user : {};
+				vm.vol.address = vm.vol.address ? vm.vol.address : {};
 				var data = {
 					"user" : {
 						"firstName" : vm.vol.user.firstName,
@@ -84,18 +61,23 @@
 					"income" : vm.vol.income,
 					"kids" : vm.vol.kids,
 					"employer" : vm.vol.employer,
-					"nonProfit" : vm.vol.nonProfit
+					"nonProfit" : vm.vol.nonProfit,
+					"available" : true
 	
 				};
-	
+				vm.validateErrors= validateService.validateVolunteerProfile(data);
+				$window.scrollTo(0, 0);
+				if(vm.validateErrors.length > 0){
+					var validationMessage = validateService.getFormattedErrorMessageForUser(vm.validateErrors);
+	        		toastService.showToastWithFormatting(validationMessage);
+	        		  
+	        	  } else {
 		
 					volunteerService.volunteerProfileData = data;
 					var serviceCalls = volunteerService.profileDetails(data);
 					return $q.all(serviceCalls);
 			}
-			else{
-				toastService.showToast("Please fill required fields");
-			}
+
 		}
 		
 		vm.onChange = function(){
@@ -104,16 +86,6 @@
 			}
 		}
 		
-		vm.checkPhoneNbr = function() {
-			var phone = vm.vol.user.mobilePhone;
-			var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
-			var res = patt.test(phone);
-			if (res == true) {
-				vm.check=false;
-			} else {
-				vm.check=true;
-			}
-		};
 		
 		vm.validationCheck = function(type, id, value, event){
 			var data = validateFormData.validate(type, id, value, event);

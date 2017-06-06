@@ -1,4 +1,4 @@
-<md-sidenav class="md-sidenav-left leftNavAdj" style="box-shadow: 0px 0px 10px -1px #000;min-height: 1450px;" md-component-id="left" md-is-locked-open="true">
+<md-sidenav class="md-sidenav-left leftNavAdj" style="box-shadow: 0px 0px 10px -1px #000;min-height: 1450px;" md-component-id="left" md-is-locked-open="$mdMedia('gt-md') || vm.showLeft">
 <!-- <div layout="column" flex></div> -->
 <user-detail></user-detail>
 		<div class="hor_line"></div>
@@ -9,34 +9,39 @@
 			<li class="side_menu_item fa fa-ticket"><a ui-sref="ngoInvitation" class="link_style ">NGO Onboarding</a></li>
 			<li class="side_menu_item fa fa-plus-square"><a ui-sref="clientInvitation" class="link_style ">Participant Onboarding</a></li>
 			<li class="side_menu_item fa fa-id-badge"><a ui-sref="profile" class="link_style ">My Profile</a></li> 
+			<li class="side_menu_item fa fa-id-badge"><a ui-sref="change-password" class="link_style ">Change Password</a></li>
 			<li class="side_menu_item fa fa-sign-out"><a href="javascript: void(0)"  class="link_style" ng-click="vm.logout()">Logout</a></li>	
 	</ul>
 	</div>
 	<div ng-if="vm.role === vm.rolesConstantName.ngoAdmin" >
 	<ul class="padding_301">
 			<li class="side_menu_item fa fa-tachometer"><a ui-sref="dashboard" class="link_style ">Home</a></li>	
-				<li class="side_menu_item fa fa-user-plus"><a ui-sref=inviteVolunteer  class="link_style ">Volunteer Onboarding</a></li>	
-			<li class="side_menu_item fa fa-ticket"><a ui-sref="ngoInvitation" class="link_style ">NGO Onboarding</a></li>
+			<!-- <li class="side_menu_item fa fa-user-plus"><a ui-sref=inviteVolunteer  class="link_style ">Volunteer Onboarding</a></li>	
+			<li class="side_menu_item fa fa-ticket"><a ui-sref="ngoInvitation" class="link_style ">NGO Onboarding</a></li> -->
 			<li class="side_menu_item fa fa-plus-square"><a ui-sref="clientInvitation" class="link_style">Participant Onboarding</a></li>
 			<li class="side_menu_item fa fa-id-badge "><a ui-sref="profile" class="link_style ">My Profile</a></li>
+			<li class="side_menu_item fa fa-id-badge"><a ui-sref="change-password" class="link_style ">Change Password</a></li>
 			<li class="side_menu_item fa fa-sign-out"><a href="javascript: void(0)"  class="link_style" ng-click="vm.logout()">Logout</a></li>	
 	</ul>
 	</div>
 	<div ng-if="vm.role === vm.rolesConstantName.ngo" >
 	<ul class="padding_301">
 			<li class="side_menu_item fa fa-tachometer"><a ui-sref="dashboard" class="link_style ">Home</a></li>	
-				<li class="side_menu_item fa fa-user-plus"><a ui-sref=inviteVolunteer  class="link_style ">Volunteer Onboarding</a></li>	
-			<li class="side_menu_item fa fa-user-plus"><a ui-sref="ngoInvitation" class="link_style ">NGO Onboarding</a></li>
+				<!-- <li class="side_menu_item fa fa-user-plus"><a ui-sref=inviteVolunteer  class="link_style ">Volunteer Onboarding</a></li>	
+			<li class="side_menu_item fa fa-user-plus"><a ui-sref="ngoInvitation" class="link_style ">NGO Onboarding</a></li> -->
 			<li class="side_menu_item fa fa-plus-square"><a ui-sref="clientInvitation" class="link_style ">Participant Onboarding</a></li>
 			<li class="side_menu_item fa fa-id-badge"><a ui-sref="profile" class="link_style ">My Profile</a></li>
+			<li class="side_menu_item fa fa-id-badge"><a ui-sref="change-password" class="link_style ">Change Password</a></li>
 			<li class="side_menu_item fa fa-sign-out"><a href="javascript: void(0)"  class="link_style " ng-click="vm.logout()">Logout</a></li>	
 	</ul>
 	</div>
 	<div ng-if="vm.role === vm.rolesConstantName.volunteer" >
 	<ul class="padding_301">
 			<li class="side_menu_item fa fa-tachometer"><a ui-sref="dashboard" class="link_style ">Home</a></li>		
+			<li class="side_menu_item fa fa-plus-square-o"><a ui-sref="order-detail" class="link_style ">Place Orders</a></li>
 			<li class="side_menu_item fa fa-id-badge"><a ui-sref="profile" class="link_style ">My Profile</a></li>
 			<li class="side_menu_item fa fa-id-badge"><a ui-sref="volunteerTimeAvailability" class="link_style ">My Time Availability</a></li>
+			<li class="side_menu_item fa fa-id-badge"><a ui-sref="change-password" class="link_style ">Change Password</a></li>
 			<li class="side_menu_item fa fa-sign-out"><a href="javascript: void(0)"  class="link_style " ng-click="vm.logout()">Logout</a></li>	
 	</ul>
 	</div>
@@ -44,6 +49,7 @@
 	<ul class="padding_301">
 			<li class="side_menu_item fa fa-tachometer"><a ui-sref="dashboard" class="link_style ">Home</a></li>		
 			<li class="side_menu_item fa fa-id-badge"><a ui-sref="profile" class="link_style ">My Profile</a></li>
+			<li class="side_menu_item fa fa-id-badge"><a ui-sref="change-password" class="link_style ">Change Password</a></li>
 			<li class="side_menu_item fa fa-sign-out"><a href="javascript: void(0)" class="link_style " ng-click="vm.logout()">Logout</a></li>	
 	</ul>
 	</div>

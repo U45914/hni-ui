@@ -13,8 +13,8 @@
 
 		<md-input-container name="myForm"
 			class="md-block input-primary mgn_left_25" flex- gt-sm>
-		<label>NGO phone</label> <input type="text" name="phone" required
-			maxlength="12" ng-model="vm.view.mobilePhone"
+		<label>NGO phone</label> <input type="text"  phone-number-input name="phone" required
+			maxlength="12" ng-model="vm.view.mobilePhone" placeholder="999-999-9999"
 			ng-blur="vm.validate('number','phone',vm.view.mobilePhone)">
 		<div id="errorMsg" ng-if="vm.fields['phone']" style="color: red;"
 			ng-bind="vm.msgs['phone']"></div>
@@ -22,7 +22,7 @@
 	</div>
 	<div layout-gt-xs="row" class="mission_width1">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
-		<label>NGO website url</label> <input type="url" name="websiteLink"
+		<label>NGO website url</label> <input type="text" name="websiteLink"
 			placeholder="http://www.example.com" required
 			ng-model="vm.view.website"
 			ng-blur="vm.validate('url','website',vm.view.website,$event)"></input>
@@ -31,16 +31,16 @@
 		</md-input-container>
 
 		<md-input-container class="md-block input-primary mgn_left_25"
-			flex-gt-sm> <label>NGO contact person</label> <input
-			type="text" ng-disabled="true" required ng-model="vm.view.name"
-			ng-blur="vm.validate('text','contact',vm.view.name)"></input>
-		<div id="errorMsg" ng-if="vm.fields['contact']" style="color: red;"
-			ng-bind="vm.msgs['contact']" /></div>
+			flex-gt-sm> <label>NGO primary contact</label> <input
+			type="text" required ng-model="vm.view.contactName"
+			ng-blur="vm.validate('text','contact',vm.view.contactName)"></input>
+		<div id="errorMsg" ng-if="vm.fields['contactName']" style="color: red;"
+			ng-bind="vm.msgs['contactName']" /></div>
 		</md-input-container>
 	</div>
 	<br>
 	<div class="login-prompt">
-		<b>Address</b>
+		<b>NGO address</b>
 	</div>
 	<div layout-gt-xs="row" class="mission_width1">
 		<md-input-container class="md-block input-primary " flex-gt-sm>
@@ -76,7 +76,7 @@
 		</md-input-container>
 		<md-input-container class="md-block input-primary mgn_left_25"
 			flex-gt-sm> <label>Zip code</label> <input
-			type="text" required maxlength="6" ng-model="vm.view.address.zip"
+			type="text" required maxlength="5" ng-model="vm.view.address.zip"
 			ng-blur="vm.validate('number','zip',vm.view.address.zip)"/>
 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color: red;"
 			ng-bind="vm.msgs['zip']" ></div>
@@ -99,7 +99,7 @@
 
 	<div layout-gt-xs="row" class="mission_width1">
 		<md-input-container class="md-block input-primary" flex-gt-sm>
-		<label>About the NGO</label> <textarea md-maxlength="100" rows="2"
+		<label>Organization overview</label> <textarea md-maxlength="100" rows="2"
 			ng-model="vm.view.overview"
 			ng-blur="vm.validate('text','overview',vm.view.overview)" required></textarea>
 		<div id="errorMsg" ng-if="vm.fields['overview']" style="color: red;"
@@ -147,7 +147,7 @@ box-shadow:none;border:none;"
 
 	<hr class="register-input-test" layout="row"
 		layout-align="center center"/>
-	<div class="left_float">
+	<div class="right_float">
 		<br>
 		<md-button class="md-raised button-primary " class="save_next_btn"
 			ng-click="vm.save();">Save & Next</md-button>

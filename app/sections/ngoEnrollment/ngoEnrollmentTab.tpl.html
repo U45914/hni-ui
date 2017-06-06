@@ -10,34 +10,34 @@
 <div ng-cloak >
 
 	<md-content style="background:white;" >
-	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex"    class="label_style"> 
+	 <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tabIndex"  class="label_style"> 
 	  
-		<md-tab label="overview">
+		<md-tab label="overview" md-on-deselect = "vm.callSaveOnTabOne()">
 		  <div>
 		    <md-content class="md-padding  " style="background: #fff;" >
 		    <overview-tab></overview-tab>
 			</md-content>
 		</div>
 		</md-tab>
-		<md-tab label="Stakeholders">
+		<md-tab label="Stakeholders" md-on-deselect = "vm.callSaveOnTabTwo()">
 	 		<md-content class="md-padding" style="background: #fff;">
  	    	<stakeholders-tab> </stakeholders-tab>
  	    	</md-content> 
 		</md-tab>
 
-		<md-tab label="Services"> 
+		<md-tab label="Services" md-on-deselect = "vm.callSaveOnTabThree()"> 
 		<md-content class="md-padding" style="background: #fff;">
 			<service-tab></service-tab>
 			</md-content> 
  		</md-tab>
 
-		<md-tab label="Funding"> 
+		<md-tab label="Funding" md-on-deselect = "vm.callSaveOnTabFour()"> 
 		<md-content class="md-padding" style="background: #fff;">
 			<funding-tab></funding-tab>
 			</md-content> 
 		</md-tab>
 
-		<md-tab label="Participants"> 
+		<md-tab label="Client" md-on-deselect = "vm.callSaveOnTabFive()"> 
 		<md-content class="md-padding" style="background: #fff;">
 			<clients-tab></clients-tab>
 			</md-content> 
