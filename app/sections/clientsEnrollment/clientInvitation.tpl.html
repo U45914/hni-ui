@@ -37,7 +37,7 @@
 			
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 				<label>State</label> 
-				<md-select ng-init="vm.state" name="type"  
+				<md-select ng-init="vm.state" name="type" required 
 						ng-model="vm.state"	ng-blur="vm.validationCheck('text','state',vm.state)">
 					 <md-option ng-repeat="each in vm.states" value={{each.value}}
 					  ng-init = "vm.state" >{{each.name}}</md-option>
