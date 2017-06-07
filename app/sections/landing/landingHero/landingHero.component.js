@@ -19,6 +19,10 @@
             hashScroll.scrollToHash(hash);
         };
                
+        vm.login = function(){
+        	$state.go('login');
+        }
+        
         vm.$onInit = function() {
             $http.get(`${baseUrl}/reports/view/get/customers/all/orders`).then(function success(response) {
             	if(response.data != null) {
