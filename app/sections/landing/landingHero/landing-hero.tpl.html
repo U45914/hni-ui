@@ -18,8 +18,12 @@
             <form >
                <input type="submit" value="Login" name="submit" class="login md-button md-raised md-primary" ng-click="vm.load()">
                </form>
-        </div>
-    </div>    
+               <br> 
+        </div><br><br><br>
+			<div style="color: white; font-size: 120% ;padding: 0px 17px;">Number of
+					Participants  : {{vm.participants}}  <br />Number
+					of Meals  : {{vm.meals}}</div>
+	</div> 
     <div class="hero-text">
         Hunger: Not Impossible will feed millions who needlessly go hungry in America <span class="text-prompt">... with a text.</span>
         <a href ng-click="vm.scrollTo('Stats')" class="down-prompt"><i class="material-icons">keyboard_arrow_down</i></a>
