@@ -24,8 +24,7 @@
 				"name" : true,
 				"phone" : true,
 				"email" : true,
-				"state" : true,
-				"dependants" : true
+				"state" : true
 		};
 		vm.buttonText = "Invite";
 		vm.isDisabled = false;
