@@ -14,7 +14,7 @@
 		function validate(type, id, value, event){
 			var fields = {};
 			var msgs = {};
-			if(value != null){
+			if(value != null && value != ""){
 				fields[id] = false;
 				switch(type){
 					case "number" :  
@@ -26,6 +26,13 @@
 					case "password" :
 									 return validatePassword(fields, msgs, id, value, event);
 				}
+			}else if(id == "zip" || id =="bday"){
+				fields[id] = false;
+				msgs[id]="";
+				return {
+					"field" : fields,
+					"msg"   : msgs
+					};
 			}
 			else{
 				fields[id] = true;
@@ -73,12 +80,14 @@
 		}
 		function validateNumber(fields, msgs, id, value, event){
 			if(id=="zip"){
+				if(value != null){
 				var zip = value;
 				if (isNaN(Number(zip))|| (zip.length != 5) || zip.indexOf("-")!=-1) {
 					fields[id] = true;
 					msgs[id]="Invalid Zip Code";
 				}else{
 					fields[id]=false;
+				}
 				}
 			}
 			if(id=="fte"){

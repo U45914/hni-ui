@@ -8,9 +8,9 @@
 <div layout-gt-xs="row" class="width_for_textbox">	
 <md-input-container class="md-block input-primary" flex-gt-sm>
             <label>Allergies</label>
-			<input type="text"  required ng-blur="vm.validationCheck('text','allergies',vm.health.allergies)"
+			<input type="text"
 				ng-model="vm.health.allergies"/>
-	<div id="errorMsg" ng-if="vm.fields['allergies']" style="color:red;" ng-bind="vm.msgs['allergies']"></div>
+	
 	</md-input-container>
 </div>
 <br>
@@ -66,26 +66,26 @@
 	<div layout-gt-xs="row" class="width_for_textbox">	
 			<md-input-container class="md-block input-primary" flex-gt-sm>
 	      <label>Last time you saw a doctor?</label>
-	      	 <md-select name="type" ng-model="vm.health.lastVisitDoctor" required ng-blur="vm.validationCheck('text','lastVisitDoctor',vm.health.lastVisitDoctor)">
+	      	 <md-select name="type" ng-model="vm.health.lastVisitDoctor" >
 	            <md-option ng-value="0">0-6 Months</md-option>
 	            <md-option ng-value="1">6-12 Months</md-option>
 	            <md-option ng-value="2">1-2 Years</md-option>
 	            <md-option ng-value="3">More than 2 Years</md-option>
 	            <md-option ng-value="4">I have never seen a doctor</md-option>
 	         </md-select>
-	        <div id="errorMsg" ng-if="vm.fields['lastVisitDoctor']" style="color:red;" ng-bind="vm.msgs['lastVisitDoctor']"></div>
+	       
      </md-input-container>
 
 	<md-input-container class="md-block input-primary" flex-gt-sm>
 	      <label>Last time you saw a dentist?</label>
-	      	 <md-select name="type" ng-model="vm.health.lastVisitDentist" required ng-blur="vm.validationCheck('text','lastVisitDentist',vm.health.lastVisitDentist)">
+	      	 <md-select name="type" ng-model="vm.health.lastVisitDentist">
 	            <md-option ng-value="0">0-6 Months</md-option>
 	            <md-option ng-value="1">6-12 Months</md-option>
 	            <md-option ng-value="2">1-2 Years</md-option>
 	            <md-option ng-value="3">More than 2 Years</md-option>
 	            <md-option ng-value="4">I have never seen a dentist</md-option>
 	         </md-select>
-	         <div id="errorMsg" ng-if="vm.fields['lastVisitDentist']" style="color:red;" ng-bind="vm.msgs['lastVisitDentist']"></div>
+	         
      </md-input-container>
    </div>
     <br><br>
