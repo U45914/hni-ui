@@ -23,7 +23,9 @@
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
-				"email" : true
+				"email" : true,
+				"state" : true,
+				"dependants" : true
 		};
 		vm.buttonText = "Invite";
 		vm.isDisabled = false;
