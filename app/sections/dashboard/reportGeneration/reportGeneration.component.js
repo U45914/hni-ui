@@ -65,6 +65,8 @@
         		key = "participant";
         	} else if (reportKey.toLocaleLowerCase().indexOf("provider") != -1) {
         		key = "provider";
+        	}else if (reportKey.toLocaleLowerCase().indexOf("orders") != -1) {
+        		key = "orders";
         	}
         	
         	return key;

@@ -8,12 +8,12 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$rootScope', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName'];
+    ActionSectionController.$inject = ['$rootScope', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName','$window'];
 
-    function ActionSectionController($rootScope, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName) {
+    function ActionSectionController($rootScope, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName,$window) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
-         
+        let resourceUrl = serviceConstants.resourceUrl;
    	 	vm.service = [];
    	 	vm.headers= [];
    	 	vm.reportCollection = [];
@@ -24,7 +24,7 @@
    		vm.isFourthTabActive = false;
    		vm.isOrderActive = false;
    		vm.isReportActive = false;
-   	 	
+   		vm.isRestaurantActive = false;
    	 	
    	 	vm.rolesConstantName = rolesConstantName;
 	   	
@@ -48,7 +48,7 @@
                 		vm.isOrderActive = true;
                 	}
                 	if(vm.userRole === vm.rolesConstantName.client){
-                		vm.isReportActive = true;
+                		vm.isOrderActive = true;
                 	}
                 	window.localStorage.setItem("userRole", vm.userRole);
                 	vm.user = response.data.data;  
@@ -115,12 +115,25 @@
         		vm.isReportActive = false;
         	}
         	if(type === "report"){
+        		vm.isOrderActive = true;
+        		vm.isRestaurantActive = false;
+        		vm.isReportActive = false;
+        	}
+        	if(type === "restaurant"){
         		vm.isOrderActive = false;
+        		vm.isRestaurantActive = true;
+        		vm.isReportActive = false;
+        	}
+        	if(type === "faq"){
+        		vm.isOrderActive = false;
+        		vm.isRestaurantActive = false;
         		vm.isReportActive = true;
         	}
         	
         	$rootScope.$broadcast('show-report-view', type);
         }
-        
+        vm.openPdf = function() {
+            $window.open(`${resourceUrl}/docs/HNI_FAQ.pdf`, '_blank');
+        };
     }
 })();
