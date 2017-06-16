@@ -1,0 +1,19 @@
+<top-nav></top-nav>
+<center>
+	<div class="background2">
+	<div id="login-container" class=" new_style" >
+		<!-- <div>
+ 			<iframe ng-src= {{vm.privacySrc()}} style="width: 506px;height: 353px;"></iframe>
+ 		</div><br> -->
+		<div>
+			    <object data={{vm.privacyPolicy}} type="application/pdf" width="100%" height="500px">
+			    </object>
+			</div> <br>
+ 		<md-checkbox ng-model="vm.agreeChk" class="md-primary" md-autofocus>
+            <font color="white" style = "font-size: 17px;"><b>I have read and understood the agreement policy</b></font>
+          </md-checkbox><br>
+          <md-button class="md-raised button-primary" ng-click="vm.acceptPolicy()" ng-disabled = "!vm.agreeChk" >{{vm.buttonText}}</md-button>
+ 	</div>
+ 	</div>  
+</center> 
+<landing-footer></landing-footer>

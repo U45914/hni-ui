@@ -115,6 +115,11 @@
                 url: '/change-password',
                 template: '<change-password></change-password>'
             })
+            .state('agreement-policy', {
+                url: '/agreement-policy',
+                template: '<agreement-policy></agreement-policy>',
+                params: {'data': null}
+            })
             ;        
              
     }

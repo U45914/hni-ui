@@ -8,9 +8,9 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$rootScope', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName','$window'];
+    ActionSectionController.$inject = ['$rootScope', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName','$window','$sce'];
 
-    function ActionSectionController($rootScope, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName,$window) {
+    function ActionSectionController($rootScope, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName,$window,$sce) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
         let resourceUrl = serviceConstants.resourceUrl;
@@ -114,7 +114,7 @@
         		vm.isOrderActive = true;
         		vm.isReportActive = false;
         	}
-        	if(type === "report"){
+        	if(type === "orders"){
         		vm.isOrderActive = true;
         		vm.isRestaurantActive = false;
         		vm.isReportActive = false;
@@ -128,12 +128,15 @@
         		vm.isOrderActive = false;
         		vm.isRestaurantActive = false;
         		vm.isReportActive = true;
+        		$http.get(`${baseUrl}/help/client/faq/pdf`,{responseType: 'arraybuffer'})
+    			.then(function(response){
+    				var file = new Blob([response.data], {type: 'application/pdf'});
+    				var fileURL = URL.createObjectURL(file);
+    				vm.faq = $sce.trustAsResourceUrl(fileURL);
+    			});
         	}
         	
         	$rootScope.$broadcast('show-report-view', type);
         }
-        vm.openPdf = function() {
-            $window.open(`${resourceUrl}/docs/HNI_FAQ.pdf`, '_blank');
-        };
     }
 })();

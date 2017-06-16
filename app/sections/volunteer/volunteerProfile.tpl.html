@@ -57,7 +57,7 @@
 		<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;"ng-bind="vm.msgs['phone']"></div>	
 		</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label class="text_style_vol" class="text_style_vol">Email</label> <input type="email" required
+	<label class="text_style_vol" class="text_style_vol">Email</label> <input type="email" required ng-disabled="true"
 		ng-model="vm.vol.user.email" ng-blur="vm.validationCheck('text','email',vm.vol.user.email,$event)"/>
 		<div id="errorMsg" ng-if="vm.fields['email']" style="color:red;"ng-bind="vm.msgs['email']"></div>	
 		</md-input-container>

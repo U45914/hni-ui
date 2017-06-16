@@ -32,15 +32,20 @@
 		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Reports" style="outline: none;" ng-click="vm.showReportView('report')" is-active="vm.isReportActive" ></action-card>
 	</div>
 	<div class="action-cards-section " layout="row" layout-wrap ng-if="vm.userRole === vm.rolesConstantName.client" >
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Orders" style="outline: none;" ng-click="vm.showReportView('report')" is-active="vm.isOrderActive" ></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE87C;" icon-text="Orders" style="outline: none;" ng-click="vm.showReportView('orders')" is-active="vm.isOrderActive" ></action-card>
 		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE06F;" icon-text="Restaurant" style="outline: none;" ng-click="vm.showReportView('restaurant')" is-active="vm.isRestaurantActive" ></action-card>
-		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE06F;" icon-text="FAQ" style="outline: none;" ng-click="vm.showReportView('faq');vm.openPdf()" is-active="vm.isReportActive" ></action-card>
+		<action-card flex-sm="50" flex-gt-sm="25" flex="100" icon="&#xE06F;" icon-text="FAQ" style="outline: none;" ng-click="vm.showReportView('faq')" is-active="vm.isReportActive" ></action-card>
 	</div>	
 	
 	
 	 <div ng-repeat="report in vm.reportCollection" class="scroll_vertical">
 		<report-generation ds="report" index-first="$index" reportType="report.typeKey" serviceds="vm.service" headerds="vm.headers"></report-generation>
 	 </div>
+	 
+	 <div ng-if="vm.userRole === vm.rolesConstantName.client && vm.isReportActive">
+	    <object data={{vm.faq}} type="application/pdf" width="100%" height="500px">
+	    </object>
+	</div> 
 	
 
 </div>	
