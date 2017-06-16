@@ -8,12 +8,11 @@
 		controllerAs : 'vm'
 	});
 	CredentialSetupController.$inject = [ '$q', 'ngoOnboardingService', 'validateService', '$scope',
-			'$state','toastService','validateFormData' ];
+			'$state','toastService','validateFormData','serviceConstants','$window'];
 
-	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state, toastService,validateFormData) {
+	function CredentialSetupController($q, ngoOnboardingService, validateService, $scope, $state, toastService,validateFormData,serviceConstants,$window) {
 		var USER_ORG_INFO = "userOrgInfo";
 		var USER_TYPE = "userType";
-
 		var vm = this;
 		vm.fields = {};
 		vm.msgs = {};
@@ -28,6 +27,8 @@
 		vm.activationCodeNeeded = vm.userType === "client";
 		vm.activationCode= getActivationCode();
 		vm.dependantsList = [];
+		vm.showAgreement = false;
+		let resourceUrl = serviceConstants.resourceUrl;
 		 for(var i=0; i<=getDependants(); i++){
 			 vm.dependantsList.push(i);
 		 }
@@ -61,17 +62,19 @@
 			if(vm.validateUserEnrollment == ""){
 				vm.errorText = false;
 				vm.buttonText = "Please wait...";
-				vm.isDisabled = true;	
-				ngoOnboardingService.registerUser(data).then(function(response) {
+				vm.isDisabled = true;
+				vm.open(data);
+				
+				/*ngoOnboardingService.registerUser(data).then(function(response) {
 					if (response && response.data && response.data.success) {
 						toastService.showToast(response.data.success)
-						$state.go('login');
+						$state.go('agreement-policy');
 					} else {
 						vm.buttonText = "Register";
 						vm.isDisabled = false;
 						toastService.showToast("Failed to create user entry");
 					}
-				});
+				});*/
 			}
 			return;
 		};
@@ -133,6 +136,13 @@
 			vm.fields[id] = data.field[id];
 			vm.msgs[id] = data.msg[id];
 		};
+		
+		vm.open = function(data){
+			 var strWindowFeatures = "height=570,width=520,scrollbars=yes,status=yes";
+			 let resourceUrl = serviceConstants.resourceUrl;
+			 //var win = window.open(resourceUrl + "/docs/HungerNotImpossiblePrivacyPolicy.pdf", "_blank", strWindowFeatures);
+			 $state.go('agreement-policy', {'data': data});
+		}
 	}
 
 })();

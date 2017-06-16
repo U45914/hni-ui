@@ -19,7 +19,7 @@
             }
             var state = next.name;
             
-            var noAuthStates = ["landing", "join-user", "credential-setup"];
+            var noAuthStates = ["landing", "join-user", "credential-setup", "agreement-policy"];
             if (noAuthStates.indexOf(state) == -1 && state != "login" && !authService.isUserLoggedIn()) {
             	event.preventDefault();
             	$state.go("login");
