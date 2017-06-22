@@ -33,7 +33,7 @@
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
-				"invitationMessage" : vm.inviteMsg
+				"message" : vm.inviteMsg
 			};
 			
 			var doNotPost = false;

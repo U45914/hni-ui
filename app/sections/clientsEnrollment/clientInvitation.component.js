@@ -37,8 +37,8 @@
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
 				"website" : "NA",
-				"state" : vm.state,
-				"dependants" : vm.dependants
+				"stateCode" : vm.state,
+				"dependantsCount" : vm.dependants
 			};
 			var doNotPost = false;
 			var keys = Object.keys(vm.fields);
