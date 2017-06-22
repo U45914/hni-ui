@@ -62,13 +62,13 @@
 										$state.go('dashboard');
 									} 
 									else if(response
-											&& response.data && !response.data.errorMsg){
+											&& response.data && !response.data.message){
 										toastService.showToast("Something went wrong. Try again later");
 										vm.buttonText = "Invite";
 										vm.isDisabled = false;
 									}
 									else {
-										toastService.showToast("Failed : "+ response.data.errorMsg);
+										toastService.showToast("Failed : "+ response.data.message);
 										vm.buttonText = "Invite";
 										vm.isDisabled = false;
 									}
