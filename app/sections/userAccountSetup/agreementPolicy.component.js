@@ -16,6 +16,10 @@
 		debugger;
 		console.log($state.data);
 		vm.userData = $state.params.data;
+		vm.showIAccept = false;
+		if (vm.userData && vm.userData != null) {
+			vm.showIAccept = true;
+		}
 		
 		let baseUrl = serviceConstants.baseUrl;
 	//	vm.isDisabled = false;
