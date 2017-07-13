@@ -81,6 +81,8 @@
                 vm.orderInfo.orderId = data.id;
                 vm.orderInfo.totalCost = data.subTotal;
                 vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;
+                vm.orderInfo.phoneNumber = data.user.mobilePhone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+                
                 vm.orderInfo.providerId = data.providerLocation.provider.id;
                 vm.orderInfo.providerName = data.providerLocation.provider.name;
                 vm.orderInfo.providerAddress = data.providerLocation.address.address1;
