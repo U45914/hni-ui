@@ -38,8 +38,8 @@
             return $http.get(`${baseUrl}/orders/count`);
         }
 
-        function completeOrder(id) {
-            return $http.put(`${baseUrl}/payments/order-payments?orderId=${id}`);
+        function completeOrder(id,confirmId,amount) {
+            return $http.put(`${baseUrl}/payments/order-payments?orderId=${id}&orderConfirmationId=${confirmId}&orderAmt=${amount}`);
         }
 
         function unlockOrder(id) {
