@@ -14,6 +14,7 @@
             getPaymentDetails,
             getOrderCount,
             completeOrder,
+            completeOrderAndGetNext,
             unlockOrder
         };
 
@@ -42,6 +43,10 @@
             return $http.put(`${baseUrl}/payments/order-payments?orderId=${id}&orderConfirmationId=${confirmId}&orderAmt=${amount}`);
         }
 
+        function completeOrderAndGetNext(id,confirmId,amount) {
+            return $http.put(`${baseUrl}/payments/order-payments?orderId=${id}&orderConfirmationId=${confirmId}&orderAmt=${amount}`);
+        }
+        
         function unlockOrder(id) {
             $http.delete(`${baseUrl}/orders/lock/${id}`);
         }

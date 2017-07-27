@@ -11,6 +11,7 @@
         vm.enableProceed = false;
         vm.orderCount = orderCount;
         vm.finishOrder = finishOrder;
+        vm.finishAndGetNext = finishAndGetNext;
         vm.orderAmt = "";
         vm.confirmationId = "";
         
@@ -36,6 +37,12 @@
         
         function finishOrder() {
             return $q.all([ordersService.completeOrder(orderId,vm.confirmationId,vm.orderAmt)]);
+        }
+        
+        function finishAndGetNext() {
+             return ordersService.completeOrderAndGetNext(orderId,vm.confirmationId,vm.orderAmt).then(function(){
+             	return vm.getNextOrder();
+             });
         }
     }
 })();
