@@ -26,10 +26,10 @@
         vm.$onInit = function() {
             $http.get(`${baseUrl}/reports/view/get/customers/all/orders`).then(function success(response) {
             	if(response.data != null) {
-            		var mealCount = response.data.data[0].MO;
-            		vm.meals = mealCount;
-            		//vm.meals = convertStateCode(mealCount);
-            		vm.participants = response.data.data[1].totalParticipants;
+            		vm.meals = response.data.stats.TotalOrders;
+            		// vm.meals = mealCount;
+            		// vm.meals = convertStateCode(mealCount);
+            		vm.participants = response.data.stats.TotalParticipants;
             	}
             } , function error(error) { 
                 console.log(error);
