@@ -26,8 +26,9 @@
         vm.$onInit = function() {
             $http.get(`${baseUrl}/reports/view/get/customers/all/orders`).then(function success(response) {
             	if(response.data != null) {
-            		var mealCount = response.data.data[0];
-            		vm.meals = convertStateCode(mealCount);
+            		var mealCount = response.data.data[0].MO;
+            		vm.meals = mealCount;
+            		//vm.meals = convertStateCode(mealCount);
             		vm.participants = response.data.data[1].totalParticipants;
             	}
             } , function error(error) { 
@@ -41,7 +42,6 @@
         	angular.forEach(mealCount, function(value, key){
         		angular.forEach(state, function(stateValue, stateKey){
         			if(stateValue.value == key){
-        				console.log(stateValue.name);
         				result[stateValue.name] = value;
         			}
         		});
