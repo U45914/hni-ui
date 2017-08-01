@@ -35,11 +35,15 @@
         } else {
         	vm.showReport[vm.reportType] = false;
         }
- 
+        vm.gridOptions = {
+        		 data: [],
+                 urlSync: false
+        }
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
             .then(function success(response) {
                 if(response.data !== null) {
                    vm.service = response.data.data;
+                   vm.gridOptions.data = response.data.data;
                    if(vm.service.length==0)
                 	   {
 	                	   vm.showNothing=true;
