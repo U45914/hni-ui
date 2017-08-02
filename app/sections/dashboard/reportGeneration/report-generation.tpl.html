@@ -1,5 +1,5 @@
 <div class="font_for_allpages">
-<md-content layout-padding layout="row" layout-align="center" ng-show="vm.showReport[vm.reportType]">
+<md-content layout-padding layout="row" layout-align="center" ng-if="vm.showReport[vm.reportType]">
 <div flex-gt-md="100" flex-md="100" flex-xs="100" class="border shade-box" >
 	<div id="test{{vm.reportType}}" ui-grid="vm.gridOptions" class="grid">
 
