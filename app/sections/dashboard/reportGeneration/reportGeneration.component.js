@@ -37,13 +37,15 @@
         }
         vm.gridOptions = {
         		 data: [],
-                 urlSync: false
+                 urlSync: false,
+                 columnDefs:[]
         }
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
             .then(function success(response) {
                 if(response.data !== null) {
                    vm.service = response.data.data;
                    vm.gridOptions.data = response.data.data;
+                   vm.gridOptions.columnDefs = response.data.headers;
                    if(vm.service.length==0)
                 	   {
 	                	   vm.showNothing=true;
@@ -59,7 +61,6 @@
             });
         
         function getReportKey(reportKey) {
-        	debugger;
         	var key;
         	if (reportKey.toLocaleLowerCase().indexOf("ngo") != -1) {
         		key = "ngo";
@@ -78,6 +79,7 @@
         
         $rootScope.$on("show-report-view", function(event, type) {
         	vm.showReport[type] = true;
+        	debugger;
         	angular.forEach(vm.showReport, function (value, key){
         		if (type !== key) {
         			vm.showReport[key] = false;

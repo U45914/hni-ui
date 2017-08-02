@@ -1,4 +1,4 @@
 (function() {
     angular
-        .module('app', ['dataGrid', 'pagination', 'ui.router', 'ngMaterial']);
+        .module('app', ['ui.grid', 'ui.router', 'ngMaterial']);
 })();
