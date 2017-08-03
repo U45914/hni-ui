@@ -25,6 +25,8 @@
 	function reportGenerationController($rootScope, $scope, $http, serviceConstants) {
 		let baseUrl = serviceConstants.baseUrl;
         var vm = this;
+        var selectedRow;
+        vm.disableViewProfile = true;
         vm.report = $scope.ds;
         vm.showNothing=false;
         vm.showReport = {};
@@ -38,7 +40,28 @@
         vm.gridOptions = {
         		 data: [],
                  urlSync: false,
-                 columnDefs:[]
+                 columnDefs:[],
+                 enableFiltering: true,
+                 multiSelect: false,
+                 enableCellEdit: true
+        }
+        
+        vm.viewProfile = function(){
+        	console.log(selectedRow);
+        	console.log(selectedRow.entity.address);
+        }
+        vm.gridOptions.onRegisterApi = function(gridApi){
+            //set gridApi on scope
+           // $scope.gridApi = gridApi;
+            gridApi.selection.on.rowSelectionChanged($scope,function(row){
+              selectedRow = row;
+              if(row.isSelected){
+            	  vm.disableViewProfile = false;
+              }
+              else{
+            	  vm.disableViewProfile = true;
+              }
+            });
         }
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
             .then(function success(response) {
@@ -79,7 +102,7 @@
         
         $rootScope.$on("show-report-view", function(event, type) {
         	vm.showReport[type] = true;
-        	debugger;
+        	vm.disableViewProfile = true;
         	angular.forEach(vm.showReport, function (value, key){
         		if (type !== key) {
         			vm.showReport[key] = false;
