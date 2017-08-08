@@ -20,13 +20,15 @@
 		
 	}
 	
-	reportGenerationController.$inject= ['$rootScope', '$scope','$http','serviceConstants'];
+	reportGenerationController.$inject= ['$rootScope', '$scope','$http','serviceConstants','$state'];
 	
-	function reportGenerationController($rootScope, $scope, $http, serviceConstants) {
+	function reportGenerationController($rootScope, $scope, $http, serviceConstants,$state) {
 		let baseUrl = serviceConstants.baseUrl;
         var vm = this;
-        var selectedRow;
+        vm.selectedRow = null;
         vm.disableViewProfile = true;
+        vm.disableDelete = true;
+        vm.disableActivate = true;
         vm.report = $scope.ds;
         vm.showNothing=false;
         vm.showReport = {};
@@ -42,26 +44,39 @@
                  urlSync: false,
                  columnDefs:[],
                  enableFiltering: true,
-                 multiSelect: false,
-                 enableCellEdit: true
+                 multiSelect: true
         }
         
         vm.viewProfile = function(){
-        	console.log(selectedRow);
-        	console.log(selectedRow.entity.address);
+        	$state.go('report-detail',{
+        		'data' : {
+        			userId : vm.selectedRow
+        		}
+        	});
         }
         vm.gridOptions.onRegisterApi = function(gridApi){
             //set gridApi on scope
            // $scope.gridApi = gridApi;
+        	
             gridApi.selection.on.rowSelectionChanged($scope,function(row){
-              selectedRow = row;
-              if(row.isSelected){
-            	  vm.disableViewProfile = false;
-              }
+            vm.selectedRows = gridApi.selection.getSelectedRows();
+            if(vm.selectedRows.length == 1){
+            	vm.disableViewProfile = false;
+            }
               else{
             	  vm.disableViewProfile = true;
-              }
+            }
+            if(vm.selectedRows.length != 0)
+	            vm.disableDelete = false;
+	            vm.disableActivate = false;
             });
+        }
+        
+        vm.deleteSelected = function(){
+        	console.log(vm.selectedRows);
+        }
+        vm.activate = function(){
+        	console.log(vm.selectedRows);
         }
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
             .then(function success(response) {
