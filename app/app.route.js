@@ -120,6 +120,11 @@
                 template: '<agreement-policy></agreement-policy>',
                 params: {'data': null}
             })
+            .state('report-detail', {
+                url: '/report-detail',
+                template: '<report-detail></report-detail>',
+                params: {'data':null}
+            })
             ;        
              
     }
