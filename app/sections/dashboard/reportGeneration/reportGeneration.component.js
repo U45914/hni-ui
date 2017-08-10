@@ -20,20 +20,29 @@
 		
 	}
 	
-	reportGenerationController.$inject= ['$rootScope', '$scope','$http','serviceConstants','$state'];
+	reportGenerationController.$inject= ['$rootScope', '$scope','$http','serviceConstants','$state', 'gridService'];
 	
-	function reportGenerationController($rootScope, $scope, $http, serviceConstants,$state) {
+	function reportGenerationController($rootScope, $scope, $http, serviceConstants,$state,gridService) {
 		let baseUrl = serviceConstants.baseUrl;
         var vm = this;
         vm.selectedRow = null;
         vm.disableViewProfile = true;
         vm.disableDelete = true;
         vm.disableActivate = true;
+        vm.disableSheltered = true;
         vm.report = $scope.ds;
         vm.showNothing=false;
         vm.showReport = {};
         vm.showData=true;
+        vm.selectedRows = 0;
+        vm.isParticipant = false;
         vm.reportType = getReportKey(vm.report.label);
+        if(vm.reportType == "participant"){
+        	vm.isParticipant = true;
+        }
+        else{
+        	vm.isParticipant = false;
+        }
         if ($scope.indexFirst == 0) {
         	vm.showReport[vm.reportType] = true;
         } else {
@@ -44,7 +53,8 @@
                  urlSync: false,
                  columnDefs:[],
                  enableFiltering: true,
-                 multiSelect: true
+                 multiSelect: true,
+                 enableSelectAll: false
         }
         
         vm.viewProfile = function(){
@@ -60,23 +70,40 @@
         	
             gridApi.selection.on.rowSelectionChanged($scope,function(row){
             vm.selectedRows = gridApi.selection.getSelectedRows();
-            if(vm.selectedRows.length == 1){
+            if(vm.selectedRows.length >= 1){
+            	
+            	vm.disableDelete = false;
+	            vm.disableActivate = false;
+	            vm.disableSheltered = false;
+	            vm.isSheltered = vm.selectedRows[0].isSheltered;
+	            vm.isActivated = vm.selectedRows[0].isActivated;
+            	
             	vm.disableViewProfile = false;
+            	if(vm.selectedRows.length > 1)
+            		vm.disableViewProfile = true;
             }
               else{
             	  vm.disableViewProfile = true;
+            	  vm.disableDelete = true;
+  	              vm.disableActivate = true;
+  	              vm.disableSheltered = true;
             }
-            if(vm.selectedRows.length != 0)
-	            vm.disableDelete = false;
-	            vm.disableActivate = false;
             });
         }
         
         vm.deleteSelected = function(){
-        	console.log(vm.selectedRows);
+        	gridService.deletion(vm.selectedRows);
         }
-        vm.activate = function(){
-        	console.log(vm.selectedRows);
+        vm.activated = function(){
+        	if(vm.selectedRows.length > 0 && !vm.disableActivate){
+        		gridService.activation(vm.selectedRows, vm.isActivated);
+        	}
+        }
+        
+        vm.sheltered = function(){
+        	if(vm.selectedRows.length > 0 && !vm.disableSheltered){
+        		gridService.sheltered(vm.selectedRows, vm.isSheltered);
+        	}
         }
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
             .then(function success(response) {
