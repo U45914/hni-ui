@@ -20,9 +20,9 @@
 		
 	}
 	
-	reportGenerationController.$inject= ['$rootScope', '$scope','$http','serviceConstants','$state', 'gridService'];
+	reportGenerationController.$inject= ['$rootScope', '$scope','$http','serviceConstants','$state', 'gridService', 'toastService', '$window', '$timeout'];
 	
-	function reportGenerationController($rootScope, $scope, $http, serviceConstants,$state,gridService) {
+	function reportGenerationController($rootScope, $scope, $http, serviceConstants,$state,gridService, toastService, $window, $timeout) {
 		let baseUrl = serviceConstants.baseUrl;
         var vm = this;
         vm.selectedRow = null;
@@ -76,7 +76,11 @@
 	            vm.disableActivate = false;
 	            vm.disableSheltered = false;
 	            vm.isSheltered = vm.selectedRows[0].isSheltered;
-	            vm.isActivated = vm.selectedRows[0].isActivated;
+	            if(vm.selectedRows[0].active == "Active"){
+	            	vm.isActivated = true;
+	            }else{
+	            	vm.isActivated = false;
+	            }
             	
             	vm.disableViewProfile = false;
             	if(vm.selectedRows.length > 1)
@@ -92,12 +96,51 @@
         }
         
         vm.deleteSelected = function(){
-        	gridService.deletion(vm.selectedRows);
-        }
-        vm.activated = function(){
-        	if(vm.selectedRows.length > 0 && !vm.disableActivate){
-        		gridService.activation(vm.selectedRows, vm.isActivated);
+        	if(vm.selectedRows.length > 0 && !vm.disableDelete){
+        		$window.scrollTo(0, 0);
+	        	if(vm.selectedRows.length == 1)
+	        		gridService.deletion(vm.selectedRows[0].uid).then(function(response){
+	        			toastService.showToast(response.data.message);
+	        		});
+	        	else{
+	        		var deleteUsers = [];
+	        		for(var index=0 ; index < vm.selectedRows.length; index++){
+	        			deleteUsers.push(vm.selectedRows[index].uid);
+	        		}
+	        		gridService.deletion(deleteUsers).then(function(response){
+	        			toastService.showToast("Your request has been submitted.");
+	        		});
+	        	}
         	}
+        	$timeout(() => {
+        		$window.location.reload();
+            }, 3000);
+        	
+        }
+        
+        vm.activated = function(){
+        	var activateUsers = [];
+        	if(vm.selectedRows.length > 1 && !vm.disableActivate){
+        		for(var index = 0; index < vm.selectedRows.length; index++ ){
+        			activateUsers.push(vm.selectedRows[index].uid);
+        		}
+        		gridService.activation(activateUsers, vm.isActivated). then(function(response){
+        			$window.scrollTo(0, 0);
+        			toastService.showToast("Your request has been submitted.");
+        			$timeout(() => {
+                		$window.location.reload();
+                    }, 3000);
+        		});
+        	}else if(vm.selectedRows.length == 1){
+        		gridService.activateUser(vm.selectedRows[0].uid, vm.isActivated). then(function(response){
+        			$window.scrollTo(0, 0);
+        			toastService.showToast(response.data.message);
+        			$timeout(() => {
+                		$window.location.reload();
+                    }, 3000);
+        		});
+        	}
+        	
         }
         
         vm.sheltered = function(){
