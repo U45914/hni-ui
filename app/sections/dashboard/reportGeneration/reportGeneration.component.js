@@ -54,7 +54,8 @@
                  columnDefs:[],
                  enableFiltering: true,
                  multiSelect: true,
-                 enableSelectAll: false
+                 paginationPageSizes: [50, 100, 150, 200],
+                 paginationPageSize: 50,
         }
         
         vm.viewProfile = function(){
@@ -75,11 +76,16 @@
             	vm.disableDelete = false;
 	            vm.disableActivate = false;
 	            vm.disableSheltered = false;
-	            vm.isSheltered = vm.selectedRows[0].isSheltered;
 	            if(vm.selectedRows[0].active == "Active"){
 	            	vm.isActivated = true;
 	            }else{
 	            	vm.isActivated = false;
+	            }
+	            
+	            if(vm.selectedRows[0].sheltered == "Sheltered"){
+	            	vm.isSheltered = true;
+	            }else{
+	            	vm.isSheltered = false;
 	            }
             	
             	vm.disableViewProfile = false;
@@ -144,8 +150,26 @@
         }
         
         vm.sheltered = function(){
-        	if(vm.selectedRows.length > 0 && !vm.disableSheltered){
-        		gridService.sheltered(vm.selectedRows, vm.isSheltered);
+        	var shelteredUsers = [];
+        	if(vm.selectedRows.length > 1 && !vm.disableActivate){
+        		for(var index = 0; index < vm.selectedRows.length; index++ ){
+        			shelteredUsers.push(vm.selectedRows[index].uid);
+        		}
+        		gridService.shelteredMultiple(shelteredUsers, vm.isActivated). then(function(response){
+        			$window.scrollTo(0, 0);
+        			toastService.showToast("Your request has been submitted.");
+        			$timeout(() => {
+                		$window.location.reload();
+                    }, 3000);
+        		});
+        	}else if(vm.selectedRows.length == 1){
+        		gridService.sheltered(vm.selectedRows[0].uid, vm.isActivated). then(function(response){
+        			$window.scrollTo(0, 0);
+        			toastService.showToast(response.data.message);
+        			$timeout(() => {
+                		$window.location.reload();
+                    }, 3000);
+        		});
         	}
         }
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)

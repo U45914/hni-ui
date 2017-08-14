@@ -11,6 +11,7 @@
         	activation: activation,
         	activateUser : activateUser,
         	sheltered : sheltered,
+        	shelteredMultiple : shelteredMultiple,
         	deletion : deletion,
         	deleteMultiple : deleteMultiple 
         };
@@ -30,6 +31,14 @@
         }
         
         function sheltered(data, value) {
+        	if(!value)
+        		return $http.post(`${baseUrl}/configure/user/unsheltered`, data);
+        	else
+        		return $http.post(`${baseUrl}/configure/user/sheltered`, data);
+        }
+        
+        function shelteredMultiple(data, value) {
+        	console.log("Submit mutiple record!");
         }
         
         function deletion(id) {
