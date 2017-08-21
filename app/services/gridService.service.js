@@ -30,6 +30,10 @@
         }
         
         function sheltered(data, value) {
+        	if(!value)
+        		return $http.post(`${baseUrl}/configure/user/sheltered`, data);
+        	else
+        		return $http.post(`${baseUrl}/configure/user/un-sheltered`, data);
         }
         
         function deletion(id) {

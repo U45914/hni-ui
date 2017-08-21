@@ -54,7 +54,7 @@
                  columnDefs:[],
                  enableFiltering: true,
                  multiSelect: true,
-                 enableSelectAll: false
+                 enableSelectAll: true
         }
         
         vm.viewProfile = function(){
@@ -65,33 +65,49 @@
         	});
         }
         vm.gridOptions.onRegisterApi = function(gridApi){
-            //set gridApi on scope
+            // set gridApi on scope
            // $scope.gridApi = gridApi;
+        	// For Select All
+        	gridApi.selection.on.rowSelectionChangedBatch($scope,function(rows){
+        		angular.forEach(rows, function(row){
+        			
+        			if (row.isSelected) {
+        				vm.selectedRows.push(row);
+        			} else {
+        				vm.selectedRows = [];
+        			}
+        		});
+        	});
         	
             gridApi.selection.on.rowSelectionChanged($scope,function(row){
-            vm.selectedRows = gridApi.selection.getSelectedRows();
-            if(vm.selectedRows.length >= 1){
-            	
-            	vm.disableDelete = false;
-	            vm.disableActivate = false;
-	            vm.disableSheltered = false;
-	            vm.isSheltered = vm.selectedRows[0].isSheltered;
-	            if(vm.selectedRows[0].active == "Active"){
-	            	vm.isActivated = true;
-	            }else{
-	            	vm.isActivated = false;
+	            vm.selectedRows = gridApi.selection.getSelectedRows();
+	            if(vm.selectedRows.length >= 1){
+	            	
+	            	vm.disableDelete = false;
+		            vm.disableActivate = false;
+		            vm.disableSheltered = false;
+		            
+		            if(vm.selectedRows[0].active == "Active"){
+		            	vm.isActivated = true;
+		            }else{
+		            	vm.isActivated = false;
+		            }
+		            if(vm.selectedRows[0].sheltered == "Yes"){
+		            	vm.isSheltered = true;
+		            } else {
+		            	vm.isSheltered = false;
+		            }
+		            
+	            	vm.disableViewProfile = false;
+	            	if(vm.selectedRows.length > 1) {
+	            		vm.disableViewProfile = true;
+	            	}
+	            } else{
+	            	  vm.disableViewProfile = true;
+	            	  vm.disableDelete = true;
+	  	              vm.disableActivate = true;
+	  	              vm.disableSheltered = true;
 	            }
-            	
-            	vm.disableViewProfile = false;
-            	if(vm.selectedRows.length > 1)
-            		vm.disableViewProfile = true;
-            }
-              else{
-            	  vm.disableViewProfile = true;
-            	  vm.disableDelete = true;
-  	              vm.disableActivate = true;
-  	              vm.disableSheltered = true;
-            }
             });
         }
         
@@ -144,9 +160,30 @@
         }
         
         vm.sheltered = function(){
-        	if(vm.selectedRows.length > 0 && !vm.disableSheltered){
-        		gridService.sheltered(vm.selectedRows, vm.isSheltered);
+        	
+        	var shelteredUsers = [];
+        	if(vm.selectedRows.length > 1 && !vm.disableSheltered){
+        		for(var index = 0; index < vm.selectedRows.length; index++ ){
+        			shelteredUsers.push(vm.selectedRows[index].uid);
+        		}
+        		gridService.sheltered(shelteredUsers, vm.isSheltered). then(function(response){
+        			$window.scrollTo(0, 0);
+        			toastService.showToast("Your request has been submitted.");
+        			$timeout(() => {
+                		$window.location.reload();
+                    }, 3000);
+        		});
+        	}else if(vm.selectedRows.length == 1){
+        		shelteredUsers.push(vm.selectedRows[0].uid);
+        		gridService.sheltered(shelteredUsers, vm.isSheltered). then(function(response){
+        			$window.scrollTo(0, 0);
+        			toastService.showToast(response.data.message);
+        			$timeout(() => {
+                		$window.location.reload();
+                    }, 3000);
+        		});
         	}
+        	
         }
         	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
             .then(function success(response) {
