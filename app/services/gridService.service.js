@@ -11,8 +11,11 @@
         	activation: activation,
         	activateUser : activateUser,
         	sheltered : sheltered,
+        	shelteredMultiple : shelteredMultiple,
         	deletion : deletion,
-        	deleteMultiple : deleteMultiple 
+        	deleteMultiple : deleteMultiple,
+        	getGridDataFor: getGridDataFor,
+        	saveParticipant : saveParticipant
         };
 
         function activation(data, value) {
@@ -35,6 +38,12 @@
         	else
         		return $http.post(`${baseUrl}/configure/user/un-sheltered`, data);
         }
+        function getGridDataFor(report) {
+        	return $http.get(`${baseUrl}/reports/view/`+report);
+        }
+        function shelteredMultiple(data, value) {
+        	console.log("Submit mutiple record!");
+        }
         
         function deletion(id) {
         	return $http.post(`${baseUrl}/configure/user/delete`, id);
@@ -42,6 +51,10 @@
         
         function deleteMultiple(id) {
         	return $http.post(`${baseUrl}/configure/users/delete`, id);
+        }
+        
+        function saveParticipant(data){
+        	return $http.post(`${baseUrl}/configure/user/participant/save`, data);
         }
         
     }

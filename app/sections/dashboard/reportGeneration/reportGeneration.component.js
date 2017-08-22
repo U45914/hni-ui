@@ -54,19 +54,23 @@
                  columnDefs:[],
                  enableFiltering: true,
                  multiSelect: true,
-                 enableSelectAll: true
+                 enableSelectAll: true,
+                 paginationPageSizes: [50, 100, 150, 200],
+                 paginationPageSize: 50
         }
         
         vm.viewProfile = function(){
-        	$state.go('report-detail',{
+        	$state.go('profile-detail',{
         		'data' : {
-        			userId : vm.selectedRow
+        			userId : vm.selectedRows[0].uid
         		}
         	});
         }
+        
+        
         vm.gridOptions.onRegisterApi = function(gridApi){
             // set gridApi on scope
-           // $scope.gridApi = gridApi;
+        	 vm.gridApi = gridApi;
         	// For Select All
         	gridApi.selection.on.rowSelectionChangedBatch($scope,function(rows){
         		angular.forEach(rows, function(row){
@@ -92,6 +96,7 @@
 		            }else{
 		            	vm.isActivated = false;
 		            }
+		            debugger;
 		            if(vm.selectedRows[0].sheltered == "Yes"){
 		            	vm.isSheltered = true;
 		            } else {
@@ -111,6 +116,40 @@
             });
         }
         
+        
+        vm.loadGrid = function() {
+        	gridService.getGridDataFor(vm.report.reportPath).then(function success(response) {
+                if(response.data !== null) {
+                    vm.service = response.data.data;
+                    vm.gridOptions.data = response.data.data;
+                    vm.gridOptions.columnDefs = response.data.headers;
+                    if(vm.service.length==0) {
+ 	                	   vm.showNothing=true;
+ 	                	   vm.showData=false;
+                 	}
+                    vm.headers= response.data.headers;
+                 }
+             }, function error(error) {
+                 console.log(error);
+             });
+        }
+        
+        vm.resetGridData = function() {
+        	vm.disableDelete = true;
+            vm.disableActivate = true;
+            vm.disableSheltered = true;
+            vm.disableViewProfile = true;
+        	gridService.getGridDataFor(vm.report.reportPath).then(function(response) {
+        		if(response.data !== null) {
+        			vm.gridOptions.data = response.data.data;
+                    vm.gridOptions.columnDefs = response.data.headers;
+                    if (vm.gridApi != null) {
+                    	vm.gridApi.core.refresh();
+                    }
+        		}
+        	});
+        }
+        
         vm.deleteSelected = function(){
         	if(vm.selectedRows.length > 0 && !vm.disableDelete){
         		$window.scrollTo(0, 0);
@@ -128,10 +167,7 @@
 	        		});
 	        	}
         	}
-        	$timeout(() => {
-        		$window.location.reload();
-            }, 3000);
-        	
+        	vm.resetGridData();
         }
         
         vm.activated = function(){
@@ -143,17 +179,13 @@
         		gridService.activation(activateUsers, vm.isActivated). then(function(response){
         			$window.scrollTo(0, 0);
         			toastService.showToast("Your request has been submitted.");
-        			$timeout(() => {
-                		$window.location.reload();
-                    }, 3000);
+        			vm.resetGridData();
         		});
         	}else if(vm.selectedRows.length == 1){
         		gridService.activateUser(vm.selectedRows[0].uid, vm.isActivated). then(function(response){
         			$window.scrollTo(0, 0);
         			toastService.showToast(response.data.message);
-        			$timeout(() => {
-                		$window.location.reload();
-                    }, 3000);
+        			vm.resetGridData();
         		});
         	}
         	
@@ -169,41 +201,19 @@
         		gridService.sheltered(shelteredUsers, vm.isSheltered). then(function(response){
         			$window.scrollTo(0, 0);
         			toastService.showToast("Your request has been submitted.");
-        			$timeout(() => {
-                		$window.location.reload();
-                    }, 3000);
+        			vm.resetGridData();
         		});
         	}else if(vm.selectedRows.length == 1){
         		shelteredUsers.push(vm.selectedRows[0].uid);
         		gridService.sheltered(shelteredUsers, vm.isSheltered). then(function(response){
         			$window.scrollTo(0, 0);
-        			toastService.showToast(response.data.message);
-        			$timeout(() => {
-                		$window.location.reload();
-                    }, 3000);
+        			toastService.showToast("Your request has been submitted.");
+        			vm.resetGridData();
         		});
         	}
         	
-        }
-        	$http.get(`${baseUrl}/reports/view/`+vm.report.reportPath)
-            .then(function success(response) {
-                if(response.data !== null) {
-                   vm.service = response.data.data;
-                   vm.gridOptions.data = response.data.data;
-                   vm.gridOptions.columnDefs = response.data.headers;
-                   if(vm.service.length==0)
-                	   {
-	                	   vm.showNothing=true;
-	                	   vm.showData=false;
-                	   }
-                   vm.headers= response.data.headers;
-                }
-                if(response.data == null){
-                	
-                }
-            }, function error(error) {
-                console.log(error);
-            });
+        }        
+        vm.loadGrid();
         
         function getReportKey(reportKey) {
         	var key;
