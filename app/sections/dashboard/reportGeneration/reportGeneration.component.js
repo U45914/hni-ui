@@ -55,19 +55,10 @@
                  enableFiltering: true,
                  multiSelect: true,
                  enableSelectAll: true,
-                 paginationPageSizes: [50, 100, 150, 200],
+                 paginationPageSizes: [25, 50, 100],
                  paginationPageSize: 50,
                  appScopeProvider: this
         }
-        
-        vm.viewProfile = function(){
-        	$state.go('profile-detail',{
-        		'data' : {
-        			userId : vm.selectedRows[0].uid
-        		}
-        	});
-        }
-        
         
         vm.gridOptions.onRegisterApi = function(gridApi){
             // set gridApi on scope
@@ -117,8 +108,11 @@
         }
         
         vm.viewProfile = function(event, row) {
-        	// TODO: Do connect to state.go to profile view
-        	alert(row.entity.uid);
+        	$state.go('profile-detail',{
+        		'data' : {
+        			userId : row.entity.uid
+        		}
+        	});
         }
         vm.loadGrid = function() {
         	gridService.getGridDataFor(vm.report.reportPath).then(function success(response) {
