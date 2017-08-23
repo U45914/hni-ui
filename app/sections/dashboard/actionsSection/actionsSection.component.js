@@ -35,21 +35,8 @@
             	
                 if(response.data !== null) {
                 	vm.userRole = response.data.role;
-                	if(vm.userRole === vm.rolesConstantName.superAdmin){
-                		vm.isFirstCardActive = true;
-                	}
-                	if(vm.userRole === vm.rolesConstantName.ngoAdmin){
-                		vm.isSecondTabActive = true;
-                	}
-                	if(vm.userRole === vm.rolesConstantName.ngo){
-                		vm.isSecondTabActive = true;
-                	}
-                	if(vm.userRole === vm.rolesConstantName.volunteer){
-                		vm.isOrderActive = true;
-                	}
-                	if(vm.userRole === vm.rolesConstantName.client){
-                		vm.isOrderActive = true;
-                	}
+                	vm.setDefaultView();
+                	
                 	window.localStorage.setItem("userRole", vm.userRole);
                 	vm.user = response.data.data;  
                 	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
@@ -80,12 +67,34 @@
                 console.log(error);
             });
         	
+
         };
         
-        vm.setReportView = function(viewName) {
-        	
+        vm.setDefaultView = function() {
+        	var selectedView = $window.localStorage['selectedActionCard'];
+        	if (selectedView) {
+        		vm.showReportView(selectedView);
+        	} else {
+            	if(vm.userRole === vm.rolesConstantName.superAdmin){
+            		vm.isFirstCardActive = true;
+            	}
+            	if(vm.userRole === vm.rolesConstantName.ngoAdmin){
+            		vm.isSecondTabActive = true;
+            	}
+            	if(vm.userRole === vm.rolesConstantName.ngo){
+            		vm.isSecondTabActive = true;
+            	}
+            	if(vm.userRole === vm.rolesConstantName.volunteer){
+            		vm.isOrderActive = true;
+            	}
+            	if(vm.userRole === vm.rolesConstantName.client){
+            		vm.isOrderActive = true;
+            	}
+        	}
         }
+        
         vm.showReportView = function(type) { 
+        	$window.localStorage['selectedActionCard'] = type;
         	if(type === "ngo"){
         		vm.isFirstCardActive = true;
            	 	vm.isSecondTabActive = false;

@@ -15,7 +15,9 @@ a:focus {
 
 th md-select {
   margin: 0; }
-
+.md-button {
+  text-transform: capitalize !important;
+} 
 .md-errors-spacer {
   display: none; }
 

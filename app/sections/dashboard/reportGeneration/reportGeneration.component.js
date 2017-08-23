@@ -56,7 +56,8 @@
                  multiSelect: true,
                  enableSelectAll: true,
                  paginationPageSizes: [50, 100, 150, 200],
-                 paginationPageSize: 50
+                 paginationPageSize: 50,
+                 appScopeProvider: this
         }
         
         vm.viewProfile = function(){
@@ -96,7 +97,6 @@
 		            }else{
 		            	vm.isActivated = false;
 		            }
-		            debugger;
 		            if(vm.selectedRows[0].sheltered == "Yes"){
 		            	vm.isSheltered = true;
 		            } else {
@@ -116,13 +116,27 @@
             });
         }
         
-        
+        vm.viewProfile = function(event, row) {
+        	// TODO: Do connect to state.go to profile view
+        	alert(row.entity.uid);
+        }
         vm.loadGrid = function() {
         	gridService.getGridDataFor(vm.report.reportPath).then(function success(response) {
                 if(response.data !== null) {
                     vm.service = response.data.data;
                     vm.gridOptions.data = response.data.data;
                     vm.gridOptions.columnDefs = response.data.headers;
+                    if (vm.isParticipant && vm.gridOptions.columnDefs.length != 0) {
+                    	var editButton = {
+                    			field: "name",
+                    			displayName: "",
+                    			editable:false,
+                    			pinnedRight:true,
+                    			cellTemplate: '<md-button ng-click="grid.appScope.viewProfile($event, row)" class="md-raised button-primary md-button md-ink-ripple">View Profile</md-button>',
+                    			height: 100
+                    	}
+                    	vm.gridOptions.columnDefs.push(editButton);
+                    }
                     if(vm.service.length==0) {
  	                	   vm.showNothing=true;
  	                	   vm.showData=false;
