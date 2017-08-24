@@ -25,7 +25,7 @@
 				vm.firstName = vm.dataFromServer.user.firstName;
 				vm.lastName = vm.dataFromServer.user.lastName;
 				vm.mobilePhone = vm.dataFromServer.user.mobilePhone;
-				console.log(vm.dataFromServer);
+				vm.maxOrderAllowed = vm.dataFromServer.maxOrderAllowed;
 				if(vm.dataFromServer.dependents.length > 0){
 					vm.dependentList = vm.dataFromServer.dependents;
 				}
@@ -39,22 +39,22 @@
 				}
 				$http.get(`${baseUrl}/reports/view/ngo/all`)
 				  .then(function(response){
-					  console.log(response.data.data);
 					  vm.ngos = response.data.data;
 					  for(var index=0; index<response.data.data.length; index++){
 						  if(vm.dataFromServer.ngo.userId == response.data.data[index].userId){
-							  console.log("ngo found");
 							  vm.ngo = response.data.data[index].name;
 							  vm.ngoId = response.data.data[index].id;
 						  }
 					  }
-					  console.log(vm.ngoId);
 				  });
 			});
 			//var user = $state.params.data.users[0];
-			
+			$scope.$watch('vm.mobilePhone',function(newValue, oldValue){
+				if(vm.mobilePhone.length == 3 || vm.mobilePhone.length == 7){
+					vm.mobilePhone += '-';
+				}
+			});
 			vm.save = function(){
-				console.log("Active : "+vm.isActivated);
 				var data = {
 					"id"  : vm.dataFromServer.id,
 					"user" : {
@@ -67,13 +67,17 @@
 					"dependents": vm.dependentList,
 					"ngo" : {
 						id : vm.ngoId,
-					}
+					},
+					"maxOrderAllowed" : vm.maxOrderAllowed
 				};
 				gridService.saveParticipant(data).then(function(response){
         			toastService.showToast(response.data.message);
 				});
 			}
 			
+			vm.goBack = function(){
+				$window.history.back();
+			}
 			vm.addNewRow = function() {
 				if(vm.name!=null &&  vm.age != null){
 				dependents.name = vm.name;

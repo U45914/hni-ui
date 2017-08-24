@@ -1,4 +1,4 @@
-<div class="font_for_allpages">
+<div class="font_for_allpages"  ng-cloak>
 <top-nav></top-nav>
 <div class="left_float" style="width:19%;padding-top:15px;">
 <left-nav-bar></left-nav-bar>
@@ -11,26 +11,27 @@
 		<div class ="md-title mgn_bottom_20">
 			<label>Personal Details</label>
 			<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.save()" >Save</md-button>
+			<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.goBack()" >Back</md-button>
 		</div>
 		<div layout-gt-xs="row" class="width_for_textbox">
 			<md-input-container  class="md-block input-primary" flex-gt-sm> 
 				<label>First Name</label>
-				<input type="text" id="firstName" ng-model="vm.firstName"> 
+				<input type="text" id="firstName" ng-model="vm.firstName" required> 
 			</md-input-container>
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Last Name</label>
-			 	<input type="text" id="lastName" ng-model="vm.lastName">
+			 	<input type="text" id="lastName" ng-model="vm.lastName" required>
 			</md-input-container>
 		</div>
 		
 		<div layout-gt-xs="row" class="width_for_textbox">
-			<md-input-container class="md-block input-primary" flex-gt-sm> 
+			<md-input-container class="md-block input-primary" flex-gt-sm > 
 				<label>Mobile Phone</label>
-			 	<input type="text" id="mobilePhone" ng-model="vm.mobilePhone">
+			 	<input type="text" id="mobilePhone" ng-model="vm.mobilePhone"  maxlength="12" required>
 			</md-input-container>
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Max orders allowed</label>
-			 	<input type="number" id="orders" ng-model="vm.orders">
+			 	<input type="number" id="orders" ng-model="vm.maxOrderAllowed">
 			</md-input-container>
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>NGO</label>
