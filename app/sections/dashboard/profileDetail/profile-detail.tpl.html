@@ -34,6 +34,10 @@
 			 	<input type="number" id="orders" ng-model="vm.maxOrderAllowed">
 			</md-input-container>
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Max meals allowed per day</label>
+			 	<input type="number" id="orders" ng-model="vm.maxMealsAllowedPerDay"> 
+			</md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>NGO</label>
 			 	<md-select ng-model="vm.ngoId">
 		          <md-option ng-repeat="ngo in vm.ngos" value="{{ngo.id}}">{{ngo.name}}</md-option>

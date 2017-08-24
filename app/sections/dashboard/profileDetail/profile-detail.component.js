@@ -26,6 +26,7 @@
 				vm.lastName = vm.dataFromServer.user.lastName;
 				vm.mobilePhone = vm.dataFromServer.user.mobilePhone;
 				vm.maxOrderAllowed = vm.dataFromServer.maxOrderAllowed;
+				vm.maxMealsAllowedPerDay = vm.dataFromServer.maxMealsAllowedPerDay;
 				if(vm.dataFromServer.dependents.length > 0){
 					vm.dependentList = vm.dataFromServer.dependents;
 				}
