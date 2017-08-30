@@ -69,7 +69,8 @@
 					"ngo" : {
 						id : vm.ngoId,
 					},
-					"maxOrderAllowed" : vm.maxOrderAllowed
+					"maxOrderAllowed" : vm.maxOrderAllowed,
+					"maxMealsAllowedPerDay" : vm.maxMealsAllowedPerDay
 				};
 				gridService.saveParticipant(data).then(function(response){
         			toastService.showToast(response.data.message);
