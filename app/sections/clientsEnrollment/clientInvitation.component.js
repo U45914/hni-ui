@@ -12,10 +12,10 @@
 		controllerAs : 'vm'
 	});
 	clientInvitationController.$inject = [ '$q', 'clientEnrollmentService', '$scope',
-			'$state', 'toastService', 'validateFormData','validateService'];
+			'$state', 'toastService', 'validateFormData','validateService', 'gridService'];
 
 	function clientInvitationController($q, clientEnrollmentService, $scope, $state,
-			toastService, validateFormData,validateService) {
+			toastService, validateFormData,validateService,gridService) {
 		var vm = this;
 		vm.orgInfo = {};
 		vm.checkEmail=false;
@@ -29,6 +29,9 @@
 		vm.buttonText = "Invite";
 		vm.isDisabled = false;
 		vm.msgs = {};
+		gridService.getGridDataFor("ngo/all").then(function(response){
+			vm.ngos = response.data.data;
+		});
 		vm.submit = function() {
 			if(vm.dependants == null)
 				vm.dependants = 0;
@@ -38,7 +41,8 @@
 				"email" : vm.email,
 				"website" : "NA",
 				"stateCode" : vm.state,
-				"dependantsCount" : vm.dependants
+				"dependantsCount" : vm.dependants,
+				"ngoId" : vm.ngoId
 			};
 			var doNotPost = false;
 			var keys = Object.keys(vm.fields);
@@ -48,6 +52,7 @@
 					break;
 				}
 			}
+			
 			if (!doNotPost && (vm.checkEmail == true)) {
 				vm.buttonText = "Please wait...";
 				vm.isDisabled = true;	
