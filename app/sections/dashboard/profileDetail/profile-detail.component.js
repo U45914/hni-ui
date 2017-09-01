@@ -84,7 +84,7 @@
 				if(vm.name!=null &&  vm.age != null){
 				dependents.name = vm.name;
 				dependents.age = vm.age;
-				//dependents.gender = vm.gender;
+				dependents.gender = vm.gender;
 				vm.dependentList.push(dependents);
 				dependents = {};
 				vm.name= "";
