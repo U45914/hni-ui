@@ -19,9 +19,16 @@
                     {name: "Nephi", age: 29},
                     {name: "Enos", age: 34}];
 		vm.gridOptions = {
-				data : vm.myData
-				
-		};
+       		 data: [],
+                urlSync: false,
+                columnDefs:[],
+                enableFiltering: true,
+                multiSelect: true,
+                enableSelectAll: true,
+                paginationPageSizes: [25, 50, 100],
+                paginationPageSize: 50,
+                appScopeProvider: this
+       }
 		vm.states = validateService.validateStateDrpdwn();
 		
 		$http.post(`${baseUrl}/configure/provider/details`, 1).then(function(response){
@@ -33,6 +40,11 @@
 			vm.providerAddressLine2 = responseData.address.address2;
 			vm.providerCity = responseData.address.city;
 			vm.providerState = responseData.address.state;
+		});
+		
+		$http.post(`${baseUrl}/configure/provider/locations/`, 1).then(function(response){
+			vm.gridOptions.data = response.data.data;
+			vm.gridOptions.columnDefs = response.data.headers;
 		});
 	}
 })();
