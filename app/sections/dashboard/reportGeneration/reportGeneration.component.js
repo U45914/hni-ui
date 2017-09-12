@@ -36,12 +36,20 @@
         vm.showData=true;
         vm.selectedRows = 0;
         vm.isParticipant = false;
+        vm.isProvider = false;
         vm.reportType = getReportKey(vm.report.label);
         if(vm.reportType == "participant"){
         	vm.isParticipant = true;
         }
         else{
         	vm.isParticipant = false;
+        }
+        
+        if(vm.reportType == "provider"){
+        	vm.isProvider = true;
+        }
+        else{
+        	vm.isProvider = false;
         }
         if ($scope.indexFirst == 0) {
         	vm.showReport[vm.reportType] = true;
@@ -108,11 +116,19 @@
         }
         
         vm.viewProfile = function(event, row) {
-        	$state.go('profile-detail',{
-        		'data' : {
-        			userId : row.entity.uid
-        		}
-        	});
+        	if(vm.reportType == "participant"){
+	        	$state.go('profile-detail',{
+	        		'data' : {
+	        			userId : row.entity.uid
+	        		}
+	        	});
+        	}else if(vm.reportType == "provider"){
+        		$state.go('provider-detail',{
+            		'data' : {
+            			userId : row.entity.providerId
+            		}
+            	});
+        	}
         }
         vm.loadGrid = function() {
         	gridService.getGridDataFor(vm.report.reportPath).then(function success(response) {
@@ -120,7 +136,7 @@
                     vm.service = response.data.data;
                     vm.gridOptions.data = response.data.data;
                     vm.gridOptions.columnDefs = response.data.headers;
-                    if (vm.isParticipant && vm.gridOptions.columnDefs.length != 0) {
+                    if ((vm.isParticipant || vm.isProvider) && vm.gridOptions.columnDefs.length != 0) {
                     	var editButton = {
                     			field: "name",
                     			displayName: "",

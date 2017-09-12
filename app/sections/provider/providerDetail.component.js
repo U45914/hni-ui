@@ -8,9 +8,10 @@
 		controllerAs : 'vm'
 	});
 	
-	providerDetailController.$inject = ['$scope', '$http', 'serviceConstants', 'validateService'];
+	providerDetailController.$inject = ['$scope', '$http', '$state', 'serviceConstants', 'validateService'];
 	
-	function providerDetailController($scope,$http,serviceConstants, validateService){
+	function providerDetailController($scope, $http, $state, serviceConstants, validateService){
+		var userId = $state.params.data.userId;
 		var vm = this;
 		let baseUrl = serviceConstants.baseUrl;
 		vm.myData = [{name: "Moroni", age: 50},
@@ -31,9 +32,8 @@
        }
 		vm.states = validateService.validateStateDrpdwn();
 		
-		$http.post(`${baseUrl}/configure/provider/details`, 1).then(function(response){
+		$http.post(`${baseUrl}/configure/provider/details`, userId).then(function(response){
 			var responseData = response.data;
-			console.log(responseData);
 			vm.providerName = responseData.name;
 			vm.providerWebsite = responseData.websiteUrl;
 			vm.providerAddressLine1 = responseData.address.address1;
@@ -42,9 +42,10 @@
 			vm.providerState = responseData.address.state;
 		});
 		
-		$http.post(`${baseUrl}/configure/provider/locations/`, 1).then(function(response){
+		$http.post(`${baseUrl}/configure/provider/locations/`, userId).then(function(response){
 			vm.gridOptions.data = response.data.data;
 			vm.gridOptions.columnDefs = response.data.headers;
+			 
 		});
 	}
 })();
