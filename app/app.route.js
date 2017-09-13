@@ -120,6 +120,16 @@
                 template: '<agreement-policy></agreement-policy>',
                 params: {'data': null}
             })
+            .state('profile-detail', {
+                url: '/profile-detail',
+                template: '<profile-detail></profile-detail>',
+                params: {'data':null}
+            })
+            .state('provider-detail', {
+                url: '/provider-detail',
+                template: '<provider-detail></provider-detail>',
+                params: {'data':null}
+            })
             ;        
              
     }

@@ -1,0 +1,203 @@
+<div class="font_for_allpages"  ng-cloak>
+<top-nav></top-nav>
+<div class="left_float" style="width:19%;padding-top:15px;">
+<left-nav-bar></left-nav-bar>
+</div>
+<div class="left_float" style="width:80.2%;background-color:white;margin-left:9px;">
+<div style="padding:1px;background-color:rgba(128, 128, 128, 0.43);">
+<h1 style="color:white;text-align:left;padding-left:50px;">Participant Configuration</h1>
+</div>
+<div class="form_style">
+		<div class ="md-title mgn_bottom_20">
+			<label>Personal Details</label>
+			<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.save()" >Save</md-button>
+			<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.goBack()" >Back</md-button>
+		</div>
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<md-input-container  class="md-block input-primary" flex-gt-sm> 
+				<label>First Name</label>
+				<input type="text" id="firstName" ng-model="vm.firstName" required> 
+			</md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Last Name</label>
+			 	<input type="text" id="lastName" ng-model="vm.lastName" required>
+			</md-input-container>
+		</div>
+		
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<md-input-container class="md-block input-primary" flex-gt-sm > 
+				<label>Mobile Phone</label>
+			 	<input type="text" id="mobilePhone" ng-model="vm.mobilePhone"  maxlength="12" required>
+			</md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Max orders allowed</label>
+			 	<input type="number" id="orders" ng-model="vm.maxOrderAllowed">
+			</md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Max meals allowed per day</label>
+			 	<input type="number" id="orders" ng-model="vm.maxMealsAllowedPerDay"> 
+			</md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>NGO</label>
+			 	<md-select ng-model="vm.ngoId">
+		          <md-option ng-repeat="ngo in vm.ngos" value="{{ngo.id}}">{{ngo.name}}</md-option>
+		        </md-select>
+			</md-input-container>
+		</div>
+		<br>
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<fieldset class="border">
+				<div layout-gt-xs="row" class="width_for_textbox">
+					<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+						<md-switch ng-model="vm.isActivated" aria-label="Activate user" ng-click="vm.activateUser()">{{vm.activeText}}</md-switch>
+					</md-input-container>
+					<md-input-container class="md-block input-primary" flex-gt-sm> 
+						<md-button class="md-raised button-primary md-warn" ng-click="vm.deleteUser()" aria-label="Delete user">Delete </md-button>
+					</md-input-container>
+					<md-input-container class="md-block input-primary mgn_left_30" flex-gt-sm> 
+						<md-switch ng-model="vm.isSheltered" aria-label="Sheltered user" ng-click="vm.shelterUser()">{{vm.shelteredText}}</md-switch>
+					</md-input-container>
+				</div>
+			</fieldset>
+		</div>
+		<br>
+		
+		<div class ="md-title mgn_bottom_20">
+			<label>Dependents</label>
+		</div>
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<fieldset class="border" style="margin-top: 8px;">
+			<span layout="row" flex="100%"> <md-input-container
+					class="md-block input-primary" flex-gt-sm> <input
+					type="text" ng-model="vm.name" placeholder="Name"></input> </md-input-container> <md-input-container
+					class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<input type="number" ng-model="vm.age" placeholder="Age"></input> </md-input-container> <md-input-container
+					class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<input type="text" ng-model="vm.gender" placeholder="Gender"></input>
+				</md-input-container>
+				<div style="padding-top: 10px;">
+					<md-button class="md-fab btn_style" ng-click="vm.addNewRow()">
+					<md-icon style="margin-top: 10px;"> <i
+						class="material-icons">&#xE03B;</i></md-icon> </md-button>
+				</div>
+			</span>
+			<div ng-show="vm.dependentList.length != 0" flex="100%">
+				<md-grid-list md-cols="4" md-row-height="45:1" md-gutter="6px"
+					style="margin-top: 7px;"> <md-grid-tile
+					md-rowspan="3" class="grid_list_multi"> <b>Name</b>
+				</md-grid-tile> <md-grid-tile md-rowspan="3" class="grid_list_multi">
+				<b>Age</b> </md-grid-tile> <md-grid-tile md-rowspan="3" class="grid_list_multi">
+				<b>Gender</b> </md-grid-tile> <md-grid-tile> <b></b></md-grid-tile> </md-grid-list>
+				<br>
+				<md-grid-list md-cols="4" md-row-height="45:1" md-gutter="6px"
+					style="margin-top: -19px;"
+					ng-repeat="dependent in vm.dependentList track by $index">
+				<br>
+				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.name}}</md-grid-tile>
+				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.age}}</md-grid-tile>
+				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.gender}}</md-grid-tile>
+				<md-button class="md-fab btn_style"
+					style="background-color:transparent; border-radius:0;color:#D65439; box-shadow:none;border:none;margin-left: 800px;
+		   		 margin-top: -6px;"
+					ng-click="vm.deleteBrand($index)">
+				<div style="position: relative; bottom: 10px;">X</div>
+				</md-button> </md-grid-list>
+			</div>
+		</fieldset>
+		</div>
+		<br><br>
+</div>
+
+</div>
+<div class="clear_all">
+<landing-footer></landing-footer>
+</div>
+</div>
+
+<!-- <div class="font_for_allpages">
+	<top-nav></top-nav>
+	<div  layout="row" layout-align="space-around none">
+		<md-content flex="20"  class="md-whiteframe-2dp">
+		  <left-nav-bar></left-nav-bar>
+		</md-content>
+	
+	<div class="left_float"
+		style="width: 80%; background-color: white; margin-left: 10px;">
+		<div
+			style="padding: 1px; background-color: rgba(128, 128, 128, 0.43);">
+			<h1 style="color: white; text-align: left; padding-left: 50px;">Participant Configuration</h1>
+		</div>
+		<div class="login-prompt"><b>Personal Details</b>
+			<md-button class="md-raised button-primary" ng-click="vm.save()" aria-label="Save user">
+			Save </md-button>
+		</div>
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<md-input-container class="md-block input-primary mgn_left_25"
+				flex-gt-sm> <label>First Name</label> <input
+				type="text" id="firstName" ng-model="vm.firstName"> </md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25"
+				flex-gt-sm> <label>Last Name</label> <input
+				type="text" id="lastName" ng-model="vm.lastName"> </md-input-container>
+		</div>
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<md-input-container class="md-block input-primary mgn_left_25"
+				flex-gt-sm> <label>Mobile Phone</label> <input
+				type="text" id="mobilePhone" ng-model="vm.mobilePhone"> </md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25"
+				flex-gt-sm> <label>Max orders allowed </label> <input
+				type="number" id="orders" ng-model="vm.orders"> </md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25"flex-gt-sm>
+		        <label>NGO</label>
+		        <md-select ng-model="vm.ngoId">
+		          <md-option ng-repeat="ngo in vm.ngos" value="{{ngo.id}}">{{ngo.name}}</md-option>
+		        </md-select>
+	      </md-input-container>
+		</div>
+		<br /> 
+		<div class="login-prompt"><b>Dependents</b></div>
+		<fieldset class="border" style="margin-top: 8px;">
+			<span layout="row" flex="100%"> <md-input-container
+					class="md-block input-primary" flex-gt-sm> <input
+					type="text" ng-model="vm.name" placeholder="Name"></input> </md-input-container> <md-input-container
+					class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<input type="number" ng-model="vm.age" placeholder="Age"></input> </md-input-container> <md-input-container
+					class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<input type="text" ng-model="vm.gender" placeholder="Gender"></input>
+				</md-input-container>
+				<div style="padding-top: 10px;">
+					<md-button class="md-fab btn_style" ng-click="vm.addNewRow()">
+					<md-icon style="margin-top: 10px;"> <i
+						class="material-icons">&#xE03B;</i></md-icon> </md-button>
+				</div>
+			</span>
+			<div ng-show="vm.dependentList.length != 0" flex="100%">
+				<md-grid-list md-cols="4" md-row-height="45:1" md-gutter="6px"
+					style="margin-top: -12px;"> <md-grid-tile
+					md-rowspan="3" class="grid_list_multi"> <b>Name</b>
+				</md-grid-tile> <md-grid-tile md-rowspan="3" class="grid_list_multi">
+				<b>Age</b> </md-grid-tile> <md-grid-tile md-rowspan="3" class="grid_list_multi">
+				<b>Gender</b> </md-grid-tile> <md-grid-tile> <b></b></md-grid-tile> </md-grid-list>
+				<br>
+				<md-grid-list md-cols="4" md-row-height="45:1" md-gutter="6px"
+					style="margin-top: -36px;"
+					ng-repeat="dependent in vm.dependentList track by $index">
+				<br>
+				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.name}}</md-grid-tile>
+				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.age}}</md-grid-tile>
+				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.gender}}</md-grid-tile>
+				<md-button class="md-fab btn_style"
+					style="background-color:transparent; border-radius:0;color:#D65439; box-shadow:none;border:none;margin-left: 960px;
+		   		 margin-top: -6px;"
+					ng-click="vm.deleteBrand($index)">
+				<div style="position: relative; bottom: 10px;">X</div>
+				</md-button> </md-grid-list>
+			</div>
+		</fieldset>
+		<br /> 
+		<div class="login-prompt"><b>Miscellaneous</b></div>
+		<md-switch ng-model="vm.isDeactivated" aria-label="Deactivate user">
+		Deactivate </md-switch>
+		<md-button class="md-raised button-primary md-warn" ng-click="vm.deleteUser()" aria-label="Delete user">
+		Delete </md-button>
+	</div>
+  </div> -->
