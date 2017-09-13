@@ -100,7 +100,7 @@
 				var phone = data.mobilePhone;
 				var patt = new RegExp("(?=.*[0-9])(?=.*[-]).{12}");
 				var res = patt.test(phone);
-				if (res != true || isNaN(Number(phone.replace(/-/g, "")))) {
+				if (isNaN(Number(phone.replace(/-/g, "")))) {
 					errorFields += "Phone, ";
 				}
 			}
@@ -526,30 +526,15 @@
 			if(!data.address) {
 				clientDataValidationErrors.push(getErrorObject("user", "Personal",  "User address information is missing", false, 1));
 			}
-			if(data.address && data.address.address1 == null){
-				clientDataValidationErrors.push(getErrorObject("address.address1", "Personal", "Address details", false, 1));
-			}
-			if(data.address && data.address.city == null){
-				clientDataValidationErrors.push(getErrorObject("address.city", "Personal", "City", false, 1));
-			}
+			
 			if(data.address && data.address.state == null){
 				clientDataValidationErrors.push(getErrorObject("address.state", "Personal", "State", false, 1));
 			}
-			if(data.address && data.address.zip == null){
-				clientDataValidationErrors.push(getErrorObject("address.zipCode", "Personal", "Zipcode", false, 1));
-			}
+			
 			if(data.race == null){
 				clientDataValidationErrors.push(getErrorObject("race", "Personal", "Race", false, 1));
         	}
-			if(data.address && data.allergies == null){
-				clientDataValidationErrors.push(getErrorObject("allergies", "Health", "Allergies", false, 1));
-        	}
-			if(data.address && data.lastVisitDoctor == null){
-				clientDataValidationErrors.push(getErrorObject("lastVisitDoctor", "Health", "Last time doctor visit", false, 1));
-        	}
-			if(data.address && data.lastVisitDentist == null){
-				clientDataValidationErrors.push(getErrorObject("lastVisitDentist", "Health", "Last time you saw dentist", false, 1));
-        	}
+			
 			
 			
 			return clientDataValidationErrors;

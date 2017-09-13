@@ -7,25 +7,20 @@
 	ng-model="vm.client.user.firstName"  ng-blur="vm.validationCheck('text','name',vm.client.user.firstName)"/>
 	<div id="errorMsg" ng-if="vm.fields['name']" style="color:red;" ng-bind="vm.msgs['name']"></div>
 	</md-input-container>
-<!-- <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-<label>Middle Name</label> <input type="text"
-	ng-model="vm.client.user.middleName" /></md-input-container> -->
+
 <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-<label>Last name</label> <input type="text" required ng-model="vm.client.user.lastName" />
+<label>Last name</label> <input type="text" required ng-model="vm.client.user.lastName"
+ng-blur="vm.validationCheck('text','lname',vm.client.user.lastName)" />
+<div id="errorMsg" ng-if="vm.fields['lname']" style="color:red;" ng-bind="vm.msgs['lname']"></div>
 </md-input-container>
 </md-input-container>
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
-	<!-- <md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>Address Type</label> <md-select name="type"
-		ng-model="vm.client.address.name" required> <md-option
-		value="home">Home</md-option> <md-option value="office">Office</md-option>
-	</md-select> </md-input-container> -->
+	
 	<md-input-container class="md-block input-primary " flex-gt-sm>
-	<label>Address line 1</label> <input type="text" required
-		ng-model="vm.client.address.address1" ng-blur="vm.validationCheck('text','address',vm.client.address.address1)">
-		<div id="errorMsg" ng-if="vm.fields['address']" style="color:red;" ng-bind="vm.msgs['address']"></div>
-		</md-input-container>
+	<label>Address line 1</label> <input type="text" 
+		ng-model="vm.client.address.address1" >
+	</md-input-container>
 
 		
 <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
@@ -36,9 +31,8 @@
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
 	<md-input-container class="md-block input-primary" flex-gt-sm>
-	<label>City</label> <input type="text" required
-		ng-model="vm.client.address.city" ng-blur="vm.validationCheck('text','city',vm.client.address.city)" >
-		<div id="errorMsg" ng-if="vm.fields['city']" style="color:red;" ng-bind="vm.msgs['city']"></div>
+	<label>City</label> <input type="text" 
+		ng-model="vm.client.address.city" >
 		</md-input-container>
 
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
@@ -49,7 +43,7 @@
 		</md-input-container>
 	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 
-	<label>Zipcode</label> <input type="text" required maxlength="5"
+	<label>Zipcode</label> <input type="text"  maxlength="5"
 		ng-model="vm.client.address.zip" ng-blur="vm.validationCheck('number','zip',vm.client.address.zip)">
 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;" ng-bind="vm.msgs['zip']"></div>
 		</md-input-container>
@@ -57,22 +51,20 @@
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
 <md-input-container class="md-block input-primary" flex-gt-sm>
-<label>Ethnicity</label> <md-select required
-	ng-model="vm.client.ethnicity" ng-blur="vm.validationCheck('text','ethnicity',vm.client.ethnicity)"> <md-option ng-value=1>White</md-option> <md-option ng-value=2>Hispanic or Latino</md-option>
+<label>Ethnicity</label> <md-select 
+	ng-model="vm.client.ethnicity"> <md-option ng-value=1>White</md-option> <md-option ng-value=2>Hispanic or Latino</md-option>
 	<md-option ng-value=3>Black or African American</md-option><md-option ng-value=4>Native American or American Indian</md-option><md-option ng-value=5>Asian/ Pacific Islander</md-option><md-option ng-value=0>Other</md-option>
 	</md-select> 
-	<div id="errorMsg" ng-if="vm.fields['ethnicity']" style="color:red;" ng-bind="vm.msgs['ethnicity']"></div></md-input-container>
+	</md-input-container>
 </md-input-container>
-	<!-- <md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-	<label class="text_style_vol" >Race</label> <md-select ng-model="vm.client.race"> <md-option
-		value=1>Asian</md-option> <md-option value=2>American</md-option></md-select> </md-input-container> -->
+
 <md-input-container class="md-block input-primary" flex-gt-sm>
 <label>Phone number</label> <input type="text" phone-number-input required maxlength="12"
 	ng-model="vm.client.user.mobilePhone" ng-blur="vm.validationCheck('number','phone',vm.client.user.mobilePhone)" placeholder="999-999-9999" >
 	<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;" ng-bind="vm.msgs['phone']"></div>
 	 </md-input-container>
 	<md-input-container class="md-block mgn_left_25" flex-gt-sm> <label>Birthday</label>
-<input type="date" required ng-model="vm.client.bday" ng-blur="vm.validationCheck('text','bday',vm.client.bday)"> 
+<input type="date"  ng-model="vm.client.bday" ng-blur="vm.validationCheck('text','bday',vm.client.bday)"> 
 <div id="errorMsg" ng-if="vm.fields['bday']" style="color:red;" ng-bind="vm.msgs['bday']"></div></md-input-container>
 </div><br><br>
 <md-radio-group layout="row" ng-model="vm.client.beenArrested"

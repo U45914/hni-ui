@@ -33,7 +33,7 @@
 				"name" : vm.name,
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
-				"invitationMessage" : vm.inviteMsg
+				"message" : vm.inviteMsg
 			};
 			
 			var doNotPost = false;
@@ -58,13 +58,13 @@
 										toastService.showToast("Your request has been submitted")
 										$state.go('dashboard');
 									} else if(response
-											&& response.data.response && !response.data.errorMsg){
+											&& response.data.response && !response.data.message){
 										toastService.showToast("Something went wrong. Try again later");
 										vm.buttonText = "Invite";
 										vm.isDisabled = false;
 									}
 										else {
-										toastService.showToast("Failed : "+ response.data.errorMsg);
+										toastService.showToast("Failed : "+ response.data.message);
 										vm.buttonText = "Invite";
 										vm.isDisabled = false;
 									}

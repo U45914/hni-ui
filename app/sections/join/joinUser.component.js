@@ -34,12 +34,12 @@
         };
         
         function setUserDataToLocalStorage(userData, type, activationCode) {
-        	var additional = JSON.parse(userData.data);
+        	//var additional = JSON.parse(userData.data);
         	window.localStorage.setItem(USER_ORG_INFO, userData.orgId);
         	window.localStorage.setItem("firstName", userData.firstName ? userData.firstName : "");
         	window.localStorage.setItem("userName", userData.userName);
         	window.localStorage.setItem("activationCode", activationCode);
-        	window.localStorage.setItem("mobilePhone", additional.phone);
+        	window.localStorage.setItem("mobilePhone", userData.phone);
         	if(type === 'client')
         		window.localStorage.setItem("dependants", userData.dependants);
             	window.localStorage.setItem(USER_TYPE, type);

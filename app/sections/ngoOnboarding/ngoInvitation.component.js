@@ -71,17 +71,17 @@
 										$state.go('dashboard');
 									} else if (response && response.data.response && response.data.response == "error") {
 										vm.incomplete = true;
-										toastService.showToast("Error : "+ response.data.errorMsg);
+										toastService.showToast("Error : "+ response.data.message);
 										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;
 										
-									} else if (response && response.data && !response.data.errorMsg) {
+									} else if (response && response.data && !response.data.message) {
 										toastService.showToast("Something went wrong, please try again");
 										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;
 										
 									} else {
-										toastService.showToast("Failed : "+ response.data.errorMsg);
+										toastService.showToast("Failed : "+ response.data.message);
 										vm.incomplete = true;
 										vm.buttonAction = "INVITE";
 										vm.disableSubmitButton = false;										

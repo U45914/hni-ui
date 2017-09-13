@@ -3,12 +3,20 @@
         <div layout="row" layout-wrap>
             <i class="material-icons" flex="100">&#xE8DC;</i>
             <div class="small-prompt-header" flex="100">AWESOME!</div>
-            <div class="small-prompt-text" flex="100">This order is now marked complete.</div>
+            <div class="small-prompt-subtext" flex="100">Please provide order payment information to mark this order as complete.</div>
+            <md-input-container class="md-block" flex="40" > 
+				<label>Total amount</label>
+				<input	type="number" required  ng-model="vm.orderAmt" class="input_box_md " autofocus="on" ng-change="vm.proceed()"> 
+			 </md-input-container>
+			 <md-input-container class="md-block" flex="60" > 
+				<label>Confirmation ID</label>
+				<input	type="text" required minlength="1" ng-model="vm.confirmationId" class="input_box_md " ng-change="vm.proceed()"> 
+			 </md-input-container>
             <div class="small-prompt-subtext" flex="100">{{::vm.orderCount}} orders remaining.</div>
         </div>
     </md-dialog-content>
-    <md-dialog-actions>
-        <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.leaveOrders()">Finish</md-button>
-        <spinner-button text="Next Order" click-fn="vm.getNextOrder()" stop-fn="vm.nextOrderComplete"></spinner-button>
+    <md-dialog-actions ng-if= "vm.enableProceed">
+        <md-button class="button-primary" md-ink-ripple="#D65439" ng-click="vm.finishOrder();vm.leaveOrders()" >Finish</md-button>
+        <spinner-button text="Next Order" click-fn="vm.finishAndGetNext()" stop-fn="vm.nextOrderComplete"></spinner-button>
     </md-dialog-actions>
 </md-dialog>

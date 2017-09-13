@@ -22,6 +22,7 @@
         let footer = $element[0].getElementsByClassName('order-detail-footer')[0];
         let topNav = $document[0].getElementById('top-nav');
 
+        vm.isDisabled = false;
         vm.orderInfo = {};
         vm.paymentInfo = {};
         vm.showPaymentInfo = true;
@@ -81,6 +82,8 @@
                 vm.orderInfo.orderId = data.id;
                 vm.orderInfo.totalCost = data.subTotal;
                 vm.orderInfo.userName = `${data.user.firstName} ${data.user.lastName.charAt(0).toUpperCase()}.`;
+                vm.orderInfo.phoneNumber = data.user.mobilePhone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+                
                 vm.orderInfo.providerId = data.providerLocation.provider.id;
                 vm.orderInfo.providerName = data.providerLocation.provider.name;
                 vm.orderInfo.providerAddress = data.providerLocation.address.address1;
@@ -157,7 +160,8 @@
         }
 
         function completeOrder() {
-            return $q.all([ordersService.getOrderCount(), ordersService.completeOrder(vm.orderInfo.orderId)]);
+        	return $q.all([ordersService.getOrderCount(),vm.orderInfo.orderId]);
+          //  return $q.all([ordersService.getOrderCount(), ordersService.completeOrder(vm.orderInfo.orderId)]);
         }
 
         function showComplete(response) {
@@ -168,7 +172,8 @@
                 templateUrl: 'order-complete.tpl.html',
                 locals : {
                     providerId: vm.orderInfo.providerId,
-                    orderCount: response[0].data['order-count']
+                    orderCount: response[0].data['order-count'],
+                    orderId : response[1]
                 }
             }).then((response) => { resetLocalData(); getInitialSuccess(response);});
         }

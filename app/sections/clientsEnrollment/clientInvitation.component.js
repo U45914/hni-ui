@@ -12,10 +12,10 @@
 		controllerAs : 'vm'
 	});
 	clientInvitationController.$inject = [ '$q', 'clientEnrollmentService', '$scope',
-			'$state', 'toastService', 'validateFormData','validateService'];
+			'$state', 'toastService', 'validateFormData','validateService', 'gridService'];
 
 	function clientInvitationController($q, clientEnrollmentService, $scope, $state,
-			toastService, validateFormData,validateService) {
+			toastService, validateFormData,validateService,gridService) {
 		var vm = this;
 		vm.orgInfo = {};
 		vm.checkEmail=false;
@@ -23,11 +23,15 @@
 		vm.fields = {
 				"name" : true,
 				"phone" : true,
-				"email" : true
+				"email" : true,
+				"state" : true
 		};
 		vm.buttonText = "Invite";
 		vm.isDisabled = false;
 		vm.msgs = {};
+		gridService.getGridDataFor("ngo/all").then(function(response){
+			vm.ngos = response.data.data;
+		});
 		vm.submit = function() {
 			if(vm.dependants == null)
 				vm.dependants = 0;
@@ -36,8 +40,9 @@
 				"phone" : vm.phoneNumber,
 				"email" : vm.email,
 				"website" : "NA",
-				"state" : vm.state,
-				"dependants" : vm.dependants
+				"stateCode" : vm.state,
+				"dependantsCount" : vm.dependants,
+				"ngoId" : vm.ngoId
 			};
 			var doNotPost = false;
 			var keys = Object.keys(vm.fields);
@@ -47,6 +52,7 @@
 					break;
 				}
 			}
+			
 			if (!doNotPost && (vm.checkEmail == true)) {
 				vm.buttonText = "Please wait...";
 				vm.isDisabled = true;	
@@ -61,13 +67,13 @@
 										$state.go('dashboard');
 									} 
 									else if(response
-											&& response.data && !response.data.errorMsg){
+											&& response.data && !response.data.message){
 										toastService.showToast("Something went wrong. Try again later");
 										vm.buttonText = "Invite";
 										vm.isDisabled = false;
 									}
 									else {
-										toastService.showToast("Failed : "+ response.data.errorMsg);
+										toastService.showToast("Failed : "+ response.data.message);
 										vm.buttonText = "Invite";
 										vm.isDisabled = false;
 									}

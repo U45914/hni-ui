@@ -1,126 +1,22 @@
 <div class="font_for_allpages">
-<md-content layout-padding layout="row" layout-align="center" ng-show="vm.showReport[vm.reportType]">
-<div flex-gt-md="100" flex-md="100" flex-xs="100" class="border shade-box" >
-	<div grid-data id='test' grid-options="gridOptions"
-		grid-actions="gridActions">
-		<div >
-		<table
-			class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-			<thead class="report_text_align">
-			 <span class="md-headline">{{vm.report.label}}</span>
-				<tr>
-					<th sortable="value"
-						class="sortable mdl-data-table__cell--non-numeric report_padding  "
-						ng-repeat="head in vm.headers"><span>{{head.label}}</span></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr grid-item ng-repeat="data in vm.service" ng-if="vm.showData">
-					<td class="mdl-data-table__cell--non-numeric padding_top_report"
-						ng-repeat=" head in vm.headers"><span>{{data[head.field]}}</span>
-					</td>
-				</tr>
-				<tr grid-item ng-if="vm.showNothing" align="center">
-					<td align="center" colspan="3">
-						Nothing to show
-					</td>	
-				</tr>
-			</tbody>
-		</table>
+	<md-content layout-padding layout="row" layout-align="center" ng-if="vm.showReport[vm.reportType]">
+		<div flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
+			<div id="test{{vm.reportType}}" ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-cellnav ui-grid-auto-resize class="grid">
+			</div>
+		   <!--  <hr> -->
+		   <br/>
+		    <div>
+		    	<fieldset class= "border">
+		    		<legend><b>Quick Actions</b></legend>
+		    		<center>
+					    <md-switch style= "float: left;" ng-if="vm.isParticipant" ng-disabled="vm.disableActivate" ng-model="vm.isActivated" ng-click="vm.activated()">Activate / Deactivate</md-switch>
+						<md-button class="md-raised button-primary" ng-disabled="vm.disableDelete" aria-label="Delete user" ng-click="vm.deleteSelected()">Delete</md-button>
+						<!-- <md-button class="md-raised button-primary" ng-disabled="vm.disableViewProfile" ng-click="vm.viewProfile()">View Profile</md-button> -->
+						<md-switch style= "float: right;" ng-if="vm.isParticipant" ng-disabled="vm.disableSheltered" ng-model="vm.isSheltered" ng-click="vm.sheltered()">Sheltered / Unsheltered</md-switch>
+					</center>
+				</fieldset>
 		</div>
-	</div>
-</div>
-</md-content>
+		</div>
+	</md-content>
+</div> 
 
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <table id="role" border="1">
-	<tr>
-		<th ng-repeat="head in vm.headers"><span>{{head.label}}</span></th>
-	</tr>
-
-	<tr ng-repeat="data in vm.service">
-		<td ng-repeat=" head in vm.headers" ng-scope>
-			{{data[head.field]}}</td>
-	</tr>
-</table> -->
-
-
-
-<!-- 
-<div flex-xs flex-gt-xs="50" layout="column">
-      <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">{{vm.report.label}}</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content >
-		<md-grid-list  md-cols="5" md-row-height="6:1" md-gutter="6px" style="padding-bottom: calc(((3.33333% - 4.8px) * 1) + 0px);">
-<md-grid-tile ng-repeat="header in vm.headers" >
-<div  layout="row" flex>{{header.label}}</div>
-</md-grid-tile> </md-grid-list>
-<md-grid-list  md-cols="5" md-row-height="6:1" md-gutter="6px"
-	ng-repeat="data in vm.service"> <md-grid-tile
-	ng-repeat="header in vm.headers">
-<div layout="row" flex>{{data[header.field]}}</div>
-</md-grid-tile> </md-grid-list>
-        </md-card-content>
-         </md-card>
- -->
-
-
-
-<!-- <p>Organization</p>
-<md-grid-list class="red" md-cols="5" md-row-height="6:1" md-gutter="6px">
-<md-grid-tile ng-repeat="header in vm.headersOrganization">
-<div id="header" layout="row" flex>{{header.label}}</div>
-</md-grid-tile> </md-grid-list>
-<md-grid-list class="green" md-cols="5" md-row-height="6:1" md-gutter="6px"
-	ng-repeat="data in vm.serviceOrganization"> <md-grid-tile
-	ng-repeat="header in vm.headersOrganization">
-<div id="data" layout="row" flex>{{data[header.field]}}</div>
-</md-grid-tile> </md-grid-list>
-
-<p>Ngo</p>
-
-<md-grid-list class="red" md-cols="5" md-row-height="6:1" md-gutter="6px">
-<md-grid-tile ng-repeat="header in vm.headersNgo">
-<div id="header" layout="row" flex>{{header.label}}</div>
-</md-grid-tile> </md-grid-list>
-<md-grid-list class="green" md-cols="5" md-row-height="6:1" md-gutter="6px"
-	ng-repeat="data in vm.serviceNgo"> <md-grid-tile
-	ng-repeat="header in vm.headersNgo">
-<div id="data" layout="row" flex>{{data[header.field]}}</div>
-</md-grid-tile> </md-grid-list>
-<p>Biju</p>
- <md-grid-list class="red" md-cols="5" md-row-height="6:1" md-gutter="6px">
-<md-grid-tile ng-repeat="header in vm.headersGetAllNGO">
-<div id="header" layout="row" flex>{{header.label}}</div>
-</md-grid-tile> </md-grid-list>
-<md-grid-list class="green" md-cols="5" md-row-height="6:1" md-gutter="6px"
-	ng-repeat="data in vm.serviceGetAllNGO"> <md-grid-tile
-	ng-repeat="header in vm.headersGetAllNGO">
-<div id="data" layout="row" flex>{{data[header.field]}}</div>
-</md-grid-tile> </md-grid-list>
-<p>Nithin</p>
-<md-grid-list class="red" md-cols="5" md-row-height="6:1" md-gutter="6px">
-<md-grid-tile ng-repeat="header in vm.headersVolunteer">
-<div id="header" layout="row" flex>{{header.label}}</div>
-</md-grid-tile> </md-grid-list>
-<md-grid-list class="green" md-cols="5" md-row-height="6:1" md-gutter="6px"
-	ng-repeat="data in vm.serviceVolunteer"> <md-grid-tile
-	ng-repeat="header in vm.headersVolunteer">
-<div id="data" layout="row" flex>{{data[header.field]}}</div>
-</md-grid-tile> </md-grid-list>  -->

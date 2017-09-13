@@ -12,7 +12,7 @@
 
     function controller($window, $state, selectedNavItemService, serviceConstants) {
         let vm = this;
-        let resourceUrl = serviceConstants.resourceUrl;
+        let baseUrl = serviceConstants.baseUrl;
         
         vm.$onInit = function() {
             selectedNavItemService.setSelectedItem("none");
@@ -35,7 +35,7 @@
         };
         
         vm.openPdf = function() {
-            $window.open(`${resourceUrl}/docs/Volunteer_Guide.pdf`, '_blank');
+        	$window.open(`${baseUrl}/help/volunteer/instruction/pdf`, '_blank');
         };
     }
 })();

@@ -48,8 +48,24 @@
 		
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
 				<label>Number of dependants allowed? </label>
-				<md-select ng-model="vm.dependants">
-				<md-option ng-repeat="n in [1,2,3,4,5,6,7,8,9,10]" value={{n}} >{{n}}</md-option>
+				<md-select ng-model="vm.dependants" required>
+				<md-option ng-repeat="n in [0,1,2,3,4,5,6,7,8,9,10]" value={{n}} >{{n}}</md-option>
+				</md-select>
+			</md-input-container> 
+		</div>
+		
+		<div layout-gt-xs="row" class="width_for_textbox">
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<label>Timezone </label>
+				<md-select ng-model="vm.timezone" ng-disabled="true">
+				<!-- <md-option ng-repeat="n in [0,1,2,3,4,5,6,7,8,9,10]" value={{n}} >{{n}}</md-option> -->
+				</md-select>
+			</md-input-container> 
+			
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+				<label>Choose NGO </label>
+				<md-select ng-model="vm.ngoId" required>
+				<md-option ng-repeat="ngo in vm.ngos" value={{ngo.id}} >{{ngo.name}}</md-option>
 				</md-select>
 			</md-input-container> 
 		</div>

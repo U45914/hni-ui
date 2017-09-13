@@ -8,12 +8,12 @@
             controllerAs: 'vm'
         });
 
-    ActionSectionController.$inject = ['$rootScope', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName'];
+    ActionSectionController.$inject = ['$rootScope', '$scope', '$http', '$state', 'userService', 'serviceConstants', 'popupService', 'rolesConstantName','$window','$sce'];
 
-    function ActionSectionController($rootScope, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName) {
+    function ActionSectionController($rootScope, $scope, $http, $state, userService, serviceConstants, popupService, rolesConstantName,$window,$sce) {
     	let baseUrl = serviceConstants.baseUrl;
         var vm = this;
-         
+        let resourceUrl = serviceConstants.resourceUrl;
    	 	vm.service = [];
    	 	vm.headers= [];
    	 	vm.reportCollection = [];
@@ -24,7 +24,7 @@
    		vm.isFourthTabActive = false;
    		vm.isOrderActive = false;
    		vm.isReportActive = false;
-   	 	
+   		vm.isRestaurantActive = false;
    	 	
    	 	vm.rolesConstantName = rolesConstantName;
 	   	
@@ -35,21 +35,8 @@
             	
                 if(response.data !== null) {
                 	vm.userRole = response.data.role;
-                	if(vm.userRole === vm.rolesConstantName.superAdmin){
-                		vm.isFirstCardActive = true;
-                	}
-                	if(vm.userRole === vm.rolesConstantName.ngoAdmin){
-                		vm.isSecondTabActive = true;
-                	}
-                	if(vm.userRole === vm.rolesConstantName.ngo){
-                		vm.isSecondTabActive = true;
-                	}
-                	if(vm.userRole === vm.rolesConstantName.volunteer){
-                		vm.isOrderActive = true;
-                	}
-                	if(vm.userRole === vm.rolesConstantName.client){
-                		vm.isReportActive = true;
-                	}
+                	vm.setDefaultView();
+                	
                 	window.localStorage.setItem("userRole", vm.userRole);
                 	vm.user = response.data.data;  
                 	if (response.data.profileStatus == true || vm.userRole === "Super Admin") {
@@ -80,12 +67,34 @@
                 console.log(error);
             });
         	
+
         };
         
-        vm.setReportView = function(viewName) {
-        	
+        vm.setDefaultView = function() {
+        	var selectedView = $window.localStorage['selectedActionCard'];
+        	if (selectedView) {
+        		vm.showReportView(selectedView);
+        	} else {
+            	if(vm.userRole === vm.rolesConstantName.superAdmin){
+            		vm.isFirstCardActive = true;
+            	}
+            	if(vm.userRole === vm.rolesConstantName.ngoAdmin){
+            		vm.isSecondTabActive = true;
+            	}
+            	if(vm.userRole === vm.rolesConstantName.ngo){
+            		vm.isSecondTabActive = true;
+            	}
+            	if(vm.userRole === vm.rolesConstantName.volunteer){
+            		vm.isOrderActive = true;
+            	}
+            	if(vm.userRole === vm.rolesConstantName.client){
+            		vm.isOrderActive = true;
+            	}
+        	}
         }
+        
         vm.showReportView = function(type) { 
+        	$window.localStorage['selectedActionCard'] = type;
         	if(type === "ngo"){
         		vm.isFirstCardActive = true;
            	 	vm.isSecondTabActive = false;
@@ -114,13 +123,29 @@
         		vm.isOrderActive = true;
         		vm.isReportActive = false;
         	}
-        	if(type === "report"){
+        	if(type === "orders"){
+        		vm.isOrderActive = true;
+        		vm.isRestaurantActive = false;
+        		vm.isReportActive = false;
+        	}
+        	if(type === "restaurant"){
         		vm.isOrderActive = false;
+        		vm.isRestaurantActive = true;
+        		vm.isReportActive = false;
+        	}
+        	if(type === "faq"){
+        		vm.isOrderActive = false;
+        		vm.isRestaurantActive = false;
         		vm.isReportActive = true;
+        		$http.get(`${baseUrl}/help/client/faq/pdf`,{responseType: 'arraybuffer'})
+    			.then(function(response){
+    				var file = new Blob([response.data], {type: 'application/pdf'});
+    				var fileURL = URL.createObjectURL(file);
+    				vm.faq = $sce.trustAsResourceUrl(fileURL);
+    			});
         	}
         	
         	$rootScope.$broadcast('show-report-view', type);
         }
-        
     }
 })();

@@ -113,23 +113,16 @@
             function validateCientInfoData(data){
             	var user = data.user;
             	var address = data.address;
-            	if(user == null || address == null){
+            	if(user == null){
             		return false;
             	}
             	if(user.firstName == null || user.mobilePhone == null){
             		return false;
             	}
-            	if(	address.address1 == null || address.city == null ||	address.state == null || address.zip == null ){
+            	if(address.state == null){
             		return false;
             	}
-            	if(	data.allergies == null){
-            		return false;}
-            	if(	data.lastVisitDoctor == null){
-            		return false;
-            	}
-            	if(	data.lastVisitDentist == null){
-            		return false;
-            	}
+            	
             	return true;
             	
             }
