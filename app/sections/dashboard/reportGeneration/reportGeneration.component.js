@@ -125,7 +125,7 @@
         	}else if(vm.reportType == "provider"){
         		$state.go('provider-detail',{
             		'data' : {
-            			userId : row.entity.providerId
+            			providerId : row.entity.providerId
             		}
             	});
         	}

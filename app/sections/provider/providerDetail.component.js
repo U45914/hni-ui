@@ -8,17 +8,12 @@
 		controllerAs : 'vm'
 	});
 	
-	providerDetailController.$inject = ['$scope', '$http', '$state', 'serviceConstants', 'validateService'];
+	providerDetailController.$inject = ['$scope', '$http', '$state', 'serviceConstants', 'validateService' , 'providerService'];
 	
-	function providerDetailController($scope, $http, $state, serviceConstants, validateService){
-		var userId = $state.params.data.userId;
+	function providerDetailController($scope, $http, $state, serviceConstants, validateService, providerService){
+		var providerId = $state.params.data.providerId;
 		var vm = this;
 		let baseUrl = serviceConstants.baseUrl;
-		vm.myData = [{name: "Moroni", age: 50},
-                    {name: "Tiancum", age: 43},
-                    {name: "Jacob", age: 27},
-                    {name: "Nephi", age: 29},
-                    {name: "Enos", age: 34}];
 		vm.gridOptions = {
        		 data: [],
                 urlSync: false,
@@ -32,7 +27,20 @@
        }
 		vm.states = validateService.validateStateDrpdwn();
 		
-		$http.post(`${baseUrl}/configure/provider/details`, userId).then(function(response){
+		
+		//remove this method
+		vm.updateSelected = function(){
+			var dirtyRows = vm.gridApi.rowEdit.getDirtyRows();
+			angular.forEach(dirtyRows, function(row){
+    			console.log(row.entity);
+    		});
+		}
+		
+		vm.gridOptions.onRegisterApi = function(gridApi){
+        	 vm.gridApi = gridApi;
+		}
+		
+		providerService.getProviderDetails(providerId).then(function(response){
 			var responseData = response.data;
 			vm.providerName = responseData.name;
 			vm.providerWebsite = responseData.websiteUrl;
@@ -42,10 +50,20 @@
 			vm.providerState = responseData.address.state;
 		});
 		
-		$http.post(`${baseUrl}/configure/provider/locations/`, userId).then(function(response){
+		providerService.getProviderLocationDetails(providerId).then(function(response){
 			vm.gridOptions.data = response.data.data;
 			vm.gridOptions.columnDefs = response.data.headers;
-			 
 		});
+		
+		vm.update = function(){
+			var dirtyRows = vm.gridApi.rowEdit.getDirtyRows();
+			updateProviderLocations(dirtyRows);
+		}
+		
+		function updateProviderLocations(dirtyRows){
+			angular.forEach(dirtyRows, function(row){
+    			providerService.updateProviderLocations(row.entity);
+    		});
+		}
 	}
 })();
