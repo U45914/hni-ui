@@ -61,9 +61,11 @@
 		}
 		
 		function updateProviderLocations(dirtyRows){
+			var updatedRows = [];
 			angular.forEach(dirtyRows, function(row){
-    			providerService.updateProviderLocations(row.entity);
+				updatedRows.push(row.entity);
     		});
+			providerService.updateProviderLocations(updatedRows);
 		}
 	}
 })();
