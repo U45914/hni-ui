@@ -42,6 +42,7 @@
 		
 		providerService.getProviderDetails(providerId).then(function(response){
 			var responseData = response.data;
+			vm.providerDetails = responseData;
 			vm.providerName = responseData.name;
 			vm.providerWebsite = responseData.websiteUrl;
 			vm.providerAddressLine1 = responseData.address.address1;
@@ -51,13 +52,26 @@
 		});
 		
 		providerService.getProviderLocationDetails(providerId).then(function(response){
+			console.log(response);
 			vm.gridOptions.data = response.data.data;
 			vm.gridOptions.columnDefs = response.data.headers;
 		});
 		
 		vm.update = function(){
 			var dirtyRows = vm.gridApi.rowEdit.getDirtyRows();
+			var provider = {
+					"id" : vm.providerDetails.id,
+					"name" : vm.providerName,
+					"websiteUrl" : vm.providerWebsite,
+					"address" : {
+						"address1" : vm.providerAddressLine1,
+						"address2" : vm.providerAddressLine2,
+						"city" : vm.providerCity,
+						"state" : vm.providerState
+					} 
+			};
 			updateProviderLocations(dirtyRows);
+			updateProvider(provider);
 		}
 		
 		function updateProviderLocations(dirtyRows){
@@ -66,6 +80,10 @@
 				updatedRows.push(row.entity);
     		});
 			providerService.updateProviderLocations(updatedRows);
+		}
+		
+		function updateProvider(provider){
+			providerService.updateProvider(provider);
 		}
 	}
 })();

@@ -11,7 +11,8 @@
         return {
         	getProviderDetails,
         	getProviderLocationDetails,
-        	updateProviderLocations
+        	updateProviderLocations,
+        	updateProvider
         };
         
         function getProviderDetails(providerId){
@@ -22,6 +23,9 @@
         }
         function updateProviderLocations(providerLocations){
         	return $http.post(`${baseUrl}/providers/update/locations/`, providerLocations);
+        }
+        function updateProvider(provider){
+        	return $http.post(`${baseUrl}/providers/update/details/`, provider);
         }
         
     }
