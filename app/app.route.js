@@ -130,6 +130,10 @@
                 template: '<provider-detail></provider-detail>',
                 params: {'data':null}
             })
+            .state('providerCreate', {
+            	url: '/providerCreate',
+            	template: '<new-provider></new-provider>'
+            })
             ;        
              
     }
