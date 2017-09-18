@@ -8,9 +8,12 @@
 		controllerAs : 'vm'
 	});
 	
-	providerDetailController.$inject = ['$scope', '$http', '$state', 'serviceConstants', 'validateService' , 'providerService'];
+	providerDetailController.$inject = ['$scope', '$http', '$state', 'serviceConstants', 'validateService' , 'providerService', 'toastService'];
 	
-	function providerDetailController($scope, $http, $state, serviceConstants, validateService, providerService){
+	function providerDetailController($scope, $http, $state, serviceConstants, validateService, providerService, toastService){
+		if($state.params.data == null){
+			$state.go('dashboard');
+		}
 		var providerId = $state.params.data.providerId;
 		var vm = this;
 		let baseUrl = serviceConstants.baseUrl;
@@ -49,6 +52,7 @@
 			vm.providerAddressLine2 = responseData.address.address2;
 			vm.providerCity = responseData.address.city;
 			vm.providerState = responseData.address.state;
+			vm.providerZip = responseData.address.zip;
 		});
 		
 		providerService.getProviderLocationDetails(providerId).then(function(response){
@@ -67,7 +71,8 @@
 						"address1" : vm.providerAddressLine1,
 						"address2" : vm.providerAddressLine2,
 						"city" : vm.providerCity,
-						"state" : vm.providerState
+						"state" : vm.providerState,
+						"zip" : vm.providerZip
 					} 
 			};
 			updateProviderLocations(dirtyRows);
@@ -79,7 +84,9 @@
 			angular.forEach(dirtyRows, function(row){
 				updatedRows.push(row.entity);
     		});
-			providerService.updateProviderLocations(updatedRows);
+			providerService.updateProviderLocations(updatedRows).then(function(response){
+					toastService.showToast(response.data.message);
+			});
 		}
 		
 		function updateProvider(provider){

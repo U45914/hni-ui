@@ -8,9 +8,6 @@
 			<div style="padding:1px;background-color:rgba(128, 128, 128, 0.43);">
 				<h1 style="color:white;text-align:left;padding-left:50px;">Provider Configuration</h1>
 			</div>
-			<div style = "float : right">
-				<md-button class="md-raised button-primary" aria-label="Save users" ng-click="vm.update()">Save Changes</md-button>
-			</div>
 			<div class="form_style">
 				<div layout-gt-xs="row">
 					<md-input-container flex-gt-sm>
@@ -31,6 +28,8 @@
 						<label class="text_style_vol">Address Line 2</label> <input type="text" autofocus="on"
 								ng-model="vm.providerAddressLine2" />
 					</md-input-container>
+				</div>
+				<div layout-gt-xs="row">
 					<md-input-container flex-gt-sm>
 						<label class="text_style_vol">City</label> <input type="text" autofocus="on"
 								ng-model="vm.providerCity" />
@@ -41,7 +40,14 @@
             		 	<md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
             		 </md-select>
                	</md-input-container>
+               	<md-input-container flex-gt-sm>
+						<label class="text_style_vol">Zip</label> <input type="text" autofocus="on"
+								ng-model="vm.providerZip" />
+					</md-input-container>
 				</div><br>
+				<center>
+					<md-button class="md-raised button-primary" aria-label="Save users" ng-click="vm.update()">Save Changes</md-button>
+				</center><br/>
 				<h3>Provider Locations</h3>
 				<div flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
 			<div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-row-edit ui-grid-cellnav ui-grid-auto-resize class="grid">

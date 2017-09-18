@@ -1,0 +1,116 @@
+<div class="font_for_allpages">
+	<top-nav></top-nav>
+	<div>
+		<div class="left_float"
+			style="width: 19%; margin-right: 1%; padding-top: 20px; padding-left: 5px">
+			<left-nav-bar></left-nav-bar>
+		</div>
+		<div class="left_float" style="width: 79.5%; background-color: white;">
+			<div
+				style="padding: 1px; background-color: rgba(128, 128, 128, 0.43);">
+				<h1 style="color: white; text-align: left; padding-left: 50px;">Register
+					New Provider</h1>
+			</div>
+
+			<div class="form_style">
+				<fieldset>
+					<div layout-gt-xs="row">
+						<input type="hidden" required autofocus="on"
+							ng-model="vm.provider.id" />
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Name</label> <input type="text" required
+							autofocus="on" ng-model="vm.provider.name" /> </md-input-container>
+						<md-input-container class="mgn_left_25" flex-gt-sm>
+						<label class="text_style_vol">Website URL</label> <input
+							type="text" required ng-model="vm.provider.websiteUrl" /> </md-input-container>
+					</div>
+					<br>
+					<div layout-gt-xs="row">
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Address Line 1</label> <input type="text"
+							required autofocus="on" ng-model="vm.provider.address.address1" />
+						</md-input-container>
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Address Line 2</label> <input type="text"
+							autofocus="on" ng-model="vm.provider.address.address2" /> </md-input-container>
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">City</label> <input type="text"
+							autofocus="on" ng-model="vm.provider.address.city" /> </md-input-container>
+						<md-input-container class="md-block input-primary mgn_left_25"
+							flex-gt-sm> <label>State</label> <md-select
+							name="type" ng-model="vm.provider.address.state" required>
+						<md-option ng-repeat="each in vm.states" value={{each.value}}>{{each.name}}</md-option>
+						</md-select> </md-input-container>
+					</div>
+				</fieldset>
+			</div>
+			<div layout="row" layout-align="center center">
+				<md-button class="md-raised button-primary"
+					ng-show="vm.isAllowedToCreate" aria-label="Create Provider"
+					ng-click="vm.createProvider()">Create Provider</md-button>
+				<md-button class="md-raised button-primary"
+					ng-show="vm.isAllowedToUpdate" aria-label="Update Provider"
+					ng-click="vm.updateProvider()">Update Provider</md-button>
+			</div>
+			<div ng-show="vm.showProviderLocationFields" class="form_style">
+				<h2 class="md-primary">Add Provider Location</h2>
+				<fieldset>
+					<h3 class="md-primary">Locations Details</h3>
+					<div layout-gt-xs="row">
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Name</label> <input type="text" required
+							autofocus="on" ng-model="vm.providerLocation.name" /> </md-input-container>
+						<md-input-container class="mgn_left_25" flex-gt-sm>
+						<label class="text_style_vol">Website URL</label> <input
+							type="text" required ng-model="vm.providerLocation.website" />
+						</md-input-container>
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Address Line 1</label> <input type="text"
+							required autofocus="on"
+							ng-model="vm.providerLocation.address.address1" /> </md-input-container>
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Address Line 2</label> <input type="text"
+							autofocus="on" ng-model="vm.providerLocation.address.address2" />
+						</md-input-container>
+					</div>
+					<div layout-gt-xs="row">
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">City</label> <input type="text"
+							autofocus="on" ng-model="vm.providerLocation.address.city" /> </md-input-container>
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Zip Code</label> <input type="text"
+							autofocus="on" ng-model="vm.providerLocation.address.zip" /> </md-input-container>
+						<md-input-container class="md-block input-primary mgn_left_25"
+							flex-gt-sm> <label>State</label> <md-select
+							name="type" ng-model="vm.providerLocation.address.state" required>
+						<md-option ng-repeat="each in vm.states" value={{each.value}}>{{each.name}}</md-option>
+						</md-select> </md-input-container>
+					</div>
+					<h3>Geo coordinates</h3>
+					<div layout-gt-xs="row">
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Latitude</label> <input type="text"
+							required autofocus="on"
+							ng-model="vm.providerLocation.address.latitude" /> </md-input-container>
+						<md-input-container flex-gt-sm> <label
+							class="text_style_vol">Longitude</label> <input type="text"
+							autofocus="on" ng-model="vm.providerLocation.address.longitude" />
+						</md-input-container>
+					</div>
+					<div layout="row" layout-align="center center">
+						<md-button class="md-raised button-primary"
+							aria-label="Add Location" ng-click="vm.addProviderLocation()">Add
+						Location</md-button>
+					</div>
+				</fieldset>
+				<fieldset ng-show="vm.providerLocations.length != 0">
+					<div ui-grid="vm.providerGridOptions" ui-grid-selection
+						ui-grid-pagination ui-grid-edit ui-grid-cellnav
+						ui-grid-auto-resize class="grid"></div>
+				</fieldset>
+			</div>
+
+			<div class="clear_all">
+				<landing-footer></landing-footer>
+			</div>
+		</div>
