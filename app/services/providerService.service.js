@@ -11,8 +11,8 @@
         return {
         	getProviderDetails,
         	getProviderLocationDetails,
-        	registerProvider,
         	updateProviderLocations,
+        	registerProvider,
         	updateProvider,
         	addProviderLocation
         };
@@ -25,9 +25,6 @@
         }
         function updateProviderLocations(providerLocations){
         	return $http.post(`${baseUrl}/providers/update/locations/`, providerLocations);
-        }
-        function updateProvider(provider){
-        	return $http.post(`${baseUrl}/providers/update/details/`, provider);
         }
         
         function registerProvider(providerInfo) {

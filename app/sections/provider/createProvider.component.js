@@ -88,6 +88,7 @@
 							function(response) {
 								vm.providerGridOptions.data = response.data.data;
 								vm.providerGridOptions.columnDefs = response.data.headers;
+								vm.appendDeleteOptionToColumns();
 								vm.providerLocations = response.data.data;
 								vm.reloadProviderLocationGrid();
 							});
@@ -99,8 +100,21 @@
 			}
 		}
 
-		vm.removeProviderLocation = function() {
+		vm.appendDeleteOptionToColumns = function() {
+			var removeIcon = {
+        			field: "name",
+        			displayName: "",
+        			editable:false,
+        			pinnedRight:true,
+        			cellTemplate: '<md-button ng-click="grid.appScope.removeProvider($event, row)" class="md-raised button-primary md-button md-ink-ripple">Remove</md-button>',
+        			height: 100
+        	}
+			vm.providerGridOptions.columnDefs.push(removeIcon);
+		}
+		
+		vm.removeProvider = function(event, row) {
 			// write logic for provider locations
+			console.log(row);
 		}
 		// Load states to drop down
 		vm.states = validateService.validateStateDrpdwn();

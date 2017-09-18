@@ -2,8 +2,8 @@
     angular
         .module('app')
         .constant('serviceConstants', {
-        	baseUrl: "http://104.43.165.131:8080/api/v1",
-            resourceUrl: "http://104.43.165.131:8080"
+        	baseUrl: "http://localhost:8080/hni-admin-service/api/v1",
+            resourceUrl: "https://api.hungernotimpossible.com"
         })
         .constant('rolesConstant', {
             superAdmin: '1',
