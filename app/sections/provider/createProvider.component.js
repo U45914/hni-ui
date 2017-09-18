@@ -78,6 +78,7 @@
 					vm.providerLocation).then(function() {
 				toastService.showToast("Provider Location added sucessfully")
 				vm.refreshProviderLocations();
+				vm.providerLocation = {};
 			});
 		}
 
@@ -114,7 +115,7 @@
 		
 		vm.removeProvider = function(event, row) {
 			// write logic for provider locations
-			console.log(row);
+			//console.log(row);
 			providerService.deleteProviderLocation(row.entity.provider.id, row.entity.id).then(function(){
 				vm.refreshProviderLocations();
 			});
