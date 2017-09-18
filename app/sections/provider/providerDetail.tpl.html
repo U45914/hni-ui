@@ -45,9 +45,6 @@
 								ng-model="vm.providerZip" />
 					</md-input-container>
 				</div><br>
-				<center>
-					<md-button class="md-raised button-primary" aria-label="Save users" ng-click="vm.update()">Save Changes</md-button>
-				</center><br/>
 				<h3>Provider Locations</h3>
 				<div flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
 			<div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-row-edit ui-grid-cellnav ui-grid-auto-resize class="grid">
@@ -64,7 +61,10 @@
 						<md-switch style= "float: right;" ng-if="vm.isParticipant" ng-disabled="vm.disableSheltered" ng-model="vm.isSheltered" ng-click="vm.sheltered()">Sheltered / Unsheltered</md-switch>
 					</center>
 				</fieldset>
-		</div>
+		</div><br>
+				<center>
+					<md-button class="md-raised button-primary" aria-label="Save users" ng-click="vm.update()">Save Changes</md-button>
+				</center>
 		</div>
 	
 		</div>

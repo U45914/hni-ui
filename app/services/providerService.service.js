@@ -19,7 +19,7 @@
         };
         
         function getProviderDetails(providerId){
-        	return $http.post(`${baseUrl}/providers/details`, providerId);
+        	return $http.get(`${baseUrl}/providers/${providerId}/details`);
         }
         
         function deleteProviderLocation(providerId, providerLocationId){
@@ -27,7 +27,7 @@
         }
         
         function getProviderLocationDetails(providerId){
-        	return $http.post(`${baseUrl}/providers/locations/`, providerId);
+        	return $http.get(`${baseUrl}/providers/${providerId}/locations/`);
         }
         function updateProviderLocations(providerLocations){
         	return $http.post(`${baseUrl}/providers/update/locations/`, providerLocations);
