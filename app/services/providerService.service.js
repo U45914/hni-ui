@@ -14,12 +14,18 @@
         	updateProviderLocations,
         	registerProvider,
         	updateProvider,
-        	addProviderLocation
+        	addProviderLocation,
+        	deleteProviderLocation
         };
         
         function getProviderDetails(providerId){
         	return $http.post(`${baseUrl}/providers/details`, providerId);
         }
+        
+        function deleteProviderLocation(providerId, providerLocationId){
+        	return $http.delete(`${baseUrl}/providers/${providerId}/providerLocations/${providerLocationId}`);
+        }
+        
         function getProviderLocationDetails(providerId){
         	return $http.post(`${baseUrl}/providers/locations/`, providerId);
         }
@@ -29,48 +35,10 @@
         
         function registerProvider(providerInfo) {
         	return $http.post(`${baseUrl}/providers/provider/create`, providerInfo);
-        	/*var providerResponse = {
-        			data:{
-        				id: 1,
-        				name: "Subway",
-        				websiteUrl: "www.subway.com",
-        				address: {
-        					address1: "Test Address",
-        					address2: "Test Address 2",
-        					city: "Test City",
-        					state: "MO"
-        				}
-        			}
-        	}
-        	
-        	 return $timeout(function() {
-        		 return {
-        			 "data": providerResponse
-        		 	};
-        	    }, 1000);*/
         }
         
         function updateProvider(providerInfo) {
-        	// return $http.post(`${baseUrl}/providers/provider/create`,
-			// providerInfo);
-        	var providerResponse = {
-        			data:{
-        				id: 1,
-        				name: "Subway",
-        				websiteUrl: "www.subway.com",
-        				address: {
-        					address1: "Test Address",
-        					address2: "Test Address 2",
-        					city: "Test City",
-        					state: "MO"
-        				}
-        			}
-        	}	
-        	 return $timeout(function() {
-        		 return {
-        			 "data": providerResponse
-        		 	};
-        	    }, 1000);
+        	return $http.post(`${baseUrl}/providers/provider/update`, providerInfo);
         }
         
         function addProviderLocation(providerId, prividerLocationInfo) {
