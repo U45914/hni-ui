@@ -115,6 +115,9 @@
 		vm.removeProvider = function(event, row) {
 			// write logic for provider locations
 			console.log(row);
+			providerService.deleteProviderLocation(row.entity.provider.id, row.entity.id).then(function(){
+				vm.refreshProviderLocations();
+			});
 		}
 		// Load states to drop down
 		vm.states = validateService.validateStateDrpdwn();
