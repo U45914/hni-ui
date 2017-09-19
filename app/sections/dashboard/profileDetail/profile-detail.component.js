@@ -27,6 +27,8 @@
 				vm.mobilePhone = vm.dataFromServer.user.mobilePhone;
 				vm.maxOrderAllowed = vm.dataFromServer.maxOrderAllowed;
 				vm.maxMealsAllowedPerDay = vm.dataFromServer.maxMealsAllowedPerDay;
+				vm.email = vm.dataFromServer.user.email;
+				vm.genderCode = vm.dataFromServer.user.genderCode;
 				if(vm.dataFromServer.dependents.length > 0){
 					vm.dependentList = vm.dataFromServer.dependents;
 				}
@@ -63,7 +65,9 @@
 						"firstName" : vm.firstName,
 						"lastName" : vm.lastName,
 						"mobilePhone" : vm.mobilePhone,
-						"isActive" : vm.isActivated
+						"isActive" : vm.isActivated,
+						"email" : vm.email,
+						"genderCode" : vm.genderCode
 					},
 					"dependents": vm.dependentList,
 					"ngo" : {

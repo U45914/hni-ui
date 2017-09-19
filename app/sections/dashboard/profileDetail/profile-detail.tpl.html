@@ -29,6 +29,16 @@
 				<label>Mobile Phone</label>
 			 	<input type="text" id="mobilePhone" ng-model="vm.mobilePhone"  maxlength="12" required>
 			</md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm > 
+				<label>e-mail</label>
+			 	<input type="text" id="email" ng-model="vm.email" required>
+			</md-input-container>
+			<md-input-container class="md-block input-primary" flex-gt-sm > 
+				<label>Gender</label>
+			 	<input type="text" id="gender" ng-model="vm.genderCode" required>
+			</md-input-container>
+		</div>
+		<div layout-gt-xs="row" class="width_for_textbox">
 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
 				<label>Max orders allowed</label>
 			 	<input type="number" id="orders" ng-model="vm.maxOrderAllowed">
