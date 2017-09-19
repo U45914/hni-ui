@@ -15,7 +15,9 @@
         	registerProvider,
         	updateProvider,
         	addProviderLocation,
-        	deleteProviderLocation
+        	deleteProviderLocation,
+        	deactivateProviderLocation,
+        	activateProviderLocation
         };
         
         function getProviderDetails(providerId){
@@ -37,12 +39,20 @@
         	return $http.post(`${baseUrl}/providers/provider/create`, providerInfo);
         }
         
-        function updateProvider(providerInfo) {
-        	return $http.post(`${baseUrl}/providers/provider/update`, providerInfo);
+        function updateProvider(provider) {
+        	return $http.post(`${baseUrl}/providers/provider/update`, provider);
         }
         
         function addProviderLocation(providerId, prividerLocationInfo) {
         	return $http.post(`${baseUrl}/providers/provider/${providerId}/location/add`, prividerLocationInfo);
+        }
+        
+        function deactivateProviderLocation(providerLocation){
+        	return $http.post(`${baseUrl}/providers/providerLocation/de-activate`, providerLocation);
+        }
+        
+        function activateProviderLocation(providerLocation){
+        	return $http.post(`${baseUrl}/providers/providerLocation/activate`, providerLocation);
         }
         
     }
