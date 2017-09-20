@@ -31,11 +31,17 @@
 			</md-input-container>
 			<md-input-container class="md-block input-primary" flex-gt-sm > 
 				<label>e-mail</label>
-			 	<input type="text" id="email" ng-model="vm.email" required>
+			 	<input type="text" id="email" ng-model="vm.email" required ng-disabled="true">
 			</md-input-container>
 			<md-input-container class="md-block input-primary" flex-gt-sm > 
 				<label>Gender</label>
-			 	<input type="text" id="gender" ng-model="vm.genderCode" required>
+			 	<md-select name="type" ng-model="vm.userGender" required >
+            		 <md-option ng-repeat="each in vm.genderCode" value = {{each.value}}>{{each.name}}</md-option>
+            		 </md-select>
+            </md-input-container>
+			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm> 
+				<label>Age</label>
+			 	<input type="number" id="age" ng-model="vm.userAge"> 
 			</md-input-container>
 		</div>
 		<div layout-gt-xs="row" class="width_for_textbox">
@@ -79,11 +85,14 @@
 			<fieldset class="border" style="margin-top: 8px;">
 			<span layout="row" flex="100%"> <md-input-container
 					class="md-block input-primary" flex-gt-sm> <input
-					type="text" ng-model="vm.name" placeholder="Name"></input> </md-input-container> <md-input-container
+					type="text" ng-model="vm.name" placeholder="Name" required></input> </md-input-container> <md-input-container
 					class="md-block input-primary mgn_left_25" flex-gt-sm>
-				<input type="number" ng-model="vm.age" placeholder="Age"></input> </md-input-container> <md-input-container
+				<input type="number" ng-model="vm.age" placeholder="Age" required></input> </md-input-container> <md-input-container
 					class="md-block input-primary mgn_left_25" flex-gt-sm>
-				<input type="text" ng-model="vm.gender" placeholder="Gender"></input>
+				<label>Gender</label>
+			 	<md-select name="type" ng-model="vm.gender" required >
+            		 <md-option ng-repeat="each in vm.genderCode" value = {{each.value}}>{{each.name}}</md-option>
+            		 </md-select>
 				</md-input-container>
 				<div style="padding-top: 10px;">
 					<md-button class="md-fab btn_style" ng-click="vm.addNewRow()">
@@ -105,7 +114,7 @@
 				<br>
 				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.name}}</md-grid-tile>
 				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.age}}</md-grid-tile>
-				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{dependent.gender}}</md-grid-tile>
+				<md-grid-tile md-rowspan="3" class="grid_list_multi">{{vm.convertGenderCode(dependent.gender)}}</md-grid-tile>
 				<md-button class="md-fab btn_style"
 					style="background-color:transparent; border-radius:0;color:#D65439; box-shadow:none;border:none;margin-left: 800px;
 		   		 margin-top: -6px;"
