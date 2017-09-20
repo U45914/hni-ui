@@ -20,6 +20,8 @@
 			vm.shelteredText = "Unsheltered";
 			vm.activeText = "Not active";
 			vm.isSheltered = false;
+			vm.genderCode = [{value :"M",name :"Male"},
+			                 {value :"F",name :"Female"}];
 			$http.post(`${baseUrl}/configure/user/participant/details`, userId).then(function(response){
 				vm.dataFromServer = response.data;
 				vm.firstName = vm.dataFromServer.user.firstName;
@@ -27,6 +29,9 @@
 				vm.mobilePhone = vm.dataFromServer.user.mobilePhone;
 				vm.maxOrderAllowed = vm.dataFromServer.maxOrderAllowed;
 				vm.maxMealsAllowedPerDay = vm.dataFromServer.maxMealsAllowedPerDay;
+				vm.email = vm.dataFromServer.user.email;
+				vm.userGender = vm.dataFromServer.user.genderCode;
+				vm.userAge = vm.dataFromServer.age;
 				if(vm.dataFromServer.dependents.length > 0){
 					vm.dependentList = vm.dataFromServer.dependents;
 				}
@@ -63,12 +68,14 @@
 						"firstName" : vm.firstName,
 						"lastName" : vm.lastName,
 						"mobilePhone" : vm.mobilePhone,
-						"isActive" : vm.isActivated
+						"isActive" : vm.isActivated,
+						"genderCode" : vm.userGender
 					},
 					"dependents": vm.dependentList,
 					"ngo" : {
 						id : vm.ngoId,
 					},
+					"age" : vm.userAge,
 					"maxOrderAllowed" : vm.maxOrderAllowed,
 					"maxMealsAllowedPerDay" : vm.maxMealsAllowedPerDay
 				};
@@ -81,7 +88,7 @@
 				$window.history.back();
 			}
 			vm.addNewRow = function() {
-				if(vm.name!=null &&  vm.age != null){
+				if(vm.name!=null &&  vm.age != null && vm.gender != null ){
 				dependents.name = vm.name;
 				dependents.age = vm.age;
 				dependents.gender = vm.gender;
@@ -131,6 +138,13 @@
         			$window.scrollTo(0, 0);
         			toastService.showToast("Your request has been submitted.");
         		});
+			}
+			
+			vm.convertGenderCode = function(genderCode){
+				if(genderCode == "M")
+					return "Male";
+				else if(genderCode == "F")
+					return "Female";
 			}
 		};
 })();
