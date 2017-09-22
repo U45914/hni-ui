@@ -17,7 +17,8 @@
         	addProviderLocation,
         	deleteProviderLocation,
         	deactivateProviderLocation,
-        	activateProviderLocation
+        	activateProviderLocation,
+        	deleteProviderLocation
         	deleteProviderLocation,
         	createNewMenu,
         	createNewMenuItem,
@@ -75,5 +76,9 @@
         function getMenuItems(menuId) {
         	return $http.get(`${baseUrl}/menus/${menuId}/menuItems/info`);
         }
+        function deleteProviderLocation(providerId, providerLocationId){
+        	return $http.delete(`${baseUrl}/providers/${providerId}/${providerLocationId}/delete`);
+        }
+        
     }
 })();

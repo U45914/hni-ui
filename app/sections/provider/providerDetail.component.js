@@ -34,6 +34,18 @@
 		vm.disableActivate = true;
 		vm.activeText = "Active/Not Active";
 		
+		vm.addProviderLocation = function() {
+			providerService.addProviderLocation(providerId,
+					vm.providerLocation).then(function() {
+				$window.scrollTo(0, 0);
+				toastService.showToast("Provider Location added sucessfully");
+				loadGrid(providerId);
+				vm.providerLocation = {};
+			});
+		}
+		
+		
+		
 		vm.gridOptions.onRegisterApi = function(gridApi){
         	 vm.gridApi = gridApi;
         	 gridApi.selection.on.rowSelectionChanged($scope,function(row){
@@ -69,6 +81,23 @@
 			providerService.getProviderLocationDetails(providerId).then(function(response){
 				vm.gridOptions.data = response.data.data;
 				vm.gridOptions.columnDefs = response.data.headers;
+				var deleteButton = {
+	        			field: "name",
+	        			displayName: "",
+	        			editable:false,
+	        			pinnedRight:true,
+	        			cellTemplate: '<md-button ng-click="grid.appScope.deleteProviderLocation($event, row)" class="md-raised button-primary md-button md-ink-ripple">Delete</md-button>',
+	        			height: 100
+	        	}
+	        	vm.gridOptions.columnDefs.push(deleteButton);
+			});
+		}
+		
+		
+		vm.deleteProviderLocation = function(event, row){
+			providerService.deleteProviderLocation(providerId, row.entity.id).then(function(response){
+				toastService.showToast(response.data.message);
+				loadGrid(providerId)
 			});
 		}
 		
