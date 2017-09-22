@@ -15,7 +15,11 @@
         	registerProvider,
         	updateProvider,
         	addProviderLocation,
-        	deleteProviderLocation
+        	deleteProviderLocation,
+        	createNewMenu,
+        	createNewMenuItem,
+        	getMenusForProvider,
+        	getMenuItems
         };
         
         function getProviderDetails(providerId){
@@ -45,5 +49,20 @@
         	return $http.post(`${baseUrl}/providers/provider/${providerId}/location/add`, prividerLocationInfo);
         }
         
+        function createNewMenu(menu) {
+        	return $http.post(`${baseUrl}/menus/menu/create`, menu);
+        }
+        
+        function createNewMenuItem(menuId, menuItem) {
+        	return $http.post(`${baseUrl}/menus/${menuId}/menuitems/add`, menuItem);
+        }
+        
+        function getMenusForProvider(providerId) {
+        	return $http.get(`${baseUrl}/menus/providers/${providerId}`);
+        }
+        
+        function getMenuItems(menuId) {
+        	return $http.get(`${baseUrl}/menus/${menuId}/menuItems/info`);
+        }
     }
 })();

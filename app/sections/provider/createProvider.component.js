@@ -10,16 +10,20 @@
 
 	NewProviderController.$inject = [ '$scope', '$http', '$state',
 			'serviceConstants', 'validateService', 'providerService',
-			'$window', 'toastService' ];
+			'$window', 'toastService', '$mdDialog' ];
 
 	function NewProviderController($scope, $http, $state, serviceConstants,
-			validateService, providerService, $window, toastService) {
+			validateService, providerService, $window, toastService, $mdDialog) {
 		var vm = this;
 		vm.isAllowedToCreate = true;
 		vm.isAllowedToUpdate = false;
 		vm.provider = {}
 		vm.showProviderLocationFields = false;
 		vm.providerLocations = [];
+		vm.providerLocation = {};
+		vm.providerLocation.menu = {};
+		vm.selectedMenu = null;
+		vm.providerMenusList = [];
 		vm.providerGridOptions = {
 			data : [],
 			urlSync : false,
@@ -79,6 +83,7 @@
 				toastService.showToast("Provider Location added sucessfully")
 				vm.refreshProviderLocations();
 				vm.providerLocation = {};
+				vm.loadMenusForProvider();
 			});
 		}
 
@@ -103,24 +108,91 @@
 
 		vm.appendDeleteOptionToColumns = function() {
 			var removeIcon = {
-        			field: "name",
-        			displayName: "",
-        			editable:false,
-        			pinnedRight:true,
-        			cellTemplate: '<md-button ng-click="grid.appScope.removeProvider($event, row)" class="md-raised button-primary md-button md-ink-ripple">Remove</md-button>',
-        			height: 100
-        	}
+				field : "name",
+				displayName : "",
+				editable : false,
+				pinnedRight : true,
+				cellTemplate : '<md-button ng-click="grid.appScope.removeProvider($event, row)" class="md-raised button-primary md-button md-ink-ripple">Remove</md-button>',
+				height : 100
+			}
 			vm.providerGridOptions.columnDefs.push(removeIcon);
 		}
-		
+
 		vm.removeProvider = function(event, row) {
 			// write logic for provider locations
-			//console.log(row);
-			providerService.deleteProviderLocation(row.entity.provider.id, row.entity.id).then(function(){
+			// console.log(row);
+			providerService.deleteProviderLocation(row.entity.provider.id,
+					row.entity.id).then(function() {
 				vm.refreshProviderLocations();
 			});
+		}
+
+		vm.loadMenusForProvider = function() {
+			if (vm.providerMenusList.length == 0) {
+				providerService.getMenusForProvider(vm.provider.id).then(
+						function(response) {
+							if (response) {
+								vm.providerMenusList = response.data;
+							}
+						});
+			}
+		}
+
+		vm.showMenu = function(ev) {
+			var menuItem = null;
+
+			for (var i = 0; i < vm.providerMenusList.length; i++) {
+				if (vm.selectedMenu == vm.providerMenusList[i].id) {
+					menuItem = vm.providerMenusList[i];
+				}
+			}
+
+			vm.showMenuItemPopup(menuItem, ev);
+		}
+
+		vm.showMenuItemPopup = function(menuItem, ev) {
+			$mdDialog.show({
+				controller : 'MenuViewController',
+				controllerAs : 'mvc',
+				templateUrl : 'menu_view.tpl.html',
+				parent : angular.element(document.body),
+				targetEvent : ev,
+				clickOutsideToClose : true,
+				escapeToClose : true,
+				fullscreen : $scope.customFullscreen,
+				locals : {
+					menu : menuItem
+				}
+			}).then(function(answer) {
+				console.log(answer);
+			});
+		}
+		vm.createNewMenu = function(ev) {
+			// open a popup and show menu management window
+
+			$mdDialog.show({
+				controller : 'MenuConfigController',
+				controllerAs : 'mdcvm',
+				templateUrl : 'menu_config.tpl.html',
+				parent : angular.element(document.body),
+				targetEvent : ev,
+				clickOutsideToClose : false,
+				escapeToClose : true,
+				fullscreen : $scope.customFullscreen,
+				locals : {
+					providerId : vm.provider.id
+				}
+			// Only for -xs, -sm breakpoints.
+			}).then(function(menu) {
+				// load menu items drop down
+				vm.providerLocation.menu = menu;
+				vm.selectedMenu = menu.id;
+				vm.providerMenusList.push(menu);
+			});
+
 		}
 		// Load states to drop down
 		vm.states = validateService.validateStateDrpdwn();
 	}
+
 })();

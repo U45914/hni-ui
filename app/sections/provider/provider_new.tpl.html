@@ -62,8 +62,7 @@
 							autofocus="on" ng-model="vm.providerLocation.name" /> </md-input-container>
 						<md-input-container class="mgn_left_25" flex-gt-sm>
 						<label class="text_style_vol">Website URL</label> <input
-							type="text" required ng-model="vm.providerLocation.website" />
-						</md-input-container>
+							type="text" required ng-model="vm.providerLocation.website" /> </md-input-container>
 						<md-input-container flex-gt-sm> <label
 							class="text_style_vol">Address Line 1</label> <input type="text"
 							required autofocus="on"
@@ -96,6 +95,21 @@
 							class="text_style_vol">Longitude</label> <input type="text"
 							autofocus="on" ng-model="vm.providerLocation.address.longitude" />
 						</md-input-container>
+					</div>
+					<h3>Select Menu for this location</h3>
+					<div layout-gt-xs="row">
+						<md-input-container> <label>Menu</label> <md-select
+							ng-click="vm.loadMenusForProvider()" ng-model="vm.selectedMenu">
+						<md-option> <em>None</em></md-option> <md-option
+							ng-repeat="menu in vm.providerMenusList" ng-value="menu.id">
+						{{menu.name}} </md-option> </md-select> </md-input-container>
+
+						<md-button ng-show="vm.selectedMenu != null"
+							class="md-small button-primary" aria-label="View Menu"
+							ng-click="vm.showMenu($event)">View Menu</md-button>
+						<md-button class="md-small button-primary"
+							aria-label="Create New Menu" ng-click="vm.createNewMenu($event)">Create
+						New Menu</md-button>
 					</div>
 					<div layout="row" layout-align="center center">
 						<md-button class="md-raised button-primary"
