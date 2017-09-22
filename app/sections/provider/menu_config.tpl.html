@@ -1,0 +1,75 @@
+<md-dialog> <md-dialog-content>
+<div style="padding: 1px; background-color: rgba(128, 128, 128, 0.43);">
+	<h1 style="color: white; text-align: left; padding-left: 50px;">Create
+		new Menu</h1>
+</div>
+<div class="form_style">
+	<fieldset>
+		<div layout-gt-xs="row">
+			<input type="hidden" required autofocus="on"
+				ng-model="mdcvm.menu.id" />
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Menu Name</label> <input type="text" required
+				autofocus="on" ng-model="mdcvm.menu.name" /> </md-input-container>
+			<md-input-container class="mgn_left_25" flex-gt-sm>
+			<label class="text_style_vol">Start Hour</label> <input type="text"
+				required ng-model="mdcvm.menu.startHourAvailable" /> </md-input-container>
+			<md-input-container class="mgn_left_25" flex-gt-sm>
+			<label class="text_style_vol">End Hour</label> <input type="text"
+				required ng-model="mdcvm.menu.endHourAvailable" /> </md-input-container>
+		</div>
+		<div layout-gt-xs="row" ng-show="mdcvm.showCreateButton" layout-align="center center">
+			<md-button class="md-raised button-primary" aria-label="Add Location"
+				ng-click="mdcvm.createMenu()">Create Menu</md-button>
+		</div>
+		<br>
+	</fieldset>
+</div>
+<div class="form_style" ng-show="mdcvm.showMenuItemConfig">
+	<h2 class="md-primary">Add Menu Item</h2>
+	<fieldset>
+		<h3 class="md-primary">Menu Item Details</h3>
+		<div layout-gt-xs="row">
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Name</label> <input type="text" required
+				autofocus="on" ng-model="mdcvm.menuItem.name" /> </md-input-container>
+			<md-input-container class="mgn_left_25" flex-gt-sm>
+			<label class="text_style_vol">Description</label> <input type="text"
+				required ng-model="mdcvm.menuItem.description" /> </md-input-container>
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Price</label> <input type="text" required
+				autofocus="on" ng-model="mdcvm.menuItem.price" /> </md-input-container>
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Expires</label> <input type="text"
+				autofocus="on" ng-model="mdcvm.menuItem.expires" /> </md-input-container>
+		</div>
+		<div layout-gt-xs="row">
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Calories</label> <input type="text"
+				autofocus="on" ng-model="mdcvm.menuItem.calories" /> </md-input-container>
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Protien</label> <input type="text"
+				autofocus="on" ng-model="mdcvm.menuItem.protien" /> </md-input-container>
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Fat</label> <input type="text" autofocus="on"
+				ng-model="mdcvm.menuItem.fat" /> </md-input-container>
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Carbs</label> <input type="text"
+				autofocus="on" ng-model="mdcvm.menuItem.carbs" /> </md-input-container>
+		</div>
+		<div layout="row" layout-align="center center">
+			<md-button class="md-raised button-primary" aria-label="Add Location"
+				ng-click="mdcvm.createMenuItem()">Add Item</md-button>
+			<md-button class="md-raised button-primary" aria-label="Add Location"
+				ng-click="mdcvm.completeMenuAssignment()">Finish Menu Assignment</md-button>
+				
+		</div>
+	</fieldset>
+	
+	<div layout-gt-xs="row" ng-show="mdcvm.menuItems.length != 0">
+			<div ui-grid="mdcvm.menuItemsGridOptions" ui-grid-selection
+				ui-grid-pagination ui-grid-edit ui-grid-cellnav ui-grid-auto-resize
+				class="grid"></div>
+	</div>
+</div>
+</md-dialog-content> </md-dialog>

@@ -1,0 +1,49 @@
+<md-dialog> <md-dialog-content>
+<div style="padding: 1px; background-color: rgba(128, 128, 128, 0.43);">
+	<h1 style="color: white; text-align: left; padding-left: 50px;">Menu
+		Details</h1>
+</div>
+<div class="form_style">
+	<fieldset>
+		<div layout-gt-xs="row">
+			<input type="hidden" required autofocus="on" ng-model="mvc.menu.id" />
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Menu Name</label> <input ng-disabled="true"
+				type="text" required autofocus="on" ng-model="mvc.menu.name" /> </md-input-container>
+			<md-input-container class="mgn_left_25" flex-gt-sm>
+			<label class="text_style_vol">Start Hour</label> <input
+				ng-disabled="true" type="text" required
+				ng-model="mvc.menu.startHourAvailable" /> </md-input-container>
+			<md-input-container class="mgn_left_25" flex-gt-sm>
+			<label class="text_style_vol">End Hour</label> <input
+				ng-disabled="true" type="text" required
+				ng-model="mvc.menu.endHourAvailable" /> </md-input-container>
+		</div>
+		<br>
+	</fieldset>
+</div>
+<div class="form_style">
+	<fieldset>
+		<h3 class="md-primary">Menu Item Details</h3>
+		<div layout-gt-xs="row">
+		<table border="2px">
+				<thead>
+					<tr>
+					<td>Name</td>
+					<td>Description</td>
+					<td>Price</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="menuItem in mvc.menu.menuItems">
+						<td>{{menuItem.name}}</td>
+						<td>{{menuItem.description}}</td>
+						<td>{{menuItem.price}}</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</fieldset>
+</div>
+</md-dialog-content> </md-dialog>
