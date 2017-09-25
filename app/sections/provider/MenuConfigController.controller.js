@@ -90,7 +90,7 @@
 		}
 		
 		mdcvm.createMenuItem = function() {
-			if (validateMenuItem()) {
+			if (mdcvm.validateMenuItem()) {
 				providerService.createNewMenuItem(mdcvm.menu.id, mdcvm.menuItem).then(function(response){
 					if (response) {
 						mdcvm.menuItem = {};
@@ -105,7 +105,7 @@
 				mdcvm.menuItemsGridOptions.data = response.data.data;
 				mdcvm.menuItemsGridOptions.columnDefs = response.data.headers;
 				mdcvm.appendDeleteOptionToColumns();
-				mdcvm.menuItems = response.data;
+				mdcvm.menuItems = response.data.data;
 				mdcvm.reloadMenuItemsGrid();
 			});
 		}
@@ -133,6 +133,7 @@
 		}
 		mdcvm.completeMenuAssignment = function() {
 			if (mdcvm.menuItems.length > 0) {
+				mdcvm.menu.menuItems = mdcvm.menuItems;
 				$mdDialog.hide(mdcvm.menu)
 			} else {
 				alert("Please create atleast one menu item");

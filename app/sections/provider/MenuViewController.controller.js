@@ -3,13 +3,27 @@
 			MenuViewController);
 
 	MenuViewController.$inject = [ '$scope', '$http', '$state',
-			'serviceConstants', 'validateService', 'menu'];
+			'serviceConstants', 'providerService', 'menu'];
 
 	function MenuViewController($scope, $http, $state, serviceConstants,
-			validateService, menu) {
+			providerService, menu) {
 		let mvc = this;
-		// mdcvm.states = validateService.validateStateDrpdwn();
 
 		mvc.menu = menu;
+		
+		mvc.menuItemsGridOptions = {
+				data : [],
+				urlSync : false,
+				columnDefs : [],
+				multiSelect : true,
+				enableSelectAll : false,
+				paginationPageSizes : [ 25, 50, 100 ],
+				paginationPageSize : 50,
+				appScopeProvider : this
+		};
+		providerService.getMenuItems(mvc.menu.id).then(function(response){
+			mvc.menuItemsGridOptions.data = response.data.data;
+			mvc.menuItemsGridOptions.columnDefs = response.data.headers;
+		});
 	}
 })();

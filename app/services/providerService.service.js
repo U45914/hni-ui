@@ -18,7 +18,6 @@
         	deleteProviderLocation,
         	deactivateProviderLocation,
         	activateProviderLocation,
-        	deleteProviderLocation
         	deleteProviderLocation,
         	createNewMenu,
         	createNewMenuItem,

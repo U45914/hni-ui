@@ -26,23 +26,9 @@
 	<fieldset>
 		<h3 class="md-primary">Menu Item Details</h3>
 		<div layout-gt-xs="row">
-		<table border="2px">
-				<thead>
-					<tr>
-					<td>Name</td>
-					<td>Description</td>
-					<td>Price</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="menuItem in mvc.menu.menuItems">
-						<td>{{menuItem.name}}</td>
-						<td>{{menuItem.description}}</td>
-						<td>{{menuItem.price}}</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+		<div ui-grid="mvc.menuItemsGridOptions" ui-grid-selection
+						ui-grid-pagination ui-grid-cellnav
+						ui-grid-auto-resize class="grid"></div>
 		</div>
 	</fieldset>
 </div>
