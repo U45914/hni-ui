@@ -108,19 +108,19 @@
 
 		vm.appendDeleteOptionToColumns = function() {
 			var removeIcon = {
-				field : "name",
-				displayName : "",
-				editable : false,
-				pinnedRight : true,
-				cellTemplate : '<md-button ng-click="grid.appScope.removeProvider($event, row)" class="md-raised button-primary md-button md-ink-ripple">Remove</md-button>',
-				height : 100
-			}
+        			field: "name",
+        			displayName: "",
+        			editable:false,
+        			pinnedRight:true,
+        			cellTemplate: '<md-button ng-click="grid.appScope.removeProvider($event, row)" class="md-raised button-primary md-button md-ink-ripple">Remove</md-button>',
+        			height: 100
+        	}
 			vm.providerGridOptions.columnDefs.push(removeIcon);
 		}
-
+		
 		vm.removeProvider = function(event, row) {
 			// write logic for provider locations
-			// console.log(row);
+			//console.log(row);
 			providerService.deleteProviderLocation(row.entity.provider.id,
 					row.entity.id).then(function() {
 				vm.refreshProviderLocations();
@@ -194,5 +194,4 @@
 		// Load states to drop down
 		vm.states = validateService.validateStateDrpdwn();
 	}
-
 })();
