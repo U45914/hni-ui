@@ -86,3 +86,26 @@ box-shadow: 4px 4px 6px 4px rgba(238, 238, 238, 0.97);
 .ui-grid-pager-control-input{
 height : 15px ! important;
 } 
+
+.ui-grid-viewport .ui-grid-cell-contents {
+  word-wrap: break-word;
+  white-space: normal !important;
+  height: 100%;
+}
+
+
+.ui-grid-row, .ui-grid-cell {
+  height: auto !important;
+}
+
+.ui-grid-row div[role=row] {
+  display: flex ;
+  align-content: stretch;
+}
+
+.ui-grid-header, .ui-grid-header-cell-label{
+  word-wrap: break-word;
+  display: flex ;
+  max-height: 100%;
+  white-space: normal !important;
+}

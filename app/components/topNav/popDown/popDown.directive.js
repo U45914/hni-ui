@@ -3,9 +3,9 @@
         .module('app')
         .directive('popDown', popDown);
 
-    popDown.$inject = ['$timeout', '$document', '$state', 'authService'];
+    popDown.$inject = ['$timeout', '$document', '$state', 'authService', '$window'];
 
-    function popDown($timeout, $document, $state, authService) {
+    function popDown($timeout, $document, $state, authService, $window) {
         return {
             restrict: 'E',
             transclude: true,
@@ -47,6 +47,7 @@
             };
 
             scope.logout = function() {
+            	$window.localStorage.removeItem('selectedActionCard');
                 authService.logout();
             };
 

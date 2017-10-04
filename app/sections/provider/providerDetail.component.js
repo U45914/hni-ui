@@ -87,7 +87,8 @@
 	        			editable:false,
 	        			pinnedRight:true,
 	        			cellTemplate: '<md-button ng-click="grid.appScope.deleteProviderLocation($event, row)" class="md-raised button-primary md-button md-ink-ripple">Delete</md-button>',
-	        			height: 100
+	        			height: 100,
+	        			width : 100
 	        	}
 	        	vm.gridOptions.columnDefs.push(deleteButton);
 			});
