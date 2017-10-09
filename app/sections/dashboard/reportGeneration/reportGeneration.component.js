@@ -51,11 +51,17 @@
         else{
         	vm.isProvider = false;
         }
-        if ($scope.indexFirst == 0) {
-        	vm.showReport[vm.reportType] = true;
+        vm.viewModel = $window.localStorage['selectedActionCard'];
+        if (vm.viewModel) {
+        	vm.showReport[vm.viewModel] = true;
         } else {
-        	vm.showReport[vm.reportType] = false;
+        	if ($scope.indexFirst == 0) {
+            	vm.showReport[vm.reportType] = true;
+            } else {
+            	vm.showReport[vm.reportType] = false;
+            }
         }
+
         vm.gridOptions = {
         		 data: [],
                  urlSync: false,
@@ -63,11 +69,12 @@
                  enableFiltering: true,
                  multiSelect: true,
                  enableSelectAll: true,
+                 enableColumnResizing: true,
                  paginationPageSizes: [25, 50, 100],
                  paginationPageSize: 50,
-                 appScopeProvider: this
+                 appScopeProvider: this,
         }
-        
+
         vm.gridOptions.onRegisterApi = function(gridApi){
             // set gridApi on scope
         	 vm.gridApi = gridApi;
@@ -143,7 +150,9 @@
                     			editable:false,
                     			pinnedRight:true,
                     			cellTemplate: '<md-button ng-click="grid.appScope.viewProfile($event, row)" class="md-raised button-primary md-button md-ink-ripple">View Profile</md-button>',
-                    			height: 100
+                    			height: 100,
+                    			width:100,
+                    			enableFiltering: false,
                     	}
                     	vm.gridOptions.columnDefs.push(editButton);
                     }
@@ -156,6 +165,10 @@
              }, function error(error) {
                  console.log(error);
              });
+        }
+        
+        vm.addressContents = function(grid, row){
+        	return row.entity.address;
         }
         
         vm.resetGridData = function() {
