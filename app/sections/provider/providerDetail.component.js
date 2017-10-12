@@ -44,7 +44,9 @@
 			});
 		}
 		
-		
+		vm.goBack = function(){
+			$window.history.back();
+		}
 		
 		vm.gridOptions.onRegisterApi = function(gridApi){
         	 vm.gridApi = gridApi;
@@ -102,8 +104,7 @@
 			});
 		}
 		
-		vm.update = function(){
-			var dirtyRows = vm.gridApi.rowEdit.getDirtyRows();
+		vm.updateProvider = function(){
 			var provider = {
 					"id" : vm.providerDetails.id,
 					"name" : vm.providerName,
@@ -116,8 +117,15 @@
 						"zip" : vm.providerZip
 					} 
 			};
-			updateProviderLocations(dirtyRows, provider);
+			updateProvider(provider);
 			$window.scrollTo(0, 0);
+		}
+		
+		vm.updateProviderLocations = function(){
+			var dirtyRows = vm.gridApi.rowEdit.getDirtyRows();
+			updateProviderLocations(dirtyRows);
+			$window.scrollTo(0, 0);
+			
 		}
 		
 		vm.activated = function(){
@@ -138,17 +146,13 @@
 			vm.disableActivate = true;
 		}
 		
-		function updateProviderLocations(dirtyRows, provider){
+		function updateProviderLocations(dirtyRows){
 			var updatedRows = [];
 			angular.forEach(dirtyRows, function(row){
 				updatedRows.push(row.entity);
     		});
 			providerService.updateProviderLocations(updatedRows).then(function(response){
-				if(response.data.response == "success"){
-					updateProvider(provider);
-				}else{
 					toastService.showToast(response.data.message);
-				}
 			});
 		}
 		
