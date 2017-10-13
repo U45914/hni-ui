@@ -209,13 +209,13 @@
         	if(vm.selectedRows.length > 0 && !vm.disableDelete){
         		$window.scrollTo(0, 0);
 	        	if(vm.selectedRows.length == 1)
-	        		gridService.deletion(vm.selectedRows[0].uid).then(function(response){
+	        		gridService.deletion(vm.selectedRows[0].userId).then(function(response){
 	        			toastService.showToast(response.data.message);
 	        		});
 	        	else{
 	        		var deleteUsers = [];
 	        		for(var index=0 ; index < vm.selectedRows.length; index++){
-	        			deleteUsers.push(vm.selectedRows[index].uid);
+	        			deleteUsers.push(vm.selectedRows[index].userId);
 	        		}
 	        		gridService.deletion(deleteUsers).then(function(response){
 	        			toastService.showToast("Your request has been submitted.");
@@ -229,7 +229,7 @@
         	var activateUsers = [];
         	if(vm.selectedRows.length > 1 && !vm.disableActivate){
         		for(var index = 0; index < vm.selectedRows.length; index++ ){
-        			activateUsers.push(vm.selectedRows[index].uid);
+        			activateUsers.push(vm.selectedRows[index].userId);
         		}
         		gridService.activation(activateUsers, vm.isActivated). then(function(response){
         			$window.scrollTo(0, 0);
@@ -237,7 +237,7 @@
         			vm.resetGridData();
         		});
         	}else if(vm.selectedRows.length == 1){
-        		gridService.activateUser(vm.selectedRows[0].uid, vm.isActivated). then(function(response){
+        		gridService.activateUser(vm.selectedRows[0].userId, vm.isActivated). then(function(response){
         			$window.scrollTo(0, 0);
         			toastService.showToast(response.data.message);
         			vm.resetGridData();
@@ -251,7 +251,7 @@
         	var shelteredUsers = [];
         	if(vm.selectedRows.length > 1 && !vm.disableSheltered){
         		for(var index = 0; index < vm.selectedRows.length; index++ ){
-        			shelteredUsers.push(vm.selectedRows[index].uid);
+        			shelteredUsers.push(vm.selectedRows[index].userId);
         		}
         		gridService.sheltered(shelteredUsers, vm.isSheltered). then(function(response){
         			$window.scrollTo(0, 0);
@@ -259,7 +259,7 @@
         			vm.resetGridData();
         		});
         	}else if(vm.selectedRows.length == 1){
-        		shelteredUsers.push(vm.selectedRows[0].uid);
+        		shelteredUsers.push(vm.selectedRows[0].userId);
         		gridService.sheltered(shelteredUsers, vm.isSheltered). then(function(response){
         			$window.scrollTo(0, 0);
         			toastService.showToast("Your request has been submitted.");
