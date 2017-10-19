@@ -8,9 +8,9 @@
 		controllerAs : 'vm'
 	});
 	
-	providerDetailController.$inject = ['$scope', '$http', '$state', '$window', 'serviceConstants', 'validateService' , 'providerService', 'toastService'];
+	providerDetailController.$inject = ['$scope', '$http', '$state', '$window', 'serviceConstants', 'validateService' , 'providerService', 'toastService', '$mdDialog'];
 	
-	function providerDetailController($scope, $http, $state, $window,  serviceConstants, validateService, providerService, toastService){
+	function providerDetailController($scope, $http, $state, $window,  serviceConstants, validateService, providerService, toastService, $mdDialog){
 		if($state.params.data == null){
 			$state.go('dashboard');
 		}
@@ -33,14 +33,21 @@
 		vm.states = validateService.validateStateDrpdwn();
 		vm.disableActivate = true;
 		vm.activeText = "Active/Not Active";
+		vm.providerLocations = [];
+		vm.providerLocation = {};
+		vm.providerLocation.menu = {};
+		vm.selectedMenu = null;
+		vm.providerMenusList = [];
 		
 		vm.addProviderLocation = function() {
+			vm.providerLocation.menu = vm.selectedMenu;
 			providerService.addProviderLocation(providerId,
 					vm.providerLocation).then(function() {
 				$window.scrollTo(0, 0);
 				toastService.showToast("Provider Location added sucessfully");
 				loadGrid(providerId);
 				vm.providerLocation = {};
+				vm.selectedMenu=null;
 			});
 		}
 		
@@ -160,6 +167,70 @@
 			providerService.updateProvider(provider).then(function(response){
 				toastService.showToast(response.data.message);
 			});
+		}
+		
+		vm.loadMenusForProvider = function() {
+			if (vm.providerMenusList.length == 0) {
+				providerService.getMenusForProvider(providerId).then(
+						function(response) {
+							if (response) {
+								vm.providerMenusList = response.data;
+							}
+						});
+			}
+		}
+		vm.showMenu = function(ev) {
+			var menuItem = null;
+
+			for (var i = 0; i < vm.providerMenusList.length; i++) {
+				if (vm.providerMenusList[i] != null && vm.selectedMenu == vm.providerMenusList[i].id) {
+					menuItem = vm.providerMenusList[i];
+				}
+			}
+
+			vm.showMenuItemPopup(menuItem, ev);
+		}
+		vm.showMenuItemPopup = function(menuItem, ev) {
+			$mdDialog.show({
+				controller : 'MenuViewController',
+				controllerAs : 'mvc',
+				templateUrl : 'menu_view.tpl.html',
+				parent : angular.element(document.body),
+				targetEvent : ev,
+				clickOutsideToClose : true,
+				escapeToClose : true,
+				fullscreen : $scope.customFullscreen,
+				locals : {
+					menu : menuItem
+				}
+			}).then(function(answer) {
+				console.log(answer);
+			});
+		}
+		vm.createNewMenu = function(ev) {
+			// open a popup and show menu management window
+
+			$mdDialog.show({
+				controller : 'MenuConfigController',
+				controllerAs : 'mdcvm',
+				templateUrl : 'menu_config.tpl.html',
+				parent : angular.element(document.body),
+				targetEvent : ev,
+				clickOutsideToClose : false,
+				escapeToClose : true,
+				fullscreen : $scope.customFullscreen,
+				locals : {
+					providerId : providerId
+				}
+			// Only for -xs, -sm breakpoints.
+			}).then(function(menu) {
+				// load menu items drop down
+				debugger;
+				vm.providerLocation.menu = menu;
+				vm.selectedMenu = menu.id;
+				vm.providerMenusList.push(menu);
+			});
+
 		}
 	}
 })();

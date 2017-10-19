@@ -98,6 +98,20 @@
 							autofocus="on" ng-model="vm.providerLocation.address.longitude" />
 						</md-input-container>
 					</div>
+					<div layout-gt-xs="row">
+						<md-input-container> <label>Menu</label> <md-select
+							ng-click="vm.loadMenusForProvider()" ng-model="vm.selectedMenu">
+						<md-option> <em>None</em></md-option> <md-option
+							ng-repeat="menu in vm.providerMenusList" ng-value="menu.id">
+						{{menu.name}} </md-option> </md-select> </md-input-container>
+
+						<md-button ng-show="vm.selectedMenu != null"
+							class="md-small button-primary" aria-label="View Menu"
+							ng-click="vm.showMenu($event)">View Menu</md-button>
+						<md-button class="md-small button-primary"
+							aria-label="Create New Menu" ng-click="vm.createNewMenu($event)">Create
+						New Menu</md-button>
+					</div>
 					<div layout="row" layout-align="center center">
 						<md-button class="md-raised button-primary"
 							aria-label="Add Location" ng-click="vm.addProviderLocation()">Add
