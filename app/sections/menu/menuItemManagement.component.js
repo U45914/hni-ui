@@ -1,8 +1,8 @@
 (function() {
 	angular.module('app').controller('menuItemManagementController', MenuItemManagementController);
-	MenuItemManagementController.$inject = ['menuId', 'menuName', 'providerService'];
+	MenuItemManagementController.$inject = ['menuId', 'menuName', 'providerService', '$mdDialog'];
 
-	function MenuItemManagementController(menuId, menuName, providerService) {
+	function MenuItemManagementController(menuId, menuName, providerService, $mdDialog) {
 		var mimc = this;
 		console.log(menuId);
 		mimc.menuName = menuName;
@@ -32,7 +32,6 @@
         }
 		
 		providerService.getMenuItems(menuId).then(function(response){
-			debugger;
 			mimc.gridOptions.data = response.data.data;
 			mimc.gridOptions.columnDefs = response.data.header;
 		});
