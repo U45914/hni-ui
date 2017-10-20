@@ -30,10 +30,44 @@
 			  <br/>
 			<div ng-show = "vm.showsMenu" flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
 				<div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-row-edit ui-grid-cellnav ui-grid-auto-resize class="grid" >
-			</div>
-		
-		  </div>
+				</div>
+					<br />
+					<div>
+						<fieldset class="border">
+							<legend>
+								<b>Quick Actions</b>
+							</legend>
+							<center>
+								<md-button class="md-raised button-primary" ng-disabled="true"
+									aria-label="Save Data" ng-click="vm.saveMenu()">Save</md-button>
+								<!-- <md-button class="md-raised button-primary" ng-disabled="true" aria-label="Delete user" ng-click="vm.deleteMenu()">Delete</md-button> -->
+							</center>
+						</fieldset>
+					</div>
+				</div>
 		</div>
+		<div class="form_style">
+		<center>{{vm.menuName}}</center>
+		<div ng-show = "vm.showMenuItems" flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
+				<div ui-grid="vm.gridOptionsItems" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-row-edit ui-grid-cellnav ui-grid-auto-resize class="grid" >
+				</div>
+				
+					<br />
+					<div>
+						<fieldset class="border">
+							<legend>
+								<b>Quick Actions</b>
+							</legend>
+							<center>
+								<md-button class="md-raised button-primary" ng-disabled="true"
+									aria-label="Save Data" ng-click="vm.saveMenu()">Save</md-button>
+								<!-- <md-button class="md-raised button-primary" ng-disabled="true" aria-label="Delete user" ng-click="vm.deleteMenu()">Delete</md-button> -->
+							</center>
+						</fieldset>
+					</div>
+				
+		</div>
+		
 
 	</div>
 	<div class="clear_all">

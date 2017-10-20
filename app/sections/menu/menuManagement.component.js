@@ -12,10 +12,11 @@
 	
 	function menuManagementController($scope, $mdDialog, $window, gridService, providerService) {
 		
-		let vm = this;
 		$window.scrollTo(0, 0);
+		let vm = this;
 		var providerDetailsPath = "provider/all";
 		vm.showsMenu = false;
+		vm.showMenuItems = false;
 
 		vm.goBack = function(){
 			$window.history.back();
@@ -46,10 +47,24 @@
                 paginationPageSize: 50
        }
 		
-		gridService.getGridDataFor(providerDetailsPath).then(function(response){
-			vm.providers = response.data.data;
-		});
+		vm.gridOptionsItems = {
+                urlSync: false,
+                appScopeProvider: this,
+                columnDefs:[],
+                data : [],
+                enableFiltering: true,
+                multiSelect: true,
+                enableSelectAll: true,
+                paginationPageSizes: [25, 50, 100],
+                paginationPageSize: 50
+       }
 		
+		vm.loadMenu = function(){
+			gridService.getGridDataFor(providerDetailsPath).then(function(response){
+				vm.providers = response.data.data;
+			});
+		}
+		vm.loadMenu();
 		vm.showMenu = function(){
 			vm.showsMenu = true;
 			providerService.getMenusForProvider(vm.provider).then(function(response){
@@ -60,21 +75,12 @@
 		}	
 		
 		vm.viewMenuItems = function(ev, row){
-			$mdDialog.show({
-				controller : 'menuItemManagementController',
-				controllerAs : 'mimc',
-				templateUrl : 'menuItemManagement.tpl.html',
-				parent : angular.element(document.body),
-				targetEvent : ev,
-				clickOutsideToClose : true,
-				escapeToClose : true,
-				fullscreen : $scope.customFullscreen,
-				locals : {
-					menuId : row.entity.id,
-					menuName : row.entity.name
-				}
-			}).then(function(answer) {
-				console.log(answer);
+			$window.scrollTo(0, 800);
+			vm.showMenuItems = true;
+			vm.menuName = row.entity.name;
+			providerService.getMenuItems(row.entity.id).then(function(response){
+				vm.gridOptionsItems.data = response.data.data;
+				vm.gridOptionsItems.columnDefs = response.data.headers;
 			});
 		}
 
