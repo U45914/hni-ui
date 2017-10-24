@@ -67,6 +67,7 @@
 		vm.loadMenu();
 		vm.showMenu = function(){
 			vm.showsMenu = true;
+			vm.showMenuItems = false;
 			providerService.getMenusForProvider(vm.provider).then(function(response){
 				vm.gridOptions.data = response.data;
 			});

@@ -46,9 +46,9 @@
 					</div>
 				</div>
 		</div>
-		<div class="form_style">
+		<div class="form_style" ng-show = "vm.showMenuItems">
 		<center>{{vm.menuName}}</center>
-		<div ng-show = "vm.showMenuItems" flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
+		<div  flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
 				<div ui-grid="vm.gridOptionsItems" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-row-edit ui-grid-cellnav ui-grid-auto-resize class="grid" >
 				</div>
 				
