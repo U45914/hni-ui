@@ -20,9 +20,9 @@
 		
 	}
 	
-	reportGenerationController.$inject= ['$rootScope', '$scope','$http','serviceConstants','$state', 'gridService', 'toastService', '$window', '$timeout'];
+	reportGenerationController.$inject= ['$rootScope', '$scope','$http','serviceConstants','$state', 'gridService', 'toastService', '$window', '$timeout', '$mdDialog'];
 	
-	function reportGenerationController($rootScope, $scope, $http, serviceConstants,$state,gridService, toastService, $window, $timeout) {
+	function reportGenerationController($rootScope, $scope, $http, serviceConstants,$state,gridService, toastService, $window, $timeout, $mdDialog) {
 		let baseUrl = serviceConstants.baseUrl;
         var vm = this;
         vm.selectedRow = null;
@@ -30,6 +30,7 @@
         vm.disableDelete = true;
         vm.disableActivate = true;
         vm.disableSheltered = true;
+        vm.sendMsg = true;
         vm.report = $scope.ds;
         vm.showNothing=false;
         vm.showReport = {};
@@ -37,6 +38,8 @@
         vm.selectedRows = 0;
         vm.isParticipant = false;
         vm.isProvider = false;
+        vm.isNgo = false;
+        vm.isVolunteer = false;
         vm.reportType = getReportKey(vm.report.label);
         if(vm.reportType == "participant"){
         	vm.isParticipant = true;
@@ -50,6 +53,18 @@
         }
         else{
         	vm.isProvider = false;
+        }
+        if(vm.reportType == "ngo"){
+        	vm.isNgo = true;
+        }
+        else{
+        	vm.isNgo = false;
+        }
+        if(vm.reportType == "volunteer"){
+        	vm.isVolunteer = true;
+        }
+        else{
+        	vm.isVolunteer = false;
         }
         vm.viewModel = $window.localStorage['selectedActionCard'];
         if (vm.viewModel) {
@@ -97,6 +112,7 @@
 	            	vm.disableDelete = false;
 		            vm.disableActivate = false;
 		            vm.disableSheltered = false;
+		            vm.sendMsg = false;
 		            
 		            if(vm.selectedRows[0].active == "Active"){
 		            	vm.isActivated = true;
@@ -118,6 +134,7 @@
 	            	  vm.disableDelete = true;
 	  	              vm.disableActivate = true;
 	  	              vm.disableSheltered = true;
+	  	              vm.sendMsg = true;
 	            }
             });
         }
@@ -126,7 +143,7 @@
         	if(vm.reportType == "participant"){
 	        	$state.go('profile-detail',{
 	        		'data' : {
-	        			userId : row.entity.uid
+	        			userId : row.entity.userId
 	        		}
 	        	});
         	}else if(vm.reportType == "provider"){
@@ -176,6 +193,7 @@
             vm.disableActivate = true;
             vm.disableSheltered = true;
             vm.disableViewProfile = true;
+            vm.sendMsg = true;
         	gridService.getGridDataFor(vm.report.reportPath).then(function(response) {
         		if(response.data !== null) {
         			vm.gridOptions.data = response.data.data;
@@ -191,13 +209,13 @@
         	if(vm.selectedRows.length > 0 && !vm.disableDelete){
         		$window.scrollTo(0, 0);
 	        	if(vm.selectedRows.length == 1)
-	        		gridService.deletion(vm.selectedRows[0].uid).then(function(response){
+	        		gridService.deletion(vm.selectedRows[0].userId).then(function(response){
 	        			toastService.showToast(response.data.message);
 	        		});
 	        	else{
 	        		var deleteUsers = [];
 	        		for(var index=0 ; index < vm.selectedRows.length; index++){
-	        			deleteUsers.push(vm.selectedRows[index].uid);
+	        			deleteUsers.push(vm.selectedRows[index].userId);
 	        		}
 	        		gridService.deletion(deleteUsers).then(function(response){
 	        			toastService.showToast("Your request has been submitted.");
@@ -211,7 +229,7 @@
         	var activateUsers = [];
         	if(vm.selectedRows.length > 1 && !vm.disableActivate){
         		for(var index = 0; index < vm.selectedRows.length; index++ ){
-        			activateUsers.push(vm.selectedRows[index].uid);
+        			activateUsers.push(vm.selectedRows[index].userId);
         		}
         		gridService.activation(activateUsers, vm.isActivated). then(function(response){
         			$window.scrollTo(0, 0);
@@ -219,7 +237,7 @@
         			vm.resetGridData();
         		});
         	}else if(vm.selectedRows.length == 1){
-        		gridService.activateUser(vm.selectedRows[0].uid, vm.isActivated). then(function(response){
+        		gridService.activateUser(vm.selectedRows[0].userId, vm.isActivated). then(function(response){
         			$window.scrollTo(0, 0);
         			toastService.showToast(response.data.message);
         			vm.resetGridData();
@@ -233,7 +251,7 @@
         	var shelteredUsers = [];
         	if(vm.selectedRows.length > 1 && !vm.disableSheltered){
         		for(var index = 0; index < vm.selectedRows.length; index++ ){
-        			shelteredUsers.push(vm.selectedRows[index].uid);
+        			shelteredUsers.push(vm.selectedRows[index].userId);
         		}
         		gridService.sheltered(shelteredUsers, vm.isSheltered). then(function(response){
         			$window.scrollTo(0, 0);
@@ -241,7 +259,7 @@
         			vm.resetGridData();
         		});
         	}else if(vm.selectedRows.length == 1){
-        		shelteredUsers.push(vm.selectedRows[0].uid);
+        		shelteredUsers.push(vm.selectedRows[0].userId);
         		gridService.sheltered(shelteredUsers, vm.isSheltered). then(function(response){
         			$window.scrollTo(0, 0);
         			toastService.showToast("Your request has been submitted.");
@@ -281,6 +299,30 @@
         	vm.showReport[type] = true;
         });
      
+        vm.sendMessage = function(){
+        	var userId = [];
+        	for(var i=0; i<vm.selectedRows.length; i++){
+        		userId.push(vm.selectedRows[i].userId);
+        	}
+        	if(userId.length>0){
+	        	$mdDialog.show({
+					controller : 'sendMessageController',
+					controllerAs : 'sm',
+					templateUrl : 'sendMessage.tpl.html',
+					parent : angular.element(document.body),
+					//targetEvent : ev,
+					clickOutsideToClose : true,
+					escapeToClose : true,
+					fullscreen : $scope.customFullscreen,
+					locals : {
+						dataList : userId
+					}
+				}).then(function(answer) {
+					console.log(answer);
+				});
+        	}
+        	
+        }
 }
 	
 })();

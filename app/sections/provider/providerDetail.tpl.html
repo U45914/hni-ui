@@ -8,6 +8,9 @@
 			<div style="padding:1px;background-color:rgba(128, 128, 128, 0.43);">
 				<h1 style="color:white;text-align:left;padding-left:50px;">Provider Configuration</h1>
 			</div>
+			<div class ="md-title mgn_bottom_20">
+					<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.goBack()" >Back</md-button>
+				</div>
 			<div class="form_style">
 			<fieldset>
 				<div layout-gt-xs="row">
@@ -44,8 +47,12 @@
                	<md-input-container flex-gt-sm>
 						<label class="text_style_vol">Zip</label> <input type="text" autofocus="on"
 								ng-model="vm.providerZip" />
-					</md-input-container>
-				</div></fieldset><br>
+				</md-input-container><br/>
+				</div>
+				<center>
+					<md-button class="md-raised button-primary" aria-label="Save users" ng-click="vm.updateProvider()">Save Changes</md-button>
+				</center>
+				</fieldset><br>
 				<h3>Provider Locations</h3>
 				<fieldset>
 					<legend>Add Provider Location</legend>
@@ -91,6 +98,20 @@
 							autofocus="on" ng-model="vm.providerLocation.address.longitude" />
 						</md-input-container>
 					</div>
+					<div layout-gt-xs="row">
+						<md-input-container> <label>Menu</label> <md-select
+							ng-click="vm.loadMenusForProvider()" ng-model="vm.selectedMenu">
+						<md-option> <em>None</em></md-option> <md-option
+							ng-repeat="menu in vm.providerMenusList" ng-value="menu.id">
+						{{menu.name}} </md-option> </md-select> </md-input-container>
+
+						<md-button ng-show="vm.selectedMenu != null"
+							class="md-small button-primary" aria-label="View Menu"
+							ng-click="vm.showMenu($event)">View Menu</md-button>
+						<md-button class="md-small button-primary"
+							aria-label="Create New Menu" ng-click="vm.createNewMenu($event)">Create
+						New Menu</md-button>
+					</div>
 					<div layout="row" layout-align="center center">
 						<md-button class="md-raised button-primary"
 							aria-label="Add Location" ng-click="vm.addProviderLocation()">Add
@@ -108,16 +129,13 @@
 		    		<legend><b>Quick Actions</b></legend>
 		    		<center>
 					    <md-switch style= "float: left;" ng-disabled="vm.disableActivate" ng-model="vm.isActivated" ng-click="vm.activated()">{{vm.activeText}}</md-switch>
+						<md-button class="md-raised button-primary" aria-label="Save users" ng-click="vm.updateProviderLocations()">Save Changes</md-button>
 						<!-- <md-button class="md-raised button-primary" ng-disabled="vm.disableDelete" aria-label="Delete user" ng-click="vm.deleteSelected()">Delete</md-button> -->
 						<!-- <md-button class="md-raised button-primary" ng-disabled="vm.disableViewProfile" ng-click="vm.viewProfile()">View Profile</md-button> -->
 					</center>
 				</fieldset>
 		</div>
 		</div>
-			<br>
-				<center>
-					<md-button class="md-raised button-primary" aria-label="Save users" ng-click="vm.update()">Save Changes</md-button>
-				</center>
 		</div>
 
 	</div>

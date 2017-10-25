@@ -134,6 +134,10 @@
             	url: '/providerCreate',
             	template: '<new-provider></new-provider>'
             })
+            .state('menuManagement', {
+            	url: '/menuManagement',
+            	template: '<menu-management></menu-management>'
+            })
             ;        
              
     }

@@ -1,0 +1,76 @@
+<div class="font_for_allpages">
+	<top-nav></top-nav>
+	<div>
+		<div class="left_float" style="width:19%;margin-right:1%;padding-top:20px;padding-left:5px">
+			<left-nav-bar></left-nav-bar>
+		</div>
+		<div class="left_float" style="width:79.5%;background-color:white;">
+			<div style="padding:1px;background-color:rgba(128, 128, 128, 0.43);">
+				<h1 style="color:white;text-align:left;padding-left:50px;">Menu Management</h1>
+			</div>
+			<div class ="md-title mgn_bottom_20">
+					<md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.goBack()" >Back</md-button>
+			</div>
+			<div class="form_style">
+			
+			   <div layout-gt-xs="row">
+					<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+					
+         				 <label>Select Provider</label>
+          			 	<md-select name="type" ng-model="vm.provider" required>
+            		 		<md-option ng-repeat="provider in vm.providers" value = {{provider.providerId}}>{{provider.name}}</md-option>
+            		 	</md-select>
+               		</md-input-container>
+               		
+               		<md-input-container class="md-block input-primary" flex-gt-sm>
+          			 	<md-button class="md-raised button-primary" aria-label="Show Menu" ng-click="vm.showMenu()" ng-disabled = "vm.provider == null" >Show Menu</md-button>
+               		</md-input-container>
+
+			  </div>
+			  <br/>
+			<div ng-show = "vm.showsMenu" flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
+				<div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-row-edit ui-grid-cellnav ui-grid-auto-resize class="grid" >
+				</div>
+					<br />
+					<div>
+						<fieldset class="border">
+							<legend>
+								<b>Quick Actions</b>
+							</legend>
+							<center>
+								<md-button class="md-raised button-primary" ng-disabled="true"
+									aria-label="Save Data" ng-click="vm.saveMenu()">Save</md-button>
+								<!-- <md-button class="md-raised button-primary" ng-disabled="true" aria-label="Delete user" ng-click="vm.deleteMenu()">Delete</md-button> -->
+							</center>
+						</fieldset>
+					</div>
+				</div>
+		</div>
+		<div class="form_style" ng-show = "vm.showMenuItems">
+		<center>{{vm.menuName}}</center>
+		<div  flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
+				<div ui-grid="vm.gridOptionsItems" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-row-edit ui-grid-cellnav ui-grid-auto-resize class="grid" >
+				</div>
+				
+					<br />
+					<div>
+						<fieldset class="border">
+							<legend>
+								<b>Quick Actions</b>
+							</legend>
+							<center>
+								<md-button class="md-raised button-primary" ng-disabled="true"
+									aria-label="Save Data" ng-click="vm.saveMenu()">Save</md-button>
+								<!-- <md-button class="md-raised button-primary" ng-disabled="true" aria-label="Delete user" ng-click="vm.deleteMenu()">Delete</md-button> -->
+							</center>
+						</fieldset>
+					</div>
+				
+		</div>
+		
+
+	</div>
+	<div class="clear_all">
+		<landing-footer></landing-footer>
+	</div>
+</div>

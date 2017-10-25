@@ -10,6 +10,7 @@
 		    		<legend><b>Quick Actions</b></legend>
 		    		<center>
 					    <md-switch style= "float: left;" ng-if="vm.isParticipant" ng-disabled="vm.disableActivate" ng-model="vm.isActivated" ng-click="vm.activated()">Activate / Deactivate</md-switch>
+					    <md-button class="md-raised button-primary" ng-if="vm.isVolunteer||vm.isNgo||vm.isParticipant" ng-disabled="vm.sendMsg" aria-label="Send message" ng-click="vm.sendMessage()">Send Message</md-button>
 						<md-button class="md-raised button-primary" ng-disabled="vm.disableDelete" aria-label="Delete user" ng-click="vm.deleteSelected()">Delete</md-button>
 						<!-- <md-button class="md-raised button-primary" ng-disabled="vm.disableViewProfile" ng-click="vm.viewProfile()">View Profile</md-button> -->
 						<md-switch style= "float: right;" ng-if="vm.isParticipant" ng-disabled="vm.disableSheltered" ng-model="vm.isSheltered" ng-click="vm.sheltered()">Sheltered / Unsheltered</md-switch>
