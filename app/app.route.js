@@ -138,6 +138,10 @@
             	url: '/menuManagement',
             	template: '<menu-management></menu-management>'
             })
+            .state('giftCard', {
+            	url: '/giftCard',
+            	template: '<gift-card></gift-card>'
+            })
             ;        
              
     }
