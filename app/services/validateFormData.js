@@ -7,7 +7,8 @@
 	
 	function validateFormData(){
 			return{
-				validate
+				validate,
+				saveGiftCardForm
 			};
 			
 			
@@ -148,6 +149,25 @@
 				"field" : fields,
 				"msg"   : msgs
 				};
+		}
+		
+		function saveGiftCardForm(giftCard, flag){
+			if(!flag){
+				if(giftCard.cardSerialId == "" || giftCard.cardSerialId == null)
+					return false;
+			}
+			if(giftCard.cardNumber == "" || giftCard.cardNumber == null)
+				return false;
+			if(giftCard.pinNumber == "" || giftCard.pinNumber == null)
+				return false;
+			if(giftCard.originalBalance == "" || giftCard.originalBalance == null)
+				return false;
+			if(giftCard.stateCode == "" || giftCard.stateCode == null)
+				return false;
+			if(giftCard.provider.id == "" || giftCard.provider.id == null)
+				return false;
+			
+			return true;
 		}
 		
 	}

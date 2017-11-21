@@ -44,10 +44,20 @@
 								<label>PIN</label>
 									<input	type="password" required autofocus = "on" ng-model="vm.pinNumber" class="input_box_md">
 				 			</md-input-container>
+				 			<md-input-container  class="md-block input-primary" flex-gt-sm> 
+								<label>Amount</label>
+									<input	type="number" required autofocus = "on" ng-model="vm.amount" class="input_box_md" placeholder="$">
+				 			</md-input-container>
+				 			<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+			         			 <label>State</label>
+					          		 <md-select name="type" ng-model="vm.state" required>
+					            		 <md-option ng-repeat="each in vm.states" value = {{each.value}}>{{each.name}}</md-option>
+				            		 </md-select>
+			               	</md-input-container>
 				 		</div>
 						<center>
 					 		<div layout-gt-xs="row">
-					 				<md-button id="input-submit" class="md-raised button-primary" ng-click="vm.saveNewCard()" ng-disabled="true">Save</md-button>
+					 				<md-button id="input-submit" class="md-raised button-primary" ng-click="vm.saveNewCard()">Save</md-button>
 					 				<md-button id="input-submit" class="md-raised button-primary" ng-click="vm.clear()">Clear</md-button>
 					 		</div>
 					 	</center>

@@ -8,9 +8,9 @@
 		controllerAs : 'vm'
 	});
 	
-	giftCardController.$inject = ['$scope', '$http', 'giftCardService', '$window', 'serviceConstants' , 'gridService', 'toastService', '$mdDialog'];
+	giftCardController.$inject = ['$scope', '$http', 'giftCardService', '$window', 'serviceConstants' , 'gridService', 'toastService', '$mdDialog', 'validateService', 'validateFormData'];
 	
-	function giftCardController($scope, $http, giftCardService, $window,  serviceConstants, gridService, toastService, $mdDialog){
+	function giftCardController($scope, $http, giftCardService, $window,  serviceConstants, gridService, toastService, $mdDialog, validateService, validateFormData){
 		
 		$window.scrollTo(0, 0);
 		
@@ -18,6 +18,7 @@
 		var providerDetailsPath = "provider/all";
 		vm.isProviderSelected = false;
 		vm.clearDirtyRows = [];
+		vm.states = validateService.validateStateDrpdwn();
 		
 		vm.goBack = function(){
 			$window.history.back();
@@ -50,25 +51,71 @@
 		vm.getGiftCards = function(){
 			giftCardService.getProviderGiftCards(vm.provider).then(function(response){
 				vm.gridOptions.columnDefs = response.data.headers;
-				vm.gridOptions.data = response.data.data;
-				vm.appendDeleteOptionToColumns();
+				if(response.data.data != null){
+					vm.gridOptions.data = response.data.data;
+					vm.appendOptionsToColumns();
+				} else {
+					vm.gridOptions.data = [];
+				}
 			});
 		}
 		
-		vm.appendDeleteOptionToColumns = function() {
-			var removeIcon = {
+		vm.appendOptionsToColumns = function() {
+			var deactivateIcon = {
 				field : "name",
 				displayName : "",
 				editable : false,
+				enableFiltering: false,
+				enableSorting: false,
 				pinnedRight : true,
-				cellTemplate : '<md-button ng-click="grid.appScope.deleteGiftCard($event, row)" class="md-raised button-primary md-button md-ink-ripple">Remove</md-button>',
+				cellTemplate : '<md-button ng-click="grid.appScope.deactivateGiftCard($event, row)" class="md-raised button-primary md-button md-ink-ripple" ng-if="grid.appScope.isButtonActive(ev, row)">DE-ACTIVATE</md-button><md-button ng-click="grid.appScope.activateGiftCard($event, row)" class="md-raised button-primary md-button md-ink-ripple" ng-if="!grid.appScope.isButtonActive(ev, row)">ACTIVATE</md-button>',
 				height : 80
 			}
-			vm.gridOptions.columnDefs.push(removeIcon);
+			
+			var stateIcon = {
+					field: "stateCode",
+        			displayName: "State",
+        			pinnedRight:true,
+        			editableCellTemplate: 'ui-grid/dropdownEditor',
+        			editDropdownOptionsArray: vm.states,
+        			editDropdownIdLabel: 'value',
+        			editDropdownValueLabel: 'name',
+        			cellTemplate: '<div class="ui-grid-cell-contents" ng-bind="grid.appScope.getName($event, row)"></div>',
+        			height: 80,
+        			width : 100
+        			
+			}
+			vm.gridOptions.columnDefs.push(stateIcon);
+			vm.gridOptions.columnDefs.push(deactivateIcon);
 		}
 		
-		vm.deleteGiftCard = function(ev, row){
-			giftCardService.deleteGiftCard(row.entity.id).then(function(response){
+		vm.getName = function(ev, row){
+			debugger;
+			for(var index=0; index<vm.states.length; index++){
+				if(row.entity.stateCode == null || vm.states[index]==null ){
+					return "";
+				}
+				if(row.entity.stateCode == vm.states[index].value){
+					return vm.states[index].name;	
+				}
+			}
+		}
+		
+		vm.isButtonActive = function(ev, row){
+			if(row.entity.status == "Active"){
+				return true;
+			}
+		}
+		
+		vm.deactivateGiftCard = function(ev, row){
+			giftCardService.deactivateGiftCard(row.entity.id).then(function(response){
+				toastService.showToast(response.data.message);
+				vm.getGiftCards();
+			});
+		}
+		
+		vm.activateGiftCard = function(ev, row){
+			giftCardService.activateGiftCard(row.entity.id).then(function(response){
 				toastService.showToast(response.data.message);
 				vm.getGiftCards();
 			});
@@ -100,6 +147,8 @@
 			vm.cardNumber = "";
 			vm.serialNumber = "";
 			vm.pinNumber = "";
+			vm.amount = "";
+			vm.state = "";
 			vm.isChecked = false;
 		}
 		
@@ -109,12 +158,26 @@
 			}
 			var payload = {
 					"cardNumber" : vm.cardNumber,
-					"serialNumber" : vm.serialNumber,
-					"pin" : vm.pin
+					"cardSerialId" : vm.serialNumber,
+					"pinNumber" : vm.pinNumber,
+					"originalBalance" : vm.amount,
+					"stateCode" : vm.state,
+					"provider" : {
+						"id" : vm.provider
+					}
 			};
-			giftCardService.saveNewGiftCard(payload).then(function(response){
-				toastService.showToast(response.data.message);
-			});
+			
+			if(validateFormData.saveGiftCardForm(payload, vm.isChecked)){
+				giftCardService.saveNewGiftCard(payload).then(function(response){
+					toastService.showToast(response.data.data);
+					vm.getGiftCards();
+					if(response.data.message == "success"){
+						vm.clear();
+					}
+				});
+			} else {
+				toastService.showToast("Please fill the required fields.");
+			}
 		}
 		
 		vm.updateGiftCards = function(){
@@ -127,6 +190,7 @@
 				giftCardService.updateGiftCards(newRows).then(function(response){
 					toastService.showToast(response.data.data);
 					vm.gridApi.grid.rowEdit.dirtyRows = vm.clearDirtyRows;
+					vm.getGiftCards();
 					$window.scrollTo(0, 0);
 				});
 			}

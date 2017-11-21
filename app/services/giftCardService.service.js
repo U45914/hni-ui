@@ -10,7 +10,8 @@
         return {
         	getProviderGiftCards,
         	saveNewGiftCard,
-        	deleteGiftCard,
+        	deactivateGiftCard,
+        	activateGiftCard,
         	updateGiftCards
         };
 
@@ -21,8 +22,11 @@
         function saveNewGiftCard(giftCard){
         	return $http.post(`${baseUrl}/giftCards/save/`, giftCard);
         }
-        function deleteGiftCard(giftCardId){
-        	return $http.delete(`${baseUrl}/giftCards/${giftCardId}/delete/`);
+        function deactivateGiftCard(giftCardId){
+        	return $http.put(`${baseUrl}/giftCards/deactivate/`, giftCardId);
+        }
+        function activateGiftCard(giftCardId){
+        	return $http.put(`${baseUrl}/giftCards/activate/`, giftCardId);
         }
         function updateGiftCards(giftCards){
         	return $http.put(`${baseUrl}/giftCards/cards/update`,giftCards);
