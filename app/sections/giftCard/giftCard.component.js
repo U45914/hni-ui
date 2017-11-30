@@ -85,12 +85,43 @@
         			width : 100
         			
 			}
+			var rechargeIcon = {
+					field : "name",
+					displayName : "",
+					editable : false,
+					enableFiltering: false,
+					enableSorting: false,
+					pinnedRight : true,
+					cellTemplate : '<md-button ng-click="grid.appScope.rechargeGiftCard($event, row)" class="md-raised button-primary md-button md-ink-ripple">RECHARGE</md-button>',
+					height : 80
+				}
+				
 			vm.gridOptions.columnDefs.push(stateIcon);
+			vm.gridOptions.columnDefs.push(rechargeIcon);
 			vm.gridOptions.columnDefs.push(deactivateIcon);
 		}
 		
+		
+		vm.rechargeGiftCard = function(ev, row){
+			$mdDialog.show({
+				controller : 'rechargeGiftCardController',
+				controllerAs : 'rcc',
+				templateUrl : 'rechargeGiftCard.tpl.html',
+				parent : angular.element(document.body),
+				targetEvent : ev,
+				clickOutsideToClose : true,
+				escapeToClose : true,
+				fullscreen : $scope.customFullscreen,
+				locals : {
+					giftCard : row.entity.id
+				}
+			}).then(function(answer) {
+				console.log(answer);
+				vm.getGiftCards();
+			});
+		}
+		
 		vm.getName = function(ev, row){
-			debugger;
 			for(var index=0; index<vm.states.length; index++){
 				if(row.entity.stateCode == null || vm.states[index]==null ){
 					return "";

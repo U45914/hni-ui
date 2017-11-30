@@ -12,7 +12,9 @@
         	saveNewGiftCard,
         	deactivateGiftCard,
         	activateGiftCard,
-        	updateGiftCards
+        	updateGiftCards,
+        	getGiftCard,
+        	rechargeGiftCard
         };
 
         function getProviderGiftCards(providerId) {
@@ -30,6 +32,13 @@
         }
         function updateGiftCards(giftCards){
         	return $http.put(`${baseUrl}/giftCards/cards/update`,giftCards);
+        }
+        function getGiftCard(giftCardId){
+        	return $http.get(`${baseUrl}/giftCards/getCard/${giftCardId}`);
+        } 
+        
+        function rechargeGiftCard(giftCard){
+        	return $http.put(`${baseUrl}/giftCards/${giftCard.id}/recharge/${giftCard.amount}`);
         }
     }
 })();
