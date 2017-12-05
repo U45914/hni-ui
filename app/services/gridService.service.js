@@ -13,6 +13,7 @@
         	sheltered : sheltered,
         	shelteredMultiple : shelteredMultiple,
         	deletion : deletion,
+        	deleteProvider : deleteProvider,
         	deleteMultiple : deleteMultiple,
         	getGridDataFor: getGridDataFor,
         	saveParticipant : saveParticipant
@@ -55,6 +56,10 @@
         
         function saveParticipant(data){
         	return $http.post(`${baseUrl}/configure/user/participant/save`, data);
+        }
+        
+        function deleteProvider(data){
+        	return $http.post(`${baseUrl}/providers/provider/delete`,data);
         }
         
     }
