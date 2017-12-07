@@ -15,6 +15,7 @@
 	function NewProviderController($scope, $http, $state, serviceConstants,
 			validateService, providerService, $window, toastService, $mdDialog) {
 		var vm = this;
+		$window.scroll(0,0);
 		vm.isAllowedToCreate = true;
 		vm.isAllowedToUpdate = false;
 		vm.provider = {}
