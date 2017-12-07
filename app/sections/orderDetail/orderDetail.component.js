@@ -146,6 +146,7 @@
                 vm.paymentInfo.paymentInstrumentId = data.id.paymentInstrument.id;
                 vm.paymentInfo.cardNumber = data.id.paymentInstrument.cardNumber;
                 vm.paymentInfo.pinNumber = data.id.paymentInstrument.pinNumber;
+                vm.paymentInfo.balance = data.id.paymentInstrument.balance;
             }
         }
 

@@ -87,7 +87,7 @@
 			}
 			var rechargeIcon = {
 					field : "name",
-					displayName : "",
+					displayName : "Recharge",
 					editable : false,
 					enableFiltering: false,
 					enableSorting: false,
