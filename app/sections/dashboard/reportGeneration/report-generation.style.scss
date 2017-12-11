@@ -89,13 +89,15 @@ height : 15px ! important;
 
 .ui-grid-viewport .ui-grid-cell-contents {
   word-wrap: break-word;
-  white-space: normal !important;
-  height: 100%;
+  /*white-space: normal !important;*/
+  /*height: -webkit-fill-available;*/
+  overflow: hidden;
 }
 
 
 .ui-grid-row, .ui-grid-cell {
-  height: auto !important;
+ /*  height: auto !important; */
+ display: table-row;
 }
 
 .ui-grid-row div[role=row] {

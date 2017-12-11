@@ -22,7 +22,11 @@
         	createNewMenu,
         	createNewMenuItem,
         	getMenusForProvider,
-        	getMenuItems
+        	getMenuItems,
+        	updateMenu,
+        	deleteMenuList,
+        	updateMenuItems,
+        	deleteMenuItems
         };
         
         function getProviderDetails(providerId){
@@ -78,6 +82,17 @@
         function deleteProviderLocation(providerId, providerLocationId){
         	return $http.delete(`${baseUrl}/providers/${providerId}/${providerLocationId}/delete`);
         }
-        
+        function updateMenu(menu){
+        	return $http.post(`${baseUrl}/menus/update`, menu);
+        }
+        function deleteMenuList(menuIds){
+        	return $http.delete(`${baseUrl}/menus/${menuIds}/delete/`);
+        }
+        function updateMenuItems(menuId, menuItems){
+        	return $http.post(`${baseUrl}/menus/${menuId}/menuitems/list/add`, menuItems);
+        }
+        function deleteMenuItems(menuItemId){
+        	return $http.delete(`${baseUrl}/menus/${menuItemId}/menuItem/delete`);
+        }
     }
 })();

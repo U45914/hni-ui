@@ -29,6 +29,9 @@
                 paginationPageSize: 50,
                 appScopeProvider: this
        }
+		providerService.getMenusForProvider(providerId).then(function(response){
+			vm.menus = response.data;
+		});
 		loadGrid(providerId);
 		vm.states = validateService.validateStateDrpdwn();
 		vm.disableActivate = true;
@@ -86,6 +89,7 @@
 			vm.providerZip = responseData.address.zip;
 		});
 		
+		
 		function loadGrid(providerId){
 			providerService.getProviderLocationDetails(providerId).then(function(response){
 				vm.gridOptions.data = response.data.data;
@@ -99,11 +103,33 @@
 	        			height: 100,
 	        			width : 100
 	        	}
+				var menuComboList = {
+	        			field: "menu.id",
+	        			displayName: "Menu Name",
+	        			pinnedRight:true,
+	        			editableCellTemplate: 'ui-grid/dropdownEditor',
+	        			editDropdownOptionsArray: vm.menus,
+	        			editDropdownIdLabel: 'id',
+	        			editDropdownValueLabel: 'name',
+	        			cellTemplate: '<div ng-bind="grid.appScope.getName($event, row)"></div>',
+	        			height: 100,
+	        			width : 100
+	        	}
 	        	vm.gridOptions.columnDefs.push(deleteButton);
+				vm.gridOptions.columnDefs.splice(1,1,menuComboList);
 			});
 		}
-		
-		
+		vm.getName = function(ev, row){
+			debugger;
+			for(var index=0; index<vm.menus.length; index++){
+				if(row.entity.menu == null || vm.menus[index]==null ){
+					return "";
+				}
+				if(row.entity.menu.id == vm.menus[index].id){
+					return vm.menus[index].name;	
+				}
+			}
+		}
 		vm.deleteProviderLocation = function(event, row){
 			providerService.deleteProviderLocation(providerId, row.entity.id).then(function(response){
 				toastService.showToast(response.data.message);

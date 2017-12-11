@@ -198,6 +198,19 @@
         		if(response.data !== null) {
         			vm.gridOptions.data = response.data.data;
                     vm.gridOptions.columnDefs = response.data.headers;
+                    if ((vm.isParticipant || vm.isProvider) && vm.gridOptions.columnDefs.length != 0) {
+                    	var editButton = {
+                    			field: "name",
+                    			displayName: "",
+                    			editable:false,
+                    			pinnedRight:true,
+                    			cellTemplate: '<md-button ng-click="grid.appScope.viewProfile($event, row)" class="md-raised button-primary md-button md-ink-ripple">View Profile</md-button>',
+                    			height: 100,
+                    			width:100,
+                    			enableFiltering: false,
+                    	}
+                    	vm.gridOptions.columnDefs.push(editButton);
+                    }
                     if (vm.gridApi != null) {
                     	vm.gridApi.core.refresh();
                     }
@@ -206,43 +219,73 @@
         }
         
         vm.deleteSelected = function(){
-        	if(vm.selectedRows.length > 0 && !vm.disableDelete){
-        		$window.scrollTo(0, 0);
-	        	if(vm.selectedRows.length == 1)
-	        		gridService.deletion(vm.selectedRows[0].userId).then(function(response){
-	        			toastService.showToast(response.data.message);
-	        		});
-	        	else{
-	        		var deleteUsers = [];
-	        		for(var index=0 ; index < vm.selectedRows.length; index++){
-	        			deleteUsers.push(vm.selectedRows[index].userId);
-	        		}
-	        		gridService.deletion(deleteUsers).then(function(response){
-	        			toastService.showToast("Your request has been submitted.");
-	        		});
-	        	}
+        	
+        	if(vm.reportType != "provider") {
+        		if(vm.selectedRows.length > 0 && !vm.disableDelete){
+            		$window.scrollTo(0, 0);
+    	        	if(vm.selectedRows.length == 1)
+    	        		gridService.deletion(vm.selectedRows[0].userId).then(function(response){
+    	        			toastService.showToast(response.data.message);
+    	        			vm.resetGridData();
+    	        		});
+    	        	else{
+    	        		var deleteUsers = [];
+    	        		for(var index=0 ; index < vm.selectedRows.length; index++){
+    	        			deleteUsers.push(vm.selectedRows[index].userId);
+    	        		}
+    	        		gridService.deletion(deleteUsers).then(function(response){
+    	        			toastService.showToast("Your request has been submitted.");
+    	        			vm.resetGridData();
+    	        		});
+    	        	}
+            	}
+        	} else if(vm.reportType == "provider"){
+        		if(vm.selectedRows.length > 0 && !vm.disableDelete){
+        			$window.scrollTo(0, 0);
+    	        	var deleteUsers = [];
+    	        	for(var index=0 ; index < vm.selectedRows.length; index++){
+    	        		deleteUsers.push(vm.selectedRows[index].providerId);
+    	        	}
+    	        	gridService.deleteProvider(deleteUsers).then(function(response){
+    	        		toastService.showToast(response.data.message);
+    	        		vm.resetGridData();
+    	        	});
+            	}
         	}
-        	vm.resetGridData();
         }
         
         vm.activated = function(){
-        	var activateUsers = [];
-        	if(vm.selectedRows.length > 1 && !vm.disableActivate){
-        		for(var index = 0; index < vm.selectedRows.length; index++ ){
-        			activateUsers.push(vm.selectedRows[index].userId);
-        		}
-        		gridService.activation(activateUsers, vm.isActivated). then(function(response){
-        			$window.scrollTo(0, 0);
-        			toastService.showToast("Your request has been submitted.");
-        			vm.resetGridData();
-        		});
-        	}else if(vm.selectedRows.length == 1){
-        		gridService.activateUser(vm.selectedRows[0].userId, vm.isActivated). then(function(response){
-        			$window.scrollTo(0, 0);
-        			toastService.showToast(response.data.message);
-        			vm.resetGridData();
-        		});
-        	}
+        	if(vm.reportType == "provider"){
+        		var activateProviderList = [];
+            	if(vm.selectedRows.length >= 1 && !vm.disableActivate){
+            		for(var index = 0; index < vm.selectedRows.length; index++ ){
+            			activateProviderList.push(vm.selectedRows[index].providerId);
+            		}
+            		gridService.activateProviders(activateProviderList, vm.isActivated). then(function(response){
+            			$window.scrollTo(0, 0);
+            			toastService.showToast(response.data.message);
+            			vm.resetGridData();
+            		});
+            	}
+            } else {
+            	var activateUsers = [];
+            	if(vm.selectedRows.length >= 1 && !vm.disableActivate){
+            		for(var index = 0; index < vm.selectedRows.length; index++ ){
+            			activateUsers.push(vm.selectedRows[index].userId);
+            		}
+            		gridService.activation(activateUsers, vm.isActivated). then(function(response){
+            			$window.scrollTo(0, 0);
+            			toastService.showToast("Your request has been submitted.");
+            			vm.resetGridData();
+            		});
+            	}else if(vm.selectedRows.length == 1){
+            		gridService.activateUser(vm.selectedRows[0].userId, vm.isActivated). then(function(response){
+            			$window.scrollTo(0, 0);
+            			toastService.showToast(response.data.message);
+            			vm.resetGridData();
+            		});
+            	}
+            }
         	
         }
         

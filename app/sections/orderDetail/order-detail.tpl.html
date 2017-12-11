@@ -49,6 +49,7 @@
                             <div class="payment-info-animation" ng-if="vm.showPaymentInfo" style="display: inline-block">
                                 <span>{{vm.paymentInfo.cardNumber}}</span>
                                 <span>{{vm.paymentInfo.pinNumber}}</span>
+                                <span> ${{vm.paymentInfo.balance}}</span>
                             </div>
                         </div>
                         <div flex="100"><md-button class="button-primary" ng-click="vm.getMoreFunds();">I Need More Funds</md-button></div>

@@ -1,0 +1,31 @@
+<md-dialog> <md-dialog-content>
+<div style="padding: 1px; background-color: rgba(128, 128, 128, 0.43);">
+	<h1 style="color: white; text-align: left; padding-left: 50px;">RECHARGE GIFT CARD</h1>
+</div>
+<div class="form_style">
+	<fieldset>
+		<div layout-gt-xs="row">
+			<md-input-container flex-gt-sm> <label
+				class="text_style_vol">Card Number</label> <input type="text" required ng-disabled="true"
+				autofocus="on" ng-model="rcc.giftCard.cardNumber" /> </md-input-container>
+			<md-input-container class="mgn_left_25" flex-gt-sm>
+			<label class="text_style_vol">Serial Number</label> <input type="text" ng-disabled="true"
+				required ng-model="rcc.giftCard.cardSerialId" /> </md-input-container>
+		</div>
+		<div layout-gt-xs="row">
+			<md-input-container flex-gt-sm>
+			<label class="text_style_vol">State</label> <input type="text" ng-disabled="true"
+				required ng-model="rcc.giftCard.stateCode" /> </md-input-container>
+			
+			<md-input-container flex-gt-sm>
+			<label class="text_style_vol">Amount</label> <input type="number" autofocus
+				required ng-model="rcc.giftCard.amount" /> </md-input-container>
+		</div>
+		<div layout-gt-xs="row" layout-align="center center">
+			<md-button class="md-raised button-primary" aria-label="Recharge"
+				ng-click="rcc.recharge()" ng-disabled = "(rcc.giftCard.amount==null)||(rcc.giftCard.amount<=0)" >RECHARGE</md-button>
+		</div>
+		<br>
+	</fieldset>
+</div>
+</md-dialog-content> </md-dialog>
