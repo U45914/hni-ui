@@ -151,6 +151,5 @@
             	template: '<gift-card></gift-card>'
             })
             ;        
-             
     }
 })();
