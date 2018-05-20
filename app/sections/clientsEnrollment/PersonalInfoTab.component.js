@@ -18,9 +18,9 @@
 
 	} 
   
-  personalInfoController.$inject = ['$q','clientEnrollmentService','commonUserProfileConfigService','$rootScope','$scope','validateService', 'validateFormData','toastService']; 
+  personalInfoController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','validateService', 'validateFormData','toastService']; 
   
-  function personalInfoController ($q,clientEnrollmentService,commonUserProfileConfigService,$rootScope,$scope,validateService,validateFormData, toastService) {
+  function personalInfoController ($q,clientEnrollmentService,$rootScope,$scope,validateService,validateFormData, toastService) {
 	  var vm = this;
 	 
 	  vm.client = {};
@@ -29,10 +29,7 @@
 	  vm.states = validateService.validateStateDrpdwn();
 	 
 	  vm.fields = {};
-	  vm.msgs = {};
-	 
-	 vm.configData = commonUserProfileConfigService.participantProfileConfig;
-	 
+	 vm.msgs = {};
 	  $scope.$on("data-loaded-client", function(obj) {
 			vm.load();
 	 });
@@ -42,7 +39,6 @@
 			vm.client.bday = new Date(vm.client.bday);	
 			clientEnrollmentService.setPersonnalData(vm.getDataModel(vm.client));
 		}
-	  
 	  
 	  vm.save = function(isTopTabClicked){
 		 // $scope.bday=parseInt(vm.client.bday);

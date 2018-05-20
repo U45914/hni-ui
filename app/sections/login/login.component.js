@@ -10,9 +10,9 @@
             controllerAs: 'vm'
         });
 
-    LoginController.$inject = ['authService', 'externalAuthService', 'validateService', '$state', 'toastService','$rootScope'];
+    LoginController.$inject = ['authService', 'externalAuthService', 'validateService', '$state', 'toastService'];
 
-    function LoginController(authService, externalAuthService, validateService, $state, toastService,$rootScope) {
+    function LoginController(authService, externalAuthService, validateService, $state, toastService) {
         var vm = this;
         vm.togglePassword = togglePassword;
         vm.inputType = 'password';
@@ -44,7 +44,6 @@
         		 authService.login(vm.username, vm.password)
         		 	.then((response) => {
         		 		if (response) {
-        		 			$rootScope.userId = JSON.stringify(response.data.user.id);
         		 			vm.validateCredentials = "";
         		 			authService.setLoginResponse(response);   
         		 			$state.go('dashboard');

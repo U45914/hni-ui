@@ -17,14 +17,11 @@
 		}
 	}
 	
-	healthDetailsTabController.$inject = ['$q','clientEnrollmentService','commonUserProfileConfigService','$rootScope','$scope','$state','toastService','validateService', 'validateFormData', '$window'];
+	healthDetailsTabController.$inject = ['$q','clientEnrollmentService','$rootScope','$scope','$state','toastService','validateService', 'validateFormData', '$window'];
 	
-	function healthDetailsTabController($q,clientEnrollmentService,commonUserProfileConfigService,$rootScope,$scope, $state, toastService, validateService, validateFormData, $window){
+	function healthDetailsTabController($q,clientEnrollmentService,$rootScope,$scope, $state, toastService, validateService, validateFormData, $window){
     	var vm = this;
-    	
-    	vm.configData = commonUserProfileConfigService.participantProfileConfig;
 
-    	
     	 $scope.$on("data-loaded-client", function(obj) {
  			vm.load();
  	 });

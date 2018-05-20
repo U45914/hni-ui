@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientEmploymentController.$inject = ['$q','clientEnrollmentService','commonUserProfileConfigService','$scope','$rootScope','$state','toastService'];
+	clientEmploymentController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
 	
-	function clientEmploymentController($q,clientEnrollmentService,commonUserProfileConfigService,$scope,$rootScope,$state,toastService){
+	function clientEmploymentController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	vm.employed = false;
     	vm.unEmployed = false;
@@ -76,8 +76,6 @@
     		{id: 2, name: "More than 1 year"},
     	]
     	//vm.emp = clientEnrollmentService.clientEmployment;
-    	
-    	vm.configData = commonUserProfileConfigService.participantProfileConfig;
     	
     	 $scope.$on("data-loaded-client", function(obj) {
  			vm.load();

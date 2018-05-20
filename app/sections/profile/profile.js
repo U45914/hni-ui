@@ -8,9 +8,9 @@
         controllerAs: 'vm'
     });
 
-    ProfileController.$inject = ['userService', 'commonUserProfileConfigService','$state'];
+    ProfileController.$inject = ['userService', '$state'];
 
-    function ProfileController(userService, commonUserProfileConfigService, $state) {
+    function ProfileController(userService, $state) {
         var vm = this;
 
         vm.$onInit = function() {
@@ -20,12 +20,7 @@
     		}else if("Volunteer" == vm.userRole) {
     			$state.go("volunteerProfile")
     		} else if("Client" == vm.userRole) {
-    			commonUserProfileConfigService.getUserProfileConfiguration().then(
-    					function (response){
-    						commonUserProfileConfigService.participantProfileConfig = response;
-    						  $state.go("clientProfile")
-    					  });
-    			
+    			$state.go("clientProfile")
     		} else {
     			$state.go("dashboard");
     		}

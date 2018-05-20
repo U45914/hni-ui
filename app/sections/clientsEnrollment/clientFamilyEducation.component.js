@@ -17,14 +17,11 @@
 		}
 	}
 	
-	clientFamilyEducationController.$inject = ['$q','clientEnrollmentService','commonUserProfileConfigService','$scope','$rootScope','$state','toastService'];
+	clientFamilyEducationController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
 	
-	function clientFamilyEducationController($q,clientEnrollmentService,commonUserProfileConfigService,$scope,$rootScope,$state,toastService){
+	function clientFamilyEducationController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	//vm.family = clientEnrollmentService.clientEmployment;
-    	
-    	vm.configData = commonUserProfileConfigService.participantProfileConfig;
-    	
     	 $scope.$on("data-loaded-client", function(obj) {
  			vm.load();
  	 });
