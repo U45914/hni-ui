@@ -17,11 +17,14 @@
 		}
 	}
 	
-	connectionDetailsController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
+	connectionDetailsController.$inject = ['$q','clientEnrollmentService','commonUserProfileConfigService','$scope','$rootScope','$state','toastService'];
 	
-	function connectionDetailsController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
+	function connectionDetailsController($q,clientEnrollmentService,commonUserProfileConfigService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	//vm.connection = clientEnrollmentService.connectionDetails;
+    	
+    	vm.configData = commonUserProfileConfigService.participantProfileConfig;
+    	
     	 $scope.$on("data-loaded-client", function(obj) {
  			vm.load();
  	 });

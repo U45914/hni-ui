@@ -16,7 +16,15 @@
         vm.role = authService.getUserRole();
         vm.rolesConstantName=rolesConstantName;
         vm.showLeft = false;
-        
+        vm.child =false;
+        vm.parent = function(){
+        	if(vm.child == true){
+        		vm.child =false;
+        	}else{
+        		vm.child =true;
+        	}
+        	
+        }
         
         
         vm.logout = function() {
