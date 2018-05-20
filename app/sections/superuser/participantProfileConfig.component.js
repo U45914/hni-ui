@@ -19,7 +19,6 @@
   		
   		var vm = this;
   		
-  		
   		participantProfileConfigService.getUserProfileConfiguration().then(
   				function successCallback(response){
   						vm.addressLine1 = (response.data.addressLine1 == 1)  ? true : false,
