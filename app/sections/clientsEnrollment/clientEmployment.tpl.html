@@ -2,12 +2,13 @@
 	<h3>Employment Information</h3>
 
 	<div layout-gt-xs="row" class="width_for_textbox">
-	<md-input-container class="md-block input-primary " flex-gt-sm>	
+	<md-input-container ng-show ="vm.configData.residentStatus" class="md-block input-primary " flex-gt-sm>	
 	<label>Resident status</label>
 	<md-select ng-model="vm.emp.residentStatus"> <md-option
 		ng-repeat="a in vm.residentList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
 	
-	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>			
+	<div ng-show ="vm.configData.workStatus">
+	<md-input-container  class="md-block input-primary mgn_left_25" flex-gt-sm>			
 	 <label>Work status</label>
 	<md-select ng-model="vm.emp.workStatus" ng-change="vm.checkEmployed(vm.emp.workStatus);"> <md-option
 		ng-repeat="a in vm.wrkStatusList" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
@@ -62,6 +63,8 @@
 		ng-repeat="a in vm.avgWrkHrs" ng-value={{a.id}}>{{a.name}}</md-option> </md-select></md-input-container>
 			</div>
 	</div>
+	
+	
 	<div ng-show = "vm.unEmployed">
 	<label>if unemployed, for how long</label>
 			<md-select ng-model="vm.emp.durationOfEmployement" class="mission_width6"> <md-option
@@ -78,7 +81,11 @@
 				<input type="text" ng-model="vm.emp.reasonUnemploymentBenefits"/>
 			</md-input-container>
 	</div><br></div>
-	<label>How much $ do you spend each month on: </lable>
+	
+	</div>
+	
+	<div ng-show ="vm.configData.MonthlySpendigs">
+	<label>How much $ do you spend each month on: </lablel>
 	<div layout-gt-xs="row" class="width_for_textbox">	
 	<md-input-container class="md-block input-primary" flex-gt-sm>
             	<label> Food</label>
@@ -102,6 +109,7 @@
             	<label> Savings</label>
 				<input type="number"   min = "0" ng-model="vm.emp.dollarSpendSavings"/>
 	</md-input-container>
+	</div>
 	</div>
 	<br><br>
 		<hr class="register-input-test mgn_top10" layout="row" layout-align="center center">

@@ -17,9 +17,9 @@
 		}
 	}
 	
-	clientFoodPreferencesController.$inject = ['$q','clientEnrollmentService','$scope','$rootScope','$state','toastService'];
+	clientFoodPreferencesController.$inject = ['$q','clientEnrollmentService','commonUserProfileConfigService','$scope','$rootScope','$state','toastService'];
 	
-	function clientFoodPreferencesController($q,clientEnrollmentService,$scope,$rootScope,$state,toastService){
+	function clientFoodPreferencesController($q,clientEnrollmentService,commonUserProfileConfigService,$scope,$rootScope,$state,toastService){
     	var vm = this;
     	
     	vm.mealsPerDayList = [
@@ -61,6 +61,10 @@
 			{id: 3, name: "Fair"},
 			{id: 4, name: "Poor"}
     	];
+    	
+    	vm.configData = commonUserProfileConfigService.participantProfileConfig;
+
+    	
     	//vm.food = clientEnrollmentService.foodPreferences;
     	 $scope.$on("data-loaded-client", function(obj) {
  			vm.load();

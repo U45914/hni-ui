@@ -1,9 +1,9 @@
 	<div class="font_for_allpages1" >
 	<h3>Connections</h3>
 	<br>
-
+<div ng-show ="vm.configData.smartPhone">
 	<md-radio-group  layout = "row" ng-model ="vm.connection.hasSmartPhone" class="md-primary">
-	<label>Do you own a smartphone?</label>
+	<label>Do you own a smartphone? </label>
 	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
 	<md-radio-button style ="left:13px;" ng-value="false"> No </md-radio-button>
 	</md-radio-group>
@@ -18,8 +18,8 @@
 				<input type="text" ng-model="vm.connection.model"/>
 			</md-input-container>
 </div>
-	
-	
+</div>
+	<div ng-show ="vm.configData.monthlyPlan">
 	<md-radio-group  layout = "row" ng-model ="vm.connection.haveMonthlyPlan" class="md-primary">
 	<label>Do you have a monthly plan?</label>
 	<md-radio-button style ="left:13px;" ng-value="true"> Yes </md-radio-button>
@@ -63,6 +63,8 @@
 	
 	</div>
 	</div>
+	</div>
+	
 	<br><br>
 	<hr class="register-input-test" layout="row" layout-align="center center">
 	<div  class="right_float">
