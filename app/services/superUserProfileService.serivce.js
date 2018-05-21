@@ -22,7 +22,6 @@
         	return $http.post(`${baseUrl}/users/update/superuserprofile`,profileData)
         }
         
-    
     }
     
 })();    
