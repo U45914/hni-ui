@@ -77,6 +77,33 @@
 			
 		}	
 		
+		
+		vm.createNewMenu = function(ev) {
+			// open a popup and show menu management window
+			vm.showCreateMenu = true;
+			vm.pid = vm.provider;
+			$mdDialog.show({
+				controller : 'MenuConfigController',
+				controllerAs : 'mdcvm',
+				templateUrl : 'menu_config.tpl.html',
+				parent : angular.element(document.body),
+				targetEvent : ev,
+				clickOutsideToClose : false,
+				escapeToClose : true,
+				fullscreen : $scope.customFullscreen,
+				locals : {
+					providerId : vm.provider 
+				}
+			// Only for -xs, -sm breakpoints.
+			}).then(function(menu) {
+				// load menu items drop down
+				vm.providerLocation.menu = menu;
+				vm.selectedMenu = menu.id;
+				vm.providerMenusList.push(menu);
+			});
+
+		}
+		
 		vm.viewMenuItems = function(ev, row){
 			$window.scrollTo(0, 800);
 			vm.showMenuItems = true;

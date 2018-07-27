@@ -1,0 +1,157 @@
+<div class="font_for_allpages">
+    <top-nav></top-nav>
+    <div class="left_float" style="width:19%;padding-top:15px;">
+        <left-nav-bar></left-nav-bar>
+    </div>
+    <div class="left_float" style="width:80.2%;background-color:white;margin-left:9px;">
+        <div style="padding:1px;background-color:rgba(128, 128, 128, 0.43);">
+            <h1 style="color:white;text-align:left;padding-left:50px;">Configure Participant Profile</h1>
+        </div>
+        <div ng-cloak class="tabsdemoDynamicHeight">
+            <md-content>
+                <md-tabs md-dynamic-height="" md-border-bottom="">
+                    <md-tab label="Personal">
+                        <md-content class="md-padding">
+                            <div>
+                                <ul class="padding_270">
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.addressLine1">
+                                        AddressLine 1 : </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.addressLine2">
+                                        AddressLine 2: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.city">
+                                        City: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.state">
+                                        State : </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.zipCode">
+                                        Zipcode: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.ethinCity">
+                                        Ethnicity : </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.phoneNumber">
+                                        PhoneNumber : </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.dob">
+                                        DOB: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.everBeenArrested">
+                                        Everbeen Arressted: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.convOfFelony">
+                                        Convicted of Felony: </md-switch>
+                                </ul>
+                                <br>
+                                <md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.save()">Save</md-button>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Connections">
+                        <md-content class="md-padding">
+                            <div>
+                                <ul class="padding_270">
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.smartPhone">
+                                        Smart Phone: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.monthlyPlan">
+                                        Monthly Plan: </md-switch>
+                                </ul>
+                                <br>
+                                <md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.save()">Save</md-button>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Family">
+                        <md-content class="md-padding">
+                            <div>
+                                <ul class="padding_270">
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.noOfSiblings">
+                                        No of Siblings: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.noOfKids">
+                                        No of Kids: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.liveAtHome">
+                                        Live at Home: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.housingStatus">
+                                        Housing Status : </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.education">
+                                        Education: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.parentalEducation">
+                                        Parental Education : </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.enrolled">
+                                        Enrolled: </md-switch>
+                                </ul>
+                                <br>
+                                <md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.save()">Save</md-button>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Employment">
+                        <md-content class="md-padding">
+                            <div>
+                                <ul class="padding_270">
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.residentStatus">
+                                        Resident Status: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.workStatus">
+                                        Work Status: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.MonthlySpendigs">
+                                        Monthly Spendings: </md-switch>
+                                </ul>
+                                <br>
+                                <md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.save()">Save</md-button>
+                            </div>
+
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Food">
+                        <md-content class="md-padding">
+                            <div>
+                                <ul class="padding_270">
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.noOfMeals">
+                                        No of Meals: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.foodPreferences">
+                                        Food Preferences: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.purchaseLocation">
+                                        Purchase Location: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.cookingOptions">
+                                        Cooking Options: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.distanceOfTravel">
+                                        Distance of Travel: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.timeOfTravel">
+                                        Time for Travel: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.SubsProgram">
+                                        Subsidised Food Programs: </md-switch>
+                                </ul>
+                                <br>
+                                <md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.save()">Save</md-button>
+                            </div>
+
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Health">
+                        <md-content class="md-padding">
+                            <div>
+                                <ul class="padding_270">
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.allergies">
+                                        Allergies: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.historyOfAddiction">
+                                        History of Addiction: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.mentalHealth">
+                                        Mental Health: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.height">
+                                        Height: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.weight">
+                                        Weight: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.excercisePerWeek">
+                                        Excercise per Week: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.doctorAppointment">
+                                        Doctor Appointmnet: </md-switch>
+                                    <md-switch md-invert aria-label="Switch 7" ng-model="vm.dentistAppointment">
+                                        Dentist Appointmnet: </md-switch>
+                                </ul>
+                                <br>
+                                <md-button id="input-submit" class="md-raised button-primary" style="float:right;" ng-click="vm.save()">Save</md-button>
+                            </div>
+
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+    </div>
+    <div class="clear_all">
+        <landing-footer></landing-footer>
+    </div>
+</div>

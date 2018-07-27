@@ -107,6 +107,14 @@
             	url: '/profile',
             	template: '<profile></profile>'
             })
+            .state('superUserProfile', {
+            	url: '/superUserProfile',
+            	template: '<super-user-profile></super-user-profile>'
+            })
+            .state('profileConfiguration', {
+            	url: '/profileConfiguration',
+            	template: '<profile-configuration></profile-configuration>'
+            })
             .state('volunteerEnrollment', {
                 url: '/volunteerEnrollment',
                 template: '<volunteer-enrollment></volunteer-enrollment>'
@@ -143,6 +151,5 @@
             	template: '<gift-card></gift-card>'
             })
             ;        
-             
     }
 })();

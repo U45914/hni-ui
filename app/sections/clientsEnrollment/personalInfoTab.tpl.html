@@ -15,9 +15,9 @@ ng-blur="vm.validationCheck('text','lname',vm.client.user.lastName)" />
 </md-input-container>
 </md-input-container>
 </div>
-<div layout-gt-xs="row" class="width_for_textbox">
+<div layout-gt-xs="row" ng-show ="vm.configData.addressLine1" class="width_for_textbox">
 	
-	<md-input-container class="md-block input-primary " flex-gt-sm>
+	<md-input-container  class="md-block input-primary " flex-gt-sm>
 	<label>Address line 1</label> <input type="text" 
 		ng-model="vm.client.address.address1" >
 	</md-input-container>
@@ -30,19 +30,19 @@ ng-blur="vm.validationCheck('text','lname',vm.client.user.lastName)" />
 
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
-	<md-input-container class="md-block input-primary" flex-gt-sm>
+	<md-input-container ng-show ="vm.configData.city" class="md-block input-primary" flex-gt-sm>
 	<label>City</label> <input type="text" 
 		ng-model="vm.client.address.city" >
 		</md-input-container>
 
-	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
+	<md-input-container ng-show ="vm.configData.state" class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label>State</label> <md-select ng-init="vm.client.address.state" name="type" required ng-model="vm.client.address.state"
 		ng-blur="vm.validationCheck('text','state',vm.client.address.state)"> <md-option ng-repeat="each in vm.states"
 		value={{each.value}} ng-init = "vm.client.address.state" >{{each.name}}</md-option> </md-select> 
 		<div id="errorMsg" ng-if="vm.fields['state']" style="color:red;" ng-bind="vm.msgs['state']"></div>
 		</md-input-container>
-	<md-input-container class="md-block input-primary mgn_left_25" flex-gt-sm>
-
+		
+	<md-input-container ng-show ="vm.configData.zipCode" class="md-block input-primary mgn_left_25" flex-gt-sm>
 	<label>Zipcode</label> <input type="text"  maxlength="5"
 		ng-model="vm.client.address.zip" ng-blur="vm.validationCheck('number','zip',vm.client.address.zip)">
 		<div id="errorMsg" ng-if="vm.fields['zip']" style="color:red;" ng-bind="vm.msgs['zip']"></div>
@@ -50,7 +50,7 @@ ng-blur="vm.validationCheck('text','lname',vm.client.user.lastName)" />
 
 </div>
 <div layout-gt-xs="row" class="width_for_textbox">
-<md-input-container class="md-block input-primary" flex-gt-sm>
+<md-input-container ng-show ="vm.configData.ethinCity" class="md-block input-primary" flex-gt-sm>
 <label>Ethnicity</label> <md-select 
 	ng-model="vm.client.ethnicity"> <md-option ng-value=1>White</md-option> <md-option ng-value=2>Hispanic or Latino</md-option>
 	<md-option ng-value=3>Black or African American</md-option><md-option ng-value=4>Native American or American Indian</md-option><md-option ng-value=5>Asian/ Pacific Islander</md-option><md-option ng-value=0>Other</md-option>
@@ -58,23 +58,23 @@ ng-blur="vm.validationCheck('text','lname',vm.client.user.lastName)" />
 	</md-input-container>
 </md-input-container>
 
-<md-input-container class="md-block input-primary" flex-gt-sm>
+<md-input-container ng-show ="vm.configData.phoneNumber" class="md-block input-primary" flex-gt-sm>
 <label>Phone number</label> <input type="text" phone-number-input required maxlength="12"
 	ng-model="vm.client.user.mobilePhone" ng-blur="vm.validationCheck('number','phone',vm.client.user.mobilePhone)" placeholder="999-999-9999" >
 	<div id="errorMsg" ng-if="vm.fields['phone']" style="color:red;" ng-bind="vm.msgs['phone']"></div>
 	 </md-input-container>
-	<md-input-container class="md-block mgn_left_25" flex-gt-sm> <label>Birthday</label>
+	<md-input-container ng-show ="vm.configData.dob" class="md-block mgn_left_25" flex-gt-sm> <label>Birthday</label>
 <input type="date"  ng-model="vm.client.bday" ng-blur="vm.validationCheck('text','bday',vm.client.bday)"> 
 <div id="errorMsg" ng-if="vm.fields['bday']" style="color:red;" ng-bind="vm.msgs['bday']"></div></md-input-container>
 </div><br><br>
-<md-radio-group layout="row" ng-model="vm.client.beenArrested"
+<md-radio-group layout="row"  ng-show ="vm.configData.everBeenArrested" ng-model="vm.client.beenArrested"
 	class="md-primary"> <label>Have you ever been
 	arrested </label> <md-radio-button style="left:15px;" ng-value="true">
 Yes </md-radio-button> <md-radio-button style="left:15px;" ng-value="false">
 No </md-radio-button> </md-radio-group>
 <br>
 <br>
-<md-radio-group layout="row" ng-model="vm.client.beenConvicted"
+<md-radio-group layout="row" ng-show ="vm.configData.convOfFelony" ng-model="vm.client.beenConvicted"
 	class="md-primary"> <label>Have you ever been
 	convicted of a felony?</label> <md-radio-button style="left:13px;"
 	ng-value="true"> Yes </md-radio-button> <md-radio-button

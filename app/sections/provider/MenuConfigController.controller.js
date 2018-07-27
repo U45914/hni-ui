@@ -14,6 +14,7 @@
 		mdcvm.showMenuItemConfig = false;
 		mdcvm.showCreateButton = true;
 		mdcvm.menuItems = [];
+		mdcvm.providerId= providerId;
 		mdcvm.menuItemsGridOptions = {
 				data : [],
 				urlSync : false,
@@ -32,7 +33,7 @@
 		
 		mdcvm.createMenu = function() {
 			if (mdcvm.validateMenu()){
-				providerService.createNewMenu(mdcvm.menu).then(function(response){
+				providerService.createNewMenu(providerId,mdcvm.menu).then(function(response){
 					if (response) {
 						mdcvm.showMenuItemConfig = true;
 						mdcvm.menuId = response.data.id;

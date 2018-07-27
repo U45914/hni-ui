@@ -64,8 +64,8 @@
         	return $http.post(`${baseUrl}/providers/providerLocation/activate`, providerLocation);
         }
         
-        function createNewMenu(menu) {
-        	return $http.post(`${baseUrl}/menus/menu/create`, menu);
+        function createNewMenu(providerId,menu) {
+        	return $http.post(`${baseUrl}/menus/menu/create/${providerId}`, menu);
         }
         
         function createNewMenuItem(menuId, menuItem) {

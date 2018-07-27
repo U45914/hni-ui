@@ -24,10 +24,21 @@
                		
                		<md-input-container class="md-block input-primary" flex-gt-sm>
           			 	<md-button class="md-raised button-primary" aria-label="Show Menu" ng-click="vm.showMenu()" ng-disabled = "vm.provider == null" >Show Menu</md-button>
+          			 	<md-button class="md-raised button-primary"  aria-label="Show Menu" ng-click="vm.createNewMenu($event)" ng-disabled = "vm.provider == null"  >Create Menu</md-button>
                		</md-input-container>
-
 			  </div>
 			  <br/>
+			<!--   <div class="form_style" ng-show = "vm.showCreateMenu">
+				<h2 class="md-primary">Create Menu</h2>
+				<fieldset>
+					<div layout-gt-xs="row">
+						<md-button class="md-small button-primary"
+							aria-label="Create New Menu" ng-click="vm.createNewMenu($event)">Create
+						New Menu</md-button>
+					</div>
+				</fieldset>
+				
+			</div> -->
 			<div ng-show = "vm.showsMenu" flex-gt-md="100" flex-md="100" flex-xs="100"  class="md-whiteframe-24dp">
 				<div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-edit ui-grid-row-edit ui-grid-cellnav ui-grid-auto-resize class="grid" >
 				</div>
@@ -71,7 +82,7 @@
 				
 		</div>
 		
-
+		
 	</div>
 	<div class="clear_all">
 		<landing-footer></landing-footer>
